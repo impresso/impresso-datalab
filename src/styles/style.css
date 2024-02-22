@@ -1,0 +1,12 @@
+/* override Bootstrap vars and add specific vars */
+:root {
+  --impresso-color-paper: #fafbf2;
+  --bs-font-sans-serif: 'Satoshi-Variable', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  --bs-light: var(--impresso-color-paper);
+}
+
+body {
+  background: var(--bs-light);
+}
