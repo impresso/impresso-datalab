@@ -12,22 +12,17 @@ import './Header.css'
 
 const Header = () => {
   return (
-    <header className='Header'>
+    <header className='Header py-3'>
       <Navbar>
         <Container fluid>
-          <Navbar.Brand href='#home'>
-            <em>impresso</em> <b>datalab</b>
+          <Navbar.Brand>
+            <Link to='/'>
+              <em>impresso</em> <b>datalab</b>
+            </Link>
           </Navbar.Brand>
           <Nav className='me-auto'>
-            <Link className='mx-2' to='/notebooks'>
-              Notebooks
-            </Link>
-            <Link className='mx-2' to='/collections'>
-              Collections
-            </Link>{' '}
-            <Nav.Item className='border-end border-dark mx-2'></Nav.Item>
             <Link className='mx-2' to='/submit-notebook'>
-              Submit a notebook
+              Why Datalab?
             </Link>
             <Link className='mx-2' to='/submit-notebook'>
               get your API token

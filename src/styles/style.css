@@ -9,10 +9,16 @@
     'Droid Sans', 'Helvetica Neue', sans-serif;
   --bs-font-sans-serif-italic: 'Satoshi-VariableItalic', -apple-system,
     BlinkMacSystemFont, sans-serif;
-  --bs-light: var(--impresso-color-paper);
+  --bs-light: #fefefe;
   --bs-link-color-rgb: var(--impresso-color-black-rgb);
   --bs-link-hover-color-rgb: var(--impresso-color-black-rgb);
   --z-index-header: 10;
+
+  --spacer-1: 0.25rem;
+  --spacer-2: 0.5rem;
+  --spacer-3: 1rem;
+  --spacer-4: 1.5rem;
+  --spacer-5: 3rem;
 }
 
 body {
@@ -43,6 +49,20 @@ b {
   background-color: var(--impresso-color-paper);
   border: 1px solid var(--impresso-color-black);
 }
-main {
-  margin-top: 100px;
+
+.container-fluid {
+  max-width: 1414px;
+}
+
+/* ... */
+h2 {
+  border-bottom: 1px solid var(--impresso-color-black);
+  padding-bottom: var(--spacer-3);
+  margin-bottom: var(--spacer-3);
+}
+
+hr {
+  height: 1px;
+  color: var(--impresso-color-black);
+  opacity: 1;
 }

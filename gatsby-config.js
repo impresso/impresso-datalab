@@ -9,6 +9,21 @@ module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
   plugins: [
     'gatsby-plugin-sitemap',
+    // {
+    //   resolve: "gatsby-source-graphql",
+    //   options: {
+    //     typeName: "GitHub",
+    //     fieldName: "github",
+    //     url: "https://api.github.com/graphql",
+    //     headers: {
+    //       Authorization: `bearer ${process.env.GITHUB_TOKEN}`
+    //     },
+    //     fetchOptions: {},
+    //     variables: {
+    //       username: "smakosh"
+    //     }
+    //   }
+    // },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -40,6 +55,14 @@ module.exports = {
         path: './src/collections/',
       },
       __key: 'collections',
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'authors',
+        path: './src/authors/',
+      },
+      __key: 'authors',
     },
     {
       resolve: 'gatsby-plugin-matomo',
