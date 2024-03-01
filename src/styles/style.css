@@ -1,12 +1,48 @@
 /* override Bootstrap vars and add specific vars */
 :root {
   --impresso-color-paper: #fafbf2;
+  --impresso-color-yellow: #ffeb78;
+  --impresso-color-black: #343a40;
+  --impresso-color-black-rgb: 52, 58, 64;
   --bs-font-sans-serif: 'Satoshi-Variable', -apple-system, BlinkMacSystemFont,
     'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
+  --bs-font-sans-serif-italic: 'Satoshi-VariableItalic', -apple-system,
+    BlinkMacSystemFont, sans-serif;
   --bs-light: var(--impresso-color-paper);
+  --bs-link-color-rgb: var(--impresso-color-black-rgb);
+  --bs-link-hover-color-rgb: var(--impresso-color-black-rgb);
+  --z-index-header: 10;
 }
 
 body {
   background: var(--bs-light);
+}
+
+em {
+  font-style: normal;
+  font-family: 'Satoshi-VariableItalic';
+}
+
+b {
+  font-weight: 600;
+  /* variable font weight */
+  font-variation-settings: 'wght' 600;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  letter-spacing: 1.3px;
+  font-variation-settings: 'wght' 480;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.form-control {
+  background-color: var(--impresso-color-paper);
+  border: 1px solid var(--impresso-color-black);
+}
+main {
+  margin-top: 100px;
 }

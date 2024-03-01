@@ -34,6 +34,14 @@ module.exports = {
       __key: 'notebooks',
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'collections',
+        path: './src/collections/',
+      },
+      __key: 'collections',
+    },
+    {
       resolve: 'gatsby-plugin-matomo',
       options: {
         siteId: '7',

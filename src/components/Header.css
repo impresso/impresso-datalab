@@ -1,0 +1,8 @@
+.Header {
+  border-top: 2px solid var(--impresso-color-black);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: var(--z-index-header);
+  background-color: var(--bs-light);
+}
