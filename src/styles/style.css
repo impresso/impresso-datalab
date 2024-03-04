@@ -1,12 +1,80 @@
 /* override Bootstrap vars and add specific vars */
 :root {
+  --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+
+  /* Colors */
   --impresso-color-paper: #fafbf2;
-  --bs-font-sans-serif: 'Satoshi-Variable', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
   --bs-light: var(--impresso-color-paper);
+  --primary: #ffe587;
+  --secondary: #8a5de8;
+  --tertiary: #e85da0;
+  --black: #353133;
+
+  /* SIZES */
+  --2px: 0.125rem;
+  --4px: 0.25rem;
+  --6px: 0.325rem;
+  --8px: 0.5rem;
+  --10px: 0.625rem;
+  --12px: 0.75rem;
+  --14px: 0.875rem;
+  --16px: 1rem;
+  --18px: 1.125rem;
+  --24px: 1.5rem;
+  --28px: 1.75rem;
+  --32px: 2rem;
+  --40px: 2.5rem;
+  --48px: 3rem;
+  --56px: 3.5rem;
+  --64px: 4rem;
+  --72px: 4.5rem;
+  --80px: 5rem;
+
+  /* FONT SIZES */
+  --font-size-h1: var(--80px);
+  --font-size-h2: var(--40px);
+  --font-size-h5: var(--18px);
+
+  /* EASING */
+  --backInOut: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --backOut: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --backIn: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  --easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+html {
+  min-height: 100%;
 }
 
 body {
+  margin: 0;
+  font-family: var(--bs-font-sans-serif) !important;
+  color: var(--black);
   background: var(--bs-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Transition */
+/* .tl-wrapper {
+  opacity: 0 !important;
+  transition: all 0.5s ease-in-out;
+}
+
+.tl-wrapper-status--entering {
+  background: var(--impresso-color-paper);
+  opacity: 0 !important ;
+}
+
+.tl-wrapper-status--exiting {
+  background: var(--primary);
+  opacity: 1 !important;
+}
+
+.tl-wrapper-status--entered {
+  background: var(--secondary);
+  opacity: 1 !important;
+} */
