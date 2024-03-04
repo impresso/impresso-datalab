@@ -1,49 +1,28 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal Starter
-</h1>
+# Impresso Datalab
 
-## 🚀 Quick start
+Welcome to Impresso Datalab! This is Gatsby powered website that federates community resources and curated Jupyter Notebooks for the study of historical newspapers, using our _impresso_ API.
+You will find on this website tutorials and resources
 
-1.  **Create a Gatsby site.**
+## How to add a notebook
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+Notebooks are markdown files stored in the `src/notebooks` directory. Each notebook describes a Jupyter notebook that solves a specific problem or demonstrates a specific feature of the _impresso_ API. The notebook is described using a YAML front matter:
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+```yaml
+---
+title: 'Title of the notebook'
+description: 'A short description of the notebook'
+authors:
+  - author-name-id
+date: 'Date of the notebook'
+collections:
+  - collection-name-1
+binderUrl: '<URL to the Binderhub instance to run this notebook>'
+video:
+  oembed: https://www.youtube.com/oembed?url=https%3A//youtube.com/watch%3Fv%3DM3r2XDceM6A&format=json
+---
+```
 
-2.  **Start developing.**
+### Step 1. Prepare a repo and test with Binderhub
 
-    Navigate into your new site’s directory and start it up.
-
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
-
-3.  **Open the code and start customizing!**
-
-    Your site is now running at http://localhost:8000!
-
-    Edit `src/pages/index.js` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)
+The first step is to prepare a repository with the Jupyter notebook and the necessary dependencies. You can use the `requirements.txt` file to list the dependencies. Once the repository is ready, you can test it with Binderhub.
+You can check the [Binderhub documentation](https://mybinder.readthedocs.io/en/latest/) for more information.

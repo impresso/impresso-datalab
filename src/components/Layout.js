@@ -1,10 +1,12 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import Header from './Header'
 
 const Layout = ({ children }) => {
   return (
     <>
+      <Header />
       <main>{children}</main>
       <footer>
         <Container>

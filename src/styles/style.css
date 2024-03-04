@@ -47,6 +47,24 @@
 
 html {
   min-height: 100%;
+  --impresso-color-yellow: #ffeb78;
+  --impresso-color-black: #343a40;
+  --impresso-color-black-rgb: 52, 58, 64;
+  --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  --bs-font-sans-serif-italic: "Satoshi-VariableItalic", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --bs-light: #fefefe;
+  --bs-link-color-rgb: var(--impresso-color-black-rgb);
+  --bs-link-hover-color-rgb: var(--impresso-color-black-rgb);
+  --z-index-header: 10;
+
+  --spacer-1: 0.25rem;
+  --spacer-2: 0.5rem;
+  --spacer-3: 1rem;
+  --spacer-4: 1.5rem;
+  --spacer-5: 3rem;
 }
 
 body {
@@ -58,23 +76,44 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Transition */
-/* .tl-wrapper {
-  opacity: 0 !important;
-  transition: all 0.5s ease-in-out;
+em {
+  font-style: normal;
+  font-family: "Satoshi-VariableItalic";
 }
 
-.tl-wrapper-status--entering {
-  background: var(--impresso-color-paper);
-  opacity: 0 !important ;
+b {
+  font-weight: 600;
+  /* variable font weight */
+  font-variation-settings: "wght" 600;
 }
 
-.tl-wrapper-status--exiting {
-  background: var(--primary);
-  opacity: 1 !important;
+.btn {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  letter-spacing: 1.3px;
+  font-variation-settings: "wght" 480;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-.tl-wrapper-status--entered {
-  background: var(--secondary);
-  opacity: 1 !important;
-} */
+.form-control {
+  background-color: var(--impresso-color-paper);
+  border: 1px solid var(--impresso-color-black);
+}
+
+.container-fluid {
+  max-width: 1414px;
+}
+
+/* ... */
+h2 {
+  border-bottom: 1px solid var(--impresso-color-black);
+  padding-bottom: var(--spacer-3);
+  margin-bottom: var(--spacer-3);
+}
+
+hr {
+  height: 1px;
+  color: var(--impresso-color-black);
+  opacity: 1;
+}

@@ -7,13 +7,8 @@ const Notebooks = ({ data }) => {
 
 export const query = graphql`
   query MyQuery {
-    allMdx(filter: { frontmatter: { collection: { eq: "Enter impresso" } } }) {
+    allMdx {
       totalCount
-      edges {
-        node {
-          id
-        }
-      }
     }
   }
 `
