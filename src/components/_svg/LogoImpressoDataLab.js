@@ -14,7 +14,7 @@ const LogoImpressoDataLab = ({
       style={{ height: height + "px", width: width + "px" }}
     >
       <svg
-        data-name="Layer 1"
+        data-name="Impresso Data Lab Logo"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 165.04 56.32"
       >
