@@ -1,41 +1,50 @@
 /* override Bootstrap vars and add specific vars */
 :root {
-  --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  --impresso-color-paper: #fafbf2;
+  --impresso-color-yellow: #ffeb78;
+  --impresso-color-black: #343a40;
+  --impresso-color-black-rgb: 52, 58, 64;
+  --bs-font-sans-serif: 'Satoshi-Variable', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  --bs-font-sans-serif-italic: 'Satoshi-VariableItalic', -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --bs-light: #fefefe;
+  --bs-link-color-rgb: var(--impresso-color-black-rgb);
+  --bs-link-hover-color-rgb: var(--impresso-color-black-rgb);
 
   /* Colors */
-  --impresso-color-paper: #fafbf2;
+
   --bs-light: var(--impresso-color-paper);
-  --primary: #ffe587;
+  --bs-primary: #ffe587;
   --secondary: #8a5de8;
   --tertiary: #e85da0;
   --black: #353133;
 
   /* SIZES */
-  --2px: 0.125rem;
-  --4px: 0.25rem;
-  --6px: 0.325rem;
-  --8px: 0.5rem;
-  --10px: 0.625rem;
-  --12px: 0.75rem;
-  --14px: 0.875rem;
-  --16px: 1rem;
-  --18px: 1.125rem;
-  --24px: 1.5rem;
-  --28px: 1.75rem;
-  --32px: 2rem;
-  --40px: 2.5rem;
-  --48px: 3rem;
-  --56px: 3.5rem;
-  --64px: 4rem;
-  --72px: 4.5rem;
-  --80px: 5rem;
-
+  --fs2px: 0.125rem;
+  --fs4px: 0.25rem;
+  --fs6px: 0.325rem;
+  --fs8px: 0.5rem;
+  --fs10px: 0.625rem;
+  --fs12px: 0.75rem;
+  --fs14px: 0.875rem;
+  --fs16px: 1rem;
+  --fs18px: 1.125rem;
+  --fs24px: 1.5rem;
+  --fs28px: 1.75rem;
+  --fs32px: 2rem;
+  --fs40px: 2.5rem;
+  --fs48px: 3rem;
+  --fs56px: 3.5rem;
+  --fs64px: 4rem;
+  --fs72px: 4.5rem;
+  --fs80px: 5rem;
+  --bs-border-radius: 0.25rem;
   /* FONT SIZES */
-  --font-size-h1: var(--80px);
-  --font-size-h2: var(--40px);
-  --font-size-h5: var(--18px);
+  --font-size-h1: var(--fs80px);
+  --font-size-h2: var(--fs40px);
+  --font-size-h5: var(--fs18px);
 
   /* EASING */
   --backInOut: cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -43,28 +52,17 @@
   --backIn: cubic-bezier(0.6, -0.28, 0.735, 0.045);
   --easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
   --easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
-}
 
-html {
-  min-height: 100%;
-  --impresso-color-yellow: #ffeb78;
-  --impresso-color-black: #343a40;
-  --impresso-color-black-rgb: 52, 58, 64;
-  --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  --bs-font-sans-serif-italic: "Satoshi-VariableItalic", -apple-system,
-    BlinkMacSystemFont, sans-serif;
-  --bs-light: #fefefe;
-  --bs-link-color-rgb: var(--impresso-color-black-rgb);
-  --bs-link-hover-color-rgb: var(--impresso-color-black-rgb);
   --z-index-header: 10;
-
   --spacer-1: 0.25rem;
   --spacer-2: 0.5rem;
   --spacer-3: 1rem;
   --spacer-4: 1.5rem;
   --spacer-5: 3rem;
+}
+
+html {
+  min-height: 100%;
 }
 
 body {
@@ -78,33 +76,50 @@ body {
 
 em {
   font-style: normal;
-  font-family: "Satoshi-VariableItalic";
+  font-family: 'Satoshi-VariableItalic';
 }
 
 b {
   font-weight: 600;
   /* variable font weight */
-  font-variation-settings: "wght" 600;
+  font-variation-settings: 'wght' 600;
 }
 
 .btn {
   text-transform: uppercase;
   font-size: 0.7em;
   letter-spacing: 1.3px;
-  font-variation-settings: "wght" 480;
+  font-variation-settings: 'wght' 600;
   padding-left: 15px;
   padding-right: 15px;
+
+  --bs-border-radius: 20px;
 }
 
-.form-control {
-  background-color: var(--impresso-color-paper);
-  border: 1px solid var(--impresso-color-black);
+.btn-primary {
+  --bs-btn-color: var(--impresso-color-black);
+  --bs-btn-bg: var(--impresso-color-yellow);
+  --bs-btn-border-color: var(--impresso-color-yellow);
+  --bs-btn-hover-color: var(--impresso-color-black);
+  --bs-btn-hover-bg: var(--impresso-color-yellow);
+  --bs-btn-hover-border-color: var(--impresso-color-black);
+  --bs-btn-focus-shadow-rgb: 255, 235, 120;
+  --bs-btn-active-color: var(--impresso-color-black);
+  --bs-btn-active-bg: var(--impresso-color-yellow);
+  --bs-btn-active-border-color: var(--impresso-color-black);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: var(--impresso-color-black);
+  --bs-btn-disabled-bg: var(--impresso-color-yellow);
+  --bs-btn-disabled-border-color: var(--impresso-color-black);
 }
 
 .container-fluid {
   max-width: 1414px;
 }
 
+.modal-backdrop {
+  --bs-backdrop-bg: var(--impresso-color-paper);
+}
 /* ... */
 h2 {
   border-bottom: 1px solid var(--impresso-color-black);

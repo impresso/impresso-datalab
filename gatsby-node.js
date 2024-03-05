@@ -49,3 +49,23 @@ exports.createPages = async function ({ actions, graphql }) {
     })
   })
 }
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
+
+  if (node.internal.type === `Mdx`) {
+    const authorName = node.frontmatter.author
+
+    // Assuming author nodes are sourced and exist
+    // Find the author node that matches the name in the frontmatter
+    const authorNode = getNode(authorName)
+
+    if (authorNode) {
+      createNodeField({
+        node,
+        name: `author`,
+        value: authorNode.id,
+      })
+    }
+  }
+}
