@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   Navbar,
   Container,
@@ -6,37 +6,38 @@ import {
   Form,
   InputGroup,
   Button,
-} from 'react-bootstrap'
-import { Link } from 'gatsby'
-import './Header.css'
+} from "react-bootstrap";
+import { Link } from "gatsby";
+import "./Header.css";
+import LogoImpressoDataLab from "./_svg/LogoImpressoDataLab";
 
 const Header = () => {
   return (
-    <header className='Header py-3'>
+    <header className="Header py-3">
       <Navbar>
         <Container fluid>
           <Navbar.Brand>
-            <Link to='/'>
-              <em>impresso</em> <b>datalab</b>
+            <Link to="/">
+              <LogoImpressoDataLab width={110} />
             </Link>
           </Navbar.Brand>
-          <Nav className='me-auto'>
-            <Link className='mx-2' to='/submit-notebook'>
+          <Nav className="me-auto">
+            <Link className="mx-2" to="/submit-notebook">
               Why Datalab?
             </Link>
-            <Link className='mx-2' to='/submit-notebook'>
+            <Link className="mx-2" to="/submit-notebook">
               get your API token
             </Link>
           </Nav>
-          <Nav className='ms-auto'>
+          <Nav className="ms-auto">
             <Form inline>
               <InputGroup>
                 <Form.Control
-                  size='sm'
-                  placeholder='search notebooks...'
-                  aria-label='Search Notebooks'
+                  size="sm"
+                  placeholder="search notebooks..."
+                  aria-label="Search Notebooks"
                 />
-                <Button size='sm' variant='dark'>
+                <Button size="sm" variant="dark">
                   Search
                 </Button>
               </InputGroup>
@@ -45,7 +46,7 @@ const Header = () => {
         </Container>
       </Navbar>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
