@@ -10,7 +10,7 @@ const LogoImpressoDataLab = ({
 
   return (
     <div
-      className="LogoImpressoDataLab"
+      className="LogoImpressoDataLab SVG"
       style={{ height: height + "px", width: width + "px" }}
     >
       <svg
