@@ -1,0 +1,28 @@
+{
+  "setup": {
+    "name": "setup",
+    "path": "/notebook/setup",
+    "birthTime": "2024-02-20T11:22:42.754Z",
+    "accessTime": "2024-03-01T11:18:39.885Z",
+    "title": "Setup",
+    "excerpt": "",
+    "binderUrl": "https://mybinder.org/v2/gh/binder-examples/r/master?urlpath=rstudio",
+    "authors": [],
+    "collections": []
+  },
+  "team-starter-pack": {
+    "name": "team-starter-pack",
+    "path": "/notebook/team-starter-pack",
+    "birthTime": "2024-02-09T16:55:21.331Z",
+    "accessTime": "2024-03-07T09:16:28.892Z",
+    "title": "A demo of RStudio running on Binder",
+    "excerpt": "All together, right now.",
+    "binderUrl": "https://mybinder.org/v2/gh/binder-examples/r/master?urlpath=rstudio",
+    "authors": [
+      "impresso-team"
+    ],
+    "collections": [
+      "enter-impresso"
+    ]
+  }
+}

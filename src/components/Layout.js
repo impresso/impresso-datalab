@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import Header from './Header'
 
 const Layout = ({ children }) => {
+  console.log('[Layout] render')
   return (
     <>
       <Header />

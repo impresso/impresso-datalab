@@ -8,6 +8,7 @@ import { AvailableModalsViews, useBrowserStore } from './src/store'
 
 // Logs when the client route changes
 export function onRouteUpdate({ location, prevLocation }) {
+  console.log('[Layout] render')
   console.log('[gatsby-browser]@onRouteUpdate new pathname', location)
   // update zustand with search params, if any
   if (location.search) {
@@ -29,7 +30,8 @@ export function onRouteUpdate({ location, prevLocation }) {
 }
 
 // Wraps every page in a component
-export function wrapPageElement({ element, props }) {
+export function wrapRootElement({ element, props }) {
+  console.log('[gatsby-browser]@wrapRootElement')
   return (
     <>
       <Modals />

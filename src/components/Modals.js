@@ -3,6 +3,7 @@ import { AvailableModalsViews } from '../store'
 import { Button } from 'react-bootstrap'
 import { navigate } from 'gatsby'
 import ModalLogin from './ModalLogin'
+import ModalNotebookPreview from './ModalNotebookPreview'
 
 const Modals = ({ debug = true }) => {
   const onCloseHandler = () => {
@@ -21,7 +22,7 @@ const Modals = ({ debug = true }) => {
             {modal}
           </Button>
         ))}
-
+      <ModalNotebookPreview onClose={onCloseHandler} centered />
       <ModalLogin onClose={onCloseHandler} centered />
     </>
   )
