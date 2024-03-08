@@ -2,16 +2,16 @@ const debug = require('debug')('datalab:gatsby-node')
 const fs = require('fs')
 
 debug('gatsby-node.js')
-const NotebooksJsonFilepath = './static/data/notebooks.json'
-const AuthorsJsonFilepath = './static/data/authors.json'
-const CollectionsJsonFilepath = './static/data/collections.json'
+const NotebooksJsonFilepath = __dirname + '/static/data/notebooks.json'
+const AuthorsJsonFilepath = __dirname + '/static/data/authors.json'
+const CollectionsJsonFilepath = __dirname + '/static/data/collections.json'
 
 exports.createPages = async function ({ actions, graphql }) {
   const authorsMap = {}
   const notebooksMap = {}
   const collectionsMap = {}
-  if (!fs.existsSync('./static/data/notebooks')) {
-    fs.mkdirSync('./static/data/notebooks')
+  if (!fs.existsSync(__dirname + '/static/data/notebooks')) {
+    fs.mkdirSync(__dirname + '/static/data/notebooks')
   }
 
   const { data: authors } = await graphql(`
@@ -90,7 +90,7 @@ exports.createPages = async function ({ actions, graphql }) {
     })
 
     fs.writeFileSync(
-      `./static/data/notebooks/${node.name}.json`,
+      `${__dirname}/static/data/notebooks/${node.name}.json`,
       JSON.stringify(
         {
           ...notebooksMap[node.name],

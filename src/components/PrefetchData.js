@@ -14,11 +14,11 @@ const PrefetchData = () => {
     queryFn: () =>
       Promise.all(
         [
-          '/data/authors.json',
-          '/data/notebooks.json',
-          '/data/collections.json',
+          'data/authors.json',
+          'data/notebooks.json',
+          'data/collections.json',
         ].map((url) =>
-          axios.get(url).then((res) => {
+          axios.get((process.env.PATH_PREFIX || '/') + url).then((res) => {
             console.info(`[PrefetchData] ${url}`, res.data)
             return res.data
           })
