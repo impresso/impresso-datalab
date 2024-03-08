@@ -10,6 +10,9 @@ exports.createPages = async function ({ actions, graphql }) {
   const authorsMap = {}
   const notebooksMap = {}
   const collectionsMap = {}
+  if (!fs.existsSync('./static/data/notebooks')) {
+    fs.mkdirSync('./static/data/notebooks')
+  }
 
   const { data: authors } = await graphql(`
     query {
@@ -48,10 +51,13 @@ exports.createPages = async function ({ actions, graphql }) {
           accessTime
           childMdx {
             excerpt
+            body
+            tableOfContents
             frontmatter {
               title
               binderUrl
               authors
+              tags
             }
           }
         }
@@ -59,7 +65,6 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   `)
   console.log('createPages: n. notebooks: ', notebooks.allFile.nodes.length)
-
   notebooks.allFile.nodes.forEach((node) => {
     notebooksMap[node.name] = {
       name: node.name,
@@ -67,6 +72,7 @@ exports.createPages = async function ({ actions, graphql }) {
       birthTime: node.birthTime,
       accessTime: node.accessTime,
       title: node.childMdx.frontmatter.title,
+      tags: node.childMdx.frontmatter.tags || [],
       excerpt: node.childMdx.excerpt,
       binderUrl: node.childMdx.frontmatter.binderUrl,
       authors: node.childMdx.frontmatter.authors || [],
@@ -82,6 +88,19 @@ exports.createPages = async function ({ actions, graphql }) {
         )
       }
     })
+
+    fs.writeFileSync(
+      `./static/data/notebooks/${node.name}.json`,
+      JSON.stringify(
+        {
+          ...notebooksMap[node.name],
+          body: node.childMdx.body,
+          tableOfContents: node.childMdx.tableOfContents,
+        },
+        null,
+        2
+      )
+    )
 
     actions.createPage({
       path: `/notebook/${node.name}`,
@@ -102,6 +121,7 @@ exports.createPages = async function ({ actions, graphql }) {
             frontmatter {
               title
               notebooks
+              tags
             }
           }
         }
@@ -117,6 +137,7 @@ exports.createPages = async function ({ actions, graphql }) {
       title: node.childMdx.frontmatter.title,
       excerpt: node.childMdx.excerpt,
       notebooks: node.childMdx.frontmatter.notebooks,
+      tags: node.childMdx.frontmatter.tags || [],
       contributors: [],
     }
     node.childMdx.frontmatter.notebooks.forEach((notebook) => {
@@ -149,12 +170,13 @@ exports.createPages = async function ({ actions, graphql }) {
         return acc
       }, {})
     )
-    collectionsMap[node.name].contributors.forEach((contributor) => {
+    collectionsMap[node.name].contributors.forEach(([k, contributor]) => {
       if (authorsMap[contributor.name]) {
         authorsMap[contributor.name].collections.push(node.name)
       } else {
         console.error(
-          `Contributor ${contributor.name} not found in authorsMap, skipping collection ${node.name}`
+          `Contributor ${contributor.name} not found in authorsMap, skipping collection ${node.name}`,
+          collectionsMap[node.name].contributors
         )
       }
     })

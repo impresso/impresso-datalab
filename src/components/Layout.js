@@ -2,8 +2,11 @@ import { Link } from 'gatsby'
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import Header from './Header'
+import { useDataStore } from '../store'
 
 const Layout = ({ children }) => {
+  const isDataReady = useDataStore((state) => state.isReady)
+
   console.log('[Layout] render')
   return (
     <>
@@ -22,7 +25,7 @@ const Layout = ({ children }) => {
                 </li>
               </ul>
             </Col>
-            <Col></Col>
+            <Col>{isDataReady ? 'ready' : 'loading'}</Col>
           </Row>
         </Container>
       </footer>

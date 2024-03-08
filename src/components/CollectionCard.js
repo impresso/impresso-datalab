@@ -1,20 +1,24 @@
 import React from 'react'
 import './CollectionCard.css'
-import { graphql, useStaticQuery } from 'gatsby'
+import { useDataStore } from '../store'
+import NotebookCard from './NotebookCard'
 
-const CollectionCard = ({
-  frontmatter = {},
-  name = '',
-  notebooks = [],
-  excerpt = '',
-}) => {
+const CollectionCard = ({ name }) => {
+  const getCollectionByName = useDataStore((state) => state.getCollectionByName)
+  const collection = getCollectionByName(name)
   return (
-    <div className='CollectionCard border border-dark d-inline-block'>
-      <div className='p-3'>
-        <h3>{frontmatter.title}</h3>
-        <p>{excerpt}</p>
-      </div>
-      <pre>{JSON.stringify(notebooks, null, 2)}</pre>
+    <div className='CollectionCard d-inline-block'>
+      <section className='p-3'>
+        <h3>{collection?.title}</h3>
+        <p>{collection?.excerpt}</p>
+      </section>
+      <ol className='mb-3 mx-3'>
+        {collection?.notebooks.map((name, i) => (
+          <li key={i} className='mt-2'>
+            <NotebookCard name={name} />
+          </li>
+        ))}
+      </ol>
     </div>
   )
 }

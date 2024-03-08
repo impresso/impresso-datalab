@@ -1,0 +1,9 @@
+.NotebookCard {
+  border-radius: var(--impresso-border-rqdius-sm);
+  background: white;
+}
+
+.NotebookCard h3 {
+  font-size: var(--fs18px);
+  font-weight: bold;
+}

@@ -5,7 +5,7 @@ import { navigate } from 'gatsby'
 import ModalLogin from './ModalLogin'
 import ModalNotebookPreview from './ModalNotebookPreview'
 
-const Modals = ({ debug = true }) => {
+const Modals = ({ debug = false }) => {
   const onCloseHandler = () => {
     navigate('')
   }
