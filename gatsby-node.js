@@ -8,7 +8,7 @@ const DataDir = path.join(rootPath, "/static/data")
 const NotebooksJsonFilepath = path.join(DataDir, "/notebooks.json")
 const AuthorsJsonFilepath = path.join(DataDir, "/authors.json")
 const CollectionsJsonFilepath = path.join(DataDir, "/collections.json")
-const NotebooksDir = path.join(rootPath, "/notebooks")
+const NotebooksDir = path.join(DataDir, "/notebooks")
 if (!fs.existsSync(DataDir)) {
   fs.mkdirSync(DataDir)
 }
