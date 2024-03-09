@@ -1,13 +1,14 @@
-import { Link } from 'gatsby'
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import Header from './Header'
-import { useDataStore } from '../store'
+import { Link } from "gatsby";
+import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import Header from "./Header";
+import { useDataStore } from "../store";
+import Background from "./Background";
 
 const Layout = ({ children }) => {
-  const isDataReady = useDataStore((state) => state.isReady)
+  const isDataReady = useDataStore((state) => state.isReady);
 
-  console.log('[Layout] render')
+  console.log("[Layout] render");
   return (
     <>
       <Header />
@@ -18,19 +19,20 @@ const Layout = ({ children }) => {
             <Col>
               <ul>
                 <li>
-                  <Link to='/'>impresso-datalab</Link>
+                  <Link to="/">impresso-datalab</Link>
                 </li>
                 <li>
-                  <Link to='/about'>about!</Link>
+                  <Link to="/about">about!</Link>
                 </li>
               </ul>
             </Col>
-            <Col>{isDataReady ? 'ready' : 'loading'}</Col>
+            <Col>{isDataReady ? "ready" : "loading"}</Col>
           </Row>
         </Container>
       </footer>
+      <Background />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

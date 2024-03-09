@@ -1,16 +1,17 @@
 /* override Bootstrap vars and add specific vars */
 :root {
   --impresso-color-paper: #fafbf2;
-  --impresso-color-yellow: #ffeb78;
+  --impresso-color-yellow-code: 255, 235, 120;
+  --impresso-color-yellow: rgb(--impresso-color-yellow-code);
   --impresso-color-black: #343a40;
   --impresso-color-black-rgb: 52, 58, 64;
   --impresso-border-rqdius-sm: 20px;
   --impresso-border-radius-lg: 30px;
   --impresso-border-radius-xl: 40px;
-  --bs-font-sans-serif: 'Satoshi-Variable', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
-  --bs-font-sans-serif-italic: 'Satoshi-VariableItalic', -apple-system,
+  --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  --bs-font-sans-serif-italic: "Satoshi-VariableItalic", -apple-system,
     BlinkMacSystemFont, sans-serif;
   --bs-light: #fefefe;
   --bs-link-color-rgb: var(--impresso-color-black-rgb);
@@ -23,6 +24,11 @@
   --secondary: #8a5de8;
   --tertiary: #e85da0;
   --black: #353133;
+
+  --background-red-code: 255, 182, 114;
+  --background-red: rgb(--background-red-code: 255, 182, 114);
+  --background-purple-code: 247, 171, 255;
+  --background-purple: rgb(--background-purple-code: 247, 171, 2554);
 
   /* SIZES */
   --fs2px: 0.125rem;
@@ -84,20 +90,20 @@ body {
 
 em {
   font-style: normal;
-  font-family: 'Satoshi-VariableItalic';
+  font-family: "Satoshi-VariableItalic";
 }
 
 b {
   font-weight: 600;
   /* variable font weight */
-  font-variation-settings: 'wght' 600;
+  font-variation-settings: "wght" 600;
 }
 
 .btn {
   text-transform: uppercase;
   font-size: 0.7em;
   letter-spacing: 1.3px;
-  font-variation-settings: 'wght' 600;
+  font-variation-settings: "wght" 600;
   padding-left: 15px;
   padding-right: 15px;
 
