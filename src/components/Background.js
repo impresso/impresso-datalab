@@ -1,35 +1,36 @@
-import React from "react";
-import { useRef, useEffect } from "react";
-import "./Background.css";
+import React from "react"
+import { useRef, useEffect } from "react"
+import "./Background.css"
 
 const Background = () => {
-  const dot = useRef(null);
-  const endX = useRef(window.innerWidth / 2);
-  const endY = useRef(window.innerHeight / 2);
+  const dot = useRef(null)
+  const windowWidth = useRef(window.innerWidth)
+  const windowHeight = useRef(window.innerHeight)
+  const requestRef = useRef(null)
 
-  const requestRef = useRef(null);
-
-  useEffect(() => {
-    document.addEventListener("mousemove", mouseMoveEvent);
-
-    return () => {
-      document.removeEventListener("mousemove", mouseMoveEvent);
-      cancelAnimationFrame(requestRef.current);
-    };
-  }, []);
+  const onResizeHandler = () => {
+    windowWidth.current = window.innerWidth
+    windowHeight.current = window.innerHeight
+  }
 
   const mouseMoveEvent = (e) => {
-    endX.current = e.pageX;
-    endY.current = e.pageY;
-
-    console.log(e.pageX, e.pageY, endY.current, endX.current);
-
-    dot.current.style.top = endY.current + "px";
-    dot.current.style.left = endX.current + "px";
-  };
+    const x = e.pageX - windowWidth.current / 2
+    const y = e.pageY - windowHeight.current / 2
+    // let's translate
+    dot.current.style.transform = `translate(${x}px, ${y}px)`
+  }
+  useEffect(() => {
+    document.addEventListener("mousemove", mouseMoveEvent)
+    document.addEventListener("resize", onResizeHandler)
+    return () => {
+      document.removeEventListener("mousemove", mouseMoveEvent)
+      document.removeEventListener("resize", onResizeHandler)
+      cancelAnimationFrame(requestRef.current)
+    }
+  }, [])
 
   return (
-    <div className="gradient-bg">
+    <div className="Background gradient-bg">
       <svg xmlns="http://www.w3.org/2000/svg">
         <defs>
           <filter id="goo">
@@ -49,13 +50,13 @@ const Background = () => {
         </defs>
       </svg>
       <div className="gradients-container">
-        <div className="g1"></div>
-        <div className="g2"></div>
-        <div className="g3"></div>
-        <div className="interactive" ref={dot}></div>
+        {/* <div className='g1'></div>
+        <div className='g2'></div>
+        <div className='g3'></div> */}
+        <div className="interactive " ref={dot}></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Background;
+export default Background
