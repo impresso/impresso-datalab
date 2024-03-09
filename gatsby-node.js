@@ -1,17 +1,23 @@
-const debug = require('debug')('datalab:gatsby-node')
-const fs = require('fs')
+const debug = require("debug")("datalab:gatsby-node")
+const fs = require("fs")
+const path = require("path")
 
-debug('gatsby-node.js')
-const NotebooksJsonFilepath = __dirname + '/static/data/notebooks.json'
-const AuthorsJsonFilepath = __dirname + '/static/data/authors.json'
-const CollectionsJsonFilepath = __dirname + '/static/data/collections.json'
+debug("gatsby-node.js")
+const rootPath = path.resolve()
+const NotebooksJsonFilepath = path.join(rootPath, "/static/data/notebooks.json")
+const AuthorsJsonFilepath = path.join(rootPath, "/static/data/authors.json")
+const CollectionsJsonFilepath = path.join(
+  rootPath,
+  "/static/data/collections.json"
+)
+const NotebooksDir = path.join(rootPath, "/static/data/notebooks")
 
 exports.createPages = async function ({ actions, graphql }) {
   const authorsMap = {}
   const notebooksMap = {}
   const collectionsMap = {}
-  if (!fs.existsSync(__dirname + '/static/data/notebooks')) {
-    fs.mkdirSync(__dirname + '/static/data/notebooks')
+  if (!fs.existsSync(NotebooksDir)) {
+    fs.mkdirSync(NotebooksDir)
   }
 
   const { data: authors } = await graphql(`
@@ -31,7 +37,7 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   `)
 
-  debug('createPages: n. authors: ', authors.allFile.nodes.length)
+  debug("createPages: n. authors: ", authors.allFile.nodes.length)
   authors.allFile.nodes.forEach((node) => {
     authorsMap[node.name] = {
       name: node.name,
@@ -64,7 +70,7 @@ exports.createPages = async function ({ actions, graphql }) {
       }
     }
   `)
-  console.log('createPages: n. notebooks: ', notebooks.allFile.nodes.length)
+  console.log("createPages: n. notebooks: ", notebooks.allFile.nodes.length)
   notebooks.allFile.nodes.forEach((node) => {
     notebooksMap[node.name] = {
       name: node.name,
@@ -129,7 +135,7 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   `)
 
-  debug('createPages: n. collections: ', collections.allFile.nodes.length)
+  debug("createPages: n. collections: ", collections.allFile.nodes.length)
   collections.allFile.nodes.forEach((node) => {
     collectionsMap[node.name] = {
       name: node.name,
