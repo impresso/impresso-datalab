@@ -3,5 +3,6 @@
   top: 0;
   width: 100%;
   z-index: var(--z-index-header);
-  background-color: var(--bs-light);
+  background-color: transparent;
+  /* var(--bs-light); */
 }
