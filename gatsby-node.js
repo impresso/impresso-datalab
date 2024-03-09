@@ -98,7 +98,7 @@ exports.createPages = async function ({ actions, graphql }) {
     })
 
     fs.writeFileSync(
-      `${__dirname}/static/data/notebooks/${node.name}.json`,
+      path.join(DataDir, `/notebooks/${node.name}.json`),
       JSON.stringify(
         {
           ...notebooksMap[node.name],
