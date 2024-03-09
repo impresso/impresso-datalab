@@ -39,7 +39,7 @@
   }
 }
 
-.gradient-bg {
+.Background.gradient-bg {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -49,17 +49,17 @@
   z-index: -1;
 }
 
-.gradient-bg > svg {
+.Background.gradient-bg > svg {
   display: none;
 }
 
-.gradients-container {
+.Background .gradients-container {
   filter: url(#goo) blur(40px);
   width: 100%;
   height: 100%;
 }
 
-.g1 {
+.Background .g1 {
   position: absolute;
   background: radial-gradient(
       circle at center,
@@ -80,7 +80,7 @@
   opacity: 1;
 }
 
-.g2 {
+.Background .g2 {
   position: absolute;
   background: radial-gradient(
       circle at center,
@@ -101,7 +101,7 @@
   opacity: 1;
 }
 
-.g3 {
+.Background .g3 {
   position: absolute;
   background: radial-gradient(
       circle at center,
@@ -122,19 +122,20 @@
   opacity: 1;
 }
 
-.interactive {
+.Background .interactive {
   position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
   background: radial-gradient(
       circle at center,
-      rgba(var(--background-red-code), 0.8) 0,
+      rgba(var(--background-red-code), 0.4) 0,
       rgba(var(--background-red-code), 0) 50%
     )
     no-repeat;
   mix-blend-mode: var(--blending);
-
+  will-change: transform;
   width: 100%;
   height: 100%;
-  transform: translateY(-50%) translateX(-50%);
-
-  opacity: 0.5;
+  opacity: 1;
 }
