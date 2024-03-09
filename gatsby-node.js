@@ -4,21 +4,23 @@ const path = require("path")
 
 debug("gatsby-node.js")
 const rootPath = path.resolve()
-const NotebooksJsonFilepath = path.join(rootPath, "/static/data/notebooks.json")
-const AuthorsJsonFilepath = path.join(rootPath, "/static/data/authors.json")
-const CollectionsJsonFilepath = path.join(
-  rootPath,
-  "/static/data/collections.json"
-)
-const NotebooksDir = path.join(rootPath, "/static/data/notebooks")
+const DataDir = path.join(rootPath, "/static/data")
+const NotebooksJsonFilepath = path.join(DataDir, "/notebooks.json")
+const AuthorsJsonFilepath = path.join(DataDir, "/authors.json")
+const CollectionsJsonFilepath = path.join(DataDir, "/collections.json")
+const NotebooksDir = path.join(rootPath, "/notebooks")
+if (!fs.existsSync(DataDir)) {
+  fs.mkdirSync(DataDir)
+}
+
+if (!fs.existsSync(NotebooksDir)) {
+  fs.mkdirSync(NotebooksDir)
+}
 
 exports.createPages = async function ({ actions, graphql }) {
   const authorsMap = {}
   const notebooksMap = {}
   const collectionsMap = {}
-  if (!fs.existsSync(NotebooksDir)) {
-    fs.mkdirSync(NotebooksDir)
-  }
 
   const { data: authors } = await graphql(`
     query {
