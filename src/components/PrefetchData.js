@@ -14,9 +14,9 @@ const PrefetchData = () => {
     queryFn: () =>
       Promise.all(
         [
-          "data/authors.json",
-          "data/notebooks.json",
-          "data/collections.json",
+          "/data/authors.json",
+          "/data/notebooks.json",
+          "/data/collections.json",
         ].map((url) =>
           axios
             .get((process.env.GATSBY_PATH_PREFIX || "/") + url)
