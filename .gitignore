@@ -4,3 +4,4 @@ public
 .DS_Store
 static/data/
 !static/data/.gitkeep
+src/styles/fonts.css

@@ -19,7 +19,7 @@ const PrefetchData = () => {
           "/data/collections.json",
         ].map((url) =>
           axios
-            .get((process.env.GATSBY_PATH_PREFIX || "/") + url)
+            .get((process.env.GATSBY_PATH_PREFIX || "") + url)
             .then((res) => {
               console.info(`[PrefetchData] ${url}`, res.data)
               return res.data

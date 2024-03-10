@@ -63,7 +63,7 @@
   position: absolute;
   background: radial-gradient(
       circle at center,
-      rgba(var(--impresso-color-yellow-code), 0.8) 0,
+      rgba(var(--impresso-color-yellow-code), 0.4) 0,
       rgba(var(--impresso-color-yellow-code), 0) 50%
     )
     no-repeat;
@@ -84,7 +84,7 @@
   position: absolute;
   background: radial-gradient(
       circle at center,
-      rgba(var(--background-red-code), 0.6) 0,
+      rgba(var(--background-red-code), 0.3) 0,
       rgba(var(--background-red-code), 0) 50%
     )
     no-repeat;
@@ -105,7 +105,7 @@
   position: absolute;
   background: radial-gradient(
       circle at center,
-      rgba(var(--background-purple-code), 0.8) 0,
+      rgba(var(--background-purple-code), 0.4) 0,
       rgba(var(--background-purple-code), 0) 50%
     )
     no-repeat;

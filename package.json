@@ -8,10 +8,11 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop ",
-    "start": "gatsby develop",
-    "build": "gatsby build --prefix-paths",
-    "serve": "gatsby serve --prefix-paths",
+    "createfontscss": "node ./createfontscss.js",
+    "develop": "yarn run createfontscss && gatsby develop ",
+    "start": "yarn run createfontscss && gatsby develop",
+    "build": "yarn run createfontscss && gatsby build --prefix-paths",
+    "serve": "yarn run createfontscss && gatsby serve --prefix-paths",
     "clean": "gatsby clean"
   },
   "dependencies": {
