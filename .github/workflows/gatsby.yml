@@ -77,8 +77,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Gatsby
         env:
-          PREFIX_PATHS: 'true'
-          PATH_PREFIX: '/impresso-datalab'
+          PREFIX_PATHS: "true"
+          PATH_PREFIX: "/impresso-datalab"
+          GATSBY_PATH_PREFIX: "/impresso-datalab"
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

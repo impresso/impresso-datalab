@@ -1,12 +1,16 @@
 import React from "react"
 import { useRef, useEffect } from "react"
 import "./Background.css"
+import { a, config, useSpring } from "@react-spring/web"
 
 const Background = () => {
-  const dot = useRef(null)
   const windowWidth = useRef(window.innerWidth)
   const windowHeight = useRef(window.innerHeight)
-  const requestRef = useRef(null)
+  const [{ x, y }, api] = useSpring(() => ({
+    x: window.innerWidth / 2,
+    y: window.window.innerHeight / 2,
+    config: config.molasses,
+  }))
 
   const onResizeHandler = () => {
     windowWidth.current = window.innerWidth
@@ -16,8 +20,7 @@ const Background = () => {
   const mouseMoveEvent = (e) => {
     const x = e.pageX - windowWidth.current / 2
     const y = e.pageY - windowHeight.current / 2
-    // let's translate
-    dot.current.style.transform = `translate(${x}px, ${y}px)`
+    api.start({ x, y })
   }
   useEffect(() => {
     document.addEventListener("mousemove", mouseMoveEvent)
@@ -25,8 +28,8 @@ const Background = () => {
     return () => {
       document.removeEventListener("mousemove", mouseMoveEvent)
       document.removeEventListener("resize", onResizeHandler)
-      cancelAnimationFrame(requestRef.current)
     }
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -50,10 +53,10 @@ const Background = () => {
         </defs>
       </svg>
       <div className="gradients-container">
-        {/* <div className='g1'></div>
-        <div className='g2'></div>
-        <div className='g3'></div> */}
-        <div className="interactive " ref={dot}></div>
+        {/* <div className="g1"></div>
+        <div className="g2"></div> */}
+        <div className="g3"></div>
+        <a.div className="interactive " style={{ x, y }} />
       </div>
     </div>
   )

@@ -1,15 +1,15 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import { Col, Container, Row } from 'react-bootstrap'
-import CollectionCard from '../components/CollectionCard'
-import { useDataStore } from '../store'
+import React from "react"
+import { graphql } from "gatsby"
+import { Col, Container, Row } from "react-bootstrap"
+import CollectionCard from "../components/CollectionCard"
+import { useDataStore } from "../store"
 
 const Index = ({ data }) => {
   const highlighted = data.highlighted.nodes
   const isReady = useDataStore((state) => state.isReady)
 
   return (
-    <Container fluid className='Index'>
+    <Container fluid className="Index">
       <Row>
         <Col>
           <h2>Highlights</h2>
@@ -22,14 +22,14 @@ const Index = ({ data }) => {
           )}
         </Col>
         <Col>
-          <h1 className='display-3 '>Give your media monitoring a boost.</h1>
-          <section className='mt-5'>
+          <h1 className="display-3 ">Give your media monitoring a boost.</h1>
+          <section className="mt-5">
             <p>
               We collected <b>{data.notebooks.totalCount}</b> notebooks so far,
-              in <b>{data.collections.totalCount}</b> collections developed by{' '}
+              in <b>{data.collections.totalCount}</b> collections developed by{" "}
               <b>{data.highlighted.totalCount}</b> authors.
             </p>
-            <CollectionCard name='notebooks-we-are-testing-right-now' />
+            <CollectionCard name="notebooks-we-are-testing-right-now" />
           </section>
         </Col>
       </Row>

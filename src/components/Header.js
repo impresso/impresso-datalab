@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   Navbar,
   Container,
@@ -6,10 +6,10 @@ import {
   Form,
   InputGroup,
   Button,
-} from "react-bootstrap";
-import { Link } from "gatsby";
-import "./Header.css";
-import LogoImpressoDataLab from "./_svg/LogoImpressoDataLab";
+} from "react-bootstrap"
+import { Link } from "gatsby"
+import "./Header.css"
+import LogoImpressoDataLab from "./_svg/LogoImpressoDataLab"
 
 const Header = () => {
   return (
@@ -30,7 +30,7 @@ const Header = () => {
             </Link>
           </Nav>
           <Nav className="ms-auto">
-            <Form inline>
+            <Form inline="true">
               <InputGroup>
                 <Form.Control
                   size="sm"
@@ -46,7 +46,7 @@ const Header = () => {
         </Container>
       </Navbar>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

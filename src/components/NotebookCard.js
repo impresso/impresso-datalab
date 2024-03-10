@@ -1,13 +1,13 @@
-import React from 'react'
-import { ModalNotebookPreviewView, useDataStore } from '../store'
-import AuthorCard from './AuthorCard'
-import { Button } from 'react-bootstrap'
-import './NotebookCard.css'
-import { navigate } from 'gatsby'
-import Avatar from 'boring-avatars'
-import { ArrowRight } from 'iconoir-react'
+import React from "react"
+import { ModalNotebookPreviewView, useDataStore } from "../store"
+import AuthorCard from "./AuthorCard"
+import { Button } from "react-bootstrap"
+import "./NotebookCard.css"
+import { navigate } from "gatsby"
+import Avatar from "boring-avatars"
+import { ArrowRight } from "iconoir-react"
 
-const AvatarVariants = ['marble', 'beam', 'pixel', 'sunset', 'ring', 'bauhaus']
+// const AvatarVariants = ["marble", "beam", "pixel", "sunset", "ring", "bauhaus"]
 const NotebookCard = ({ name }) => {
   const getNotebookByName = useDataStore((state) => state.getNotebookByName)
   const notebook = getNotebookByName(name)
@@ -16,19 +16,21 @@ const NotebookCard = ({ name }) => {
   }
 
   return (
-    <div className='NotebookCard shadow-sm'>
-      <div className='p-3 d-flex align-items-center'>
+    <div className="NotebookCard shadow-sm">
+      <div className="p-3 d-flex align-items-center">
         <div>
           <Avatar
             size={40}
             name={notebook.name}
-            variant='marble'
+            variant="marble"
             square={false}
           />
         </div>
-        <div className='mx-3'>
-          <h3 onClick={navigateToNotebookPage}>{notebook?.title}</h3>
-          <ol class='NotebookCard__authors'>
+        <div className="mx-3">
+          <h3 className="m-0" onClick={navigateToNotebookPage}>
+            {notebook?.title}
+          </h3>
+          <ol className="NotebookCard__authors">
             {notebook?.authors.map((name) => (
               <li key={name}>
                 <AuthorCard name={name} />
@@ -36,10 +38,10 @@ const NotebookCard = ({ name }) => {
             ))}
           </ol>
         </div>
-        <div className='ms-auto'>
+        <div className="ms-auto">
           <Button
-            variant='secondary'
-            className='p-0'
+            variant="secondary"
+            className="p-0"
             style={{ width: 36, height: 36 }}
             onClick={navigateToNotebookPage}
           >
