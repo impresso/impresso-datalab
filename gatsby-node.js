@@ -8,7 +8,11 @@ const DataDir = path.join(rootPath, "/static/data")
 const NotebooksJsonFilepath = path.join(DataDir, "/notebooks.json")
 const AuthorsJsonFilepath = path.join(DataDir, "/authors.json")
 const CollectionsJsonFilepath = path.join(DataDir, "/collections.json")
+const TutorialsJsonFilepath = path.join(DataDir, "/tutorials.json")
+
 const NotebooksDir = path.join(DataDir, "/notebooks")
+const TutorialsDir = path.join(DataDir, "/tutorials")
+
 if (!fs.existsSync(DataDir)) {
   fs.mkdirSync(DataDir)
 }
@@ -16,11 +20,15 @@ if (!fs.existsSync(DataDir)) {
 if (!fs.existsSync(NotebooksDir)) {
   fs.mkdirSync(NotebooksDir)
 }
+if (!fs.existsSync(TutorialsDir)) {
+  fs.mkdirSync(TutorialsDir)
+}
 
 exports.createPages = async function ({ actions, graphql }) {
   const authorsMap = {}
   const notebooksMap = {}
   const collectionsMap = {}
+  const tutorialsMap = {}
 
   const { data: authors } = await graphql(`
     query {
@@ -196,6 +204,70 @@ exports.createPages = async function ({ actions, graphql }) {
     })
   })
 
+  const { data: tutorials } = await graphql(`
+    query {
+      allFile(filter: { sourceInstanceName: { eq: "tutorials" } }) {
+        totalCount
+        nodes {
+          birthTime
+          accessTime
+          name
+          childMdx {
+            excerpt
+            tableOfContents
+            frontmatter {
+              title
+              video {
+                title
+                author_name
+                author_url
+                type
+                height
+                width
+                version
+                provider_name
+                provider_url
+                thumbnail_height
+                thumbnail_width
+                thumbnail_url
+                html
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  tutorials.allFile.nodes.forEach((node) => {
+    tutorialsMap[node.name] = {
+      name: node.name,
+      path: `/tutorial/${node.name}`,
+      birthTime: node.birthTime,
+      accessTime: node.accessTime,
+      title: node.childMdx.frontmatter.title,
+      excerpt: node.childMdx.excerpt,
+      tableOfContents: node.childMdx.tableOfContents,
+      video: {
+        author_name: node.childMdx.frontmatter.video.author_name,
+        thumbnail_height: node.childMdx.frontmatter.video.thumbnail_height,
+        thumbnail_url: node.childMdx.frontmatter.video.thumbnail_url,
+        thumbnail_width: node.childMdx.frontmatter.video.thumbnail_width,
+      },
+    }
+    fs.writeFileSync(
+      path.join(TutorialsDir, `/${node.name}.json`),
+      JSON.stringify(
+        {
+          ...tutorialsMap[node.name],
+          body: node.childMdx.body,
+          video: node.childMdx.frontmatter.video,
+        },
+        null,
+        2
+      )
+    )
+  })
   //
   // Write to JSON files
   //
@@ -205,6 +277,7 @@ exports.createPages = async function ({ actions, graphql }) {
     CollectionsJsonFilepath,
     JSON.stringify(collectionsMap, null, 2)
   )
+  fs.writeFileSync(TutorialsJsonFilepath, JSON.stringify(tutorialsMap, null, 2))
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

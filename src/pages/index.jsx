@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { Col, Container, Row } from "react-bootstrap"
 import CollectionCard from "../components/CollectionCard"
 import { useDataStore } from "../store"
+import TutorialCard from "../components/TutorialCard"
 
 const Index = ({ data }) => {
   const highlighted = data.highlighted.nodes
@@ -33,12 +34,37 @@ const Index = ({ data }) => {
           </section>
         </Col>
       </Row>
+      <Row className="mt-3 pt-3 border-top ">
+        <Col>
+          <h2>Notebooks you didn't know you needed</h2>
+        </Col>
+        <Col>
+          <h2>Tutorials</h2>
+          {data.tutorials.nodes.map((node) => (
+            <TutorialCard name={node.name} key={node.name} />
+          ))}
+        </Col>
+        <Col></Col>
+      </Row>
     </Container>
   )
 }
 
 export const query = graphql`
   query Content {
+    tutorials: allFile(filter: { sourceInstanceName: { eq: "tutorials" } }) {
+      totalCount
+      nodes {
+        name
+        childMdx {
+          id
+          excerpt
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
     highlighted: allFile(
       filter: {
         sourceInstanceName: { eq: "collections" }
