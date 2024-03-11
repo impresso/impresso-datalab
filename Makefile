@@ -5,6 +5,7 @@ run-dev:
 	GIT_BUILD_TAG=${BUILD_TAG} \
 	GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD) \
 	GIT_REVISION=$(shell git rev-parse --short HEAD) \
+	GIT_REPO=$(shell git config --get remote.origin.url) \
 	PATH_PREFIX=/datalab \
 	PREFIX_PATHS=true \
 	yarn start

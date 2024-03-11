@@ -9,11 +9,19 @@ console.log("gatsby-config")
 console.log("NODE_ENV", process.env.NODE_ENV)
 console.log("PATH_PREFIX", process.env.PATH_PREFIX)
 console.log("GATSBY_PATH_PREFIX", process.env.GATSBY_PATH_PREFIX)
+console.log("GIT_BUILD_TAG", process.env.GIT_BUILD_TAG)
+console.log("GIT_BRANCH", process.env.GIT_BRANCH)
+console.log("GIT_REVISION", process.env.GIT_REVISION)
+console.log("GIT_REPO", process.env.GIT_REPO)
 
 module.exports = {
   siteMetadata: {
     title: `impresso-datalab`,
     siteUrl: `https://impresso-project.ch/datalab`,
+    gitBuildTag: process.env.GIT_BUILD_TAG,
+    gitBranch: process.env.GIT_BRANCH,
+    gitRevision: process.env.GIT_REVISION,
+    gitRepo: process.env.GIT_REPO,
   },
   pathPrefix: process.env.PATH_PREFIX || "/",
   plugins: [

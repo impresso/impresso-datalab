@@ -74,6 +74,7 @@
   top: calc(50% - var(--circle-size) / 2);
   left: calc(50% - var(--circle-size) / 2);
 
+  will-change: transform;
   transform-origin: center center;
   animation: moveVertical 80s ease infinite;
 
@@ -96,6 +97,7 @@
   left: calc(50% - var(--circle-size) / 2);
 
   transform-origin: calc(50% - 400px);
+  will-change: transform;
   animation: moveInCircle 100s reverse infinite;
 
   opacity: 1;
@@ -116,6 +118,7 @@
   top: calc(50% - var(--circle-size) / 2 - 200px);
   left: calc(50% - var(--circle-size) / 2 + 500px);
 
+  will-change: transform;
   transform-origin: calc(50% + 400px);
   animation: moveInCircle 120s linear infinite;
 
