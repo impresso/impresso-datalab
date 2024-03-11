@@ -75,11 +75,22 @@ jobs:
             ${{ runner.os }}-gatsby-build-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      # get GIT_TAG, GIT_REVISION, and GIT_SHORT_REVISION
+      - name: Get git tag and revision
+        id: git
+        run: |
+          echo "GIT_REVISION=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          echo "GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
+          echo "GIT_REPO=$(git config --get remote.origin.url)" >> $GITHUB_ENV
       - name: Build with Gatsby
         env:
           PREFIX_PATHS: "true"
           PATH_PREFIX: "/impresso-datalab"
           GATSBY_PATH_PREFIX: "/impresso-datalab"
+          GIT_BUILD_TAG: "latest"
+          GIT_REVISION: ${{ env.GIT_REVISION }}
+          GIT_BRANCH: ${{ env.GIT_BRANCH }}
+          GIT_REPO: ${{ env.GIT_REPO }}
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
