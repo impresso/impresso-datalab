@@ -7,9 +7,13 @@ import LogoFnr from "./_svg/LogoFnr"
 import LogoSnsf from "./_svg/LogoSnsf"
 
 const getGithubRepoUrl = (gitRepo, gitRevision) => {
+  if (gitRepo.startsWith("https")) {
+    return `${gitRepo}/commit/${gitRevision}`
+  }
   // Regular expression to extract the repository path from the gitRepo string
   const repoRegex = /github\.com[:/](.*)\.git/
   const repoMatches = gitRepo.match(repoRegex)
+
   if (repoMatches && repoMatches.length > 1) {
     const repoPath = repoMatches[1]
     return `https://github.com/${repoPath}/commit/${gitRevision}`

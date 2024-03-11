@@ -79,7 +79,7 @@ jobs:
       - name: Get git tag and revision
         id: git
         run: |
-          echo "GIT_REVISION=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          echo "GIT_REVISION=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
           echo "GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
           echo "GIT_REPO=$(git config --get remote.origin.url)" >> $GITHUB_ENV
       - name: Build with Gatsby
