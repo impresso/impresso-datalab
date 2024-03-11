@@ -55,7 +55,7 @@ const Footer = () => {
             </a>
           </Col>
         </Row>
-        <Row className="mt-5">
+        <Row className="my-5">
           <Col>
             <LogoSnsf width={200} />
           </Col>
