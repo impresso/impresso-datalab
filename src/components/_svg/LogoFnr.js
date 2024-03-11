@@ -1,12 +1,16 @@
 import React from "react"
 
-const LogoFnr = ({ color = "var(--impresso-color-black)", width = 160 }) => {
+const LogoFnr = ({
+  color = "var(--impresso-color-black)",
+  width = 160,
+  className = "",
+}) => {
   const ratio = 199.93 / 33.99
   const height = width / ratio
 
   return (
     <div
-      className="LogoFnr SVG"
+      className={`LogoFnr SVG ${className}`}
       style={{ height: height + "px", width: width + "px" }}
     >
       <a

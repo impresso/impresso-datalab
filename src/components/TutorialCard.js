@@ -4,7 +4,10 @@ import { useDataStore } from "../store"
 import { navigate } from "gatsby"
 
 const TutorialCard = ({ name }) => {
-  const getTutorialByName = useDataStore((state) => state.getTutorialByName)
+  const [, getTutorialByName] = useDataStore((state) => [
+    state.isReady,
+    state.getTutorialByName,
+  ])
   const tutorial = getTutorialByName(name)
   const ratio = tutorial
     ? tutorial.video.thumbnail_height / tutorial.video.thumbnail_width
