@@ -6,6 +6,8 @@ import "./NotebookCard.css"
 import { navigate } from "gatsby"
 import Avatar from "boring-avatars"
 import { ArrowRight } from "iconoir-react"
+import { DateTime } from "luxon"
+import { Calendar } from "iconoir-react"
 
 // const AvatarVariants = ["marble", "beam", "pixel", "sunset", "ring", "bauhaus"]
 const NotebookCard = ({ name }) => {
@@ -14,6 +16,16 @@ const NotebookCard = ({ name }) => {
   const navigateToNotebookPage = () => {
     navigate(`?view=${ModalNotebookPreviewView}&viewId=${name}`)
   }
+
+  const timeString = notebook?.accessTime
+
+  const dateTime = DateTime.fromISO(timeString)
+
+  const day = dateTime.day
+  const month = dateTime.month
+  const year = dateTime.year
+
+  console.log("notebook", day, month)
 
   return (
     <div className="NotebookCard shadow-sm">
@@ -27,6 +39,10 @@ const NotebookCard = ({ name }) => {
           />
         </div>
         <div className="mx-3">
+          <div className="date">
+            <Calendar height={"16px"} width={"16px"} />
+            <span>{day + "/" + month + "/" + year}</span>
+          </div>
           <h3 className="m-0" onClick={navigateToNotebookPage}>
             {notebook?.title}
           </h3>

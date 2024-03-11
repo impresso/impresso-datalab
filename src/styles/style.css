@@ -54,6 +54,7 @@
   --font-size-h1: var(--fs80px);
   --font-size-h2: var(--fs40px);
   --font-size-h5: var(--fs18px);
+  --font-small: var(--fs12px);
 
   /* EASING */
   --backInOut: cubic-bezier(0.68, -0.55, 0.265, 1.55);
