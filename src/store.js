@@ -4,12 +4,14 @@ export const ModalDraftView = "draft"
 export const ModalForkNotebookView = "fork-notebook"
 export const ModalNotebookPreviewView = "notebook-preview"
 export const ModalLoginView = "login"
+export const ModalTutorialView = "tutorial"
 
 export const AvailableModalsViews = [
   ModalDraftView,
   ModalForkNotebookView,
   ModalNotebookPreviewView,
   ModalLoginView,
+  ModalTutorialView,
 ]
 
 export const useBrowserStore = create((set) => ({

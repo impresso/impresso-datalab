@@ -1,13 +1,14 @@
-import React from 'react'
-import { AvailableModalsViews } from '../store'
-import { Button } from 'react-bootstrap'
-import { navigate } from 'gatsby'
-import ModalLogin from './ModalLogin'
-import ModalNotebookPreview from './ModalNotebookPreview'
+import React from "react"
+import { AvailableModalsViews } from "../store"
+import { Button } from "react-bootstrap"
+import { navigate } from "gatsby"
+import ModalLogin from "./ModalLogin"
+import ModalNotebookPreview from "./ModalNotebookPreview"
+import ModalTutorial from "./ModalTutorial"
 
 const Modals = ({ debug = false }) => {
   const onCloseHandler = () => {
-    navigate('')
+    navigate("")
   }
 
   return (
@@ -15,7 +16,7 @@ const Modals = ({ debug = false }) => {
       {debug &&
         AvailableModalsViews.map((modal) => (
           <Button
-            className='mx-1'
+            className="mx-1"
             key={modal}
             onClick={() => navigate(`?view=${modal}`)}
           >
@@ -23,6 +24,7 @@ const Modals = ({ debug = false }) => {
           </Button>
         ))}
       <ModalNotebookPreview onClose={onCloseHandler} centered />
+      <ModalTutorial onClose={onCloseHandler} />
       <ModalLogin onClose={onCloseHandler} centered />
     </>
   )

@@ -1,6 +1,7 @@
 import React from "react"
 import "./TutorialCard.css"
 import { useDataStore } from "../store"
+import { navigate } from "gatsby"
 
 const TutorialCard = ({ name }) => {
   const getTutorialByName = useDataStore((state) => state.getTutorialByName)
@@ -11,8 +12,14 @@ const TutorialCard = ({ name }) => {
   const thumbnail = tutorial
     ? tutorial.video.thumbnail_url
     : "https://via.placeholder.com/1280x720"
+
+  const gotoTutorialPage = () => {
+    console.log("gotoTutorialPage", name)
+    navigate(`?view=tutorial&viewId=${name}`)
+  }
+
   return (
-    <div className="TutorialCard d-inline-block">
+    <div className="TutorialCard d-inline-block" onClick={gotoTutorialPage}>
       <section className="p-3">
         <h3>{tutorial?.title}</h3>
         <p>{tutorial?.excerpt}</p>

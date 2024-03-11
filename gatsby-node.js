@@ -213,6 +213,7 @@ exports.createPages = async function ({ actions, graphql }) {
           accessTime
           name
           childMdx {
+            body
             excerpt
             tableOfContents
             frontmatter {

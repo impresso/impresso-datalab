@@ -31,7 +31,7 @@ export function onRouteUpdate({ location, prevLocation }) {
     }
 
     // test view id against a regex (lowercase letters and numbers, only trailing slash)
-    if (paramViewId && /^[a-z0-9]+$/.test(paramViewId)) {
+    if (paramViewId && /^[a-z0-9-]+$/.test(paramViewId)) {
       console.log("[gatsby-browser]@onRouteUpdate viewId:", paramViewId)
       viewId = String(paramViewId)
     } else {
