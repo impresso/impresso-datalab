@@ -3,6 +3,8 @@ import { Link } from "gatsby"
 import { Container, Row, Col } from "react-bootstrap"
 import { useSiteMetadata } from "../hooks"
 import { Github } from "iconoir-react"
+import LogoFnr from "./_svg/LogoFnr"
+import LogoSnsf from "./_svg/LogoSnsf"
 
 const getGithubRepoUrl = (gitRepo, gitRevision) => {
   // Regular expression to extract the repository path from the gitRepo string
@@ -51,6 +53,14 @@ const Footer = () => {
                 {site.gitBuildTag} / {site.gitRevision}
               </span>
             </a>
+          </Col>
+        </Row>
+        <Row className="mt-5">
+          <Col>
+            <LogoSnsf width={200} />
+          </Col>
+          <Col>
+            <LogoFnr width={200} />
           </Col>
         </Row>
       </Container>
