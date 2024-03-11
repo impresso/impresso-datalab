@@ -17,6 +17,7 @@ const PrefetchData = () => {
           "/data/authors.json",
           "/data/notebooks.json",
           "/data/collections.json",
+          "/data/tutorials.json",
         ].map((url) =>
           axios
             .get((process.env.GATSBY_PATH_PREFIX || "") + url)
@@ -29,9 +30,10 @@ const PrefetchData = () => {
         console.info("[PrefetchData] done", res)
 
         setData({
-          authors: res[0],
-          notebooks: res[1],
-          collections: res[2],
+          authorsMap: res[0],
+          notebooksMap: res[1],
+          collectionsMap: res[2],
+          tutorialsMap: res[3],
         })
         return true
       }),

@@ -82,6 +82,14 @@ module.exports = {
       __key: "authors",
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "tutorials",
+        path: "./src/tutorials/",
+      },
+      __key: "tutorials",
+    },
+    {
       resolve: "gatsby-plugin-matomo",
       options: {
         siteId: "7",

@@ -1,9 +1,9 @@
-import { create } from 'zustand'
+import { create } from "zustand"
 
-export const ModalDraftView = 'draft'
-export const ModalForkNotebookView = 'fork-notebook'
-export const ModalNotebookPreviewView = 'notebook-preview'
-export const ModalLoginView = 'login'
+export const ModalDraftView = "draft"
+export const ModalForkNotebookView = "fork-notebook"
+export const ModalNotebookPreviewView = "notebook-preview"
+export const ModalLoginView = "login"
 
 export const AvailableModalsViews = [
   ModalDraftView,
@@ -24,6 +24,7 @@ export const useDataStore = create((set, get) => ({
   notebooksMap: {},
   authorsMap: {},
   collectionsMap: {},
+  tutorialsMap: {},
   getNotebookByName(name) {
     return get().notebooksMap[name]
   },
@@ -33,11 +34,15 @@ export const useDataStore = create((set, get) => ({
   getCollectionByName(name) {
     return get().collectionsMap[name]
   },
-  setData({ notebooks, authors, collections }) {
+  getTutorialByName(name) {
+    return get().tutorialsMap[name]
+  },
+  setData({ notebooksMap, authorsMap, collectionsMap, tutorialsMap }) {
     set({
-      notebooksMap: notebooks,
-      authorsMap: authors,
-      collectionsMap: collections,
+      notebooksMap,
+      authorsMap,
+      collectionsMap,
+      tutorialsMap,
       isReady: true,
     })
   },
