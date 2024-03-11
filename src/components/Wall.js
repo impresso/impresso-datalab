@@ -5,7 +5,7 @@ import TutorialCard from "./TutorialCard"
 import CollectionCard from "./CollectionCard"
 
 const Wall = () => {
-  const { highlighted, collections, notebooks, tutorials } =
+  const { highlighted, collections, notebooks, authors, tutorials } =
     useStaticQuery(graphql`
       query {
         highlighted: allFile(
@@ -38,6 +38,9 @@ const Wall = () => {
         notebooks: allFile(
           filter: { sourceInstanceName: { eq: "notebooks" } }
         ) {
+          totalCount
+        }
+        authors: allFile(filter: { sourceInstanceName: { eq: "authors" } }) {
           totalCount
         }
         tutorials: allFile(
@@ -75,9 +78,10 @@ const Wall = () => {
           <h1 className="display-3 ">Give your media monitoring a boost.</h1>
           <section className="mt-5">
             <p>
-              We collected <b>{notebooks.totalCount}</b> notebooks so far, in{" "}
-              <b>{collections.totalCount}</b> collections developed by{" "}
-              <b>{highlighted.totalCount}</b> authors.
+              We collected <b>{notebooks.totalCount}</b> Jupyter notebooks so
+              far; developed <b>{tutorials.totalCount}</b> tutorials;
+              orchestrated <b>{collections.totalCount}</b> collections of
+              notebooks, developed by <b>{authors.totalCount}</b> authors.
             </p>
             <CollectionCard name="notebooks-we-are-testing-right-now" />
           </section>
