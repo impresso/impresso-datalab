@@ -8,7 +8,7 @@ const Background = () => {
   const windowHeight = useRef(window.innerHeight)
   const [{ x, y }, api] = useSpring(() => ({
     x: window.innerWidth / 2,
-    y: window.window.innerHeight / 2,
+    y: window.innerHeight / 2,
     config: config.molasses,
   }))
 

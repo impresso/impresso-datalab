@@ -28,8 +28,8 @@ const Footer = () => {
     <footer className="mt-5">
       <Container>
         <Row>
-          <Col>{site.title}</Col>
-          <Col>
+          <Col className=" py-4">{site.title}</Col>
+          <Col className=" py-4">
             <ul>
               <li>
                 <Link to="/">impresso-datalab</Link>
@@ -39,7 +39,7 @@ const Footer = () => {
               </li>
             </ul>
           </Col>
-          <Col>
+          <Col className="py-4">
             Current version:
             <br />
             <a
@@ -55,12 +55,12 @@ const Footer = () => {
             </a>
           </Col>
         </Row>
-        <Row className="my-5">
-          <Col>
-            <LogoSnsf width={200} />
+        <Row className="border-top border-dark">
+          <Col className=" py-4">
+            <LogoSnsf width={200} className="mx-auto" />
           </Col>
-          <Col>
-            <LogoFnr width={200} />
+          <Col className="py-4">
+            <LogoFnr width={200} className="mx-auto" />
           </Col>
         </Row>
       </Container>
