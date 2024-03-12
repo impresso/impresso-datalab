@@ -23,7 +23,7 @@ const PageLayout = ({ children, path, pageContext }) => {
   }, [])
   useEffect(() => {
     // scroll to 0 0
-    window.scrollTo(0, 0)
+    // window.scrollTo(0, 0)
     if (path === "/") {
       setShow(false)
     } else {
@@ -32,7 +32,13 @@ const PageLayout = ({ children, path, pageContext }) => {
   }, [path])
 
   return (
-    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+    <Modal
+      size="lg"
+      show={show}
+      onHide={handleClose}
+      backdrop="static"
+      keyboard={false}
+    >
       <Modal.Header closeButton>
         <Link to="/">impresso-datalab</Link>
         <Button variant="primary" onClick={handleClose}>

@@ -276,6 +276,18 @@ exports.createPages = async function ({ actions, graphql }) {
         2
       )
     )
+    actions.createPage({
+      path: `/tutorial/${node.name}`,
+      component: require.resolve(`./src/templates/Tutorial.js`),
+      context: {
+        type: "tutorial",
+        data: {
+          ...tutorialsMap[node.name],
+          body: node.childMdx.body,
+          video: node.childMdx.frontmatter.video,
+        },
+      },
+    })
   })
   //
   // Write to JSON files

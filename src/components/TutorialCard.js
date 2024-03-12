@@ -1,7 +1,7 @@
 import React from "react"
 import "./TutorialCard.css"
 import { useDataStore } from "../store"
-import { navigate } from "gatsby"
+import { Link, navigate } from "gatsby"
 
 const TutorialCard = ({ name }) => {
   const [, getTutorialByName] = useDataStore((state) => [
@@ -16,15 +16,12 @@ const TutorialCard = ({ name }) => {
     ? tutorial.video.thumbnail_url
     : "https://via.placeholder.com/1280x720"
 
-  const gotoTutorialPage = () => {
-    console.log("gotoTutorialPage", name)
-    navigate(`?view=tutorial&viewId=${name}`)
-  }
-
   return (
-    <div className="TutorialCard d-inline-block" onClick={gotoTutorialPage}>
+    <div className="TutorialCard d-inline-block">
       <section className="p-3">
-        <h3>{tutorial?.title}</h3>
+        <h3>
+          <Link to={`/tutorial/${name}`}>{tutorial?.title}</Link>
+        </h3>
         <p>{tutorial?.excerpt}</p>
       </section>
       <figure
