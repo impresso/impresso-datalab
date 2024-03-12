@@ -71,5 +71,5 @@ const Footer = () => {
     </footer>
   )
 }
-
-export default Footer
+// render only once.
+export default React.memo(Footer, true)

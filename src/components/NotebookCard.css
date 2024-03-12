@@ -1,5 +1,5 @@
 .NotebookCard {
-  border-radius: var(--impresso-border-rqdius-sm);
+  border-radius: var(--impresso-border-radius-sm);
   background: white;
 }
 

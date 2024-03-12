@@ -1,8 +1,19 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import { Col, Container, Row } from "react-bootstrap"
 import TutorialCard from "./TutorialCard"
 import CollectionCard from "./CollectionCard"
+import ReactCodeMirror from "@uiw/react-codemirror"
+import { nord } from "@uiw/codemirror-theme-nord"
+import { python } from "@codemirror/lang-python"
+
+const CodeSample = `
+from impresso-py import impresso 
+
+print(impresso.version())
+
+results = impresso.search("moon landing")
+`
 
 const Wall = () => {
   const { highlighted, collections, notebooks, authors, tutorials } =
@@ -62,29 +73,44 @@ const Wall = () => {
     `)
 
   return (
-    <Container fluid className="Index">
+    <Container className="Wall">
       <Row>
         <Col>
           <h2>Highlights</h2>
           {highlighted.nodes.length ? (
-            highlighted.nodes.map((node) => (
-              <CollectionCard name={node.name} key={node.name} />
-            ))
+            <CollectionCard name={highlighted.nodes[0].name}>
+              <ReactCodeMirror
+                value={CodeSample}
+                theme={nord}
+                extensions={[python()]}
+              />
+            </CollectionCard>
           ) : (
             <p>No highlighted collections found.</p>
           )}
         </Col>
         <Col>
           <h1 className="display-3 ">Give your media monitoring a boost.</h1>
+
+          <p>
+            We collected <b>{notebooks.totalCount}</b>{" "}
+            <em>Jupyter notebooks</em> so far; developed{" "}
+            <b>{tutorials.totalCount}</b> tutorials; orchestrated{" "}
+            <b>{collections.totalCount}</b> collections of notebooks, developed
+            by <b>{authors.totalCount}</b> authors.
+          </p>
           <section className="mt-5">
-            <p>
-              We collected <b>{notebooks.totalCount}</b> Jupyter notebooks so
-              far; developed <b>{tutorials.totalCount}</b> tutorials;
-              orchestrated <b>{collections.totalCount}</b> collections of
-              notebooks, developed by <b>{authors.totalCount}</b> authors.
-            </p>
-            <CollectionCard name="notebooks-we-are-testing-right-now" />
+            <CollectionCard name="notebooks-we-are-testing-right-now"></CollectionCard>
           </section>
+        </Col>
+        <Col md={{ span: 2 }} lg={{ span: 2 }}>
+          <h3>Quick links</h3>
+          <p>
+            The `impresso-py` python package documentation is on{" "}
+            <Link to="/docs">readthedocs</Link>. All the notebooks have each an
+            independent environment you can spin with docker, preview on
+            mybinder, google colab...
+          </p>
         </Col>
       </Row>
       <Row className="mb-3 py-3 align-items-bottom">

@@ -5,7 +5,8 @@
   --impresso-color-yellow: rgb(--impresso-color-yellow-code);
   --impresso-color-black: #343a40;
   --impresso-color-black-rgb: 52, 58, 64;
-  --impresso-border-rqdius-sm: 20px;
+  --impresso-border-radius-xs: 5px;
+  --impresso-border-radius-sm: 20px;
   --impresso-border-radius-lg: 30px;
   --impresso-border-radius-xl: 40px;
   --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
@@ -129,7 +130,7 @@ b {
 }
 
 .container-fluid {
-  max-width: 1414px;
+  max-width: 1600px;
 }
 
 .modal-backdrop {
@@ -146,4 +147,15 @@ hr {
   height: 1px;
   color: var(--impresso-color-black);
   opacity: 1;
+}
+
+/* codemirror theme refinement */
+.cm-editor {
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--impresso-border-radius-xs);
+}
+
+.cm-gutters {
+  border-start-start-radius: var(--impresso-border-radius-xs);
+  border-end-start-radius: var(--impresso-border-radius-xs);
 }

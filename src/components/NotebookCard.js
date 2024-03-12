@@ -3,7 +3,7 @@ import { ModalNotebookPreviewView, useDataStore } from "../store"
 import AuthorCard from "./AuthorCard"
 import { Button } from "react-bootstrap"
 import "./NotebookCard.css"
-import { navigate } from "gatsby"
+import { Link, navigate } from "gatsby"
 import Avatar from "boring-avatars"
 import { ArrowRight } from "iconoir-react"
 import { DateTime } from "luxon"
@@ -45,14 +45,12 @@ const NotebookCard = ({ name }) => {
           </ol>
         </div>
         <div className="ms-auto">
-          <Button
-            variant="secondary"
-            className="p-0"
+          <Link
+            to={`/notebook/${notebook?.name}`}
             style={{ width: 36, height: 36 }}
-            onClick={navigateToNotebookPage}
           >
             <ArrowRight strokeWidth={2} />
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

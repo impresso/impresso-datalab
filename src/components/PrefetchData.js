@@ -7,7 +7,7 @@ const PrefetchData = () => {
     state.setData,
     state.isReady,
   ])
-  console.info("[PrefetchData] load data", !isReady)
+  console.info("[PrefetchData] load data:", isReady ? "ready" : "not ready")
   // this schema updates the store so that e always have the full list of authors and books
   useQuery({
     queryKey: ["todoss"],
@@ -22,13 +22,12 @@ const PrefetchData = () => {
           axios
             .get((process.env.GATSBY_PATH_PREFIX || "") + url)
             .then((res) => {
-              console.info(`[PrefetchData] ${url}`, res.data)
+              console.debug(`[PrefetchData] ${url}`, res.data)
               return res.data
             })
         )
       ).then((res) => {
-        console.info("[PrefetchData] done", res)
-
+        console.info("[PrefetchData] completed.")
         setData({
           authorsMap: res[0],
           notebooksMap: res[1],

@@ -121,7 +121,14 @@ exports.createPages = async function ({ actions, graphql }) {
     actions.createPage({
       path: `/notebook/${node.name}`,
       component: require.resolve(`./src/templates/Notebook.js`),
-      context: { node },
+      context: {
+        type: "notebook",
+        data: {
+          ...notebooksMap[node.name],
+          body: node.childMdx.body,
+          tableOfContents: node.childMdx.tableOfContents,
+        },
+      },
     })
   })
   const { data: collections } = await graphql(`
@@ -134,6 +141,7 @@ exports.createPages = async function ({ actions, graphql }) {
           name
           childMdx {
             excerpt
+            tableOfContents
             frontmatter {
               title
               notebooks

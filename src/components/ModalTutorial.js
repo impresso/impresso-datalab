@@ -23,6 +23,7 @@ const ModalTutorial = ({ onClose, ...props }) => {
       axios.get(url).then((res) => {
         return res.data
       }),
+    enabled: !!name,
   })
 
   console.info(`[ModalTutorial] ${name} ${url} ${status}`)

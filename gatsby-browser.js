@@ -7,6 +7,7 @@ import Modals from "./src/components/Modals"
 import { AvailableModalsViews, useBrowserStore } from "./src/store"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import PrefetchData from "./src/components/PrefetchData"
+import PageLayout from "./src/components/PageLayout"
 
 // Logs when the client route changes
 export function onRouteUpdate({ location, prevLocation }) {
@@ -43,10 +44,10 @@ export function onRouteUpdate({ location, prevLocation }) {
   }
 
   // always update store with view and viewId
-  useBrowserStore.setState({
-    view,
-    viewId,
-  })
+  // useBrowserStore.setState({
+  //   view,
+  //   viewId,
+  // })
 }
 
 // Create a client
@@ -69,4 +70,10 @@ export function wrapRootElement({ element, props }) {
       <Layout {...props}>{element}</Layout>
     </QueryClientProvider>
   )
+}
+
+// wraps every page in a component
+export function wrapPageElement({ element, props }) {
+  console.log("[gatsby-browser]@wrapPageElement", props)
+  return <PageLayout {...props}>{element}</PageLayout>
 }
