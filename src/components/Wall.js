@@ -8,11 +8,11 @@ import { nord } from "@uiw/codemirror-theme-nord"
 import { python } from "@codemirror/lang-python"
 
 const CodeSample = `
-from impresso-py import impresso 
+from impresso import api 
 
-print(impresso.version())
+print(api.version())
 
-results = impresso.search("moon landing")
+results = api.search("moon landing")
 `
 
 const Wall = () => {
@@ -88,7 +88,6 @@ const Wall = () => {
           ) : (
             <p>No highlighted collections found.</p>
           )}
-          <CollectionCard name="notebooks-we-are-testing-right-now"></CollectionCard>
         </Col>
         <Col>
           <h1 className="display-3 ">Give your media monitoring a boost.</h1>
@@ -121,7 +120,11 @@ const Wall = () => {
         <Col className="  d-flex justify-content-center align-items-end ">
           <h2 className="border-bottom border-dark w-100">Tutorials</h2>
         </Col>
-        <Col></Col>
+        <Col className="  d-flex justify-content-center align-items-end ">
+          <h2 className="border-bottom border-dark w-100">
+            From the community
+          </h2>
+        </Col>
       </Row>
       <Row>
         <Col></Col>
@@ -130,7 +133,9 @@ const Wall = () => {
             <TutorialCard name={node.name} key={node.name} />
           ))}
         </Col>
-        <Col></Col>
+        <Col>
+          <CollectionCard name="notebooks-we-are-testing-right-now"></CollectionCard>
+        </Col>
       </Row>
     </Container>
   )

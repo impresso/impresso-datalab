@@ -1,4 +1,6 @@
+import { use } from "marked"
 import { create } from "zustand"
+import { createJSONStorage, persist } from "zustand/middleware"
 
 export const ModalDraftView = "draft"
 export const ModalForkNotebookView = "fork-notebook"
@@ -50,3 +52,44 @@ export const useDataStore = create((set, get) => ({
   },
   isReady: false,
 }))
+
+export const usePersistentStore = create(
+  persist(
+    (set, get) => ({
+      user: null,
+      token: null,
+      rememberCredentials: false,
+      setAuthenticatedUser(user, token) {
+        set({ user, token })
+      },
+      reset() {
+        localStorage.removeItem("feathers-jwt")
+        set({ user: null, token: null })
+      },
+      patchUser(user) {
+        // get the current user and patch it with the new user
+        const currentUser = get().user
+        set({
+          user: {
+            ...currentUser,
+            ...user,
+          },
+        })
+      },
+    }),
+    {
+      name: "impresso-datalab",
+      storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
+    }
+  )
+)
+
+// get fresh data from the localstorage
+const existingToken = localStorage.getItem("feathers-jwt")
+
+if (existingToken && usePersistentStore.getState().token === null) {
+  console.info("[usePersistentStore] use existing token from feathers-jwt")
+  usePersistentStore.setState({ token: existingToken })
+} else {
+  console.info("[usePersistentStore] use fresh token")
+}

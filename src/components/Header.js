@@ -30,7 +30,7 @@ const Header = () => {
               get your API token
             </Link>
           </Nav>
-          <Nav className="ms-auto">
+          <Nav className="ms-auto align-items-center">
             <Form inline="true">
               <InputGroup>
                 <Form.Control

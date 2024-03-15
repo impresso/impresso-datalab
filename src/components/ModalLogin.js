@@ -1,11 +1,15 @@
 import React, { useRef } from "react"
 import ModalView from "./ModalView"
-import { ModalLoginView } from "../store"
+import { ModalLoginView, useBrowserStore, usePersistentStore } from "../store"
 import { Button, Form, Modal } from "react-bootstrap"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 
 const ModalLogin = ({ onClose, ...props }) => {
+  const setAuthenticatedUser = usePersistentStore(
+    (store) => store.setAuthenticatedUser
+  )
+  const setView = useBrowserStore((store) => store.setView)
   const formPayload = useRef({
     email: "",
     password: "",
@@ -24,6 +28,9 @@ const ModalLogin = ({ onClose, ...props }) => {
             password: "",
             strategy: "local",
           }
+          setAuthenticatedUser(res.data.user, res.data.accessToken)
+          // setView null is going to close ModalView, see component useEffect behaviour.
+          setView(null)
           return res.data
         })
         .catch((err) => {
