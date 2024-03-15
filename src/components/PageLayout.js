@@ -1,8 +1,6 @@
-import { useSpring } from "@react-spring/web"
 import { Link } from "gatsby"
 import React, { useEffect, useRef, useState } from "react"
 import { Button, Modal } from "react-bootstrap"
-import ModalNotebookPreview from "./ModalNotebookPreview"
 
 const PageLayout = ({ children, path, pageContext }) => {
   console.log("[PageLayout] render props")

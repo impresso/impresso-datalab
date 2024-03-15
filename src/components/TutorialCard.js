@@ -1,7 +1,7 @@
 import React from "react"
 import "./TutorialCard.css"
 import { useDataStore } from "../store"
-import { Link, navigate } from "gatsby"
+import { Link } from "gatsby"
 
 const TutorialCard = ({ name }) => {
   const [, getTutorialByName] = useDataStore((state) => [

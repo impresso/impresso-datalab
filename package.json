@@ -40,5 +40,8 @@
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
     "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^2.0.6"
   }
 }

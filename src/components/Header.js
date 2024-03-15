@@ -10,6 +10,7 @@ import {
 import { Link } from "gatsby"
 import "./Header.css"
 import LogoImpressoDataLab from "./_svg/LogoImpressoDataLab"
+import UserArea from "./UserArea"
 
 const Header = () => {
   return (
@@ -37,11 +38,12 @@ const Header = () => {
                   placeholder="search notebooks..."
                   aria-label="Search Notebooks"
                 />
-                <Button size="sm" variant="dark">
+                <Button size="sm" variant="transparent">
                   Search
                 </Button>
               </InputGroup>
             </Form>
+            <UserArea />
           </Nav>
         </Container>
       </Navbar>

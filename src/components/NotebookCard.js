@@ -1,9 +1,8 @@
 import React from "react"
-import { ModalNotebookPreviewView, useDataStore } from "../store"
+import { useDataStore } from "../store"
 import AuthorCard from "./AuthorCard"
-import { Button } from "react-bootstrap"
 import "./NotebookCard.css"
-import { Link, navigate } from "gatsby"
+import { Link } from "gatsby"
 import Avatar from "boring-avatars"
 import { ArrowRight } from "iconoir-react"
 import { DateTime } from "luxon"
@@ -12,9 +11,7 @@ import { DateTime } from "luxon"
 const NotebookCard = ({ name }) => {
   const getNotebookByName = useDataStore((state) => state.getNotebookByName)
   const notebook = getNotebookByName(name)
-  const navigateToNotebookPage = () => {
-    navigate(`?view=${ModalNotebookPreviewView}&viewId=${name}`)
-  }
+
   const accessTime = notebook?.accessTime
   const accessDateTime = DateTime.fromISO(accessTime)
 
@@ -33,9 +30,7 @@ const NotebookCard = ({ name }) => {
           <div className="date">
             <span>{accessDateTime.toFormat("yyyy LLL dd")}</span>
           </div>
-          <h3 className="m-0" onClick={navigateToNotebookPage}>
-            {notebook?.title}
-          </h3>
+          <h3 className="m-0">{notebook?.title}</h3>
           <ol className="NotebookCard__authors">
             {notebook?.authors.map((name) => (
               <li key={name}>

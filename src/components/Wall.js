@@ -88,6 +88,7 @@ const Wall = () => {
           ) : (
             <p>No highlighted collections found.</p>
           )}
+          <CollectionCard name="notebooks-we-are-testing-right-now"></CollectionCard>
         </Col>
         <Col>
           <h1 className="display-3 ">Give your media monitoring a boost.</h1>
@@ -99,9 +100,7 @@ const Wall = () => {
             <b>{collections.totalCount}</b> collections of notebooks, developed
             by <b>{authors.totalCount}</b> authors.
           </p>
-          <section className="mt-5">
-            <CollectionCard name="notebooks-we-are-testing-right-now"></CollectionCard>
-          </section>
+          <section className="mt-5"></section>
         </Col>
         <Col md={{ span: 2 }} lg={{ span: 2 }}>
           <h3>Quick links</h3>

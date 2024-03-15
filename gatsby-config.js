@@ -1,10 +1,14 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-
+const { createProxyMiddleware } = require("http-proxy-middleware")
 require("dotenv").config({
   path: [`.env.${process.env.NODE_ENV}`, ".env"],
 })
+const ApiHost = (
+  process.env.GATSBY_IMPRESSO_API_URL || "http://localhost:8000/api"
+).replace("/api", "")
+
 console.log("gatsby-config")
 console.log("NODE_ENV", process.env.NODE_ENV)
 console.log("PATH_PREFIX", process.env.PATH_PREFIX)
@@ -13,6 +17,8 @@ console.log("GIT_BUILD_TAG", process.env.GIT_BUILD_TAG)
 console.log("GIT_BRANCH", process.env.GIT_BRANCH)
 console.log("GIT_REVISION", process.env.GIT_REVISION)
 console.log("GIT_REPO", process.env.GIT_REPO)
+console.log("GATSBY_IMPRESSO_API_URL", process.env.GATSBY_IMPRESSO_API_URL)
+console.log("ApiHost", ApiHost)
 
 module.exports = {
   siteMetadata: {
@@ -24,6 +30,18 @@ module.exports = {
     gitRepo: process.env.GIT_REPO,
   },
   pathPrefix: process.env.PATH_PREFIX || "/",
+  developMiddleware: (app) => {
+    app.use(
+      "/api",
+      createProxyMiddleware({
+        target: ApiHost,
+        changeOrigin: true,
+        pathRewrite: {
+          "^/api": "/api",
+        },
+      })
+    )
+  },
   plugins: [
     "gatsby-plugin-sitemap",
     // {

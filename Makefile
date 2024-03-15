@@ -8,4 +8,6 @@ run-dev:
 	GIT_REPO=$(shell git config --get remote.origin.url) \
 	PATH_PREFIX=/datalab \
 	PREFIX_PATHS=true \
+	GATSBY_PATH_PREFIX="" \
+	GATSBY_IMPRESSO_API_URL="https://impresso-project.ch/api" \
 	yarn start
