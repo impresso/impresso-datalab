@@ -2,6 +2,28 @@ import { Link } from "gatsby"
 import React, { useEffect, useRef, useState } from "react"
 import { Button, Modal } from "react-bootstrap"
 
+// const PageLayout = ({ children, path, pageContext }) => {
+//   if (path == "/") {
+//     return null
+//   }
+//   return (
+//     <div
+//       className="PageLayout position-fixed bg-white border rounded shadow-lg"
+//       style={{
+//         zIndex: 1000,
+//         top: 50,
+//         right: 50,
+//         bottom: 50,
+//         left: 50,
+//         overflow: "scroll",
+//       }}
+//     >
+//       <Link to="/">impresso-datalab</Link>
+//       {children}
+//     </div>
+//   )
+// }
+
 const PageLayout = ({ children, path, pageContext }) => {
   console.log("[PageLayout] render props")
   const [show, setShow] = useState(true)
@@ -29,6 +51,13 @@ const PageLayout = ({ children, path, pageContext }) => {
     }
   }, [path])
 
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      // Back off, browser, I got this...
+      window.history.scrollRestoration = "manual"
+    }
+  }, [])
+
   return (
     <Modal
       size="lg"
@@ -36,6 +65,9 @@ const PageLayout = ({ children, path, pageContext }) => {
       onHide={handleClose}
       backdrop="static"
       keyboard={false}
+      animation={false}
+      fullscreen="true"
+      scrollable
     >
       <Modal.Header closeButton>
         <Link to="/">impresso-datalab</Link>

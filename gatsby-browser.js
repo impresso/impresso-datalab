@@ -12,7 +12,8 @@ import PageLayout from "./src/components/PageLayout"
 // Logs when the client route changes
 export function onRouteUpdate({ location, prevLocation }) {
   console.log("[Layout] render")
-  console.log("[gatsby-browser]@onRouteUpdate new pathname", location)
+  console.log("[gatsby-browser]@onRouteUpdate new pathname", location.pathname)
+
   // let view = null
   // let viewId = null
   // // update zustand with search params, if any
@@ -76,4 +77,8 @@ export function wrapRootElement({ element, props }) {
 export function wrapPageElement({ element, props }) {
   console.log("[gatsby-browser]@wrapPageElement", props)
   return <PageLayout {...props}>{element}</PageLayout>
+}
+
+export function shouldUpdateScroll() {
+  return false
 }

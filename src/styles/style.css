@@ -132,9 +132,9 @@ b {
   --bs-btn-disabled-border-color: var(--impresso-color-black);
 }
 
-.container-fluid {
+/* .container-fluid {
   max-width: 1600px;
-}
+} */
 
 .modal-backdrop {
   --bs-backdrop-bg: var(--impresso-color-paper);

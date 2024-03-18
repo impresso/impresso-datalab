@@ -26,8 +26,8 @@ const Header = () => {
             <Link className="mx-2" to="/submit-notebook">
               Why Datalab?
             </Link>
-            <Link className="mx-2" to="/submit-notebook">
-              get your API token
+            <Link className="mx-2" to="/access-to-api">
+              start using the API
             </Link>
           </Nav>
           <Nav className="ms-auto align-items-center">

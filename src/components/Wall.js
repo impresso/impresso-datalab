@@ -111,7 +111,7 @@ const Wall = () => {
           </p>
         </Col>
       </Row>
-      <Row className="mb-3 py-3 align-items-bottom">
+      <Row className="my-5 py-3 align-items-bottom">
         <Col className=" d-flex  justify-content-center align-items-end ">
           <h2 className="border-bottom border-dark w-100">
             Notebooks you didn't think you needed
