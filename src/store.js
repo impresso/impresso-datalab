@@ -1,4 +1,3 @@
-import { use } from "marked"
 import { create } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
 
@@ -21,6 +20,12 @@ export const useBrowserStore = create((set) => ({
   viewId: null,
   setView(view) {
     set({ view })
+  },
+  previousPathname: null,
+  pathname: null,
+
+  setPath(pathname, previousPathname = null) {
+    set({ pathname, previousPathname })
   },
 }))
 

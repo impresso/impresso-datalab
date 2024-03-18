@@ -1,6 +1,7 @@
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import React, { useEffect, useRef, useState } from "react"
 import { Button, Modal } from "react-bootstrap"
+import { useBrowserStore } from "../store"
 
 // const PageLayout = ({ children, path, pageContext }) => {
 //   if (path == "/") {
@@ -26,6 +27,7 @@ import { Button, Modal } from "react-bootstrap"
 
 const PageLayout = ({ children, path, pageContext }) => {
   console.log("[PageLayout] render props")
+  const previousPathname = useBrowserStore((state) => state.previousPathname)
   const [show, setShow] = useState(true)
   const timerRef = useRef()
 
@@ -33,30 +35,25 @@ const PageLayout = ({ children, path, pageContext }) => {
     setShow(false)
     clearTimeout(timerRef.current)
     timerRef.current = setTimeout(() => {
-      window.history.back()
+      if (previousPathname) {
+        navigate(-1)
+      } else {
+        navigate("/")
+      }
     }, 800)
   }
-  useEffect(() => {
-    return () => {
-      clearTimeout(timerRef.current)
-    }
-  }, [])
+
   useEffect(() => {
     // scroll to 0 0
-    // window.scrollTo(0, 0)
     if (path === "/") {
       setShow(false)
     } else {
       setShow(true)
     }
-  }, [path])
-
-  useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      // Back off, browser, I got this...
-      window.history.scrollRestoration = "manual"
+    return () => {
+      clearTimeout(timerRef.current)
     }
-  }, [])
+  }, [path])
 
   return (
     <Modal
@@ -65,8 +62,6 @@ const PageLayout = ({ children, path, pageContext }) => {
       onHide={handleClose}
       backdrop="static"
       keyboard={false}
-      animation={false}
-      fullscreen="true"
       scrollable
     >
       <Modal.Header closeButton>

@@ -6,11 +6,12 @@ import Wall from "./Wall"
 
 const Layout = ({ children }) => {
   console.log("[Layout] render")
+
   return (
     <>
       <Header />
       <Wall />
-      <main>{children}</main>
+      <main className="position-fixed">{children}</main>
       <Footer />
       <Background />
     </>
