@@ -1,0 +1,28 @@
+.footer-logo > span {
+  display: block;
+  margin-top: 1rem;
+  line-height: 1rem;
+  font-size: var(--font-small);
+  opacity: 0.7;
+}
+
+.git-hub {
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.git-hub a,
+.git-hub span,
+.git-hub p {
+  display: flex;
+  width: auto;
+  font-size: var(--font-small);
+  align-items: center;
+  margin: 0 !important;
+}
+
+.git-hub a {
+  padding-left: 0 !important;
+}

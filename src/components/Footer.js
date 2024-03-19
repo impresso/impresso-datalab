@@ -1,10 +1,14 @@
 import React from "react"
-import { Link } from "gatsby"
 import { Container, Row, Col } from "react-bootstrap"
 import { useSiteMetadata } from "../hooks"
-import { Github } from "iconoir-react"
 import LogoFnr from "./_svg/LogoFnr"
 import LogoSnsf from "./_svg/LogoSnsf"
+import LogoUni from "./_svg/LogoUni"
+import LogoUnil from "./_svg/LogoUnil"
+import LogoEpfl from "./_svg/LogoEpfl"
+import LogoDofcl from "./_svg/LogoDofcl"
+import "./Footer.css"
+import LogoGitHub from "./_svg/LogoGitHub"
 
 const getGithubRepoUrl = (gitRepo, gitRevision) => {
   if (gitRepo.startsWith("https")) {
@@ -31,41 +35,78 @@ const Footer = () => {
   return (
     <footer className="mt-5">
       <Container>
-        <Row>
-          <Col className=" py-4">{site.title}</Col>
-          <Col className=" py-4">
-            <ul>
-              <li>
-                <Link to="/">impresso-datalab</Link>
-              </li>
-              <li>
-                <Link to="/about">about!</Link>
-              </li>
-            </ul>
+        <Row className="border-top border-dark">
+          <Col>
+            <h3 className="mt-2">Partners</h3>
           </Col>
-          <Col className="py-4">
-            Current version:
-            <br />
-            <a
-              href={gitRepoUrl}
-              target="_blank"
-              rel="noreferrer"
-              title="check github repo"
-            >
-              <Github />
-              <span className="ms-2">
-                {site.gitBuildTag} / {site.gitRevision}
-              </span>
-            </a>
+        </Row>
+        <Row>
+          <Col className="footer-logo py-4">
+            <LogoEpfl width={180} />
+            <span>
+              Digital Humanities Laboratory (DHLAB) Ecole Polytechnique Federale
+              de Lausanne, Switzerland
+            </span>
+          </Col>
+          <Col className="footer-logo py-4">
+            <LogoDofcl width={200} />
+            <span>
+              Institute of Computational Linguistics Zurich University,
+              Switzerland
+            </span>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="footer-logo py-4">
+            <LogoUni width={200} />
+            <span>
+              Center for Contemporary and Digital History (C²DH) University of
+              Luxembourg, Luxembourg
+            </span>
+          </Col>
+          <Col className="footer-logo py-4">
+            <LogoUnil width={200} />
+            <span>History department, University of Lausanne, Switzerland</span>
           </Col>
         </Row>
         <Row className="border-top border-dark">
-          <Col className=" py-4">
-            <LogoSnsf width={200} className="mx-auto" />
+          <Col>
+            <h3 className="mt-2">Funding agencies</h3>
           </Col>
-          <Col className="py-4">
-            <LogoFnr width={200} className="mx-auto" />
+        </Row>
+        <Row>
+          <Col className="footer-logo py-4">
+            <LogoSnsf width={200} />
+            <span>
+              The Swiss National Science Foundation (SNSF) funds excellent
+              research at universities and other institutions – from chemistry
+              to medicine to sociology
+            </span>
           </Col>
+          <Col className="footer-logo py-4">
+            <LogoFnr width={200} />
+            <span>
+              The Luxembourg National Research Fund (FNR) is the main funder of
+              research activities in Luxembourg
+            </span>
+          </Col>
+        </Row>
+      </Container>
+      <Container fluid>
+        <Row className="git-hub">
+          <span className="pe-2">Current version:</span>
+          <a
+            href={gitRepoUrl}
+            target="_blank"
+            rel="noreferrer"
+            title="check github repo"
+            aria-label="GitHub logo"
+          >
+            <LogoGitHub width={24} />
+            <p className="ps-2">
+              {site.gitBuildTag} / {site.gitRevision}
+            </p>
+          </a>
         </Row>
       </Container>
     </footer>
