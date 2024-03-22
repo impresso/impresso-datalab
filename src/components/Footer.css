@@ -26,3 +26,15 @@
 .git-hub a {
   padding-left: 0 !important;
 }
+
+footer .border-top {
+  border-top: 2px solid var(--impresso-color-black) !important;
+}
+
+footer .footer-logo a {
+  text-decoration: none;
+}
+
+footer .footer-logo a:hover {
+  text-decoration: underline;
+}
