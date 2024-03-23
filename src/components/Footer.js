@@ -77,7 +77,6 @@ const Footer = () => {
         </Row>
         {footerLinks.map((rowData, rowIndex) => (
           <Row className="footer-logo py-3" key={rowIndex}>
-            {console.log("rowData", rowData)}
             {rowData.map((colData, colIndex) => (
               <Col sm={12} md={6} key={colIndex}>
                 <a
