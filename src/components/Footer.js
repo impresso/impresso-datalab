@@ -9,6 +9,7 @@ import LogoEpfl from "./_svg/LogoEpfl"
 import LogoDofcl from "./_svg/LogoDofcl"
 import "./Footer.css"
 import LogoGitHub from "./_svg/LogoGitHub"
+import footerLinks from "../footerLinks"
 
 const getGithubRepoUrl = (gitRepo, gitRevision) => {
   if (gitRepo.startsWith("https")) {
@@ -74,97 +75,23 @@ const Footer = () => {
             <h3 className="mt-2">Associated Partners</h3>
           </Col>
         </Row>
-        <Row>
-          <Col className="footer-logo py-3">
-            <a
-              href="https://www.nb.admin.ch/snl/en/home.html"
-              target="_blank"
-              title="National Library of Switzerland (Bibliothèque Nationale Suisse, BN)"
-              rel="noreferrer"
-            >
-              National Library of Switzerland (Bibliothèque Nationale Suisse,
-              BN)
-            </a>
-          </Col>
-          <Col className="footer-logo py-3">
-            <a
-              href="https://bnl.public.lu/en.html"
-              target="_blank"
-              title="National Library of Luxembourg (Bibliothèque Nationale du Luxembourg, BNL)"
-              rel="noreferrer"
-            >
-              National Library of Luxembourg (Bibliothèque Nationale du
-              Luxembourg, BNL)
-            </a>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="footer-logo py-3">
-            <a
-              href="https://www.onb.ac.at/en/"
-              target="_blank"
-              title="Austrian National Library (Österreichische Nationalbibliothek, ONB)"
-              rel="noreferrer"
-            >
-              Austrian National Library (Österreichische Nationalbibliothek,
-              ONB)
-            </a>
-          </Col>
-          <Col className="footer-logo py-3">
-            <a
-              href="https://staatsbibliothek-berlin.de/en/"
-              target="_blank"
-              title="Berlin State Library (Staatsbibliothek zu Berlin, SBB)"
-              rel="noreferrer"
-            >
-              Berlin State Library (Staatsbibliothek zu Berlin, SBB)
-            </a>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="footer-logo py-3">
-            <a
-              href="https://www.bl.uk/"
-              target="_blank"
-              title="The British Library (BL)"
-              rel="noreferrer"
-            >
-              The British Library (BL)
-            </a>
-          </Col>
-          <Col className="footer-logo py-3">
-            <a
-              href="https://www.bnf.fr/en"
-              target="_blank"
-              title="French National Library (Bibliothèque nationale de France, BnF)"
-              rel="noreferrer"
-            >
-              French National Library (Bibliothèque nationale de France, BnF)
-            </a>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="footer-logo py-3">
-            <a
-              href="https://www.bl.uk/"
-              target="_blank"
-              title="The British Library (BL)"
-              rel="noreferrer"
-            >
-              The British Library (BL)
-            </a>
-          </Col>
-          <Col className="footer-logo py-3">
-            <a
-              href="https://www.bnf.fr/en"
-              target="_blank"
-              title="French National Library (Bibliothèque nationale de France, BnF)"
-              rel="noreferrer"
-            >
-              French National Library (Bibliothèque nationale de France, BnF)
-            </a>
-          </Col>
-        </Row>
+        {footerLinks.map((rowData, rowIndex) => (
+          <Row className="footer-logo py-3" key={rowIndex}>
+            {console.log("rowData", rowData)}
+            {rowData.map((colData, colIndex) => (
+              <Col sm={12} md={6} key={colIndex}>
+                <a
+                  href={colData.href}
+                  target="_blank"
+                  title={colData.title}
+                  rel="noreferrer"
+                >
+                  {colData.title}
+                </a>
+              </Col>
+            ))}
+          </Row>
+        ))}
         <Row className="border-top">
           <Col>
             <h3 className="mt-2">Funding agencies</h3>
