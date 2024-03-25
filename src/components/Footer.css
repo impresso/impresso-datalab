@@ -31,10 +31,10 @@ footer .border-top {
   border-top: 2px solid var(--impresso-color-black) !important;
 }
 
-footer .footer-logo a {
+footer a {
   text-decoration: none;
 }
 
-footer .footer-logo a:hover {
+footer a:hover {
   text-decoration: underline;
 }

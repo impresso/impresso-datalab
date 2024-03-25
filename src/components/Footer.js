@@ -9,7 +9,7 @@ import LogoEpfl from "./_svg/LogoEpfl"
 import LogoDofcl from "./_svg/LogoDofcl"
 import "./Footer.css"
 import LogoGitHub from "./_svg/LogoGitHub"
-import footerLinks from "../footerLinks"
+import footerLinks from "../footerLinks.json"
 
 const getGithubRepoUrl = (gitRepo, gitRevision) => {
   if (gitRepo.startsWith("https")) {
@@ -75,22 +75,20 @@ const Footer = () => {
             <h3 className="mt-2">Associated Partners</h3>
           </Col>
         </Row>
-        {footerLinks.map((rowData, rowIndex) => (
-          <Row className="footer-logo py-3" key={rowIndex}>
-            {rowData.map((colData, colIndex) => (
-              <Col sm={12} md={6} key={colIndex}>
-                <a
-                  href={colData.href}
-                  target="_blank"
-                  title={colData.title}
-                  rel="noreferrer"
-                >
-                  {colData.title}
-                </a>
-              </Col>
-            ))}
-          </Row>
-        ))}
+        <Row className="mt-3">
+          {footerLinks.map((colData, colIndex) => (
+            <Col sm={12} md={6} key={colIndex} className="mb-md-3">
+              <a
+                href={colData.href}
+                target="_blank"
+                title={colData.title}
+                rel="noreferrer"
+              >
+                {colData.title}
+              </a>
+            </Col>
+          ))}
+        </Row>
         <Row className="border-top">
           <Col>
             <h3 className="mt-2">Funding agencies</h3>
