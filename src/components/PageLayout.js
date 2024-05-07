@@ -1,6 +1,6 @@
 import { Link, navigate } from "gatsby"
 import React, { useEffect, useRef, useState } from "react"
-import { Button, Modal } from "react-bootstrap"
+import { Modal } from "react-bootstrap"
 import { useBrowserStore } from "../store"
 
 // const PageLayout = ({ children, path, pageContext }) => {
@@ -66,9 +66,6 @@ const PageLayout = ({ children, path, pageContext }) => {
     >
       <Modal.Header closeButton>
         <Link to="/">impresso-datalab</Link>
-        <Button variant="primary" onClick={handleClose}>
-          close
-        </Button>
       </Modal.Header>
       <Modal.Body className="container">{children}</Modal.Body>
     </Modal>
