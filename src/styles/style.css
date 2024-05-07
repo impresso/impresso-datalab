@@ -131,6 +131,40 @@ b {
   --bs-btn-disabled-bg: var(--impresso-color-yellow);
   --bs-btn-disabled-border-color: var(--impresso-color-black);
 }
+/* restyle bootstrap button */
+button {
+  display: flex !important;
+  align-items: center;
+}
+
+button svg {
+  margin-left: -0.2rem;
+}
+
+.btn.btn-secondary {
+  --bs-btn-bg: transparent;
+  --bs-btn-color: var(--impresso-color-black);
+}
+
+.link-button {
+  background-color: rgba(var(--impresso-color-black-rgb), 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  transition: background-color 0.25s ease-in-out;
+}
+
+.link-button:hover {
+  background-color: var(--impresso-color-yellow);
+}
+
+.link-button svg {
+  width: 18px;
+  height: 18px;
+}
 
 /* .container-fluid {
   max-width: 1600px;
@@ -174,3 +208,14 @@ hr {
   border-start-start-radius: var(--impresso-border-radius-xs);
   border-end-start-radius: var(--impresso-border-radius-xs);
 }
+
+@media (min-width: 1024px) {
+  .modal-lg,
+  .modal-xl {
+    --bs-modal-width: 1000px !important;
+  }
+}
+
+/* .btn.btn-pill{
+ o
+} */
