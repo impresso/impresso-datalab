@@ -40,10 +40,7 @@ const NotebookCard = ({ name }) => {
           </ol>
         </div>
         <div className="ms-auto">
-          <Link
-            to={`/notebook/${notebook?.name}`}
-            style={{ width: 36, height: 36 }}
-          >
+          <Link className="link-button" to={`/notebook/${notebook?.name}`}>
             <ArrowRight strokeWidth={2} />
           </Link>
         </div>
