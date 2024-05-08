@@ -34,7 +34,7 @@ const CodeSnippet = ({ codeMirrorRef, value, key }) => {
       <button className="copy-code" onClick={handleCopy} aria-label="copy code">
         <Copy strokeWidth={2} />
       </button>
-      <Button className="me-2" variant="primary">
+      <Button className="me-2" variant="primary" size="sm">
         {/* <LogoColab width={20} className="me-1" /> */}
         <span>Explain Code</span>
       </Button>

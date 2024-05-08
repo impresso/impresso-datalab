@@ -140,10 +140,26 @@ button {
 button svg {
   margin-left: -0.2rem;
 }
+.btn.btn-primary {
+  border: 2px var(--impresso-color-yellow) solid;
+}
 
 .btn.btn-secondary {
   --bs-btn-bg: transparent;
   --bs-btn-color: var(--impresso-color-black);
+  border: 2px var(--impresso-color-black) solid;
+}
+
+.btn:hover {
+  border: 2px var(--impresso-color-black) solid;
+}
+
+.btn.btn-sm {
+  padding: 0rem 0.5rem;
+  height: 1.8rem;
+  font-size: 0.6em;
+  letter-spacing: 1.1px;
+  border-radius: 0.9rem;
 }
 
 .link-button {
@@ -215,7 +231,3 @@ hr {
     --bs-modal-width: 1000px !important;
   }
 }
-
-/* .btn.btn-pill{
- o
-} */

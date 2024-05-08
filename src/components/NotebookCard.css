@@ -20,3 +20,7 @@
 .NotebookCard .date > span {
   font-size: var(--font-small);
 }
+
+.NotebookCard .Avatar {
+  align-self: baseline;
+}

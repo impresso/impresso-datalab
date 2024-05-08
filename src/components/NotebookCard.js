@@ -18,7 +18,7 @@ const NotebookCard = ({ name }) => {
   return (
     <div className="NotebookCard shadow-sm">
       <div className="p-3 d-flex align-items-center">
-        <div>
+        <div className="Avatar">
           <Avatar
             size={40}
             name={notebook.name}
