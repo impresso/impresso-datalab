@@ -115,6 +115,11 @@ b {
   --bs-border-radius: 20px;
 }
 
+hr {
+  border-bottom: 2px solid var(--impresso-color-black);
+  margin-bottom: 2rem;
+}
+
 .btn-primary {
   --bs-btn-color: var(--impresso-color-black);
   --bs-btn-bg: var(--impresso-color-yellow);
@@ -150,6 +155,14 @@ button svg {
   border: 2px var(--impresso-color-black) solid;
 }
 
+.btn.btn-transparent {
+  border: 2px transparent solid;
+}
+
+.btn.btn-transparent:hover {
+  border: 2px transparent solid;
+}
+
 .btn:hover {
   border: 2px var(--impresso-color-black) solid;
 }
@@ -180,6 +193,19 @@ button svg {
 .link-button svg {
   width: 18px;
   height: 18px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group input {
+  height: 40px;
+  min-width: 200px;
+  border-radius: 20px !important;
+  padding: 0.25rem 0.9rem;
 }
 
 /* .container-fluid {
