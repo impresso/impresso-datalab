@@ -11,6 +11,7 @@ import { Link } from "gatsby"
 import "./Header.css"
 import LogoImpressoDataLab from "./_svg/LogoImpressoDataLab"
 import UserArea from "./UserArea"
+import { Search } from "iconoir-react"
 
 const Header = () => {
   return (
@@ -38,8 +39,12 @@ const Header = () => {
                   placeholder="search notebooks..."
                   aria-label="Search Notebooks"
                 />
-                <Button size="sm" variant="transparent">
-                  Search
+                <Button
+                  style={{ marginLeft: "-2rem", zIndex: "6" }}
+                  size="sm"
+                  variant="transparent"
+                >
+                  <Search />
                 </Button>
               </InputGroup>
             </Form>
