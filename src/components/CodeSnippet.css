@@ -1,12 +1,12 @@
-.code-wrapper {
+.CodeSnippet {
   position: relative;
 }
 
-.cm-editor {
+.CodeSnippet .cm-editor {
   padding-bottom: 3rem;
 }
 
-.code-wrapper button.copy-code {
+.CodeSnippet button.copy-code {
   position: absolute;
   right: 0;
   top: 1px;
@@ -15,7 +15,7 @@
   color: var(--impresso-color-yellow);
 }
 
-.code-wrapper .btn {
+.CodeSnippet .btn {
   position: absolute;
   right: 0;
   bottom: 0.5rem;
