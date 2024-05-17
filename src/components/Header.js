@@ -18,7 +18,7 @@ const Header = () => {
     <header className="Header py-3">
       <Navbar>
         <Container fluid>
-          <Navbar.Brand>
+          <Navbar.Brand className="mx-3">
             <Link to="/">
               <LogoImpressoDataLab width={110} />
             </Link>
@@ -32,7 +32,7 @@ const Header = () => {
             </Link>
           </Nav>
           <Nav className="ms-auto align-items-center">
-            <Form inline="true">
+            <Form className="Search" inline="true">
               <InputGroup>
                 <Form.Control
                   size="sm"
