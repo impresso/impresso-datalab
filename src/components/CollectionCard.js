@@ -3,16 +3,16 @@ import "./CollectionCard.css"
 import { useDataStore } from "../store"
 import NotebookCard from "./NotebookCard"
 
-const CollectionCard = ({ name, children }) => {
+const CollectionCard = ({ name, children, map }) => {
   const [, getCollectionByName] = useDataStore((state) => [
     state.isReady,
     state.getCollectionByName,
   ])
   const collection = getCollectionByName(name)
   return (
-    <div className="CollectionCard d-inline-block">
+    <div className="CollectionCard d-flex flex-column">
       <section className="p-3">
-        <h3>{collection?.title}</h3>
+        <h2>{collection?.title}</h2>
         <p>{collection?.excerpt}</p>
         {children}
       </section>
@@ -23,6 +23,12 @@ const CollectionCard = ({ name, children }) => {
           </li>
         ))}
       </ol>
+      {map === true ? (
+        <div className="map-bg">
+          <div className="overlay"></div>
+          <img src="img/map.jpg" alt="map" />
+        </div>
+      ) : null}
     </div>
   )
 }
