@@ -201,13 +201,6 @@ button svg {
   align-items: center;
 }
 
-.input-group input {
-  height: 40px;
-  min-width: 200px;
-  border-radius: 20px !important;
-  padding: 0.25rem 0.9rem;
-}
-
 /* .container-fluid {
   max-width: 1600px;
 } */
@@ -228,6 +221,13 @@ button svg {
 }
 
 /* ... */
+h1 {
+  font-weight: 600 !important;
+  text-decoration: underline;
+  text-decoration-color: var(--impresso-color-yellow);
+  line-height: 65px !important;
+}
+
 h2 {
   /* border-bottom: 1px solid var(--impresso-color-black); */
   padding-bottom: var(--spacer-3);
