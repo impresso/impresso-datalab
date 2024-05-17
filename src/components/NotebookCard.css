@@ -1,6 +1,8 @@
 .NotebookCard {
+  position: relative;
   border-radius: var(--impresso-border-radius-sm);
   background: white;
+  overflow: hidden;
 }
 
 .NotebookCard h3 {
@@ -23,8 +25,4 @@
 
 .date > span {
   font-size: var(--fs14px);
-}
-
-.NotebookCard .Avatar {
-  align-self: baseline;
 }
