@@ -91,7 +91,6 @@ const Wall = () => {
             <section className="mt-5"></section>
           </Col>
           <Col md={{ span: 6 }} xxl={{ span: 5 }}>
-            <h2>Highlights</h2>
             {highlighted.nodes.length ? (
               <CollectionCard name={highlighted.nodes[0].name}>
                 <ReactCodeMirror
@@ -118,35 +117,33 @@ const Wall = () => {
             </p>
           </Col>
         </Row>
-        <Row className="my-5 py-3 align-items-bottom">
+        <Row className="my-3  align-items-bottom">
           <Col className=" d-flex  justify-content-center align-items-end ">
-            <h2 className="border-bottom border-dark w-100">
+            <h3 className="border-bottom border-dark p-3 w-100">
               Notebooks you didn't think you needed
-            </h2>
+            </h3>
           </Col>
           <Col className="  d-flex justify-content-center align-items-end ">
-            <h2 className="border-bottom border-dark w-100">Tutorials</h2>
+            <h3 className="border-bottom border-dark p-3 w-100">
+              Work with your data!
+            </h3>
           </Col>
           <Col className="  d-flex justify-content-center align-items-end ">
-            <h2 className="border-bottom border-dark w-100">
-              From the community
-            </h2>
+            <h3 className="border-bottom border-dark p-3 w-100">Tutorials</h3>
           </Col>
         </Row>
         <Row>
           <Col>
-            <CollectionCard
-              name="notebooks-you-didnt-think-you-needed"
-              map={true}
-            ></CollectionCard>
+            {/* put collection ID manually using the collection ID path */}
+            <CollectionCard name="drawing-maps-and-timelines"></CollectionCard>
+          </Col>
+          <Col>
+            <CollectionCard name="notebooks-we-are-testing-right-now"></CollectionCard>
           </Col>
           <Col>
             {tutorials.nodes.map((node) => (
               <TutorialCard name={node.name} key={node.name} />
             ))}
-          </Col>
-          <Col>
-            <CollectionCard name="notebooks-we-are-testing-right-now"></CollectionCard>
           </Col>
         </Row>
       </Container>
