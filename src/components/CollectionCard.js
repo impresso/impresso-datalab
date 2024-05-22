@@ -3,12 +3,13 @@ import "./CollectionCard.css"
 import { useDataStore } from "../store"
 import NotebookCard from "./NotebookCard"
 
-const CollectionCard = ({ name, children, map }) => {
+const CollectionCard = ({ name, children }) => {
   const [, getCollectionByName] = useDataStore((state) => [
     state.isReady,
     state.getCollectionByName,
   ])
   const collection = getCollectionByName(name)
+  const hasCover = !!collection?.cover?.url
   return (
     <div className="CollectionCard d-flex flex-column">
       <section className="p-3">
@@ -23,12 +24,12 @@ const CollectionCard = ({ name, children, map }) => {
           </li>
         ))}
       </ol>
-      {map === true ? (
+      {hasCover && (
         <div className="map-bg">
           <div className="overlay"></div>
-          <img src="img/map.jpg" alt="map" />
+          <img src={collection.cover.url} alt={collection.cover.alt} />
         </div>
-      ) : null}
+      )}
     </div>
   )
 }

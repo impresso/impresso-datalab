@@ -146,6 +146,11 @@ exports.createPages = async function ({ actions, graphql }) {
               title
               notebooks
               tags
+              excerpt
+              cover {
+                url
+                alt
+              }
             }
           }
         }
@@ -159,9 +164,10 @@ exports.createPages = async function ({ actions, graphql }) {
       name: node.name,
       path: `/collection/${node.name}`,
       title: node.childMdx.frontmatter.title,
-      excerpt: node.childMdx.excerpt,
+      excerpt: node.childMdx.frontmatter.excerpt || node.childMdx.excerpt,
       notebooks: node.childMdx.frontmatter.notebooks,
       tags: node.childMdx.frontmatter.tags || [],
+      cover: node.childMdx.frontmatter.cover,
       contributors: [],
     }
     node.childMdx.frontmatter.notebooks.forEach((notebook) => {
