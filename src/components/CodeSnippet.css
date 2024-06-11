@@ -6,7 +6,7 @@
   padding-bottom: 3rem;
 }
 
-.CodeSnippet button.copy-code {
+button.copy-code {
   position: absolute;
   right: 0;
   top: 1px;

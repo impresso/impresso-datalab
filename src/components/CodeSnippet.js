@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
-import { useState, useRef } from "react"
+import React from "react"
+import { useState, useRef, useEffect } from "react"
 import ReactCodeMirror from "@uiw/react-codemirror"
 import { nord } from "@uiw/codemirror-theme-nord"
 import { python } from "@codemirror/lang-python"
