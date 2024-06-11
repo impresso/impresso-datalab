@@ -16,36 +16,36 @@ const NotebookCard = ({ name }) => {
   const accessDateTime = DateTime.fromISO(accessTime)
 
   return (
-    <div className="NotebookCard shadow-sm">
-      <div className="p-3 d-flex align-items-center">
-        <div className="Avatar">
-          <Avatar
-            size={40}
-            name={notebook.name}
-            variant="marble"
-            square={false}
-          />
-        </div>
-        <div className="mx-3">
-          <div className="date">
-            <span>{accessDateTime.toFormat("yyyy LLL dd")}</span>
+    <Link to={`/notebook/${notebook?.name}`}>
+      <div className="NotebookCard shadow-sm">
+        <div className="p-3 d-flex align-items-center">
+          <div className="Avatar">
+            <Avatar
+              size={40}
+              name={notebook.name}
+              variant="marble"
+              square={false}
+            />
           </div>
-          <h3 className="m-0">{notebook?.title}</h3>
-          <ol className="NotebookCard__authors">
-            {notebook?.authors.map((name) => (
-              <li key={name}>
-                <AuthorCard name={name} />
-              </li>
-            ))}
-          </ol>
-        </div>
-        <div className="ms-auto">
-          <Link className="link-button" to={`/notebook/${notebook?.name}`}>
+          <div className="mx-3">
+            <div className="date">
+              <span>{accessDateTime.toFormat("yyyy LLL dd")}</span>
+            </div>
+            <h3 className="m-0">{notebook?.title}</h3>
+            <ol className="NotebookCard__authors">
+              {notebook?.authors.map((name) => (
+                <Link key={name} to={`/`}>
+                  <AuthorCard name={name} />
+                </Link>
+              ))}
+            </ol>
+          </div>
+          <div className="ms-auto link-button">
             <ArrowRight strokeWidth={2} />
-          </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 export default NotebookCard

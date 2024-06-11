@@ -5,6 +5,10 @@
   overflow: hidden;
 }
 
+.CollectionCard a {
+  text-decoration: none;
+}
+
 .NotebookCard h3 {
   font-size: var(--fs18px);
   font-weight: bold;
@@ -25,4 +29,12 @@
 
 .date > span {
   font-size: var(--fs14px);
+}
+
+.NotebookCard .NotebookCard__authors {
+  display: inline-block;
+}
+
+.NotebookCard .NotebookCard__authors:hover {
+  text-decoration: underline;
 }
