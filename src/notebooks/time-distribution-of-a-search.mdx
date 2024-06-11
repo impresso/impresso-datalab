@@ -8,11 +8,11 @@ collections:
   - enter-impresso
 tags:
   - matplotlib
+relatedNotebooks:
+  - setup
 ---
 
 This code snippet shows how to draw a time distribution of your search results using Python and Matplotlib.
-
-# Python code in Jupyter Notebook
 
 ## Import necessary libraries
 
@@ -22,31 +22,31 @@ import matplotlib.dates as mdates
 from datetime import datetime
 ```
 
-# List of (date, value) pairs
+## List of (date, value) pairs
 
 data = [('2022-01-01', 10), ('2022-02-01', 15), ('2022-03-01', 7), ('2022-04-01', 18)]
 
-# Separate dates and values
+## Separate dates and values
 
 dates = [datetime.strptime(date, '%Y-%m-%d') for date, _ in data]
 values = [value for _, value in data]
 
-# Create a new figure and an axes
+## Create a new figure and an axes
 
 fig, ax = plt.subplots()
 
-# Plot the data
+## Plot the data
 
 ax.plot(dates, values)
 
-# Format the x-axis to display dates
+## Format the x-axis to display dates
 
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
 
-# Rotate date labels automatically
+## Rotate date labels automatically
 
 fig.autofmt_xdate()
 
-# Show the plot
+## Show the plot
 
 plt.show()

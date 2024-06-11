@@ -34,8 +34,8 @@ const Footer = () => {
 
   console.log("[Footer] render site:", site)
   return (
-    <footer className="mt-5">
-      <Container>
+    <footer className="mt-5 mx-lg-5 mx-md-2">
+      <Container fluid>
         <Row className="border-top">
           <Col>
             <h3 className="mt-2">Partners</h3>
@@ -77,7 +77,7 @@ const Footer = () => {
         </Row>
         <Row className="mt-3">
           {footerLinks.map((colData, colIndex) => (
-            <Col sm={12} md={6} key={colIndex} className="mb-md-3">
+            <Col sm={12} md={6} key={colIndex} className="mb-3">
               <a
                 href={colData.href}
                 target="_blank"

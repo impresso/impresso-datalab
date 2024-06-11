@@ -1,6 +1,12 @@
 .NotebookCard {
+  position: relative;
   border-radius: var(--impresso-border-radius-sm);
   background: white;
+  overflow: hidden;
+}
+
+.CollectionCard a {
+  text-decoration: none;
 }
 
 .NotebookCard h3 {
@@ -8,7 +14,7 @@
   font-weight: bold;
 }
 
-.NotebookCard .date {
+.date {
   display: flex;
   align-items: center;
 }
@@ -19,4 +25,16 @@
 
 .NotebookCard .date > span {
   font-size: var(--font-small);
+}
+
+.date > span {
+  font-size: var(--fs14px);
+}
+
+.NotebookCard .NotebookCard__authors {
+  display: inline-block;
+}
+
+.NotebookCard .NotebookCard__authors:hover {
+  text-decoration: underline;
 }

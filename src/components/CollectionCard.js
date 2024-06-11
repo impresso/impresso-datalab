@@ -9,10 +9,11 @@ const CollectionCard = ({ name, children }) => {
     state.getCollectionByName,
   ])
   const collection = getCollectionByName(name)
+  const hasCover = !!collection?.cover?.url
   return (
-    <div className="CollectionCard d-inline-block">
+    <div className="CollectionCard d-flex flex-column">
       <section className="p-3">
-        <h3>{collection?.title}</h3>
+        <h2>{collection?.title}</h2>
         <p>{collection?.excerpt}</p>
         {children}
       </section>
@@ -23,6 +24,12 @@ const CollectionCard = ({ name, children }) => {
           </li>
         ))}
       </ol>
+      {hasCover && (
+        <div className="map-bg">
+          <div className="overlay"></div>
+          <img src={collection.cover.url} alt={collection.cover.alt} />
+        </div>
+      )}
     </div>
   )
 }

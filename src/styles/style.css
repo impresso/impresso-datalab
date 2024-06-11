@@ -3,7 +3,9 @@
   --impresso-color-paper: #fafbf2;
   --impresso-color-yellow-code: 255, 235, 120;
   --impresso-color-yellow: #ffeb78;
-  --impresso-color-black: #343a40;
+  --impresso-color-black-rgb: 52, 58, 64;
+  --impresso-color-black: rgb(var(--impresso-color-black-rgb));
+
   --impresso-color-black-rgb: 52, 58, 64;
   --impresso-border-radius-xs: 5px;
   --impresso-border-radius-sm: 20px;
@@ -25,7 +27,8 @@
 
   --bs-light: var(--impresso-color-paper);
   --bs-primary: #ffe587;
-  --secondary: #8a5de8;
+  --secondary-rgb: 138, 93, 232;
+  --secondary: rgb(var(--secondary-rgb));
   --tertiary: #e85da0;
   --black: #353133;
 
@@ -59,6 +62,9 @@
   --font-size-h2: var(--fs40px);
   --font-size-h5: var(--fs18px);
   --font-small: var(--fs12px);
+
+  /* FONT WEIGHT */
+  --font-weight-bold: 600;
 
   /* EASING */
   --backInOut: cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -115,6 +121,11 @@ b {
   --bs-border-radius: 20px;
 }
 
+hr {
+  border-bottom: 2px solid var(--impresso-color-black);
+  margin-bottom: 2rem;
+}
+
 .btn-primary {
   --bs-btn-color: var(--impresso-color-black);
   --bs-btn-bg: var(--impresso-color-yellow);
@@ -130,6 +141,79 @@ b {
   --bs-btn-disabled-color: var(--impresso-color-black);
   --bs-btn-disabled-bg: var(--impresso-color-yellow);
   --bs-btn-disabled-border-color: var(--impresso-color-black);
+}
+/* restyle bootstrap button */
+button {
+  display: flex !important;
+  align-items: center;
+}
+
+button svg {
+  margin-left: -0.2rem;
+}
+.btn.btn-primary {
+  border: 2px var(--impresso-color-yellow) solid;
+}
+
+.btn-secondary,
+.btn-secodary.btn-lg,
+.btn-secodary.btn-sm {
+  --bs-btn-bg: transparent;
+  --bs-btn-color: var(--impresso-color-black);
+  border: 2px var(--impresso-color-black) solid !important;
+}
+
+button.btn-secodary:hover {
+  background-color: rgba(var(--impresso-color-black-rgb), 0.8);
+  color: var(--bs-light);
+}
+
+.btn.btn-transparent {
+  border: 2px transparent solid;
+}
+
+.btn.btn-transparent:hover {
+  border: 2px transparent solid;
+}
+
+.btn:hover {
+  border: 2px var(--impresso-color-black) solid;
+}
+
+.btn.btn-sm {
+  padding: 0rem 0.5rem;
+  height: 1.8rem;
+  font-size: 0.6em;
+  letter-spacing: 1.1px;
+  border-radius: 0.9rem;
+}
+
+.link-button {
+  background-color: rgba(var(--impresso-color-black-rgb), 0.08);
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  transition: background-color 0.25s ease-in-out;
+}
+
+.link-button:hover,
+.NotebookCard:hover .link-button {
+  background-color: var(--impresso-color-yellow);
+}
+
+.link-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 /* .container-fluid {
@@ -152,6 +236,13 @@ b {
 }
 
 /* ... */
+h1 {
+  font-weight: 600 !important;
+  text-decoration: underline;
+  text-decoration-color: var(--impresso-color-yellow);
+  line-height: 65px !important;
+}
+
 h2 {
   /* border-bottom: 1px solid var(--impresso-color-black); */
   padding-bottom: var(--spacer-3);
@@ -173,4 +264,24 @@ hr {
 .cm-gutters {
   border-start-start-radius: var(--impresso-border-radius-xs);
   border-end-start-radius: var(--impresso-border-radius-xs);
+}
+
+/* Modal defult settings */
+
+.modal-header {
+  padding: 0 !important;
+}
+
+.modal-header > button {
+  position: absolute;
+  z-index: 11;
+  right: var(--spacer-3);
+  top: var(--spacer-3);
+}
+
+@media (min-width: 1024px) {
+  .modal-lg,
+  .modal-xl {
+    --bs-modal-width: 1000px !important;
+  }
 }
