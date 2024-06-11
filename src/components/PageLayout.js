@@ -1,4 +1,4 @@
-import { Link, navigate } from "gatsby"
+import { navigate } from "gatsby"
 import React, { useEffect, useRef, useState } from "react"
 import { Modal } from "react-bootstrap"
 import { useBrowserStore } from "../store"
@@ -65,7 +65,7 @@ const PageLayout = ({ children, path, pageContext }) => {
       scrollable
     >
       <Modal.Header closeButton>
-        <Link to="/">impresso-datalab</Link>
+        {/* <Link to="/">impresso-datalab</Link> */}
       </Modal.Header>
       <Modal.Body className="container">{children}</Modal.Body>
     </Modal>
