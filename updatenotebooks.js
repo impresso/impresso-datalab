@@ -73,7 +73,7 @@ console.log("NotebooksDir", NotebooksDir)
       ipynb.metadata.kernelspec,
       ipynb.cells
     )
-    const googleColabUrl = `https://colab.research.google.com/github/${url.replace(
+    const googleColabUrl = `https://colab.research.google.com/${url.replace(
       /https:\/\/.*?github.com/,
       "github"
     )}`
