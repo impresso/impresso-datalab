@@ -63,7 +63,7 @@ console.log("NotebooksDir", NotebooksDir)
     }
 
     console.log("✓ ipynb", ipynb.cells.length, "cells")
-    const title = getTitleFromIpynb(ipynb.cells)
+    const { title, cellIdx } = getTitleFromIpynb(ipynb.cells)
     if (!title) {
       console.log("⚠ title? no heading found in ipynb")
       continue
@@ -71,7 +71,7 @@ console.log("NotebooksDir", NotebooksDir)
     console.log("✓ title:", title)
     const contentMdx = extractMdFromIpynbCells(
       ipynb.metadata.kernelspec,
-      ipynb.cells
+      ipynb.cells.filter((cell, i) => i !== cellIdx)
     )
     const googleColabUrl = `https://colab.research.google.com/${url.replace(
       /https:\/\/.*?github.com/,

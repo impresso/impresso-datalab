@@ -9,6 +9,25 @@ const Notebook = ({ path, pageContext, ...props }) => {
   const accessTime = pageContext?.data.accessTime
   const accessDateTime = DateTime.fromISO(accessTime)
   const codeMirrorRef = useRef(null)
+  // @todo: move this to gatsby node creation
+  const cells = pageContext.data.body
+    .trim()
+    .split(/(\{\/\* cell:\d+ cell_type:[a-z]+ \*\/\})/)
+    .filter((d) => d !== "")
+  // Create pairs
+  const cellPairs = []
+  for (let i = 0; i < cells.length; i += 2) {
+    // cell_type from "{/* cell:8 cell_type:markdown */}" = markdown
+    const cellType = cells[i].replace(
+      /{\/\* cell:\d+ cell_type:([a-z]+) \*\/}/,
+      "$1"
+    )
+    cellPairs.push({
+      cellType,
+      content: cells[i + 1],
+    })
+  }
+  console.log(cells, cellPairs)
 
   return (
     <div className="Notebook">
@@ -23,14 +42,13 @@ const Notebook = ({ path, pageContext, ...props }) => {
               </i>
               <span>{accessDateTime.toFormat("yyyy LLL dd")}</span>
             </div>
-            <hr />
-            <Markdown>{pageContext.data.body}</Markdown>
-            {JSON.stringify(path)}
-
-            <CodeSnippet
-              value={JSON.stringify(props, null, 2)}
-              codeMirrorRef={codeMirrorRef}
-            />
+            {cellPairs.map((cell, i) => {
+              if (cell.cellType === "markdown") {
+                return <Markdown key={i}>{cell.content}</Markdown>
+              } else {
+                return <CodeSnippet key={i} value={cell.content} />
+              }
+            })}
           </Col>
           <Col lg="4">
             {pageContext.data.excerpt}
