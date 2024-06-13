@@ -1,0 +1,78 @@
+const axios = require("axios")
+
+const getLatestCommit = async (owner, repo) => {
+  const url = `https://api.github.com/repos/${owner}/${repo}/commits`
+
+  const data = await axios.get(url).then((res) => res.data)
+  if (Array.isArray(data) && data.length > 0) {
+    return data[0]
+  }
+  return null
+}
+
+const getLatestCommitOfPath = async (owner, repo, path) => {
+  const url = `https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`
+
+  const data = await axios.get(url).then((res) => res.data)
+  if (Array.isArray(data) && data.length > 0) {
+    return data[0]
+  }
+  return null
+}
+
+const getGithubOwnerRepoFromUrl = (url) => {
+  const match = url.match(/github.com\/([^\/]+)\/([^\/]+)/)
+  if (match) {
+    return { owner: match[1], repo: match[2] }
+  }
+  return {
+    owner: null,
+    repo: null,
+  }
+}
+
+const getLatestCommitFromUrl = async (url) => {
+  if (!url) return null
+  const { owner, repo } = getGithubOwnerRepoFromUrl(url)
+  if (owner && repo) {
+    // extract path from url, without blob and branch info
+    const matchPath = url.match(
+      /github.com\/[^\/]+\/[^\/]+\/blob\/[^\/]+\/(.*)/
+    )
+
+    if (matchPath) {
+      const path = matchPath[1]
+      return getLatestCommitOfPath(owner, repo, path)
+    }
+    return getLatestCommit(owner, repo)
+  }
+  return null
+}
+
+const getIpynbContentsFromUrl = async (ipynbUrl) => {
+  const raw = await axios.get(ipynbUrl).then((res) => res.data)
+  if (!raw) {
+    console.error("No raw content found")
+    return null
+  }
+  const { cells } = raw
+  // check if the content is an array of cells
+  if (!Array.isArray(cells)) {
+    console.error("No cells found in ipynb file")
+    return null
+  }
+  // check they are ipynb cells
+  if (!cells.every((cell) => cell.cell_type)) {
+    console.error("Not all cells are ipynb cells")
+    return null
+  }
+  return raw
+}
+
+// export the funcitons
+module.exports = {
+  getLatestCommit,
+  getGithubOwnerRepoFromUrl,
+  getLatestCommitFromUrl,
+  getIpynbContentsFromUrl,
+}
