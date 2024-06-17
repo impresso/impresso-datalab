@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@codemirror/lang-python": "^6.1.4",
+    "@feathersjs/authentication-client": "^5.0.26",
+    "@feathersjs/socketio-client": "^5.0.26",
     "@mdx-js/react": "^3.0.0",
     "@react-spring/web": "^9.7.3",
     "@tanstack/react-query": "^5.25.0",
@@ -39,10 +41,13 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
+    "socket.io-client": "^4.7.5",
     "yaml": "^2.4.5",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "http-proxy-middleware": "^2.0.6"
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0"
   }
 }

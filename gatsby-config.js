@@ -2,6 +2,7 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 const { createProxyMiddleware } = require("http-proxy-middleware")
+
 require("dotenv").config({
   path: [`.env.${process.env.NODE_ENV}`, ".env"],
 })
@@ -32,13 +33,11 @@ module.exports = {
   pathPrefix: process.env.PATH_PREFIX || "/",
   developMiddleware: (app) => {
     app.use(
-      "/api",
+      "/api/socket.io",
       createProxyMiddleware({
-        target: ApiHost,
+        target: "https://dev.impresso-project.ch",
+        ws: true,
         changeOrigin: true,
-        pathRewrite: {
-          "^/api": "/api",
-        },
       })
     )
   },
