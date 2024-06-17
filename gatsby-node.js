@@ -72,6 +72,9 @@ exports.createPages = async function ({ actions, graphql }) {
             frontmatter {
               title
               binderUrl
+              googleColabUrl
+              githubUrl
+              sha
               authors
               tags
             }
@@ -91,6 +94,9 @@ exports.createPages = async function ({ actions, graphql }) {
       tags: node.childMdx.frontmatter.tags || [],
       excerpt: node.childMdx.excerpt,
       binderUrl: node.childMdx.frontmatter.binderUrl,
+      googleColabUrl: node.childMdx.frontmatter.googleColabUrl,
+      githubUrl: node.childMdx.frontmatter.githubUrl,
+      sha: node.childMdx.frontmatter.sha,
       authors: node.childMdx.frontmatter.authors || [],
       collections: [],
     }
