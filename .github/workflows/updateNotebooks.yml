@@ -15,4 +15,4 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Update Notebooks
-        run: node updateNotebooks.py
+        run: node updatenotebooks.js
