@@ -34,9 +34,7 @@ const NotebookCard = ({ name }) => {
             <h3 className="m-0">{notebook?.title}</h3>
             <ol className="NotebookCard__authors">
               {notebook?.authors.map((name) => (
-                <Link key={name} to={`/`}>
-                  <AuthorCard name={name} />
-                </Link>
+                <AuthorCard key={name} name={name} />
               ))}
             </ol>
           </div>
