@@ -35,8 +35,9 @@ jobs:
           tags: impresso/impresso-datalab:latest
           build-args: |
             VERSION=latest
-            GIT_COMMIT_SHA=${{ env.GIT_COMMIT_SHA }}
+            GIT_REVISION=${{ env.GIT_COMMIT_SHA }}
             BUILD_DATE=${{ env.BUILD_DATE }}
             GIT_BRANCH=${{ env.GIT_BRANCH }}
-            GIT_REMOTE=${{ env.GIT_REMOTE }}
+            GIT_REPO=${{ env.GIT_REMOTE }}
             GIT_TAG=${{ env.GIT_TAG }}
+            GIT_BUILD_TAG=${{ env.GIT_TAG }}
