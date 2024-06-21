@@ -45,8 +45,9 @@ ENV GATSBY_IMPRESSO_API_URL="/api"
 
 RUN yarn build
 
+RUN npm install -g pagefind@v1.1.0
 # Install and run pagefind
-RUN npx pagefind@v1.1.0 --site /app/public --verbose
+RUN pagefind --site /app/public --verbose
 
 # copy all files built by gatsy to busybox
 FROM busybox:stable
