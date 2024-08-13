@@ -13,7 +13,9 @@
     "start": "yarn run createfontscss && gatsby develop",
     "build": "yarn run createfontscss && gatsby build --prefix-paths",
     "serve": "yarn run createfontscss && gatsby serve --prefix-paths",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "storybook": "yarn run createfontscss && storybook dev -p 6006",
+    "build-storybook": "yarn run createfontscss && storybook build"
   },
   "dependencies": {
     "@codemirror/lang-python": "^6.1.4",
@@ -46,8 +48,19 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.6.1",
+    "@storybook/addon-essentials": "^8.2.9",
+    "@storybook/addon-interactions": "^8.2.9",
+    "@storybook/addon-links": "^8.2.9",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.5",
+    "@storybook/blocks": "^8.2.9",
+    "@storybook/react": "^8.2.9",
+    "@storybook/react-webpack5": "^8.2.9",
+    "@storybook/test": "^8.2.9",
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "http-proxy-middleware": "^3.0.0"
+    "http-proxy-middleware": "^3.0.0",
+    "prop-types": "^15.8.1",
+    "storybook": "^8.2.9"
   }
 }

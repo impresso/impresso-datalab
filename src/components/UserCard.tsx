@@ -2,7 +2,15 @@ import React from "react"
 import "./UserCard.css"
 import Avatar from "boring-avatars"
 
-const UserCard = ({ user }) => {
+export interface User {
+  username: string
+  isStaff: boolean
+  profile?: {
+    pattern: string[]
+  }
+}
+
+const UserCard = ({ user }: { user: User }) => {
   return (
     <div className="UserCard d-flex align-items-center">
       <div className="me-2">

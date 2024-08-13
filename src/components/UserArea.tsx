@@ -5,23 +5,19 @@ import { Button } from "react-bootstrap"
 import { ModalLoginView, useBrowserStore, usePersistentStore } from "../store"
 import UserCard from "./UserCard"
 import { versionService } from "../services"
-import { use } from "marked"
 
 const UserArea = () => {
   const [view, setView] = useBrowserStore((state) => [
     state.view,
     state.setView,
   ])
+
   useEffect(() => {
     versionService.find().then((data) => {
       console.info("[UserArea] version", data)
     })
   }, [])
-  //   userService.find().then((data) => {
-  //     console.info("[UserArea] data", data)
-  //     return data
-  //   })
-  // }, [])
+
   const user = usePersistentStore((state) => state.user)
   return (
     <div className="UserArea me-3 d-flex">

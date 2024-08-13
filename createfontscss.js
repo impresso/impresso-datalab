@@ -1,5 +1,6 @@
 const fs = require("fs")
 const FontsCssFilePath = "./src/styles/fonts.css"
+const StoryBookFontsCssFilePath = "./.storybook/fonts.css"
 
 let basepath = process.env.GATSBY_PATH_PREFIX || ""
 
@@ -12,7 +13,7 @@ console.log("GATSBY_PATH_PREFIX", process.env.GATSBY_PATH_PREFIX)
 console.log("fonts.css path:", FontsCssFilePath)
 console.log("basepath:", basepath)
 
-const fonts = `
+const fonts = (basepath) => `
 @font-face {
   font-family: "Satoshi-Variable";
   src: url("${basepath}/fonts/Satoshi-Variable.woff2") format("woff2"),
@@ -33,6 +34,9 @@ const fonts = `
   font-style: italic;
 }
 `
-console.log("fonts.css expected contents:", fonts)
-fs.writeFileSync(FontsCssFilePath, fonts)
+console.log("fonts.css expected contents:", fonts(basepath))
+fs.writeFileSync(FontsCssFilePath, fonts(basepath))
 console.log("fonts.css updated.")
+
+fs.writeFileSync(StoryBookFontsCssFilePath, fonts("../static"))
+console.log(`${StoryBookFontsCssFilePath} updated.`)

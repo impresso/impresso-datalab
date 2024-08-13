@@ -5,3 +5,4 @@ public
 static/data/
 !static/data/.gitkeep
 src/styles/fonts.css
+*storybook.log
