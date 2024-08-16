@@ -10,6 +10,7 @@ import PrefetchData from "./src/components/PrefetchData"
 import PageLayout from "./src/components/PageLayout"
 import { useBrowserStore } from "./src/store"
 import { versionService } from "./src/services"
+import Page from "./src/components/Page"
 
 // Logs when the client route changes
 export function onRouteUpdate({ location, prevLocation }) {
@@ -64,7 +65,16 @@ export function wrapRootElement({ element, props }) {
 // wraps every page in a component
 export function wrapPageElement({ element, props }) {
   console.log("[gatsby-browser]@wrapPageElement", props)
-  return <PageLayout {...props}>{element}</PageLayout>
+
+  if (props.path === "/plans/") {
+    return <Page {...props}>hello{element}</Page>
+  }
+  // display all other pages a s modals
+  return (
+    <main className="position-fixed">
+      <PageLayout {...props}>{element}</PageLayout>
+    </main>
+  )
 }
 
 export function shouldUpdateScroll() {

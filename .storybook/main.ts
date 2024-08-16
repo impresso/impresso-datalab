@@ -13,7 +13,7 @@ const config: StorybookConfig = {
     name: "@storybook/react-webpack5",
     options: {},
   },
-  staticDirs: ["../static"],
+  staticDirs: ["../static", "../public"],
   core: {
     builder: "webpack5",
   },

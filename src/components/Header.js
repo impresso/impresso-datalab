@@ -24,8 +24,8 @@ const Header = () => {
             </Link>
           </Navbar.Brand>
           <Nav className="me-auto">
-            <Link className="mx-2" to="/submit-notebook">
-              Why Datalab?
+            <Link className="mx-2" to="/plans">
+              Plans
             </Link>
             <Link className="mx-2" to="/access-to-api">
               start using the API

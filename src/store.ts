@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
+import type { User } from "./components/UserCard"
 
 export const ModalDraftView = "draft"
 export const ModalForkNotebookView = "fork-notebook"
@@ -18,7 +19,7 @@ export const AvailableModalsViews = [
 export const useBrowserStore = create((set) => ({
   view: null,
   viewId: null,
-  setView(view) {
+  setView(view: string) {
     set({ view })
   },
   previousPathname: null,
@@ -64,14 +65,14 @@ export const usePersistentStore = create(
       user: null,
       token: null,
       rememberCredentials: false,
-      setAuthenticatedUser(user, token) {
+      setAuthenticatedUser(user: User, token: string) {
         set({ user, token })
       },
       reset() {
         localStorage.removeItem("feathers-jwt")
         set({ user: null, token: null })
       },
-      patchUser(user) {
+      patchUser(user: User) {
         // get the current user and patch it with the new user
         const currentUser = get().user
         set({
@@ -85,8 +86,8 @@ export const usePersistentStore = create(
     {
       name: "impresso-datalab",
       storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
-    }
-  )
+    },
+  ),
 )
 
 // get fresh data from the localstorage

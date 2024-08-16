@@ -5,8 +5,16 @@
   --impresso-color-yellow: #ffeb78;
   --impresso-color-black-rgb: 52, 58, 64;
   --impresso-color-black: rgb(var(--impresso-color-black-rgb));
-
   --impresso-color-black-rgb: 52, 58, 64;
+
+  /* // yellow transparency */
+  --impresso-color-yellow-rgb: 255, 235, 120;
+  --impresso-color-yellow-rgba-50: rgba(255, 235, 120, 0.5);
+  --impresso-color-yellow-rgba-25: rgba(255, 235, 120, 0.25);
+  /* black transparecy  */
+  --impresso-color-black-rgba-50: rgba(52, 58, 64, 0.5);
+  --impresso-color-black-rgba-25: rgba(52, 58, 64, 0.25);
+  --impresso-color-success: #28a745;
   --impresso-border-radius-xs: 5px;
   --impresso-border-radius-sm: 20px;
   --impresso-border-radius-lg: 30px;
@@ -66,6 +74,14 @@
   /* FONT WEIGHT */
   --font-weight-bold: 600;
 
+  /* small caps & Variable font settings*/
+  --impresso-font-size-smallcaps: 0.72em;
+  --impresso-letter-spacing-smallcaps: 0.08em;
+  --impresso-wght-smallcaps: 580;
+  --impresso-wght-bold: 700;
+  --impresso-wght-medium: 550;
+
+  --impresso-font-size-sm: var(--fs12px);
   /* EASING */
   --backInOut: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --backOut: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -77,9 +93,15 @@
   --spacer-1: 0.25rem;
   --spacer-2: 0.5rem;
   --spacer-3: 1rem;
+  --spacer-3-4: 1.25rem;
   --spacer-4: 1.5rem;
   --spacer-5: 3rem;
-
+  --negative-spacer-1: -0.25rem;
+  --negative-spacer-2: -0.5rem;
+  --negative-spacer-3: -1rem;
+  --negative-spacer-3-4: -1.25rem;
+  --negative-spacer-4: -1.5rem;
+  --negative-spacer-5: -3rem;
   /* SHADOWS */
   --shadow-sm: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
   --shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
@@ -111,14 +133,15 @@ b {
 }
 
 .btn {
+  font-size: var(--impresso-font-size-smallcaps);
   text-transform: uppercase;
-  font-size: 0.7em;
-  letter-spacing: 1.3px;
-  font-variation-settings: "wght" 600;
-  padding-left: 15px;
-  padding-right: 15px;
-
-  --bs-border-radius: 20px;
+  font-variant: normal;
+  letter-spacing: var(--impresso-letter-spacing-smallcaps);
+  line-height: 2em;
+  font-weight: var(--impresso-wght-smallcaps);
+  font-variation-settings: "wght" var(--impresso-wght-smallcaps);
+  white-space: nowrap;
+  --bs-border-radius: var(--impresso-border-radius-sm);
 }
 
 hr {
@@ -216,9 +239,19 @@ button.btn-secodary:hover {
   align-items: center;
 }
 
-/* .container-fluid {
-  max-width: 1600px;
-} */
+.small-caps,
+.smallcaps {
+  text-transform: uppercase;
+  font-size: var(--impresso-font-size-smallcaps);
+  font-variant: normal;
+  letter-spacing: var(--impresso-letter-spacing-smallcaps);
+  font-weight: var(--impresso-wght-smallcaps);
+  font-variation-settings: "wght" var(--impresso-wght-smallcaps);
+}
+.font-weight-bold {
+  font-weight: var(--impresso-wght-bold);
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+}
 
 .modal-backdrop {
   --bs-backdrop-bg: var(--impresso-color-paper);
@@ -237,14 +270,17 @@ button.btn-secodary:hover {
 
 /* ... */
 h1 {
-  font-weight: 600 !important;
+  font-variation-settings: "wght" var(--impresso-wght-bold);
   text-decoration: underline;
   text-decoration-color: var(--impresso-color-yellow);
   line-height: 65px !important;
 }
 
+.modal h1 {
+  line-height: 1.5;
+  text-decoration: none;
+}
 h2 {
-  /* border-bottom: 1px solid var(--impresso-color-black); */
   padding-bottom: var(--spacer-3);
   margin-bottom: var(--spacer-3);
 }
@@ -269,14 +305,17 @@ hr {
 /* Modal defult settings */
 
 .modal-header {
-  padding: 0 !important;
+  padding: 0 0 var(--spacer-3) var(--spacer-2);
+  border-bottom: 1px solid var(--impresso-color-black-rgba-25);
+  margin: var(--spacer-3) var(--spacer-4) 0 var(--spacer-3);
+  font-variation-settings: "wght" var(--impresso-wght-bold);
 }
 
-.modal-header > button {
+.modal-header > button.btn-close {
   position: absolute;
   z-index: 11;
-  right: var(--spacer-3);
-  top: var(--spacer-3);
+  right: var(--spacer-4);
+  top: var(--spacer-3-5);
 }
 
 @media (min-width: 1024px) {

@@ -1,34 +1,33 @@
 .Token {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
 
-.Token .token-field {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: var(--spacer-3) var(--spacer-4);
-  background-color: rgba(var(--impresso-color-black-rgb), 0.1);
-  border-radius: var(--impresso-border-radius-xs);
-}
-
-.Token .token-field p {
-  line-break: anywhere;
-  margin: 0;
-  flex-grow: 1;
-  font-weight: var(--font-weight-bold);
-}
-
-.Token span {
-  font-size: var(--font-small);
-}
-
-.Token svg path {
-  stroke: var(--impresso-color-black);
+.Token textarea {
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0px solid transparent;
+  font-variation-settings: "wght" var(--impresso-wght-medium);
 }
 
 .Token button {
-  margin-right: -1rem;
-  position: relative !important;
+  background: var(--impresso-color-yellow);
+  color: var(--impresso-color-black);
+  border: 0px solid transparent;
+  border-radius: var(--impresso-border-radius-sm);
+  padding: var(--spacer-2);
+}
+
+.Token textarea:focus {
+  outline: none;
+}
+
+.Token__display {
+  background: var(--impresso-color-yellow-rgba-25);
+  border-radius: var(--impresso-border-radius-sm);
+}
+
+.Token__display__helpText {
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+  color: var(--impresso-color-success);
 }
