@@ -29,6 +29,7 @@ const PageLayout = ({ children, path, pageContext }) => {
   console.log("[PageLayout] render props")
   const previousPathname = useBrowserStore((state) => state.previousPathname)
   const [show, setShow] = useState(true)
+  const [pageTitle, setPageTitle] = useState("impresso-datalab")
   const timerRef = useRef()
 
   const handleClose = () => {
@@ -65,6 +66,7 @@ const PageLayout = ({ children, path, pageContext }) => {
       scrollable
     >
       <Modal.Header closeButton>
+        Access to Impresso API
         {/* <Link to="/">impresso-datalab</Link> */}
       </Modal.Header>
       <Modal.Body className="container">{children}</Modal.Body>
