@@ -3,7 +3,7 @@ import { initialize, mswLoader } from "msw-storybook-addon"
 
 import "./fonts.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-import "../src/styles/style.css"
+import "../src/styles/global.css"
 
 /*
  * Initializes MSW

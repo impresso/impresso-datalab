@@ -4,6 +4,28 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import Background from '../components/Background';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/fonts.css';
+import '../styles/global.css';
+
+// Create a client
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+      // Add a timeout of 10 seconds
+      staleTime: 10000,
+    },
+  },
+})
+
 ---
 
 <!doctype html>
@@ -17,34 +39,12 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<QueryClientProvider client={queryClient}>
+			<Header client:only="react" />
+			<slot />
+			<Footer></Footer>
+			<Background client:only="react" ></Background> 
+		</QueryClientProvider>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
+

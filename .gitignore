@@ -25,3 +25,5 @@ pnpm-debug.log*
 
 .cache
 .vscode
+
+public/page-data

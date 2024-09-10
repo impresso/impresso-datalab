@@ -1,0 +1,326 @@
+/* override Bootstrap vars and add specific vars */
+:root {
+  --impresso-color-paper: #fafbf2;
+  --impresso-color-yellow-code: 255, 235, 120;
+  --impresso-color-yellow: #ffeb78;
+  --impresso-color-black-rgb: 52, 58, 64;
+  --impresso-color-black: rgb(var(--impresso-color-black-rgb));
+  --impresso-color-black-rgb: 52, 58, 64;
+
+  /* // yellow transparency */
+  --impresso-color-yellow-rgb: 255, 235, 120;
+  --impresso-color-yellow-rgba-50: rgba(255, 235, 120, 0.5);
+  --impresso-color-yellow-rgba-25: rgba(255, 235, 120, 0.25);
+  /* black transparecy  */
+  --impresso-color-black-rgba-50: rgba(52, 58, 64, 0.5);
+  --impresso-color-black-rgba-25: rgba(52, 58, 64, 0.25);
+  --impresso-color-success: #28a745;
+  --impresso-border-radius-xs: 5px;
+  --impresso-border-radius-sm: 20px;
+  --impresso-border-radius-lg: 30px;
+  --impresso-border-radius-xl: 40px;
+
+  /* Bootstrap overrides */
+  --bs-border-radius-lg: var(--impresso-border-radius-lg);
+  --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  --bs-font-sans-serif-italic: "Satoshi-VariableItalic", -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  --bs-light: #fefefe;
+  --bs-link-color-rgb: var(--impresso-color-black-rgb);
+  --bs-link-hover-color-rgb: var(--impresso-color-black-rgb);
+
+  /* Colors */
+
+  --bs-light: var(--impresso-color-paper);
+  --bs-primary: #ffe587;
+  --secondary-rgb: 138, 93, 232;
+  --secondary: rgb(var(--secondary-rgb));
+  --tertiary: #e85da0;
+  --black: #353133;
+
+  --background-red-code: 255, 182, 114;
+  --background-red: rgb(--background-red-code: 255, 182, 114);
+  --background-purple-code: 247, 171, 255;
+  --background-purple: rgb(--background-purple-code: 247, 171, 2554);
+
+  /* SIZES */
+  --fs2px: 0.125rem;
+  --fs4px: 0.25rem;
+  --fs6px: 0.325rem;
+  --fs8px: 0.5rem;
+  --fs10px: 0.625rem;
+  --fs12px: 0.75rem;
+  --fs14px: 0.875rem;
+  --fs16px: 1rem;
+  --fs18px: 1.125rem;
+  --fs24px: 1.5rem;
+  --fs28px: 1.75rem;
+  --fs32px: 2rem;
+  --fs40px: 2.5rem;
+  --fs48px: 3rem;
+  --fs56px: 3.5rem;
+  --fs64px: 4rem;
+  --fs72px: 4.5rem;
+  --fs80px: 5rem;
+  --bs-border-radius: 0.25rem;
+  /* FONT SIZES */
+  --font-size-h1: var(--fs80px);
+  --font-size-h2: var(--fs40px);
+  --font-size-h5: var(--fs18px);
+  --font-small: var(--fs12px);
+
+  /* FONT WEIGHT */
+  --font-weight-bold: 600;
+
+  /* small caps & Variable font settings*/
+  --impresso-font-size-smallcaps: 0.72em;
+  --impresso-letter-spacing-smallcaps: 0.08em;
+  --impresso-wght-smallcaps: 580;
+  --impresso-wght-bold: 700;
+  --impresso-wght-medium: 550;
+
+  --impresso-font-size-sm: var(--fs12px);
+  /* EASING */
+  --backInOut: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --backOut: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --backIn: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  --easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+
+  --z-index-header: 10;
+  --spacer-1: 0.25rem;
+  --spacer-2: 0.5rem;
+  --spacer-3: 1rem;
+  --spacer-3-4: 1.25rem;
+  --spacer-4: 1.5rem;
+  --spacer-5: 3rem;
+  --negative-spacer-1: -0.25rem;
+  --negative-spacer-2: -0.5rem;
+  --negative-spacer-3: -1rem;
+  --negative-spacer-3-4: -1.25rem;
+  --negative-spacer-4: -1.5rem;
+  --negative-spacer-5: -3rem;
+  /* SHADOWS */
+  --shadow-sm: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
+  --shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 0 1.5rem 0 rgba(0, 0, 0, 0.1);
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--bs-font-sans-serif) !important;
+  color: var(--black);
+  background: var(--bs-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+em {
+  font-style: normal;
+  font-family: "Satoshi-VariableItalic";
+}
+
+b {
+  font-weight: 600;
+  /* variable font weight */
+  font-variation-settings: "wght" 600;
+}
+
+.btn {
+  font-size: var(--impresso-font-size-smallcaps);
+  text-transform: uppercase;
+  font-variant: normal;
+  letter-spacing: var(--impresso-letter-spacing-smallcaps);
+  line-height: 2em;
+  font-weight: var(--impresso-wght-smallcaps);
+  font-variation-settings: "wght" var(--impresso-wght-smallcaps);
+  white-space: nowrap;
+  --bs-border-radius: var(--impresso-border-radius-sm);
+}
+
+hr {
+  border-bottom: 2px solid var(--impresso-color-black);
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  --bs-btn-color: var(--impresso-color-black);
+  --bs-btn-bg: var(--impresso-color-yellow);
+  --bs-btn-border-color: var(--impresso-color-yellow);
+  --bs-btn-hover-color: var(--impresso-color-black);
+  --bs-btn-hover-bg: var(--impresso-color-yellow);
+  --bs-btn-hover-border-color: var(--impresso-color-black);
+  --bs-btn-focus-shadow-rgb: 255, 235, 120;
+  --bs-btn-active-color: var(--impresso-color-black);
+  --bs-btn-active-bg: var(--impresso-color-yellow);
+  --bs-btn-active-border-color: var(--impresso-color-black);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: var(--impresso-color-black);
+  --bs-btn-disabled-bg: var(--impresso-color-yellow);
+  --bs-btn-disabled-border-color: var(--impresso-color-black);
+}
+/* restyle bootstrap button */
+button {
+  display: flex !important;
+  align-items: center;
+}
+
+button svg {
+  margin-left: -0.2rem;
+}
+.btn.btn-primary {
+  border: 2px var(--impresso-color-yellow) solid;
+}
+
+.btn-secondary,
+.btn-secodary.btn-lg,
+.btn-secodary.btn-sm {
+  --bs-btn-bg: transparent;
+  --bs-btn-color: var(--impresso-color-black);
+  border: 2px var(--impresso-color-black) solid !important;
+}
+
+button.btn-secodary:hover {
+  background-color: rgba(var(--impresso-color-black-rgb), 0.8);
+  color: var(--bs-light);
+}
+
+.btn.btn-transparent {
+  border: 2px transparent solid;
+}
+
+.btn.btn-transparent:hover {
+  border: 2px transparent solid;
+}
+
+.btn:hover {
+  border: 2px var(--impresso-color-black) solid;
+}
+
+.btn.btn-sm {
+  padding: 0rem 0.5rem;
+  height: 1.8rem;
+  font-size: 0.6em;
+  letter-spacing: 1.1px;
+  border-radius: 0.9rem;
+}
+
+.link-button {
+  background-color: rgba(var(--impresso-color-black-rgb), 0.08);
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  transition: background-color 0.25s ease-in-out;
+}
+
+.link-button:hover,
+.NotebookCard:hover .link-button {
+  background-color: var(--impresso-color-yellow);
+}
+
+.link-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.small-caps,
+.smallcaps {
+  text-transform: uppercase;
+  font-size: var(--impresso-font-size-smallcaps);
+  font-variant: normal;
+  letter-spacing: var(--impresso-letter-spacing-smallcaps);
+  font-weight: var(--impresso-wght-smallcaps);
+  font-variation-settings: "wght" var(--impresso-wght-smallcaps);
+}
+.font-weight-bold {
+  font-weight: var(--impresso-wght-bold);
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+}
+
+.modal-backdrop {
+  --bs-backdrop-bg: var(--impresso-color-paper);
+}
+.modal {
+  --bs-modal-border-color: var(--impresso-color-black);
+  --bs-modal-border-width: 0px;
+  --bs-modal-border-radius: var(--impresso-border-radius-sm);
+  --bs-modal-footer-border-width: 0px;
+  --bs-modal-header-border-width: 0px;
+}
+
+.modal-content {
+  box-shadow: var(--shadow-lg);
+}
+
+/* ... */
+h1 {
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+  text-decoration: underline;
+  text-decoration-color: var(--impresso-color-yellow);
+  line-height: 65px !important;
+}
+
+.modal h1 {
+  line-height: 1.5;
+  text-decoration: none;
+}
+h2 {
+  padding-bottom: var(--spacer-3);
+  margin-bottom: var(--spacer-3);
+}
+
+hr {
+  height: 1px;
+  color: var(--impresso-color-black);
+  opacity: 1;
+}
+
+/* codemirror theme refinement */
+.cm-editor {
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--impresso-border-radius-xs);
+}
+
+.cm-gutters {
+  border-start-start-radius: var(--impresso-border-radius-xs);
+  border-end-start-radius: var(--impresso-border-radius-xs);
+}
+
+/* Modal defult settings */
+
+.modal-header {
+  padding: 0 0 var(--spacer-3) var(--spacer-2);
+  border-bottom: 1px solid var(--impresso-color-black-rgba-25);
+  margin: var(--spacer-3) var(--spacer-4) 0 var(--spacer-3);
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+}
+
+.modal-header > button.btn-close {
+  position: absolute;
+  z-index: 11;
+  right: var(--spacer-4);
+  top: var(--spacer-3-5);
+}
+
+@media (min-width: 1024px) {
+  .modal-lg,
+  .modal-xl {
+    --bs-modal-width: 1000px !important;
+  }
+}
