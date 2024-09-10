@@ -2,11 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Token from '../components/Token.tsx';
 import { Modal } from 'react-bootstrap';
-
+// https://docs.astro.build/en/guides/routing/#dynamic-redirects
 ---
 <Layout title="Your API token. Impresso data lab.">
   <Modal centered client:only="react" show>
-
     <Modal.Header>
       <Modal.Title>Your API token</Modal.Title>
     </Modal.Header>
