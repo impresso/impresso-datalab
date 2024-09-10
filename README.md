@@ -1,33 +1,54 @@
-# Impresso Datalab
+# Astro Starter Kit: Basics
 
-Welcome to Impresso Datalab! This is Gatsby powered website that federates community resources and curated Jupyter Notebooks for the study of historical newspapers, using our _impresso_ API.
-You will find on this website tutorials and resources
-
-## How to add a notebook
-
-Notebooks are markdown files stored in the `src/notebooks` directory. Each notebook describes a Jupyter notebook that solves a specific problem or demonstrates a specific feature of the _impresso_ API. The notebook is described using a YAML front matter:
-
-```yaml
----
-title: "Title of the notebook"
-description: "A short description of the notebook"
-authors:
-  - author-name-id
-date: "Date of the notebook"
-collections:
-  - collection-name-1
-binderUrl: "<URL to the Binderhub instance to run this notebook>"
-video:
-  oembed: https://www.youtube.com/oembed?url=https%3A//youtube.com/watch%3Fv%3DM3r2XDceM6A&format=json
----
+```sh
+npm create astro@latest -- --template basics
 ```
 
-### Step 1. Prepare a repo and test with Binderhub
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-The first step is to prepare a repository with the Jupyter notebook and the necessary dependencies. You can use the `requirements.txt` file to list the dependencies. Once the repository is ready, you can test it with Binderhub.
-You can check the [Binderhub documentation](https://mybinder.readthedocs.io/en/latest/) for more information.
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## Deployment
+![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
 
-CUrrent deployment is on github pages. Deployment is automated using github actions. The deployment script is in the `.github/workflows/gatsby.yml` file.
-As this gatsby website actually load data from a static API, please add the correct subpath as env variable, in `GATSBY_PATH_PREFIX` in the action files.
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
+
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
