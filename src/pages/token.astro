@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Token from '../components/Token.tsx';
+import { Modal } from 'react-bootstrap';
+
+---
+<Layout title="Your API token. Impresso data lab.">
+  <Modal centered client:only="react" show>
+
+    <Modal.Header>
+      <Modal.Title>Your API token</Modal.Title>
+    </Modal.Header>
+    <Modal.Body  style={{height: 300}} >
+      <p>Here is your API token. Please keep it safe and do not share it with anyone.</p>
+      <Token client:only="react" token="asdsdsods" />
+    </Modal.Body>
+  </Modal>
+</Layout>

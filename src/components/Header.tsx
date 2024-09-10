@@ -1,6 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap"
 import LogoImpressoDataLab from "./LogoImpressoDatalab"
 import UserArea from "./UserArea"
+import Link from "./Link"
 
 const Header: React.FC = () => {
   return (
@@ -8,9 +9,9 @@ const Header: React.FC = () => {
       <Navbar>
         <Container fluid>
           <Navbar.Brand className="mx-3">
-            <a href="/">
+            <Link to="/">
               <LogoImpressoDataLab width={90} />
-            </a>
+            </Link>
           </Navbar.Brand>
           <Nav className="ms-auto align-items-center me-3">
             <UserArea />

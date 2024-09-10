@@ -6,14 +6,14 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-let basepath = process.env.IMPRESSO_DATALAB_BASE || ""
+let basepath = process.env.PUBLIC_IMPRESSO_DATALAB_BASE || ""
 
 // remove final slash if any
 if (basepath.endsWith("/")) {
   basepath = basepath.slice(0, -1)
 }
 
-console.log("IMPRESSO_DATALAB_BASE")
+console.log("PUBLIC_IMPRESSO_DATALAB_BASE")
 console.log("fonts.css path:", FontsCssFilePath)
 console.log("basepath:", basepath)
 

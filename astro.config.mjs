@@ -9,6 +9,6 @@ dotenv.config()
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), mdx(), proxyMiddleware()],
-  site: process.env.IMPRESSO_DATALAB_SITE || "http://localhost:4321",
-  base: process.env.IMPRESSO_DATALAB_BASE || "/",
+  site: process.env.PUBLIC_IMPRESSO_DATALAB_SITE || "http://localhost:4321",
+  base: process.env.PUBLIC_IMPRESSO_DATALAB_BASE || "/",
 })
