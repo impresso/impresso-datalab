@@ -6,3 +6,6 @@ static/data/
 !static/data/.gitkeep
 src/styles/fonts.css
 *storybook.log
+
+// astro build output
+.astro
