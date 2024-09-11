@@ -1,7 +1,7 @@
 import React from "react"
 import { delay, http, HttpResponse } from "msw"
 import type { Meta, StoryObj } from "@storybook/react"
-import AccessToApi, { AccessToApiProps } from "../../pages/AccessToApi"
+import AccessToApi, { AccessToApiProps } from "../../components/AccessToApi"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { Modal } from "react-bootstrap"
 

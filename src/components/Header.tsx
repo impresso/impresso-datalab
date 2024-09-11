@@ -13,14 +13,16 @@ import LogoImpressoDataLab from "./_svg/LogoImpressoDataLab"
 import UserArea from "./UserArea"
 import { Search } from "iconoir-react"
 
-const Header = () => {
+const Header: React.FC<{ enableSearch: string }> = ({
+  enableSearch = false,
+}) => {
   return (
     <header className="Header py-3">
       <Navbar>
         <Container fluid>
           <Navbar.Brand className="mx-3">
             <Link to="/">
-              <LogoImpressoDataLab width={110} />
+              <LogoImpressoDataLab width={90} />
             </Link>
           </Navbar.Brand>
           <Nav className="me-auto">
@@ -44,7 +46,7 @@ const Header = () => {
                   size="sm"
                   variant="transparent"
                 >
-                  <Search />
+                  {enableSearch && <Search />}
                 </Button>
               </InputGroup>
             </Form>

@@ -66,6 +66,7 @@ const PageLayout = ({ children, path, pageContext }) => {
     >
       <Modal.Header closeButton>
         {/* <Link to="/">impresso-datalab</Link> */}
+        test
       </Modal.Header>
       <Modal.Body className="container">{children}</Modal.Body>
     </Modal>

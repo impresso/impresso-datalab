@@ -6,9 +6,14 @@ const { createProxyMiddleware } = require("http-proxy-middleware")
 require("dotenv").config({
   path: [`.env.${process.env.NODE_ENV}`, ".env"],
 })
-const ApiHost = (
+const ApiUrl =
   process.env.GATSBY_IMPRESSO_API_URL || "http://localhost:8000/api"
-).replace("/api", "")
+const PublicApiUrl =
+  process.env.GATSBY_IMPRESSO_PUBLIC_API_URL ||
+  "http://localhost:8000/public-api"
+
+const ApiHost = ApiUrl.replace("/api", "")
+const PublicApiHost = PublicApiUrl.replace("/public-api", "")
 
 console.log("gatsby-config")
 console.log("NODE_ENV", process.env.NODE_ENV)
@@ -19,11 +24,16 @@ console.log("GIT_BRANCH", process.env.GIT_BRANCH)
 console.log("GIT_REVISION", process.env.GIT_REVISION)
 console.log("GIT_REPO", process.env.GIT_REPO)
 console.log("GATSBY_IMPRESSO_API_URL", process.env.GATSBY_IMPRESSO_API_URL)
-console.log("ApiHost", ApiHost)
+console.log(
+  "GATSBY_IMPRESSO_PUBLIC_API_URL",
+  process.env.GATSBY_IMPRESSO_PUBLIC_API_URL,
+)
+console.log("- ApiHost", ApiHost)
+console.log("- PublicApiHost", PublicApiHost)
 
 module.exports = {
   siteMetadata: {
-    title: `impresso-datalab`,
+    title: `Impresso data lab`,
     siteUrl: `https://impresso-project.ch/datalab`,
     gitBuildTag: process.env.GIT_BUILD_TAG,
     gitBranch: process.env.GIT_BRANCH,
@@ -35,10 +45,17 @@ module.exports = {
     app.use(
       "/api/socket.io",
       createProxyMiddleware({
-        target: "https://dev.impresso-project.ch",
+        target: ApiHost,
         ws: true,
         changeOrigin: true,
-      })
+      }),
+    )
+    app.use(
+      "/public-api",
+      createProxyMiddleware({
+        target: PublicApiHost,
+        changeOrigin: true,
+      }),
     )
   },
   plugins: [

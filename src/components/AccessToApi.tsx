@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react"
-import Alert from "../components/Alert"
+import Alert from "./Alert"
 import { Button, Form } from "react-bootstrap"
 import { RefreshDouble, PlusCircle } from "iconoir-react"
-import Token from "../components/Token"
+import Token from "./Token"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
-import UserCard from "../components/UserCard"
-import LoginForm, { LoginFormPayload } from "../components/LoginForm"
+import UserCard from "./UserCard"
+import LoginForm, { LoginFormPayload } from "./LoginForm"
 
 export interface AccessToApiProps {
   llToken?: string
@@ -41,6 +41,7 @@ const AccessToApi: React.FC<AccessToApiProps> = ({ llToken }) => {
 
   useEffect(() => {
     if (llToken && llToken.length > 0) {
+      console.info("[AccessToApi] llToken is set, calling the mutation")
       // call the mutation
       mutate({
         strategy: "local",
@@ -64,7 +65,7 @@ const AccessToApi: React.FC<AccessToApiProps> = ({ llToken }) => {
       {errorIsUnauthorized && (
         <LoginForm className="mb-3" onSubmit={handleOnSubmit} />
       )}
-
+      {status}
       <Alert
         className={"mb-3"}
         value="API access is always subject to the Terms of use. More info in the documentation section."

@@ -119,17 +119,13 @@ const Wall = () => {
         </Row>
         <Row className="my-3  align-items-bottom">
           <Col className=" d-flex  justify-content-center align-items-end ">
-            <h3 className="border-bottom border-dark p-3 w-100">
-              Notebooks you didn't think you needed
-            </h3>
+            <h4 className="p-3 w-100">Notebooks you didn't think you needed</h4>
           </Col>
           <Col className="  d-flex justify-content-center align-items-end ">
-            <h3 className="border-bottom border-dark p-3 w-100">
-              Work with your data!
-            </h3>
+            <h4 className="p-3 w-100">Work with your data!</h4>
           </Col>
           <Col className="  d-flex justify-content-center align-items-end ">
-            <h3 className="border-bottom border-dark p-3 w-100">Tutorials</h3>
+            <h4 className="p-3 w-100">Tutorials</h4>
           </Col>
         </Row>
         <Row>
