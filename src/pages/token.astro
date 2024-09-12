@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Token from '../components/Token.tsx';
 import { Modal } from 'react-bootstrap';
+import TokenWrapper from '../components/TokenWrapper';
+
+// get lltoken from the store
+
+
 // https://docs.astro.build/en/guides/routing/#dynamic-redirects
 ---
 <Layout title="Your API token. Impresso data lab.">
@@ -9,11 +13,9 @@ import { Modal } from 'react-bootstrap';
     <Modal.Header>
       <Modal.Title>Your API token</Modal.Title>
     </Modal.Header>
-    <Modal.Body  style={{height: 300}} >
+    <Modal.Body >
       <p>Here is your API token. Please keep it safe and do not share it with anyone.</p>
-      <Token client:only="react" token="asdsdsods" />
-      WS API HOST: {import.meta.env.PUBLIC_IMPRESSO_WS_API_HOST}
-      WS API PATH: {import.meta.env.PUBLIC_IMPRESSO_WS_API_PATH}
+      <TokenWrapper client:only="react" />
       
     </Modal.Body>
   </Modal>

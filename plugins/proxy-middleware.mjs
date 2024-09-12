@@ -17,16 +17,16 @@ export default () => {
         console.log(" - PublicApiTarget:", PublicApiTarget)
         console.log(" - PublicApiPath:", PublicApiPath)
 
+        // server.middlewares.use(
+        //   WsApiPath,
+        //   createProxyMiddleware({
+        //     target: WsApiTarget,
+        //     ws: true,
+        //     changeOrigin: true,
+        //   }),
+        // )
         server.middlewares.use(
-          WsApiPath,
-          createProxyMiddleware({
-            target: WsApiTarget,
-            ws: true,
-            changeOrigin: true,
-          }),
-        )
-        server.middlewares.use(
-          "/public-api",
+          PublicApiPath,
           createProxyMiddleware({
             target: PublicApiTarget,
             ws: true,
