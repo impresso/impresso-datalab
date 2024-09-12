@@ -6,7 +6,7 @@ import { usePersistentStore } from "./store"
 
 const setAuthenticatedUser = usePersistentStore.getState().setAuthenticatedUser
 
-const socket = io(import.meta.env.PUBLIC_IMPRESSO_WS_API_HOST, {
+const socket = io("", {
   path: import.meta.env.PUBLIC_IMPRESSO_WS_API_PATH,
   forceNew: true,
   transports: ["websocket"],

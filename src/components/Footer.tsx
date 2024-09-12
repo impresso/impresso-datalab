@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   const { status, data, error } = useQuery({
     queryKey: ["version"],
     queryFn: () => {
-      return axios.get("/public-api/version")
+      return axios.get(`${process.env.PUBLIC_IMPRESSO_API_PATH}/version`)
     },
   })
 
