@@ -26,7 +26,7 @@ import { useBrowserStore } from "../store"
 // }
 
 const PageLayout = ({ children, path, pageContext }) => {
-  console.log("[PageLayout] render props")
+  console.log("[PageLayout] render props", pageContext)
   const previousPathname = useBrowserStore((state) => state.previousPathname)
   const [show, setShow] = useState(true)
   const timerRef = useRef()
@@ -35,16 +35,14 @@ const PageLayout = ({ children, path, pageContext }) => {
     setShow(false)
     clearTimeout(timerRef.current)
     timerRef.current = setTimeout(() => {
-      if (previousPathname) {
-        navigate(-1)
-      } else {
-        navigate("/")
-      }
-    }, 800)
+      window.scrollTo(0, 0)
+      navigate("/")
+    }, 0)
   }
 
   useEffect(() => {
     // scroll to 0 0
+
     if (path === "/") {
       setShow(false)
     } else {
@@ -62,7 +60,6 @@ const PageLayout = ({ children, path, pageContext }) => {
       onHide={handleClose}
       backdrop="static"
       keyboard={false}
-      scrollable
     >
       <Modal.Header closeButton>
         {/* <Link to="/">impresso-datalab</Link> */}

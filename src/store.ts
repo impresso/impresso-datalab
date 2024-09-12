@@ -16,7 +16,16 @@ export const AvailableModalsViews = [
   ModalTutorialView,
 ]
 
-export const useBrowserStore = create((set) => ({
+interface BrowserStoreState {
+  view: (typeof AvailableModalsViews)[number] | null
+  viewId: string | null
+  setView: (view: string, viewId?: string) => void
+  previousPathname: string | null
+  pathname: string | null
+  setPath: (pathname: string, previousPathname?: string | null) => void
+}
+
+export const useBrowserStore = create<BrowserStoreState>((set) => ({
   view: null,
   viewId: null,
   setView(view: string) {
@@ -30,7 +39,25 @@ export const useBrowserStore = create((set) => ({
   },
 }))
 
-export const useDataStore = create((set, get) => ({
+interface DataStoreState {
+  notebooksMap: Record<string, any>
+  authorsMap: Record<string, any>
+  collectionsMap: Record<string, any>
+  tutorialsMap: Record<string, any>
+  getNotebookByName: (name: string) => any
+  getAuthorByName: (name: string) => any
+  getCollectionByName: (name: string) => any
+  getTutorialByName: (name: string) => any
+  setData: (data: {
+    notebooksMap: Record<string, any>
+    authorsMap: Record<string, any>
+    collectionsMap: Record<string, any>
+    tutorialsMap: Record<string, any>
+  }) => void
+  isReady: boolean
+}
+
+export const useDataStore = create<DataStoreState>((set, get) => ({
   notebooksMap: {},
   authorsMap: {},
   collectionsMap: {},
@@ -59,7 +86,16 @@ export const useDataStore = create((set, get) => ({
   isReady: false,
 }))
 
-export const usePersistentStore = create(
+interface PersistentStoreState {
+  user: User | null | undefined
+  token: string | null | undefined
+  setAuthenticatedUser: (user: User, token: string) => void
+}
+
+export const usePersistentStore = create<
+  PersistentStoreState,
+  [["zustand/persist", PersistentStoreState]]
+>(
   persist(
     (set, get) => ({
       user: null,
@@ -89,13 +125,3 @@ export const usePersistentStore = create(
     },
   ),
 )
-
-// get fresh data from the localstorage
-const existingToken = localStorage.getItem("feathers-jwt")
-
-if (existingToken && usePersistentStore.getState().token === null) {
-  console.info("[usePersistentStore] use existing token from feathers-jwt")
-  usePersistentStore.setState({ token: existingToken })
-} else {
-  console.info("[usePersistentStore] use fresh token")
-}

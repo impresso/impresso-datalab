@@ -35,10 +35,10 @@ module.exports = {
   siteMetadata: {
     title: `Impresso data lab`,
     siteUrl: `https://impresso-project.ch/datalab`,
-    gitBuildTag: process.env.GIT_BUILD_TAG,
-    gitBranch: process.env.GIT_BRANCH,
-    gitRevision: process.env.GIT_REVISION,
-    gitRepo: process.env.GIT_REPO,
+    gitBuildTag: process.env.GIT_BUILD_TAG ?? "latest",
+    gitBranch: process.env.GIT_BRANCH ?? "main",
+    gitRevision: process.env.GIT_REVISION ?? "latest",
+    gitRepo: process.env.GIT_REPO ?? "",
   },
   pathPrefix: process.env.PATH_PREFIX || "/",
   developMiddleware: (app) => {
@@ -57,6 +57,9 @@ module.exports = {
         changeOrigin: true,
       }),
     )
+  },
+  flags: {
+    DEV_SSR: true,
   },
   plugins: [
     "gatsby-plugin-sitemap",

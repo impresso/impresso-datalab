@@ -8,7 +8,7 @@ import Modals from "./src/components/Modals"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import PrefetchData from "./src/components/PrefetchData"
 import PageLayout from "./src/components/PageLayout"
-import { useBrowserStore } from "./src/store"
+import { useBrowserStore, usePersistentStore } from "./src/store"
 import { versionService } from "./src/services"
 import Page from "./src/components/Page"
 
@@ -19,7 +19,7 @@ export function onRouteUpdate({ location, prevLocation }) {
     "[gatsby-browser]@onRouteUpdate new pathname",
     location.pathname,
     "prev pathname",
-    prevLocation?.pathname
+    prevLocation?.pathname,
   )
   useBrowserStore.getState().setPath(location.pathname, prevLocation?.pathname)
 }
@@ -40,7 +40,7 @@ console.info(
   "\n - PATH_PREFIX:",
   process.env.PATH_PREFIX,
   "\n - GATSBY_PATH_PREFIX:",
-  process.env.GATSBY_PATH_PREFIX
+  process.env.GATSBY_PATH_PREFIX,
 )
 
 setTimeout(() => {
@@ -53,6 +53,17 @@ setTimeout(() => {
 // Wraps every page in a component
 export function wrapRootElement({ element, props }) {
   console.log("[gatsby-browser]@wrapRootElement")
+
+  // get fresh data from the localstorage
+  const existingToken = window.localStorage.getItem("feathers-jwt")
+
+  if (existingToken && usePersistentStore.getState().token === null) {
+    console.info("[usePersistentStore] use existing token from feathers-jwt")
+    usePersistentStore.setState({ token: existingToken })
+  } else {
+    console.info("[usePersistentStore] use fresh token")
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <PrefetchData />

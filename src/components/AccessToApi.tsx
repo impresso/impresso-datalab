@@ -9,7 +9,7 @@ import UserCard from "./UserCard"
 import LoginForm, { LoginFormPayload } from "./LoginForm"
 
 export interface AccessToApiProps {
-  llToken?: string
+  llToken?: string | null
 }
 export interface ApiError extends Error {
   status: number
