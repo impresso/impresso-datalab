@@ -20,7 +20,7 @@ const TokenWrapper: React.FC<{}> = () => {
       password?: string
     }) =>
       axios
-        .post("http://localhost:3030/authentication", payload)
+        .post(`${process.env.PUBLIC_IMPRESSO_API_PATH}/authentication`, payload)
         .then((res) => res.data),
   })
 
