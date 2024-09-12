@@ -4,25 +4,24 @@ import { useEffect, useState } from "react"
 import { Button } from "react-bootstrap"
 import { useBrowserStore, usePersistentStore } from "../store"
 import UserCard from "./UserCard"
-import { versionService } from "../services"
+import { userService } from "../services"
 
 const UserArea = () => {
   const [setView] = useBrowserStore((state) => [state.setView])
+  const user = usePersistentStore((state) => state.user)
 
   useEffect(() => {
-    console.info("[UserArea] load version...")
-    versionService.find().then((data) => {
-      console.info("[UserArea] version", data)
-    })
-  }, [])
+    console.info("[UserArea] load user...", user)
+    if (user !== null) {
+      console.info("[UserArea] user", user)
+    }
+    //
+  }, [user])
 
-  const user = usePersistentStore((state) => state.user)
   return (
     <div className="UserArea me-3 d-flex">
       {user !== null ? (
-        <>
-          <UserCard user={user} />
-        </>
+        <UserCard user={user} />
       ) : (
         <>
           <Button

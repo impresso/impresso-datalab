@@ -1,4 +1,5 @@
 ---
+import { Suspense } from 'react';
 interface Props {
 	title: string;
 }
@@ -12,6 +13,7 @@ import Background from '../components/Background';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/fonts.css';
 import '../styles/global.css';
+import Wall from '../components/Wall';
 
 
 ---
@@ -36,11 +38,12 @@ import '../styles/global.css';
 		</style>
 	</head>
 	<body>
-		
 			<Header client:only="react" />
 			<main><slot /></main>
-			<Footer client:only="react"></Footer>
+			<Wall client:only="react" />
 			<Background client:only="react" ></Background>
+			<Footer client:only="react"></Footer>
+			
 	</body>
 </html>
 

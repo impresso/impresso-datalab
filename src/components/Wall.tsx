@@ -1,5 +1,4 @@
 import { Col, Container, Row } from "react-bootstrap"
-import TutorialCard from "./TutorialCard"
 import CollectionCard from "./CollectionCard"
 import ReactCodeMirror from "@uiw/react-codemirror"
 import { nord } from "@uiw/codemirror-theme-nord"
@@ -20,7 +19,7 @@ const Wall = ({
   numberofCollections = 2,
 }) => {
   return (
-    <main className="Wall mx-lg-5 mx-md-2">
+    <div className="Wall mx-lg-5 mx-md-2">
       <Container fluid>
         <Row>
           <Col md={{ span: 6 }} xxl={{ span: 5 }} className="align-self-center">
@@ -82,22 +81,8 @@ const Wall = ({
             <h3 className=" p-3 w-100">Tutorials</h3>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            {/* put collection ID manually using the collection ID path */}
-            <CollectionCard name="drawing-maps-and-timelines"></CollectionCard>
-          </Col>
-          <Col>
-            <CollectionCard name="notebooks-we-are-testing-right-now"></CollectionCard>
-          </Col>
-          <Col>
-            {/* {tutorials.nodes.map((node) => (
-              <TutorialCard name={node.name} key={node.name} />
-            )) */}
-          </Col>
-        </Row>
       </Container>
-    </main>
+    </div>
   )
 }
 
