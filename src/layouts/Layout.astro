@@ -5,7 +5,6 @@ interface Props {
 
 const { title } = Astro.props;
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Background from '../components/Background';
@@ -14,17 +13,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/fonts.css';
 import '../styles/global.css';
 
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: false,
-      // Add a timeout of 10 seconds
-      staleTime: 10000,
-    },
-  },
-})
 
 ---
 
@@ -48,12 +36,11 @@ const queryClient = new QueryClient({
 		</style>
 	</head>
 	<body>
-		<QueryClientProvider client={queryClient}>
+		
 			<Header client:only="react" />
-			<main><slot client:only="react" /></main>
-			<Footer></Footer>
-			<Background client:only="react" ></Background> 
-		</QueryClientProvider>
+			<main><slot /></main>
+			<Footer client:only="react"></Footer>
+			<Background client:only="react" ></Background>
 	</body>
 </html>
 

@@ -10,6 +10,7 @@ const UserArea = () => {
   const [setView] = useBrowserStore((state) => [state.setView])
 
   useEffect(() => {
+    console.info("[UserArea] load version...")
     versionService.find().then((data) => {
       console.info("[UserArea] version", data)
     })

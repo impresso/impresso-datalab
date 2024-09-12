@@ -12,6 +12,9 @@ import { Modal } from 'react-bootstrap';
     <Modal.Body  style={{height: 300}} >
       <p>Here is your API token. Please keep it safe and do not share it with anyone.</p>
       <Token client:only="react" token="asdsdsods" />
+      WS API HOST: {import.meta.env.PUBLIC_IMPRESSO_WS_API_HOST}
+      WS API PATH: {import.meta.env.PUBLIC_IMPRESSO_WS_API_PATH}
+      
     </Modal.Body>
   </Modal>
 </Layout>
