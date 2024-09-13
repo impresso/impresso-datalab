@@ -38,7 +38,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
       clearTimeout(timerRef.current)
       timerRef.current = setTimeout(() => {
         mutate({
-          strategy: "local",
+          strategy: "jwt-app",
           accessToken: llToken,
         })
       }, delay)
