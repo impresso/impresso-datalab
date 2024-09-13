@@ -14,11 +14,10 @@ const Footer: React.FC = () => {
   })
 
   return (
-    <div>
-      {status}
+    <div className="container-fluid mx-lg-5 mx-md-2">
       {status === "pending" && <p>Loading...</p>}
       {status === "error" && <p>Error: {JSON.stringify(error.message)}</p>}
-      {status === "success" && <p>Version: {JSON.stringify(data)}</p>}
+      {status === "success" && <p>Version: {data?.data.version}</p>}
     </div>
   )
 }

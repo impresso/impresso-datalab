@@ -1,21 +1,17 @@
 ---
-import { Suspense } from 'react';
+
+import { ViewTransitions } from 'astro:transitions';
+import App from '../components/App.astro';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/fonts.css';
+import '../styles/global.css';
+
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
-
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Background from '../components/Background';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/fonts.css';
-import '../styles/global.css';
-import Wall from '../components/Wall';
-
-
 ---
 
 <!doctype html>
@@ -36,15 +32,10 @@ import Wall from '../components/Wall';
 				max-width: calc(100% - 2rem);
 			}
 		</style>
+		<ViewTransitions />
 	</head>
 	<body>
-			<Header client:only="react" />
-			<Wall client:only="react" />
-			<main><slot /></main>
-			
-			<Background client:only="react" ></Background>
-			<Footer client:only="react"></Footer>
+			<slot />
 	</body>
-	
 </html>
 

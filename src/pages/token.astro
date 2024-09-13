@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TokenModal from '../components/TokenModal';
+import App from '../components/App.astro';
 
 
 
 // https://docs.astro.build/en/guides/routing/#dynamic-redirects
 ---
 <Layout title="Your API token. Impresso data lab.">
+  <App client:load transition:persist/>
   <TokenModal client:only="react" />
 </Layout>
