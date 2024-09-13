@@ -9,14 +9,21 @@ const Footer: React.FC = () => {
   const { status, data, error } = useQuery({
     queryKey: ["version"],
     queryFn: () => {
-      return axios.get(`${process.env.PUBLIC_IMPRESSO_API_PATH}/version`)
+      return axios.get(`${import.meta.env.PUBLIC_IMPRESSO_API_PATH}/version`)
     },
   })
 
-  return <div>{status}</div>
+  return (
+    <div>
+      {status}
+      {status === "pending" && <p>Loading...</p>}
+      {status === "error" && <p>Error: {JSON.stringify(error.message)}</p>}
+      {status === "success" && <p>Version: {JSON.stringify(data)}</p>}
+    </div>
+  )
 }
 
-export default function FooterWrapper() {
+export default function () {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {

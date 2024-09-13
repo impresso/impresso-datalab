@@ -4,14 +4,14 @@ import {
   useMutation,
 } from "@tanstack/react-query"
 import { usePersistentStore } from "../store"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import axios from "axios"
 import Token from "./Token"
 import Alert from "./Alert"
 
-const TokenWrapper: React.FC<{}> = () => {
+const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 1000 }) => {
   const llToken = usePersistentStore((state) => state.token)
-
+  const timerRef = useRef<ReturnType<typeof setTimeout>>()
   const { status, data, error, mutate } = useMutation({
     mutationFn: (payload: {
       strategy: string
@@ -20,19 +20,29 @@ const TokenWrapper: React.FC<{}> = () => {
       password?: string
     }) =>
       axios
-        .post(`${process.env.PUBLIC_IMPRESSO_API_PATH}/authentication`, payload)
+        .post(
+          `${import.meta.env.PUBLIC_IMPRESSO_API_PATH}/authentication`,
+          payload,
+        )
         .then((res) => res.data),
   })
 
   useEffect(() => {
     if (llToken && llToken.length > 0) {
-      console.info("[TokenWrapper] llToken is set, calling the mutation")
-      // call the mutation
-      mutate({
-        strategy: "local",
-        accessToken: llToken,
-      })
+      console.info(
+        "[TokenWrapper] llToken is set, calling the mutation in",
+        delay,
+        "ms",
+      )
+      clearTimeout(timerRef.current)
+      timerRef.current = setTimeout(() => {
+        mutate({
+          strategy: "local",
+          accessToken: llToken,
+        })
+      }, delay)
     }
+    return () => clearTimeout(timerRef.current)
   }, [llToken])
 
   const errorIsUnauthorized = error

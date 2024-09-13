@@ -39,11 +39,12 @@ import Wall from '../components/Wall';
 	</head>
 	<body>
 			<Header client:only="react" />
-			<main><slot /></main>
 			<Wall client:only="react" />
+			<main><slot /></main>
+			
 			<Background client:only="react" ></Background>
 			<Footer client:only="react"></Footer>
-			
 	</body>
+	
 </html>
 

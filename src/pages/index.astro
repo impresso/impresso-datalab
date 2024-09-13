@@ -1,24 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 import { getCollection } from 'astro:content';
 const notebooksEntries = await getCollection('notebooks');
 
 ---
 
-<Layout title="Impresso data lab.">
-	<main>
-		{import.meta.env.PUBLIC_IMPRESSO_DATALAB_BASE}
-	</main>
-</Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		margin-top: 100px;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		
-	}
-</style>
+<Layout title="Impresso data lab." />

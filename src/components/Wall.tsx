@@ -3,6 +3,7 @@ import CollectionCard from "./CollectionCard"
 import ReactCodeMirror from "@uiw/react-codemirror"
 import { nord } from "@uiw/codemirror-theme-nord"
 import { python } from "@codemirror/lang-python"
+import { useEffect } from "react"
 
 const CodeSample = `
 from impresso import api 
@@ -18,8 +19,11 @@ const Wall = ({
   numberOfNotebooks = 100,
   numberofCollections = 2,
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
-    <div className="Wall mx-lg-5 mx-md-2">
+    <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
       <Container fluid>
         <Row>
           <Col md={{ span: 6 }} xxl={{ span: 5 }} className="align-self-center">

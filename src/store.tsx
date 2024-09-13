@@ -50,12 +50,12 @@ export const usePersistentStore = create<
   ),
 )
 
-// // get fresh data from the localstorage
-// const existingToken = window.localStorage.getItem("feathers-jwt")
+// get fresh data from the localstorage
+const existingToken = window.localStorage.getItem("feathers-jwt")
 
-// if (existingToken && usePersistentStore.getState().token === null) {
-//   console.info("[usePersistentStore] use existing token from feathers-jwt")
-//   usePersistentStore.setState({ token: existingToken })
-// } else {
-//   console.info("[usePersistentStore] use fresh token")
-// }
+if (existingToken && usePersistentStore.getState().token === null) {
+  console.info("[usePersistentStore] use existing token from feathers-jwt")
+  usePersistentStore.setState({ token: existingToken })
+} else {
+  console.info("[usePersistentStore] use fresh token")
+}
