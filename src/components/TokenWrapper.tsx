@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react"
 import axios from "axios"
 import Token from "./Token"
 import Alert from "./Alert"
+import LoginForm from "./LoginForm"
 
 const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 1000 }) => {
   const llToken = usePersistentStore((state) => state.token)
@@ -60,7 +61,12 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 1000 }) => {
       {status === "success" && <h2>Your Api token</h2>}
       {status === "idle" && <h2>Get your API token</h2>}
       {status === "error" && errorIsUnauthorized && (
-        <h2>Please login to get your Api Token</h2>
+        <>
+          <h3>Please login to get your Api Token</h3>
+          <LoginForm
+            onSubmit={(payload) => mutate({ strategy: "local", ...payload })}
+          />
+        </>
       )}
 
       {errorIsUnauthorized && "Not authentified, still todo"}
