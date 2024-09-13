@@ -253,21 +253,6 @@ button.btn-secodary:hover {
   font-variation-settings: "wght" var(--impresso-wght-bold);
 }
 
-.modal-backdrop {
-  --bs-backdrop-bg: var(--impresso-color-paper);
-}
-.modal {
-  --bs-modal-border-color: var(--impresso-color-black);
-  --bs-modal-border-width: 0px;
-  --bs-modal-border-radius: var(--impresso-border-radius-sm);
-  --bs-modal-footer-border-width: 0px;
-  --bs-modal-header-border-width: 0px;
-}
-
-.modal-content {
-  box-shadow: var(--shadow-lg);
-}
-
 /* ... */
 h1 {
   font-variation-settings: "wght" var(--impresso-wght-bold);
@@ -276,10 +261,6 @@ h1 {
   line-height: 65px !important;
 }
 
-.modal h1 {
-  line-height: 1.5;
-  text-decoration: none;
-}
 h2 {
   padding-bottom: var(--spacer-3);
   margin-bottom: var(--spacer-3);
@@ -302,10 +283,33 @@ hr {
   border-end-start-radius: var(--impresso-border-radius-xs);
 }
 
-/* Modal defult settings */
+/* Modal override settings */
 
+.modal-backdrop {
+  --bs-backdrop-bg: var(--impresso-color-paper);
+}
+.modal {
+  --bs-modal-border-color: var(--impresso-color-black);
+  --bs-modal-border-width: 0px;
+  --bs-modal-border-radius: var(--impresso-border-radius-sm);
+  --bs-modal-footer-border-width: 0px;
+  --bs-modal-header-border-width: 0px;
+}
+
+.modal-content {
+  box-shadow: var(--shadow-lg);
+}
+
+.modal h1 {
+  line-height: 1.5;
+  text-decoration: none;
+}
+.modal h2 {
+  font-size: inherit;
+  padding-bottom: 0;
+}
 .modal-header {
-  padding: 0 0 var(--spacer-3) var(--spacer-2);
+  padding: 0 0 var(--spacer-3) 0;
   border-bottom: 1px solid var(--impresso-color-black-rgba-25);
   margin: var(--spacer-3) var(--spacer-4) 0 var(--spacer-3);
   font-variation-settings: "wght" var(--impresso-wght-bold);

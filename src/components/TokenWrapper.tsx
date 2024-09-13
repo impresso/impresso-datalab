@@ -10,7 +10,7 @@ import Token from "./Token"
 import Alert from "./Alert"
 import LoginForm from "./LoginForm"
 
-const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 1000 }) => {
+const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
   const llToken = usePersistentStore((state) => state.token)
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
   const { status, data, error, mutate } = useMutation({
@@ -29,7 +29,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 1000 }) => {
   })
 
   useEffect(() => {
-    if (llToken && llToken.length > 0) {
+    if (llToken) {
       console.info(
         "[TokenWrapper] llToken is set, calling the mutation in",
         delay,
@@ -52,6 +52,10 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 1000 }) => {
 
   const errorIsFailure = error && !errorIsUnauthorized
 
+  const showLoginForm =
+    (status === "idle" && !llToken) ||
+    (status === "error" && errorIsUnauthorized)
+
   return (
     <div>
       {status === "pending" && <h2>Loading your API token...</h2>}
@@ -59,18 +63,16 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 1000 }) => {
         <h2>An unexpected error. It happens...</h2>
       )}
       {status === "success" && <h2>Your Api token</h2>}
-      {status === "idle" && <h2>Get your API token</h2>}
-      {status === "error" && errorIsUnauthorized && (
+      {showLoginForm && (
         <>
-          <h3>Please login to get your Api Token</h3>
+          <h2>Please login to get your Api Token</h2>
           <LoginForm
+            className="mb-3"
             onSubmit={(payload) => mutate({ strategy: "local", ...payload })}
           />
         </>
       )}
 
-      {errorIsUnauthorized && "Not authentified, still todo"}
-      {status}
       <Alert
         className={"mb-3"}
         value="API access is always subject to the Terms of use. More info in the documentation section."

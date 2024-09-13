@@ -34,10 +34,6 @@ const TokenModal: React.FC<{ delay: number }> = ({ delay = 1000 }) => {
         <Modal.Title>Your API token</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>
-          Here is your API token. Please keep it safe and do not share it with
-          anyone.
-        </p>
         <TokenWrapper />
       </Modal.Body>
     </Modal>
