@@ -1,0 +1,15 @@
+server  {
+    listen 80;
+    root /app;
+        
+    location / {
+        try_files $uri $uri/ /index.html = 404;
+    }
+
+    # Caching configuration (adjust as needed)
+    location ~* \.(jpg|jpeg|png|gif|css|js)$ {
+        expires 30d;
+        add_header Pragma public;
+        add_header Cache-Control "public, max-age=2592000";
+    }
+}
