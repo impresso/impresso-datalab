@@ -4,9 +4,14 @@ import Header from '../components/Header';
 import Wall from '../components/Wall';
 import Footer from '../components/Footer';
 import Background from '../components/Background';
+import { getEntry } from 'astro:content';
+import { getRecursivelyEntryData } from '../logic'
+
+const enterImpresso = await getEntry('series', 'enter-impresso');
+const highlightedSeries = await getRecursivelyEntryData(enterImpresso)
 
 ---
 <Header client:only="react" />
-<Wall client:only="react" />
+<Wall client:only="react" highlightedSeries={highlightedSeries}/>
 <Background client:only="react" />
 <Footer client:only="react" />

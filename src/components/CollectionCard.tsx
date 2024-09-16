@@ -5,7 +5,7 @@ import NotebookCard, { type Notebook } from "./NotebookCard.tsx"
 export interface Collection {
   title: string
   excerpt: string
-  cover:
+  cover?:
     | {
         url: string
         alt: string
@@ -37,12 +37,11 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
       <section className="p-3">
         <h2>{collection.title}</h2>
         <p>{collection.excerpt}</p>
-
         {children}
       </section>
       <ol className="mb-3 mx-3">
         {collection.notebooks.map((notebook) => (
-          <li key={notebook.name} className="mt-2">
+          <li key={notebook.href} className="mt-2">
             <NotebookCard notebook={notebook} />
           </li>
         ))}

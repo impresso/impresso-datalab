@@ -4,20 +4,23 @@ title: Detect news agencies in a text
 sha: 2be0ad736ffe0ad32ffcf6eacea9a597bbb8afb1
 date: 2024-04-09T10:22:11Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-ner-notebooks/blob/main/notebooks/news-agency.ipynb
+authors:
+  - impresso-team
 ---
 
 {/* cell:0 cell_type:markdown */}
-Delivering swift and reliable news since the 1830s and 1840s, news agencies have played a pivotal role both nationally and internationally. However, understanding their precise impact on shaping news content has remained somewhat elusive. Our goal is to illuminate this aspect by identifying news agencies within historical newspaper articles. Using data from newspapers in Switzerland and Luxembourg as part of the impresso project, we've trained our pipeline to recognize these entities. 
+Delivering swift and reliable news since the 1830s and 1840s, news agencies have played a pivotal role both nationally and internationally. However, understanding their precise impact on shaping news content has remained somewhat elusive. Our goal is to illuminate this aspect by identifying news agencies within historical newspaper articles. Using data from newspapers in Switzerland and Luxembourg as part of the impresso project, we've trained our pipeline to recognize these entities.
 
 If you're here, you likely seek to detect news agency entities in your own text. This notebook will guide you through the process of setting up a workflow to identify specific newspaper or agency mentions within your text.
 
-*Note: This notebook requires `HF_TOKEN` to be set in the environment variables. You can get your token by signing up on the [Hugging Face website](https://huggingface.co/join) and read more in the [official documentation](https://huggingface.co/docs/huggingface_hub/v0.20.2/en/quick-start#environment-variable)*
+_Note: This notebook requires `HF_TOKEN` to be set in the environment variables. You can get your token by signing up on the [Hugging Face website](https://huggingface.co/join) and read more in the [official documentation](https://huggingface.co/docs/huggingface_hub/v0.20.2/en/quick-start#environment-variable)_
 
 {/* cell:1 cell_type:markdown */}
-Install necessary libraries (if not already installed) and 
+Install necessary libraries (if not already installed) and
 download the necessary NLTK data.
 
 {/* cell:2 cell_type:code */}
+
 ```python
 !pip install transformers
 !pip install nltk
@@ -29,15 +32,17 @@ After having installed the necessary libraries (if not already installed) we dow
 The averaged_perceptron_tagger is a efficient and effective part-of-speech (POS) tagger that basically tag each word in a sentence with its corresponding part of speech, such as noun, verb, adjective, etc. See [https://arxiv.org/abs/2104.02831](https://arxiv.org/abs/2104.02831) as reference.
 
 {/* cell:4 cell_type:code */}
+
 ```python
 import nltk
 nltk.download('averaged_perceptron_tagger')
 ```
 
 {/* cell:5 cell_type:markdown */}
-Now the fun part, this function will download the requried model and gives you the keys to successfullly detect news agencies in your text. 
+Now the fun part, this function will download the requried model and gives you the keys to successfullly detect news agencies in your text.
 
 {/* cell:6 cell_type:code */}
+
 ```python
 from transformers import is_torch_available
 from transformers import pipeline
@@ -53,6 +58,7 @@ nlp = pipeline("newsagency-ner", model="impresso-project/bert-newsagency-ner-fr"
 Run the example below to see how it works.
 
 {/* cell:8 cell_type:code */}
+
 ```python
 # Example
 text = "Mon nom est François et j'habite à Paris. (Reuter)"

@@ -1,5 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap"
-import CollectionCard from "./CollectionCard"
+import CollectionCard, { type Collection } from "./CollectionCard"
 import ReactCodeMirror from "@uiw/react-codemirror"
 import { nord } from "@uiw/codemirror-theme-nord"
 import { python } from "@codemirror/lang-python"
@@ -18,9 +18,18 @@ const Wall = ({
   numberOfAuthors = 10,
   numberOfNotebooks = 100,
   numberofCollections = 2,
+  // series = [],
+  highlightedSeries,
+}: {
+  numberOfAuthors?: number
+  numberOfNotebooks?: number
+  numberofCollections?: number
+  series?: any[]
+  highlightedSeries: Collection
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0)
+    console.log("Wall mounted", highlightedSeries)
   }, [])
   return (
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
@@ -39,18 +48,7 @@ const Wall = ({
             <section className="mt-5"></section>
           </Col>
           <Col md={{ span: 6 }} xxl={{ span: 5 }}>
-            <CollectionCard
-              collection={{
-                title: "The impresso notebooks",
-                excerpt:
-                  "A collection of notebooks to get you started with the impresso API",
-                cover: {
-                  url: "https://source.unsplash.com/800x600/?newspaper",
-                  alt: "A newspaper",
-                },
-                notebooks: [],
-              }}
-            >
+            <CollectionCard collection={highlightedSeries}>
               <ReactCodeMirror
                 value={CodeSample}
                 theme={nord}

@@ -11,7 +11,7 @@ const notebooks = defineCollection({
     date: z.date().optional(),
     excerpt: z.string().optional(),
     tags: z.array(z.string()).optional(),
-    author: z.union([reference("authors"), z.undefined()]).optional(),
+    authors: z.array(reference("authors")).optional(),
   }),
 })
 
@@ -27,6 +27,7 @@ const series = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
+    excerpt: z.string(),
     notebooks: z.array(reference("notebooks")),
   }),
 })

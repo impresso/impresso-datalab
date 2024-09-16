@@ -6,19 +6,21 @@ import { ArrowRight } from "iconoir-react"
 import { DateTime } from "luxon"
 
 export interface Notebook {
+  slug: string
+  href: string
   name: string
   title: string
   authors: Author[]
-  accessTime: string
+  date?: Date
 }
 
 // const AvatarVariants = ["marble", "beam", "pixel", "sunset", "ring", "bauhaus"]
 const NotebookCard: React.FC<{ notebook: Notebook }> = ({ notebook }) => {
-  const accessTime = notebook.accessTime
-  const accessDateTime = DateTime.fromISO(accessTime)
+  const accessTime = notebook.date ?? new Date()
+  const accessDateTime = DateTime.fromJSDate(accessTime)
 
   return (
-    <Link to={`/notebook/${notebook.name}`}>
+    <Link to={notebook.href}>
       <div className="NotebookCard shadow-sm">
         <div className="p-3 d-flex align-items-center">
           <div className="Avatar">
@@ -36,7 +38,7 @@ const NotebookCard: React.FC<{ notebook: Notebook }> = ({ notebook }) => {
             <h3 className="m-0">{notebook?.title}</h3>
             <ol className="NotebookCard__authors">
               {notebook.authors.map((author) => (
-                <AuthorCard key={author.slug} author={author} />
+                <AuthorCard key={author.name} author={author} />
               ))}
             </ol>
           </div>
