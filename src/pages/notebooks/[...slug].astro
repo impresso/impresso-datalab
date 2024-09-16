@@ -1,7 +1,9 @@
 ---
 import App from '../../components/App.astro';
+import NotebookModal from '../../components/NotebookModal';
 import Layout from '../../layouts/Layout.astro'
 import { getCollection } from 'astro:content';
+import { getRecursivelyEntryData } from '../../logic';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const notebooks = await getCollection('notebooks');
@@ -12,12 +14,17 @@ export async function getStaticPaths() {
 // 2. For your template, you can get the entry directly from the prop
 const { notebook } = Astro.props;
 const { Content } = await notebook.render();
+
+const notebookProps = await getRecursivelyEntryData(notebook);
+console.log(notebookProps)
+
 ---
 
 
 
 <Layout title="Welcome to Astro.">
   <App transition:persist/>
+  <NotebookModal client:only="react" notebook={notebookProps} />
   <main>
     <h1>{notebook.data.title}</h1>
     <Content />
