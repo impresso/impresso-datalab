@@ -1,23 +1,11 @@
-import React from "react"
-import {
-  Navbar,
-  Container,
-  Nav,
-  Form,
-  InputGroup,
-  Button,
-} from "react-bootstrap"
-import { Link } from "gatsby"
-import "./Header.css"
-import LogoImpressoDataLab from "./_svg/LogoImpressoDataLab"
+import { Container, Nav, Navbar } from "react-bootstrap"
+import LogoImpressoDataLab from "./LogoImpressoDatalab"
 import UserArea from "./UserArea"
-import { Search } from "iconoir-react"
+import Link from "./Link"
 
-const Header: React.FC<{ enableSearch: string }> = ({
-  enableSearch = false,
-}) => {
+const Header: React.FC = () => {
   return (
-    <header className="Header py-3">
+    <header className="Header position-fixed top-0 w-100">
       <Navbar>
         <Container fluid>
           <Navbar.Brand className="mx-3">
@@ -25,31 +13,12 @@ const Header: React.FC<{ enableSearch: string }> = ({
               <LogoImpressoDataLab width={90} />
             </Link>
           </Navbar.Brand>
-          <Nav className="me-auto">
-            <Link className="mx-2" to="/plans">
-              Plans
-            </Link>
-            <Link className="mx-2" to="/access-to-api">
-              start using the API
+          <Nav>
+            <Link to="/token" className="nav-link me-3">
+              get API token
             </Link>
           </Nav>
-          <Nav className="ms-auto align-items-center">
-            <Form className="Search" inline="true">
-              <InputGroup>
-                <Form.Control
-                  size="sm"
-                  placeholder="search notebooks..."
-                  aria-label="Search Notebooks"
-                />
-                <Button
-                  style={{ marginLeft: "-2rem", zIndex: "6" }}
-                  size="sm"
-                  variant="transparent"
-                >
-                  {enableSearch && <Search />}
-                </Button>
-              </InputGroup>
-            </Form>
+          <Nav className="ms-auto align-items-center me-3">
             <UserArea />
           </Nav>
         </Container>

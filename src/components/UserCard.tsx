@@ -1,10 +1,11 @@
-import React from "react"
-import "./UserCard.css"
 import Avatar from "boring-avatars"
 
 export interface User {
   username: string
   isStaff: boolean
+  firstname?: string
+  lastname?: string
+  pattern?: string
   profile?: {
     pattern: string[]
   }
@@ -17,13 +18,17 @@ const UserCard = ({ user }: { user: User }) => {
         <Avatar
           size={40}
           name={user.username}
-          variant="pixel"
-          colors={user.profile?.pattern}
+          variant={"pixel"}
+          colors={user.pattern ? user.pattern.split(",") : []}
         />
       </div>
       <div>
-        <h3 className="m-0">{user.username}</h3>
-        <p className="m-0">{user.isStaff ? "staff" : "researcher"} </p>
+        <h3 className="m-0 small">
+          {user.firstname} {user.lastname}
+        </h3>
+        <p className="m-0 smallcaps">
+          {user.isStaff ? "staff" : "researcher"}{" "}
+        </p>
       </div>
     </div>
   )

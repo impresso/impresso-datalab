@@ -1,39 +1,36 @@
 // go through alll mdx files in the notebooks folder and get their url from the frontmatter
 // If the url points to the latest version of a notebook, we use utils/githubApi module to get the latest sha.
 
-const fs = require("fs")
-const path = require("path")
-const Yaml = require("yaml")
-const {
+import { readdirSync, readFileSync, writeFileSync } from "fs"
+import { join } from "path"
+import { parse, stringify } from "yaml"
+import {
   getLatestCommitFromUrl,
   getIpynbContentsFromUrl,
-} = require("./utils/githubApi.js")
-const {
-  extractMdFromIpynbCells,
-  getTitleFromIpynb,
-} = require("./utils/ipynb.js")
+} from "./utils/githubApi.js"
+import { extractMdFromIpynbCells, getTitleFromIpynb } from "./utils/ipynb.js"
 const NotebooksDir = "./src/notebooks"
-const Notebooks = fs.readdirSync(NotebooksDir)
+const Notebooks = readdirSync(NotebooksDir)
 
 console.log("NotebooksDir", NotebooksDir)
 
 // get all files in the dir
 ;(async () => {
   for (const notebook of Notebooks) {
-    const notebookPath = path.join(NotebooksDir, notebook)
+    const notebookPath = join(NotebooksDir, notebook)
     console.log("\n- read notebook", notebookPath)
     if (!notebook.endsWith(".mdx")) {
       console.log("⚠ skipping, not a mdx file ")
       continue
     }
     console.log("  get `githubUrl` value from yaml frontmatter...")
-    const notebookMdx = fs.readFileSync(notebookPath, "utf8")
+    const notebookMdx = readFileSync(notebookPath, "utf8")
     const frontmatterMdx = notebookMdx.match(/---\n([\s\S]*?)\n---/)
     if (!frontmatterMdx) {
       console.log("⚠ skipping, no frontmatter found")
       continue
     }
-    const frontmatter = Yaml.parse(frontmatterMdx[1])
+    const frontmatter = parse(frontmatterMdx[1])
     console.log("✓ frontmatter found", frontmatter)
     const match = notebookMdx.match(/githubUrl:\s(https:\/\/.*)/)
     if (!match) {
@@ -71,11 +68,11 @@ console.log("NotebooksDir", NotebooksDir)
     console.log("✓ title:", title)
     const contentMdx = extractMdFromIpynbCells(
       ipynb.metadata.kernelspec,
-      ipynb.cells.filter((cell, i) => i !== cellIdx)
+      ipynb.cells.filter((cell, i) => i !== cellIdx),
     )
     const googleColabUrl = `https://colab.research.google.com/${url.replace(
       /https:\/\/.*?github.com/,
-      "github"
+      "github",
     )}`
     // get current yaml from frontùatter
     const newFrontmatter = {
@@ -85,7 +82,7 @@ console.log("NotebooksDir", NotebooksDir)
       date: commit.commit.author.date,
       googleColabUrl,
     }
-    const newMdx = `---\n${Yaml.stringify(newFrontmatter)}---\n\n${contentMdx}`
-    fs.writeFileSync(notebookPath, newMdx)
+    const newMdx = `---\n${stringify(newFrontmatter)}---\n\n${contentMdx}`
+    writeFileSync(notebookPath, newMdx)
   }
 })()

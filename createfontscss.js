@@ -1,15 +1,19 @@
-const fs = require("fs")
+import fs from "fs"
+
 const FontsCssFilePath = "./src/styles/fonts.css"
 const StoryBookFontsCssFilePath = "./.storybook/fonts.css"
+import dotenv from "dotenv"
 
-let basepath = process.env.GATSBY_PATH_PREFIX || ""
+dotenv.config()
+
+let basepath = process.env.PUBLIC_IMPRESSO_DATALAB_BASE || ""
 
 // remove final slash if any
 if (basepath.endsWith("/")) {
   basepath = basepath.slice(0, -1)
 }
 
-console.log("GATSBY_PATH_PREFIX", process.env.GATSBY_PATH_PREFIX)
+console.log("PUBLIC_IMPRESSO_DATALAB_BASE")
 console.log("fonts.css path:", FontsCssFilePath)
 console.log("basepath:", basepath)
 
@@ -38,5 +42,5 @@ console.log("fonts.css expected contents:", fonts(basepath))
 fs.writeFileSync(FontsCssFilePath, fonts(basepath))
 console.log("fonts.css updated.")
 
-fs.writeFileSync(StoryBookFontsCssFilePath, fonts("../static"))
+fs.writeFileSync(StoryBookFontsCssFilePath, fonts("../public"))
 console.log(`${StoryBookFontsCssFilePath} updated.`)

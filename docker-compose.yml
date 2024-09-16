@@ -1,0 +1,21 @@
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf.template:/etc/nginx/templates/default.conf.template:z
+      - app_files:/app/datalab:z
+    depends_on:
+      - app
+  app:
+    image: impresso/impresso-datalab
+    volumes:
+      - app_files:/app_files:z
+    command: >
+      /bin/sh -c "rm -rf /app_files/* &&
+                  cp -r /app/* /app_files/ &&
+                  echo 'Files in /app_files :' &&
+                  ls -lat /app_files/"
+volumes:
+  app_files:

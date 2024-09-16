@@ -7,7 +7,7 @@
  * <Token token="exampleToken" />
  * ```
  */
-import React, { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Copy, CheckCircle } from "iconoir-react"
 import "./Token.css"
 
@@ -30,6 +30,7 @@ const Token: React.FC<TokenProps> = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const handleCopy = () => {
+    console.info("[Token] button @click")
     if (textareaRef.current) {
       textareaRef.current.select()
       navigator.clipboard.writeText(token)
@@ -38,6 +39,7 @@ const Token: React.FC<TokenProps> = ({
   }
 
   const handleTextareaClick = () => {
+    console.info("[Token] textarea @click")
     // select all text in the textarea
     if (textareaRef.current) {
       textareaRef.current.select()
@@ -88,13 +90,14 @@ const Token: React.FC<TokenProps> = ({
   }, [isCopied])
 
   return (
-    <div className={`Token ${className}`}>
+    <div className={`Token  ${className}`}>
       <div className="Token__display p-3 d-flex align-items-center position-relative">
         <textarea
           ref={textareaRef}
           value={token}
           readOnly
           onClick={handleTextareaClick}
+          className=""
         />
         <div className="ms-2">
           <button onClick={handleCopy} disabled={isCopied}>
