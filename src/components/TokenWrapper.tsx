@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query"
 import { usePersistentStore } from "../store"
 import { useEffect, useRef } from "react"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import Token from "./Token"
 import Alert from "./Alert"
 import LoginForm from "./LoginForm"
@@ -46,8 +46,9 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
     return () => clearTimeout(timerRef.current)
   }, [llToken])
 
-  const errorIsUnauthorized = error
-    ? error.response?.status === 401 || error.response?.status === 403
+  const errorIsUnauthorized = (error as AxiosError)
+    ? (error as AxiosError).response?.status === 401 ||
+      (error as AxiosError).response?.status === 403
     : false
 
   const errorIsFailure = error && !errorIsUnauthorized

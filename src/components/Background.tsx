@@ -16,7 +16,7 @@ const Background = () => {
     windowHeight.current = window.innerHeight
   }
 
-  const mouseMoveEvent = (e) => {
+  const mouseMoveEvent = (e: MouseEvent) => {
     const x = e.pageX - windowWidth.current / 2
     const y = e.pageY - windowHeight.current / 2
     api.start({ x, y })

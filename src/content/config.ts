@@ -1,7 +1,7 @@
-import { z, defineCollection, reference } from 'astro:content'
+import { z, defineCollection, reference } from "astro:content"
 
 const notebooks = defineCollection({
-  type: 'content', // v2.5.0 and later
+  type: "content", // v2.5.0 and later
   schema: z.object({
     title: z.string(),
     url: z.string().url().optional(),
@@ -11,15 +11,15 @@ const notebooks = defineCollection({
     date: z.date().optional(),
     excerpt: z.string().optional(),
     tags: z.array(z.string()).optional(),
-    author: z.union([reference('authors'), z.undefined()]).optional(),
+    author: z.union([reference("authors"), z.undefined()]).optional(),
   }),
 })
 
 const authors = defineCollection({
-  type: 'data',
+  type: "data",
   schema: z.object({
     name: z.string(),
-    portfolio: z.string().url(),
+    url: z.string().url().optional(),
   }),
 })
 // 3. Export a single `collections` object to register your collection(s)
