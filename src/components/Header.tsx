@@ -15,7 +15,7 @@ const Header: React.FC = () => {
           </Navbar.Brand>
           <Nav>
             <Link to="/token" className="nav-link me-3">
-              token
+              get API token
             </Link>
           </Nav>
           <Nav className="ms-auto align-items-center me-3">
