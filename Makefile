@@ -16,11 +16,11 @@ build-dev:
 	GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD) \
 	GIT_REVISION=$(shell git rev-parse --short HEAD) \
 	GIT_REPO=$(shell git config --get remote.origin.url) \
-	PATH_PREFIX=/datalab \
-	PREFIX_PATHS=true \
-	GATSBY_PATH_PREFIX="/datalab" \
-	GATSBY_IMPRESSO_API_URL="https://impresso-project.ch/api" \
-	yarn build
+	PUBLIC_IMPRESSO_DATALAB_BASE="/datalab" \
+	PUBLIC_IMPRESSO_DATALAB_SITE="https://impresso-project.ch/api/datalab" \
+	npm run build
+
+
 
 build:
 	docker build --no-cache --progress=plain -t impresso/impresso-datalab:${BUILD_TAG} \
@@ -29,4 +29,7 @@ build:
 	--build-arg GIT_BUILD_TAG=${BUILD_TAG} \
 	--build-arg GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD) \
 	--build-arg BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
-	--build-arg GIT_REPO=$(shell git config --get remote.origin.url) .
+	--build-arg GIT_REPO=$(shell git config --get remote.origin.url) \
+	--build-arg IMPRESSO_DATALAB_BASE="/datalab" \
+	--build-arg IMPRESSO_DATALAB_SITE="https://impresso-project.ch/datalab" \
+	.
