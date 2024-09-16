@@ -7,7 +7,7 @@ const LogoImpressoDataLab = ({
   color = "var(--impresso-color-black)",
   accentColor = "var(--impresso-color-yellow)",
   width = 165.04,
-}) => {
+}: LogoImpressoDataLabProps) => {
   const ratio = 165.04 / 56.32
   const height = width / ratio
 

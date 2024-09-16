@@ -43,9 +43,9 @@ RUN npm run build
 FROM busybox:1.36 AS production
 
 # Set working directory
-WORKDIR /app-files
+WORKDIR /app
 
 # Copy static files from the build stage
-COPY --from=builder /app/dist /app-files
+COPY --from=builder /app/dist /app
 # List all the files in the directory
-RUN ls -la /app-files
+RUN ls -la /app

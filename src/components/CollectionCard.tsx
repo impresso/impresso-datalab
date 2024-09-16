@@ -15,6 +15,14 @@ export interface Collection {
   notebooks: Notebook[]
 }
 
+/**
+ * Props for the CollectionCard component.
+ *
+ * @interface CollectionCardProps
+ * @extends {React.HTMLProps<HTMLDivElement>}
+ *
+ * @property {Collection} collection - The collection data to be displayed in the card.
+ */
 export interface CollectionCardProps extends React.HTMLProps<HTMLDivElement> {
   collection: Collection
 }
@@ -29,10 +37,11 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
       <section className="p-3">
         <h2>{collection.title}</h2>
         <p>{collection.excerpt}</p>
+
         {children}
       </section>
       <ol className="mb-3 mx-3">
-        {collection.notebooks.map((notebook, i) => (
+        {collection.notebooks.map((notebook) => (
           <li key={notebook.name} className="mt-2">
             <NotebookCard notebook={notebook} />
           </li>
