@@ -68,7 +68,7 @@ console.log("NotebooksDir", NotebooksDir)
     console.log("✓ title:", title)
     const contentMdx = extractMdFromIpynbCells(
       ipynb.metadata.kernelspec,
-      ipynb.cells.filter((cell, i) => i !== cellIdx),
+      ipynb.cells.filter((_d, i) => i !== cellIdx),
     )
     const googleColabUrl = `https://colab.research.google.com/${url.replace(
       /https:\/\/.*?github.com/,
