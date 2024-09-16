@@ -8,6 +8,6 @@ import App from '../components/App.astro';
 // https://docs.astro.build/en/guides/routing/#dynamic-redirects
 ---
 <Layout title="Your API token. Impresso data lab.">
-  <App client:load transition:persist/>
+  <App transition:persist/>
   <TokenModal client:only="react" />
 </Layout>

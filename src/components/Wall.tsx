@@ -14,7 +14,7 @@ results = api.search("moon landing")
 `
 
 const Wall = ({
-  notebooks = [],
+  // notebooks = [],
   numberOfAuthors = 10,
   numberOfNotebooks = 100,
   numberofCollections = 2,

@@ -1,4 +1,5 @@
 ---
+import App from '../../components/App.astro';
 import Layout from '../../layouts/Layout.astro'
 import { getCollection } from 'astro:content';
 // 1. Generate a new path for every collection entry
@@ -12,10 +13,13 @@ export async function getStaticPaths() {
 const { notebook } = Astro.props;
 const { Content } = await notebook.render();
 ---
-<h1>{notebook.data.title}</h1>
-<Content />
+
 
 
 <Layout title="Welcome to Astro.">
-  test
+  <App transition:persist/>
+  <main>
+    <h1>{notebook.data.title}</h1>
+    <Content />
+  </main>
 </Layout>

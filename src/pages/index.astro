@@ -1,11 +1,11 @@
 ---
 import App from '../components/App.astro';
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-const notebooksEntries = await getCollection('notebooks');
+// import { getCollection } from 'astro:content';
+// const notebooksEntries = await getCollection('notebooks');
 
 ---
 
 <Layout title="Impresso data lab.">
-	<App client:load transition:persist/>
+	<App transition:persist/>
 </Layout>
