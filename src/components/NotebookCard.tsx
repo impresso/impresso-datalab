@@ -8,7 +8,6 @@ import { DateTime } from "luxon"
 export interface Notebook {
   slug: string
   href: string
-  name: string
   title: string
   authors: Author[]
   date?: Date
@@ -26,7 +25,7 @@ const NotebookCard: React.FC<{ notebook: Notebook }> = ({ notebook }) => {
           <div className="Avatar">
             <Avatar
               size={40}
-              name={notebook.name}
+              name={notebook.slug}
               variant="marble"
               square={false}
             />

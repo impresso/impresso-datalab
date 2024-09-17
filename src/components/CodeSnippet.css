@@ -1,0 +1,22 @@
+.CodeSnippet {
+  position: relative;
+}
+
+.CodeSnippet .cm-editor {
+  padding-bottom: 3rem;
+}
+
+.CodeSnippet button.copy-code {
+  position: absolute;
+  right: 0;
+  top: 1px;
+  background: transparent;
+  border: 0 none;
+  color: var(--impresso-color-yellow);
+}
+
+.CodeSnippet .btn {
+  position: absolute;
+  right: 0;
+  bottom: 0.5rem;
+}
