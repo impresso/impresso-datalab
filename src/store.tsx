@@ -5,15 +5,21 @@ import type { User } from "./components/UserCard"
 interface PersistentStoreState {
   user: User | null
   token: string | null
-  setAuthenticatedUser: (user: User, token: string) => void
+  setAuthenticatedUser: (user: User | null, token: string | null) => void
+  setUser: (user: User | null) => void
+  setToken: (token: string | null) => void
 }
 
 export const useBrowserStore = create<{
   view: string | null
   setView: (view: string | null) => void
+  isWsConnected: boolean
+  setIsWsConnected: (isWsConnected: boolean) => void
 }>((set) => ({
   view: null,
   setView: (view) => set({ view }),
+  isWsConnected: false,
+  setIsWsConnected: (isWsConnected) => set({ isWsConnected }),
 }))
 
 export const usePersistentStore = create<
@@ -25,8 +31,14 @@ export const usePersistentStore = create<
       user: null,
       token: null,
       rememberCredentials: false,
-      setAuthenticatedUser(user: User, token: string) {
+      setAuthenticatedUser(user, token) {
         set({ user, token })
+      },
+      setUser(user) {
+        set({ user })
+      },
+      setToken(token) {
+        set({ token })
       },
       reset() {
         localStorage.removeItem("feathers-jwt")

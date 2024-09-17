@@ -44,5 +44,5 @@ jobs:
             GIT_BUILD_TAG=${{ env.GIT_TAG }}
             IMPRESSO_DATALAB_SITE=${{ secrets.IMPRESSO_DATALAB_SITE }}
             IMPRESSO_DATALAB_BASE=${{ secrets.PUBLIC_IMPRESSO_DATALAB_BASE }}
-            IMPRESSO_API_PATH=/api
+            IMPRESSO_API_PATH=/public-api
             IMPRESSO_WS_API_PATH=/api/socket.io

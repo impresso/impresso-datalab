@@ -2,10 +2,10 @@ import { feathers } from "@feathersjs/feathers"
 import socketio from "@feathersjs/socketio-client"
 import auth from "@feathersjs/authentication-client"
 import io from "socket.io-client"
-import { usePersistentStore } from "./store"
+import { usePersistentStore, useBrowserStore } from "./store"
 
-const setAuthenticatedUser = usePersistentStore.getState().setAuthenticatedUser
-
+const setToken = usePersistentStore.getState().setToken
+const setIsWsConnected = useBrowserStore.getState().setIsWsConnected
 const socket = io("", {
   path: import.meta.env.PUBLIC_IMPRESSO_WS_API_PATH,
   forceNew: true,
@@ -34,30 +34,24 @@ socket.on("connect_timeout", (timeout) => {
   console.error("[services] socket.io connection timeout:", timeout)
 })
 socket.on("connect", async () => {
-  console.info("[services] socket.io connection established")
+  console.info("[services] @connect - connection established")
 
   const token = await app
     .reAuthenticate()
     .then((data) => {
-      console.info("[services] reAuthenticate", Object.keys(data))
+      console.info("[services] @connect reAuthenticate success")
       return data.accessToken
     })
     .catch((err) => {
-      console.error("[services] reAuthenticate", err)
-      throw err
+      console.warn(
+        "[services] @connect reAuthenticate failure, skip. Error:",
+        err,
+      )
+      return null
     })
-  const user = await app
-    .service("me")
-    .find()
-    .then((data) => {
-      console.info("[UserArea] user", data)
-      return data
-    })
-    .catch((err) => {
-      console.error("[UserArea] user", err)
-      throw err
-    })
-  setAuthenticatedUser(user, token)
+
+  setToken(token)
+  setIsWsConnected(true)
 })
 
 export const versionService = app.service("version")
