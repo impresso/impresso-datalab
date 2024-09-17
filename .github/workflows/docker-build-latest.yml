@@ -43,4 +43,4 @@ jobs:
             GIT_TAG=${{ env.GIT_TAG }}
             GIT_BUILD_TAG=${{ env.GIT_TAG }}
             IMPRESSO_DATALAB_SITE=${{ secrets.IMPRESSO_DATALAB_SITE }}
-            PUBLIC_IMPRESSO_DATALAB_BASE=${{ secrets.PUBLIC_IMPRESSO_DATALAB_BASE }}
+            IMPRESSO_DATALAB_BASE=${{ secrets.PUBLIC_IMPRESSO_DATALAB_BASE }}
