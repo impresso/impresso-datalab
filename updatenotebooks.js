@@ -9,7 +9,7 @@ import {
   getIpynbContentsFromUrl,
 } from "./utils/githubApi.js"
 import { extractMdFromIpynbCells, getTitleFromIpynb } from "./utils/ipynb.js"
-const NotebooksDir = "./src/notebooks"
+const NotebooksDir = "./src/content/notebooks"
 const Notebooks = readdirSync(NotebooksDir)
 
 console.log("NotebooksDir", NotebooksDir)

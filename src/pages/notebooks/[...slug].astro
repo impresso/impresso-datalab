@@ -47,7 +47,7 @@ if (notebookProps.seealso) {
 
 
 
-<Layout title="Welcome to Astro.">
+<Layout title={notebookProps.title}>
   <App transition:persist/>
   <NotebookModal client:only="react" 
     notebook={notebookProps} 
