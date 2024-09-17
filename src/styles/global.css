@@ -289,11 +289,13 @@ hr {
   --bs-backdrop-bg: var(--impresso-color-paper);
 }
 .modal {
+  --bs-modal-bg: var(--impresso-color-paper);
   --bs-modal-border-color: var(--impresso-color-black);
   --bs-modal-border-width: 0px;
   --bs-modal-border-radius: var(--impresso-border-radius-sm);
   --bs-modal-footer-border-width: 0px;
   --bs-modal-header-border-width: 0px;
+  --bs-modal-padding: var(--spacer-2);
 }
 
 .modal-content {
@@ -301,7 +303,7 @@ hr {
 }
 
 .modal h1 {
-  line-height: 1.5;
+  line-height: 1.25 !important;
   text-decoration: none;
 }
 .modal h2 {

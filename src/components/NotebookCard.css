@@ -33,6 +33,7 @@
 
 .NotebookCard .NotebookCard__authors {
   display: inline-block;
+  padding: 0;
 }
 
 .NotebookCard .NotebookCard__authors:hover {

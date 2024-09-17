@@ -1,4 +1,8 @@
+import { Col, Container, Row } from "react-bootstrap"
+import CodeSnippet from "./CodeSnippet"
+import MarkdownSnipped from "./MarkdownSnippet"
 import type { Notebook } from "./NotebookCard"
+import NotebookCard from "./NotebookCard"
 
 export interface NotebookViewerProps {
   notebook: Notebook
@@ -31,7 +35,12 @@ const splitTextWithCellInfo = (
   for (let i = 0; i < cells.length; i++) {
     const start = cells[i].idx + cells[i].l
     const end = cells[i + 1]?.idx
-    cells[i].content = text.slice(start, end).trim()
+    cells[i].content = text
+      .slice(start, end)
+      .trim()
+      .replace(/^```python/, "")
+      .replace(/```$/, "")
+      .trim()
   }
 
   return cells
@@ -45,11 +54,51 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
   // according to {/* cell:7 cell_type:markdown */}
   const cells = splitTextWithCellInfo(raw)
   return (
-    <div>
-      <h1>Notebook Viewer</h1>
-      <pre>{JSON.stringify(notebook, null, 2)}</pre>
-      <pre>{JSON.stringify(cells, null, 2)}</pre>
-    </div>
+    <Container>
+      <Row className="my-3">
+        <Col lg="7">
+          <h1 dangerouslySetInnerHTML={{ __html: notebook.title }} />
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col lg="7">
+          {cells.map((cell) => (
+            <div key={cell.cellNumber}>
+              {cell.cellType === "markdown" && (
+                <MarkdownSnipped className="my-3" value={cell.content} />
+              )}
+              {cell.cellType === "code" && (
+                <CodeSnippet value={cell.content} readonly />
+              )}
+            </div>
+          ))}
+        </Col>
+        <Col lg="5">
+          {Array.isArray(notebook.seealso) ? (
+            <div
+              style={{
+                position: "sticky",
+                top: 0,
+              }}
+            >
+              <h4>See also</h4>
+              <ul
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                }}
+              >
+                {notebook.seealso.map((notebook) => (
+                  <li key={notebook.slug}>
+                    <NotebookCard notebook={notebook} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

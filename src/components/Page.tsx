@@ -1,15 +1,21 @@
-import { Modal } from "react-bootstrap"
+import { Modal, type ModalProps } from "react-bootstrap"
 import { useEffect, useRef, useState } from "react"
 
 interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
   delay?: number
   title?: string
+  fullscreen?: string | true | undefined
+  subtitle?: string
+  size?: ModalProps["size"]
 }
 
 const Page: React.FC<PageProps> = ({
   delay = 100,
   title = "Untitled Page",
+  subtitle = "",
   children,
+  fullscreen = undefined,
+  size,
 }) => {
   const [show, setShow] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
@@ -37,9 +43,22 @@ const Page: React.FC<PageProps> = ({
   }, [])
 
   return (
-    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+    <Modal
+      fullscreen={fullscreen}
+      show={show}
+      onHide={handleClose}
+      backdrop="static"
+      size={size}
+      keyboard={false}
+      scrollable
+    >
       <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+        <Modal.Title className="small ps-2">
+          {title}
+          {subtitle.length > 0 && (
+            <div className="small text-muted">{subtitle}</div>
+          )}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
     </Modal>

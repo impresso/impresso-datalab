@@ -1,10 +1,20 @@
 import Page from "./Page"
 import type { Notebook } from "./NotebookCard"
+import NotebookViewer from "./NotebookViewer"
 
-const NotebookModal: React.FC<{ notebook: Notebook }> = ({ notebook }) => {
+interface NotebookModalProps {
+  notebook: Notebook
+  raw?: string
+}
+
+const NotebookModal: React.FC<NotebookModalProps> = ({
+  notebook,
+  raw = "",
+}) => {
   return (
-    <Page title={notebook.title}>
-      <h2>Notebook</h2>
+    <Page title="Notebook" fullscreen="xl-down" size="xl">
+      <NotebookViewer notebook={notebook} raw={raw} />
+      {/* <pre>{JSON.stringify(notebook, null, 2)}</pre> */}
     </Page>
   )
 }

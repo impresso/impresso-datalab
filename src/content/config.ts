@@ -12,6 +12,9 @@ const notebooks = defineCollection({
     excerpt: z.string().optional(),
     tags: z.array(z.string()).optional(),
     authors: z.array(reference("authors")).optional(),
+    // this gives circular reference
+    seealso: z.array(z.string()).optional(),
+    // seealso: z.array(z.lazy(() => reference("notebooks"))).optional(),
   }),
 })
 
