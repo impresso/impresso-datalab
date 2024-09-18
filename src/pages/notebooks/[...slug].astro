@@ -4,6 +4,8 @@ import NotebookModal from '../../components/NotebookModal';
 import Layout from '../../layouts/Layout.astro'
 import { getCollection } from 'astro:content';
 import { getRecursivelyEntryData } from '../../logic';
+import { getEntries } from 'astro:content';
+import { getEntry } from 'astro:content';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const notebooks = await getCollection('notebooks');
@@ -13,20 +15,42 @@ export async function getStaticPaths() {
 }
 // 2. For your template, you can get the entry directly from the prop
 const { notebook } = Astro.props;
-const { Content } = await notebook.render();
-
 const notebookProps = await getRecursivelyEntryData(notebook);
-console.log(notebookProps)
+// enrich the notebook with seealso special tags
+if (notebookProps.seealso) {
+  // notebookProps.seealso = seealso
+  //load the seealso notebooks
+  const seealsoNotebooksProps = []
+  for (const seealso of notebookProps.seealso) {
+    console.log('- seealso',seealso)
+    const seealsoNotebook = await getEntry('notebooks',seealso)
+    const seealsoProps = await getRecursivelyEntryData(seealsoNotebook)
+    seealsoNotebooksProps.push(seealsoProps)
+  }
+  notebookProps.seealso = seealsoNotebooksProps
+}
+
+// load all the series where it has been used
+// const series = await getCollection('series')
+// console.log(series.map(d => d.data.notebooks))
+// const seriesWithNotebook = series.filter(s => s.data.notebooks.some((n) => n.slug === "setup"))
+// const seriesWithNotebooksProps = []
+// for (const s of seriesWithNotebook) {
+//   const seriesProps = await getRecursivelyEntryData(s)
+//   seriesWithNotebooksProps.push(seriesProps)
+// }
+// console.log(seriesWithNotebooksProps)
+
+// 3. Render the entry data
 
 ---
 
 
 
-<Layout title="Welcome to Astro.">
+<Layout title={notebookProps.title}>
   <App transition:persist/>
-  <NotebookModal client:only="react" notebook={notebookProps} />
-  <main>
-    <h1>{notebook.data.title}</h1>
-    <Content />
-  </main>
+  <NotebookModal client:only="react" 
+    notebook={notebookProps} 
+    raw={notebook.body} 
+  />
 </Layout>

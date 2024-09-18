@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from "react"
 import { Copy, CheckCircle } from "iconoir-react"
 import "./Token.css"
 
-interface TokenProps {
+export interface TokenProps {
   token: string
   className?: string
   validity?: number
