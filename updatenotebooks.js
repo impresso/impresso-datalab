@@ -39,6 +39,7 @@ console.log("NotebooksDir", NotebooksDir)
     }
     const url = match[1].replace(/"/g, "")
     console.log("  githubUrl:", url)
+
     const commit = await getLatestCommitFromUrl(url)
     if (!commit) {
       console.log("⚠ skipping, no commit found? Please double check tuhe url.")

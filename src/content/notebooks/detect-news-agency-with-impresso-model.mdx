@@ -1,9 +1,10 @@
 ---
-githubUrl: https://github.com/impresso/impresso-datalab-ner-notebooks/blob/main/notebooks/news-agency.ipynb
-title: Detect news agencies in a text
-sha: 2be0ad736ffe0ad32ffcf6eacea9a597bbb8afb1
-date: 2024-04-09T10:22:11Z
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-ner-notebooks/blob/main/notebooks/news-agency.ipynb
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_02_newsagencies.ipynb
+title: News Agencies Recognition and Linking with Impresso BERT models
+excerpt: This notebook provides a practical guide to setting up a workflow for entity recognition in historical texts.
+sha: 7ebadeb1938720b0c660c24a525b2b72c1f1ec95
+date: 2024-09-18T10:11:47Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_02_newsagencies.ipynb
 authors:
   - impresso-team
 seealso:
@@ -15,8 +16,6 @@ Delivering swift and reliable news since the 1830s and 1840s, news agencies have
 
 If you're here, you likely seek to detect news agency entities in your own text. This notebook will guide you through the process of setting up a workflow to identify specific newspaper or agency mentions within your text.
 
-_Note: This notebook requires `HF_TOKEN` to be set in the environment variables. You can get your token by signing up on the [Hugging Face website](https://huggingface.co/join) and read more in the [official documentation](https://huggingface.co/docs/huggingface_hub/v0.20.2/en/quick-start#environment-variable)_
-
 {/* cell:1 cell_type:markdown */}
 Install necessary libraries (if not already installed) and
 download the necessary NLTK data.
@@ -24,20 +23,19 @@ download the necessary NLTK data.
 {/* cell:2 cell_type:code */}
 
 ```python
+!pip install python-dotenv
 !pip install transformers
-!pip install nltk
 !pip install torch
 ```
 
 {/* cell:3 cell_type:markdown */}
-After having installed the necessary libraries (if not already installed) we download the necessary NLTK data to run our POS tagger: **averaged_perceptron_tagger**.
-The averaged_perceptron_tagger is a efficient and effective part-of-speech (POS) tagger that basically tag each word in a sentence with its corresponding part of speech, such as noun, verb, adjective, etc. See [https://arxiv.org/abs/2104.02831](https://arxiv.org/abs/2104.02831) as reference.
+_Note: This notebook requires `HF_TOKEN` to be set in the environment variables. You can get your token by signing up on the [Hugging Face website](https://huggingface.co/join) and read more in the [official documentation](https://huggingface.co/docs/huggingface_hub/v0.20.2/en/quick-start#environment-variable). We use [dotenv](https://pypi.org/project/python-dotenv/) library to load the HF_TOKEN value from a local .env file_
 
 {/* cell:4 cell_type:code */}
 
 ```python
-import nltk
-nltk.download('averaged_perceptron_tagger')
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
 ```
 
 {/* cell:5 cell_type:markdown */}
