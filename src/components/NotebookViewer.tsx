@@ -68,7 +68,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
               <AuthorCard key={author.name} author={author} />
             ))}
           </section>
-          <section class="d-flex gap-2 align-items-center">
+          <section className="d-flex gap-2 align-items-center">
             {notebook.googleColabUrl ? (
               <a target="_blank" href={notebook.googleColabUrl}>
                 <img
