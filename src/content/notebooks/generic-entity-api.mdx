@@ -1,0 +1,157 @@
+---
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/2-entity/generic-entity-api.ipynb
+authors:
+  - impresso-team
+  - EmanuelaBoros
+title: Detect Entities and Link them to Wikipedia and Wikidata in a Text through
+  the Impresso API
+sha: 54802fcabc0e32a4a05a1b4f2761a54b9807b0c5
+date: 2024-09-18T09:47:53Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/2-entity/generic-entity-api.ipynb
+---
+
+{/* cell:0 cell_type:markdown */}
+Named entities such as organizations, locations, persons, and temporal expressions play a crucial role in the comprehension and analysis of both historical and contemporary texts. The HIPE-2022 project focuses on named entity recognition and classification (NERC) and entity linking (EL) in multilingual historical documents.
+
+### About HIPE-2022
+HIPE-2022 involves processing diverse datasets from historical newspapers and classical commentaries, spanning approximately 200 years and multiple languages. The primary goal is to confront systems with challenges related to multilinguality, domain-specific entities, and varying annotation tag sets.
+
+### Datasets
+The HIPE-2022 datasets are based on six primary datasets, but this model was only trained on **hipe2020** in French and German.
+- **ajmc**: Classical commentaries in German, French, and English.
+- **hipe2020**: Historical newspapers in German, French, and English.
+- **letemps**: Historical newspapers in French.
+- **topres19th**: Historical newspapers in English.
+- **newseye**: Historical newspapers in German, Finnish, French, and Swedish.
+- **sonar**: Historical newspapers in German.
+
+### Annotation Types and Levels
+HIPE-2022 employs an IOB tagging scheme (inside-outside-beginning format) for entity annotations. The annotation levels include:
+
+1. **TOKEN**: The annotated token.
+2. **NE-COARSE-LIT**: Coarse type of the entity (literal sense).
+3. **NE-COARSE-METO**: Coarse type of the entity (metonymic sense).
+4. **NE-FINE-LIT**: Fine-grained type of the entity (literal sense).
+5. **NE-FINE-METO**: Fine-grained type of the entity (metonymic sense).
+6. **NE-FINE-COMP**: Component type of the entity.
+7. **NE-NESTED**: Coarse type of the nested entity.
+
+### Getting Started
+This notebook will guide you through setting up a workflow to identify named entities within your text using the HIPE-2022 trained pipeline. By leveraging this pipeline, you can detect mentions of people, places, organizations, and temporal expressions, enhancing your analysis and understanding of historical and contemporary documents.
+
+---
+
+This updated description provides a clear overview of the HIPE-2022 project's goals, datasets, and annotation types, focusing on the identification of generic named entities in multilingual historical documents.
+*Note: This notebook *might* require `HF_TOKEN` to be set in the environment variables. You can get your token by signing up on the [Hugging Face website](https://huggingface.co/join) and read more in the [official documentation](https://huggingface.co/docs/huggingface_hub/v0.20.2/en/quick-start#environment-variable)*
+
+{/* cell:1 cell_type:markdown */}
+Install necessary libraries (if not already installed) and 
+download the necessary NLTK data.
+
+{/* cell:2 cell_type:code */}
+```python
+!pip install transformers
+!pip install nltk
+!pip install torch
+```
+
+{/* cell:3 cell_type:code */}
+```python
+def print_nicely(results, text):
+    # Print the timestamp and system ID
+    print(f"Timestamp: {results.get('ts')}")
+    print(f"System ID: {results.get('sys_id')}")
+    
+    entities = results.get('nes', [])
+    if entities:
+        print(f"\n{'Entity':<20} {'Type':<15} {'Confidence NER':<15} {'Confidence NEL':<15} {'Start':<5} {'End':<5} {'Wikidata ID':<10} {'Wikipedia Page':<20}")
+        print("-" * 100)
+        for entity in entities:
+            confidence_ner = f"{entity['confidence_ner']}%"
+            confidence_nel = f"{entity['confidence_nel']}%"
+            wkd_id = entity.get('wkd_id', 'N/A')
+            wkpedia_pagename = entity.get('wkpedia_pagename', 'N/A')
+            print(f"{entity['surface']:<20} {entity['type']:<15} {confidence_ner:<15} {confidence_nel:<15} {entity['lOffset']:<5} {entity['rOffset']:<5} {wkd_id:<10} {wkpedia_pagename:<20}")
+        
+        print("*" * 100)
+        print('Testing offsets:')
+        print("*" * 100)
+        print(f"\n{'Entity':<20} {'Type':<15} {'Confidence NER':<15} {'Confidence NEL':<15} {'Start':<5} {'End':<5} {'Wikidata ID':<10} {'Wikipedia Page':<20}")
+        print("-" * 100)
+        for entity in entities:
+            confidence_ner = f"{entity['confidence_ner']}%"
+            confidence_nel = f"{entity['confidence_nel']}%"
+            wkd_id = entity.get('wkd_id', 'N/A')
+            wkpedia_pagename = entity.get('wkpedia_pagename', 'N/A')
+            print(f"{text[entity['lOffset']:entity['rOffset']]:<20} {entity['type']:<15} {confidence_ner:<15} {confidence_nel:<15} {entity['lOffset']:<5} {entity['rOffset']:<5} {wkd_id:<10} {wkpedia_pagename:<20}")
+            
+        print("*" * 100)
+        print('Testing offsets in the returned text:')
+        print("*" * 100)
+        print(f"\n{'Entity':<20} {'Type':<15} {'Confidence NER':<15} {'Confidence NEL':<15} {'Start':<5} {'End':<5} {'Wikidata ID':<10} {'Wikipedia Page':<20}")
+        print("-" * 100)
+        for entity in entities:
+            confidence_ner = f"{entity['confidence_ner']}%"
+            confidence_nel = f"{entity['confidence_nel']}%"
+            wkd_id = entity.get('wkd_id', 'N/A')
+            wkpedia_pagename = entity.get('wkpedia_pagename', 'N/A')
+            print(f"{results['text'][entity['lOffset']:entity['rOffset']]:<20} {entity['type']:<15} {confidence_ner:<15} {confidence_nel:<15} {entity['lOffset']:<5} {entity['rOffset']:<5} {wkd_id:<10} {wkpedia_pagename:<20}")
+            
+
+```
+
+{/* cell:4 cell_type:markdown */}
+Now the fun part, this function will download the requried model and gives you the keys to successfullly detect entities in your text. 
+
+{/* cell:5 cell_type:code */}
+```python
+from utils import get_linked_entities
+import requests
+
+sentences = ["Apple est créée le 1er avril 1976 dans le garage de la maison d'enfance de Steve Jobs à Los Altos en Californie par Steve Jobs, Steve Wozniak et Ronald Wayne, puis constituée sous forme de société le 3 janvier 1977 à l'origine sous le nom d'Apple Computer, mais pour ses 30 ans et pour refléter la diversification de ses produits, le mot « computer » est retiré le 9 janvier 2015."]
+
+for sentence in sentences:
+    results = get_linked_entities(sentence)
+    print_nicely(results, sentence)
+
+```
+
+{/* cell:6 cell_type:code */}
+```python
+
+```
+
+{/* cell:7 cell_type:code */}
+```python
+
+```
+
+{/* cell:8 cell_type:code */}
+```python
+
+```
+
+{/* cell:9 cell_type:code */}
+```python
+
+```
+
+{/* cell:10 cell_type:code */}
+```python
+
+```
+
+{/* cell:11 cell_type:code */}
+```python
+
+```
+
+{/* cell:12 cell_type:code */}
+```python
+
+```
+
+{/* cell:13 cell_type:code */}
+```python
+
+```

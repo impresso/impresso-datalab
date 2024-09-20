@@ -1,0 +1,67 @@
+---
+githubUrl: https://github.com/impresso/impresso-py/blob/main/examples/notebooks/collections.ipynb
+authors:
+  - RomanKalyakin
+title: Search collections
+sha: fbebc19629cfc008a085283e61c0669de326add9
+date: 2024-09-18T15:04:39Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-py/blob/main/examples/notebooks/collections.ipynb
+---
+
+{/* cell:0 cell_type:code */}
+```python
+from impresso import connect
+
+impresso = connect()
+```
+
+{/* cell:1 cell_type:code */}
+```python
+result = impresso.collections.find()
+result
+```
+
+{/* cell:2 cell_type:markdown */}
+# Get collection
+
+Get metadata of a colection by its ID.
+
+{/* cell:3 cell_type:code */}
+```python
+result = impresso.collections.get("local-roka-tOrwrOG3")
+result
+```
+
+{/* cell:4 cell_type:markdown */}
+## Get collection items
+
+Get items from a collection by its ID.
+
+{/* cell:5 cell_type:code */}
+```python
+colection_id = result.raw["uid"]
+items = impresso.collections.items(colection_id)
+items
+```
+
+{/* cell:6 cell_type:markdown */}
+## Remove items from collection
+
+{/* cell:7 cell_type:code */}
+```python
+item_id = items.pydantic.data[0].uid
+item_id
+```
+
+{/* cell:8 cell_type:code */}
+```python
+impresso.collections.remove_items(colection_id, [item_id])
+```
+
+{/* cell:9 cell_type:markdown */}
+## Add items to collection
+
+{/* cell:10 cell_type:code */}
+```python
+impresso.collections.add_items(colection_id, [item_id])
+```

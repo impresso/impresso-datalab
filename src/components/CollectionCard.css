@@ -12,6 +12,9 @@
   list-style: none;
 }
 
+.CollectionCard h3 {
+  font-size: inherit;
+}
 .CollectionCard .map-bg img {
   position: absolute;
   top: 0;

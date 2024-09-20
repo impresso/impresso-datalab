@@ -1,10 +1,11 @@
 import React from "react"
 import "./CollectionCard.css"
 import NotebookCard, { type Notebook } from "./NotebookCard.tsx"
-
+import MarkdownSnippet from "./MarkdownSnippet.tsx"
 export interface Collection {
   title: string
   excerpt: string
+  body?: string
   cover?:
     | {
         url: string
@@ -36,7 +37,8 @@ const CollectionCard: React.FC<CollectionCardProps> = ({
     <div className="CollectionCard d-flex flex-column">
       <section className="p-3">
         <h2>{collection.title}</h2>
-        <p>{collection.excerpt}</p>
+        <h3>{collection.excerpt}</h3>
+        {collection.body ? <MarkdownSnippet value={collection.body} /> : null}
         {children}
       </section>
       <ol className="mb-3 mx-3">

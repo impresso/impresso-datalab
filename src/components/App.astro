@@ -4,14 +4,32 @@ import Header from '../components/Header';
 import Wall from '../components/Wall';
 import Footer from '../components/Footer';
 import Background from '../components/Background';
-import { getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { getRecursivelyEntryData } from '../logic'
 
-const enterImpresso = await getEntry('series', 'enter-impresso');
-const highlightedSeries = await getRecursivelyEntryData(enterImpresso)
 
+const series = await getCollection('series')
+const seriesDataIndex = {} as any
+
+for(const seriesEntry of series){
+  seriesDataIndex[seriesEntry.slug] = await getRecursivelyEntryData(seriesEntry)
+  seriesDataIndex[seriesEntry.slug]['body'] = seriesEntry.body
+}
 ---
 <Header client:only="react" />
-<Wall client:only="react" highlightedSeries={highlightedSeries}/>
+<Wall 
+  client:only="react" 
+  enterImpressoPy={seriesDataIndex['enter-impresso']}
+  enterImpressoModels={seriesDataIndex['enter-impresso-models']}
+  seriesYourData={[
+    seriesDataIndex['entities'],
+  ]}
+  seriesUnexpected={[
+    seriesDataIndex['graph-network-visualisations'],
+  ]}
+  seriesTutorials={[
+    seriesDataIndex['impresso-py-in-depth'],
+  ]}
+/>
 <Background client:only="react" />
 <Footer client:only="react" />

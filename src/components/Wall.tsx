@@ -1,8 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap"
 import CollectionCard, { type Collection } from "./CollectionCard"
-import ReactCodeMirror from "@uiw/react-codemirror"
-import { nord } from "@uiw/codemirror-theme-nord"
-import { python } from "@codemirror/lang-python"
+import CodeSnippet from "./CodeSnippet"
 import { useEffect } from "react"
 
 const CodeSample = `
@@ -13,29 +11,43 @@ print(api.version())
 results = api.search("moon landing")
 `
 
+const ImpressoModelsCodeSample = `
+# Use a pipeline as a high-level helper
+!pip install transformers
+
+from transformers import pipeline
+pipe = pipeline("text2text-generation", model="impresso-project/nel-mgenre-multilingual")
+`
+
 const Wall = ({
   // notebooks = [],
   numberOfAuthors = 10,
   numberOfNotebooks = 100,
   numberofCollections = 2,
   // series = [],
-  highlightedSeries,
+  seriesUnexpected = [],
+  seriesTutorials = [],
+  seriesYourData = [],
+  enterImpressoPy,
+  enterImpressoModels,
 }: {
   numberOfAuthors?: number
   numberOfNotebooks?: number
   numberofCollections?: number
-  series?: any[]
-  highlightedSeries: Collection
+  seriesUnexpected?: Collection[]
+  seriesTutorials?: Collection[]
+  seriesYourData?: Collection[]
+  enterImpressoPy: Collection
+  enterImpressoModels: Collection
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0)
-    console.log("Wall mounted", highlightedSeries)
   }, [])
   return (
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
       <Container fluid>
         <Row>
-          <Col md={{ span: 6 }} xxl={{ span: 5 }} className="align-self-center">
+          <Col md={{ span: 6 }} xxl={{ span: 4 }} className="align-self-center">
             <h1 className="display-3 mb-4" style={{ width: "85%" }}>
               Give your media monitoring a boost
             </h1>
@@ -47,12 +59,16 @@ const Wall = ({
             </p>
             <section className="mt-5"></section>
           </Col>
-          <Col md={{ span: 6 }} xxl={{ span: 5 }}>
-            <CollectionCard collection={highlightedSeries}>
-              <ReactCodeMirror
-                value={CodeSample}
-                theme={nord}
-                extensions={[python()]}
+          <Col md={{ span: 6 }} xxl={{ span: 3 }}>
+            <CollectionCard collection={enterImpressoPy}>
+              <CodeSnippet value={CodeSample} theme={"nord"} />
+            </CollectionCard>
+          </Col>
+          <Col md={{ span: 6 }} xxl={{ span: 3 }}>
+            <CollectionCard collection={enterImpressoModels}>
+              <CodeSnippet
+                value={ImpressoModelsCodeSample}
+                theme={"duotoneDark"}
               />
             </CollectionCard>
           </Col>
@@ -81,6 +97,23 @@ const Wall = ({
           </Col>
           <Col className="  d-flex justify-content-center align-items-end ">
             <h3 className=" p-3 w-100">Tutorials</h3>
+          </Col>
+        </Row>
+        <Row className="my-3  align-items-bottom">
+          <Col>
+            {seriesUnexpected.map((collection) => (
+              <CollectionCard key={collection.title} collection={collection} />
+            ))}
+          </Col>
+          <Col>
+            {seriesYourData.map((collection) => (
+              <CollectionCard key={collection.title} collection={collection} />
+            ))}
+          </Col>
+          <Col>
+            {seriesTutorials.map((collection) => (
+              <CollectionCard key={collection.title} collection={collection} />
+            ))}
           </Col>
         </Row>
       </Container>

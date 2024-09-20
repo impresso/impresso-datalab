@@ -15,7 +15,6 @@ googleColabUrl: https://colab.research.google.com/github/impresso/impresso-py/bl
 ---
 
 {/* cell:0 cell_type:code */}
-
 ```python
 from impresso import connect
 
@@ -23,15 +22,14 @@ impresso = connect()
 ```
 
 {/* cell:1 cell_type:markdown */}
-
 ## Search articles
 
 In this notebook, we will search for articles that contain the term "European Union" in the text. The results are ordered by date.
 
 Below the result container is rendered as an overview of what it contains.
 
-{/* cell:2 cell_type:code */}
 
+{/* cell:2 cell_type:code */}
 ```python
 result = impresso.search.find(
     q="European Union",
@@ -48,7 +46,6 @@ The `pydantic` property is a [Pydantic](https://docs.pydantic.dev/latest/) model
 We use the `data` property of the response to iterate over the page of the results and return excerpts of the articles that contain the search term.
 
 {/* cell:4 cell_type:code */}
-
 ```python
 result = impresso.search.find(
     q="European Union",
@@ -62,45 +59,36 @@ for article in result.pydantic.data[:3]:
 There are several useful properties on the result object that let us know the total nubmer of results found, the current page and its size.
 
 {/* cell:6 cell_type:code */}
-
 ```python
 print("%i results were found for this term. The current result object contains %i items starting from the item number %i" % (result.total, result.size, result.offset))
 ```
 
 {/* cell:7 cell_type:markdown */}
-
 ### Pydantic
-
 The full response from the Impresso API as a pydantic model.
 
 {/* cell:8 cell_type:code */}
-
 ```python
 result.pydantic
 ```
 
 {/* cell:9 cell_type:markdown */}
-
 ### Pandas
-
-We can also get the search results as a [Pandas](https://pandas.pydata.org/) DataFrame.
+We can also get the search results as a [Pandas](https://pandas.pydata.org/) DataFrame. 
 This allows us to easily manipulate and analyze the data using pandas' powerful data manipulation capabilities.
 
 {/* cell:10 cell_type:code */}
-
 ```python
 df = result.df
 df.head(2)
 ```
 
 {/* cell:11 cell_type:markdown */}
-
 ## Get an article
 
 Below we will use the `articles` resource to get an article by its ID:
 
 {/* cell:12 cell_type:code */}
-
 ```python
 article = impresso.articles.get("NZZ-1794-08-09-a-i0002")
 article
@@ -110,26 +98,23 @@ article
 We can also get it as a Pydantic model or as a DataFrame.
 
 {/* cell:14 cell_type:code */}
-
 ```python
 article.pydantic.excerpt
 ```
 
 {/* cell:15 cell_type:code */}
-
 ```python
 article.df[['uid', 'country', 'language']]
 
 ```
 
 {/* cell:16 cell_type:markdown */}
-
 ## Search facets
 
 In this cell, we will search for facets related to the term "fromage" in the Impresso collection. This is a convenient way to see a breakdown of the search results by country.
 
-{/* cell:17 cell_type:code */}
 
+{/* cell:17 cell_type:code */}
 ```python
 country_facet = impresso.search.facet("country", q="fromage")
 country_facet.df
