@@ -9,6 +9,10 @@ export interface Notebook {
   slug: string
   href: string
   title: string
+  excerpt?: string
+  githubUrl?: string
+  googleColabUrl?: string
+  sha?: string
   authors: Author[]
   date?: Date
   seealso?: Notebook[]

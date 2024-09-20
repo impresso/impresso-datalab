@@ -5,6 +5,11 @@ import type { Notebook } from "../../components/NotebookCard"
 
 const meta: Meta<typeof NotebookCard> = {
   component: NotebookCard,
+  render: (args) => (
+    <div style={{ maxWidth: "400px" }}>
+      <NotebookCard {...args} />
+    </div>
+  ),
 }
 
 export default meta

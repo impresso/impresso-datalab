@@ -3,6 +3,8 @@ import CodeSnippet from "./CodeSnippet"
 import MarkdownSnipped from "./MarkdownSnippet"
 import type { Notebook } from "./NotebookCard"
 import NotebookCard from "./NotebookCard"
+import AuthorCard from "./AuthorCard"
+import { GithubCircle } from "iconoir-react"
 
 export interface NotebookViewerProps {
   notebook: Notebook
@@ -56,16 +58,47 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
   return (
     <Container>
       <Row className="my-3">
+        <h1 dangerouslySetInnerHTML={{ __html: notebook.title }} />
+      </Row>
+      <Row className="my-3">
         <Col lg="7">
-          <h1 dangerouslySetInnerHTML={{ __html: notebook.title }} />
+          <section>
+            By{" "}
+            {notebook.authors.map((author) => (
+              <AuthorCard key={author.name} author={author} />
+            ))}
+          </section>
+          <section class="d-flex gap-2 align-items-center">
+            {notebook.googleColabUrl ? (
+              <a target="_blank" href={notebook.googleColabUrl}>
+                <img
+                  src="https://colab.research.google.com/assets/colab-badge.svg"
+                  alt="Open In Colab"
+                />
+              </a>
+            ) : null}
+            <a
+              href={notebook.githubUrl}
+              className="small d-flex gap-1 align-items-end"
+            >
+              <GithubCircle width={16} className="pt-1" />
+              Browse source code
+            </a>
+          </section>
+        </Col>
+        <Col lg="5">
+          <p className="m-0">{notebook.excerpt}</p>
         </Col>
       </Row>
       <Row className="mb-3">
         <Col lg="7">
-          {cells.map((cell) => (
+          {cells.map((cell, i) => (
             <div key={cell.cellNumber}>
               {cell.cellType === "markdown" && (
-                <MarkdownSnipped className="my-3" value={cell.content} />
+                <MarkdownSnipped
+                  className={i > 0 ? "my-3" : "mb-3"}
+                  value={cell.content}
+                />
               )}
               {cell.cellType === "code" && (
                 <CodeSnippet value={cell.content} readonly />
