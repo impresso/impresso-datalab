@@ -6,6 +6,12 @@ import {
 import axios from "axios"
 import { Col, Container, Row } from "react-bootstrap"
 import GitInfo from "./GitInfo"
+import LogoEpfl from "./logos/LogoEpfl"
+import LogoSnsf from "./logos/LogoSnsf"
+import LogoUni from "./logos/LogoUni"
+import LogoUnil from "./logos/LogoUnil"
+import LogoFnr from "./logos/LogoFnr"
+import LogoDofcl from "./logos/LogoDofcl"
 
 const Footer: React.FC = () => {
   const { status, data, error } = useQuery({
@@ -25,24 +31,28 @@ const Footer: React.FC = () => {
         </Row>
         <Row>
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
+            <LogoEpfl width={140} className="mb-3" />
             <span>
               Digital Humanities Laboratory (DHLAB) Ecole Polytechnique Federale
               de Lausanne, Switzerland
             </span>
           </Col>
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
+            <LogoDofcl width={180} className="mb-3" />
             <span>
               Institute of Computational Linguistics Zurich University,
               Switzerland
             </span>
           </Col>
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
+            <LogoUni width={180} className="mb-3" />
             <span>
               Center for Contemporary and Digital History (C²DH) University of
               Luxembourg, Luxembourg
             </span>
           </Col>
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
+            <LogoUnil width={180} className="mb-3" />
             <span>History department, University of Lausanne, Switzerland</span>
           </Col>
         </Row>
@@ -58,6 +68,7 @@ const Footer: React.FC = () => {
         </Row>
         <Row>
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
+            <LogoSnsf width={180} className="mb-3" />
             <span>
               The Swiss National Science Foundation (SNSF) funds excellent
               research at universities and other institutions – from chemistry
@@ -65,6 +76,7 @@ const Footer: React.FC = () => {
             </span>
           </Col>
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
+            <LogoFnr width={180} className="mb-3" />
             <span>
               The Luxembourg National Research Fund (FNR) is the main funder of
               research activities in Luxembourg
