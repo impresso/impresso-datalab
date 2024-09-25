@@ -66,14 +66,18 @@ const Footer: React.FC<{
             <h3 className="mt-2">Associated Partners</h3>
           </Col>
           <Row>
-            <Col sm="12" md="6" lg="6" xxl="6" className="footer-logo py-4">
-              {associatedPartners.map((associatedPartner) => (
-                <AssociatedPartner
-                  key={associatedPartner.name}
-                  {...associatedPartner}
-                />
-              ))}
-            </Col>
+            {associatedPartners.map((associatedPartner) => (
+              <Col
+                key={associatedPartner.name}
+                sm="12"
+                md="6"
+                lg="4"
+                xxl="4"
+                className="footer-logo py-2 py-md-3"
+              >
+                <AssociatedPartner {...associatedPartner} />
+              </Col>
+            ))}
           </Row>
         </Row>
         <Row className="border-top border-dark py-3">

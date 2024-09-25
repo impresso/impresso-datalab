@@ -13,7 +13,7 @@ const AssociatedPartner: React.FC<AssociatedPartnerProps> = ({
 }) => {
   return (
     <a className="AssociatedPartner" href={url} target="_blank">
-      {name} {id}
+      {name}
     </a>
   )
 }
