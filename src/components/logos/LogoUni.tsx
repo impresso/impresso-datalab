@@ -13,16 +13,13 @@ const LogoUni = ({
   const height = width / ratio
 
   return (
-    <div
-      className={`LogoUni SVG ${className}`}
-      style={{ height, width }}
-    >
+    <div className={`LogoUni SVG ${className}`} style={{ height, width }}>
       <a
         href="https://www.c2dh.uni.lu/"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="University Logo"
-        alt="C2DH | Luxembourg Centre for Contemporary and Digital History"
+        title="C2DH | Luxembourg Centre for Contemporary and Digital History"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 185.35 57.08">
           <path

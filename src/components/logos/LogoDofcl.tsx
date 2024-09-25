@@ -13,16 +13,13 @@ const LogoDofcl = ({
   const height = width / ratio
 
   return (
-    <div
-      className={`LogoDofcl SVG ${className}`}
-      style={{ height, width }}
-    >
+    <div className={`LogoDofcl SVG ${className}`} style={{ height, width }}>
       <a
         href="https://www.cl.uzh.ch/en.html"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Universität Zürich logo"
-        alt="Institute of Computational Linguistics Zurich University, Switzerland"
+        title="Institute of Computational Linguistics Zurich University, Switzerland"
       >
         <svg
           data-name="Universitat Zurich"

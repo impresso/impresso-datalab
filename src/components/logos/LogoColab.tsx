@@ -1,10 +1,13 @@
-import React from "react"
-
 const LogoColab = ({
   color = "#e8710a",
   accentColor = "#f9ab00",
   width = 24,
-  className,
+  className = "",
+}: {
+  color?: string
+  accentColor?: string
+  width?: number
+  className?: string
 }) => {
   const ratio = 24 / 24
   const height = width / ratio

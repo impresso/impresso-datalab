@@ -12,16 +12,13 @@ const LogoFnr = ({
   const height = width / ratio
 
   return (
-    <div
-      className={`LogoFnr SVG ${className}`}
-      style={{ height, width}}
-    >
+    <div className={`LogoFnr SVG ${className}`} style={{ height, width }}>
       <a
         href="https://www.fnr.lu/"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="FNR Logo"
-        alt="Luxembourg National Research Fund - Aller à l'accueil"
+        title="Luxembourg National Research Fund - Aller à l'accueil"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 199.93 33.99">
           <path

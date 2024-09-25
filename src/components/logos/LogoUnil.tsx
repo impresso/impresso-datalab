@@ -12,16 +12,13 @@ const LogoUnil = ({
   const height = width / ratio
 
   return (
-    <div
-      className={`LogoUnil SVG ${className}`}
-      style={{ height, width}}
-    >
+    <div className={`LogoUnil SVG ${className}`} style={{ height, width }}>
       <a
         href="https://www.unil.ch/index.html"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Université de Lausanne"
-        alt="Université de Lausanne"
+        title="Université de Lausanne"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 191.58 67.39">
           <path

@@ -19,7 +19,7 @@ const LogoEpfl = ({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="EPFL logo"
-        alt="EPFL is one of Europe’s most vibrant and cosmopolitan science and technology institutions"
+        title="EPFL is one of Europe’s most vibrant and cosmopolitan science and technology institutions"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 58.22">
           <path
