@@ -15,6 +15,14 @@ for(const seriesEntry of series){
   seriesDataIndex[seriesEntry.slug] = await getRecursivelyEntryData(seriesEntry)
   seriesDataIndex[seriesEntry.slug]['body'] = seriesEntry.body
 }
+
+const associatedPartners = await getCollection('associatedPartners')
+const associatedPartnersData = associatedPartners.map((entry) => {
+  return {
+    id: entry.id,
+    ...entry.data
+  }
+})
 ---
 <Header client:only="react" />
 <Wall 
@@ -32,4 +40,4 @@ for(const seriesEntry of series){
   ]}
 />
 <Background client:only="react" />
-<Footer client:only="react" />
+<Footer client:only="react" associatedPartners={associatedPartnersData}/>
