@@ -1,5 +1,3 @@
-import React from "react"
-
 const LogoGitHub = ({
   color = "var(--impresso-color-black)",
   width = 160,

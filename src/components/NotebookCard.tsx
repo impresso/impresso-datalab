@@ -19,7 +19,10 @@ export interface Notebook {
 }
 
 // const AvatarVariants = ["marble", "beam", "pixel", "sunset", "ring", "bauhaus"]
-const NotebookCard: React.FC<{ notebook: Notebook }> = ({ notebook }) => {
+const NotebookCard: React.FC<{
+  notebook: Notebook
+  children?: React.ReactNode
+}> = ({ notebook, children }) => {
   const accessTime = notebook.date ?? new Date()
   const accessDateTime = DateTime.fromJSDate(accessTime)
 
@@ -30,7 +33,7 @@ const NotebookCard: React.FC<{ notebook: Notebook }> = ({ notebook }) => {
           <div className="Avatar">
             <Avatar
               size={40}
-              name={notebook.slug}
+              name={notebook.href}
               variant="marble"
               square={false}
             />
@@ -40,11 +43,14 @@ const NotebookCard: React.FC<{ notebook: Notebook }> = ({ notebook }) => {
               <span>{accessDateTime.toFormat("yyyy LLL dd")}</span>
             </div>
             <h3 className="m-0">{notebook?.title}</h3>
-            <ol className="NotebookCard__authors">
+            <ol className="NotebookCard__authors  list-unstyled">
               {notebook.authors.map((author) => (
-                <AuthorCard key={author.name} author={author} />
+                <li className="inline-block" key={author.name}>
+                  <AuthorCard author={author} />
+                </li>
               ))}
             </ol>
+            {children}
           </div>
           <div className="ms-auto link-button">
             <ArrowRight strokeWidth={2} />

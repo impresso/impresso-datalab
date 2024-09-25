@@ -22,7 +22,7 @@ const LogoSnsf = ({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="SNSF Logo"
-        alt="The Swiss National Science Foundation (SNSF)"
+        title="The Swiss National Science Foundation (SNSF)"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 199.99 44.94">
           <path

@@ -1,0 +1,17 @@
+.Header {
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+  border-bottom: 1px solid transparent;
+  box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0);
+  /* backdrop-filter: blur(4px); */
+
+  border-bottom-color: transparent;
+}
+.Header.active {
+  background-color: var(--impresso-color-paper-rgba-90);
+  border-bottom-color: var(--impresso-color-paper-rgba-50);
+
+  box-shadow: 0 -6px 10px 2px var(--impresso-color-black-rgba-25);
+}

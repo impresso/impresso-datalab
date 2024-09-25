@@ -7,6 +7,10 @@
   --impresso-color-black: rgb(var(--impresso-color-black-rgb));
   --impresso-color-black-rgb: 52, 58, 64;
 
+  /* // paper transparency */
+  --impresso-color-paper-rgba-90: rgba(250, 251, 242, 0.9);
+  --impresso-color-paper-rgba-50: rgba(250, 251, 242, 0.5);
+  --impresso-color-paper-rgba-25: rgba(250, 251, 242, 0.25);
   /* // yellow transparency */
   --impresso-color-yellow-rgb: 255, 235, 120;
   --impresso-color-yellow-rgba-50: rgba(255, 235, 120, 0.5);
