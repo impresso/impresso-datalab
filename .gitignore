@@ -31,3 +31,4 @@ public/page-data
 static/data/
 !static/data/.gitkeep
 src/styles/fonts.css
+impresso-datalab.code-workspace

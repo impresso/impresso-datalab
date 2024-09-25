@@ -26,6 +26,14 @@ const authors = defineCollection({
   }),
 })
 
+const associatedPartners = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    url: z.string().url(),
+  }),
+})
+
 const series = defineCollection({
   type: "content",
   schema: z.object({
@@ -40,4 +48,5 @@ export const collections = {
   notebooks,
   authors,
   series,
+  associatedPartners,
 }

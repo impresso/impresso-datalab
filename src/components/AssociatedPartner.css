@@ -1,0 +1,10 @@
+.AssociatedPartner {
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-bottom: 0rem solid var(--impresso-color-yellow);
+}
+
+.AssociatedPartner:hover {
+  border-bottom: 0.125rem solid var(--impresso-color-yellow);
+}
