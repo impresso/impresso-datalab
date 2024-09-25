@@ -30,6 +30,7 @@ const Wall = ({
   seriesYourData = [],
   enterImpressoPy,
   enterImpressoModels,
+  scrollToTop = false,
 }: {
   numberOfAuthors?: number
   numberOfNotebooks?: number
@@ -39,10 +40,13 @@ const Wall = ({
   seriesYourData?: Collection[]
   enterImpressoPy: Collection
   enterImpressoModels: Collection
+  scrollToTop?: boolean
 }) => {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    if (scrollToTop) {
+      window.scrollTo(0, 0)
+    }
+  }, [scrollToTop])
   return (
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
       <Container fluid>
@@ -79,10 +83,18 @@ const Wall = ({
           >
             <h3 className="mb-xxl-4">Quick links</h3>
             <p>
-              The `impresso-py` python package documentation is on{" "}
-              <a href="/docs">readthedocs</a>. All the notebooks have each an
-              independent environment you can spin with docker, preview on
-              mybinder, google colab...
+              Browse our <b>models</b> at{" "}
+              <a href="https://huggingface.co/impresso-project/">
+                🤗 Hugging Face
+              </a>
+            </p>
+            <p>
+              Checkout our <a href="/public-api/docs">Rest API documentation</a>{" "}
+              or use our `impresso-py` Python package to interact with the API.
+            </p>
+            <p>
+              All the notebooks have each an independent environment you can
+              spin with docker, preview on mybinder, google colab...
             </p>
           </Col>
         </Row>
