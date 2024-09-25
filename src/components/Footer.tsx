@@ -12,8 +12,13 @@ import LogoUni from "./logos/LogoUni"
 import LogoUnil from "./logos/LogoUnil"
 import LogoFnr from "./logos/LogoFnr"
 import LogoDofcl from "./logos/LogoDofcl"
+import AssociatedPartner, {
+  type AssociatedPartnerProps,
+} from "./AssociatedPartner"
 
-const Footer: React.FC = () => {
+const Footer: React.FC<{
+  associatedPartners: AssociatedPartnerProps[]
+}> = ({ associatedPartners = [] }) => {
   const { status, data, error } = useQuery({
     queryKey: ["version"],
     queryFn: () => {
@@ -60,6 +65,16 @@ const Footer: React.FC = () => {
           <Col>
             <h3 className="mt-2">Associated Partners</h3>
           </Col>
+          <Row>
+            <Col sm="12" md="6" lg="6" xxl="6" className="footer-logo py-4">
+              {associatedPartners.map((associatedPartner) => (
+                <AssociatedPartner
+                  key={associatedPartner.name}
+                  {...associatedPartner}
+                />
+              ))}
+            </Col>
+          </Row>
         </Row>
         <Row className="border-top border-dark py-3">
           <Col>
@@ -109,7 +124,11 @@ const Footer: React.FC = () => {
   )
 }
 
-export default function () {
+export default function ({
+  associatedPartners,
+}: {
+  associatedPartners: AssociatedPartnerProps[]
+}) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -120,9 +139,10 @@ export default function () {
       },
     },
   })
+  console.log("FOOTER", associatedPartners)
   return (
     <QueryClientProvider client={queryClient}>
-      <Footer />
+      <Footer associatedPartners={associatedPartners} />
     </QueryClientProvider>
   )
 }
