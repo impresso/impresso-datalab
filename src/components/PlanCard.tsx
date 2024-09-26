@@ -80,7 +80,10 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, active = false }) => {
         <b className="mt-2">Features</b>
         {active && <p>Active</p>}
         {plan.features?.map(
-          (feature: { title: string; status: string }, index: number) => (
+          (
+            feature: { title: string; status: string; iconColor: string },
+            index: number,
+          ) => (
             <div key={index} className="PlanCard-item d-flex">
               <i
                 className={`PlanCard-icon d-flex ${iconColorCheck(feature.iconColor)}`}
@@ -93,7 +96,10 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, active = false }) => {
         )}
         {plan.requirements ? <b className="mt-2">Requirements</b> : null}
         {plan.requirements?.map(
-          (requirements: { title: string; status: string }, index: number) => (
+          (
+            requirements: { title: string; status: string; iconColor: string },
+            index: number,
+          ) => (
             <div key={index} className="PlanCard-item d-flex">
               <i
                 className={`PlanCard-icon d-flex ${iconColorCheck(requirements.iconColor)}`}

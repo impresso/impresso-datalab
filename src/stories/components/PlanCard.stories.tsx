@@ -18,7 +18,6 @@ type Story = StoryObj<typeof PlanCard>
 export const Default: Story = {
   args: {
     plan: {
-      slug: "free",
       title: "Free plan",
       body: "This is a free plan",
       icon: "🆓",
