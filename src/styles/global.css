@@ -24,6 +24,10 @@
   --impresso-border-radius-lg: 30px;
   --impresso-border-radius-xl: 40px;
 
+  /* Card additional colors */
+  --impresso-card-purple-icon: #8a5de8;
+  --impresso-card-orange-icon: #f2994a;
+
   /* Bootstrap overrides */
   --bs-border-radius-lg: var(--impresso-border-radius-lg);
   --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,

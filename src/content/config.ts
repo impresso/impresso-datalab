@@ -18,6 +18,33 @@ const notebooks = defineCollection({
   }),
 })
 
+const plans = defineCollection({
+  type: "content",
+  schema: z.object({
+    id: z.string().optional(),
+    title: z.string(),
+    icon: z.string().optional(),
+    features: z
+      .array(
+        z.object({
+          title: z.string(),
+          status: z.string(),
+          iconColor: z.string(),
+        }),
+      )
+      .optional(),
+    requirements: z
+      .array(
+        z.object({
+          title: z.string(),
+          status: z.string(),
+          iconColor: z.string(),
+        }),
+      )
+      .optional(),
+  }),
+})
+
 const authors = defineCollection({
   type: "data",
   schema: z.object({
@@ -49,4 +76,5 @@ export const collections = {
   authors,
   series,
   associatedPartners,
+  plans,
 }

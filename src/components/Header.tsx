@@ -39,6 +39,11 @@ const Header: React.FC = () => {
                 browse Ipynb notebooks
               </Link>
             </Nav.Item>
+            <Nav.Item>
+              <Link to="/plans" className="nav-link ">
+                Plans
+              </Link>
+            </Nav.Item>
           </Nav>
           <Nav className="ms-auto align-items-center me-3">
             <UserArea />

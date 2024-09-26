@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content"
+import { getRecursivelyEntryData } from "../logic"
+import App from "../components/App.astro"
+import Layout from "../layouts/Layout.astro"
+import PlansModal from "../components/PlansModal"
+
+// load all notebooks, order by date
+const plans = await getCollection('plans')
+const plansProps = await Promise.all(plans.map(async (plan) => {
+  const planProps = await getRecursivelyEntryData(plan)
+  return {
+    ...planProps,
+    body: plan.body
+  }
+}))
+
+console.log('plans', plansProps)
+---
+
+<Layout title={"Impresso Notebooks"}>
+  <App transition:persist/>
+  <PlansModal client:only="react" 
+    plans={plansProps}
+  />
+</Layout>

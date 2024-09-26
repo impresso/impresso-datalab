@@ -1,0 +1,14 @@
+.PlanIcon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  border: 2px solid var(--impresso-color-black);
+  color: var(--impresso-color-black);
+  border-radius: 100%;
+  right: 16px;
+  top: 18px;
+  opacity: 0.3;
+  font-size: var(--fs12px);
+}

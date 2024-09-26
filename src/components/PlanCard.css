@@ -1,0 +1,105 @@
+.PlanCard {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.6rem 1.2rem;
+  border-radius: var(--impresso-border-radius-lg);
+  background-color: white;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(var(--impresso-color-black-rgb), 0.2);
+}
+
+.PlanCard .PlanCard-item {
+  align-self: flex-start;
+}
+
+.PlanCard h2 {
+  align-self: flex-start;
+  font-size: calc(var(--fs24px) + 2px);
+}
+
+.PlanCard h3 {
+  font-size: var(--fs16px);
+}
+
+.PlanCard h4 {
+  font-size: var(--fs12px);
+}
+
+.PlanCard .PlanCard-icon svg {
+  margin-right: 0.6rem;
+}
+
+.PlanCard .PlanCard-icon.orange svg path {
+  stroke: var(--impresso-card-orange-icon);
+}
+
+.PlanCard .PlanCard-icon.purple svg path {
+  stroke: var(--impresso-card-purple-icon);
+}
+
+.PlanCard p {
+  font-size: var(--fs14px);
+  font-weight: 400;
+  line-height: 1.2rem;
+  padding-top: 0.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.PlanCard-wrapper {
+  display: flex;
+  cursor: pointer;
+  min-height: 100%;
+  position: relative;
+  transition: all 0.4s var(--backInOut);
+}
+
+.PlanCard-wrapper:hover {
+  transform: scale(1.02);
+}
+
+.active .PlanCard {
+  min-height: calc(100% - 1.6rem);
+  margin-top: 1.6rem;
+  display: flex;
+  border: 3px solid var(--impresso-card-purple-icon);
+}
+
+.PlanCard-wrapper .active-plan-tag {
+  display: none;
+  position: absolute;
+  text-align: center;
+  top: 0.35rem;
+  width: 100%;
+  font-weight: 600;
+  font-size: var(--fs12px);
+  color: var(--impresso-color-yellow);
+}
+
+.active .active-plan-tag {
+  justify-content: center;
+  display: flex;
+}
+
+.active .active-bg {
+  position: absolute;
+  top: 0rem;
+  left: 0;
+  min-height: 100%;
+  width: 100%;
+  background-color: var(--impresso-card-purple-icon);
+  z-index: 0;
+  border-radius: var(--impresso-border-radius-lg);
+}
+
+.PlanCard-wrapper hr {
+  width: 100%;
+  opacity: 0.3;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border: 1px solid;
+}
