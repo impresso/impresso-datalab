@@ -12,7 +12,7 @@ googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datal
 ## Install dependencies
 
 {/* cell:1 cell_type:code */}
-```undefined
+```python
 %pip install git+https://github.com/impresso/impresso-py.git ipysigma
 ```
 
@@ -20,7 +20,7 @@ googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datal
 ## Connect to Impresso
 
 {/* cell:3 cell_type:code */}
-```undefined
+```python
 from impresso import connect, OR, AND
 
 impresso = connect(public_api_url="https://dev.impresso-project.ch/public-api")
@@ -32,12 +32,12 @@ impresso = connect(public_api_url="https://dev.impresso-project.ch/public-api")
 Find all persons mentioned in all articles that talk about the [Prague Spring](https://en.wikipedia.org/wiki/Prague_Spring).
 
 {/* cell:5 cell_type:code */}
-```undefined
+```python
 query = OR("Prague Spring", "Prager Frühling", "Printemps de Prague")
 ```
 
 {/* cell:6 cell_type:code */}
-```undefined
+```python
 persons = impresso.search.facet(
   facet="person",
   q=query,
@@ -51,7 +51,7 @@ persons
 Get all combinations of all entities with a mention count higher than `N`.
 
 {/* cell:8 cell_type:code */}
-```undefined
+```python
 import itertools
 
 n = 10
@@ -66,7 +66,7 @@ print(f"Total combinations: {len(persons_ids_combinations)}")
 ```
 
 {/* cell:9 cell_type:code */}
-```undefined
+```python
 if len(persons_ids_combinations) > 500:
   msg = (
       f"The number of combinations is quite high ({len(persons_ids_combinations)}). " +
@@ -81,7 +81,7 @@ if len(persons_ids_combinations) > 500:
 Get timestamps and counts of all articles where persons pairs appear.
 
 {/* cell:11 cell_type:code */}
-```undefined
+```python
 from impresso.util.error import ImpressoError
 from time import sleep
 
@@ -115,7 +115,7 @@ for idx, combo in enumerate(persons_ids_combinations):
 Put them all into a dataframe
 
 {/* cell:13 cell_type:code */}
-```undefined
+```python
 import pandas as pd
 
 connections_denormalised = []
@@ -132,7 +132,7 @@ connections_df
 ```
 
 {/* cell:14 cell_type:code */}
-```undefined
+```python
 connections_df.to_csv("connections.csv")
 ```
 
@@ -140,7 +140,7 @@ connections_df.to_csv("connections.csv")
 ## Part 2: visualise
 
 {/* cell:16 cell_type:code */}
-```undefined
+```python
 import pandas as pd
 
 connections_df = pd.read_csv("connections.csv")
@@ -148,7 +148,7 @@ connections_df
 ```
 
 {/* cell:17 cell_type:code */}
-```undefined
+```python
 grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
     .agg({'timestamp': lambda x: ', '.join(list(x)), 'count': 'sum', 'url': lambda x: list(set(x))[0]}) \
     .reset_index()
@@ -156,7 +156,7 @@ grouped_connections_df
 ```
 
 {/* cell:18 cell_type:code */}
-```undefined
+```python
 import networkx as nx
 
 G = nx.from_pandas_edgelist(
@@ -172,13 +172,13 @@ G.nodes
 ```
 
 {/* cell:19 cell_type:code */}
-```undefined
+```python
 filename = input("Enter the filename: ")
 filename = f"{filename.replace(' ', '_')}.gefx"
 ```
 
 {/* cell:20 cell_type:code */}
-```undefined
+```python
 nx.write_gexf(G, filename)
 ```
 
@@ -186,7 +186,7 @@ nx.write_gexf(G, filename)
 If running in Colab - activate custom widgets to allow Sigma to render the graph.
 
 {/* cell:22 cell_type:code */}
-```undefined
+```python
 try:
     from google.colab import output
     output.enable_custom_widget_manager()
@@ -198,7 +198,7 @@ except:
 Render the graph.
 
 {/* cell:24 cell_type:code */}
-```undefined
+```python
 import networkx as nx
 from ipysigma import Sigma
 
