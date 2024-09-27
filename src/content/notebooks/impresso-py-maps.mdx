@@ -1,6 +1,218 @@
 ---
-title: Explore Impresso named entities on a geo map using impresso-py and ipyleaflet
+title: Exploring impresso with maps
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/4-impresso-py/maps_explore.ipynb
 authors:
   - RomanKalyakin
+sha: 168c669246385a2ec6c3e088b0081364f129d11c
+date: 2024-09-27T12:54:12Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/4-impresso-py/maps_explore.ipynb
 ---
+
+{/* cell:0 cell_type:markdown */}
+## Install dependencies
+
+We need the following packages:
+
+ * [impresso-py](https://impresso-project.ch/)
+ * [ipyleaflet](https://ipyleaflet.readthedocs.io/en/latest/index.html)
+
+{/* cell:1 cell_type:code */}
+```undefined
+%pip install git+https://github.com/impresso/impresso-py.git ipyleaflet
+```
+
+{/* cell:2 cell_type:markdown */}
+## Connect to Impresso
+
+{/* cell:3 cell_type:code */}
+```undefined
+from impresso import connect, OR, DateRange
+
+impresso = connect(public_api_url="https://dev.impresso-project.ch/public-api")
+```
+
+{/* cell:4 cell_type:markdown */}
+## Search and collect entities
+
+Find top 100 location entities mentioned in articles that talk about nuclear power plants in the first three decades following the second world war.
+
+{/* cell:5 cell_type:code */}
+```undefined
+locations = impresso.search.facet(
+    "location",
+    q=OR("centrale nucléaire", "nuclear power plant", "Kernkraftwerk"),
+    date_range=DateRange("1945-05-01", "1975-05-01"),
+    limit=100,
+    order_by="-count"
+)
+locations
+```
+
+{/* cell:6 cell_type:markdown */}
+Get entities details, including wikidata details
+
+{/* cell:7 cell_type:code */}
+```undefined
+entities_ids = locations.df.index.tolist()
+entities = impresso.entities.find(entity_id=OR(*entities_ids), load_wikidata=True, limit=len(entities_ids))
+entities
+```
+
+{/* cell:8 cell_type:markdown */}
+Filter out entities that have no coordinates and add a country tag.
+
+{/* cell:9 cell_type:code */}
+```undefined
+df = entities.df
+entities_with_coordinates = df[df['wikidata.coordinates.latitude'].notna() & df['wikidata.coordinates.longitude'].notna()]
+# entity-type == "item" indicates it's a country
+entities_with_coordinates['is_country'] = entities_with_coordinates['wikidata.descriptions.fr'].str.contains('pays')
+entities_with_coordinates
+```
+
+{/* cell:10 cell_type:markdown */}
+Add counts of mentions to the entities dataframe.
+
+{/* cell:11 cell_type:code */}
+```undefined
+entities_with_coordinates['mentions_count'] = entities_with_coordinates.index.map(locations.df['count'])
+```
+
+{/* cell:12 cell_type:markdown */}
+Plot entities on the map.
+
+{/* cell:13 cell_type:markdown */}
+### Utility methods
+
+Functions used to calculate extra details needed to plot data on a map.
+
+{/* cell:14 cell_type:markdown */}
+Find geo bounds of a group of items.
+
+{/* cell:15 cell_type:code */}
+```undefined
+def find_bounds(coordinates):
+  """
+  Finds the top/left, bottom/right bounds of an area that fits all coordinates.
+
+  Args:
+    coordinates: A list of coordinate tuples (latitude, longitude).
+
+  Returns:
+    A tuple containing the top/left and bottom/right bounds:
+      ((top_lat, left_lon), (bottom_lat, right_lon))
+  """
+  if not coordinates:
+    return None
+
+  min_lat = coordinates[0][0]
+  max_lat = coordinates[0][0]
+  min_lon = coordinates[0][1]
+  max_lon = coordinates[0][1]
+
+  for lat, lon in coordinates:
+    min_lat = min(min_lat, lat)
+    max_lat = max(max_lat, lat)
+    min_lon = min(min_lon, lon)
+    max_lon = max(max_lon, lon)
+
+  return ((max_lat, min_lon), (min_lat, max_lon))
+
+```
+
+{/* cell:16 cell_type:markdown */}
+Create an HTML used for rendering the hover pop-up.
+
+{/* cell:17 cell_type:code */}
+```undefined
+from ipywidgets import HTML
+from ipyleaflet import Popup
+
+def build_hover_popup(title: str, subtitle: str, mentions: int) -> Popup:
+  message = HTML()
+  message.value = f"""
+    <div style="display: flex; flex-direction: column; color: black; line-height: normal; max-width: 200px;">
+      <b>{title}</b>
+      <p>{subtitle}</p>
+      <b>Mentions: {mentions}</b>
+    </div>
+  """
+
+  # Popup with a given location on the map:
+  popup = Popup(
+      # location=center,
+      child=message,
+      close_button=False,
+      auto_close=True,
+      close_on_escape_key=False
+  )
+  return popup
+```
+
+{/* cell:18 cell_type:markdown */}
+### Plot
+
+{/* cell:19 cell_type:code */}
+```undefined
+from ipyleaflet import Map, Marker, AwesomeIcon, CircleMarker
+
+map = Map(zoom=0)
+
+country_icon = AwesomeIcon(
+  name='fa-globe',
+  marker_color='red',
+  spin=False,
+)
+
+place_icon = AwesomeIcon(
+  name='fa-building-o',
+  marker_color='green',
+  spin=False,
+)
+
+max_mentions_count = entities_with_coordinates['mentions_count'].max()
+
+coordinates = []
+markers = []
+# Build markers
+for index, row in entities_with_coordinates.iterrows():
+    lat = row['wikidata.coordinates.latitude']
+    lon = row['wikidata.coordinates.longitude']
+    label = row['wikidata.labels.en']
+    description = row['wikidata.descriptions.en']
+    is_country = row['is_country']
+
+    radius = (row['mentions_count'] / max_mentions_count) * 20
+
+    # marker = Marker(
+    #   icon=country_icon if is_country else place_icon,
+    #   location=(lat, lon),
+    #   draggable=False,
+    #   title=label
+    # )
+
+    marker = CircleMarker(
+      location=(lat, lon),
+      draggable=False,
+      title=label,
+      color="red" if is_country else "green",
+      fill_color="red" if is_country else "green",
+      radius=int(radius)
+    )
+
+    marker.popup = build_hover_popup(label, description, row['mentions_count'])
+
+    coordinates.append((lat, lon))
+    markers.append(marker)
+
+
+# Fit the map to the bounds
+map.fit_bounds(find_bounds(coordinates))
+
+# add markers
+for m in markers:
+  map += m
+
+
+display(map)
+```

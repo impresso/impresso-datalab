@@ -1,6 +1,211 @@
 ---
-title: Visualise Impresso named entities co-occurrencies using networkx and ipysigma libraries
+title: Network graph with Impresso Py
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/4-impresso-py/network_graph.ipynb
 authors:
   - RomanKalyakin
+sha: 168c669246385a2ec6c3e088b0081364f129d11c
+date: 2024-09-27T12:54:12Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/4-impresso-py/network_graph.ipynb
 ---
+
+{/* cell:0 cell_type:markdown */}
+## Install dependencies
+
+{/* cell:1 cell_type:code */}
+```undefined
+%pip install git+https://github.com/impresso/impresso-py.git ipysigma
+```
+
+{/* cell:2 cell_type:markdown */}
+## Connect to Impresso
+
+{/* cell:3 cell_type:code */}
+```undefined
+from impresso import connect, OR, AND
+
+impresso = connect(public_api_url="https://dev.impresso-project.ch/public-api")
+```
+
+{/* cell:4 cell_type:markdown */}
+## Part 1: Get entities and their co-occurrences
+
+Find all persons mentioned in all articles that talk about the [Prague Spring](https://en.wikipedia.org/wiki/Prague_Spring).
+
+{/* cell:5 cell_type:code */}
+```undefined
+query = OR("Prague Spring", "Prager Frühling", "Printemps de Prague")
+```
+
+{/* cell:6 cell_type:code */}
+```undefined
+persons = impresso.search.facet(
+  facet="person",
+  q=query,
+  order_by="-count",
+  limit=100
+)
+persons
+```
+
+{/* cell:7 cell_type:markdown */}
+Get all combinations of all entities with a mention count higher than `N`.
+
+{/* cell:8 cell_type:code */}
+```undefined
+import itertools
+
+n = 10
+
+df = persons.df
+df = df[df["count"] > n]
+persons_ids = df.uid.tolist()
+print(f"Total persons selected: {len(persons_ids)}")
+
+persons_ids_combinations = list(itertools.combinations(persons_ids, 2))
+print(f"Total combinations: {len(persons_ids_combinations)}")
+```
+
+{/* cell:9 cell_type:code */}
+```undefined
+if len(persons_ids_combinations) > 500:
+  msg = (
+      f"The number of combinations is quite high ({len(persons_ids_combinations)}). " +
+      "This may put a lot of load on Impresso and your requests may be throttled. " +
+      "Try to increase the threshold number of mentions in the cell above which will reduce the number of selected persons. " +
+      "You can also disable this error by commenting out this cell, if this number of combinations is expected."
+  )
+  raise Exception(msg)
+```
+
+{/* cell:10 cell_type:markdown */}
+Get timestamps and counts of all articles where persons pairs appear.
+
+{/* cell:11 cell_type:code */}
+```undefined
+from impresso.util.error import ImpressoError
+from time import sleep
+
+connections = []
+
+for idx, combo in enumerate(persons_ids_combinations):
+  try:
+    result = impresso.search.facet(
+      facet="daterange",
+      q=query,
+      entity_id=AND(*combo),
+      limit=1000
+    )
+  except ImpressoError as e:
+    if e.error.status == 429:
+      print(f"Sleeping because of {e}")
+      sleep(2)
+
+  if result.size > 0:
+    df = result.df
+
+    items = list(zip(df.index.tolist(), df['count'].tolist(), [result.url for i in range(len(df))]))
+    connections.append((combo, items))
+    # print(f"Found {len(df)} connections for {combo}", end=' ')
+
+  if idx % 10 == 0:
+    print(f"{idx} done out of {len(persons_ids_combinations)}")
+```
+
+{/* cell:12 cell_type:markdown */}
+Put them all into a dataframe
+
+{/* cell:13 cell_type:code */}
+```undefined
+import pandas as pd
+
+connections_denormalised = []
+for c in connections:
+  nodes, edges = c
+  # print(nodes)
+
+  connections_denormalised.extend(
+    [[node_a, node_b, ts, count, url] for (node_a, node_b), (ts, count, url) in zip([nodes for i in range(len(edges))], edges)]
+  )
+
+connections_df = pd.DataFrame(connections_denormalised, columns=('node_a', 'node_b', 'timestamp', 'count', 'url'))
+connections_df
+```
+
+{/* cell:14 cell_type:code */}
+```undefined
+connections_df.to_csv("connections.csv")
+```
+
+{/* cell:15 cell_type:markdown */}
+## Part 2: visualise
+
+{/* cell:16 cell_type:code */}
+```undefined
+import pandas as pd
+
+connections_df = pd.read_csv("connections.csv")
+connections_df
+```
+
+{/* cell:17 cell_type:code */}
+```undefined
+grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
+    .agg({'timestamp': lambda x: ', '.join(list(x)), 'count': 'sum', 'url': lambda x: list(set(x))[0]}) \
+    .reset_index()
+grouped_connections_df
+```
+
+{/* cell:18 cell_type:code */}
+```undefined
+import networkx as nx
+
+G = nx.from_pandas_edgelist(
+    grouped_connections_df,
+    source='node_a',
+    target='node_b',
+    edge_attr=['count', 'url'],
+    create_using=nx.MultiGraph()
+)
+for i in sorted(G.nodes()):
+    G.nodes[i]['url'] = f"https://impresso-project.ch/app/entities/{i}"
+G.nodes
+```
+
+{/* cell:19 cell_type:code */}
+```undefined
+filename = input("Enter the filename: ")
+filename = f"{filename.replace(' ', '_')}.gefx"
+```
+
+{/* cell:20 cell_type:code */}
+```undefined
+nx.write_gexf(G, filename)
+```
+
+{/* cell:21 cell_type:markdown */}
+If running in Colab - activate custom widgets to allow Sigma to render the graph.
+
+{/* cell:22 cell_type:code */}
+```undefined
+try:
+    from google.colab import output
+    output.enable_custom_widget_manager()
+except:
+    pass
+```
+
+{/* cell:23 cell_type:markdown */}
+Render the graph.
+
+{/* cell:24 cell_type:code */}
+```undefined
+import networkx as nx
+from ipysigma import Sigma
+
+# Importing a gexf graph
+g = nx.read_gexf(filename)
+
+# Displaying the graph with a size mapped on degree and
+# a color mapped on a categorical attribute of the nodes
+Sigma(g, node_size=g.degree, edge_size='count', clickable_edges=True)
+```
