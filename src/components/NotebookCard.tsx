@@ -40,7 +40,8 @@ const NotebookCard: React.FC<{
           </div>
           <div className="mx-3">
             <div className="date">
-              <span>{accessDateTime.toFormat("yyyy LLL dd")}</span>
+              <div className="badge bg-secondary me-2">.ipynb</div>{" "}
+              <span> {accessDateTime.toFormat("yyyy LLL dd")}</span>
             </div>
             <h3 className="m-0">{notebook?.title}</h3>
             <ol className="NotebookCard__authors  list-unstyled">
