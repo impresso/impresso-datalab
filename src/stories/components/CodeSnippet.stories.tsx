@@ -8,6 +8,13 @@ const CodeSnippetPropsValueSample = `
 text = "Mon nom est François et j'habite à Paris. (Reuter)"
 nlp(text)
 `
+const FromUpdatedNotebookCodeSnippetPropsValueSample = `
+\`\`\`python
+from impresso import AND
+
+impresso.search.find(title=AND("homme", "femme"))
+\`\`\`
+`
 
 const meta: Meta<typeof CodeSnippet> = {
   component: CodeSnippet,
@@ -25,5 +32,12 @@ export const Default: Story = {
   args: {
     value: CodeSnippetPropsValueSample.trim(),
     readonly: true,
+  } as CodeSnippetProps,
+}
+
+export const FromUpdatedNotebook: Story = {
+  args: {
+    value: FromUpdatedNotebookCodeSnippetPropsValueSample.trim(),
+    readonly: false,
   } as CodeSnippetProps,
 }
