@@ -1,5 +1,19 @@
-export const extractMdFromIpynbCells = (kernelspec, cells) => {
-  const language = kernelspec.language
+// export type cell = {
+//   cell_type: "markdown" | "code"
+//   source: string | string[]
+// }
+
+// export type kernelspec = {
+//   language?: string
+// }
+
+export const extractMdFromIpynbCells = (
+  // kernelspec: kernelspec,
+  // cells: cell[],
+  kernelspec = {},
+  cells = [],
+) => {
+  const language = kernelspec.language ?? "python"
   return cells
     .map((cell, i) => {
       const source = Array.isArray(cell.source)
@@ -15,7 +29,7 @@ export const extractMdFromIpynbCells = (kernelspec, cells) => {
 
 export const getTitleFromIpynb = (cells) => {
   const cellWithH1idx = cells.findIndex((cell) => {
-    if (!cell.cell_type === "markdown") return false
+    if (cell.cell_type !== "markdown") return false
     if (Array.isArray(cell.source)) {
       return cell.source[0].trim().startsWith("# ")
     }

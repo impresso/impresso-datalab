@@ -14,9 +14,19 @@ const Notebooks = readdirSync(NotebooksDir)
 
 console.log("NotebooksDir", NotebooksDir)
 
+// if there is a argument to the script, we only update the notebook with the same name
+const notebookToUpdate = process.argv[2]
+if (notebookToUpdate) {
+  console.log("update only", notebookToUpdate)
+}
+
 // get all files in the dir
 ;(async () => {
   for (const notebook of Notebooks) {
+    if (notebookToUpdate && notebook !== notebookToUpdate) {
+      console.log("skipping", notebook, "looking for", notebookToUpdate)
+      continue
+    }
     const notebookPath = join(NotebooksDir, notebook)
     console.log("\n- read notebook", notebookPath)
     if (!notebook.endsWith(".mdx")) {
@@ -66,7 +76,7 @@ console.log("NotebooksDir", NotebooksDir)
       console.log("⚠ title? no heading found in ipynb")
       continue
     }
-    console.log("✓ title:", title)
+    console.log("✓ title:", `\x1b[33m${title}\x1b[0m`)
     const contentMdx = extractMdFromIpynbCells(
       ipynb.metadata.kernelspec,
       ipynb.cells.filter((_d, i) => i !== cellIdx),
