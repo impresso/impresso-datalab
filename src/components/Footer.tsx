@@ -143,7 +143,7 @@ export default function ({
       },
     },
   })
-  console.log("FOOTER", associatedPartners)
+
   return (
     <QueryClientProvider client={queryClient}>
       <Footer associatedPartners={associatedPartners} />
