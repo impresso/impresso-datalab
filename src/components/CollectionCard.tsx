@@ -29,12 +29,13 @@ export interface CollectionCardProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 const CollectionCard: React.FC<CollectionCardProps> = ({
+  className = "",
   collection,
   children,
 }) => {
   const hasCover = collection.cover?.url
   return (
-    <div className="CollectionCard d-flex flex-column">
+    <div className={`CollectionCard d-flex flex-column ${className}`}>
       <section className="p-3">
         <h2>{collection.title}</h2>
         <h3>{collection.excerpt}</h3>
