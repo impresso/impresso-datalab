@@ -114,7 +114,11 @@ const Wall = ({
         <Row className="my-3  align-items-bottom">
           <Col>
             {seriesUnexpected.map((collection) => (
-              <CollectionCard key={collection.title} collection={collection} />
+              <CollectionCard
+                key={collection.title}
+                collection={collection}
+                className="mb-2"
+              />
             ))}
           </Col>
           <Col>
