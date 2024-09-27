@@ -40,11 +40,15 @@ const NotebookCard: React.FC<{
           </div>
           <div className="mx-3">
             <div className="date">
-              <div className="badge bg-secondary me-2">.ipynb</div>{" "}
-              <span> {accessDateTime.toFormat("yyyy LLL dd")}</span>
+              <div className="badge bg-secondary me-2">Python notebook</div>{" "}
             </div>
-            <h3 className="m-0">{notebook?.title}</h3>
-            <ol className="NotebookCard__authors  list-unstyled">
+            <h3 className="mx-0 my-2">{notebook?.title}</h3>
+            <div className="small">
+              {" "}
+              {accessDateTime.toFormat("yyyy LLL dd")}
+            </div>
+            <ol className="NotebookCard__authors  list-unstyled d-flex flex-wrap gap-1">
+              <li>by:</li>
               {notebook.authors.map((author) => (
                 <li className="inline-block" key={author.name}>
                   <AuthorCard author={author} />
