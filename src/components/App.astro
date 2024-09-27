@@ -7,9 +7,15 @@ import Background from '../components/Background';
 import { getCollection } from 'astro:content';
 import { getRecursivelyEntryData } from '../logic'
 
+const authors = await getCollection('authors')
+const numberOfAuthors = authors.length
+
+const notebooks = await getCollection('notebooks')
+const numberOfNotebooks = notebooks.length
 
 const series = await getCollection('series')
 const seriesDataIndex = {} as any
+const numberOfSeries = series.length
 
 for(const seriesEntry of series){
   seriesDataIndex[seriesEntry.slug] = await getRecursivelyEntryData(seriesEntry)
@@ -23,6 +29,8 @@ const associatedPartnersData = associatedPartners.map((entry) => {
     ...entry.data
   }
 })
+
+
 ---
 <Header client:only="react" />
 <Wall 
@@ -39,6 +47,9 @@ const associatedPartnersData = associatedPartners.map((entry) => {
   seriesTutorials={[
     seriesDataIndex['impresso-py-in-depth'],
   ]}
+  numberOfNotebooks={numberOfNotebooks}
+  numberOfSeries={numberOfSeries}
+  numberOfAuthors={numberOfAuthors}
 />
 <Background client:only="react" />
 <Footer client:only="react" associatedPartners={associatedPartnersData}/>

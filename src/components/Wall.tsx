@@ -2,6 +2,7 @@ import { Col, Container, Row } from "react-bootstrap"
 import CollectionCard, { type Collection } from "./CollectionCard"
 import CodeSnippet from "./CodeSnippet"
 import { useEffect } from "react"
+import Link from "./Link"
 
 const CodeSample = `
 from impresso import api 
@@ -23,7 +24,7 @@ const Wall = ({
   // notebooks = [],
   numberOfAuthors = 10,
   numberOfNotebooks = 100,
-  numberofCollections = 2,
+  numberOfSeries = 2,
   // series = [],
   seriesUnexpected = [],
   seriesTutorials = [],
@@ -34,7 +35,7 @@ const Wall = ({
 }: {
   numberOfAuthors?: number
   numberOfNotebooks?: number
-  numberofCollections?: number
+  numberOfSeries?: number
   seriesUnexpected?: Collection[]
   seriesTutorials?: Collection[]
   seriesYourData?: Collection[]
@@ -51,24 +52,27 @@ const Wall = ({
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
       <Container fluid>
         <Row>
-          <Col md={{ span: 6 }} xxl={{ span: 4 }} className="align-self-center">
+          <Col md={{ span: 4 }} xxl={{ span: 4 }} className="align-self-center">
             <h1 className="display-3 mb-4" style={{ width: "85%" }}>
-              Give your media monitoring a boost
+              Boost your research with <em>Impresso</em>
             </h1>
 
             <p style={{ width: "85%" }}>
-              We collected <b>{numberOfNotebooks}</b> <em>Jupyter notebooks</em>{" "}
-              so far; orchestrated <b>{numberofCollections}</b> collections of
-              notebooks, developed by <b>{numberOfAuthors}</b> authors.
+              We collected <b>{numberOfNotebooks}</b>{" "}
+              <Link to="/notebooks" underline>
+                Jupyter Ipynb notebooks
+              </Link>{" "}
+              in <b>{numberOfSeries}</b> series, maintained and developed by{" "}
+              <b>{numberOfAuthors}</b> authors.
             </p>
             <section className="mt-5"></section>
           </Col>
-          <Col md={{ span: 6 }} xxl={{ span: 3 }}>
+          <Col md={{ span: 4 }} xxl={{ span: 3 }}>
             <CollectionCard collection={enterImpressoPy}>
               <CodeSnippet value={CodeSample} theme={"nord"} />
             </CollectionCard>
           </Col>
-          <Col md={{ span: 6 }} xxl={{ span: 3 }}>
+          <Col md={{ span: 4 }} xxl={{ span: 3 }}>
             <CollectionCard collection={enterImpressoModels}>
               <CodeSnippet
                 value={ImpressoModelsCodeSample}
