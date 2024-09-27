@@ -85,6 +85,6 @@ The 'Impresso - Media Monitoring of the Past' project is funded by the Swiss Nat
 
 ## License
 
-Copyright (C) 2024 The Impresso team. Contributors to this program include: [Daniele Guido](https://github.com/danieleguido),[Roman Kalyakin](https://github.com/theorm).
+Copyright (C) 2024 The Impresso team. Contributors to this program include: [Daniele Guido](https://github.com/danieleguido), [Kirill Mitsurov](https://github.com/donsiamese) and [Roman Kalyakin](https://github.com/theorm).
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose. See the [GNU Affero General Public License](https://github.com/impresso/impresso-datalab/blob/master/LICENSE) for more details.
