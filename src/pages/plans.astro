@@ -4,7 +4,7 @@ import { getRecursivelyEntryData } from "../logic"
 import App from "../components/App.astro"
 import Layout from "../layouts/Layout.astro"
 import PlansModal from "../components/PlansModal"
-
+import { AstroSeo } from '@astrolib/seo';
 // load all notebooks, order by date
 const plans = await getCollection('plans')
 const plansProps = await Promise.all(plans.map(async (plan) => {
@@ -15,10 +15,16 @@ const plansProps = await Promise.all(plans.map(async (plan) => {
   }
 }))
 
-console.log('plans', plansProps)
+const canonicalUrl = import.meta.env.PUBLIC_IMPRESSO_DATALAB_SITE
+const title = "Plans - Impresso Datalab"
 ---
 
-<Layout title={"Impresso Notebooks"}>
+<Layout title={title}>
+  <AstroSeo
+    title={title}
+    description="Overview of the different plans for the Impresso Datalab website"
+    canonical={canonicalUrl}
+  />
   <App transition:persist/>
   <PlansModal client:only="react" 
     plans={plansProps}

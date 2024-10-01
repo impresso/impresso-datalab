@@ -9,6 +9,8 @@ export interface User {
   profile?: {
     pattern: string[]
   }
+  groups?: string[]
+  agreedToTerms?: boolean
 }
 
 const UserCard = ({ user }: { user: User }) => {
