@@ -2,7 +2,7 @@ import { CheckCircle, Timer, ProfileCircle } from "iconoir-react"
 import "./PlanCard.css"
 import PlanIcon from "./PlanIcon"
 import { marked } from "marked"
-import { RequirementsLabels, RequirementToU } from "../constants"
+import { RequirementToU } from "../constants"
 import Requirement from "./Requirement"
 
 type PlanFeature = {
