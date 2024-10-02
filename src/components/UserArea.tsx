@@ -8,12 +8,15 @@ const UserArea = () => {
   const setUser = usePersistentStore((state) => state.setUser)
   const setView = useBrowserStore((state) => state.setView)
 
-  const isWsConnected = useBrowserStore((state) => state.isWsConnected)
+  const wsStatus = useBrowserStore((state) => state.wsStatus)
   const [token, user] = usePersistentStore((state) => [state.token, state.user])
 
   useEffect(() => {
-    if (!isWsConnected) {
-      console.debug("[UserArea] @useEffect - ws not connected")
+    if (wsStatus !== "connected") {
+      console.debug(
+        "[UserArea] @useEffect - ws not connected, current status",
+        wsStatus
+      )
       return
     }
     if (token !== null) {
@@ -33,11 +36,11 @@ const UserArea = () => {
         })
     } else {
       console.debug(
-        "[UserArea] @useEffect - ws connected, but no token available. Reset user.",
+        "[UserArea] @useEffect - ws connected, but no token available. Reset user."
       )
       setUser(null)
     }
-  }, [token, isWsConnected])
+  }, [token, wsStatus])
 
   return (
     <div className="UserArea me-3 d-flex">

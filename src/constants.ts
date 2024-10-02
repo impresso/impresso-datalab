@@ -26,3 +26,5 @@ export const PlanImpressoUser = "impresso-user"
 export const PlanStudentUser = "student-user"
 export const PlanAcademicUser = "academic-user"
 export const PlanAcademicUserPlus = "academic-user-plus"
+
+export const BrowserViewLogin: string = "login"

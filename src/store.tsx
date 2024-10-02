@@ -13,13 +13,15 @@ interface PersistentStoreState {
 export const useBrowserStore = create<{
   view: string | null
   setView: (view: string | null) => void
-  isWsConnected: boolean
-  setIsWsConnected: (isWsConnected: boolean) => void
+  wsStatus: "idle" | "connecting" | "connected" | "closed"
+  setWsStatus: (
+    wsStatus: "idle" | "connecting" | "connected" | "closed"
+  ) => void
 }>((set) => ({
   view: null,
   setView: (view) => set({ view }),
-  isWsConnected: false,
-  setIsWsConnected: (isWsConnected) => set({ isWsConnected }),
+  wsStatus: "idle",
+  setWsStatus: (wsStatus) => set({ wsStatus }),
 }))
 
 export const usePersistentStore = create<
@@ -58,8 +60,8 @@ export const usePersistentStore = create<
     {
       name: "impresso-datalab",
       storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
-    },
-  ),
+    }
+  )
 )
 
 // get fresh data from the localstorage

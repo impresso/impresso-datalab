@@ -4,9 +4,13 @@ import UserArea from "./UserArea"
 import Link from "./Link"
 import "./Header.css"
 import { useLayoutEffect, useRef } from "react"
+import { useBrowserStore } from "../store"
+import { FlashOff, FlashSolid } from "iconoir-react"
 
 const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null)
+  const wsStatus = useBrowserStore((state) => state.wsStatus)
+
   useLayoutEffect(() => {
     window.onscroll = () => {
       const header = headerRef.current
@@ -46,6 +50,23 @@ const Header: React.FC = () => {
             </Nav.Item>
           </Nav>
           <Nav className="ms-auto align-items-center me-3">
+            {wsStatus === "idle" && (
+              <span className="badge text-dark">
+                <FlashSolid width={12} />
+                waiting...
+              </span>
+            )}
+            {wsStatus === "connecting" && (
+              <span className="badge text-dark">
+                <FlashSolid width={12} />
+                loading...
+              </span>
+            )}
+            {wsStatus === "closed" && (
+              <span className="badge text-danger">
+                <FlashOff /> offline ...
+              </span>
+            )}
             <UserArea />
           </Nav>
         </Container>

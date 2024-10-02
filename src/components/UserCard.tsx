@@ -9,6 +9,7 @@ export interface User {
   profile?: {
     pattern: string[]
   }
+  bitmap?: string
   groups?: string[]
   agreedToTerms?: boolean
 }
