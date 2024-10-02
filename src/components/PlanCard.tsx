@@ -1,14 +1,11 @@
 import { CheckCircle, Timer, ProfileCircle } from "iconoir-react"
 import "./PlanCard.css"
 import PlanIcon from "./PlanIcon"
+import { marked } from "marked"
+import { RequirementToU } from "../constants"
+import Requirement from "./Requirement"
 
 type PlanFeature = {
-  title: string
-  status: string
-  iconColor: string
-}
-
-type PlanRequirements = {
   title: string
   status: string
   iconColor: string
@@ -19,20 +16,26 @@ export type Plan = {
   title: string
   body: string
   features: PlanFeature[]
-  requirements: PlanRequirements[]
+  requirements: string[]
   icon: string
 }
 
 export type PlanCardProps = {
   plan: Plan
+  termsOfUse?: boolean
   active?: boolean
 }
 
-const PlanCard: React.FC<PlanCardProps> = ({ plan, active = false }) => {
-  const intro = plan.body
-
+const PlanCard: React.FC<PlanCardProps> = ({
+  plan,
+  termsOfUse = false,
+  active = false,
+}) => {
+  const intro = marked.parse(plan.body)
   const iconStatusCheck = (status: string) => {
-    if (status === "ok") {
+    if (status === RequirementToU && !termsOfUse) {
+      return <Timer />
+    } else if (status === "ok") {
       return <CheckCircle />
     } else if (status === "limited") {
       return <Timer />
@@ -54,7 +57,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, active = false }) => {
   const iconValue = (id: string) => {
     if (id === "basic-plan") {
       return "COO"
-    } else if (id === "guest-plan") {
+    } else if (id === "impresso-user") {
       return "B"
     } else if (id === "research-plan") {
       return "R"
@@ -66,50 +69,39 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, active = false }) => {
   }
 
   return (
-    <div
-      className={`PlanCard-wrapper ${plan.id === "basic-plan" ? "active" : ""}`}
-    >
+    <div className={`PlanCard-wrapper ${active ? "active" : ""}`}>
       <div className="active-bg">
-        <span className="active-plan-tag">ACTIVE PLAN</span>
+        <span className="active-plan-tag small-caps">current plan</span>
       </div>
       <div className="PlanCard">
         <h2>{plan.title}</h2>
         <hr />
         <PlanIcon size={40} value={iconValue(plan.id)} />
-        <h3>{intro}</h3>
-        <b className="mt-2">Features</b>
-        {active && <p>Active</p>}
+        <div dangerouslySetInnerHTML={{ __html: intro }} />
+        <h3 className="mt-2">Features</h3>
+        {active && <p>This is your current plan</p>}
         {plan.features?.map(
           (
             feature: { title: string; status: string; iconColor: string },
             index: number,
           ) => (
-            <div key={index} className="PlanCard-item d-flex">
-              <i
+            <div
+              key={index}
+              className="PlanCard-item d-flex align-items-center mb-2 "
+            >
+              <div
                 className={`PlanCard-icon d-flex ${iconColorCheck(feature.iconColor)}`}
               >
                 {iconStatusCheck(feature.status)}
-              </i>
-              <p>{feature.title}</p>
+              </div>
+              <p className="m-0">{feature.title}</p>
             </div>
           ),
         )}
-        {plan.requirements ? <b className="mt-2">Requirements</b> : null}
-        {plan.requirements?.map(
-          (
-            requirements: { title: string; status: string; iconColor: string },
-            index: number,
-          ) => (
-            <div key={index} className="PlanCard-item d-flex">
-              <i
-                className={`PlanCard-icon d-flex ${iconColorCheck(requirements.iconColor)}`}
-              >
-                {iconStatusCheck(requirements.status)}
-              </i>
-              <p>{requirements.title}</p>
-            </div>
-          ),
-        )}
+        <h3 className="mt-2">Requirements</h3>
+        {plan.requirements.map((requirement: string) => (
+          <Requirement key={requirement} requirement={requirement} />
+        ))}
         {plan.id === "research-plan" ? (
           <button
             type="submit"

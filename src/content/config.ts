@@ -1,4 +1,5 @@
 import { z, defineCollection, reference } from "astro:content"
+import { Requirements } from "../constants"
 
 const notebooks = defineCollection({
   type: "content", // v2.5.0 and later
@@ -28,20 +29,12 @@ const plans = defineCollection({
       .array(
         z.object({
           title: z.string(),
-          status: z.string(),
-          iconColor: z.string(),
+          status: z.string().optional(),
+          iconColor: z.string().optional(),
         }),
       )
       .optional(),
-    requirements: z
-      .array(
-        z.object({
-          title: z.string(),
-          status: z.string(),
-          iconColor: z.string(),
-        }),
-      )
-      .optional(),
+    requirements: z.array(z.enum(Requirements as any)),
   }),
 })
 
