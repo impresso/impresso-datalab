@@ -3,6 +3,7 @@ import "./PlanCard.css"
 import PlanIcon from "./PlanIcon"
 import { marked } from "marked"
 import { RequirementsLabels, RequirementToU } from "../constants"
+import Requirement from "./Requirement"
 
 type PlanFeature = {
   title: string
@@ -99,14 +100,7 @@ const PlanCard: React.FC<PlanCardProps> = ({
         )}
         <h3 className="mt-2">Requirements</h3>
         {plan.requirements.map((requirement: string) => (
-          <div key={requirement} className="PlanCard-item d-flex">
-            <i
-              className={`PlanCard-icon d-flex ${iconColorCheck(requirement)}`}
-            >
-              {iconStatusCheck(requirement)}
-            </i>
-            <p>{RequirementsLabels[requirement]}</p>
-          </div>
+          <Requirement key={requirement} requirement={requirement} />
         ))}
         {plan.id === "research-plan" ? (
           <button
