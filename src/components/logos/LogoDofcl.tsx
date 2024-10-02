@@ -19,7 +19,7 @@ const LogoDofcl = ({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Universität Zürich logo"
-        title="Institute of Computational Linguistics Zurich University, Switzerland"
+        title="Department of Computational Linguistics, Zurich University, Switzerland"
       >
         <svg
           data-name="Universitat Zurich"
