@@ -27,9 +27,9 @@ export const PlanStudentUser = "student-user"
 export const PlanAcademicUser = "academic-user"
 export const PlanAcademicUserPlus = "academic-user-plus"
 
-// constants for the browser view store
 export const BrowserViewLogin = "login"
 export const BrowserViewSignup = "signup"
+
 export const BrowserWsStatusIdle = "idle"
 export const BrowserWsStatusConnecting = "connecting"
 export const BrowserWsStatusConnected = "connected"
