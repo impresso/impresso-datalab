@@ -103,19 +103,30 @@ const Wall = ({
           </Col>
         </Row>
         <Row className="my-3  align-items-bottom">
+          <Col className="  d-flex justify-content-center align-items-end ">
+            <h3 className=" p-3 w-100">Tutorials</h3>
+          </Col>
+          <Col className="  d-flex justify-content-center align-items-end ">
+            <h3 className=" p-3 w-100">Work with your data!</h3>
+          </Col>
           <Col className=" d-flex  justify-content-center align-items-end ">
             <h3 className=" p-3 w-100">
               Notebooks you didn't think you needed
             </h3>
           </Col>
-          <Col className="  d-flex justify-content-center align-items-end ">
-            <h3 className=" p-3 w-100">Work with your data!</h3>
-          </Col>
-          <Col className="  d-flex justify-content-center align-items-end ">
-            <h3 className=" p-3 w-100">Tutorials</h3>
-          </Col>
         </Row>
         <Row className="my-3  align-items-bottom">
+          <Col>
+            {seriesTutorials.map((collection) => (
+              <CollectionCard key={collection.title} collection={collection} />
+            ))}
+          </Col>
+
+          <Col>
+            {seriesYourData.map((collection) => (
+              <CollectionCard key={collection.title} collection={collection} />
+            ))}
+          </Col>
           <Col>
             {seriesUnexpected.map((collection) => (
               <CollectionCard
@@ -123,16 +134,6 @@ const Wall = ({
                 collection={collection}
                 className="mb-2"
               />
-            ))}
-          </Col>
-          <Col>
-            {seriesYourData.map((collection) => (
-              <CollectionCard key={collection.title} collection={collection} />
-            ))}
-          </Col>
-          <Col>
-            {seriesTutorials.map((collection) => (
-              <CollectionCard key={collection.title} collection={collection} />
             ))}
           </Col>
         </Row>
