@@ -15,14 +15,14 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, onSubmit }) => {
   const formPayload = useRef({ email: "", password: "" })
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formPayload.current)
+    console.info("[LoginForm] @handleOnSubmit")
     onSubmit(formPayload.current)
   }
 
   return (
     <Form onSubmit={handleOnSubmit} className={`LoginForm ${className}`}>
       <Form.Group className="mb-3" controlId="ModalLoginForm.email">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label className="font-weight-bold">Email address</Form.Label>
         <Form.Control
           onChange={(e) => (formPayload.current.email = e.target.value)}
           type="email"
@@ -30,7 +30,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ className, onSubmit }) => {
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="ModalLoginForm.password">
-        <Form.Label>Password</Form.Label>
+        <Form.Label className="font-weight-bold">Password</Form.Label>
         <Form.Control
           onChange={(e) => (formPayload.current.password = e.target.value)}
           type="password"

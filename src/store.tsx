@@ -1,6 +1,7 @@
 import { create } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
 import type { User } from "./components/UserCard"
+import { AccessTokenKey } from "./constants"
 
 interface PersistentStoreState {
   user: User | null
@@ -8,18 +9,21 @@ interface PersistentStoreState {
   setAuthenticatedUser: (user: User | null, token: string | null) => void
   setUser: (user: User | null) => void
   setToken: (token: string | null) => void
+  reset: () => void
 }
 
 export const useBrowserStore = create<{
   view: string | null
   setView: (view: string | null) => void
-  isWsConnected: boolean
-  setIsWsConnected: (isWsConnected: boolean) => void
+  wsStatus: "idle" | "connecting" | "connected" | "closed"
+  setWsStatus: (
+    wsStatus: "idle" | "connecting" | "connected" | "closed"
+  ) => void
 }>((set) => ({
   view: null,
   setView: (view) => set({ view }),
-  isWsConnected: false,
-  setIsWsConnected: (isWsConnected) => set({ isWsConnected }),
+  wsStatus: "idle",
+  setWsStatus: (wsStatus) => set({ wsStatus }),
 }))
 
 export const usePersistentStore = create<
@@ -32,6 +36,9 @@ export const usePersistentStore = create<
       token: null,
       rememberCredentials: false,
       setAuthenticatedUser(user, token) {
+        if (token) {
+          localStorage.setItem(AccessTokenKey, token)
+        }
         set({ user, token })
       },
       setUser(user) {
@@ -41,7 +48,7 @@ export const usePersistentStore = create<
         set({ token })
       },
       reset() {
-        localStorage.removeItem("feathers-jwt")
+        localStorage.removeItem(AccessTokenKey)
         set({ user: null, token: null })
       },
       patchUser(user: User) {
@@ -58,12 +65,12 @@ export const usePersistentStore = create<
     {
       name: "impresso-datalab",
       storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
-    },
-  ),
+    }
+  )
 )
 
 // get fresh data from the localstorage
-const existingToken = window.localStorage.getItem("feathers-jwt")
+const existingToken = window.localStorage.getItem(AccessTokenKey)
 
 if (existingToken && usePersistentStore.getState().token === null) {
   console.info("[usePersistentStore] use existing token from feathers-jwt")

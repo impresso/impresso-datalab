@@ -1,0 +1,10 @@
+.PlansModal .row.PlansModal__hRow {
+  transition: background-color 0.3s;
+  padding-top: var(--spacer-2);
+  padding-bottom: var(--spacer-2);
+  border-radius: var(--impresso-border-radius-xs);
+  background-color: transparent;
+}
+.PlansModal .row.PlansModal__hRow:hover {
+  background-color: var(--impresso-color-yellow);
+}

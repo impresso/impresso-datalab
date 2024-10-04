@@ -9,6 +9,7 @@ export interface User {
   profile?: {
     pattern: string[]
   }
+  bitmap?: string
   groups?: string[]
   agreedToTerms?: boolean
 }
@@ -18,9 +19,9 @@ const UserCard = ({ user }: { user: User }) => {
     <div className="UserCard d-flex align-items-center">
       <div className="me-2">
         <Avatar
-          size={40}
+          size={30}
           name={user.username}
-          variant={"pixel"}
+          variant={"sunset"}
           colors={user.pattern ? user.pattern.split(",") : []}
         />
       </div>

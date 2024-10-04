@@ -1,19 +1,49 @@
-import { Button } from "react-bootstrap"
+import { Button, Dropdown } from "react-bootstrap"
 import { useBrowserStore, usePersistentStore } from "../store"
 import UserCard from "./UserCard"
 import { userService } from "../services"
-import { useEffect } from "react"
+import { forwardRef, useEffect } from "react"
+import { PageDown } from "iconoir-react"
+
+const CustomToggle = forwardRef(
+  (
+    props: {
+      children?: React.ReactNode
+      onClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {}
+    },
+    ref: React.Ref<HTMLAnchorElement>
+  ) => (
+    <a
+      href=""
+      className="CustomToggle text-decoration-none d-flex align-items-center"
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault()
+        props.onClick(e)
+      }}
+    >
+      {props.children}
+      <PageDown className="ms-2" />
+    </a>
+  )
+)
 
 const UserArea = () => {
-  const setUser = usePersistentStore((state) => state.setUser)
+  const [setUser, logout] = usePersistentStore((state) => [
+    state.setUser,
+    state.reset,
+  ])
   const setView = useBrowserStore((state) => state.setView)
 
-  const isWsConnected = useBrowserStore((state) => state.isWsConnected)
+  const wsStatus = useBrowserStore((state) => state.wsStatus)
   const [token, user] = usePersistentStore((state) => [state.token, state.user])
 
   useEffect(() => {
-    if (!isWsConnected) {
-      console.debug("[UserArea] @useEffect - ws not connected")
+    if (wsStatus !== "connected") {
+      console.debug(
+        "[UserArea] @useEffect - ws not connected, current status",
+        wsStatus
+      )
       return
     }
     if (token !== null) {
@@ -33,16 +63,28 @@ const UserArea = () => {
         })
     } else {
       console.debug(
-        "[UserArea] @useEffect - ws connected, but no token available. Reset user.",
+        "[UserArea] @useEffect - ws connected, but no token available. Reset user."
       )
       setUser(null)
     }
-  }, [token, isWsConnected])
+  }, [token, wsStatus])
 
   return (
     <div className="UserArea me-3 d-flex">
       {user !== null ? (
-        <UserCard user={user} />
+        <>
+          <Dropdown align={"end"}>
+            <Dropdown.Toggle as={CustomToggle}>
+              <UserCard user={user} />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={() => setView("profile")}>
+                Profile
+              </Dropdown.Item>
+              <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </>
       ) : (
         <>
           <Button

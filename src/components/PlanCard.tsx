@@ -2,13 +2,14 @@ import { CheckCircle, Timer, ProfileCircle } from "iconoir-react"
 import "./PlanCard.css"
 import PlanIcon from "./PlanIcon"
 import { marked } from "marked"
-import { RequirementToU } from "../constants"
+import { RequirementToU, Features } from "../constants"
 import Requirement from "./Requirement"
 
 type PlanFeature = {
   title: string
   status: string
   iconColor: string
+  ref?: (typeof Features)[number]
 }
 
 export type Plan = {
