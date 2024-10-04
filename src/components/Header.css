@@ -1,8 +1,5 @@
 .Header {
-  transition:
-    background-color 0.3s,
-    border-color 0.3s,
-    box-shadow 0.3s;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
   border-bottom: 1px solid transparent;
   box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0);
   /* backdrop-filter: blur(4px); */
@@ -19,11 +16,10 @@
 .Header a {
   position: relative;
   text-transform: capitalize;
-  font-weight: 600;
-  font-size: var(--fs12px);
+  font-weight: var(--impresso-wght-medium);
 }
 
-.Header a::after {
+.Header a.nav-link::after {
   content: "";
   position: absolute;
   bottom: 6px;
@@ -35,6 +31,6 @@
   transition: transform 0.3s;
   transform-origin: left;
 }
-.Header a:hover::after {
+.Header a.nav-link:hover::after {
   transform: scaleX(1);
 }

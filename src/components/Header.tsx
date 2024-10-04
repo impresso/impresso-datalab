@@ -50,6 +50,12 @@ const Header: React.FC = () => {
             </Nav.Item>
           </Nav>
           <Nav className="ms-auto align-items-center me-3">
+            {wsStatus === "connected" && (
+              <span className="badge text-success">
+                <FlashSolid width={12} />
+                online
+              </span>
+            )}
             {wsStatus === "idle" && (
               <span className="badge text-dark">
                 <FlashSolid width={12} />

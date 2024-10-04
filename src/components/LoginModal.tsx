@@ -20,6 +20,7 @@ const LoginModal = () => {
       .then((data) => {
         // console.log("loginService.create", data)
         setAuthenticatedUser(data.user, data.accessToken)
+        setView(null)
       })
       .catch((err) => {
         console.error("loginService.create", err)

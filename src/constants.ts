@@ -34,3 +34,5 @@ export const BrowserWsStatusIdle = "idle"
 export const BrowserWsStatusConnecting = "connecting"
 export const BrowserWsStatusConnected = "connected"
 export const BrowserWsStatusClosed = "closed"
+
+export const AccessTokenKey = "feathers-jwt"
