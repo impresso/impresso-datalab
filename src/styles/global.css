@@ -100,6 +100,7 @@
 
   --z-index-header: 10;
   --spacer-1: 0.25rem;
+  --spacer-1-2: 0.3rem;
   --spacer-2: 0.5rem;
   --spacer-3: 1rem;
   --spacer-3-4: 1.25rem;
@@ -261,6 +262,9 @@ button.btn-secodary:hover {
   font-weight: var(--impresso-wght-bold);
   font-variation-settings: "wght" var(--impresso-wght-bold);
 }
+.font-size-inherit {
+  font-size: inherit;
+}
 
 /* ... */
 h1 {
@@ -359,17 +363,15 @@ hr {
 .dropdown-menu a {
   --bs-link-hover-color-rgb: var(--impresso-color-yellow-rgb);
   color: var(--impresso-color-paper);
-  
-
 }
 
-.dropdown .CustomToggle > svg{
+.dropdown .CustomToggle > svg {
   transition: transform 0.3s;
   will-change: transform;
 
   transform: rotate3d(0, 0, 1, 0);
 }
-.dropdown.show .CustomToggle > svg{
+.dropdown.show .CustomToggle > svg {
   transform: rotate3d(0, 0, 1, 180deg);
 }
 .dropdown-menu.dropdown-menu-end {
@@ -378,7 +380,7 @@ hr {
 }
 a.dropdown-item {
   position: relative;
-  display:inline-block;
+  display: inline-block;
   width: auto;
 }
 a.dropdown-item::after {

@@ -3,21 +3,25 @@ id: impresso-user
 title: Impresso User
 icon: basic
 features:
-  - title: Full access to the metadata of 100M media items and search endpoint
-    status: ok
-    iconColor: purple
-  - title: Full access to Public Domain data in impresso App and Data Lab
-    status: ok
+  - ref: explore-all-features
+  - ref: create-store-export-collections
+  - ref: generate-api-keys
+  - ref: metadata
+  - ref: facsimiles
     iconColor: orange
-  - title: Basic rate limit
-    status: limited
+    title: "Access to protected data determined only by Impresso partners. <b>No download possible<b>"
+  - ref: audio
     iconColor: orange
-  - title: 6h authentication token
-    status: limited
+    title: "<b>download<b>"
+  - ref: transcripts
+  - ref: images
     iconColor: orange
+    title: "<b>download<b>"
+  - ref: semantic-enrichments
+
 requirements:
   - terms-of-use
   - impresso-account
 ---
 
-Adds the ability to work with [personal collections](link) in the Impresso Web [App](link) and to access our API.
+Adds the ability to work with personal collections in the Impresso Web App and to access our API via the Datalab.
