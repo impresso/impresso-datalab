@@ -1,28 +1,31 @@
 import { create } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
 import type { User } from "./components/UserCard"
-import { AccessTokenKey } from "./constants"
+import {
+  AccessTokenKey,
+  BrowserWsStatuses,
+  BrowserWsStatusIdle,
+  BrowserViews,
+} from "./constants"
 
 interface PersistentStoreState {
   user: User | null
   token: string | null
-  setAuthenticatedUser: (user: User | null, token: string | null) => void
+  setAuthenticatedUser: (user: User, token: string) => void
   setUser: (user: User | null) => void
   setToken: (token: string | null) => void
   reset: () => void
 }
 
 export const useBrowserStore = create<{
-  view: string | null
-  setView: (view: string | null) => void
-  wsStatus: "idle" | "connecting" | "connected" | "closed"
-  setWsStatus: (
-    wsStatus: "idle" | "connecting" | "connected" | "closed"
-  ) => void
+  view: (typeof BrowserViews)[number] | null
+  setView: (view: (typeof BrowserViews)[number] | null) => void
+  wsStatus: (typeof BrowserWsStatuses)[number]
+  setWsStatus: (wsStatus: (typeof BrowserWsStatuses)[number]) => void
 }>((set) => ({
   view: null,
   setView: (view) => set({ view }),
-  wsStatus: "idle",
+  wsStatus: BrowserWsStatusIdle,
   setWsStatus: (wsStatus) => set({ wsStatus }),
 }))
 
@@ -65,8 +68,8 @@ export const usePersistentStore = create<
     {
       name: "impresso-datalab",
       storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
-    }
-  )
+    },
+  ),
 )
 
 // get fresh data from the localstorage

@@ -81,9 +81,17 @@ export const PlanAcademicUserPlus = "academic-user-plus"
 export const BrowserViewLogin = "login"
 export const BrowserViewSignup = "signup"
 
+export const BrowserViews: string[] = [BrowserViewLogin, BrowserViewSignup]
+
 export const BrowserWsStatusIdle = "idle"
 export const BrowserWsStatusConnecting = "connecting"
 export const BrowserWsStatusConnected = "connected"
 export const BrowserWsStatusClosed = "closed"
 
 export const AccessTokenKey = "feathers-jwt"
+export const BrowserWsStatuses: string[] = [
+  BrowserWsStatusIdle,
+  BrowserWsStatusConnecting,
+  BrowserWsStatusConnected,
+  BrowserWsStatusClosed,
+]
