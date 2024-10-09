@@ -6,6 +6,7 @@ export interface User {
   firstname?: string
   lastname?: string
   pattern?: string
+  email?: string
   profile?: {
     pattern: string[]
   }

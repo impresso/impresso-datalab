@@ -79,9 +79,9 @@ export const PlanAcademicUser = "academic-user"
 export const PlanAcademicUserPlus = "academic-user-plus"
 
 export const BrowserViewLogin = "login"
-export const BrowserViewSignup = "signup"
+export const BrowserViewRegister = "signup"
 
-export const BrowserViews: string[] = [BrowserViewLogin, BrowserViewSignup]
+export const BrowserViews: string[] = [BrowserViewLogin, BrowserViewRegister]
 
 export const BrowserWsStatusIdle = "idle"
 export const BrowserWsStatusConnecting = "connecting"

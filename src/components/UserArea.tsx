@@ -4,6 +4,7 @@ import UserCard from "./UserCard"
 import { userService } from "../services"
 import { forwardRef, useEffect } from "react"
 import { PageDown } from "iconoir-react"
+import { BrowserViewLogin, BrowserViewRegister } from "../constants"
 
 const CustomToggle = forwardRef(
   (
@@ -11,7 +12,7 @@ const CustomToggle = forwardRef(
       children?: React.ReactNode
       onClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {}
     },
-    ref: React.Ref<HTMLAnchorElement>
+    ref: React.Ref<HTMLAnchorElement>,
   ) => (
     <a
       href=""
@@ -25,7 +26,7 @@ const CustomToggle = forwardRef(
       {props.children}
       <PageDown className="ms-2" />
     </a>
-  )
+  ),
 )
 
 const UserArea = () => {
@@ -42,7 +43,7 @@ const UserArea = () => {
     if (wsStatus !== "connected") {
       console.debug(
         "[UserArea] @useEffect - ws not connected, current status",
-        wsStatus
+        wsStatus,
       )
       return
     }
@@ -63,7 +64,7 @@ const UserArea = () => {
         })
     } else {
       console.debug(
-        "[UserArea] @useEffect - ws connected, but no token available. Reset user."
+        "[UserArea] @useEffect - ws connected, but no token available. Reset user.",
       )
       setUser(null)
     }
@@ -90,12 +91,16 @@ const UserArea = () => {
           <Button
             size="sm"
             variant="transparent"
-            onClick={() => setView("login")}
+            onClick={() => setView(BrowserViewLogin)}
           >
             Log in
           </Button>
-          <Button size="sm" variant="transparent">
-            Sign up
+          <Button
+            size="sm"
+            variant="transparent"
+            onClick={() => setView(BrowserViewRegister)}
+          >
+            Register
           </Button>
         </>
       )}
