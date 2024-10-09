@@ -52,12 +52,15 @@ const Wall = ({
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
       <Container fluid>
         <Row>
-          <Col md={{ span: 4 }} xxl={{ span: 4 }} className="align-self-center">
+          <Col md={{ span: 6 }} xxl={{ span: 4 }} className="align-self-center">
             <h1 className="display-3 mb-4" style={{ width: "85%" }}>
-              Boost your research with <em>Impresso</em>
+              Boost your Media Monitoring
             </h1>
-
-            <p style={{ width: "85%" }}>
+            <h2>
+              Explore and work programmatically with the Impresso Corpus, Data
+              and Models
+            </h2>
+            <p style={{ width: "85%" }} className="d-none">
               We collected <b>{numberOfNotebooks}</b>{" "}
               <Link to="/notebooks" underline>
                 Jupyter Ipynb notebooks
@@ -68,41 +71,17 @@ const Wall = ({
             <section className="mt-5"></section>
           </Col>
           <Col md={{ span: 4 }} xxl={{ span: 3 }}>
-            <CollectionCard collection={enterImpressoPy}>
-              <CodeSnippet value={CodeSample} theme={"nord"} />
-            </CollectionCard>
-          </Col>
-          <Col md={{ span: 4 }} xxl={{ span: 3 }}>
-            <CollectionCard collection={enterImpressoModels}>
-              <CodeSnippet
-                value={ImpressoModelsCodeSample}
-                theme={"duotoneDark"}
-              />
-            </CollectionCard>
-          </Col>
-          <Col
-            md={{ span: 12 }}
-            xxl={{ span: 2 }}
-            className="mt-md-5 mt-sm-4 mt-4 mt-xxl-0"
-          >
-            <h3 className="mb-xxl-4">Quick links</h3>
-            <p>
-              Browse our <b>models</b> at{" "}
-              <a href="https://huggingface.co/impresso-project/">
-                🤗 Hugging Face
-              </a>
-            </p>
-            <p>
-              Checkout our <a href="/public-api/docs">Rest API documentation</a>{" "}
-              or use our `impresso-py` Python package to interact with the API.
-            </p>
-            <p>
-              All the notebooks have each an independent environment you can
-              spin with docker, preview on mybinder, google colab...
-            </p>
+            The Impresso project (link to project website) strives to create
+            meaningful links across distinct datasets. The Impresso Datalab is
+            an infrastructure for programmatic data access and annotation
+            services. It offers access to our data and models via API and a
+            dedicated Python library via Jupyter notebooks. The Datalab enables
+            custom analyses of the Impresso corpus and the semantic indexation
+            of external document collections with the help of models created by
+            the project.
           </Col>
         </Row>
-        <Row className="my-3  align-items-bottom">
+        <Row className="my-3  align-items-bottom d-none">
           <Col className="  d-flex justify-content-center align-items-end ">
             <h3 className=" p-3 w-100">Tutorials</h3>
           </Col>
@@ -116,18 +95,26 @@ const Wall = ({
           </Col>
         </Row>
         <Row className="my-3  align-items-bottom">
-          <Col>
+          <Col md={{ span: 4 }} xxl={{ span: 3 }}>
+            <CollectionCard collection={enterImpressoPy}>
+              <CodeSnippet value={CodeSample} theme={"duotoneDark"} />
+            </CollectionCard>
             {seriesTutorials.map((collection) => (
               <CollectionCard key={collection.title} collection={collection} />
             ))}
           </Col>
-
           <Col>
             {seriesYourData.map((collection) => (
               <CollectionCard key={collection.title} collection={collection} />
             ))}
           </Col>
           <Col>
+            <CollectionCard collection={enterImpressoModels}>
+              <CodeSnippet
+                value={ImpressoModelsCodeSample}
+                theme={"duotoneDark"}
+              />
+            </CollectionCard>
             {seriesUnexpected.map((collection) => (
               <CollectionCard
                 key={collection.title}

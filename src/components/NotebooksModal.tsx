@@ -9,14 +9,21 @@ interface NotebookModalProps {
 
 const NotebooksModal: React.FC<NotebookModalProps> = ({ notebooks = [] }) => {
   return (
-    <Page title="All Notebook" fullscreen="xl-down" size="xl">
+    <Page title="Browse our Ipynb Notebooks" fullscreen="xl-down" size="xl">
       <Container>
         <Row>
-          {notebooks.map((notebook) => (
-            <Col md={4} className="mb-3" key={notebook.slug}>
-              <NotebookCard notebook={notebook} />
-            </Col>
-          ))}
+          <Col md={4}>
+            <h4 className="position-sticky top-0">Browse by categories</h4>
+          </Col>
+          <Col>
+            {notebooks.map((notebook) => (
+              <NotebookCard
+                key={notebook.slug}
+                className="my-2"
+                notebook={notebook}
+              />
+            ))}
+          </Col>
         </Row>
       </Container>
     </Page>

@@ -12,8 +12,17 @@
   list-style: none;
 }
 
+.CollectionCard h2,
 .CollectionCard h3 {
   font-size: inherit;
+  font-weight: var(--impresso-wght-bold);
+
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+}
+.CollectionCard h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-variation-settings: "wght" var(--impresso-wght-medium);
 }
 .CollectionCard .map-bg img {
   position: absolute;

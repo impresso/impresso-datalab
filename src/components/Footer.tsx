@@ -15,6 +15,7 @@ import LogoDofcl from "./logos/LogoDofcl"
 import AssociatedPartner, {
   type AssociatedPartnerProps,
 } from "./AssociatedPartner"
+import Link from "./Link"
 
 const Footer: React.FC<{
   associatedPartners: AssociatedPartnerProps[]
@@ -29,6 +30,39 @@ const Footer: React.FC<{
   return (
     <footer className="footer mt-5 mx-lg-5 mx-md-2">
       <Container fluid>
+        <Row className="border-top border-dark py-3">
+          <Col>
+            <h3 className="mt-2">Quick links & Documentation</h3>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="6" lg="3" xxl="3">
+            <p>
+              Browse our <b>models</b> at{" "}
+              <a href="https://huggingface.co/impresso-project/">
+                🤗 Hugging Face
+              </a>
+            </p>
+          </Col>
+          <Col md="6" lg="3" xxl="3">
+            <p>
+              Checkout our <a href="/public-api/docs">Rest API documentation</a>{" "}
+              or the documentation of our `impresso-py` Python package to
+              interact with the Impresso public API.
+            </p>
+          </Col>
+          <Col md="6" lg="3" xxl="3">
+            <p>
+              <Link to="/notebooks">Notebooks</Link> are a great way to get
+              started with the data. They are interactive and can be run in the
+              cloud.
+            </p>
+            <p>
+              All the notebooks have each an independent environment you can
+              spin with docker, preview on mybinder, google colab...
+            </p>
+          </Col>
+        </Row>
         <Row className="border-top border-dark py-3">
           <Col>
             <h3 className="mt-2">Partners</h3>

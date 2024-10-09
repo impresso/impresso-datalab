@@ -22,13 +22,14 @@ export interface Notebook {
 const NotebookCard: React.FC<{
   notebook: Notebook
   children?: React.ReactNode
-}> = ({ notebook, children }) => {
+  className?: string
+}> = ({ notebook, children, className = "" }) => {
   const accessTime = notebook.date ?? new Date()
   const accessDateTime = DateTime.fromJSDate(accessTime)
 
   return (
     <Link to={notebook.href}>
-      <div className="NotebookCard shadow-sm">
+      <div className={`NotebookCard shadow-sm ${className}`}>
         <div className="p-3 d-flex align-items-center">
           <div className="Avatar">
             <Avatar
