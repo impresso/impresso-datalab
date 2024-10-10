@@ -1,26 +1,24 @@
 import { Modal } from "react-bootstrap"
-import { useBrowserStore, usePersistentStore } from "../store"
+import { useBrowserStore } from "../store"
 import { BrowserViewRegister } from "../constants"
-import LoginForm, { type LoginFormPayload } from "./LoginForm"
-import { loginService } from "../services"
-import { useRef, useState } from "react"
-import { type User } from "./UserCard"
+// import { useState } from "react"
+// import { type User } from "./UserCard"
 import RegisterForm from "./RegisterForm"
 import Link from "./Link"
 
 const RegisterModal = () => {
   const view = useBrowserStore((state) => state.view)
   const setView = useBrowserStore((state) => state.setView)
-  const [candidate, setCandidate] = useState<User>(() => ({
-    username: "",
-    isStaff: false,
-    firstname: "",
-    lastname: "",
-    profile: {
-      pattern: [],
-    },
-    agreedToTerms: false,
-  }))
+  // const [candidate, setCandidate] = useState<User>(() => ({
+  //   username: "",
+  //   isStaff: false,
+  //   firstname: "",
+  //   lastname: "",
+  //   profile: {
+  //     pattern: [],
+  //   },
+  //   agreedToTerms: false,
+  // }))
 
   return (
     <Modal

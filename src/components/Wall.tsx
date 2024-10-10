@@ -1,9 +1,9 @@
-import { Button, Col, Container, Row } from "react-bootstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import CollectionCard, { type Collection } from "./CollectionCard"
 import CodeSnippet from "./CodeSnippet"
 import { useEffect } from "react"
 import Link from "./Link"
-import GettingStarted from "./gettingStarted"
+import GettingStarted from "./GettingStarted"
 
 const CodeSample = `
 from impresso import api 

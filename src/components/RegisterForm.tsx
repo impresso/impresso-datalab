@@ -149,7 +149,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ className, onSubmit }) => {
             type="radio"
             label={PlanLabels[plan]}
             name="plan"
-            onChange={(e) => updatePreview("plan", plan)}
+            onChange={() => updatePreview("plan", plan)}
             id={`ModalRegisterForm.${plan}`}
           />
         ))}
