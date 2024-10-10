@@ -77,6 +77,13 @@ export const PlanImpressoUser = "impresso-user"
 export const PlanStudentUser = "student-user"
 export const PlanAcademicUser = "academic-user"
 export const PlanAcademicUserPlus = "academic-user-plus"
+export const PlanLabels: Record<string, string> = {
+  [PlanGuest]: "Guest",
+  [PlanImpressoUser]: "No academic affiliation",
+  [PlanStudentUser]: "Student",
+  [PlanAcademicUser]: "Academic",
+  [PlanAcademicUserPlus]: "Academic User Plus",
+}
 
 export const BrowserViewLogin = "login"
 export const BrowserViewRegister = "signup"

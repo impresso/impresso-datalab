@@ -15,9 +15,16 @@ export interface User {
   agreedToTerms?: boolean
 }
 
-const UserCard = ({ user }: { user: User }) => {
+const UserCard = ({
+  className = "",
+  user,
+}: {
+  className?: string
+  user: User
+}) => {
+  console.debug("[UserCard] rendering:", user)
   return (
-    <div className="UserCard d-flex align-items-center">
+    <div className={`UserCard d-flex align-items-center ${className}`}>
       <div className="me-2">
         <Avatar
           size={30}

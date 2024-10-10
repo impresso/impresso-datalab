@@ -281,7 +281,12 @@ button.btn-secodary:hover {
 .font-size-inherit {
   font-size: inherit;
 }
-
+.border-radius-sm {
+  border-radius: var(--impresso-border-radius-sm);
+}
+.border-radius-lg {
+  border-radius: var(--impresso-border-radius-lg);
+}
 /* ... */
 h1 {
   font-variation-settings: "wght" var(--impresso-wght-bold);
