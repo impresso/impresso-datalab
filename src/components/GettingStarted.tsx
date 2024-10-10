@@ -37,7 +37,10 @@ const GettingStarted = ({ className = "" }) => {
           </li>
         ) : null}
         <li>
-          <Link to="/terms" className="btn btn-primary-outline btn-lg pe-4">
+          <Link
+            to="/terms-of-use"
+            className="btn btn-primary-outline btn-lg pe-4"
+          >
             <div className="badge bg-dark me-2 py-1 px-2 font-weight-extrabold text-primary">
               {startNumAfterOptionalSteps}
             </div>{" "}
