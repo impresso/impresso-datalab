@@ -44,6 +44,7 @@
 
   --bs-light: var(--impresso-color-paper);
   --bs-primary: #ffe587;
+  --bs-primary-rgb: 255, 229, 135;
   --secondary-rgb: 138, 93, 232;
   --secondary: rgb(var(--secondary-rgb));
   --tertiary: #e85da0;
@@ -89,6 +90,7 @@
   --impresso-wght-smallcaps: 580;
   --impresso-wght-bold: 700;
   --impresso-wght-medium: 550;
+  --impresso-wght-extrabold: 900;
 
   --impresso-font-size-sm: var(--fs12px);
   /* EASING */
@@ -113,6 +115,9 @@
   --negative-spacer-4: -1.5rem;
   --negative-spacer-5: -3rem;
   /* SHADOWS */
+  --shadow-xs: rgba(52, 58, 64, 0.1) 0px 10px 15px -3px,
+    rgba(52, 58, 64, 0.05) 0px 4px 6px -2px;
+
   --shadow-sm: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
   --shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 0 1.5rem 0 rgba(0, 0, 0, 0.1);
@@ -188,6 +193,13 @@ button svg {
   border: 2px var(--impresso-color-yellow) solid;
 }
 
+.btn-primary-outline {
+  --bs-btn-bg: transparent;
+  --bs-btn-color: var(--impresso-color-yellow);
+  border: 2px var(--impresso-color-black) solid !important;
+  box-shadow: var(--shadow-xs);
+}
+
 .btn-secondary,
 .btn-secodary.btn-lg,
 .btn-secodary.btn-sm {
@@ -261,6 +273,10 @@ button.btn-secodary:hover {
 .font-weight-bold {
   font-weight: var(--impresso-wght-bold);
   font-variation-settings: "wght" var(--impresso-wght-bold);
+}
+.font-weight-extrabold {
+  font-weight: var(--impresso-wght-extrabold);
+  font-variation-settings: "wght" var(--impresso-wght-extrabold);
 }
 .font-size-inherit {
   font-size: inherit;
