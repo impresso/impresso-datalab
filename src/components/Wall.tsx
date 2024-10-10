@@ -5,7 +5,9 @@ import { useEffect } from "react"
 import Link from "./Link"
 import GettingStarted from "./GettingStarted"
 
-const CodeSample = `
+const CodeSample = `# Install the impresso library
+!pip install impresso
+
 from impresso import api 
 
 print(api.version())
@@ -72,14 +74,28 @@ const Wall = ({
             </p>
           </Col>
           <Col md={4}>
-            The Impresso project (link to project website) strives to create
-            meaningful links across distinct datasets. The Impresso Datalab is
-            an infrastructure for programmatic data access and annotation
-            services. It offers access to our data and models via API and a
-            dedicated Python library via Jupyter notebooks. The Datalab enables
-            custom analyses of the Impresso corpus and the semantic indexation
-            of external document collections with the help of models created by
-            the project.
+            <h3>
+              Join us in this early stage of development and help us to improve
+              the platform.
+            </h3>
+            The{" "}
+            <a
+              href="https://impresso-project.ch"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Impresso project
+            </a>{" "}
+            strives to create meaningful links across distinct datasets. The
+            Impresso <em>Datalab</em> is an infrastructure for{" "}
+            <b>programmatic data access</b> and <b>annotation services</b>.
+            <p>
+              It offers access to our data and models via API and a dedicated
+              Python library via Jupyter notebooks. The Datalab enables custom
+              analyses of the Impresso corpus and the semantic indexation of
+              external document collections with the help of models created by
+              the project.
+            </p>
           </Col>
         </Row>
         <Row className="my-3  align-items-bottom d-none">
