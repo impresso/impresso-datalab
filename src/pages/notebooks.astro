@@ -13,7 +13,7 @@ const notebooksProps = await Promise.all(notebooks.map(async (notebook) => {
 }))
 ---
 
-<Layout title={"Impresso Notebooks"}>
+<Layout title={"Notebooks - Impresso Datalab"}>
   <App transition:persist/>
   <NotebooksModal client:only="react" 
     notebooks={notebooksProps}

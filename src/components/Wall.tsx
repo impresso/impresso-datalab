@@ -3,6 +3,7 @@ import CollectionCard, { type Collection } from "./CollectionCard"
 import CodeSnippet from "./CodeSnippet"
 import { useEffect } from "react"
 import Link from "./Link"
+import GettingStarted from "./GettingStarted"
 
 const CodeSample = `
 from impresso import api 
@@ -51,12 +52,13 @@ const Wall = ({
   return (
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
       <Container fluid>
-        <Row>
-          <Col md={{ span: 6 }} xxl={{ span: 4 }} className="align-self-center">
+        <Row className="d-flex align-items-end mb-5">
+          <Col md={6}>
             <h1 className="display-3 mb-4" style={{ width: "85%" }}>
-              Boost your Media Monitoring
+              Boost your <br />
+              Media Monitoring
             </h1>
-            <h2>
+            <h2 className="m-0 p-0">
               Explore and work programmatically with the Impresso Corpus, Data
               and Models
             </h2>
@@ -68,9 +70,8 @@ const Wall = ({
               in <b>{numberOfSeries}</b> series, maintained and developed by{" "}
               <b>{numberOfAuthors}</b> authors.
             </p>
-            <section className="mt-5"></section>
           </Col>
-          <Col md={{ span: 4 }} xxl={{ span: 3 }}>
+          <Col md={4}>
             The Impresso project (link to project website) strives to create
             meaningful links across distinct datasets. The Impresso Datalab is
             an infrastructure for programmatic data access and annotation
@@ -95,21 +96,31 @@ const Wall = ({
           </Col>
         </Row>
         <Row className="my-3  align-items-bottom">
-          <Col md={{ span: 4 }} xxl={{ span: 3 }}>
-            <CollectionCard collection={enterImpressoPy}>
+          <Col md={6} xl={4} className="order-md-1 order-xl-1">
+            <CollectionCard className="mb-3" collection={enterImpressoPy}>
+              <GettingStarted />
+
               <CodeSnippet value={CodeSample} theme={"duotoneDark"} />
             </CollectionCard>
             {seriesTutorials.map((collection) => (
-              <CollectionCard key={collection.title} collection={collection} />
+              <CollectionCard
+                className="mb-3"
+                key={collection.title}
+                collection={collection}
+              />
             ))}
           </Col>
-          <Col>
+          <Col md={6} xl={4} className="order-md-3 order-xl-2">
             {seriesYourData.map((collection) => (
-              <CollectionCard key={collection.title} collection={collection} />
+              <CollectionCard
+                className="mb-3"
+                key={collection.title}
+                collection={collection}
+              />
             ))}
           </Col>
-          <Col>
-            <CollectionCard collection={enterImpressoModels}>
+          <Col md={6} xl={4} className="order-md-2  order-xl-3">
+            <CollectionCard className="mb-3" collection={enterImpressoModels}>
               <CodeSnippet
                 value={ImpressoModelsCodeSample}
                 theme={"duotoneDark"}
@@ -119,7 +130,7 @@ const Wall = ({
               <CollectionCard
                 key={collection.title}
                 collection={collection}
-                className="mb-2"
+                className="mb-3"
               />
             ))}
           </Col>

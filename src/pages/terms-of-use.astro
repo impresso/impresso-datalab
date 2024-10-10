@@ -1,0 +1,10 @@
+---
+import App from "../components/App.astro";
+import TermsOfUseModal from "../components/TermsOfUseModal";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title={"Terms of Use - Impresso Datalab"}>
+  <App transition:persist/>
+  <TermsOfUseModal client:only="react" />
+</Layout>
