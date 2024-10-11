@@ -5,6 +5,7 @@
 .CodeSnippet .cm-editor {
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
+  /* box-shadow: none; */
 }
 
 .CodeSnippet button.copy-code {
@@ -13,11 +14,15 @@
   top: 1px;
   background: transparent;
   border: 0 none;
-  color: var(--impresso-color-yellow);
+  color: var(--impresso-color-black-rgba-50);
 }
 
 .CodeSnippet .btn {
   position: absolute;
   right: 0;
   bottom: 0.5rem;
+}
+
+.cm-line:not(span) {
+  color: #fef6db;
 }

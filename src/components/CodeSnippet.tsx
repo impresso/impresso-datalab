@@ -4,6 +4,8 @@ import type { ReactCodeMirrorRef } from "@uiw/react-codemirror"
 import { duotoneDark } from "@uiw/codemirror-theme-duotone"
 import { python } from "@codemirror/lang-python"
 import { Copy, CheckCircle } from "iconoir-react"
+import { createTheme } from "@uiw/codemirror-themes"
+import { tags as t } from "@lezer/highlight"
 
 import "./CodeSnippet.css"
 
@@ -12,6 +14,38 @@ export interface CodeSnippetProps {
   readonly?: boolean
   basicSetup?: any
 }
+
+const myTheme = createTheme({
+  theme: "light",
+  settings: {
+    background: "#fff9f2",
+    backgroundImage: "",
+    foreground: "#75baff",
+    caret: "#5d00ff",
+    selection: "#036dd626",
+    selectionMatch: "#036dd626",
+    lineHighlight: "#8a91991a",
+    gutterBorder: "1px solid #ffffff10",
+    gutterBackground: "#fff9f2",
+    gutterForeground: "#8a919966",
+  },
+  styles: [
+    { tag: t.comment, color: "#6c9d7c" },
+    { tag: t.variableName, color: "#9c48bd" },
+    { tag: [t.string, t.special(t.brace)], color: "#5c6166" },
+    { tag: t.number, color: "#5c6166" },
+    { tag: t.bool, color: "#5c6166" },
+    { tag: t.null, color: "#5c6166" },
+    { tag: t.keyword, color: "#5c6166" },
+    { tag: t.operator, color: "#5c6166" },
+    { tag: t.className, color: "#5c6166" },
+    { tag: t.definition(t.typeName), color: "#5c6166" },
+    { tag: t.typeName, color: "#5c6166" },
+    { tag: t.angleBracket, color: "#5c6166" },
+    { tag: t.tagName, color: "#5c6166" },
+    { tag: t.attributeName, color: "#5c6166" },
+  ],
+})
 
 const CodeSnippet: React.FC<CodeSnippetProps> = ({
   value = "",
@@ -61,7 +95,8 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
       <ReactCodeMirror
         ref={codeMirrorRef}
         value={value}
-        theme={duotoneDark}
+        // theme={duotoneDark}
+        theme={myTheme}
         readOnly={readonly}
         basicSetup={basicSetup}
         extensions={[python(), EditorView.lineWrapping]}
