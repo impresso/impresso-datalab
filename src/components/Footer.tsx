@@ -137,25 +137,46 @@ const Footer: React.FC<{
           </Col>
         </Row>
         <Row className="mb-5 py-3 border-top border-dark">
-          <GitInfo
-            version={import.meta.env.PUBLIC_VERSION}
-            gitBranch={import.meta.env.PUBLIC_GIT_BRANCH}
-            gitBuildDate={import.meta.env.PUBLIC_BUILD_DATE}
-            gitCommitSha={import.meta.env.PUBLIC_GIT_COMMIT_SHA}
-            gitTag={import.meta.env.PUBLIC_GIT_TAG}
-            gitRemoteOriginUrl={import.meta.env.PUBLIC_GIT_REMOTE}
-          >
-            <p>
-              Data version:{" "}
-              <b>
-                {status === "pending" && <span>Loading...</span>}
-                {status === "error" && (
-                  <span>Error: {JSON.stringify(error.message)}</span>
-                )}
-                {status === "success" && <span>{data?.data.version}</span>}
-              </b>
-            </p>
-          </GitInfo>
+          <Col sm={6}>
+            <GitInfo
+              version={import.meta.env.PUBLIC_VERSION}
+              gitBranch={import.meta.env.PUBLIC_GIT_BRANCH}
+              gitBuildDate={import.meta.env.PUBLIC_BUILD_DATE}
+              gitCommitSha={import.meta.env.PUBLIC_GIT_COMMIT_SHA}
+              gitTag={import.meta.env.PUBLIC_GIT_TAG}
+              gitRemoteOriginUrl={import.meta.env.PUBLIC_GIT_REMOTE}
+            >
+              <p>
+                Data version:{" "}
+                <b>
+                  {status === "pending" && <span>Loading...</span>}
+                  {status === "error" && (
+                    <span>Error: {JSON.stringify(error.message)}</span>
+                  )}
+                  {status === "success" && <span>{data?.data.version}</span>}
+                </b>
+              </p>
+            </GitInfo>
+          </Col>
+          <Col>
+            <ul className="list-unstyled">
+              <li>
+                <Link underline to="/about">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link underline to="/plans">
+                  Plans
+                </Link>
+              </li>
+            </ul>
+          </Col>
+          <Col>
+            <Link underline to="/terms-of-use">
+              Terms of Use
+            </Link>
+          </Col>
         </Row>
       </Container>
     </footer>

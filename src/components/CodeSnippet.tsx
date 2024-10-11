@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import ReactCodeMirror, { EditorView } from "@uiw/react-codemirror"
 import type { ReactCodeMirrorRef } from "@uiw/react-codemirror"
-import { nord } from "@uiw/codemirror-theme-nord"
 import { duotoneDark } from "@uiw/codemirror-theme-duotone"
 import { python } from "@codemirror/lang-python"
 import { Copy, CheckCircle } from "iconoir-react"
@@ -11,13 +10,17 @@ import "./CodeSnippet.css"
 export interface CodeSnippetProps {
   value?: string
   readonly?: boolean
-  theme?: "nord" | "duotoneDark"
+  basicSetup?: any
 }
 
 const CodeSnippet: React.FC<CodeSnippetProps> = ({
   value = "",
   readonly = false,
-  theme = "nord",
+  basicSetup = {
+    lineNumbers: true,
+    tabSize: 2,
+    foldGutter: true,
+  },
 }) => {
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
   const codeMirrorRef = useRef<ReactCodeMirrorRef>(null)
@@ -58,12 +61,17 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
       <ReactCodeMirror
         ref={codeMirrorRef}
         value={value}
-        theme={theme === "nord" ? nord : duotoneDark}
+        theme={duotoneDark}
         readOnly={readonly}
+        basicSetup={basicSetup}
         extensions={[python(), EditorView.lineWrapping]}
       />
       <button className="copy-code" onClick={handleCopy} aria-label="copy code">
-        {isCopied ? <CheckCircle strokeWidth={2} /> : <Copy strokeWidth={2} />}
+        {isCopied ? (
+          <CheckCircle strokeWidth={1.5} />
+        ) : (
+          <Copy strokeWidth={1.5} />
+        )}
       </button>
     </div>
   )

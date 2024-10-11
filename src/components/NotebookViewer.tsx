@@ -5,6 +5,7 @@ import type { Notebook } from "./NotebookCard"
 import NotebookCard from "./NotebookCard"
 import AuthorCard from "./AuthorCard"
 import { GithubCircle } from "iconoir-react"
+import Alert from "./Alert"
 
 export interface NotebookViewerProps {
   notebook: Notebook
@@ -72,17 +73,16 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
             {notebook.googleColabUrl ? (
               <a target="_blank" href={notebook.googleColabUrl}>
                 <img
-                  src="https://colab.research.google.com/assets/colab-badge.svg"
+                  src="https://img.shields.io/badge/Open_in_Colab-212529?logo=googlecolab"
                   alt="Open In Colab"
                 />
               </a>
             ) : null}
-            <a
-              href={notebook.githubUrl}
-              className="small d-flex gap-1 align-items-end"
-            >
-              <GithubCircle width={16} className="pt-1" />
-              Browse source code
+            <a href={notebook.githubUrl}>
+              <img
+                src="https://img.shields.io/badge/Open_in_GitHub-212529?logo=GitHub"
+                alt="Open In GitHub"
+              ></img>
             </a>
           </section>
         </Col>
@@ -92,6 +92,11 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
       </Row>
       <Row className="mb-3">
         <Col lg="7">
+          <Alert className="mb-4 p-3">
+            <div className="me-2">
+              <b>Note:</b> This is a static preview of the Jupyter notebook.
+            </div>
+          </Alert>
           {cells.map((cell, i) => (
             <div key={cell.cellNumber}>
               {cell.cellType === "markdown" && (
@@ -101,7 +106,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
                 />
               )}
               {cell.cellType === "code" && (
-                <CodeSnippet value={cell.content} readonly />
+                <CodeSnippet value={cell.content} readonly theme="nord" />
               )}
             </div>
           ))}

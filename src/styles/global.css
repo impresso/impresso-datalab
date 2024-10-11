@@ -245,8 +245,7 @@ button.btn-secodary:hover {
   transition: background-color 0.25s ease-in-out;
 }
 
-.link-button:hover,
-.NotebookCard:hover .link-button {
+.link-button:hover {
   background-color: var(--impresso-color-yellow);
 }
 

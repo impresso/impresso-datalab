@@ -1,3 +1,4 @@
+import AcceptTermsOfUse from "./AcceptTermsOfUse"
 import Page from "./Page"
 import { Container, Row } from "react-bootstrap"
 
@@ -7,6 +8,7 @@ const TermsOfUseModal: React.FC = () => {
       title="Terms Of Use - Impresso Datalab"
       fullscreen="xl-down"
       size="xl"
+      footer={<AcceptTermsOfUse />}
     >
       <Container>
         <Row>

@@ -8,6 +8,7 @@ interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
   subtitle?: string
   size?: ModalProps["size"]
   modalBodyClassName?: string
+  footer?: React.ReactNode
 }
 
 const Page: React.FC<PageProps> = ({
@@ -18,6 +19,7 @@ const Page: React.FC<PageProps> = ({
   fullscreen = undefined,
   size,
   modalBodyClassName = "",
+  footer = null,
 }) => {
   const [show, setShow] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
@@ -63,6 +65,7 @@ const Page: React.FC<PageProps> = ({
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className={modalBodyClassName}>{children}</Modal.Body>
+      {footer !== null ? <Modal.Footer>{footer}</Modal.Footer> : null}
     </Modal>
   )
 }
