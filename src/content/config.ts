@@ -1,5 +1,10 @@
 import { z, defineCollection, reference } from "astro:content"
-import { Requirements, Features } from "../constants"
+import {
+  Requirements,
+  Features,
+  SeriesCategories,
+  SeriesPositions,
+} from "../constants"
 
 const notebooks = defineCollection({
   type: "content", // v2.5.0 and later
@@ -60,6 +65,8 @@ const series = defineCollection({
   schema: z.object({
     title: z.string(),
     excerpt: z.string(),
+    category: z.array(z.enum(SeriesCategories as any)).optional(),
+    position: z.string(z.enum(SeriesPositions as any)).optional(),
     notebooks: z.array(reference("notebooks")),
   }),
 })

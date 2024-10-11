@@ -102,3 +102,23 @@ export const BrowserWsStatuses: string[] = [
   BrowserWsStatusConnected,
   BrowserWsStatusClosed,
 ]
+
+export const SeriesCategoryTutorials = "tutorials"
+export const SeriesCategoryExplorations = "explorations"
+export const SeriesCategoryLLMs = "llms"
+
+export const SeriesCategories: string[] = [
+  SeriesCategoryTutorials,
+  SeriesCategoryExplorations,
+  SeriesCategoryLLMs,
+]
+
+export const SeriesPositionLeadingColumn = "leading-column"
+export const SeriesPositionCentralColumn = "central-column"
+export const SeriesPositionTrailingColumn = "trailing-column"
+
+export const SeriesPositions: string[] = [
+  SeriesPositionLeadingColumn,
+  SeriesPositionCentralColumn,
+  SeriesPositionTrailingColumn,
+]
