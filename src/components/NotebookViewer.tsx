@@ -4,7 +4,6 @@ import MarkdownSnipped from "./MarkdownSnippet"
 import type { Notebook } from "./NotebookCard"
 import NotebookCard from "./NotebookCard"
 import AuthorCard from "./AuthorCard"
-import { GithubCircle } from "iconoir-react"
 import Alert from "./Alert"
 
 export interface NotebookViewerProps {
@@ -106,7 +105,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
                 />
               )}
               {cell.cellType === "code" && (
-                <CodeSnippet value={cell.content} readonly theme="nord" />
+                <CodeSnippet value={cell.content} readonly />
               )}
             </div>
           ))}

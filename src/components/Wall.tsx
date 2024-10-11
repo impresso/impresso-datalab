@@ -116,7 +116,7 @@ const Wall = ({
             <CollectionCard className="mb-3" collection={enterImpressoPy}>
               <GettingStarted />
 
-              <CodeSnippet value={CodeSample} theme={"duotoneDark"} />
+              <CodeSnippet value={CodeSample} />
             </CollectionCard>
             {seriesInLeadingColumn.map((collection) => (
               <CollectionCard
@@ -137,10 +137,7 @@ const Wall = ({
           </Col>
           <Col md={6} xl={4} className="order-md-2  order-xl-3">
             <CollectionCard className="mb-3" collection={enterImpressoModels}>
-              <CodeSnippet
-                value={ImpressoModelsCodeSample}
-                theme={"duotoneDark"}
-              />
+              <CodeSnippet value={ImpressoModelsCodeSample} />
             </CollectionCard>
             {seriesInTrailingColumn.map((collection) => (
               <CollectionCard
