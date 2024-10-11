@@ -7,6 +7,9 @@ import Background from '../components/Background';
 import { getCollection } from 'astro:content';
 import { getRecursivelyEntryData } from '../logic'
 import Modals from './Modals';
+import type { Collection } from './CollectionCard';
+import { SeriesPositionLeadingColumn, SeriesPositionCentralColumn, SeriesPositionTrailingColumn } from '../constants';
+
 
 const authors = await getCollection('authors')
 const numberOfAuthors = authors.length
@@ -23,6 +26,8 @@ for(const seriesEntry of series){
   seriesDataIndex[seriesEntry.slug]['body'] = seriesEntry.body
 }
 
+const seriesValues:Collection[] = Object.values(seriesDataIndex) 
+
 const associatedPartners = await getCollection('associatedPartners')
 const associatedPartnersData = associatedPartners.map((entry) => {
   return {
@@ -31,23 +36,17 @@ const associatedPartnersData = associatedPartners.map((entry) => {
   }
 })
 
-
 ---
 <Header client:only="react" />
 <Wall 
   client:only="react" 
   enterImpressoPy={seriesDataIndex['enter-impresso']}
   enterImpressoModels={seriesDataIndex['enter-impresso-models']}
-  seriesYourData={[
-    seriesDataIndex['entities'],
-  ]}
-  seriesUnexpected={[
-    seriesDataIndex['graph-network-visualisations'],
-    seriesDataIndex['drawing-basic-visualisation'],
-  ]}
-  seriesTutorials={[
-    seriesDataIndex['impresso-py-in-depth'],
-  ]}
+
+  seriesInLeadingColumn={seriesValues.filter((series) => series.position === SeriesPositionLeadingColumn)}
+  seriesInCentralColumn={seriesValues.filter((series) => series.position === SeriesPositionCentralColumn)}
+  seriesInTrailingColumn={seriesValues.filter((series) => series.position === SeriesPositionTrailingColumn)}
+
   numberOfNotebooks={numberOfNotebooks}
   numberOfSeries={numberOfSeries}
   numberOfAuthors={numberOfAuthors}

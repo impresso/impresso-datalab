@@ -2,6 +2,7 @@ import React from "react"
 import "./CollectionCard.css"
 import NotebookCard, { type Notebook } from "./NotebookCard.tsx"
 import MarkdownSnippet from "./MarkdownSnippet.tsx"
+
 export interface Collection {
   title: string
   excerpt: string
@@ -13,6 +14,8 @@ export interface Collection {
       }
     | null
     | undefined
+  category?: string[]
+  position?: string
   notebooks: Notebook[]
 }
 

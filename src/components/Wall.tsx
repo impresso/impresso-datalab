@@ -29,9 +29,9 @@ const Wall = ({
   numberOfNotebooks = 100,
   numberOfSeries = 2,
   // series = [],
-  seriesUnexpected = [],
-  seriesTutorials = [],
-  seriesYourData = [],
+  seriesInTrailingColumn = [],
+  seriesInLeadingColumn = [],
+  seriesInCentralColumn = [],
   enterImpressoPy,
   enterImpressoModels,
   scrollToTop = false,
@@ -39,9 +39,9 @@ const Wall = ({
   numberOfAuthors?: number
   numberOfNotebooks?: number
   numberOfSeries?: number
-  seriesUnexpected?: Collection[]
-  seriesTutorials?: Collection[]
-  seriesYourData?: Collection[]
+  seriesInTrailingColumn?: Collection[]
+  seriesInLeadingColumn?: Collection[]
+  seriesInCentralColumn?: Collection[]
   enterImpressoPy: Collection
   enterImpressoModels: Collection
   scrollToTop?: boolean
@@ -118,7 +118,7 @@ const Wall = ({
 
               <CodeSnippet value={CodeSample} theme={"duotoneDark"} />
             </CollectionCard>
-            {seriesTutorials.map((collection) => (
+            {seriesInLeadingColumn.map((collection) => (
               <CollectionCard
                 className="mb-3"
                 key={collection.title}
@@ -127,7 +127,7 @@ const Wall = ({
             ))}
           </Col>
           <Col md={6} xl={4} className="order-md-3 order-xl-2">
-            {seriesYourData.map((collection) => (
+            {seriesInCentralColumn.map((collection) => (
               <CollectionCard
                 className="mb-3"
                 key={collection.title}
@@ -142,7 +142,7 @@ const Wall = ({
                 theme={"duotoneDark"}
               />
             </CollectionCard>
-            {seriesUnexpected.map((collection) => (
+            {seriesInTrailingColumn.map((collection) => (
               <CollectionCard
                 key={collection.title}
                 collection={collection}
