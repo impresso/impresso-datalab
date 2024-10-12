@@ -32,3 +32,4 @@ static/data/
 !static/data/.gitkeep
 src/styles/fonts.css
 impresso-datalab.code-workspace
+.env.development
