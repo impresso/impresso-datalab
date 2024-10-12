@@ -5,7 +5,7 @@ import { a, config, useSpring } from "@react-spring/web"
 const Background = () => {
   const windowWidth = useRef(window.innerWidth)
   const windowHeight = useRef(window.innerHeight)
-  const [{ x, y }, api] = useSpring(() => ({
+  const [{ x, y }] = useSpring(() => ({
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
     config: config.molasses,
@@ -19,7 +19,7 @@ const Background = () => {
   const mouseMoveEvent = (e: MouseEvent) => {
     const x = e.pageX - windowWidth.current / 2
     const y = e.pageY - windowHeight.current / 2
-    api.start({ x, y })
+    // api.start({ x, y })
   }
   useEffect(() => {
     document.addEventListener("mousemove", mouseMoveEvent)
