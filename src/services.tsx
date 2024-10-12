@@ -16,12 +16,12 @@ const app = feathers()
 app.configure(
   auth({
     storage: window.localStorage,
-  })
+  }),
 )
 app.configure(
   socketio(socket, {
     timeout: 20000,
-  })
+  }),
 )
 console.info("[services] socket.io version", socket.io.engine.id)
 
@@ -47,7 +47,7 @@ socket.on("connect", async () => {
     .catch((err) => {
       console.warn(
         "[services] @connect reAuthenticate failure, skip. Error:",
-        err
+        err,
       )
       return null
     })
@@ -62,4 +62,5 @@ socket.on("reconnect", (attemptNumber) => {
 
 export const versionService = app.service("version")
 export const userService = app.service("me")
+export const termsOfUseService = app.service("terms-of-use")
 export const loginService = app.service("authentication")
