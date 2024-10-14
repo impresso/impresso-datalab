@@ -44,6 +44,11 @@ const Header: React.FC = () => {
               </Link>
             </Nav.Item>
             <Nav.Item>
+              <Link to="/about" className="nav-link ">
+                about
+              </Link>
+            </Nav.Item>
+            <Nav.Item>
               <Link to="/plans" className="nav-link ">
                 Plans
               </Link>

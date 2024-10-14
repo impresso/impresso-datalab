@@ -1,13 +1,18 @@
 import { useEffect, useRef, useState, type ChangeEvent } from "react"
 import AcceptTermsOfUse from "./AcceptTermsOfUse"
 import Page from "./Page"
-import { Container, Row } from "react-bootstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import { useBrowserStore, usePersistentStore } from "../store"
-import { termsOfUseService } from "../services"
+import { accountDetailsService } from "../services"
 import { DateTime } from "luxon"
 import { useOnScreen } from "@custom-react-hooks/use-on-screen"
+import MarkdownSnippet from "./MarkdownSnippet"
 
-const TermsOfUseModal: React.FC = () => {
+const TermsOfUseModal: React.FC<{ content: string }> = ({
+  content,
+}: {
+  content: string
+}) => {
   const { ref: bottomRef, isIntersecting } = useOnScreen(
     { threshold: 0.5 },
     false,
@@ -37,14 +42,14 @@ const TermsOfUseModal: React.FC = () => {
         return
       }
       console.debug(
-        "[TermsOfUseModal] @useEffect - ws connected, call termsOfUseService.find() ...",
+        "[TermsOfUseModal] @useEffect - ws connected, call accountDetails.find() ...",
       )
       setIsBusy(true)
-      termsOfUseService
+      accountDetailsService
         .find()
         .then((data) => {
           console.debug(
-            "[TermsOfUseModal] @useEffect termsOfUseService.find() success:",
+            "[TermsOfUseModal] @useEffect accountDetails.find() success:",
             data,
           )
           setAcceptedTermsDate(DateTime.fromISO(data.dateAcceptedTerms))
@@ -73,16 +78,16 @@ const TermsOfUseModal: React.FC = () => {
       return
     }
     console.debug(
-      "[TermsOfUseModal] AcceptTermsOfUse@onChange call termsOfUseService.patch() ...",
+      "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() ...",
     )
     setIsBusy(true)
-    termsOfUseService
+    accountDetailsService
       .patch(null, {
         acceptTerms: event.target.checked,
       })
       .then((data) => {
         console.debug(
-          "[TermsOfUseModal] AcceptTermsOfUse@onChange call termsOfUseService.patch() success:",
+          "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() success:",
           data,
         )
       })
@@ -95,6 +100,7 @@ const TermsOfUseModal: React.FC = () => {
       title="Terms Of Use - Impresso Datalab"
       fullscreen="xl-down"
       size="xl"
+      modalBodyClassName="pt-0 px-2"
       footer={
         <AcceptTermsOfUse
           checked={acceptedTermsDate?.isValid}
@@ -105,25 +111,28 @@ const TermsOfUseModal: React.FC = () => {
     >
       <Container>
         <Row>
-          <h1>Terms of Use</h1>
-
-          {acceptedTermsDate?.isValid ? (
-            <p>
-              You have accepted the terms of use:{" "}
-              <b>
-                {acceptedTermsDate
-                  ?.setLocale("en-GB")
-                  .toLocaleString(DateTime.DATETIME_FULL) ?? "N/A"}
-              </b>
-            </p>
-          ) : (
-            <p>
-              You have not accepted the terms of use yet. Please read the{" "}
-              <b>entire</b> terms of use document carefully and accept it at the
-              bottom to continue.
-            </p>
-          )}
-          <div style={{ height: 10000 }}>blablablablab</div>
+          <h1 className="my-3">Terms of Use</h1>
+          <Col className="position-sticky top-0 bg-light m-0 py-2">
+            {acceptedTermsDate?.isValid ? (
+              <p className="m-0">
+                You have accepted the terms of use:{" "}
+                <b>
+                  {acceptedTermsDate
+                    ?.setLocale("en-GB")
+                    .toLocaleString(DateTime.DATETIME_FULL) ?? "N/A"}
+                </b>
+              </p>
+            ) : (
+              <p className="m-0">
+                You have not accepted the terms of use yet. Please read the{" "}
+                <b>entire</b> terms of use document carefully and accept it at
+                the bottom to continue.
+              </p>
+            )}
+          </Col>
+          <div style={{ minHeight: "100vh" }}>
+            <MarkdownSnippet value={content} />
+          </div>
           <div ref={bottomRef as React.RefObject<HTMLDivElement>}>bottom</div>
         </Row>
       </Container>

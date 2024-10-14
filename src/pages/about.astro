@@ -2,9 +2,13 @@
 import App from "../components/App.astro";
 import AboutModal from "../components/AboutModal";
 import Layout from "../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const pageContent = await getEntry("pagesContents", "about");
+
 ---
 
-<Layout title={"Notebooks - Impresso Datalab"}>
+<Layout title={"About - Impresso Datalab"}>
   <App transition:persist/>
-  <AboutModal client:only="react" />
+  <AboutModal client:only="react" content={pageContent.body}/>
 </Layout>
