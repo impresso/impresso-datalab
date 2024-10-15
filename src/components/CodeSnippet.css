@@ -24,5 +24,40 @@
 }
 
 .cm-line:not(span) {
-  color: #fef6db;
+  color: #1e90d2;
+}
+.ͼ2 .cm-activeLine {
+  background-color: transparent !important;
+}
+.ͼ1.mc-focused {
+  outline: none;
+}
+
+.ͼ1.cm-focused {
+  outline: 1px solid rgba(var(--impresso-color-black-rgb), 0.2);
+}
+
+.ͼ1 .cm-activeLineGutter,
+.ͼ2 .cm-activeLineGutter {
+  background-color: transparent !important;
+}
+
+.cm-gutterElement {
+  position: relative;
+}
+
+.cm-gutterElement::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--impresso-color-black-rgb), 0.08);
+  transform: translateX(100%);
+  transition: all 0.3s;
+}
+
+.cm-gutterElement.cm-activeLineGutter::after {
+  transform: translateX(0%);
 }
