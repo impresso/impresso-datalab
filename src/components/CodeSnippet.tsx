@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import ReactCodeMirror, { EditorView } from "@uiw/react-codemirror"
 import type { ReactCodeMirrorRef } from "@uiw/react-codemirror"
-import { duotoneDark } from "@uiw/codemirror-theme-duotone"
 import { python } from "@codemirror/lang-python"
 import { Copy, CheckCircle } from "iconoir-react"
 import { createTheme } from "@uiw/codemirror-themes"
