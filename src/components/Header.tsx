@@ -40,7 +40,12 @@ const Header: React.FC = () => {
             </Nav.Item>
             <Nav.Item>
               <Link to="/notebooks" className="nav-link ">
-                browse Ipynb notebooks
+                browse notebooks
+              </Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Link to="/about" className="nav-link ">
+                about
               </Link>
             </Nav.Item>
             <Nav.Item>

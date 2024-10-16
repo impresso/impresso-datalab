@@ -14,11 +14,18 @@ const PublicApiTarget =
 const PublicApiPath = process.env.PUBLIC_IMPRESSO_API_PATH ?? "/public-api"
 
 // these values are relevant only when the proxy is used with different paths, e.g; for a local instance of impresso middle layer
-const ProxyPublicApiPath =
-  process.env.PUBLIC_IMPRESSO_PROXY_API_PATH ?? "/public-api"
+const ProxyPublicApiPath = process.env.PUBLIC_IMPRESSO_API_PATH ?? "/public-api"
 const ProxyWsApiPath =
-  process.env.PUBLIC_IMPRESSO_PROXY_WS_API_PATH ?? "/api/socket.io"
+  process.env.PUBLIC_IMPRESSO_WS_API_PATH ?? "/api/socket.io"
 
+if (process.env.NODE_ENV === "development") {
+  console.log("WsApiTarget:", WsApiTarget)
+  console.log("WsApiPath:", WsApiPath)
+  console.log("PublicApiTarget:", PublicApiTarget)
+  console.log("PublicApiPath:", PublicApiPath)
+  console.log("ProxyPublicApiPath:", ProxyPublicApiPath)
+  console.log("ProxyWsApiPath:", ProxyWsApiPath)
+}
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), mdx()],

@@ -5,7 +5,7 @@ export interface MarkdownSnippetProps {
   className?: string
 }
 
-const MarkdownSnipped: React.FC<MarkdownSnippetProps> = ({
+const MarkdownSnippet: React.FC<MarkdownSnippetProps> = ({
   value = "",
   className = "",
 }) => {
@@ -18,4 +18,4 @@ const MarkdownSnipped: React.FC<MarkdownSnippetProps> = ({
   )
 }
 
-export default MarkdownSnipped
+export default MarkdownSnippet

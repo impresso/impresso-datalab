@@ -1,10 +1,14 @@
 ---
+import { getEntry } from "astro:content";
 import App from "../components/App.astro";
 import TermsOfUseModal from "../components/TermsOfUseModal";
 import Layout from "../layouts/Layout.astro";
+
+const pageContent = await getEntry("pagesContents", "terms-of-use");
+
 ---
 
 <Layout title={"Terms of Use - Impresso Datalab"}>
   <App transition:persist/>
-  <TermsOfUseModal client:only="react" />
+  <TermsOfUseModal client:only="react" content={pageContent.body}/>
 </Layout>
