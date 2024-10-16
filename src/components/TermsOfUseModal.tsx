@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ChangeEvent } from "react"
+import { useEffect, useState, type ChangeEvent } from "react"
 import AcceptTermsOfUse from "./AcceptTermsOfUse"
 import Page from "./Page"
 import { Col, Container, Row } from "react-bootstrap"
