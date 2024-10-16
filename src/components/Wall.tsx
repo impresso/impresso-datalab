@@ -73,7 +73,7 @@ const Wall = ({
               <b>{numberOfAuthors}</b> authors.
             </p>
           </Col>
-          <Col md={4}>
+          <Col md={6} lg={6} xxl={5}>
             <h3>
               Join us in this early stage of development and help us to improve
               the platform.
