@@ -1,68 +1,29 @@
 ---
-githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/2-entity/generic-entity-api.ipynb
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_04_ner_nel_API.ipynb
 authors:
   - impresso-team
-#   - EmanuelaBoros
 title: Detect Entities and Link them to Wikipedia and Wikidata in a Text through
   the Impresso API
-sha: 54802fcabc0e32a4a05a1b4f2761a54b9807b0c5
-date: 2024-09-18T09:47:53Z
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/2-entity/generic-entity-api.ipynb
+sha: 087d08f44c299889d5635eece4f303344246a80c
+date: 2024-09-30T13:34:13Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_04_ner_nel_API.ipynb
 ---
 
 {/* cell:0 cell_type:markdown */}
-Named entities such as organizations, locations, persons, and temporal expressions play a crucial role in the comprehension and analysis of both historical and contemporary texts. The HIPE-2022 project focuses on named entity recognition and classification (NERC) and entity linking (EL) in multilingual historical documents.
+We refer to "named entity recognition" as NER, which is a tool that recognises entities such as persons and locations from text. A "named entity linker" (NEL) connects these entities to an existing one such as a real person that can be found on Wikipedia (with a unique id in Wikidata). Wikipedia is a free, user-edited encyclopedia with articles on a wide range of topics like historical events, famous people, or scientific concepts. Wikidata is a sister project of Wikipedia that stores structured data, like facts and relationships between entities, used for tasks where computers need to understand and process data, such as NER and NEL.
 
-### About HIPE-2022
-
-HIPE-2022 involves processing diverse datasets from historical newspapers and classical commentaries, spanning approximately 200 years and multiple languages. The primary goal is to confront systems with challenges related to multilinguality, domain-specific entities, and varying annotation tag sets.
-
-### Datasets
-
-The HIPE-2022 datasets are based on six primary datasets, but this model was only trained on **hipe2020** in French and German.
-
-- **ajmc**: Classical commentaries in German, French, and English.
-- **hipe2020**: Historical newspapers in German, French, and English.
-- **letemps**: Historical newspapers in French.
-- **topres19th**: Historical newspapers in English.
-- **newseye**: Historical newspapers in German, Finnish, French, and Swedish.
-- **sonar**: Historical newspapers in German.
-
-### Annotation Types and Levels
-
-HIPE-2022 employs an IOB tagging scheme (inside-outside-beginning format) for entity annotations. The annotation levels include:
-
-1. **TOKEN**: The annotated token.
-2. **NE-COARSE-LIT**: Coarse type of the entity (literal sense).
-3. **NE-COARSE-METO**: Coarse type of the entity (metonymic sense).
-4. **NE-FINE-LIT**: Fine-grained type of the entity (literal sense).
-5. **NE-FINE-METO**: Fine-grained type of the entity (metonymic sense).
-6. **NE-FINE-COMP**: Component type of the entity.
-7. **NE-NESTED**: Coarse type of the nested entity.
-
-### Getting Started
-
-This notebook will guide you through setting up a workflow to identify named entities within your text using the HIPE-2022 trained pipeline. By leveraging this pipeline, you can detect mentions of people, places, organizations, and temporal expressions, enhancing your analysis and understanding of historical and contemporary documents.
-
----
-
-This updated description provides a clear overview of the HIPE-2022 project's goals, datasets, and annotation types, focusing on the identification of generic named entities in multilingual historical documents.
-*Note: This notebook *might* require `HF_TOKEN` to be set in the environment variables. You can get your token by signing up on the [Hugging Face website](https://huggingface.co/join) and read more in the [official documentation](https://huggingface.co/docs/huggingface_hub/v0.20.2/en/quick-start#environment-variable)*
 
 {/* cell:1 cell_type:markdown */}
-Install necessary libraries (if not already installed) and
-download the necessary NLTK data.
+In the context of _Impresso_, the NER tool was trained on the [HIPE 2020](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md) dataset. It was trained to recognise coarse and fine grained entities such as persons and locations, but also their names, titles, and functions. Further, the _Impresso_ NEL tool links these entity mentions to unique referents in a knowledge base – here Wikipedia and Wikidata – or not if the mention's referent is not found.
 
 {/* cell:2 cell_type:code */}
-
 ```python
 !pip install transformers
-!pip install nltk
-!pip install torch
+!wget https://raw.githubusercontent.com/impresso/impresso-datalab-notebooks/3f7afc05caef3f527db8320cdf8c131aec41d7cd/2-entity/utils.py
+
 ```
 
 {/* cell:3 cell_type:code */}
-
 ```python
 def print_nicely(results, text):
     # Print the timestamp and system ID
@@ -111,63 +72,84 @@ def print_nicely(results, text):
 Now the fun part, this function will download the requried model and gives you the keys to successfullly detect entities in your text.
 
 {/* cell:5 cell_type:code */}
-
 ```python
-from utils import get_linked_entities
-import requests
-
 sentences = ["Apple est créée le 1er avril 1976 dans le garage de la maison d'enfance de Steve Jobs à Los Altos en Californie par Steve Jobs, Steve Wozniak et Ronald Wayne, puis constituée sous forme de société le 3 janvier 1977 à l'origine sous le nom d'Apple Computer, mais pour ses 30 ans et pour refléter la diversification de ses produits, le mot « computer » est retiré le 9 janvier 2015."]
 
 for sentence in sentences:
     results = get_linked_entities(sentence)
+    print(results)
     print_nicely(results, sentence)
 
 ```
 
 {/* cell:6 cell_type:code */}
-
 ```python
 
 ```
 
-{/* cell:7 cell_type:code */}
+{/* cell:7 cell_type:markdown */}
 
-```python
+## About Impresso
 
-```
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an
+interdisciplinary research project that aims to develop and consolidate tools for
+processing and exploring large collections of media archives across modalities, time,
+languages and national borders. The first project (2017-2021) was funded by the Swiss
+National Science Foundation under grant
+No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027)
+by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585)
+and the Luxembourg National Research Fund under grant No. 17498891.
+
+### Copyright
+
+Copyright (C) 2024 The Impresso team.
+
+### License
+
+This program is provided as open source under
+the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE)
+v3 or later.
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>
+
 
 {/* cell:8 cell_type:code */}
-
 ```python
 
 ```
 
 {/* cell:9 cell_type:code */}
-
 ```python
 
 ```
 
 {/* cell:10 cell_type:code */}
-
 ```python
 
 ```
 
 {/* cell:11 cell_type:code */}
-
 ```python
 
 ```
 
 {/* cell:12 cell_type:code */}
-
 ```python
 
 ```
 
 {/* cell:13 cell_type:code */}
+```python
 
+```
+
+{/* cell:14 cell_type:code */}
 ```python
 
 ```

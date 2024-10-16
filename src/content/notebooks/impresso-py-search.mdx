@@ -2,17 +2,15 @@
 githubUrl: https://github.com/impresso/impresso-py/blob/main/examples/notebooks/search.ipynb
 authors:
   - impresso-team
-  # - RomanKalyakin
 seealso:
   - impresso-py-collections
 title: Search
-sha: fbebc19629cfc008a085283e61c0669de326add9
-date: 2024-09-18T15:04:39Z
+sha: 4a05f4772be7279de1908f46c93dc12de334d112
+date: 2024-10-11T07:37:06Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-py/blob/main/examples/notebooks/search.ipynb
 ---
 
 {/* cell:0 cell_type:code */}
-
 ```python
 from impresso import connect
 
@@ -20,49 +18,39 @@ impresso = connect()
 ```
 
 {/* cell:1 cell_type:markdown */}
-
 ## Term
 
 Find all items containing "impresso" keyword.
 
 {/* cell:2 cell_type:code */}
-
 ```python
 impresso.search.find(q="impresso")
 ```
 
 {/* cell:3 cell_type:markdown */}
-
 ## With text content only
 
 Limit to articles that have text.
 
 {/* cell:4 cell_type:code */}
-
 ```python
 impresso.search.find(q="impresso", with_text_contents=True)
 ```
 
 {/* cell:5 cell_type:markdown */}
-
 ## Title
-
 Find items that have the keyword "impresso" in their title.
 
 {/* cell:6 cell_type:code */}
-
 ```python
 impresso.search.find(title="impresso")
 ```
 
 {/* cell:7 cell_type:markdown */}
-
 ### Complex term requests
-
 Find items that have both terms.
 
 {/* cell:8 cell_type:code */}
-
 ```python
 from impresso import AND
 
@@ -75,7 +63,6 @@ Find items that have either one term or the other.
 Here we find all articles that contain either "homme" or "femme" in the title.
 
 {/* cell:10 cell_type:code */}
-
 ```python
 from impresso import OR
 
@@ -83,13 +70,11 @@ impresso.search.find(title=OR("homme", "femme"))
 ```
 
 {/* cell:11 cell_type:markdown */}
-
-## Inverted search (everything excluding term A **OR** term B).
+## Inverted search (everything excluding term A __OR__ term B).
 
 We want to find all articles with the word "luddite" in the title that do not mention neither "textile" nor "machine"
 
 {/* cell:12 cell_type:code */}
-
 ```python
 from impresso import OR
 
@@ -97,17 +82,15 @@ impresso.search.find(title="luddite", q=~OR("textile", "machine"))
 ```
 
 {/* cell:13 cell_type:markdown */}
-
 ### Complex combintation of terms
 
 The following cell searches all articles with all of the the following condition:
 
-- mentioning "hitler" and "stalin"
-- also mentioning one of: "molotow" or "ribbentrop"
-- and not mentioning "churchill"
+* mentioning "hitler" and "stalin"
+* also mentioning one of: "molotow" or "ribbentrop"
+* and not mentioning "churchill"
 
 {/* cell:14 cell_type:code */}
-
 ```python
 from impresso import AND, OR
 
@@ -115,25 +98,21 @@ impresso.search.find(q=AND("hitler", "stalin") & OR("molotow", "ribbentrop") & ~
 ```
 
 {/* cell:15 cell_type:markdown */}
-
 ## Front page
 
 Find articles published on the front page only
 
 {/* cell:16 cell_type:code */}
-
 ```python
 impresso.search.find(q="impresso", front_page=True)
 ```
 
 {/* cell:17 cell_type:markdown */}
-
 ## Entity ID
 
 Search by entity ID
 
 {/* cell:18 cell_type:code */}
-
 ```python
 impresso.search.find(entity_id="aida-0001-54-Switzerland")
 ```
@@ -142,7 +121,6 @@ impresso.search.find(entity_id="aida-0001-54-Switzerland")
 Find all articles that mention Switzerland and Albert Einstein.
 
 {/* cell:20 cell_type:code */}
-
 ```python
 impresso.search.find(entity_id=AND("aida-0001-54-Switzerland", "aida-0001-50-Albert_Einstein"))
 ```
@@ -151,31 +129,26 @@ impresso.search.find(entity_id=AND("aida-0001-54-Switzerland", "aida-0001-50-Alb
 Find all articles that mention either Switzerland or Albert Einstein.
 
 {/* cell:22 cell_type:code */}
-
 ```python
 impresso.search.find(entity_id=OR("aida-0001-54-Switzerland", "aida-0001-50-Albert_Einstein"))
 ```
 
 {/* cell:23 cell_type:markdown */}
-
 ## Newspaper
 
 Limit search to two newspapers
 
 {/* cell:24 cell_type:code */}
-
 ```python
 impresso.search.find(q="independence", newspaper_id=OR("EXP", "GDL"))
 ```
 
 {/* cell:25 cell_type:markdown */}
-
 ## Date range
 
 Items published between dates
 
 {/* cell:26 cell_type:code */}
-
 ```python
 from impresso import DateRange
 
@@ -186,7 +159,6 @@ impresso.search.find(q="independence", date_range=DateRange("1921-05-21", "2001-
 Articles published at any time excluding the range (not the `~` that negates the range).
 
 {/* cell:28 cell_type:code */}
-
 ```python
 from impresso import DateRange
 
@@ -194,13 +166,11 @@ impresso.search.find(q="independence", date_range=~DateRange("1921-05-21", "2001
 ```
 
 {/* cell:29 cell_type:markdown */}
-
 ## Language
 
 Search for the term "banana" in English or Italian.
 
 {/* cell:30 cell_type:code */}
-
 ```python
 impresso.search.find(q="banana", language=OR("it", "en"))
 ```
@@ -209,281 +179,235 @@ impresso.search.find(q="banana", language=OR("it", "en"))
 And now search for the word "banana" in any language _except_ English or Italian.
 
 {/* cell:32 cell_type:code */}
-
 ```python
 impresso.search.find(q="banana", language=~OR("it", "en"))
 ```
 
 {/* cell:33 cell_type:markdown */}
-
 ## Entity mention
 
 Find articles that mention two entities.
 
 {/* cell:34 cell_type:code */}
-
 ```python
 impresso.search.find(mention=AND("Charlie Chaplin", "Switzerland"))
 ```
 
 {/* cell:35 cell_type:markdown */}
-
 ## Topic
 
 Find articles that match either of the two topics.
 
 {/* cell:36 cell_type:code */}
-
 ```python
 impresso.search.find(topic_id=OR("tm-fr-all-v2.0_tp07_fr", "tm-fr-all-v2.0_tp48_fr"))
 ```
 
 {/* cell:37 cell_type:markdown */}
-
 ## Collection
 
 Find all articles in a collection.
 
 {/* cell:38 cell_type:code */}
-
 ```python
 impresso.search.find(collection_id="REPLACEME")
 ```
 
 {/* cell:39 cell_type:markdown */}
-
 ## Country
 
 Find all articles published in either of the two specified countries.
 
 {/* cell:40 cell_type:code */}
-
 ```python
 impresso.search.find(q="Schengen", country=OR("FR", "CH"))
 ```
 
 {/* cell:41 cell_type:markdown */}
-
 ## Access rights
 
 Limit search to articles with specific access rights.
 
 {/* cell:42 cell_type:code */}
-
 ```python
 impresso.search.find(q="Schengen", access_rights="Closed")
 ```
 
 {/* cell:43 cell_type:markdown */}
-
 ## Partner
 
 Limit search to articles provided by a specific partner of the Impresso project.
 
 {/* cell:44 cell_type:code */}
-
 ```python
 impresso.search.find(q="Schengen", partner_id="Migros")
 ```
 
 {/* cell:45 cell_type:markdown */}
-
 ## Text reuse cluster
 
 Find all articles that are part of a specific text reuse cluster.
 
 {/* cell:46 cell_type:code */}
-
 ```python
 from impresso import OR
 impresso.search.find(text_reuse_cluster_id=OR("tr-nobp-all-v01-c29"))
 ```
 
 {/* cell:47 cell_type:markdown */}
-
 # Facets
 
-Facets are a way to get a summary of the search results from the perspective of a specific field. In a facet search result the field values are grouped together and the number of items in each group is displayed.
+Facets are a way to get a summary of the search results from the perspective of a specific field. In a facet search result the field values are grouped together and the number of items in each group is displayed. 
 
 Facet search method has the same attributes as the search method.
 
 {/* cell:48 cell_type:markdown */}
-
 ## Date range
 
 Get the number of articles that mention "Impresso", published on ever particular date.
 
 {/* cell:49 cell_type:code */}
-
 ```python
 impresso.search.facet("daterange", q="impresso")
 ```
 
 {/* cell:50 cell_type:markdown */}
-
 ## Year
 
 Get the number of articles that mention "impresso", published during every particular year.
 
 {/* cell:51 cell_type:code */}
-
 ```python
 impresso.search.facet("year", q="impresso")
 ```
 
 {/* cell:52 cell_type:markdown */}
-
 ## Content length
 
 Get the number of articles that mention "impresso", grouped by content length.
 
 {/* cell:53 cell_type:code */}
-
 ```python
 impresso.search.facet("contentLength", q="impresso")
 ```
 
 {/* cell:54 cell_type:markdown */}
-
 ## Month
 
 Get the number of articles that mention "impresso", published during every particular month.
 
 {/* cell:55 cell_type:code */}
-
 ```python
 impresso.search.facet("month", q="impresso")
 ```
 
 {/* cell:56 cell_type:markdown */}
-
 ## Country
 
 Get the number of articles that mention "impresso", grouped by country they were published in.
 
 {/* cell:57 cell_type:code */}
-
 ```python
 impresso.search.facet("country", q="impresso")
 ```
 
 {/* cell:58 cell_type:markdown */}
-
 ## Type
 
 Get the number of items that mention "impresso", grouped by type of item.
 
 {/* cell:59 cell_type:code */}
-
 ```python
 impresso.search.facet("type")
 ```
 
 {/* cell:60 cell_type:markdown */}
-
 ## Topic
 
 Find topics that the articles mentioning "impresso" are related to.
 
 {/* cell:61 cell_type:code */}
-
 ```python
 impresso.search.facet("topic", q="pomme")
 ```
 
 {/* cell:62 cell_type:markdown */}
-
 ## Collection
 
 Find collections the articles mentioning "pomme" are part of.
 
 {/* cell:63 cell_type:code */}
-
 ```python
 impresso.search.facet("collection", q="pomme")
 ```
 
 {/* cell:64 cell_type:markdown */}
-
 ## Newspaper
 
 Find newspapers that the articles mentioning "Schengen" were published in.
 
 {/* cell:65 cell_type:code */}
-
 ```python
 impresso.search.facet("newspaper", q="Schengen")
 ```
 
 {/* cell:66 cell_type:markdown */}
-
 ## Language
 
 Find all languages the articles mentioning "impresso" were published in.
 
 {/* cell:67 cell_type:code */}
-
 ```python
 impresso.search.facet("language", q="Schengen")
 ```
 
 {/* cell:68 cell_type:markdown */}
-
 ## Person
 
 Find all persons mentioned in articles that mention "Schengen". Get only the last page.
 
 {/* cell:69 cell_type:code */}
-
 ```python
 impresso.search.facet("person", q="Schengen", offset=7140)
 ```
 
 {/* cell:70 cell_type:markdown */}
-
 ## Location
 
 Find all locations mentioned in articles that mention "Schengen". Get only the last page.
 
 {/* cell:71 cell_type:code */}
-
 ```python
 impresso.search.facet("location", q="Schengen", offset=3310)
 ```
 
 {/* cell:72 cell_type:markdown */}
-
 ## NAG
 
 Find all entities without a known type mentioned in articles that mention "homme" and "femme".
 
 {/* cell:73 cell_type:code */}
-
 ```python
 from impresso import AND
 impresso.search.facet("nag", title=AND("homme", "femme"))
 ```
 
 {/* cell:74 cell_type:markdown */}
-
 ## Access rights
 
 Get access rights of articles mentioning "pomme".
 
 {/* cell:75 cell_type:code */}
-
 ```python
 impresso.search.facet("accessRight", q="pomme")
 ```
 
 {/* cell:76 cell_type:markdown */}
-
 ## Partner
 
 Get Impresso partners that provided articles mentioning "pomme".
 
 {/* cell:77 cell_type:code */}
-
 ```python
 impresso.search.facet("partner", q="pomme")
 ```

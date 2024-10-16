@@ -1,11 +1,11 @@
 ---
-githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_02_newsagencies.ipynb
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_03_newsagencies.ipynb
 title: News Agencies Recognition and Linking with Impresso BERT models
 excerpt: This notebook provides a practical guide to setting up a workflow for
   entity recognition in historical texts.
-sha: 7ebadeb1938720b0c660c24a525b2b72c1f1ec95
-date: 2024-09-18T10:11:47Z
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_02_newsagencies.ipynb
+sha: 510b71a19bac0e4aa1cab15bf42651bf26bc6dd4
+date: 2024-09-30T13:40:55Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_03_newsagencies.ipynb
 authors:
   - impresso-team
 ---
@@ -20,46 +20,68 @@ Install necessary libraries (if not already installed) and
 download the necessary NLTK data.
 
 {/* cell:2 cell_type:code */}
-
 ```python
-!pip install python-dotenv
 !pip install transformers
-!pip install torch
+!pip install spacy
+!pip install pysbd
 ```
 
 {/* cell:3 cell_type:markdown */}
-_Note: This notebook requires `HF_TOKEN` to be set in the environment variables. You can get your token by signing up on the [Hugging Face website](https://huggingface.co/join) and read more in the [official documentation](https://huggingface.co/docs/huggingface_hub/v0.20.2/en/quick-start#environment-variable). We use [dotenv](https://pypi.org/project/python-dotenv/) library to load the HF_TOKEN value from a local .env file_
+Now the fun part, this function will download the requried model and gives you the keys to successfullly detect news agencies in your text.
 
 {/* cell:4 cell_type:code */}
-
 ```python
-from dotenv import load_dotenv
-load_dotenv()  # take environment variables from .env.
+from transformers import pipeline
+
+# Named Entity Recognition pipeline
+newsagency_ner_pipeline = pipeline("newsagency-ner", model="impresso-project/ner-newsagency-bert-fr", trust_remote_code=True)
 ```
 
 {/* cell:5 cell_type:markdown */}
-Now the fun part, this function will download the requried model and gives you the keys to successfullly detect news agencies in your text.
+Run the example below to see how it works.
 
 {/* cell:6 cell_type:code */}
-
 ```python
-from transformers import is_torch_available
-from transformers import pipeline
+# Example
+text = """Apple est créée le 1er avril 1976 dans le garage de la maison
+          d'enfance de Steve Jobs à Los Altos en Californie par Steve Jobs, Steve Wozniak
+          et Ronald Wayne, puis constituée sous forme de société le 3 janvier 1977 à l'origine
+          sous le nom d'Apple Computer, mais pour ses 30 ans et pour refléter la diversification
+          de ses produits, le mot « computer » est retiré le 9 janvier 2015. (Reuter)"""
 
-# Check if PyTorch is available
-print(is_torch_available())
 
-# Named Entity Recognition pipeline
-nlp = pipeline("newsagency-ner", model="impresso-project/bert-newsagency-ner-fr", trust_remote_code=True)
+newsagency_ner_pipeline(text)
+
 ```
 
 {/* cell:7 cell_type:markdown */}
-Run the example below to see how it works.
 
-{/* cell:8 cell_type:code */}
+## About Impresso
 
-```python
-# Example
-text = "Mon nom est François et j'habite à Paris. (Reuter)"
-nlp(text)
-```
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an
+interdisciplinary research project that aims to develop and consolidate tools for
+processing and exploring large collections of media archives across modalities, time,
+languages and national borders. The first project (2017-2021) was funded by the Swiss
+National Science Foundation under grant
+No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027)
+by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585)
+and the Luxembourg National Research Fund under grant No. 17498891.
+
+### Copyright
+
+Copyright (C) 2024 The Impresso team.
+
+### License
+
+This program is provided as open source under
+the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE)
+v3 or later.
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>
+

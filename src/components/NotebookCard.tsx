@@ -26,7 +26,12 @@ const NotebookCard: React.FC<{
 }> = ({ notebook, children, className = "" }) => {
   const accessTime = notebook.date ?? new Date()
   const accessDateTime = DateTime.fromJSDate(accessTime)
-
+  console.debug(
+    "[NotebookCard] - accessDateTime:",
+    accessDateTime,
+    "- title:",
+    notebook?.title,
+  )
   return (
     <div className={`NotebookCard shadow-sm ${className}`}>
       <div className="px-3 py-2 d-flex align-items-center">
