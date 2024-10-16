@@ -18,7 +18,7 @@ export interface CodeSnippetProps {
 const myTheme = createTheme({
   theme: "light",
   settings: {
-    background: "#fff9f2",
+    background: "#fff9f250",
     backgroundImage: "",
     foreground: "#75baff",
     caret: "#5d00ff",
