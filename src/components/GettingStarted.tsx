@@ -44,7 +44,7 @@ const GettingStarted = ({ className = "" }) => {
             <div className="badge bg-dark me-2 py-1 px-2 font-weight-extrabold text-primary">
               {startNumAfterOptionalSteps}
             </div>{" "}
-            Consult our terms of use
+            Accept our Terms of Use
           </Link>
         </li>
         <li>
