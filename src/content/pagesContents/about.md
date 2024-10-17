@@ -2,7 +2,7 @@
 title: About
 ---
 
-The Impresso Datalab is an infrastructure for programmatic data access and annotation services and is developed by the [Impresso project](https://impresso-project.ch) which strives to create meaningful links across historical media collections. The Datalab enables custom analyses of the Impresso corpus and the semantic indexation of external document collections also with the help of models created by the project.
+The Impresso Datalab is a platform for programmatic data access and annotation services and is developed by the [Impresso project](https://impresso-project.ch) which strives to create meaningful links across historical media collections. The Datalab enables custom analyses of the Impresso corpus and the semantic indexation of external document collections also with the help of models created by the project.
 
 The Datalab offers access to our corpus, data and models via the Impresso Public API, a dedicated Python library and via [HuggingFace](https://huggingface.co/impresso-project). To keep the learning curve manageable, the Datalab includes Jupyter notebooks for documentation and templates to kickstart computational analysis, visualisation and enrichment.
 

@@ -12,16 +12,13 @@ from impresso import api
 
 print(api.version())
 
-results = api.search("moon landing")
-`
+results = api.search("moon landing")`
 
-const ImpressoModelsCodeSample = `
-# Use a pipeline as a high-level helper
+const ImpressoModelsCodeSample = `# Use a pipeline as a high-level helper
 !pip install transformers
 
 from transformers import pipeline
-pipe = pipeline("text2text-generation", model="impresso-project/nel-mgenre-multilingual")
-`
+pipe = pipeline("text2text-generation", model="impresso-project/nel-mgenre-multilingual")`
 
 const Wall = ({
   // notebooks = [],
@@ -87,7 +84,7 @@ const Wall = ({
               Impresso project
             </a>{" "}
             strives to create meaningful links across distinct datasets. The
-            Impresso <em>Datalab</em> is an infrastructure for{" "}
+            Impresso <em>Datalab</em> is a platform for{" "}
             <b>programmatic data access</b> and <b>annotation services</b>.
             <p>
               It offers access to our data and models via API and a dedicated
@@ -115,7 +112,9 @@ const Wall = ({
           <Col md={6} xl={4} className="order-md-1 order-xl-1">
             <CollectionCard className="mb-3" collection={enterImpressoPy}>
               <GettingStarted />
-
+              <p className="very-small text-muted px-2">
+                Copy the code below in a blank jupyter notebook to get started
+              </p>
               <CodeSnippet value={CodeSample} />
             </CollectionCard>
             {seriesInLeadingColumn.map((collection) => (
@@ -137,6 +136,9 @@ const Wall = ({
           </Col>
           <Col md={6} xl={4} className="order-md-2  order-xl-3">
             <CollectionCard className="mb-3" collection={enterImpressoModels}>
+              <p className="very-small text-muted px-2">
+                Copy the code below in a blank jupyter notebook to get started
+              </p>
               <CodeSnippet value={ImpressoModelsCodeSample} />
             </CollectionCard>
             {seriesInTrailingColumn.map((collection) => (

@@ -1,17 +1,20 @@
 .CodeSnippet {
   position: relative;
+  font-size: 0.85em;
 }
 
 .CodeSnippet .cm-editor {
   padding-bottom: 0.5rem;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 20px;
   /* box-shadow: none; */
 }
 
 .CodeSnippet button.copy-code {
   position: absolute;
-  right: 0;
-  top: 1px;
+  right: 1px;
+  top: 5px;
   background: transparent;
   border: 0 none;
   color: var(--impresso-color-black-rgba-50);

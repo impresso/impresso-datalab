@@ -16,6 +16,7 @@ import AssociatedPartner, {
   type AssociatedPartnerProps,
 } from "./AssociatedPartner"
 import Link from "./Link"
+import { GithubCircle } from "iconoir-react"
 
 const Footer: React.FC<{
   associatedPartners: AssociatedPartnerProps[]
@@ -41,14 +42,23 @@ const Footer: React.FC<{
               Browse our <b>models</b> at{" "}
               <a href="https://huggingface.co/impresso-project/">
                 🤗 Hugging Face
+              </a>{" "}
+              and the source code of all our tools in our{" "}
+              <a href="https://github.com/impresso">
+                <GithubCircle width={16} />
+                GitHub repositories
               </a>
+              .
             </p>
           </Col>
           <Col md="6" lg="3" xxl="3">
             <p>
               Checkout our <a href="/public-api/docs">Rest API documentation</a>{" "}
-              or the documentation of our `impresso-py` Python package to
-              interact with the Impresso public API.
+              or the documentation of our{" "}
+              <a href="https://pypi.org/project/impresso">
+                Impresso Library on Pypi
+              </a>{" "}
+              to interact with the Impresso API in Python notebooks and scripts.
             </p>
           </Col>
           <Col md="6" lg="3" xxl="3">

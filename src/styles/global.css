@@ -259,7 +259,9 @@ button.btn-secodary:hover {
   display: flex;
   align-items: center;
 }
-
+.very-small {
+  font-size: var(--impresso-font-size-sm);
+}
 .small-caps,
 .smallcaps {
   text-transform: uppercase;

@@ -24,7 +24,7 @@ const myTheme = createTheme({
     selection: "#036dd626",
     selectionMatch: "#036dd626",
     lineHighlight: "#8a91991a",
-    gutterBorder: "1px solid #ffffff10",
+    gutterBorder: "1px solid transparent",
     gutterBackground: "#fff9f2",
     gutterForeground: "#8a919966",
   },
@@ -50,9 +50,9 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
   value = "",
   readonly = false,
   basicSetup = {
-    lineNumbers: true,
+    lineNumbers: false,
     tabSize: 2,
-    foldGutter: true,
+    foldGutter: false,
   },
 }) => {
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
