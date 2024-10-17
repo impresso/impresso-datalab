@@ -56,9 +56,9 @@ const Footer: React.FC<{
               Checkout our <a href="/public-api/docs">Rest API documentation</a>{" "}
               or the documentation of our{" "}
               <a href="https://pypi.org/project/impresso">
-                Impresso Library on Pypi
+                Impresso Python Library
               </a>{" "}
-              to interact with the Impresso API in Python notebooks and scripts.
+              to interact with the Impresso API in Python notebooks or scripts.
             </p>
           </Col>
           <Col md="6" lg="3" xxl="3">
