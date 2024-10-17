@@ -22,6 +22,7 @@
     "@codemirror/lang-python": "^6.1.6",
     "@custom-react-hooks/use-on-screen": "^1.5.1",
     "@feathersjs/authentication-client": "^5.0.30",
+    "@feathersjs/errors": "^5.0.30",
     "@feathersjs/feathers": "^5.0.30",
     "@feathersjs/socketio-client": "^5.0.30",
     "@react-spring/web": "^9.7.4",
