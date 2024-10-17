@@ -87,6 +87,8 @@
   /* small caps & Variable font settings*/
   --impresso-font-size-smallcaps: 0.72em;
   --impresso-letter-spacing-smallcaps: 0.08em;
+
+  --impresso-wght-normal: 450;
   --impresso-wght-smallcaps: 580;
   --impresso-wght-bold: 700;
   --impresso-wght-medium: 550;

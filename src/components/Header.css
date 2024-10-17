@@ -1,9 +1,14 @@
 .Header {
-  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
   border-bottom: 1px solid transparent;
   box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0);
   /* backdrop-filter: blur(4px); */
-
+  /* box-shadow:
+    0 -6px 10px 5px rgba(0, 0, 0, 0),
+    inset 0 2px 0 0px var(--impresso-color-black); */
   border-bottom-color: transparent;
 }
 .Header.active {
@@ -16,7 +21,7 @@
 .Header a {
   position: relative;
   text-transform: capitalize;
-  font-weight: var(--impresso-wght-medium);
+  font-weight: var(--impresso-wght-normal);
 }
 
 .Header a.nav-link::after {
