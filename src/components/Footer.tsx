@@ -39,7 +39,7 @@ const Footer: React.FC<{
         <Row>
           <Col md="6" lg="3" xxl="3">
             <p>
-              Browse our <b>models</b> at{" "}
+              Browse all <b>Impresso models</b> at{" "}
               <a href="https://huggingface.co/impresso-project/">
                 🤗 Hugging Face
               </a>{" "}
@@ -53,8 +53,9 @@ const Footer: React.FC<{
           </Col>
           <Col md="6" lg="3" xxl="3">
             <p>
-              Checkout our <a href="/public-api/docs">Rest API documentation</a>{" "}
-              or the documentation of our{" "}
+              Check out our{" "}
+              <a href="/public-api/docs">Rest API documentation</a> or the
+              documentation of our{" "}
               <a href="https://pypi.org/project/impresso">
                 Impresso Python Library
               </a>{" "}
