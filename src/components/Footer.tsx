@@ -53,13 +53,12 @@ const Footer: React.FC<{
           </Col>
           <Col md="6" lg="3" xxl="3">
             <p>
-              <Link to="/notebooks">Notebooks</Link> are a great way to get
-              started with the data. They are interactive and can be run in the
-              cloud.
-            </p>
-            <p>
-              All the notebooks have each an independent environment you can
-              spin with docker, preview on mybinder, google colab...
+              Our{" "}
+              <Link to="/notebooks" underline>
+                Notebooks
+              </Link>{" "}
+              are a great way to get started with the data. They are interactive
+              and can be run in the cloud.
             </p>
           </Col>
         </Row>
@@ -99,20 +98,20 @@ const Footer: React.FC<{
           <Col>
             <h3 className="mt-2">Associated Partners</h3>
           </Col>
-          <Row>
-            {associatedPartners.map((associatedPartner) => (
-              <Col
-                key={associatedPartner.name}
-                sm="12"
-                md="6"
-                lg="4"
-                xxl="4"
-                className="footer-logo py-2 py-md-3"
-              >
-                <AssociatedPartner {...associatedPartner} />
-              </Col>
-            ))}
-          </Row>
+        </Row>
+        <Row>
+          {associatedPartners.map((associatedPartner) => (
+            <Col
+              key={associatedPartner.name}
+              sm="12"
+              md="6"
+              lg="4"
+              xxl="4"
+              className="footer-logo py-2 py-md-3"
+            >
+              <AssociatedPartner {...associatedPartner} />
+            </Col>
+          ))}
         </Row>
         <Row className="border-top border-dark py-3">
           <Col>
@@ -120,7 +119,7 @@ const Footer: React.FC<{
           </Col>
         </Row>
         <Row>
-          <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
+          <Col md={6} lg={4} className="footer-logo py-4">
             <LogoSnsf width={180} className="mb-3" />
             <span>
               The Swiss National Science Foundation (SNSF) funds excellent
@@ -128,7 +127,7 @@ const Footer: React.FC<{
               to medicine to sociology
             </span>
           </Col>
-          <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
+          <Col md={6} lg={4} className="footer-logo py-4">
             <LogoFnr width={180} className="mb-3" />
             <span>
               The Luxembourg National Research Fund (FNR) is the main funder of
@@ -136,8 +135,8 @@ const Footer: React.FC<{
             </span>
           </Col>
         </Row>
-        <Row className="mb-5 py-3 border-top border-dark">
-          <Col sm={6}>
+        <Row className="mb-5 py-4 border-top border-dark">
+          <Col md={6} lg={4}>
             <GitInfo
               version={import.meta.env.PUBLIC_VERSION}
               gitBranch={import.meta.env.PUBLIC_GIT_BRANCH}
@@ -158,11 +157,34 @@ const Footer: React.FC<{
               </p>
             </GitInfo>
           </Col>
-          <Col>
+          <Col md={6} lg={4}>
             <ul className="list-unstyled">
+              <li>
+                <h4>Contact</h4>
+              </li>
+              <li>
+                <a
+                  href="mailto:info@impresso-project.ch"
+                  className="text-decoration-none"
+                >
+                  info@impresso-project.ch
+                </a>
+              </li>
+            </ul>
+          </Col>
+          <Col md={6} lg={4}>
+            <ul className="list-unstyled">
+              <li>
+                <h4>Links</h4>
+              </li>
               <li>
                 <Link underline to="/about">
                   About
+                </Link>
+              </li>
+              <li>
+                <Link underline to="/notebooks">
+                  Browse notebooks
                 </Link>
               </li>
               <li>
@@ -170,12 +192,13 @@ const Footer: React.FC<{
                   Plans
                 </Link>
               </li>
+              <li>&nbsp;</li>
+              <li>
+                <Link underline to="/terms-of-use">
+                  Terms of Use
+                </Link>
+              </li>
             </ul>
-          </Col>
-          <Col>
-            <Link underline to="/terms-of-use">
-              Terms of Use
-            </Link>
           </Col>
         </Row>
       </Container>
