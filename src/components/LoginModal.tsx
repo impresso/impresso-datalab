@@ -1,5 +1,5 @@
 import { Modal } from "react-bootstrap"
-import { BadRequest, FeathersError } from "@feathersjs/errors"
+import { FeathersError } from "@feathersjs/errors"
 import { useBrowserStore, usePersistentStore } from "../store"
 import { BrowserViewLogin } from "../constants"
 import LoginForm, { type LoginFormPayload } from "./LoginForm"
@@ -10,7 +10,7 @@ const LoginModal = () => {
   const view = useBrowserStore((state) => state.view)
   const setView = useBrowserStore((state) => state.setView)
   const setAuthenticatedUser = usePersistentStore(
-    (state) => state.setAuthenticatedUser
+    (state) => state.setAuthenticatedUser,
   )
   const [error, setError] = useState<FeathersError | null>(null)
 

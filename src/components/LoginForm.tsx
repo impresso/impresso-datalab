@@ -16,7 +16,7 @@ export interface LoginFormPayload {
 export interface LoginFormProps {
   className?: string
   onSubmit: (payload: LoginFormPayload) => void
-  error?: FeathersError
+  error?: FeathersError | null
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({

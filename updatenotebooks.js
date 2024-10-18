@@ -57,6 +57,11 @@ if (notebookToUpdate) {
     }
     console.log("✓ sha:", commit.sha)
     console.log("✓ date:", commit.commit.author.date)
+    // if the sha is the same as the one in the frontmatter, we skip
+    if (frontmatter.sha === commit.sha) {
+      console.log("⚠ skipping, sha is the same as the one in the frontmatter")
+      continue
+    }
     // get the ipynb content
     const ipynbUrl = url
       .replace("github.com", "raw.githubusercontent.com")
