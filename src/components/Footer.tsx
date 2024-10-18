@@ -89,8 +89,7 @@ const Footer: React.FC<{
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
             <LogoDofcl width={180} className="mb-3" />
             <span>
-              Institute of Computational Linguistics Zurich University,
-              Switzerland
+              Department of Computational Linguistics, University of Zürich, Switzerland
             </span>
           </Col>
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
