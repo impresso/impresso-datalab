@@ -1,4 +1,5 @@
 import { marked } from "marked"
+import "./MarkdownSnippet.css"
 
 export interface MarkdownSnippetProps {
   value?: string
@@ -12,7 +13,7 @@ const MarkdownSnippet: React.FC<MarkdownSnippetProps> = ({
   const content = marked.parse(value)
   return (
     <div
-      className={`MarkdownSnipped ${className}`}
+      className={`MarkdownSnippet ${className}`}
       dangerouslySetInnerHTML={{ __html: content }}
     />
   )
