@@ -81,20 +81,20 @@
   --font-size-h5: var(--fs18px);
   --font-small: var(--fs12px);
 
-  /* FONT WEIGHT */
-  --font-weight-bold: 600;
-
   /* small caps & Variable font settings*/
   --impresso-font-size-smallcaps: 0.72em;
   --impresso-letter-spacing-smallcaps: 0.08em;
 
   --impresso-wght-normal: 450;
   --impresso-wght-smallcaps: 580;
-  --impresso-wght-bold: 700;
+  --impresso-wght-bold: 650;
   --impresso-wght-medium: 550;
+  --impresso-wght-bolder: 750;
   --impresso-wght-extrabold: 900;
-
   --impresso-font-size-sm: var(--fs12px);
+  /* FONT WEIGHT */
+  --font-weight-bold: var(--impresso-wght-bold);
+
   /* EASING */
   --backInOut: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --backOut: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -144,21 +144,9 @@ em {
 }
 
 b {
-  font-weight: 600;
+  font-weight: var(--impresso-wght-bold);
   /* variable font weight */
-  font-variation-settings: "wght" 600;
-}
-
-.btn {
-  font-size: var(--impresso-font-size-smallcaps);
-  text-transform: uppercase;
-  font-variant: normal;
-  letter-spacing: var(--impresso-letter-spacing-smallcaps);
-  line-height: 2em;
-  font-weight: var(--impresso-wght-smallcaps);
-  font-variation-settings: "wght" var(--impresso-wght-smallcaps);
-  white-space: nowrap;
-  --bs-border-radius: var(--impresso-border-radius-sm);
+  font-variation-settings: "wght" var(--impresso-wght-bold);
 }
 
 hr {
@@ -166,10 +154,32 @@ hr {
   margin-bottom: 2rem;
 }
 
+/* restyle bootstrap button */
+button {
+  display: flex !important;
+  align-items: center;
+}
+
+button svg {
+  margin-left: -0.2rem;
+}
+.btn {
+  font-weight: var(--impresso-wght-bold);
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+
+  font-size: var(--impresso-font-size-smallcaps);
+  text-transform: uppercase;
+  font-variant: normal;
+  letter-spacing: var(--impresso-letter-spacing-smallcaps);
+  line-height: 2em;
+
+  white-space: nowrap;
+  --bs-border-radius: var(--impresso-border-radius-sm);
+}
 .btn-primary {
   --bs-btn-color: var(--impresso-color-black);
   --bs-btn-bg: var(--impresso-color-yellow);
-  --bs-btn-border-color: var(--impresso-color-yellow);
+  --bs-btn-border-color: var(--impresso-color-black);
   --bs-btn-hover-color: var(--impresso-color-black);
   --bs-btn-hover-bg: var(--impresso-color-yellow);
   --bs-btn-hover-border-color: var(--impresso-color-black);
@@ -182,17 +192,9 @@ hr {
   --bs-btn-disabled-bg: var(--impresso-color-yellow);
   --bs-btn-disabled-border-color: var(--impresso-color-black);
 }
-/* restyle bootstrap button */
-button {
-  display: flex !important;
-  align-items: center;
-}
-
-button svg {
-  margin-left: -0.2rem;
-}
 .btn.btn-primary {
   border: 2px var(--impresso-color-yellow) solid;
+  font-variation-settings: "wght" var(--impresso-wght-extrabold);
 }
 
 .btn-primary-outline {
@@ -207,7 +209,9 @@ button svg {
 .btn-secodary.btn-sm {
   --bs-btn-bg: transparent;
   --bs-btn-color: var(--impresso-color-black);
-  border: 2px var(--impresso-color-black) solid !important;
+  border: 2px var(--impresso-color-black-rgba-50) solid !important;
+  font-weight: var(--impresso-wght-bolder);
+  font-variation-settings: "wght" var(--impresso-wght-bolder);
 }
 
 button.btn-secodary:hover {

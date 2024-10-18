@@ -1,15 +1,18 @@
 import { Modal } from "react-bootstrap"
+import { FeathersError } from "@feathersjs/errors"
 import { useBrowserStore, usePersistentStore } from "../store"
 import { BrowserViewLogin } from "../constants"
 import LoginForm, { type LoginFormPayload } from "./LoginForm"
 import { loginService } from "../services"
+import { useEffect, useState } from "react"
 
 const LoginModal = () => {
   const view = useBrowserStore((state) => state.view)
   const setView = useBrowserStore((state) => state.setView)
   const setAuthenticatedUser = usePersistentStore(
-    (state) => state.setAuthenticatedUser
+    (state) => state.setAuthenticatedUser,
   )
+  const [error, setError] = useState<FeathersError | null>(null)
 
   const checkCredentials = (credentials: LoginFormPayload) => {
     loginService
@@ -22,11 +25,15 @@ const LoginModal = () => {
         setAuthenticatedUser(data.user, data.accessToken)
         setView(null)
       })
-      .catch((err) => {
+      .catch((err: FeathersError) => {
+        setError(err)
         console.error("loginService.create", err)
       })
   }
 
+  useEffect(() => {
+    setError(null)
+  }, [view])
   return (
     <Modal
       centered
@@ -38,7 +45,7 @@ const LoginModal = () => {
       </Modal.Header>
       <Modal.Body className="p-3">
         <p>Log in to your account</p>
-        <LoginForm onSubmit={checkCredentials} />
+        <LoginForm onSubmit={checkCredentials} error={error} />
       </Modal.Body>
     </Modal>
   )
