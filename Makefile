@@ -8,7 +8,7 @@ run-dev:
 	PUBLIC_BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
 	PUBLIC_GIT_REMOTE=$(shell git config --get remote.origin.url) \
 	PUBLIC_IMPRESSO_API_PATH="/public-api" \
-	PUBLIC_IMPRESSO_WS_API_PATH="/socket.io" \
+	PUBLIC_IMPRESSO_WS_API_PATH="/api/socket.io" \
 	PUBLIC_IMPRESSO_DATALAB_BASE="/datalab" \
 	PUBLIC_IMPRESSO_DATALAB_SITE="https://impresso-project.ch" \
 	npm run dev
@@ -21,7 +21,7 @@ build-dev:
 	PUBLIC_BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
 	PUBLIC_GIT_REMOTE=$(shell git config --get remote.origin.url) \
 	PUBLIC_IMPRESSO_API_PATH="/public-api" \
-	PUBLIC_IMPRESSO_WS_API_PATH="/api/socket.io" \
+	PUBLIC_IMPRESSO_WS_API_PATH="/socket.io" \
 	PUBLIC_IMPRESSO_DATALAB_BASE="/datalab" \
 	PUBLIC_IMPRESSO_DATALAB_SITE="https://impresso-project.ch" \
 	npm run build
