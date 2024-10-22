@@ -11,10 +11,10 @@ export const extractMdFromIpynbCells = (
   // kernelspec: kernelspec,
   // cells: cell[],
   kernelspec = {},
-  cells = [],
+  cells = []
 ) => {
   const language = kernelspec.language ?? "python"
-  return cells
+  const content = cells
     .map((cell, i) => {
       const source = Array.isArray(cell.source)
         ? cell.source.join("")
@@ -25,6 +25,19 @@ export const extractMdFromIpynbCells = (
       return `{/* cell:${i} cell_type:${cell.cell_type} */}\n\`\`\`${language}\n${source}\n\`\`\`\n`
     })
     .join("\n")
+
+  // extract markdown links with label using regex, then puth them in a object {href, label}
+  const links = []
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g
+  let match
+  while ((match = linkRegex.exec(content))) {
+    links.push({ href: match[2], label: match[1] })
+  }
+
+  return {
+    content,
+    links,
+  }
 }
 
 export const getTitleFromIpynb = (cells) => {

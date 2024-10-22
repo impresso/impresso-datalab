@@ -1,11 +1,27 @@
 import axios from "axios"
 
+const AuthenticatedHeaders = process.env.GITHUB_TOKEN
+  ? {
+      headers: {
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+      },
+    }
+  : {}
+if (process.env.GITHUB_TOKEN) {
+  console.log("Using GITHUB_TOKEN")
+} else {
+  console.log(
+    "No GITHUB_TOKEN found, you can bump into 403 errors in Github API"
+  )
+}
+
 const handleError = (error) => {
   console.error(
-    "Error fetching data from Github API. Message:",
+    "\nError fetching data from Github API. Message:",
     error.message,
-    error.request.path,
+    error.request.path
   )
+  console.error("\nResponse message, if any: ", error.response?.data?.message)
   process.exit(1)
 }
 
@@ -13,7 +29,9 @@ export const getLatestCommit = async (owner, repo) => {
   const url = `https://api.github.com/repos/${owner}/${repo}/commits`
 
   const data = await axios
-    .get(url)
+    .get(url, {
+      ...AuthenticatedHeaders,
+    })
     .then((res) => res.data)
     .catch(handleError)
   if (Array.isArray(data) && data.length > 0) {
@@ -26,7 +44,9 @@ export const getLatestCommitOfPath = async (owner, repo, path) => {
   const url = `https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`
 
   const data = await axios
-    .get(url)
+    .get(url, {
+      ...AuthenticatedHeaders,
+    })
     .then((res) => res.data)
     .catch(handleError)
   if (Array.isArray(data) && data.length > 0) {
@@ -52,7 +72,7 @@ export const getLatestCommitFromUrl = async (url) => {
   if (owner && repo) {
     // extract path from url, without blob and branch info
     const matchPath = url.match(
-      /github.com\/[^\/]+\/[^\/]+\/blob\/[^\/]+\/(.*)/,
+      /github.com\/[^\/]+\/[^\/]+\/blob\/[^\/]+\/(.*)/
     )
 
     if (matchPath) {

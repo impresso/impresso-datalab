@@ -19,7 +19,6 @@ const notebookToUpdate = process.argv[2]
 if (notebookToUpdate) {
   console.log("update only", notebookToUpdate)
 }
-
 // get all files in the dir
 ;(async () => {
   for (const notebook of Notebooks) {
@@ -30,21 +29,21 @@ if (notebookToUpdate) {
     const notebookPath = join(NotebooksDir, notebook)
     console.log("\n- read notebook", notebookPath)
     if (!notebook.endsWith(".mdx")) {
-      console.log("⚠ skipping, not a mdx file ")
+      console.log("\x1b[33m⚠ skip\x1b[0m, not a mdx file ")
       continue
     }
     console.log("  get `githubUrl` value from yaml frontmatter...")
     const notebookMdx = readFileSync(notebookPath, "utf8")
     const frontmatterMdx = notebookMdx.match(/---\n([\s\S]*?)\n---/)
     if (!frontmatterMdx) {
-      console.log("⚠ skipping, no frontmatter found")
+      console.log("\x1b[33m⚠ skip\x1b[0m, no frontmatter found")
       continue
     }
     const frontmatter = parse(frontmatterMdx[1])
     console.log("✓ frontmatter found", frontmatter)
     const match = notebookMdx.match(/githubUrl:\s(https:\/\/.*)/)
     if (!match) {
-      console.log("⚠ skipping, no `githubUrl` found")
+      console.log("\x1b[33m⚠ skip\x1b[0m, no `githubUrl` found")
       continue
     }
     const url = match[1].replace(/"/g, "")
@@ -52,14 +51,18 @@ if (notebookToUpdate) {
 
     const commit = await getLatestCommitFromUrl(url)
     if (!commit) {
-      console.log("⚠ skipping, no commit found? Please double check tuhe url.")
+      console.log(
+        "\x1b[33m⚠ skip\x1b[0m, no commit found? Please double check tuhe url."
+      )
       continue
     }
     console.log("✓ sha:", commit.sha)
     console.log("✓ date:", commit.commit.author.date)
     // if the sha is the same as the one in the frontmatter, we skip
-    if (frontmatter.sha === commit.sha) {
-      console.log("⚠ skipping, sha is the same as the one in the frontmatter")
+    if (!process.env.FORCE_UPDATE && frontmatter.sha === commit.sha) {
+      console.log(
+        "\x1b[33m⚠ skip\x1b[0m, sha is the same as the one in the frontmatter"
+      )
       continue
     }
     // get the ipynb content
@@ -71,7 +74,9 @@ if (notebookToUpdate) {
     const ipynb = await getIpynbContentsFromUrl(ipynbUrl)
     // save the content to the notebook file
     if (!ipynb) {
-      console.log("⚠ skipping, no ipynb found? Please double check the url.")
+      console.log(
+        "\x1b[33m⚠ skip\x1b[0m, no ipynb found? Please double check the url."
+      )
       continue
     }
 
@@ -82,13 +87,13 @@ if (notebookToUpdate) {
       continue
     }
     console.log("✓ title:", `\x1b[33m${title}\x1b[0m`)
-    const contentMdx = extractMdFromIpynbCells(
+    const { content: contentMdx, links } = extractMdFromIpynbCells(
       ipynb.metadata.kernelspec,
-      ipynb.cells.filter((_d, i) => i !== cellIdx),
+      ipynb.cells.filter((_d, i) => i !== cellIdx)
     )
     const googleColabUrl = `https://colab.research.google.com/${url.replace(
       /https:\/\/.*?github.com/,
-      "github",
+      "github"
     )}`
     // get current yaml from frontùatter
     const newFrontmatter = {
@@ -96,6 +101,7 @@ if (notebookToUpdate) {
       title,
       sha: commit.sha,
       date: commit.commit.author.date,
+      links: links,
       googleColabUrl,
     }
     const newMdx = `---\n${stringify(newFrontmatter)}---\n\n${contentMdx}`
