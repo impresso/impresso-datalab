@@ -40,6 +40,7 @@
     "bootstrap": "^5.3.3",
     "boring-avatars": "^1.11.2",
     "iconoir-react": "^7.9.0",
+    "impresso-jscommons": "github:impresso/impresso-jscommons#v1.4.1",
     "luxon": "^3.5.0",
     "marked": "^14.1.2",
     "react": "^18.3.1",
