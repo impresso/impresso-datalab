@@ -5,6 +5,8 @@ import Layout from '../../layouts/Layout.astro'
 import { getCollection } from 'astro:content';
 import { getRecursivelyEntryData } from '../../logic';
 import { getEntry } from 'astro:content';
+import { CanonicalUrl } from '../../constants';
+import { AstroSeo } from '@astrolib/seo';
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
   const notebooks = await getCollection('notebooks');
@@ -47,6 +49,11 @@ if (notebookProps.seealso) {
 
 
 <Layout title={notebookProps.title}>
+  <AstroSeo
+    canonical={CanonicalUrl}
+    title={notebookProps.title}
+    description={notebookProps.description}
+  />
   <App transition:persist/>
   <NotebookModal client:only="react" 
     notebook={notebookProps} 

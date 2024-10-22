@@ -78,6 +78,7 @@ const pagesContents = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
+    excerpt: z.string().optional(),
   }),
 })
 // 3. Export a single `collections` object to register your collection(s)

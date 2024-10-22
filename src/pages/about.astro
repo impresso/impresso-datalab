@@ -3,12 +3,19 @@ import App from "../components/App.astro";
 import AboutModal from "../components/AboutModal";
 import Layout from "../layouts/Layout.astro";
 import { getEntry } from "astro:content";
+import { CanonicalUrl } from "../constants";
+import { AstroSeo } from "@astrolib/seo";
 
 const pageContent = await getEntry("pagesContents", "about");
 
 ---
 
-<Layout title={"About - Impresso Datalab"}>
+<Layout title={pageContent.data.title}>
+  <AstroSeo
+    canonical={CanonicalUrl}
+    title={pageContent.data.title}
+    description={pageContent.data.excerpt}
+  />
   <App transition:persist/>
   <AboutModal client:only="react" content={pageContent.body}/>
 </Layout>
