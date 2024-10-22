@@ -4,6 +4,8 @@ import NotebooksModal from "../components/NotebooksModal"
 import { getRecursivelyEntryData } from "../logic"
 import App from "../components/App.astro"
 import Layout from "../layouts/Layout.astro"
+import { CanonicalUrl } from "../constants"
+import { AstroSeo } from "@astrolib/seo"
 
 // load all notebooks, order by date
 const notebooks = await getCollection('notebooks')
@@ -11,9 +13,16 @@ const notebooksProps = await Promise.all(notebooks.map(async (notebook) => {
   const notebookProps = await getRecursivelyEntryData(notebook)
   return notebookProps
 }))
+const title = "Notebooks - Impresso Datalab"
+const description = "A collection of Ipynb notebooks to explore and work programmatically with the Impresso Corpus, Data and Models."
 ---
 
-<Layout title={"Notebooks - Impresso Datalab"}>
+<Layout title={title}>
+  <AstroSeo
+    canonical={CanonicalUrl}
+    title={title}
+    description={description}
+  />
   <App transition:persist/>
   <NotebooksModal client:only="react" 
     notebooks={notebooksProps}

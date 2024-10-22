@@ -1,3 +1,6 @@
+export const CanonicalUrl =
+  import.meta.env.PUBLIC_IMPRESSO_DATALAB_SITE || "https://impresso-project.ch"
+
 export const RequirementToU = "terms-of-use"
 export const RequirementImpressoAccount = "impresso-account"
 export const RequirementProofStudentEnrollment = "proof-of-student-enrollment"

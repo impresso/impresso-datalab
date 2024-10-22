@@ -5,6 +5,7 @@ import App from "../components/App.astro"
 import Layout from "../layouts/Layout.astro"
 import PlansModal from "../components/PlansModal"
 import { AstroSeo } from '@astrolib/seo';
+import { CanonicalUrl } from "../constants"
 // load all notebooks, order by date
 const plans = await getCollection('plans')
 const plansProps = await Promise.all(plans.map(async (plan) => {
@@ -15,15 +16,19 @@ const plansProps = await Promise.all(plans.map(async (plan) => {
   }
 }))
 
-const canonicalUrl = import.meta.env.PUBLIC_IMPRESSO_DATALAB_SITE
+
 const title = "Plans - Impresso Datalab"
+const description = "Overview of the different plans for the Impresso Datalab website"
 ---
 
-<Layout title={title}>
+<Layout 
+  title={title}
+  description={description}
+>
   <AstroSeo
     title={title}
-    description="Overview of the different plans for the Impresso Datalab website"
-    canonical={canonicalUrl}
+    description={description}
+    canonical={CanonicalUrl}
   />
   <App transition:persist/>
   <PlansModal client:only="react" 

@@ -2,12 +2,19 @@
 import Layout from '../layouts/Layout.astro';
 import TokenModal from '../components/TokenModal';
 import App from '../components/App.astro';
+import { CanonicalUrl } from '../constants';
+import { AstroSeo } from '@astrolib/seo';
 
 
-
+const title = "Your API token - Impresso Datalab"
+const description = "Log in and accept our Terms of Use to get your API token for the Impresso Datalab API and python library."
 // https://docs.astro.build/en/guides/routing/#dynamic-redirects
 ---
-<Layout title="Your API token - Impresso Datalab">
+<Layout title={title}>
+  <AstroSeo
+    canonical={CanonicalUrl}
+    title={title}
+    description={description} />
   <App transition:persist/>
   <TokenModal client:only="react" />
 </Layout>
