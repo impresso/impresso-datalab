@@ -1,12 +1,23 @@
 ---
-githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_04_ner_nel_API.ipynb
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/entity/annotation_NERC_EL_impresso_services.ipynb
 authors:
   - impresso-team
 title: Detect Entities and Link them to Wikipedia and Wikidata in a Text through
   the Impresso API
-sha: 087d08f44c299889d5635eece4f303344246a80c
-date: 2024-09-30T13:34:13Z
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/2-entity/NE_04_ner_nel_API.ipynb
+sha: 40f28ab62fc88bbf7dd34a339e5d1cf717128bc8
+date: 2024-10-18T14:38:59Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/entity/annotation_NERC_EL_impresso_services.ipynb
+links:
+  - href: https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md
+    label: HIPE 2020
+  - href: https://impresso-project.ch
+    label: Impresso - Media Monitoring of the Past
+  - href: http://p3.snf.ch/project-173719
+    label: CRSII5_173719
+  - href: https://data.snf.ch/grants/grant/213585
+    label: CRSII5_213585
+  - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
+    label: GNU Affero General Public License
 ---
 
 {/* cell:0 cell_type:markdown */}
@@ -14,12 +25,11 @@ We refer to "named entity recognition" as NER, which is a tool that recognises e
 
 
 {/* cell:1 cell_type:markdown */}
-In the context of _Impresso_, the NER tool was trained on the [HIPE 2020](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md) dataset. It was trained to recognise coarse and fine grained entities such as persons and locations, but also their names, titles, and functions. Further, the _Impresso_ NEL tool links these entity mentions to unique referents in a knowledge base – here Wikipedia and Wikidata – or not if the mention's referent is not found.
+In the context of Impresso, the NER tool was trained on the [HIPE 2020](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md) dataset. It was trained to recognise coarse and fine grained entities such as persons and locations, but also their names, titles, and functions. Further, the _Impresso_ NEL tool links these entity mentions to unique referents in a knowledge base – here Wikipedia and Wikidata – or not if the mention's referent is not found.
 
 {/* cell:2 cell_type:code */}
 ```python
 !pip install transformers
-!wget https://raw.githubusercontent.com/impresso/impresso-datalab-notebooks/3f7afc05caef3f527db8320cdf8c131aec41d7cd/2-entity/utils.py
 
 ```
 
@@ -73,12 +83,27 @@ Now the fun part, this function will download the requried model and gives you t
 
 {/* cell:5 cell_type:code */}
 ```python
-sentences = ["Apple est créée le 1er avril 1976 dans le garage de la maison d'enfance de Steve Jobs à Los Altos en Californie par Steve Jobs, Steve Wozniak et Ronald Wayne, puis constituée sous forme de société le 3 janvier 1977 à l'origine sous le nom d'Apple Computer, mais pour ses 30 ans et pour refléter la diversification de ses produits, le mot « computer » est retiré le 9 janvier 2015."]
+from utils import get_linked_entities
 
-for sentence in sentences:
-    results = get_linked_entities(sentence)
-    print(results)
-    print_nicely(results, sentence)
+sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles, 
+                where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly, 
+                debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun, 
+                regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia, 
+                George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State, 
+                were drafting policies for the newly established American government following the signing of the Constitution."""
+
+# Function to print each entry nicely
+def print_nicely(data):
+    for idx, entry in enumerate(data, start=1):
+        for key, value in entry.items():
+            print(f"  {key.capitalize()}: {value}")
+        print()  # Blank line between entries
+
+
+results = get_linked_entities(sentence)
+
+print(results)
+print_nicely(results, sentence)
 
 ```
 

@@ -17,6 +17,9 @@ const notebooks = defineCollection({
     date: z.date().optional(),
     excerpt: z.string().optional(),
     tags: z.array(z.string()).optional(),
+    links: z
+      .array(z.object({ label: z.string(), href: z.string().url() }))
+      .optional(),
     authors: z.array(reference("authors")).optional(),
     // this gives circular reference
     seealso: z.array(z.string()).optional(),
@@ -37,7 +40,7 @@ const plans = defineCollection({
           title: z.string().optional(),
           status: z.string().optional(),
           iconColor: z.string().optional(),
-        }),
+        })
       )
       .optional(),
     requirements: z.array(z.enum(Requirements as any)),

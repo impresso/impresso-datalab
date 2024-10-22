@@ -7,11 +7,16 @@ tags:
 binderUrl: https://mybinder.org/v2/gh/binder-examples/r/master?urlpath=rstudio
 authors:
   - impresso-team
-date: 2024-10-18T06:57:36Z
+date: 2024-10-22T12:02:47Z
 seealso:
   - impresso-py-search
-sha: 7616c20dbbf5c700ec3e7514216e9a507bf9ab65
+sha: 50f3f50d29f659c758189a00bd7562c15afc25fc
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/1-starter/ST_01_basics.ipynb
+links:
+  - href: https://impresso-project.ch/datalab/
+    label: Impresso Datalab page
+  - href: https://docs.python.org/3/library/typing.html
+    label: type hints
 ---
 
 {/* cell:0 cell_type:markdown */}
@@ -34,7 +39,7 @@ Install the `impresso` python library:
 ## Initialize Impresso Client
 
 In this cell, we initialize the Impresso client and authenticate it with the Impresso API. 
-The `impresso` object allows us to interact with the API and perform various operations such as searching for articles, retrieving entities, and fetching facets. The following call will prompt you to enter your Impresso token if it has not been authenticated within the last few hours (the token has a short lifetime).
+The `impresso` object allows us to interact with the API and perform various operations such as searching for content items, retrieving entities, and fetching facets. The following call will prompt you to enter your Impresso token if it has not been authenticated within the last few hours (the token has a short lifetime).
 
 {/* cell:4 cell_type:code */}
 ```python
@@ -46,7 +51,7 @@ impresso = connect()
 {/* cell:5 cell_type:markdown */}
 ## Making first request
 
-Let's start by making a simple request to the Impresso API. We will search for articles that contain the word "Titanic" in the text and order the results by date in an ascending order.
+Let's start by making a simple request to the Impresso API. We will search for content items that contain the word "Titanic" in the text and order the results by date in an ascending order.
 
 {/* cell:6 cell_type:code */}
 ```python
@@ -104,13 +109,13 @@ Type hints in Google Colab:
 The Impresso library functionality is split into several namespaces that loosely follow the pages of the Impresso App. Each namespace normally contains a `find` method to search for a list of items and/or a `get` method to retrieve a single item by ID.
 
 {/* cell:15 cell_type:markdown */}
-### Search and Article
+### Search and Content Items
 
-The `search.find` method has been demonstrated in the previous example. The `articles.get` method can be used to retrieve an article by its ID.
+The `search.find` method has been demonstrated in the previous example. The `content_items.get` method can be used to retrieve a content item by its ID.
 
 {/* cell:16 cell_type:code */}
 ```python
-result = impresso.articles.get("indeplux-1909-04-10-a-i0042")
+result = impresso.content_items.get("indeplux-1909-04-10-a-i0042")
 result
 ```
 
