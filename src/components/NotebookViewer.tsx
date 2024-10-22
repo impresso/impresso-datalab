@@ -5,6 +5,7 @@ import type { Notebook } from "./NotebookCard"
 import NotebookCard from "./NotebookCard"
 import AuthorCard from "./AuthorCard"
 import Alert from "./Alert"
+import { DateTime } from "luxon"
 
 export interface NotebookViewerProps {
   notebook: Notebook
@@ -12,7 +13,7 @@ export interface NotebookViewerProps {
 }
 
 const splitTextWithCellInfo = (
-  text: string,
+  text: string
 ): Array<{ cellNumber: number; cellType: string; content: string }> => {
   const cells: Array<{
     cellNumber: number
@@ -55,6 +56,9 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
   // split the raw parameter
   // according to {/* cell:7 cell_type:markdown */}
   const cells = splitTextWithCellInfo(raw)
+  const accessTime = notebook.date ?? new Date()
+  const accessDateTime = DateTime.fromJSDate(accessTime)
+  const excerpt = notebook.excerpt ?? ""
   return (
     <Container>
       <Row className="my-3">
@@ -84,31 +88,41 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
               ></img>
             </a>
           </section>
-        </Col>
-        <Col lg="5">
-          <p className="m-0">{notebook.excerpt}</p>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col lg="7">
-          <Alert className="mb-4 p-3">
+          <section className="small mt-2">
+            Last update: <b>{accessDateTime.toFormat("yyyy LLL dd")}</b>
+          </section>
+          <Alert className="my-2 p-3">
             <div className="me-2">
               <b>Note:</b> This is a static preview of the Jupyter notebook.
             </div>
           </Alert>
-          {cells.map((cell, i) => (
-            <div key={cell.cellNumber}>
-              {cell.cellType === "markdown" && (
-                <MarkdownSnipped
-                  className={i > 0 ? "my-3" : "mb-3"}
-                  value={cell.content}
-                />
-              )}
-              {cell.cellType === "code" && (
-                <CodeSnippet value={cell.content} readonly />
-              )}
-            </div>
-          ))}
+        </Col>
+        <Col lg="5">
+          <MarkdownSnipped className="m-0" value={notebook.excerpt} />
+        </Col>
+      </Row>
+      <Row className="mb-3">
+        <Col lg="7">
+          {cells
+            .filter((cell) => {
+              if (cell.cellType === "code" && !cell.content.length) {
+                return false
+              }
+              return true
+            })
+            .map((cell, i) => (
+              <div key={cell.cellNumber}>
+                {cell.cellType === "markdown" && (
+                  <MarkdownSnipped
+                    className={i > 0 ? "my-3" : "mb-3"}
+                    value={cell.content}
+                  />
+                )}
+                {cell.cellType === "code" && (
+                  <CodeSnippet value={cell.content} readonly />
+                )}
+              </div>
+            ))}
         </Col>
         <Col lg="5">
           {Array.isArray(notebook.seealso) ? (

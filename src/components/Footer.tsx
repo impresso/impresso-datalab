@@ -40,13 +40,23 @@ const Footer: React.FC<{
           <Col md="6" lg="3" xxl="3">
             <p>
               Browse all <b>Impresso models</b> at{" "}
-              <a href="https://huggingface.co/impresso-project/">
+              <a
+                href="https://huggingface.co/impresso-project/"
+                style={{
+                  whiteSpace: "nowrap",
+                }}
+              >
                 🤗 Hugging Face
               </a>{" "}
               and the source code of all our tools in our{" "}
-              <a href="https://github.com/impresso">
+              <a
+                href="https://github.com/impresso"
+                style={{
+                  whiteSpace: "nowrap",
+                }}
+              >
                 <GithubCircle width={16} />
-                GitHub repositories
+                &nbsp;GitHub repositories
               </a>
               .
             </p>
@@ -89,7 +99,8 @@ const Footer: React.FC<{
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
             <LogoDofcl width={180} className="mb-3" />
             <span>
-              Department of Computational Linguistics, University of Zürich, Switzerland
+              Department of Computational Linguistics, University of Zürich,
+              Switzerland
             </span>
           </Col>
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">

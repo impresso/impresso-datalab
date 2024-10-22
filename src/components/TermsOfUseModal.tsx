@@ -1,6 +1,7 @@
 import { useEffect, useState, type ChangeEvent } from "react"
 import AcceptTermsOfUse from "./AcceptTermsOfUse"
 import Page from "./Page"
+import Alert from "./Alert"
 import { Col, Container, Row } from "react-bootstrap"
 import { useBrowserStore, usePersistentStore } from "../store"
 import { accountDetailsService } from "../services"
@@ -15,7 +16,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
 }) => {
   const { ref: bottomRef, isIntersecting } = useOnScreen(
     { threshold: 0.5 },
-    false,
+    false
   )
 
   const wsStatus = useBrowserStore((state) => state.wsStatus)
@@ -23,7 +24,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
   const [isBusy, setIsBusy] = useState<boolean>(false)
 
   const [acceptedTermsDate, setAcceptedTermsDate] = useState<DateTime | null>(
-    null,
+    null
   )
 
   const [enableAcceptTermsButton, setEnableAcceptTermsButton] =
@@ -34,7 +35,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
       if (wsStatus !== "connected") {
         console.debug(
           "[TermsOfUseModal] @useEffect - ws not connected, current status",
-          wsStatus,
+          wsStatus
         )
         return
       }
@@ -42,7 +43,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
         return
       }
       console.debug(
-        "[TermsOfUseModal] @useEffect - ws connected, call accountDetails.find() ...",
+        "[TermsOfUseModal] @useEffect - ws connected, call accountDetails.find() ..."
       )
       setIsBusy(true)
       accountDetailsService
@@ -50,7 +51,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
         .then((data) => {
           console.debug(
             "[TermsOfUseModal] @useEffect accountDetails.find() success:",
-            data,
+            data
           )
           setAcceptedTermsDate(DateTime.fromISO(data.dateAcceptedTerms))
           setIsBusy(false)
@@ -61,7 +62,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
         })
     },
     // eslint-disable-next-line
-    [wsStatus, token],
+    [wsStatus, token]
   )
 
   useEffect(() => {
@@ -71,14 +72,14 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
   }, [enableAcceptTermsButton, isIntersecting])
 
   const AcceptTermsOfUseOnChangeHandler = (
-    event: ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>
   ) => {
     if (isBusy) {
       console.debug("[TermsOfUseModal] AcceptTermsOfUse@onChange - isBusy")
       return
     }
     console.debug(
-      "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() ...",
+      "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() ..."
     )
     setIsBusy(true)
     accountDetailsService
@@ -88,7 +89,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
       .then((data) => {
         console.debug(
           "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() success:",
-          data,
+          data
         )
       })
       .finally(() => {
@@ -100,7 +101,8 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
       title="Terms Of Use - Impresso Datalab"
       fullscreen="xl-down"
       size="xl"
-      modalBodyClassName="pt-0 px-2"
+      modalBodyClassName="py-0 px-2"
+      modalFooterClassName="p-0"
       footer={
         <AcceptTermsOfUse
           checked={acceptedTermsDate?.isValid}
@@ -123,17 +125,19 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
                 </b>
               </p>
             ) : (
-              <p className="m-0">
-                You have not accepted the terms of use yet. Please read the{" "}
-                <b>entire</b> terms of use document carefully and accept it at
-                the bottom to continue.
-              </p>
+              <Alert>
+                <p className="m-0">
+                  You have not accepted the terms of use yet. Please read the{" "}
+                  <b>entire</b> terms of use document carefully and accept it at
+                  the bottom to continue.
+                </p>
+              </Alert>
             )}
           </Col>
           <div style={{ minHeight: "100vh" }}>
             <MarkdownSnippet value={content} />
           </div>
-          <div ref={bottomRef as React.RefObject<HTMLDivElement>}>bottom</div>
+          <div ref={bottomRef as React.RefObject<HTMLDivElement>}>&nbsp;</div>
         </Row>
       </Container>
     </Page>

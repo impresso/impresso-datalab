@@ -15,18 +15,20 @@ const AcceptTermsOfUse: FC<AcceptTermsOfUseProps> = ({
   },
 }) => {
   return (
-    <Form.Check>
-      <Form.Check.Input
-        type="checkbox"
-        id="terms-of-use"
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-      />
-      <Form.Check.Label htmlFor="terms-of-use">
-        I accept the terms of use {disabled ? "(disabled)" : ""}
-      </Form.Check.Label>
-    </Form.Check>
+    <section className="AcceptTermsOfUse border-top mx-3 py-4 mt-0 w-100 d-flex justify-content-center">
+      <Form.Check className="d-inline-block w-auto">
+        <Form.Check.Input
+          type="checkbox"
+          id="terms-of-use"
+          checked={checked}
+          onChange={onChange}
+          disabled={disabled}
+        />
+        <Form.Check.Label htmlFor="terms-of-use" className="font-weight-bold">
+          I HAVE READ and I AGREE to the Impresso Terms of Use.
+        </Form.Check.Label>
+      </Form.Check>
+    </section>
   )
 }
 
