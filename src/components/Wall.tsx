@@ -6,13 +6,13 @@ import Link from "./Link"
 import GettingStarted from "./GettingStarted"
 
 const CodeSample = `# Install the impresso library
-!pip install impresso
+%pip install impresso
 
-from impresso import api 
+from impresso import connect
 
-print(api.version())
+impresso = connect()
 
-results = api.search("moon landing")`
+results = impresso.search("moon landing")`
 
 const ImpressoModelsCodeSample = `# Use a pipeline as a high-level helper
 !pip install transformers
