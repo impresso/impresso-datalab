@@ -1,15 +1,10 @@
 ---
-githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/entity/annotation_newsagencies.ipynb
-title: News Agencies Recognition and Linking with Impresso BERT models
-excerpt: Impresso BERT-based pipeline, trained on Swiss and Luxembourgish
-  newspapers from the Impresso project, identifies and links news agencies in
-  historical articles. This notebook guides you through setting up a workflow to
-  detect these entities in your own text.
-sha: 41ee87a435950f734d7808bdb33253ebb2e3c6da
-date: 2024-10-18T14:56:21Z
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/entity/annotation_newsagencies.ipynb
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/entity/newsagency-processing_with_ImpressoAPI.ipynb
 authors:
   - impresso-team
+title: News Agencies Recognition and Linking with Impresso BERT models
+sha: 7f6586f9613b2171b6162c61c9164da6af89ff7b
+date: 2024-10-23T10:16:51Z
 links:
   - href: https://huggingface.co/spaces/impresso-project/multilingual-news-agency-recognition
     label: News Agency Recognition
@@ -23,6 +18,9 @@ links:
     label: CRSII5_213585
   - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
     label: GNU Affero General Public License
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/entity/newsagency-processing_with_ImpressoAPI.ipynb
+seealso:
+  - newsagency-processing-with-impresso-hf
 ---
 
 {/* cell:0 cell_type:markdown */}
@@ -32,11 +30,17 @@ If you're here, you likely seek to detect news agency entities in your own text.
 
 You can also access our [News Agency Recognition](https://huggingface.co/spaces/impresso-project/multilingual-news-agency-recognition) demo app through [HuggingFace Spaces](https://huggingface.co/docs/hub/en/spaces).
 
+**Next, when running the code, if a question about a HuggingFace token appears, hit Cancel, we do not need it.**
+
 {/* cell:1 cell_type:markdown */}
+
+## Prerequisites
+
 Install necessary libraries (if not already installed) and
 download the necessary NLTK data.
 
 {/* cell:2 cell_type:code */}
+
 ```python
 !pip install transformers
 !pip install stopwordsiso
@@ -44,9 +48,10 @@ download the necessary NLTK data.
 ```
 
 {/* cell:3 cell_type:markdown */}
-Now the fun part, this function will download the requried model and gives you the keys to successfullly detect news agencies in your text.
+Now, this next function will download the requried model and gives you the keys to successfullly detect news agencies in your text.
 
 {/* cell:4 cell_type:code */}
+
 ```python
 from transformers import pipeline
 
@@ -57,6 +62,7 @@ newsagency_ner_pipeline = pipeline("newsagency-ner", model="impresso-project/ner
 Run the example below to see how it works.
 
 {/* cell:6 cell_type:code */}
+
 ```python
 sentence = """Apple est créée le 1er avril 1976 dans le garage de la maison
           d'enfance de Steve Jobs à Los Altos en Californie par Steve Jobs, Steve Wozniak
@@ -103,21 +109,27 @@ v3 or later.
 ---
 
 <p align="center">
-  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+  <img
+    src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true"
+    width="350"
+    alt="Impresso Project Logo"
+  />
 </p>
 
-
 {/* cell:8 cell_type:code */}
+
 ```python
 
 ```
 
 {/* cell:9 cell_type:code */}
+
 ```python
 
 ```
 
 {/* cell:10 cell_type:code */}
+
 ```python
 
 ```
