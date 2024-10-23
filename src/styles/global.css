@@ -277,6 +277,14 @@ button.btn-secodary:hover {
   font-weight: var(--impresso-wght-smallcaps);
   font-variation-settings: "wght" var(--impresso-wght-smallcaps);
 }
+.small-caps-bold {
+  text-transform: uppercase;
+  font-size: var(--impresso-font-size-smallcaps);
+  font-variant: normal;
+  letter-spacing: var(--impresso-letter-spacing-smallcaps);
+  font-weight: var(--impresso-wght-bold);
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+}
 .font-weight-bold {
   font-weight: var(--impresso-wght-bold);
   font-variation-settings: "wght" var(--impresso-wght-bold);
