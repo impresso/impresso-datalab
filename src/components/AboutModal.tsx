@@ -1,6 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap"
 import MarkdownSnippet from "./MarkdownSnippet"
 import Page from "./Page"
+import DatalabDiagram from "./DatalabDiagram"
 
 const AboutModal: React.FC<{ content: string }> = ({
   content,
@@ -12,6 +13,7 @@ const AboutModal: React.FC<{ content: string }> = ({
       <Container>
         <Row>
           <h1 className="my-3">About</h1>
+          <DatalabDiagram />
           <Col className="mt-3">
             <MarkdownSnippet value={content} />
           </Col>
