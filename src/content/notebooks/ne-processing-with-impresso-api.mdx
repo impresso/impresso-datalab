@@ -1,12 +1,12 @@
 ---
-githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/entity/annotation_NERC_EL_impresso_services.ipynb
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/entity/NE-processing_with_ImpressoAPI.ipynb
 authors:
   - impresso-team
 title: Detect Entities and Link them to Wikipedia and Wikidata in a Text through
   the Impresso API
-sha: 40f28ab62fc88bbf7dd34a339e5d1cf717128bc8
-date: 2024-10-18T14:38:59Z
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/entity/annotation_NERC_EL_impresso_services.ipynb
+sha: c23bb2461d836ab72c1fb6e3bee11de9b0a7dc16
+date: 2024-10-23T09:47:35Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/entity/NE-processing_with_ImpressoAPI.ipynb
 links:
   - href: https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md
     label: HIPE 2020
@@ -18,22 +18,25 @@ links:
     label: CRSII5_213585
   - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
     label: GNU Affero General Public License
+seealso:
+  - ne-processing-with-impresso-hf
 ---
 
 {/* cell:0 cell_type:markdown */}
 We refer to "named entity recognition" as NER, which is a tool that recognises entities such as persons and locations from text. A "named entity linker" (NEL) connects these entities to an existing one such as a real person that can be found on Wikipedia (with a unique id in Wikidata). Wikipedia is a free, user-edited encyclopedia with articles on a wide range of topics like historical events, famous people, or scientific concepts. Wikidata is a sister project of Wikipedia that stores structured data, like facts and relationships between entities, used for tasks where computers need to understand and process data, such as NER and NEL.
 
-
 {/* cell:1 cell_type:markdown */}
 In the context of Impresso, the NER tool was trained on the [HIPE 2020](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md) dataset. It was trained to recognise coarse and fine grained entities such as persons and locations, but also their names, titles, and functions. Further, the _Impresso_ NEL tool links these entity mentions to unique referents in a knowledge base – here Wikipedia and Wikidata – or not if the mention's referent is not found.
 
 {/* cell:2 cell_type:code */}
+
 ```python
 !pip install transformers
 
 ```
 
 {/* cell:3 cell_type:code */}
+
 ```python
 def print_nicely(results, text):
     # Print the timestamp and system ID
@@ -82,14 +85,15 @@ def print_nicely(results, text):
 Now the fun part, this function will download the requried model and gives you the keys to successfullly detect entities in your text.
 
 {/* cell:5 cell_type:code */}
+
 ```python
 from utils import get_linked_entities
 
-sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles, 
-                where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly, 
-                debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun, 
-                regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia, 
-                George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State, 
+sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles,
+                where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly,
+                debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun,
+                regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia,
+                George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State,
                 were drafting policies for the newly established American government following the signing of the Constitution."""
 
 # Function to print each entry nicely
@@ -108,6 +112,7 @@ print_nicely(results, sentence)
 ```
 
 {/* cell:6 cell_type:code */}
+
 ```python
 
 ```
@@ -140,41 +145,51 @@ v3 or later.
 ---
 
 <p align="center">
-  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+  <img
+    src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true"
+    width="350"
+    alt="Impresso Project Logo"
+  />
 </p>
 
-
 {/* cell:8 cell_type:code */}
+
 ```python
 
 ```
 
 {/* cell:9 cell_type:code */}
+
 ```python
 
 ```
 
 {/* cell:10 cell_type:code */}
+
 ```python
 
 ```
 
 {/* cell:11 cell_type:code */}
+
 ```python
 
 ```
 
 {/* cell:12 cell_type:code */}
+
 ```python
 
 ```
 
 {/* cell:13 cell_type:code */}
+
 ```python
 
 ```
 
 {/* cell:14 cell_type:code */}
+
 ```python
 
 ```
