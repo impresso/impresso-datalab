@@ -7,8 +7,8 @@ excerpt: Trained on the [HIPE
   dataset, the Impresso models recognize both coarse and fine-grained named
   entities, linking mentions to knowledge bases when possible.
 title: Named Entity Recognition and Linking with Impresso Models
-sha: 7f6586f9613b2171b6162c61c9164da6af89ff7b
-date: 2024-10-23T10:16:51Z
+sha: 360ebcc56f036ede24fcfed36ce907f7e4b243e9
+date: 2024-10-23T15:01:38Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/entity/NE-processing_with_ImpressoHF.ipynb
 seealso:
   - ne-processing-with-impresso-api
@@ -32,10 +32,9 @@ links:
 ---
 
 {/* cell:0 cell_type:markdown */}
-
 ## Good to know before starting
-
 We refer to "named entity recognition" as NER, which is a tool that recognises entities such as persons and locations from text. A "named entity linker" (NEL) connects these entities to an existing one such as a real person that can be found on Wikipedia (with a unique id in Wikidata). Wikipedia is a free, user-edited encyclopedia with articles on a wide range of topics like historical events, famous people, or scientific concepts. Wikidata is a sister project of Wikipedia that stores structured data, like facts and relationships between entities, used for tasks where computers need to understand and process data, such as NER and NEL.
+
 
 {/* cell:1 cell_type:markdown */}
 In the context of _Impresso_, the NER tool was trained on the [HIPE 2020](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md) dataset. It was trained to recognise coarse and fine grained entities such as persons and locations, but also their names, titles, and functions. Further, the _Impresso_ NEL tool links these entity mentions to unique referents in a knowledge base – here Wikipedia and Wikidata – or not if the mention's referent is not found.
@@ -43,28 +42,29 @@ In the context of _Impresso_, the NER tool was trained on the [HIPE 2020](https:
 {/* cell:2 cell_type:markdown */}
 You can also access our [NERC](https://huggingface.co/spaces/impresso-project/multilingual-named-entity-recognition) and [NEL](https://huggingface.co/spaces/impresso-project/multilingual-entity-linking) demo apps through [HuggingFace Spaces](https://huggingface.co/docs/hub/en/spaces).
 
-**Next, when running the code, if a question about a HuggingFace token appears, hit Cancel, we do not need it.**
+__Next, when running the code, if a question about a HuggingFace token appears, hit Cancel, we do not need it.__
 
 {/* cell:3 cell_type:markdown */}
-
 ## Prerequisites
 
 {/* cell:4 cell_type:markdown */}
 First, we install some necessary libriaries and download the necessary files.
 
-{/* cell:5 cell_type:code */}
 
+
+{/* cell:5 cell_type:code */}
 ```python
+!pip install torch
+!pip install protobuf
+!pip install sentencepiece
 !pip install transformers
 !pip install nltk
 ```
 
 {/* cell:6 cell_type:markdown */}
-
 ## Entity Recognition
 
 {/* cell:7 cell_type:code */}
-
 ```python
 # Import necessary Python modules from the Transformers library
 from transformers import AutoModelForTokenClassification, AutoTokenizer
@@ -81,57 +81,60 @@ ner_tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 {/* cell:8 cell_type:markdown */}
 Create a pipeline for named entity recognition (NER) using the loaded model and tokenizer.
 
-{/* cell:9 cell_type:code */}
 
+{/* cell:9 cell_type:code */}
 ```python
-ner_pipeline = pipeline("generic-ner", model=MODEL_NAME,
-                        tokenizer=ner_tokenizer,
+ner_pipeline = pipeline("generic-ner", model=MODEL_NAME, 
+                        tokenizer=ner_tokenizer, 
                         trust_remote_code=True,
                         device='cpu')
 ```
 
 {/* cell:10 cell_type:code */}
-
 ```python
-sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles,
-                where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly,
-                debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun,
-                regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia,
-                George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State,
+sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles, 
+                where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly, 
+                debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun, 
+                regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia, 
+                George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State, 
                 were drafting policies for the newly established American government following the signing of the Constitution."""
 
 print(sentence)
 ```
 
-{/* cell:11 cell_type:code */}
+{/* cell:11 cell_type:markdown */}
+We will use the next function to print each entity nicely.
 
+{/* cell:12 cell_type:code */}
 ```python
-# Function to print each entry nicely
 def print_nicely(data):
-    for idx, entry in enumerate(data, start=1):
+    for idx, entry in enumerate(data):
         for key, value in entry.items():
             print(f"  {key.capitalize()}: {value}")
         print()  # Blank line between entries
+        
+```
 
-# Visualize stacked entities for each sentence
+{/* cell:13 cell_type:code */}
+```python
+# Recognize stacked entities for each sentence
 entities = ner_pipeline(sentence)
 
 # Extract coarse and fine entities
 print_nicely(entities)
 ```
 
-{/* cell:12 cell_type:markdown */}
-
+{/* cell:14 cell_type:markdown */}
 ## Entity Linking
 
-{/* cell:13 cell_type:markdown */}
+{/* cell:15 cell_type:markdown */}
 Further, the _Impresso_ NEL tool links these the previously found entity mentions to unique referents in Wikipedia and Wikidata.
 
-{/* cell:14 cell_type:code */}
-
+{/* cell:16 cell_type:code */}
 ```python
 # Import the necessary modules from the transformers library
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import pipeline
 
 NEL_MODEL_NAME = "impresso-project/nel-mgenre-multilingual"
 
@@ -140,23 +143,22 @@ NEL_MODEL_NAME = "impresso-project/nel-mgenre-multilingual"
 nel_tokenizer = AutoTokenizer.from_pretrained("impresso-project/nel-mgenre-multilingual")
 ```
 
-{/* cell:15 cell_type:code */}
-
+{/* cell:17 cell_type:code */}
 ```python
-nel_pipeline = pipeline("generic-nel", model=NEL_MODEL_NAME,
-                        tokenizer=nel_tokenizer,
+nel_pipeline = pipeline("generic-nel", model=NEL_MODEL_NAME, 
+                        tokenizer=nel_tokenizer, 
                         trust_remote_code=True,
                         device='cpu')
 ```
 
-{/* cell:16 cell_type:markdown */}
+{/* cell:18 cell_type:markdown */}
 Our entity linker needs a specific format to be able to focus on the entity that we want to be linked, like in this example:
 
 ```
 The event was held at the [START] Palace of Versailles [END], a symbol of French monarchy.
 ```
-
 Assuming that the entity `Palace of Versailles` was previously detected by an NER tool, we need to surround it with `[START]` and `[END]`. Our tool only handles one entity per sentence/text, thus, for each entity in the same sentence, we need to create a different input, for example:
+
 
 ```
 The event was held at the [START] Palace of Versailles [END], a symbol of French monarchy.
@@ -166,36 +168,31 @@ The event was held at the Palace of Versailles, a symbol of [START] French monar
 
 Let's take this example:
 
-{/* cell:17 cell_type:code */}
-
+{/* cell:19 cell_type:code */}
 ```python
 simple_sentence = "The event was held at the [START] Palace of Versailles [END], a symbol of French monarchy."
 
 linked_entity = nel_pipeline(simple_sentence)
 
-# Call the function
 print_nicely(linked_entity)
 ```
 
-{/* cell:18 cell_type:markdown */}
+{/* cell:20 cell_type:markdown */}
 It _could_ work without the special markers and texts mentioning only one entity, but we do not recommend it.
 
-{/* cell:19 cell_type:code */}
-
+{/* cell:21 cell_type:code */}
 ```python
 simple_sentence = "The event was held at the Palace of Versailles, a symbol of French monarchy."
 
 linked_entity = nel_pipeline(simple_sentence)
 
-# Call the function
 print_nicely(linked_entity)
 ```
 
-{/* cell:20 cell_type:markdown */}
+{/* cell:22 cell_type:markdown */}
 If we work with our NER tool, we can automatically create these sentences with entity markers and link each entity afterwards:
 
-{/* cell:21 cell_type:code */}
-
+{/* cell:23 cell_type:code */}
 ```python
 # Run the NER pipeline on the input sentence and store the results
 entities = ner_pipeline(sentence)
@@ -233,7 +230,7 @@ for entity in entities:
         print_nicely(linked_entities)
 ```
 
-{/* cell:22 cell_type:markdown */}
+{/* cell:24 cell_type:markdown */}
 
 ## About Impresso
 
@@ -261,27 +258,21 @@ v3 or later.
 ---
 
 <p align="center">
-  <img
-    src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true"
-    width="350"
-    alt="Impresso Project Logo"
-  />
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
 </p>
 
-{/* cell:23 cell_type:code */}
-
-```python
-
-```
-
-{/* cell:24 cell_type:code */}
-
-```python
-
-```
 
 {/* cell:25 cell_type:code */}
+```python
 
+```
+
+{/* cell:26 cell_type:code */}
+```python
+
+```
+
+{/* cell:27 cell_type:code */}
 ```python
 
 ```

@@ -7,16 +7,24 @@ tags:
 binderUrl: https://mybinder.org/v2/gh/binder-examples/r/master?urlpath=rstudio
 authors:
   - impresso-team
-date: 2024-10-23T09:47:35Z
+date: 2024-10-23T15:12:54Z
 seealso:
   - impresso-py-search
-sha: c23bb2461d836ab72c1fb6e3bee11de9b0a7dc16
+sha: e2b2ccd80882025c718f853e2045a07ef73aa9fd
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/starter/ST_01_basics.ipynb
 links:
   - href: https://impresso-project.ch/datalab/
     label: Impresso Datalab page
   - href: https://docs.python.org/3/library/typing.html
     label: type hints
+  - href: https://impresso-project.ch
+    label: Impresso - Media Monitoring of the Past
+  - href: http://p3.snf.ch/project-173719
+    label: CRSII5_173719
+  - href: https://data.snf.ch/grants/grant/213585
+    label: CRSII5_213585
+  - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
+    label: GNU Affero General Public License
 ---
 
 {/* cell:0 cell_type:markdown */}
@@ -228,20 +236,33 @@ impresso.text_reuse.clusters.facet("daterange", lexical_overlap=(1, 2))
 ```
 
 {/* cell:30 cell_type:markdown */}
-### Tools - Named entity recognition
 
-Impresso API has its own Named entity recognition (NER) service trained on the Impresso corpus. It allows to locate and classify named entities mentioned in unstructured text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc.
+## About Impresso
 
-{/* cell:31 cell_type:code */}
-```python
-text = """
-Jean-Baptiste Nicolas Robert Schuman ( 
-29 June 1886 – 4 September 1963) was a Luxembourg-born French 
-statesman. Schuman was a Christian democratic (Popular 
-Republican Movement) political thinker and activist. 
-"""
-result = impresso.tools.ner(
-    text=text
-)
-result
-```
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an
+interdisciplinary research project that aims to develop and consolidate tools for
+processing and exploring large collections of media archives across modalities, time,
+languages and national borders. The first project (2017-2021) was funded by the Swiss
+National Science Foundation under grant
+No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027)
+by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585)
+and the Luxembourg National Research Fund under grant No. 17498891.
+
+### Copyright
+
+Copyright (C) 2024 The Impresso team.
+
+### License
+
+This program is provided as open source under
+the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE)
+v3 or later.
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>
+
