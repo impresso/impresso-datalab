@@ -19,6 +19,8 @@ export type Plan = {
   features: PlanFeature[]
   requirements: string[]
   icon: string
+  collection?: string
+  href?: string
 }
 
 export type PlanCardProps = {

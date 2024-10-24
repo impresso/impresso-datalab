@@ -302,6 +302,9 @@ button.btn-secodary:hover {
 .border-radius-lg {
   border-radius: var(--impresso-border-radius-lg);
 }
+.border-dotted {
+  --bs-border-style: dotted;
+}
 /* ... */
 h1 {
   font-variation-settings: "wght" var(--impresso-wght-bold);
