@@ -16,26 +16,29 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
 }) => {
   const { ref: bottomRef, isIntersecting } = useOnScreen(
     { threshold: 0.5 },
-    false
+    false,
   )
-
   const wsStatus = useBrowserStore((state) => state.wsStatus)
-  const [token] = usePersistentStore((state) => [state.token, state.user])
+  const [token, acceptedTermsDate] = usePersistentStore((state) => [
+    state.token,
+    state.acceptTermsDate,
+  ])
+  const [setAcceptedTermsDate] = usePersistentStore((state) => [
+    state.setAcceptedTermsDate,
+  ])
   const [isBusy, setIsBusy] = useState<boolean>(false)
-
-  const [acceptedTermsDate, setAcceptedTermsDate] = useState<DateTime | null>(
-    null
-  )
-
   const [enableAcceptTermsButton, setEnableAcceptTermsButton] =
     useState<boolean>(false)
 
+  const isAcceptedTermsDateValid = acceptedTermsDate
+    ? DateTime.fromISO(acceptedTermsDate).isValid
+    : false
   useEffect(
     () => {
       if (wsStatus !== "connected") {
         console.debug(
           "[TermsOfUseModal] @useEffect - ws not connected, current status",
-          wsStatus
+          wsStatus,
         )
         return
       }
@@ -43,7 +46,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
         return
       }
       console.debug(
-        "[TermsOfUseModal] @useEffect - ws connected, call accountDetails.find() ..."
+        "[TermsOfUseModal] @useEffect - ws connected, call accountDetails.find() ...",
       )
       setIsBusy(true)
       accountDetailsService
@@ -51,18 +54,26 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
         .then((data) => {
           console.debug(
             "[TermsOfUseModal] @useEffect accountDetails.find() success:",
-            data
+            data,
           )
-          setAcceptedTermsDate(DateTime.fromISO(data.dateAcceptedTerms))
+          setAcceptedTermsDate(data.dateAcceptedTerms)
           setIsBusy(false)
         })
         .catch((err) => {
-          console.error("[TermsOfUseModal] @useEffect - error", err)
           setIsBusy(false)
+
+          if (err.code === 404) {
+            // we assume that there is not yet an accepted terms date...
+            console.debug(
+              "[TermsOfUseModal] @useEffect - 404, no accepted terms date",
+            )
+            return
+          }
+          console.error("[TermsOfUseModal] @useEffect - error", err)
         })
     },
     // eslint-disable-next-line
-    [wsStatus, token]
+    [wsStatus, token],
   )
 
   useEffect(() => {
@@ -72,16 +83,22 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
   }, [enableAcceptTermsButton, isIntersecting])
 
   const AcceptTermsOfUseOnChangeHandler = (
-    event: ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>,
   ) => {
     if (isBusy) {
       console.debug("[TermsOfUseModal] AcceptTermsOfUse@onChange - isBusy")
       return
     }
     console.debug(
-      "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() ..."
+      "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() ...",
     )
+    if (process.env.NODE_ENV == "development" && !event.target.checked) {
+      setAcceptedTermsDate(null)
+      return
+    }
+    setAcceptedTermsDate(DateTime.now().toISOTime())
     setIsBusy(true)
+
     accountDetailsService
       .patch(null, {
         acceptTerms: event.target.checked,
@@ -89,7 +106,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
       .then((data) => {
         console.debug(
           "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() success:",
-          data
+          data,
         )
       })
       .finally(() => {
@@ -105,7 +122,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
       modalFooterClassName="p-0"
       footer={
         <AcceptTermsOfUse
-          checked={acceptedTermsDate?.isValid}
+          checked={isAcceptedTermsDateValid}
           onChange={AcceptTermsOfUseOnChangeHandler}
           disabled={!enableAcceptTermsButton}
         />
@@ -115,15 +132,19 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
         <Row>
           <h1 className="my-3">Terms of Use</h1>
           <Col className="position-sticky top-0 bg-light m-0 py-2">
-            {acceptedTermsDate?.isValid ? (
-              <p className="m-0">
-                You have accepted the terms of use:{" "}
-                <b>
-                  {acceptedTermsDate
-                    ?.setLocale("en-GB")
-                    .toLocaleString(DateTime.DATETIME_FULL) ?? "N/A"}
-                </b>
-              </p>
+            {isAcceptedTermsDateValid ? (
+              <Alert>
+                <p className="m-0">
+                  You have accepted the terms of use:{" "}
+                  <b>
+                    {acceptedTermsDate
+                      ? DateTime.fromISO(acceptedTermsDate)
+                          .setLocale("en-GB")
+                          .toLocaleString(DateTime.DATETIME_FULL)
+                      : "N/A"}
+                  </b>
+                </p>
+              </Alert>
             ) : (
               <Alert>
                 <p className="m-0">

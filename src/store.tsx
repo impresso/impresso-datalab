@@ -11,9 +11,11 @@ import {
 interface PersistentStoreState {
   user: User | null
   token: string | null
+  acceptTermsDate: string | null
   setAuthenticatedUser: (user: User, token: string) => void
   setUser: (user: User | null) => void
   setToken: (token: string | null) => void
+  setAcceptedTermsDate: (date: string | null) => void
   reset: () => void
 }
 
@@ -38,6 +40,10 @@ export const usePersistentStore = create<
       user: null,
       token: null,
       rememberCredentials: false,
+      acceptTermsDate: null,
+      setAcceptedTermsDate(date) {
+        set({ acceptTermsDate: date })
+      },
       setAuthenticatedUser(user, token) {
         if (token) {
           localStorage.setItem(AccessTokenKey, token)
