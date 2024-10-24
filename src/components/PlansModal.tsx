@@ -46,7 +46,6 @@ const PlansModal: React.FC<PlansModalProps> = ({ plans = [] }) => {
       fullscreen="xl-down"
       size="xl"
       modalBodyClassName="pt-0 pe-4 ps-2 PlansModal mx-1"
-      footer={<>Ciao</>}
     >
       <Container>
         <Row
