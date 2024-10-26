@@ -8,17 +8,22 @@ import { accountDetailsService } from "../services"
 import { DateTime } from "luxon"
 import { useOnScreen } from "@custom-react-hooks/use-on-screen"
 import MarkdownSnippet from "./MarkdownSnippet"
+import { BrowserViewTermsOfUse } from "../constants"
 
-const TermsOfUseModal: React.FC<{ content: string }> = ({
-  content,
-}: {
+const TermsOfUseModal: React.FC<{
   content: string
-}) => {
+  autoOpenAfterDelay?: boolean
+}> = ({ content, autoOpenAfterDelay = true }) => {
   const { ref: bottomRef, isIntersecting } = useOnScreen(
     { threshold: 0.5 },
     false,
   )
-  const wsStatus = useBrowserStore((state) => state.wsStatus)
+  const [wsStatus, view] = useBrowserStore((state) => [
+    state.wsStatus,
+    state.view,
+  ])
+  const setView = useBrowserStore((state) => state.setView)
+
   const [token, acceptedTermsDate] = usePersistentStore((state) => [
     state.token,
     state.acceptTermsDate,
@@ -26,6 +31,7 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
   const [setAcceptedTermsDate] = usePersistentStore((state) => [
     state.setAcceptedTermsDate,
   ])
+
   const [isBusy, setIsBusy] = useState<boolean>(false)
   const [enableAcceptTermsButton, setEnableAcceptTermsButton] =
     useState<boolean>(false)
@@ -120,6 +126,11 @@ const TermsOfUseModal: React.FC<{ content: string }> = ({
       size="xl"
       modalBodyClassName="py-0 px-2"
       modalFooterClassName="p-0"
+      autoOpenAfterDelay={autoOpenAfterDelay}
+      manualOpen={view === BrowserViewTermsOfUse}
+      onHide={() => {
+        setView(null)
+      }}
       footer={
         <AcceptTermsOfUse
           checked={isAcceptedTermsDateValid}

@@ -120,7 +120,7 @@ export const PlanLabels: Record<string, string> = {
 
 export const BrowserViewLogin = "login"
 export const BrowserViewRegister = "signup"
-
+export const BrowserViewTermsOfUse = "terms-of-use"
 export const BrowserViews: string[] = [BrowserViewLogin, BrowserViewRegister]
 
 export const BrowserWsStatusIdle = "idle"

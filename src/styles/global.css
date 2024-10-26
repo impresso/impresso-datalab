@@ -29,6 +29,8 @@
   --impresso-card-purple-icon: #8a5de8;
   --impresso-card-orange-icon: #f2994a;
 
+  --error-rgb: 242, 153, 74;
+  --warning-rgb: 255, 182, 114;
   /* Bootstrap overrides */
   --bs-border-radius-lg: var(--impresso-border-radius-lg);
   --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
@@ -214,6 +216,26 @@ button svg {
   font-variation-settings: "wght" var(--impresso-wght-bolder);
 }
 
+.btn.btn-link {
+  border: 0px transparent solid;
+  padding: 0;
+  --bs-btn-bg: transparent;
+  --bs-btn-color: var(--impresso-color-black);
+  --bs-btn-hover-color: var(--impresso-color-yellow);
+  --bs-btn-hover-bg: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: var(--impresso-color-yellow);
+  --bs-btn-active-bg: transparent;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-active-shadow: none;
+  --bs-btn-disabled-color: var(--impresso-color-black);
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: transparent;
+}
+.btn.btn-link:hover {
+  border: 0px transparent solid;
+  color: inherit;
+}
 button.btn-secodary:hover {
   background-color: rgba(var(--impresso-color-black-rgb), 0.8);
   color: var(--bs-light);
@@ -339,6 +361,7 @@ hr {
 
 .modal-backdrop {
   --bs-backdrop-bg: var(--impresso-color-paper);
+  --bs-backdrop-opacity: 0.8;
 }
 .modal {
   --bs-modal-bg: var(--impresso-color-paper);

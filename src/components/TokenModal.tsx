@@ -3,7 +3,11 @@ import TokenWrapper from "./TokenWrapper"
 
 const TokenModal: React.FC = () => {
   return (
-    <Page title="Your Api Token">
+    <Page
+      size="lg"
+      fullscreen="md-down"
+      title="Your Api Token - Impresso Datalab"
+    >
       <TokenWrapper />
     </Page>
   )
