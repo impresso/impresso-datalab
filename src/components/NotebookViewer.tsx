@@ -24,8 +24,9 @@ const splitTextWithCellInfo = (
   }> = []
   const regex = /\{\/*\*\s*cell:(\d+)\s*cell_type:(\w+)\s*\*\/\}/g
   let match
-
   while ((match = regex.exec(text)) !== null) {
+    console.log(match)
+    debugger
     cells.push({
       idx: match.index,
       l: match[0].length,
@@ -34,6 +35,8 @@ const splitTextWithCellInfo = (
       content: "",
     })
   }
+  console.log("CELL", cells)
+  debugger
   // now based on the indexes we can extract the content
   for (let i = 0; i < cells.length; i++) {
     const start = cells[i].idx + cells[i].l
@@ -123,8 +126,12 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
             ))}
         </Col>
         <Col lg="5" className="ps-4">
-          <h4>Abstract</h4>
-          <MarkdownSnipped className="m-0 small" value={excerpt} />
+          {excerpt.length > 0 && (
+            <>
+              <h4>Abstract</h4>
+              <MarkdownSnipped className="m-0 small" value={excerpt} />
+            </>
+          )}
           <div
             style={{
               position: "sticky",
