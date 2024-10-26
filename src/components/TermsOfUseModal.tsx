@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent } from "react"
+import { useCallback, useEffect, useState, type ChangeEvent } from "react"
 import AcceptTermsOfUse from "./AcceptTermsOfUse"
 import Page from "./Page"
 import Alert from "./Alert"
@@ -6,7 +6,6 @@ import { Col, Container, Row } from "react-bootstrap"
 import { useBrowserStore, usePersistentStore } from "../store"
 import { accountDetailsService } from "../services"
 import { DateTime } from "luxon"
-import { useOnScreen } from "@custom-react-hooks/use-on-screen"
 import MarkdownSnippet from "./MarkdownSnippet"
 import { BrowserViewTermsOfUse } from "../constants"
 
@@ -14,10 +13,28 @@ const TermsOfUseModal: React.FC<{
   content: string
   autoOpenAfterDelay?: boolean
 }> = ({ content, autoOpenAfterDelay = true }) => {
-  const { ref: bottomRef, isIntersecting } = useOnScreen(
-    { threshold: 0.5 },
-    false,
-  )
+  const [isIntersecting, setIsIntersecting] = useState<boolean>(false)
+
+  const bottomRef = useCallback((node: HTMLDivElement | null) => {
+    let observer: IntersectionObserver | null = null
+    if (node !== null) {
+      node.textContent = ""
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsIntersecting(entry.isIntersecting)
+        },
+        { threshold: 0.5 },
+      )
+      observer.observe(node)
+    }
+    return () => {
+      console.debug("[TermsOfUseModal] bottomRef cleanup")
+      if (node && observer) {
+        observer.unobserve(node)
+      }
+    }
+  }, [])
+
   const [wsStatus, view] = useBrowserStore((state) => [
     state.wsStatus,
     state.view,
@@ -169,7 +186,7 @@ const TermsOfUseModal: React.FC<{
           <div style={{ minHeight: "100vh" }}>
             <MarkdownSnippet value={content} />
           </div>
-          <div ref={bottomRef as React.RefObject<HTMLDivElement>}>&nbsp;</div>
+          <div ref={bottomRef}>&nbsp;</div>
         </Row>
       </Container>
     </Page>

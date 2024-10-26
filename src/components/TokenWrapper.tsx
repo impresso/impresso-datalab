@@ -10,8 +10,6 @@ import Token from "./Token"
 import Alert from "./Alert"
 import { Container } from "react-bootstrap"
 import { BrowserViewLogin, BrowserViewTermsOfUse } from "../constants"
-import Link from "./Link"
-import AcceptTermsOfUse from "./AcceptTermsOfUse"
 import { DateTime } from "luxon"
 
 const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
@@ -19,9 +17,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
     state.token,
     state.acceptTermsDate,
   ])
-  const [setAcceptedTermsDate] = usePersistentStore((state) => [
-    state.setAcceptedTermsDate,
-  ])
+
   const setView = useBrowserStore((state) => state.setView)
   const [isBusy, setIsBusy] = useState(false)
 
@@ -142,7 +138,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
         </div>
       )}
 
-      {status === "success" && (
+      {status === "success" && acceptTermsDate !== null && (
         <Token token={data.accessToken} className={"mt-4 mb-3"} />
       )}
 

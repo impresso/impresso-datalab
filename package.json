@@ -20,7 +20,6 @@
     "@astrojs/react": "^3.6.2",
     "@astrolib/seo": "^1.0.0-beta.6",
     "@codemirror/lang-python": "^6.1.6",
-    "@custom-react-hooks/use-on-screen": "^1.5.1",
     "@feathersjs/authentication-client": "^5.0.30",
     "@feathersjs/errors": "^5.0.30",
     "@feathersjs/feathers": "^5.0.30",
