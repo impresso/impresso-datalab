@@ -16,16 +16,17 @@ const Background = () => {
     windowHeight.current = window.innerHeight
   }
 
-  const mouseMoveEvent = (e: MouseEvent) => {
-    const x = e.pageX - windowWidth.current / 2
-    const y = e.pageY - windowHeight.current / 2
-    // api.start({ x, y })
-  }
+  // const mouseMoveEvent = (e: MouseEvent) => {
+  //   // to be improved for performance
+  //   // const x = e.pageX - windowWidth.current / 2
+  //   // const y = e.pageY - windowHeight.current / 2
+  //   // api.start({ x, y })
+  // }
   useEffect(() => {
-    document.addEventListener("mousemove", mouseMoveEvent)
+    // document.addEventListener("mousemove", mouseMoveEvent)
     document.addEventListener("resize", onResizeHandler)
     return () => {
-      document.removeEventListener("mousemove", mouseMoveEvent)
+      // document.removeEventListener("mousemove", mouseMoveEvent)
       document.removeEventListener("resize", onResizeHandler)
     }
     // eslint-disable-next-line

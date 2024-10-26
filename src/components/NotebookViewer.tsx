@@ -13,7 +13,7 @@ export interface NotebookViewerProps {
 }
 
 const splitTextWithCellInfo = (
-  text: string
+  text: string,
 ): Array<{ cellNumber: number; cellType: string; content: string }> => {
   const cells: Array<{
     cellNumber: number
@@ -98,7 +98,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
           </Alert>
         </Col>
         <Col lg="5">
-          <MarkdownSnipped className="m-0" value={notebook.excerpt} />
+          <MarkdownSnipped className="m-0" value={excerpt} />
         </Col>
       </Row>
       <Row className="mb-3">
