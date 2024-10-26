@@ -10,6 +10,9 @@ interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
   modalBodyClassName?: string
   modalFooterClassName?: string
   footer?: React.ReactNode
+  autoOpenAfterDelay?: boolean
+  manualOpen?: boolean
+  onHide?: () => void
 }
 
 const Page: React.FC<PageProps> = ({
@@ -22,12 +25,18 @@ const Page: React.FC<PageProps> = ({
   modalBodyClassName = "",
   modalFooterClassName = "",
   footer = null,
+  autoOpenAfterDelay = true,
+  // this is used only when autoOpenAfterDelay is false
+  manualOpen = false,
+  onHide,
 }) => {
   const [show, setShow] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
   const handleClose = () => {
     setShow(false)
-
+    if (typeof onHide === "function") {
+      onHide()
+    }
     clearTimeout(timerRef.current)
     timerRef.current = setTimeout(() => {
       console.info("[TokenModal] redirecting to impresso-datalab")
@@ -36,17 +45,26 @@ const Page: React.FC<PageProps> = ({
       window.history.pushState(
         {},
         "",
-        import.meta.env.PUBLIC_IMPRESSO_DATALAB_BASE
+        import.meta.env.PUBLIC_IMPRESSO_DATALAB_BASE,
       )
     }, 1000)
   }
 
   useEffect(() => {
-    timerRef.current = setTimeout(() => {
-      setShow(true)
-    }, delay)
+    clearTimeout(timerRef.current)
+    if (autoOpenAfterDelay) {
+      timerRef.current = setTimeout(() => {
+        setShow(true)
+      }, delay)
+    }
     return () => clearTimeout(timerRef.current)
-  }, [])
+  }, [autoOpenAfterDelay])
+
+  useEffect(() => {
+    if (!autoOpenAfterDelay) {
+      setShow(manualOpen)
+    }
+  }, [autoOpenAfterDelay, manualOpen])
 
   return (
     <Modal
