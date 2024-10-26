@@ -44,6 +44,9 @@ export const getTitleFromIpynb = (cells) => {
   const cellWithH1idx = cells.findIndex((cell) => {
     if (cell.cell_type !== "markdown") return false
     if (Array.isArray(cell.source)) {
+      if (cell.source.length === 0) {
+        return false
+      }
       return cell.source[0].trim().startsWith("# ")
     }
     return cell.source.startsWith("# ")
@@ -57,6 +60,7 @@ export const getTitleFromIpynb = (cells) => {
   if (Array.isArray(cellWithH1.source)) {
     return {
       title: cellWithH1.source[0].trim().replace(/#/g, "").trim(),
+      source: cellWithH1.source.slice(1),
       cellIdx: cellWithH1idx,
     }
   } else {

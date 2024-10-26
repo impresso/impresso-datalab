@@ -1,0 +1,7 @@
+.NotebookViewer h2 {
+  font-size: var(--font-size-h2);
+}
+
+.NotebookViewer h3 {
+  font-size: var(--font-size-h3);
+}

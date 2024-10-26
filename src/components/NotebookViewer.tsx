@@ -6,6 +6,7 @@ import NotebookCard from "./NotebookCard"
 import AuthorCard from "./AuthorCard"
 import Alert from "./Alert"
 import { DateTime } from "luxon"
+import "./NotebookViewer.css"
 
 export interface NotebookViewerProps {
   notebook: Notebook
@@ -25,8 +26,6 @@ const splitTextWithCellInfo = (
   const regex = /\{\/*\*\s*cell:(\d+)\s*cell_type:(\w+)\s*\*\/\}/g
   let match
   while ((match = regex.exec(text)) !== null) {
-    console.log(match)
-    debugger
     cells.push({
       idx: match.index,
       l: match[0].length,
@@ -35,8 +34,7 @@ const splitTextWithCellInfo = (
       content: "",
     })
   }
-  console.log("CELL", cells)
-  debugger
+
   // now based on the indexes we can extract the content
   for (let i = 0; i < cells.length; i++) {
     const start = cells[i].idx + cells[i].l
@@ -63,7 +61,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
   const accessDateTime = DateTime.fromJSDate(accessTime)
   const excerpt = notebook.excerpt ?? ""
   return (
-    <Container>
+    <Container className="NotebookViewer">
       <Row className="my-3">
         <h1 dangerouslySetInnerHTML={{ __html: notebook.title }} />
       </Row>

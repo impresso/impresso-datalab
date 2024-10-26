@@ -79,7 +79,8 @@
   --bs-border-radius: 0.25rem;
   /* FONT SIZES */
   --font-size-h1: var(--fs80px);
-  --font-size-h2: var(--fs40px);
+  --font-size-h2: var(--fs24px);
+  --font-size-h3: var(--fs18px);
   --font-size-h5: var(--fs18px);
   --font-small: var(--fs12px);
 

@@ -52,7 +52,7 @@ if (notebookToUpdate) {
     const commit = await getLatestCommitFromUrl(url)
     if (!commit) {
       console.log(
-        "\x1b[33m⚠ skip\x1b[0m, no commit found? Please double check tuhe url."
+        "\x1b[33m⚠ skip\x1b[0m, no commit found? Please double check tuhe url.",
       )
       continue
     }
@@ -61,7 +61,7 @@ if (notebookToUpdate) {
     // if the sha is the same as the one in the frontmatter, we skip
     if (!process.env.FORCE_UPDATE && frontmatter.sha === commit.sha) {
       console.log(
-        "\x1b[33m⚠ skip\x1b[0m, sha is the same as the one in the frontmatter"
+        "\x1b[33m⚠ skip\x1b[0m, sha is the same as the one in the frontmatter",
       )
       continue
     }
@@ -75,13 +75,17 @@ if (notebookToUpdate) {
     // save the content to the notebook file
     if (!ipynb) {
       console.log(
-        "\x1b[33m⚠ skip\x1b[0m, no ipynb found? Please double check the url."
+        "\x1b[33m⚠ skip\x1b[0m, no ipynb found? Please double check the url.",
       )
       continue
     }
 
     console.log("✓ ipynb", ipynb.cells.length, "cells")
-    const { title, cellIdx } = getTitleFromIpynb(ipynb.cells)
+    const {
+      title,
+      source: sourceWithoutTitle,
+      cellIdx,
+    } = getTitleFromIpynb(ipynb.cells)
     if (!title) {
       console.log("⚠ title? no heading found in ipynb")
       continue
@@ -89,11 +93,19 @@ if (notebookToUpdate) {
     console.log("✓ title:", `\x1b[33m${title}\x1b[0m`)
     const { content: contentMdx, links } = extractMdFromIpynbCells(
       ipynb.metadata.kernelspec,
-      ipynb.cells.filter((_d, i) => i !== cellIdx)
+      ipynb.cells.map((_d, i) => {
+        if (i !== cellIdx) {
+          return _d
+        }
+        return {
+          ..._d,
+          source: sourceWithoutTitle,
+        }
+      }),
     )
     const googleColabUrl = `https://colab.research.google.com/${url.replace(
       /https:\/\/.*?github.com/,
-      "github"
+      "github",
     )}`
     // get current yaml from frontùatter
     const newFrontmatter = {
