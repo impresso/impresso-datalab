@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Wall from '../components/Wall';
 import Footer from '../components/Footer';
 import Background from '../components/Background';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import { getRecursivelyEntryData } from '../logic'
 import Modals from './Modals';
 import type { Collection } from './CollectionCard';
@@ -36,6 +36,10 @@ const associatedPartnersData = associatedPartners.map((entry) => {
   }
 })
 
+
+const termsOfuseContent = await getEntry("pagesContents", "terms-of-use");
+
+
 ---
 <Header client:only="react" />
 <Wall 
@@ -51,6 +55,6 @@ const associatedPartnersData = associatedPartners.map((entry) => {
   numberOfSeries={numberOfSeries}
   numberOfAuthors={numberOfAuthors}
 />
-<Modals client:only="react" />
+<Modals client:only="react" termsOfuseContent={termsOfuseContent.body}/>
 <Background client:only="react" />
 <Footer client:only="react" associatedPartners={associatedPartnersData}/>
