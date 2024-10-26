@@ -1,47 +1,56 @@
 ---
-title: Network graph with Impresso Py
+title: Exploring Entity Co-occurrence Networks
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 authors:
   - impresso-team
-sha: c23bb2461d836ab72c1fb6e3bee11de9b0a7dc16
-date: 2024-10-23T09:47:35Z
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/impresso-py/network_graph.ipynb
+sha: 1a53c9204d6e4cc4d77363652d7991688039bdb3
+date: 2024-10-24T19:27:13Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 links:
   - href: https://en.wikipedia.org/wiki/Prague_Spring
     label: Prague Spring
+seealso:
+  - impresso-py-search
 ---
 
 {/* cell:0 cell_type:markdown */}
+
 ## Install dependencies
 
 {/* cell:1 cell_type:code */}
+
 ```python
 %pip install -q impresso ipysigma networkx tqdm
 ```
 
 {/* cell:2 cell_type:markdown */}
+
 ## Connect to Impresso
 
 {/* cell:3 cell_type:code */}
+
 ```python
 from impresso import connect, OR, AND
 
-impresso = connect()
+impresso_session = connect()
 ```
 
 {/* cell:4 cell_type:markdown */}
+
 ## Part 1: Get entities and their co-occurrences
 
-Find all persons mentioned in all articles that talk about the [Prague Spring](https://en.wikipedia.org/wiki/Prague_Spring).
+### First, we retrieve all person entities mentioned in all articles that talk about the [Prague Spring](https://en.wikipedia.org/wiki/Prague_Spring).
 
 {/* cell:5 cell_type:code */}
+
 ```python
 query = OR("Prague Spring", "Prager Frühling", "Printemps de Prague")
 ```
 
 {/* cell:6 cell_type:code */}
+
 ```python
-persons = impresso.search.facet(
+persons = impresso_session.search.facet(
   facet="person",
   q=query,
   order_by="-count",
@@ -51,11 +60,15 @@ persons
 ```
 
 {/* cell:7 cell_type:markdown */}
-Get all combinations of all entities with a mention count higher than `N`.
 
-The `n` value can be adjusted so that we don't get too many combinations of entities. A sweet spot is just under 500 entities.
+### Next, we generate all unique pairs of entities with a mention count higher than `n`.
+
+First, entities that meet the mention threshold are selected, and then all possible pairs are generated using the `itertools.combinations` function.
+
+The `n` value can be adjusted so that we don't get too many entity combinations. A sweet spot is just under 500 combinations.
 
 {/* cell:8 cell_type:code */}
+
 ```python
 import itertools
 
@@ -66,15 +79,16 @@ df = df[df["count"] > n]
 persons_ids = df.uid.tolist()
 print(f"Total persons selected: {len(persons_ids)}")
 
-persons_ids_combinations = list(itertools.combinations(persons_ids, 2))
-print(f"Total combinations: {len(persons_ids_combinations)}")
+person_ids_combinations = list(itertools.combinations(persons_ids, 2))
+print(f"Total combinations: {len(person_ids_combinations)}")
 ```
 
 {/* cell:9 cell_type:code */}
+
 ```python
-if len(persons_ids_combinations) > 500:
+if len(person_ids_combinations) > 500:
   msg = (
-      f"The number of combinations is quite high ({len(persons_ids_combinations)}). " +
+      f"The number of combinations is quite high ({len(person_ids_combinations)}). " +
       "This may put a lot of load on Impresso and your requests may be throttled. " +
       "Try to increase the threshold number of mentions in the cell above which will reduce the number of selected persons. " +
       "You can also disable this error by commenting out this cell, if this number of combinations is expected."
@@ -83,10 +97,13 @@ if len(persons_ids_combinations) > 500:
 ```
 
 {/* cell:10 cell_type:markdown */}
-Get timestamps and counts of all articles where persons pairs appear.
-This code gets a facet for every combination of named entities. It is a single call per combination so it may take a while for a large number of combinations.
+
+### We also retrieve the dates and the number of articles where person entity pairs appear in.
+
+This piece of code gets a facet for every combination of named entities. It is a single call per combination so it may take a while for a large number of combinations.
 
 {/* cell:11 cell_type:code */}
+
 ```python
 from impresso.util.error import ImpressoError
 from time import sleep
@@ -94,9 +111,11 @@ from tqdm import tqdm
 
 connections = []
 
-for idx, combo in tqdm(enumerate(persons_ids_combinations), total=len(persons_ids_combinations)):
+# iterate over entity combinations, and build a query from each pair, faceting on `daterange`
+# the `query` variable hold the same value as above, i.e. keyword search for articles
+for idx, combo in tqdm(enumerate(person_ids_combinations), total=len(person_ids_combinations)):
   try:
-    result = impresso.search.facet(
+    result = impresso_session.search.facet(
       facet="daterange",
       q=query,
       entity_id=AND(*combo),
@@ -114,13 +133,13 @@ for idx, combo in tqdm(enumerate(persons_ids_combinations), total=len(persons_id
 
     items = list(zip(df.index.tolist(), df['count'].tolist(), [result.url for i in range(len(df))]))
     connections.append((combo, items))
-
 ```
 
 {/* cell:12 cell_type:markdown */}
-Put them all into a dataframe
+We put all in a dataframe
 
 {/* cell:13 cell_type:code */}
+
 ```python
 import pandas as pd
 
@@ -137,9 +156,10 @@ connections_df
 ```
 
 {/* cell:14 cell_type:markdown */}
-Save the connections to a CSV file that can be visualised independently in Part 2. Provide a name for the file.
+And save the connections to a CSV file that can be visualised independently in Part 2. Provide a name for the file.
 
 {/* cell:15 cell_type:code */}
+
 ```python
 from tempfile import gettempdir
 
@@ -152,9 +172,11 @@ print(f"File saved in {connections_csv_filepath}")
 ```
 
 {/* cell:16 cell_type:markdown */}
+
 ## Part 2: visualise
 
 {/* cell:17 cell_type:code */}
+
 ```python
 import pandas as pd
 
@@ -166,6 +188,7 @@ connections_df
 Group connections counting number of mentions and preserve the URL.
 
 {/* cell:19 cell_type:code */}
+
 ```python
 grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
     .agg({'timestamp': lambda x: ', '.join(list(x)), 'count': 'sum', 'url': lambda x: list(set(x))[0]}) \
@@ -174,6 +197,7 @@ grouped_connections_df
 ```
 
 {/* cell:20 cell_type:code */}
+
 ```python
 import networkx as nx
 
@@ -193,6 +217,7 @@ G.nodes
 Save the file so that it could be downloaded and used elsewhere.
 
 {/* cell:22 cell_type:code */}
+
 ```python
 from tempfile import gettempdir
 
@@ -210,6 +235,7 @@ print(f"File saved in {gefx_filepath}")
 If running in Colab - activate custom widgets to allow `ipysigma` to render the graph.
 
 {/* cell:24 cell_type:code */}
+
 ```python
 try:
     from google.colab import output
@@ -222,6 +248,7 @@ except:
 Render the graph.
 
 {/* cell:26 cell_type:code */}
+
 ```python
 import ipywidgets
 
@@ -233,7 +260,7 @@ node_size_widget = ipywidgets.Dropdown(
 )
 ipywidgets.Box(
     [
-        ipywidgets.Label(value='What should represent the size of the nodes:'), 
+        ipywidgets.Label(value='What should represent the size of the nodes:'),
         node_size_widget
     ]
 )
@@ -244,6 +271,7 @@ ipywidgets.Box(
 Refresh the next cell after changing the value above.
 
 {/* cell:28 cell_type:code */}
+
 ```python
 import networkx as nx
 from ipysigma import Sigma

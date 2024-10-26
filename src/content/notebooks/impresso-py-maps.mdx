@@ -1,35 +1,42 @@
 ---
-title: Exploring impresso with maps
+title: Visualising Place Entities on Maps
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 authors:
   - impresso-team
-sha: c23bb2461d836ab72c1fb6e3bee11de9b0a7dc16
-date: 2024-10-23T09:47:35Z
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/impresso-py/maps_explore.ipynb
+sha: caf4e6e0a677569953b866f9c6ffe0c6d3d12dc5
+date: 2024-10-25T13:17:54Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 links:
   - href: https://impresso-project.ch/
     label: impresso-py
   - href: https://ipyleaflet.readthedocs.io/en/latest/index.html
     label: ipyleaflet
+seealso:
+  - impresso-py-search
+excerpt: This notebook provides a way to analyze and explore the geographic distribution of entities mentioned in Impresso using the Impresso Python Library.
 ---
 
 {/* cell:0 cell_type:markdown */}
+
 ## Install dependencies
 
 We need the following packages:
 
- * [impresso-py](https://impresso-project.ch/)
- * [ipyleaflet](https://ipyleaflet.readthedocs.io/en/latest/index.html)
+- [impresso-py](https://impresso-project.ch/)
+- [ipyleaflet](https://ipyleaflet.readthedocs.io/en/latest/index.html)
 
 {/* cell:1 cell_type:code */}
+
 ```python
 %pip install -q impresso ipyleaflet
 ```
 
 {/* cell:2 cell_type:markdown */}
-## Connect to Impresso
+
+## Connect to the Impresso API
 
 {/* cell:3 cell_type:code */}
+
 ```python
 from impresso import connect, OR, DateRange
 
@@ -37,11 +44,13 @@ impresso = connect()
 ```
 
 {/* cell:4 cell_type:markdown */}
+
 ## Search and collect entities
 
 Find top 100 location entities mentioned in articles that talk about nuclear power plants in the first three decades following the second world war in English, French and German.
 
 {/* cell:5 cell_type:code */}
+
 ```python
 locations = impresso.search.facet(
     "location",
@@ -57,6 +66,7 @@ locations
 Get entities details, including wikidata details
 
 {/* cell:7 cell_type:code */}
+
 ```python
 entities_ids = locations.df.index.tolist()
 entities = impresso.entities.find(entity_id=OR(*entities_ids), load_wikidata=True, limit=len(entities_ids))
@@ -67,6 +77,7 @@ entities
 Filter out entities that have no coordinates and add a country tag.
 
 {/* cell:9 cell_type:code */}
+
 ```python
 import pandas as pd
 # disable "copy-on-write" warning
@@ -84,6 +95,7 @@ entities_with_coordinates
 Add counts of mentions to the entities dataframe.
 
 {/* cell:11 cell_type:code */}
+
 ```python
 entities_with_coordinates['mentions_count'] = entities_with_coordinates.index.map(locations.df['count'])
 ```
@@ -92,6 +104,7 @@ entities_with_coordinates['mentions_count'] = entities_with_coordinates.index.ma
 Plot entities on the map.
 
 {/* cell:13 cell_type:markdown */}
+
 ### Utility methods
 
 Functions used to calculate extra details needed to plot data on a map.
@@ -100,6 +113,7 @@ Functions used to calculate extra details needed to plot data on a map.
 Find geo bounds of a group of items.
 
 {/* cell:15 cell_type:code */}
+
 ```python
 def find_bounds(coordinates):
   """
@@ -134,6 +148,7 @@ def find_bounds(coordinates):
 Create an HTML used for rendering the hover pop-up.
 
 {/* cell:17 cell_type:code */}
+
 ```python
 from ipywidgets import HTML
 from ipyleaflet import Popup
@@ -160,11 +175,13 @@ def build_hover_popup(title: str, subtitle: str, mentions: int) -> Popup:
 ```
 
 {/* cell:18 cell_type:markdown */}
+
 ### Map with adaptive pins
 
 Display entities on a map with pin size based on the number of mentions (more mentions = bigger pin). The pins are colored based on the type of the entity (country or location).
 
 {/* cell:19 cell_type:code */}
+
 ```python
 from ipyleaflet import Map, Marker, AwesomeIcon, CircleMarker
 
@@ -230,11 +247,13 @@ display(map)
 ```
 
 {/* cell:20 cell_type:markdown */}
+
 ### Heatmap
 
 Display entities on a map with a heatmap overlay where the colour intensity is higher where the entities are more concentrated and more frequently mentioned.
 
 {/* cell:21 cell_type:code */}
+
 ```python
 from ipyleaflet import Map, Heatmap
 

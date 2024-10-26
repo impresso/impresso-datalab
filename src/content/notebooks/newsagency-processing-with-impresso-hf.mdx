@@ -5,9 +5,9 @@ excerpt: Impresso BERT-based pipeline, trained on Swiss and Luxembourgish
   newspapers from the Impresso project, identifies and links news agencies in
   historical articles. This notebook guides you through setting up a workflow to
   detect these entities in your own text.
-sha: c23bb2461d836ab72c1fb6e3bee11de9b0a7dc16
-date: 2024-10-23T09:47:35Z
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/entity/newsagency-processing_with_ImpressoHF.ipynb
+sha: cc67ffaed97d3d02719878f01ffdcadce3def6a1
+date: 2024-10-24T19:33:03Z
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/newsagency-processing_ImpressoHF.ipynb
 authors:
   - impresso-team
 links:
@@ -39,7 +39,6 @@ Install necessary libraries (if not already installed) and
 download the necessary NLTK data.
 
 {/* cell:2 cell_type:code */}
-
 ```python
 !pip install transformers
 !pip install stopwordsiso
@@ -50,7 +49,6 @@ download the necessary NLTK data.
 Now the fun part, this function will download the requried model and gives you the keys to successfullly detect news agencies in your text.
 
 {/* cell:4 cell_type:code */}
-
 ```python
 from transformers import pipeline
 
@@ -61,7 +59,6 @@ newsagency_ner_pipeline = pipeline("newsagency-ner", model="impresso-project/ner
 Run the example below to see how it works.
 
 {/* cell:6 cell_type:code */}
-
 ```python
 sentence = """Apple est créée le 1er avril 1976 dans le garage de la maison
           d'enfance de Steve Jobs à Los Altos en Californie par Steve Jobs, Steve Wozniak
@@ -108,27 +105,21 @@ v3 or later.
 ---
 
 <p align="center">
-  <img
-    src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true"
-    width="350"
-    alt="Impresso Project Logo"
-  />
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
 </p>
 
-{/* cell:8 cell_type:code */}
 
+{/* cell:8 cell_type:code */}
 ```python
 
 ```
 
 {/* cell:9 cell_type:code */}
-
 ```python
 
 ```
 
 {/* cell:10 cell_type:code */}
-
 ```python
 
 ```
