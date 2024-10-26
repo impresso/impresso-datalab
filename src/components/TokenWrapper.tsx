@@ -3,15 +3,28 @@ import {
   QueryClientProvider,
   useMutation,
 } from "@tanstack/react-query"
-import { usePersistentStore } from "../store"
-import { useEffect, useRef } from "react"
+import { useBrowserStore, usePersistentStore } from "../store"
+import { useEffect, useRef, useState } from "react"
 import axios, { AxiosError } from "axios"
 import Token from "./Token"
 import Alert from "./Alert"
-import LoginForm from "./LoginForm"
+import { Container } from "react-bootstrap"
+import { BrowserViewLogin, BrowserViewTermsOfUse } from "../constants"
+import Link from "./Link"
+import AcceptTermsOfUse from "./AcceptTermsOfUse"
+import { DateTime } from "luxon"
 
 const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
-  const llToken = usePersistentStore((state) => state.token)
+  const [llToken, acceptTermsDate] = usePersistentStore((state) => [
+    state.token,
+    state.acceptTermsDate,
+  ])
+  const [setAcceptedTermsDate] = usePersistentStore((state) => [
+    state.setAcceptedTermsDate,
+  ])
+  const setView = useBrowserStore((state) => state.setView)
+  const [isBusy, setIsBusy] = useState(false)
+
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
   const { status, data, error, mutate } = useMutation({
     mutationFn: (payload: {
@@ -25,17 +38,20 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
           `${import.meta.env.PUBLIC_IMPRESSO_API_PATH}/authentication`,
           payload,
         )
-        .then((res) => res.data),
+        .then((res) => res.data)
+
+        .finally(() => setIsBusy(false)),
   })
 
   useEffect(() => {
-    if (llToken) {
+    if (llToken && acceptTermsDate) {
       console.info(
         "[TokenWrapper] llToken is set, calling the mutation in",
         delay,
         "ms",
       )
       clearTimeout(timerRef.current)
+      setIsBusy(true)
       timerRef.current = setTimeout(() => {
         mutate({
           strategy: "jwt-app",
@@ -44,7 +60,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
       }, delay)
     }
     return () => clearTimeout(timerRef.current)
-  }, [llToken])
+  }, [llToken, acceptTermsDate])
 
   const errorIsUnauthorized = (error as AxiosError)
     ? (error as AxiosError).response?.status === 401 ||
@@ -58,35 +74,74 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
     (status === "error" && errorIsUnauthorized)
 
   return (
-    <div>
-      {status === "pending" && <h2>Loading your API token...</h2>}
-      {status === "error" && errorIsFailure && (
-        <h2>An unexpected error. It happens...</h2>
-      )}
-      {status === "success" && <h2>Your Api token</h2>}
-      {showLoginForm && (
-        <>
-          <h2>Please login to get your Api Token</h2>
-          <LoginForm
-            className="mb-3"
-            onSubmit={(payload) => mutate({ strategy: "local", ...payload })}
-          />
-        </>
-      )}
+    <Container>
+      <h1>
+        {status === "idle" && !isBusy && "Generate your API token"}
+        {isBusy && "Generating your API token..."}
+        {status === "pending" && " Almost there..."}
+        {status === "error" &&
+          errorIsFailure &&
+          !isBusy &&
+          "An unexpected error happened. It happens..."}
+        {status === "success" && !isBusy && "Your Api token"}
+      </h1>
 
-      <Alert
-        className={"mb-3"}
-        value="API access is always subject to the Terms of use. More info in the documentation section."
-      />
+      {showLoginForm && (
+        <section className="my-4 d-flex flex-column justify-content-center">
+          <h2 className="mx-auto ">Please login to get your Api Token</h2>
+          <button
+            type="submit"
+            className="btn btn-primary mx-auto d-flex justify-content-center px-5"
+            onClick={() => setView(BrowserViewLogin)}
+          >
+            Log in or Register
+          </button>
+        </section>
+      )}
 
       {errorIsFailure && (
         <Alert
+          type="error"
           className={"mb-3"}
           value="There was an error while generating the access token."
         >
           {error.message}
         </Alert>
       )}
+      <Alert
+        className={"mb-3"}
+        type={!acceptTermsDate ? "warning" : "info"}
+        value=""
+      >
+        <div className="ms-3">
+          API access is always subject to the&nbsp;
+          <button
+            className="btn btn-link d-inline-block"
+            onClick={() => {
+              setView(BrowserViewTermsOfUse)
+            }}
+          >
+            Terms of use
+          </button>
+          .{" "}
+          {acceptTermsDate !== null && (
+            <p className="m-0">
+              You accepted the Terms of Use{" "}
+              <b>
+                {DateTime.fromISO(acceptTermsDate)
+                  .setLocale("en-GB")
+                  .toLocaleString(DateTime.DATETIME_FULL)}
+              </b>
+            </p>
+          )}
+        </div>
+      </Alert>
+      {isBusy && (
+        <div className="spinner-border text-dark" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      )}
+
       {status === "success" && (
         <Token token={data.accessToken} className={"mt-4 mb-3"} />
       )}
@@ -94,10 +149,9 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
       <p>
         Access tokens programmatically authenticate your identity to the
         Impresso Datalab, allowing applications to provide you specific data
-        based on your request. Visit the documentation to discover how to use
-        them.
+        based on your request.
       </p>
-    </div>
+    </Container>
   )
 }
 
