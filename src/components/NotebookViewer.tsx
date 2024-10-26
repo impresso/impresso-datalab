@@ -97,9 +97,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
             </div>
           </Alert>
         </Col>
-        <Col lg="5">
-          <MarkdownSnipped className="m-0" value={excerpt} />
-        </Col>
+        <Col lg="5"></Col>
       </Row>
       <Row className="mb-3">
         <Col lg="7">
@@ -124,29 +122,50 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
               </div>
             ))}
         </Col>
-        <Col lg="5">
-          {Array.isArray(notebook.seealso) ? (
-            <div
-              style={{
-                position: "sticky",
-                top: 0,
-              }}
-            >
-              <h4>See also</h4>
-              <ul
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                }}
-              >
-                {notebook.seealso.map((notebook) => (
-                  <li key={notebook.slug}>
-                    <NotebookCard notebook={notebook} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
+        <Col lg="5" className="ps-4">
+          <h4>Abstract</h4>
+          <MarkdownSnipped className="m-0 small" value={excerpt} />
+          <div
+            style={{
+              position: "sticky",
+              top: 0,
+            }}
+          >
+            {Array.isArray(notebook.seealso) ? (
+              <>
+                <h4>See also</h4>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                  }}
+                >
+                  {notebook.seealso.map((notebook) => (
+                    <li key={notebook.slug} className="mb-2">
+                      <NotebookCard notebook={notebook} />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
+            {Array.isArray(notebook.links) && notebook.links.length > 0 ? (
+              <>
+                <h4>Links</h4>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                  }}
+                >
+                  {notebook.links.map((link) => (
+                    <li key={link.href}>
+                      <a href={link.href}>{link.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
+          </div>
         </Col>
       </Row>
     </Container>

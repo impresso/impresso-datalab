@@ -16,6 +16,7 @@ export interface Notebook {
   authors: Author[]
   date?: Date
   seealso?: Notebook[]
+  links?: { label: string; href: string }[]
 }
 
 // const AvatarVariants = ["marble", "beam", "pixel", "sunset", "ring", "bauhaus"]

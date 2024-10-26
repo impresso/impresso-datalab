@@ -11,7 +11,7 @@ export const extractMdFromIpynbCells = (
   // kernelspec: kernelspec,
   // cells: cell[],
   kernelspec = {},
-  cells = []
+  cells = [],
 ) => {
   const language = kernelspec.language ?? "python"
   const content = cells
@@ -48,11 +48,20 @@ export const getTitleFromIpynb = (cells) => {
     }
     return cell.source.startsWith("# ")
   })
-  if (cellWithH1idx < 0) return null
+
+  if (cellWithH1idx < 0) {
+    console.log("no heading found in ipynb!!")
+    return null
+  }
   const cellWithH1 = cells[cellWithH1idx]
   if (Array.isArray(cellWithH1.source)) {
     return {
       title: cellWithH1.source[0].trim().replace(/#/g, "").trim(),
+      cellIdx: cellWithH1idx,
+    }
+  } else {
+    return {
+      title: cellWithH1.source.trim().replace(/#/g, "").trim(),
       cellIdx: cellWithH1idx,
     }
   }
