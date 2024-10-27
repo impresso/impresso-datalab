@@ -7,6 +7,7 @@ import React, { useRef } from "react"
 import { Form } from "react-bootstrap"
 import { useBrowserStore } from "../store"
 import { BrowserViewRegister } from "../constants"
+import ErrorManager from "./ErrorManager"
 
 export interface LoginFormPayload {
   email: string
@@ -33,32 +34,11 @@ const LoginForm: React.FC<LoginFormProps> = ({
   }
 
   console.info("[LoginForm] @render", { error })
-  let errorMessages: { key: string; message: string }[] = []
 
-  if (error instanceof BadRequest && error.data) {
-    errorMessages = Object.keys(error.data).map((key) => {
-      return { key, message: error.data[key].message }
-    })
-  } else if (error instanceof NotAuthenticated) {
-    errorMessages = [{ key: "Error", message: error.message }]
-  } else if (error) {
-    errorMessages = [{ key: "Error", message: error.message }]
-  }
   return (
     <>
       <Form onSubmit={handleOnSubmit} className={`LoginForm ${className}`}>
-        {errorMessages.length > 0 ? (
-          <div className="alert alert-danger" role="alert">
-            <ul className="list-unstyled m-0">
-              {errorMessages.map((d, _i) => (
-                <li key={_i}>
-                  <b>{d.key}</b>:&nbsp;
-                  {d.message}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+        <ErrorManager error={error} />
         <Form.Group className="mb-3" controlId="ModalLoginForm.email">
           <Form.Label className="font-weight-bold">Email address</Form.Label>
           <Form.Control
