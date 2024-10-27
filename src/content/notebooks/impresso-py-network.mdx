@@ -3,8 +3,8 @@ title: Exploring Entity Co-occurrence Networks
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 authors:
   - impresso-team
-sha: 1a53c9204d6e4cc4d77363652d7991688039bdb3
-date: 2024-10-24T19:27:13Z
+sha: dd13ddcc0ba2f4a2b24face9790c46595dc2ebca
+date: 2024-10-27T13:19:55Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 links:
   - href: https://en.wikipedia.org/wiki/Prague_Spring
@@ -15,40 +15,39 @@ seealso:
 
 {/* cell:0 cell_type:markdown */}
 
+<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/4-impresso-py/network_graph.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+{/* cell:1 cell_type:markdown */}
 ## Install dependencies
 
-{/* cell:1 cell_type:code */}
-
+{/* cell:2 cell_type:code */}
 ```python
 %pip install -q impresso ipysigma networkx tqdm
 ```
 
-{/* cell:2 cell_type:markdown */}
-
+{/* cell:3 cell_type:markdown */}
 ## Connect to Impresso
 
-{/* cell:3 cell_type:code */}
-
+{/* cell:4 cell_type:code */}
 ```python
 from impresso import connect, OR, AND
 
 impresso_session = connect()
 ```
 
-{/* cell:4 cell_type:markdown */}
-
+{/* cell:5 cell_type:markdown */}
 ## Part 1: Get entities and their co-occurrences
 
 ### First, we retrieve all person entities mentioned in all articles that talk about the [Prague Spring](https://en.wikipedia.org/wiki/Prague_Spring).
 
-{/* cell:5 cell_type:code */}
-
+{/* cell:6 cell_type:code */}
 ```python
 query = OR("Prague Spring", "Prager Frühling", "Printemps de Prague")
 ```
 
-{/* cell:6 cell_type:code */}
-
+{/* cell:7 cell_type:code */}
 ```python
 persons = impresso_session.search.facet(
   facet="person",
@@ -59,16 +58,14 @@ persons = impresso_session.search.facet(
 persons
 ```
 
-{/* cell:7 cell_type:markdown */}
-
+{/* cell:8 cell_type:markdown */}
 ### Next, we generate all unique pairs of entities with a mention count higher than `n`.
-
+ 
 First, entities that meet the mention threshold are selected, and then all possible pairs are generated using the `itertools.combinations` function.
 
 The `n` value can be adjusted so that we don't get too many entity combinations. A sweet spot is just under 500 combinations.
 
-{/* cell:8 cell_type:code */}
-
+{/* cell:9 cell_type:code */}
 ```python
 import itertools
 
@@ -83,8 +80,7 @@ person_ids_combinations = list(itertools.combinations(persons_ids, 2))
 print(f"Total combinations: {len(person_ids_combinations)}")
 ```
 
-{/* cell:9 cell_type:code */}
-
+{/* cell:10 cell_type:code */}
 ```python
 if len(person_ids_combinations) > 500:
   msg = (
@@ -96,14 +92,13 @@ if len(person_ids_combinations) > 500:
   raise Exception(msg)
 ```
 
-{/* cell:10 cell_type:markdown */}
+{/* cell:11 cell_type:markdown */}
 
 ### We also retrieve the dates and the number of articles where person entity pairs appear in.
 
 This piece of code gets a facet for every combination of named entities. It is a single call per combination so it may take a while for a large number of combinations.
 
-{/* cell:11 cell_type:code */}
-
+{/* cell:12 cell_type:code */}
 ```python
 from impresso.util.error import ImpressoError
 from time import sleep
@@ -135,11 +130,10 @@ for idx, combo in tqdm(enumerate(person_ids_combinations), total=len(person_ids_
     connections.append((combo, items))
 ```
 
-{/* cell:12 cell_type:markdown */}
+{/* cell:13 cell_type:markdown */}
 We put all in a dataframe
 
-{/* cell:13 cell_type:code */}
-
+{/* cell:14 cell_type:code */}
 ```python
 import pandas as pd
 
@@ -155,11 +149,10 @@ connections_df = pd.DataFrame(connections_denormalised, columns=('node_a', 'node
 connections_df
 ```
 
-{/* cell:14 cell_type:markdown */}
+{/* cell:15 cell_type:markdown */}
 And save the connections to a CSV file that can be visualised independently in Part 2. Provide a name for the file.
 
-{/* cell:15 cell_type:code */}
-
+{/* cell:16 cell_type:code */}
 ```python
 from tempfile import gettempdir
 
@@ -171,12 +164,10 @@ connections_df.to_csv(connections_csv_filepath)
 print(f"File saved in {connections_csv_filepath}")
 ```
 
-{/* cell:16 cell_type:markdown */}
-
+{/* cell:17 cell_type:markdown */}
 ## Part 2: visualise
 
-{/* cell:17 cell_type:code */}
-
+{/* cell:18 cell_type:code */}
 ```python
 import pandas as pd
 
@@ -184,11 +175,10 @@ connections_df = pd.read_csv(connections_csv_filepath)
 connections_df
 ```
 
-{/* cell:18 cell_type:markdown */}
+{/* cell:19 cell_type:markdown */}
 Group connections counting number of mentions and preserve the URL.
 
-{/* cell:19 cell_type:code */}
-
+{/* cell:20 cell_type:code */}
 ```python
 grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
     .agg({'timestamp': lambda x: ', '.join(list(x)), 'count': 'sum', 'url': lambda x: list(set(x))[0]}) \
@@ -196,8 +186,7 @@ grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
 grouped_connections_df
 ```
 
-{/* cell:20 cell_type:code */}
-
+{/* cell:21 cell_type:code */}
 ```python
 import networkx as nx
 
@@ -213,11 +202,10 @@ for i in sorted(G.nodes()):
 G.nodes
 ```
 
-{/* cell:21 cell_type:markdown */}
+{/* cell:22 cell_type:markdown */}
 Save the file so that it could be downloaded and used elsewhere.
 
-{/* cell:22 cell_type:code */}
-
+{/* cell:23 cell_type:code */}
 ```python
 from tempfile import gettempdir
 
@@ -231,11 +219,10 @@ nx.write_gexf(G, gefx_filepath)
 print(f"File saved in {gefx_filepath}")
 ```
 
-{/* cell:23 cell_type:markdown */}
+{/* cell:24 cell_type:markdown */}
 If running in Colab - activate custom widgets to allow `ipysigma` to render the graph.
 
-{/* cell:24 cell_type:code */}
-
+{/* cell:25 cell_type:code */}
 ```python
 try:
     from google.colab import output
@@ -244,11 +231,10 @@ except:
     pass
 ```
 
-{/* cell:25 cell_type:markdown */}
+{/* cell:26 cell_type:markdown */}
 Render the graph.
 
-{/* cell:26 cell_type:code */}
-
+{/* cell:27 cell_type:code */}
 ```python
 import ipywidgets
 
@@ -260,18 +246,17 @@ node_size_widget = ipywidgets.Dropdown(
 )
 ipywidgets.Box(
     [
-        ipywidgets.Label(value='What should represent the size of the nodes:'),
+        ipywidgets.Label(value='What should represent the size of the nodes:'), 
         node_size_widget
     ]
 )
 
 ```
 
-{/* cell:27 cell_type:markdown */}
+{/* cell:28 cell_type:markdown */}
 Refresh the next cell after changing the value above.
 
-{/* cell:28 cell_type:code */}
-
+{/* cell:29 cell_type:code */}
 ```python
 import networkx as nx
 from ipysigma import Sigma

@@ -7,8 +7,8 @@ excerpt: Trained on the [HIPE
   2020](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md)
   dataset, the Impresso models recognize both coarse and fine-grained named
   entities, linking mentions to knowledge bases when possible.
-sha: 44a3c9f14c74807de3722878701d97ed71fa3e05
-date: 2024-10-25T14:18:01Z
+sha: dd13ddcc0ba2f4a2b24face9790c46595dc2ebca
+date: 2024-10-27T13:19:55Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb
 seealso:
   - ne-processing-with-impresso-api
@@ -30,6 +30,12 @@ links:
 ---
 
 {/* cell:0 cell_type:markdown */}
+
+<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+{/* cell:1 cell_type:markdown */}
 ## What is this notebook about?
 
 This notebook demonstrates how to use Impresso models for named entity recognition (NER) and entity linking (EL).
@@ -55,7 +61,7 @@ By the end of this notebook, you will know how to:
 **Warning**:
 To use this notebook, you may need to set the `HF_TOKEN` environment variable in the `.env` file (refer to `.env.example`). You can obtain a token by signing up on the [Hugging Face website](https://huggingface.co/join) and find additional information in the [official documentation](https://huggingface.co/docs/huggingface_hub/v0.20.2/en/quick-start#environment-variable). If you do not want to register an account on HF, simply select Cancel when prompted for a Hugging Face token — no token is needed for this notebook.
 
-{/* cell:1 cell_type:markdown */}
+{/* cell:2 cell_type:markdown */}
 ## Prerequisites
 First, we install and download necessary libraries:
 
@@ -71,7 +77,7 @@ Libraries can be installed from the notebook, or within your environment:
 pip install torch protobuf sentencepiece transformers nltk
 ```
 
-{/* cell:2 cell_type:code */}
+{/* cell:3 cell_type:code */}
 ```python
 !pip install torch
 !pip install protobuf
@@ -80,20 +86,20 @@ pip install torch protobuf sentencepiece transformers nltk
 !pip install nltk
 ```
 
-{/* cell:3 cell_type:markdown */}
+{/* cell:4 cell_type:markdown */}
 ## Entity Recognition
 
-{/* cell:4 cell_type:code */}
+{/* cell:5 cell_type:code */}
 ```python
 # Import necessary Python modules from the Transformers library
 from transformers import AutoModelForTokenClassification, AutoTokenizer
 from transformers import pipeline
 ```
 
-{/* cell:5 cell_type:markdown */}
+{/* cell:6 cell_type:markdown */}
 For NER, we use the Impresso NER model named 'ner-stacked-bert-multilingual' and published on Hugging Face: https://huggingface.co/impresso-project/ner-stacked-bert-multilingual.
 
-{/* cell:6 cell_type:code */}
+{/* cell:7 cell_type:code */}
 ```python
 # We set the model_name variable to our chosen model, enabling us to load it and use it for token classification and NER
 MODEL_NAME = "impresso-project/ner-stacked-bert-multilingual"
@@ -102,11 +108,11 @@ MODEL_NAME = "impresso-project/ner-stacked-bert-multilingual"
 ner_tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 ```
 
-{/* cell:7 cell_type:markdown */}
-It is necessary to create a pipeline for our task (`generic-ner`), using the loaded model and tokenizer. This pipeline handles multiple tasks under the hood.
+{/* cell:8 cell_type:markdown */}
+It is necessary to create a pipeline for our task (`generic-ner`), using the loaded model and tokenizer. This pipeline handles multiple tasks under the hood. This custom NER pipeline streamlines tokenization, language-specific rules, and post-processing into a single workflow. It accurately identifies, aligns, and cleans entities while managing complexities like multilingual punctuation rules, attachment of complementary information (e.g., titles), and removal of redundant tokens. Using this pipeline simplifies our task by handling the NER within a single, streamlined process, making the workflow efficient and minimizing manual data processing.
 
 
-{/* cell:8 cell_type:code */}
+{/* cell:9 cell_type:code */}
 ```python
 ner_pipeline = pipeline("generic-ner", model=MODEL_NAME, 
                         tokenizer=ner_tokenizer, 
@@ -114,7 +120,7 @@ ner_pipeline = pipeline("generic-ner", model=MODEL_NAME,
                         device='cpu')
 ```
 
-{/* cell:9 cell_type:code */}
+{/* cell:10 cell_type:code */}
 ```python
 # We define some test input
 sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles, 
@@ -127,7 +133,7 @@ sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Es
 print(sentence)
 ```
 
-{/* cell:10 cell_type:code */}
+{/* cell:11 cell_type:code */}
 ```python
 # A function that formats and displays the model output in a readable structure
 def print_nicely(data):
@@ -138,10 +144,10 @@ def print_nicely(data):
         
 ```
 
-{/* cell:11 cell_type:markdown */}
+{/* cell:12 cell_type:markdown */}
 We apply the pipeline on the input and print nicely the output
 
-{/* cell:12 cell_type:code */}
+{/* cell:13 cell_type:code */}
 ```python
 # Recognize stacked entities for each sentence
 entities = ner_pipeline(sentence)
@@ -150,15 +156,54 @@ entities = ner_pipeline(sentence)
 print_nicely(entities)
 ```
 
-{/* cell:13 cell_type:markdown */}
+{/* cell:14 cell_type:markdown */}
+### Example of Entity Recognition with OCR Errors
+
+Below, we introduce simulated OCR errors, such as character misrecognition, missing spaces, and incorrect capitalization.
+
+{/* cell:15 cell_type:code */}
+```python
+sentence_with_ocr_errors = """In the year 1789, K1ng L0uis XVl, ruler of France, convened the Estatzs-General at the Palaceof Versailles,
+                where Marie Antoinette, the Qveen of France, alongside Max1milien Robespierre, a leading member of the National Assembly,
+                debated with JeanJacques Rousseau, the fam0us philos0pher, and Charles de Talleyrand, the B1shop of Autun,
+                regarding the futureoftheFrench monarchy. At the same time, across the Atlant1c in Philadelp1ia,
+                GeorgeWashington, the first President of the United States, and Thomas Jeffers0n, the nation’s SecretaryofState,
+                were drafting policies for the newly establ1shed American govemment foll0wing the sign1ng of the Const1tution."""
+
+```
+
+{/* cell:16 cell_type:markdown */}
+Now, let’s run the OCR-affected text through the NER pipeline to observe how well the algorithm performs under OCR-induced distortions.
+
+
+{/* cell:17 cell_type:code */}
+```python
+entities_with_errors = ner_pipeline(sentence_with_ocr_errors)
+
+print_nicely(entities_with_errors)
+```
+
+{/* cell:18 cell_type:code */}
+```python
+# Verify that the entity counts match for the original and OCR-affected sentences
+original_entities = ner_pipeline(sentence)
+entities_with_errors = ner_pipeline(sentence_with_ocr_errors)
+
+print("Number of entities in the original text:", len(original_entities))
+print("Number of entities in the OCR-affected text:", len(entities_with_errors))
+print("Are entity counts equal?", len(original_entities) == len(entities_with_errors))
+
+```
+
+{/* cell:19 cell_type:markdown */}
 ## Entity Linking
 
-{/* cell:14 cell_type:markdown */}
+{/* cell:20 cell_type:markdown */}
 With the EL model, we can link the previously recognised entity mentions to unique referents in Wikipedia and Wikidata.
 
 We use the Impresso model named 'nel-mgenre-multilingual' and published on Hugging Face: https://huggingface.co/impresso-project/nel-mgenre-multilingual.
 
-{/* cell:15 cell_type:code */}
+{/* cell:21 cell_type:code */}
 ```python
 # Import the necessary modules from the transformers library
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
@@ -171,7 +216,7 @@ NEL_MODEL_NAME = "impresso-project/nel-mgenre-multilingual"
 nel_tokenizer = AutoTokenizer.from_pretrained("impresso-project/nel-mgenre-multilingual")
 ```
 
-{/* cell:16 cell_type:code */}
+{/* cell:22 cell_type:code */}
 ```python
 nel_pipeline = pipeline("generic-nel", model=NEL_MODEL_NAME, 
                         tokenizer=nel_tokenizer, 
@@ -179,7 +224,7 @@ nel_pipeline = pipeline("generic-nel", model=NEL_MODEL_NAME,
                         device='cpu')
 ```
 
-{/* cell:17 cell_type:markdown */}
+{/* cell:23 cell_type:markdown */}
 Our entity linker requires a specific format to correctly identify the entity that needs to be linked, as follows:
 
 ```
@@ -197,7 +242,7 @@ The event was held at the Palace of Versailles, a symbol of [START] French monar
 
 Let's take this example:
 
-{/* cell:18 cell_type:code */}
+{/* cell:24 cell_type:code */}
 ```python
 simple_sentence = "The event was held at the [START] Palace of Versailles [END], a symbol of French monarchy."
 
@@ -206,10 +251,10 @@ linked_entity = nel_pipeline(simple_sentence)
 print_nicely(linked_entity)
 ```
 
-{/* cell:19 cell_type:markdown */}
+{/* cell:25 cell_type:markdown */}
 It _could_ work without the special markers and texts mentioning only one entity, but we do not recommend it.
 
-{/* cell:20 cell_type:code */}
+{/* cell:26 cell_type:code */}
 ```python
 simple_sentence = "The event was held at the Palace of Versailles, a symbol of French monarchy."
 
@@ -218,10 +263,10 @@ linked_entity = nel_pipeline(simple_sentence)
 print_nicely(linked_entity)
 ```
 
-{/* cell:21 cell_type:markdown */}
+{/* cell:27 cell_type:markdown */}
 By using our NER tool, we can automatically generate sentences with entity markers and subsequently link each entity:
 
-{/* cell:22 cell_type:code */}
+{/* cell:28 cell_type:code */}
 ```python
 # Run the NER pipeline on the input sentence and store the results
 entities = ner_pipeline(sentence)
@@ -259,27 +304,89 @@ for entity in entities:
         print_nicely(linked_entities)
 ```
 
-{/* cell:23 cell_type:markdown */}
+{/* cell:29 cell_type:markdown */}
+### Example of Entity Linking with OCR Errors
+
+To evaluate the robustness of entity linking with OCR errors, we use both the original and OCR-affected sentences. Below, the entities identified by NER are linked individually to unique Wikipedia/Wikidata entries, while OCR errors are present.
+
+
+
+{/* cell:30 cell_type:code */}
+```python
+print(f'{len(entities_with_errors)} entities were previously detected in OCR-affected text.')
+
+# List to avoid reprocessing the same entities
+already_done_ocr = []
+
+# Process each detected entity in OCR-affected text for linking
+for entity in entities_with_errors:
+    if entity['surface'] not in already_done_ocr:
+        # Format sentence with entity markers for EL
+        language = 'en'
+        tokens = sentence_with_ocr_errors.split(' ')
+        start, end = entity["index"][0], entity["index"][1]
+
+        context_start = max(0, start - 10)
+        context_end = min(len(tokens), end + 11)
+
+        # Surround entity with [START] and [END] tags
+        nel_sentence = (
+            " ".join(tokens[context_start:start])
+            + " [START] "
+            + entity['surface']
+            + " [END] "
+            + " ".join(tokens[end + 1:context_end])
+        )
+
+        # Perform entity linking on OCR-affected sentence
+        linked_entity_ocr = nel_pipeline(nel_sentence)
+        print("Sentence with OCR Error:")
+        print(nel_sentence)
+        print("Linked Entity:")
+        print_nicely(linked_entity_ocr)
+        already_done_ocr.append(entity['surface'])
+
+```
+
+{/* cell:31 cell_type:markdown */}
 ## Looking up entities in the Impresso Corpus
 
-Are the previously recognised entities present in the Impresso Corpus? Let's explore using the Impresso API and Python Library:
+Are the previously recognised entities present in the Impresso Corpus? For each entity, we use impresso_session.entities.find() to look it up by name. This search will attempt to find a match for the exact name provided. If OCR errors are introduced (e.g., "Max1milien Robespierre" instead of "Maximilien Robespierre"), we can observe how resilient the search function is to variations. Let's explore using the Impresso API and Python Library. 
 
-{/* cell:24 cell_type:code */}
+{/* cell:32 cell_type:code */}
 ```python
+from impresso import connect
 
+impresso_session = connect()
 ```
 
-{/* cell:25 cell_type:code */}
+{/* cell:33 cell_type:code */}
 ```python
+entity = impresso_session.entities.find("Maximilien Robespierre")
 
+entity
 ```
 
-{/* cell:26 cell_type:code */}
-```python
+{/* cell:34 cell_type:markdown */}
+This command checks if "Maximilien Robespierre" exists in the Impresso database. Similarly, we test the resilience of the search function by querying slightly altered names (e.g., "Max1milien Robespierre").
 
+
+
+{/* cell:35 cell_type:code */}
+```python
+entity = impresso_session.entities.find("Max1milien Robespierre")
+
+entity
 ```
 
-{/* cell:27 cell_type:code */}
+{/* cell:36 cell_type:code */}
+```python
+entity = impresso_session.entities.find("Marie Antoinette")
+
+entity
+```
+
+{/* cell:37 cell_type:code */}
 ```python
 
 ```
