@@ -4,6 +4,7 @@ import {
   Features,
   SeriesCategories,
   SeriesPositions,
+  PlanIcons,
 } from "../constants"
 
 const notebooks = defineCollection({
@@ -40,7 +41,8 @@ const plans = defineCollection({
           title: z.string().optional(),
           status: z.string().optional(),
           iconColor: z.string().optional(),
-        })
+          icon: z.enum(PlanIcons as any).optional(),
+        }),
       )
       .optional(),
     requirements: z.array(z.enum(Requirements as any)),

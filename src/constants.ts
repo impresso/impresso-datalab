@@ -63,18 +63,18 @@ export const DataFeatureSemanticEnrichmentsPublicDomain =
   "semantic-enrichments-public-domain"
 
 export const DataFeatures: string[] = [
-  DataFeatureMetadata,
   DataFeatureMetadataPublicDomain,
-  DataFeatureFacsimiles,
+  DataFeatureMetadata,
   DataFeatureFacsimilesPublicDomain,
-  DataFeatureAudio,
+  DataFeatureFacsimiles,
   DataFeatureAudioPublicDomain,
-  DataFeatureTranscripts,
+  DataFeatureAudio,
   DataFeatureTranscriptsPublicDomain,
-  DataFeatureImages,
+  DataFeatureTranscripts,
   DataFeatureImagesPublicDomain,
-  DataFeatureSemanticEnrichments,
+  DataFeatureImages,
   DataFeatureSemanticEnrichmentsPublicDomain,
+  DataFeatureSemanticEnrichments,
 ]
 
 export const DataFeatureLabels: Record<string, string> = {
@@ -116,6 +116,32 @@ export const PlanLabels: Record<string, string> = {
   [PlanStudentUser]: "Student",
   [PlanAcademicUser]: "Academic",
   [PlanAcademicUserPlus]: "Academic User Plus",
+}
+
+export const PlanIconRestrictedAccessNoDownload =
+  "restricted-only-access-no-download"
+export const PlanIconRestrictedAccessDownload =
+  "restricted-only-access-download"
+export const PlanIconPublicDomainAccessNoDownload =
+  "public-domain-only-access-no-download"
+export const PlanIcons: string[] = [
+  PlanIconRestrictedAccessNoDownload,
+  PlanIconRestrictedAccessDownload,
+  PlanIconPublicDomainAccessNoDownload,
+]
+export const PlanIconLabels: Record<string, string> = {
+  [PlanIconRestrictedAccessNoDownload]:
+    "Access to protected data determined only by Impresso partners. <b>No download possible<b>",
+  [PlanIconRestrictedAccessDownload]:
+    "Access and download to protected data determined only by Impresso partners.",
+  [PlanIconPublicDomainAccessNoDownload]:
+    "Access Granted, <b>Download Not Available<b>",
+}
+
+export const PlanIconColors: Record<string, string> = {
+  [PlanIconRestrictedAccessNoDownload]: "orange",
+  [PlanIconRestrictedAccessDownload]: "purple",
+  [PlanIconPublicDomainAccessNoDownload]: "purple",
 }
 
 export const BrowserViewLogin = "login"

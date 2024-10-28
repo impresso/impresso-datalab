@@ -18,8 +18,10 @@ import {
   Minus,
   WarningCircle,
   Xmark,
+  UserBadgeCheck,
 } from "iconoir-react"
 import "./PlansModal.css"
+import PlanFeature from "./PlanFeatureCard"
 
 const BootstrapColumnLayoutForLabels = {
   lg: 2,
@@ -170,27 +172,7 @@ const PlansModal: React.FC<PlansModalProps> = ({ plans = [] }) => {
                     className="d-flex justify-content-center align-items-center "
                     key={plan.id}
                   >
-                    {feature ? (
-                      <OverlayTrigger
-                        overlay={
-                          <Tooltip id="button-tooltip-2">
-                            <span
-                              dangerouslySetInnerHTML={{
-                                __html:
-                                  feature.title ??
-                                  "Access & download available",
-                              }}
-                            />
-                          </Tooltip>
-                        }
-                      >
-                        <CheckCircleSolid
-                          color={feature.iconColor ?? "purple"}
-                        />
-                      </OverlayTrigger>
-                    ) : (
-                      <Xmark />
-                    )}
+                    {feature ? <PlanFeature feature={feature} /> : <Xmark />}
                   </Col>
                 )
               })}
