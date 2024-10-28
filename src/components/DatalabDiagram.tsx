@@ -47,12 +47,8 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
       />
       <g>
         <text transform="translate(120.74 69.5)">
-          <tspan className="font-weight-bold">
-            <tspan x="0" y="0" letter-spacing="0em" fontSize={15}>
-              Backend
-            </tspan>
-          </tspan>
-          <tspan className="small-caps" font-weight="500">
+          <tspan className="font-weight-bold">Backend</tspan>
+          <tspan className="small-caps">
             <tspan x="-45.32" y="18.23">
               (slr, MySQL, Image server)
             </tspan>
@@ -86,15 +82,18 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
             User
           </tspan>
         </text>
-        <text transform="translate(573.4 70.77)" font-size="15.19">
-          <tspan font-family="Satoshi-Variable" font-weight="700">
-            <tspan x="0" y="0">
-              IML - INTERNAL API
-            </tspan>
-          </tspan>
-          <tspan className="small-caps" font-weight="500">
-            <tspan x="-9.46" y="18.23">
+        <text transform="translate(640 70.77)" text-anchor="middle">
+          <tspan className="font-weight-bold h5">
+            <a
+              href="https://github.com/impresso/impresso-middle-layer"
+              title="Browse code on GitHub"
+            >
               Impresso Middle Layer
+            </a>
+          </tspan>
+          <tspan className="small-caps">
+            <tspan x="0" y="18.23">
+              internal API
             </tspan>
           </tspan>
         </text>
@@ -114,8 +113,6 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
         <text
           transform="translate(331.77 167.57)"
           font-family="Satoshi-VariableItalic"
-          font-size="15.19"
-          font-style="italic"
         >
           <tspan x="0" y="0">
             image uploads, query
@@ -127,41 +124,9 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
         <text
           transform="translate(307.52 278.91)"
           font-family="Satoshi-VariableItalic"
-          font-size="15.19"
-          font-style="italic"
         >
           <tspan x="0" y="0">
-            The{" "}
-          </tspan>
-          <tspan x="28.3" y="0" letter-spacing="0em">
-            U
-          </tspan>
-          <tspan x="38.63" y="0" letter-spacing="0em">
-            ser API s
-          </tspan>
-          <tspan x="95.21" y="0" letter-spacing="0em">
-            e
-          </tspan>
-          <tspan x="102.99" y="0" letter-spacing="0em">
-            a
-          </tspan>
-          <tspan x="110.65" y="0" letter-spacing="0em">
-            t
-          </tspan>
-          <tspan x="115.1" y="0" letter-spacing="0em">
-            s in f
-          </tspan>
-          <tspan x="145.75" y="0" letter-spacing="-.02em">
-            r
-          </tspan>
-          <tspan x="150.6" y="0">
-            ont{" "}
-          </tspan>
-          <tspan x="175.98" y="0" letter-spacing="0em">
-            o
-          </tspan>
-          <tspan x="184.38" y="0">
-            f
+            The Public API seats in front of
           </tspan>
           <tspan x="33.17" y="28">
             the Ann
@@ -180,80 +145,23 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
           </tspan>
         </text>
         <text
-          transform="translate(67.3 282.68)"
-          font-family="Satoshi-Variable"
-          font-size="15.19"
-          font-weight="700"
+          transform="translate(160 282.68)"
+          text-anchor="middle"
+          className="font-weight-bold"
         >
           <tspan x="0" y="0">
-            IMPRE
+            Impresso Annotation
           </tspan>
-          <tspan x="46.73" y="0" letter-spacing="0em">
-            S
-          </tspan>
-          <tspan x="55.82" y="0">
-            SO ANN
-          </tspan>
-          <tspan x="114.23" y="0" letter-spacing="-.03em">
-            O
-          </tspan>
-          <tspan x="125.79" y="0" letter-spacing="-.06em">
-            TA
-          </tspan>
-          <tspan x="143.12" y="0">
-            TION
-          </tspan>
-          <tspan x="33.96" y="18.23">
-            SE
-          </tspan>
-          <tspan x="51.96" y="18.23" letter-spacing="0em">
-            R
-          </tspan>
-          <tspan x="62" y="18.23" letter-spacing="0em">
-            VICES - API
+          <tspan x="0" y="18.23" className="small-caps">
+            Services - via API
           </tspan>
         </text>
-        <text
-          transform="translate(67.3 498.18)"
-          font-family="Satoshi-Variable"
-          font-size="15.19"
-          font-weight="700"
-        >
-          <tspan x="0" y="0">
-            IMPRE
+        <text transform="translate(160 498.18)" text-anchor="middle">
+          <tspan x="0" y="0" className="font-weight-bold h5">
+            Impresso Annotation
           </tspan>
-          <tspan x="46.73" y="0" letter-spacing="0em">
-            S
-          </tspan>
-          <tspan x="55.82" y="0">
-            SO ANN
-          </tspan>
-          <tspan x="114.23" y="0" letter-spacing="-.03em">
-            O
-          </tspan>
-          <tspan x="125.79" y="0" letter-spacing="-.06em">
-            TA
-          </tspan>
-          <tspan x="143.12" y="0">
-            TION
-          </tspan>
-          <tspan x="9.65" y="18.23">
-            SE
-          </tspan>
-          <tspan x="27.65" y="18.23" letter-spacing="0em">
-            R
-          </tspan>
-          <tspan x="37.7" y="18.23" letter-spacing="0em">
-            VICES -{" "}
-          </tspan>
-          <tspan x="97.23" y="18.23" letter-spacing="0em">
-            B
-          </tspan>
-          <tspan x="106.96" y="18.23" letter-spacing="-.04em">
-            A
-          </tspan>
-          <tspan x="116.76" y="18.23">
-            CKEND
+          <tspan x="0" y="18.23" className="small-caps">
+            Services - backend
           </tspan>
         </text>
         <g>
@@ -315,34 +223,11 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
             </g>
             <text
               transform="translate(1267.59 345.06)"
-              font-family="Satoshi-Variable"
-              font-size="15.19"
-              font-weight="700"
+              className="font-weight-bold h5"
             >
-              <tspan x="0" y="0">
-                IMPRE
-              </tspan>
-              <tspan x="46.72" y="0" letter-spacing="0em">
-                S
-              </tspan>
-              <tspan x="55.82" y="0">
-                SO{" "}
-              </tspan>
-              <tspan x="80.86" y="0" letter-spacing="-.04em">
-                D
-              </tspan>
-              <tspan x="91.55" y="0" letter-spacing="-.06em">
-                AT
-              </tspan>
-              <tspan x="108.88" y="0">
-                A
-              </tspan>
-              <tspan x="119.23" y="0" letter-spacing=".02em">
-                L
-              </tspan>
-              <tspan x="127.7" y="0">
-                AB WEBSITE
-              </tspan>
+              <a href="https://github.com/impresso/impresso-datalab">
+                Impresso Datalab Website
+              </a>
             </text>
           </g>
           <polyline
@@ -386,19 +271,11 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
           <g>
             <text
               transform="translate(1268.1 78.78)"
-              font-family="Satoshi-Variable"
-              font-size="15.19"
-              font-weight="700"
+              className="font-weight-bold h5"
             >
-              <tspan x="0" y="0">
-                IMPRE
-              </tspan>
-              <tspan x="46.72" y="0" letter-spacing="0em">
-                S
-              </tspan>
-              <tspan x="55.82" y="0">
-                SO WEB APP
-              </tspan>
+              <a href="https://github.com/impresso/impresso-frontend">
+                Impresso App Website
+              </a>
             </text>
             <g>
               <rect
@@ -454,11 +331,7 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
           </g>
         </g>
         <g>
-          <text
-            transform="translate(569.3 303.33)"
-            font-size="15.19"
-            font-weight="500"
-          >
+          <text transform="translate(569.3 303.33)" font-size="15.19">
             <tspan x="0" y="0" className="small-caps">
               API time-limited token
             </tspan>
@@ -755,41 +628,12 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
         />
         <g>
           <g>
-            <text
-              transform="translate(961.82 194.49)"
-              font-family="Satoshi-VariableItalic"
-              font-size="15.19"
-              font-style="italic"
-            >
-              <tspan x="0" y="0" letter-spacing="-.04em">
-                A
-              </tspan>
-              <tspan x="8.95" y="0" letter-spacing="-.02em">
-                v
-              </tspan>
-              <tspan x="15.83" y="0" letter-spacing="0em">
-                ailable on PyPi
+            <text transform="translate(961.82 194.49)">
+              <tspan x="0" y="0" className="font-style-italic">
+                Available on PyPi
               </tspan>
               <tspan x="0" y="15">
-                pip i
-              </tspan>
-              <tspan x="27.89" y="15" letter-spacing="0em">
-                n
-              </tspan>
-              <tspan x="36.17" y="15" letter-spacing="-.03em">
-                s
-              </tspan>
-              <tspan x="42.21" y="15" letter-spacing="0em">
-                t
-              </tspan>
-              <tspan x="46.51" y="15">
-                all imp
-              </tspan>
-              <tspan x="89.44" y="15" letter-spacing="-.02em">
-                r
-              </tspan>
-              <tspan x="94.29" y="15">
-                esso
+                pip install impresso
               </tspan>
             </text>
             <g opacity=".5">
@@ -859,31 +703,11 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
           <g>
             <text
               transform="translate(918.09 155.15)"
-              font-family="Satoshi-Variable"
-              font-size="15.19"
-              font-weight="700"
+              className="font-weight-bold h5"
             >
-              <tspan x="0" y="0">
-                IMPRE
-              </tspan>
-              <tspan x="46.72" y="0" letter-spacing="0em">
-                S
-              </tspan>
-              <tspan x="55.82" y="0">
-                SO P
-              </tspan>
-              <tspan x="90.56" y="0" letter-spacing=".01em">
-                Y
-              </tspan>
-              <tspan x="100.5" y="0">
-                THON LIBRA
-              </tspan>
-              <tspan x="191.27" y="0" letter-spacing="-.02em">
-                R
-              </tspan>
-              <tspan x="201.19" y="0">
-                Y
-              </tspan>
+              <a href="http://github.com/impresso/impresso-py">
+                Impresso Python Library
+              </a>
             </text>
             <g>
               <rect
@@ -1136,25 +960,11 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
             <g>
               <text
                 transform="translate(917.91 345.4)"
-                font-family="Satoshi-Variable"
-                font-size="15.19"
-                font-weight="700"
+                className="font-weight-bold h5"
               >
-                <tspan x="0" y="0">
-                  IMPRE
-                </tspan>
-                <tspan x="46.72" y="0" letter-spacing="0em">
-                  S
-                </tspan>
-                <tspan x="55.82" y="0">
-                  SO N
-                </tspan>
-                <tspan x="92.37" y="0" letter-spacing="-.02em">
-                  O
-                </tspan>
-                <tspan x="103.93" y="0">
-                  TEBOOK GH REPO
-                </tspan>
+                <a href="https://github.com/impresso/impresso-datalab-notebooks">
+                  Impresso Datalab Notebooks
+                </a>
               </text>
               <g>
                 <rect
