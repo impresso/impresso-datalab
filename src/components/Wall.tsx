@@ -15,10 +15,14 @@ impresso = connect()
 results = impresso.search("moon landing")`
 
 const ImpressoModelsCodeSample = `# Use a pipeline as a high-level helper
-!pip install transformers
+%pip install transformers
 
 from transformers import pipeline
-pipe = pipeline("text2text-generation", model="impresso-project/nel-mgenre-multilingual")`
+nel_tokenizer = AutoTokenizer.from_pretrained("impresso-project/nel-mgenre-multilingual")
+
+nel_pipeline = pipeline("generic-nel", model=NEL_MODEL_NAME, tokenizer=nel_tokenizer, 
+  trust_remote_code=True, device='cpu'
+)`
 
 const Wall = ({
   // notebooks = [],
