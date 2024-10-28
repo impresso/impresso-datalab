@@ -47,21 +47,16 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
       />
       <g>
         <text transform="translate(120.74 69.5)">
-          <tspan className="font-weight-bold">
-            <tspan x="0" y="0" letter-spacing="0em" fontSize={15}>
-              Backend
-            </tspan>
-          </tspan>
-          <tspan className="small-caps" font-weight="500">
-            <tspan x="-45.32" y="18.23">
-              (slr, MySQL, Image server)
+          <tspan className="font-weight-bold h5">Backend</tspan>
+          <tspan className="small-caps">
+            <tspan x="-45.32" y="18">
+              Solr(s), MySQL, Image server
             </tspan>
           </tspan>
         </text>
         <text
           transform="translate(833.35 328.41) rotate(-90)"
           className="small-caps"
-          font-size="15.19"
         >
           <tspan x="0" y="0">
             USES
@@ -70,98 +65,55 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
         <text
           transform="translate(833.35 526.73) rotate(-90)"
           className="small-caps"
-          font-size="15.19"
         >
           <tspan x="0" y="0">
             USES
           </tspan>
         </text>
-        <text
-          transform="translate(1522.65 294.95) rotate(90)"
-          font-size="61.74"
-          font-weight="300"
-          opacity=".15"
-        >
-          <tspan x="0" y="0">
-            User
-          </tspan>
-        </text>
-        <text transform="translate(573.4 70.77)" font-size="15.19">
-          <tspan font-family="Satoshi-Variable" font-weight="700">
-            <tspan x="0" y="0">
-              IML - INTERNAL API
-            </tspan>
-          </tspan>
-          <tspan className="small-caps" font-weight="500">
-            <tspan x="-9.46" y="18.23">
+
+        <text transform="translate(640 70.77)" text-anchor="middle">
+          <tspan className="font-weight-bold h5">
+            <a
+              href="https://github.com/impresso/impresso-middle-layer"
+              title="Browse code on GitHub"
+            >
               Impresso Middle Layer
+            </a>
+          </tspan>
+          <tspan className="small-caps">
+            <tspan x="0" y="18">
+              internal API
             </tspan>
           </tspan>
         </text>
         <text
           transform="translate(604.95 167.57)"
-          font-family="Satoshi-VariableItalic"
-          font-size="15.19"
-          font-style="italic"
+          className="font-style-italic"
         >
           <tspan x="0" y="0">
             derives from
           </tspan>
-          <tspan x="-14.67" y="18.23">
+          <tspan x="-14.67" y="18">
             (same codebase)
           </tspan>
         </text>
         <text
           transform="translate(331.77 167.57)"
           font-family="Satoshi-VariableItalic"
-          font-size="15.19"
-          font-style="italic"
         >
           <tspan x="0" y="0">
             image uploads, query
           </tspan>
-          <tspan x="29.83" y="18.23">
+          <tspan x="29.83" y="18">
             embeddings
           </tspan>
         </text>
         <text
           transform="translate(307.52 278.91)"
           font-family="Satoshi-VariableItalic"
-          font-size="15.19"
-          font-style="italic"
         >
           <tspan x="0" y="0">
-            The{" "}
-          </tspan>
-          <tspan x="28.3" y="0" letter-spacing="0em">
-            U
-          </tspan>
-          <tspan x="38.63" y="0" letter-spacing="0em">
-            ser API s
-          </tspan>
-          <tspan x="95.21" y="0" letter-spacing="0em">
-            e
-          </tspan>
-          <tspan x="102.99" y="0" letter-spacing="0em">
-            a
-          </tspan>
-          <tspan x="110.65" y="0" letter-spacing="0em">
-            t
-          </tspan>
-          <tspan x="115.1" y="0" letter-spacing="0em">
-            s in f
-          </tspan>
-          <tspan x="145.75" y="0" letter-spacing="-.02em">
-            r
-          </tspan>
-          <tspan x="150.6" y="0">
-            ont{" "}
-          </tspan>
-          <tspan x="175.98" y="0" letter-spacing="0em">
-            o
-          </tspan>
-          <tspan x="184.38" y="0">
-            f
+            The Public API seats in front of
           </tspan>
           <tspan x="33.17" y="28">
             the Ann
@@ -179,122 +131,32 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
             tion API
           </tspan>
         </text>
-        <text
-          transform="translate(67.3 282.68)"
-          font-family="Satoshi-Variable"
-          font-size="15.19"
-          font-weight="700"
-        >
-          <tspan x="0" y="0">
-            IMPRE
+        <text transform="translate(160 282.68)" text-anchor="middle">
+          <tspan x="0" y="0" className="font-weight-bold h5">
+            Impresso Annotation
           </tspan>
-          <tspan x="46.73" y="0" letter-spacing="0em">
-            S
-          </tspan>
-          <tspan x="55.82" y="0">
-            SO ANN
-          </tspan>
-          <tspan x="114.23" y="0" letter-spacing="-.03em">
-            O
-          </tspan>
-          <tspan x="125.79" y="0" letter-spacing="-.06em">
-            TA
-          </tspan>
-          <tspan x="143.12" y="0">
-            TION
-          </tspan>
-          <tspan x="33.96" y="18.23">
-            SE
-          </tspan>
-          <tspan x="51.96" y="18.23" letter-spacing="0em">
-            R
-          </tspan>
-          <tspan x="62" y="18.23" letter-spacing="0em">
-            VICES - API
+          <tspan x="0" y="18" className="small-caps">
+            Services - via API
           </tspan>
         </text>
-        <text
-          transform="translate(67.3 498.18)"
-          font-family="Satoshi-Variable"
-          font-size="15.19"
-          font-weight="700"
-        >
-          <tspan x="0" y="0">
-            IMPRE
+        <text transform="translate(160 498.18)" text-anchor="middle">
+          <tspan x="0" y="0" className="font-weight-bold h5">
+            Impresso Annotation
           </tspan>
-          <tspan x="46.73" y="0" letter-spacing="0em">
-            S
-          </tspan>
-          <tspan x="55.82" y="0">
-            SO ANN
-          </tspan>
-          <tspan x="114.23" y="0" letter-spacing="-.03em">
-            O
-          </tspan>
-          <tspan x="125.79" y="0" letter-spacing="-.06em">
-            TA
-          </tspan>
-          <tspan x="143.12" y="0">
-            TION
-          </tspan>
-          <tspan x="9.65" y="18.23">
-            SE
-          </tspan>
-          <tspan x="27.65" y="18.23" letter-spacing="0em">
-            R
-          </tspan>
-          <tspan x="37.7" y="18.23" letter-spacing="0em">
-            VICES -{" "}
-          </tspan>
-          <tspan x="97.23" y="18.23" letter-spacing="0em">
-            B
-          </tspan>
-          <tspan x="106.96" y="18.23" letter-spacing="-.04em">
-            A
-          </tspan>
-          <tspan x="116.76" y="18.23">
-            CKEND
+          <tspan x="0" y="18" className="small-caps">
+            Services - backend
           </tspan>
         </text>
         <g>
           <text
             transform="translate(1288.47 407.74)"
-            font-family="Satoshi-VariableItalic"
-            font-size="15.19"
-            font-style="italic"
+            className="font-style-italic"
           >
             <tspan x="0" y="0">
-              An ent
+              An entry point to
             </tspan>
-            <tspan x="42.73" y="0" letter-spacing=".01em">
-              r
-            </tspan>
-            <tspan x="48.09" y="0">
-              y point{" "}
-            </tspan>
-            <tspan x="96.46" y="0" letter-spacing="0em">
-              t
-            </tspan>
-            <tspan x="100.8" y="0">
-              o
-            </tspan>
-            <tspan x="0" y="18.23">
-              the eco
-            </tspan>
-            <tspan x="48.82" y="18.23" letter-spacing="-.02em">
-              s
-            </tspan>
-            <tspan x="54.96" y="18.23" letter-spacing="0em">
-              y
-            </tspan>
-            <tspan x="62.04" y="18.23" letter-spacing="-.03em">
-              s
-            </tspan>
-            <tspan x="68.08" y="18.23" letter-spacing="0em">
-              t
-            </tspan>
-            <tspan x="72.43" y="18.23">
-              em
+            <tspan x="0" y="18">
+              the Impresso Ecosystem
             </tspan>
           </text>
           <g>
@@ -315,34 +177,11 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
             </g>
             <text
               transform="translate(1267.59 345.06)"
-              font-family="Satoshi-Variable"
-              font-size="15.19"
-              font-weight="700"
+              className="font-weight-bold h5"
             >
-              <tspan x="0" y="0">
-                IMPRE
-              </tspan>
-              <tspan x="46.72" y="0" letter-spacing="0em">
-                S
-              </tspan>
-              <tspan x="55.82" y="0">
-                SO{" "}
-              </tspan>
-              <tspan x="80.86" y="0" letter-spacing="-.04em">
-                D
-              </tspan>
-              <tspan x="91.55" y="0" letter-spacing="-.06em">
-                AT
-              </tspan>
-              <tspan x="108.88" y="0">
-                A
-              </tspan>
-              <tspan x="119.23" y="0" letter-spacing=".02em">
-                L
-              </tspan>
-              <tspan x="127.7" y="0">
-                AB WEBSITE
-              </tspan>
+              <a href="https://github.com/impresso/impresso-datalab">
+                Impresso Datalab Website
+              </a>
             </text>
           </g>
           <polyline
@@ -386,19 +225,11 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
           <g>
             <text
               transform="translate(1268.1 78.78)"
-              font-family="Satoshi-Variable"
-              font-size="15.19"
-              font-weight="700"
+              className="font-weight-bold h5"
             >
-              <tspan x="0" y="0">
-                IMPRE
-              </tspan>
-              <tspan x="46.72" y="0" letter-spacing="0em">
-                S
-              </tspan>
-              <tspan x="55.82" y="0">
-                SO WEB APP
-              </tspan>
+              <a href="https://github.com/impresso/impresso-frontend">
+                Impresso App Website
+              </a>
             </text>
             <g>
               <rect
@@ -454,30 +285,21 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
           </g>
         </g>
         <g>
-          <text
-            transform="translate(569.3 303.33)"
-            font-size="15.19"
-            font-weight="500"
-          >
+          <text transform="translate(566.3 303.33)">
             <tspan x="0" y="0" className="small-caps">
               API time-limited token
             </tspan>
           </text>
           <text
-            transform="translate(563.1 282.68)"
-            font-family="Satoshi-Variable"
-            font-size="15.19"
-            font-weight="700"
+            transform="translate(553.1 282.68)"
+            className="font-weight bold h5"
           >
-            <tspan x="0" y="0">
-              IMPRE
-            </tspan>
-            <tspan x="46.73" y="0" letter-spacing="0em">
-              S
-            </tspan>
-            <tspan x="55.82" y="0">
-              SO PUBLIC API
-            </tspan>
+            <a
+              href="https://dev.impresso-project.ch/public-api/docs/"
+              target="_blank"
+            >
+              Impresso Public API
+            </a>
           </text>
           <g>
             <rect
@@ -755,41 +577,14 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
         />
         <g>
           <g>
-            <text
-              transform="translate(961.82 194.49)"
-              font-family="Satoshi-VariableItalic"
-              font-size="15.19"
-              font-style="italic"
-            >
-              <tspan x="0" y="0" letter-spacing="-.04em">
-                A
+            <text transform="translate(961.82 194.49)">
+              <tspan x="0" y="0" className="font-style-italic">
+                <a href="https://pypi.org/project/impresso/" target="_blank">
+                  Available on PyPi
+                </a>
               </tspan>
-              <tspan x="8.95" y="0" letter-spacing="-.02em">
-                v
-              </tspan>
-              <tspan x="15.83" y="0" letter-spacing="0em">
-                ailable on PyPi
-              </tspan>
-              <tspan x="0" y="15">
-                pip i
-              </tspan>
-              <tspan x="27.89" y="15" letter-spacing="0em">
-                n
-              </tspan>
-              <tspan x="36.17" y="15" letter-spacing="-.03em">
-                s
-              </tspan>
-              <tspan x="42.21" y="15" letter-spacing="0em">
-                t
-              </tspan>
-              <tspan x="46.51" y="15">
-                all imp
-              </tspan>
-              <tspan x="89.44" y="15" letter-spacing="-.02em">
-                r
-              </tspan>
-              <tspan x="94.29" y="15">
-                esso
+              <tspan x="0" y="18">
+                pip install impresso
               </tspan>
             </text>
             <g opacity=".5">
@@ -811,30 +606,15 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
           <g>
             <text
               transform="translate(961.82 238.99)"
-              font-family="Satoshi-VariableItalic"
-              font-size="15.19"
-              font-style="italic"
+              className="font-style-italic"
             >
               <tspan x="0" y="0">
-                Documen
+                Documented on
               </tspan>
-              <tspan x="63.81" y="0" letter-spacing="0em">
-                t
-              </tspan>
-              <tspan x="68.16" y="0">
-                ed on{" "}
-              </tspan>
-              <tspan x="109.81" y="0" letter-spacing="-.03em">
-                R
-              </tspan>
-              <tspan x="118.77" y="0" letter-spacing="0em">
-                e
-              </tspan>
-              <tspan x="126.55" y="0" letter-spacing="0em">
-                ad{" "}
-              </tspan>
-              <tspan x="0" y="15">
-                the Doc
+
+              <tspan x="0" y="18">
+                <a href="https://impresso-py.readthedocs.io">Readthedocs</a>{" "}
+                (upcoming)
               </tspan>
             </text>
             <g opacity=".5">
@@ -859,31 +639,11 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
           <g>
             <text
               transform="translate(918.09 155.15)"
-              font-family="Satoshi-Variable"
-              font-size="15.19"
-              font-weight="700"
+              className="font-weight-bold h5"
             >
-              <tspan x="0" y="0">
-                IMPRE
-              </tspan>
-              <tspan x="46.72" y="0" letter-spacing="0em">
-                S
-              </tspan>
-              <tspan x="55.82" y="0">
-                SO P
-              </tspan>
-              <tspan x="90.56" y="0" letter-spacing=".01em">
-                Y
-              </tspan>
-              <tspan x="100.5" y="0">
-                THON LIBRA
-              </tspan>
-              <tspan x="191.27" y="0" letter-spacing="-.02em">
-                R
-              </tspan>
-              <tspan x="201.19" y="0">
-                Y
-              </tspan>
+              <a href="http://github.com/impresso/impresso-py">
+                Impresso Python Library
+              </a>
             </text>
             <g>
               <rect
@@ -912,139 +672,37 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
         <g>
           <text
             transform="translate(919.13 605.73)"
-            font-family="Satoshi-VariableItalic"
-            font-size="15.19"
-            font-style="italic"
+            className="font-style-italic"
           >
             <tspan x="0" y="0">
-              Models (with model ca
+              Models (with model cards)
             </tspan>
-            <tspan x="146.77" y="0" letter-spacing="-.02em">
-              r
+            <tspan x="0" y="18">
+              Datasets (with cards)
             </tspan>
-            <tspan x="151.61" y="0">
-              ds)
-            </tspan>
-            <tspan x="0" y="18.23">
-              D
-            </tspan>
-            <tspan x="10.6" y="18.23" letter-spacing="0em">
-              a
-            </tspan>
-            <tspan x="18.26" y="18.23" letter-spacing="0em">
-              t
-            </tspan>
-            <tspan x="22.56" y="18.23">
-              as
-            </tspan>
-            <tspan x="36.79" y="18.23" letter-spacing="0em">
-              e
-            </tspan>
-            <tspan x="44.57" y="18.23" letter-spacing="0em">
-              t
-            </tspan>
-            <tspan x="49.02" y="18.23">
-              s (with ca
-            </tspan>
-            <tspan x="109.96" y="18.23" letter-spacing="-.02em">
-              r
-            </tspan>
-            <tspan x="114.81" y="18.23">
-              ds)
-            </tspan>
-            <tspan x="0" y="36.46">
+            <tspan x="0" y="36">
               Spaces
             </tspan>
           </text>
           <text
             transform="translate(891.9 690.36)"
-            font-family="Satoshi-VariableItalic"
-            font-size="15.19"
-            font-style="italic"
+            className="font-style-italic"
           >
             <tspan x="0" y="0">
-              D
+              Downloadable and executable locally
             </tspan>
-            <tspan x="10.6" y="0" letter-spacing="-.02em">
-              o
-            </tspan>
-            <tspan x="18.73" y="0">
-              wnloadable and{" "}
-            </tspan>
-            <tspan x="127.11" y="0" letter-spacing="-.02em">
-              ex
-            </tspan>
-            <tspan x="141.18" y="0" letter-spacing="0em">
-              ecu
-            </tspan>
-            <tspan x="165" y="0" letter-spacing="0em">
-              t
-            </tspan>
-            <tspan x="169.29" y="0" letter-spacing="0em">
-              able locally
-            </tspan>
-            <tspan x="0" y="18.23" letter-spacing="0em">
-              U
-            </tspan>
-            <tspan x="10.33" y="18.23">
-              sage demo
-            </tspan>
-            <tspan x="82.8" y="18.23" letter-spacing="0em">
-              n
-            </tspan>
-            <tspan x="91.08" y="18.23" letter-spacing="-.03em">
-              s
-            </tspan>
-            <tspan x="97.13" y="18.23">
-              t
-            </tspan>
-            <tspan x="101.55" y="18.23" letter-spacing="-.02em">
-              r
-            </tspan>
-            <tspan x="106.38" y="18.23" letter-spacing="0em">
-              a
-            </tspan>
-            <tspan x="114.03" y="18.23" letter-spacing="0em">
-              t
-            </tspan>
-            <tspan x="118.38" y="18.23">
-              ed in n
-            </tspan>
-            <tspan x="163.11" y="18.23" letter-spacing="0em">
-              ot
-            </tspan>
-            <tspan x="175.84" y="18.23">
-              eboo
-            </tspan>
-            <tspan x="209.34" y="18.23" letter-spacing="0em">
-              k
-            </tspan>
-            <tspan x="216.61" y="18.23">
-              s
+            <tspan x="0" y="18">
+              Usage demonstrated in notebooks
             </tspan>
           </text>
           <g>
             <text
               transform="translate(917.96 554.02)"
-              font-family="Satoshi-Variable"
-              font-size="15.19"
-              font-weight="700"
+              className="font-weight-bold h5"
             >
-              <tspan x="0" y="0">
-                IMPRE
-              </tspan>
-              <tspan x="46.72" y="0" letter-spacing="0em">
-                S
-              </tspan>
-              <tspan x="55.82" y="0">
-                SO MODE
-              </tspan>
-              <tspan x="126.47" y="0" letter-spacing="-.03em">
-                L
-              </tspan>
-              <tspan x="134.27" y="0" letter-spacing="0em">
-                S on HF
-              </tspan>
+              <a href="https://huggingface.co/impresso-project" target="_blank">
+                Impresso Models on 🤗 HF
+              </a>
             </text>
             <g>
               <rect
@@ -1074,48 +732,13 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
           <g>
             <text
               transform="translate(891.68 481.57)"
-              font-family="Satoshi-VariableItalic"
-              font-size="15.19"
-              font-style="italic"
+              className="font-style-italic"
             >
               <tspan x="0" y="0">
-                A series{" "}
+                A series of documented notebooks
               </tspan>
-              <tspan x="54.75" y="0" letter-spacing="0em">
-                o
-              </tspan>
-              <tspan x="63.15" y="0">
-                f documen
-              </tspan>
-              <tspan x="133.6" y="0" letter-spacing="0em">
-                t
-              </tspan>
-              <tspan x="137.94" y="0" letter-spacing="0em">
-                ed n
-              </tspan>
-              <tspan x="167" y="0" letter-spacing="0em">
-                ot
-              </tspan>
-              <tspan x="179.73" y="0">
-                eboo
-              </tspan>
-              <tspan x="213.22" y="0" letter-spacing="0em">
-                k
-              </tspan>
-              <tspan x="220.5" y="0" letter-spacing="0em">
-                s
-              </tspan>
-              <tspan x="0" y="18.23" letter-spacing="-.02em">
-                ex
-              </tspan>
-              <tspan x="14.07" y="18.23">
-                ecu
-              </tspan>
-              <tspan x="37.88" y="18.23" letter-spacing="0em">
-                t
-              </tspan>
-              <tspan x="42.18" y="18.23" letter-spacing="0em">
-                able on Google Colab or locally
+              <tspan x="0" y="18">
+                executable locally or on Google Colab
               </tspan>
             </text>
             <g opacity=".5">
@@ -1136,25 +759,11 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
             <g>
               <text
                 transform="translate(917.91 345.4)"
-                font-family="Satoshi-Variable"
-                font-size="15.19"
-                font-weight="700"
+                className="font-weight-bold h5"
               >
-                <tspan x="0" y="0">
-                  IMPRE
-                </tspan>
-                <tspan x="46.72" y="0" letter-spacing="0em">
-                  S
-                </tspan>
-                <tspan x="55.82" y="0">
-                  SO N
-                </tspan>
-                <tspan x="92.37" y="0" letter-spacing="-.02em">
-                  O
-                </tspan>
-                <tspan x="103.93" y="0">
-                  TEBOOK GH REPO
-                </tspan>
+                <a href="https://github.com/impresso/impresso-datalab-notebooks">
+                  Impresso Datalab Notebooks
+                </a>
               </text>
               <g>
                 <rect
@@ -1234,6 +843,22 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
             stroke-miterlimit="10"
             stroke-width="1.26"
           />
+        </g>
+        <g transform="translate(-480, 115)">
+          <line
+            x1="641.41"
+            y1="348.93"
+            x2="641.41"
+            y2="202.67"
+            fill="none"
+            stroke="#b0b3b7"
+            stroke-miterlimit="10"
+          ></line>
+          <polygon
+            transform="translate(0,100)"
+            points="646.39 247.47 641.41 256.1 636.42 247.47 646.39 247.47"
+            fill="#b0b3b7"
+          ></polygon>
         </g>
       </g>
     </svg>
