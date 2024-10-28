@@ -141,7 +141,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-em {
+em,
+.font-style-italic {
   font-style: normal;
   font-family: "Satoshi-VariableItalic";
 }
