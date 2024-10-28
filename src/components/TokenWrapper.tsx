@@ -73,27 +73,13 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
     <Container>
       <h1>
         {status === "idle" && !isBusy && "Generate your API token"}
-        {isBusy && "Generating your API token..."}
-        {status === "pending" && " Almost there..."}
+        {(isBusy || status === "pending") && "Generating your API token..."}
         {status === "error" &&
           errorIsFailure &&
           !isBusy &&
           "An unexpected error happened. It happens..."}
         {status === "success" && !isBusy && "Your Api token"}
       </h1>
-
-      {showLoginForm && (
-        <section className="my-4 d-flex flex-column justify-content-center">
-          <h2 className="mx-auto ">Please login to get your Api Token</h2>
-          <button
-            type="submit"
-            className="btn btn-primary mx-auto d-flex justify-content-center px-5"
-            onClick={() => setView(BrowserViewLogin)}
-          >
-            Log in or Register
-          </button>
-        </section>
-      )}
 
       {errorIsFailure && (
         <Alert
@@ -110,28 +96,55 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
         value=""
       >
         <div className="ms-3">
-          API access is always subject to the&nbsp;
-          <button
-            className="btn btn-link d-inline-block"
-            onClick={() => {
-              setView(BrowserViewTermsOfUse)
-            }}
-          >
-            Terms of use
-          </button>
-          .{" "}
-          {acceptTermsDate !== null && (
+          {acceptTermsDate !== null ? (
             <p className="m-0">
-              You accepted the Terms of Use{" "}
+              API access is always subject to the&nbsp;
+              <button
+                className="btn btn-link d-inline-block"
+                onClick={() => {
+                  setView(BrowserViewTermsOfUse)
+                }}
+              >
+                Terms of use
+              </button>
+              . You accepted the Terms of Use{" "}
               <b>
                 {DateTime.fromISO(acceptTermsDate)
                   .setLocale("en-GB")
                   .toLocaleString(DateTime.DATETIME_FULL)}
               </b>
             </p>
+          ) : (
+            <p className="m-0">
+              You have not accepted our <b>Terms of Use</b> yet. Please read the{" "}
+              <b>entire</b> terms of use document carefully and accept it before
+              using the token.
+            </p>
           )}
         </div>
       </Alert>
+      {acceptTermsDate === null && (
+        <button
+          className="btn btn-secondary mt-3 mx-auto"
+          onClick={() => {
+            setView(BrowserViewTermsOfUse)
+          }}
+        >
+          Read and accept the Terms of use to generate the token
+        </button>
+      )}
+      {showLoginForm && (
+        <section className="my-4 d-flex flex-column justify-content-center">
+          <h2 className="mx-auto ">Please login to get your Api Token</h2>
+          <button
+            type="submit"
+            className="btn btn-secondary mx-auto d-flex justify-content-center px-5"
+            onClick={() => setView(BrowserViewLogin)}
+          >
+            Log in or Register
+          </button>
+        </section>
+      )}
       {isBusy && (
         <div className="spinner-border text-dark" role="status">
           <span className="visually-hidden">Loading...</span>

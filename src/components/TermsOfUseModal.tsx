@@ -100,6 +100,12 @@ const TermsOfUseModal: React.FC<{
   )
 
   useEffect(() => {
+    // if this is just a login, just close it.
+    if (acceptedTermsDate && view === BrowserViewTermsOfUse) {
+      setView(null)
+    }
+  }, [acceptedTermsDate])
+  useEffect(() => {
     if (!enableAcceptTermsButton && isIntersecting) {
       setEnableAcceptTermsButton(true)
     }
