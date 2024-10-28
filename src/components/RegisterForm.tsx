@@ -6,7 +6,12 @@ import {
   PlanImpressoUser,
   PlanStudentUser,
   PlanLabels,
+  BrowserViewTermsOfUse,
 } from "../constants"
+import { useBrowserStore, usePersistentStore } from "../store"
+import { DateTime } from "luxon"
+import { BadRequest, type FeathersError } from "@feathersjs/errors"
+import ErrorManager, { type BadRequestData } from "./ErrorManager"
 
 const Colors: string[] = [
   "#96ceb4",
@@ -49,6 +54,7 @@ const Plans = [PlanImpressoUser, PlanStudentUser, PlanAcademicUser]
 export interface RegisterFormPayload {
   email: string
   password: string
+  username: string
   verifyPassword: string
   firstname: string
   lastname: string
@@ -58,11 +64,18 @@ export interface RegisterFormPayload {
 export interface RegisterFormProps {
   className?: string
   onSubmit: (payload: RegisterFormPayload) => void
+  error?: FeathersError | null
 }
 
-const RegisterForm: React.FC<RegisterFormProps> = ({ className, onSubmit }) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({
+  className,
+  onSubmit,
+  error,
+}) => {
   const previewDelayTimerRef = useRef<NodeJS.Timeout | null>(null)
-
+  const acceptTermsDate = usePersistentStore((state) => state.acceptTermsDate)
+  const setView = useBrowserStore((state) => state.setView)
+  const [formError, setFormError] = useState<Error | null>(null)
   const [formPreview, setFormPreview] = useState(() => ({
     email: "",
     firstname: "-",
@@ -79,6 +92,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ className, onSubmit }) => {
     email: "",
     password: "",
     verifyPassword: "",
+    username: "",
     firstname: "-",
     lastname: "-",
     plan: PlanImpressoUser,
@@ -86,7 +100,65 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ className, onSubmit }) => {
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // check errors
+    const errorsAsData: { [key: string]: BadRequestData } = {}
     console.info("[RegisterForm] @handleOnSubmit")
+    if (formPayload.current.password !== formPayload.current.verifyPassword) {
+      errorsAsData.verifyPassword = {
+        label: "Verify password",
+        message: 'Values of "password" and "verify password" do not match.',
+      }
+    }
+    // verufy password is complicated enough using a nice regex, numbers, uppercase andlowervase letter and a punctuation mark
+    if (
+      !formPayload.current.password.match(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+      )
+    ) {
+      errorsAsData.password = {
+        label: "Password",
+        message:
+          "Password must contain at least 8 characters, including uppercase, lowercase, numbers and a punctuation mark.",
+      }
+    }
+
+    // check email address is ok
+    if (!formPayload.current.email.match(/.+@.+\..+/)) {
+      errorsAsData.email = {
+        label: "Email",
+        message: "Please enter a valid email address.",
+      }
+    }
+    // check username is lwercase and number only, with '.' and '_' and "-"
+    if (!formPayload.current.username.match(/^[a-z0-9-]{8,}$/)) {
+      errorsAsData.username = {
+        label: "Username",
+        message:
+          'Please enter a valid username that contains at least 8 characters. We accept usernames containing only lowercase letters and numbers, e.g. "johndoe84".',
+      }
+    }
+    // check lastname and firstname not to be empty
+    if (formPayload.current.firstname.trim().length < 2) {
+      errorsAsData.firstname = {
+        label: "First name",
+        message: "Please enter your first name.",
+      }
+    }
+    if (formPayload.current.lastname.trim().length < 2) {
+      errorsAsData.lastname = {
+        label: "Last name",
+        message: "Please enter your last name.",
+      }
+    }
+    if (!formPayload.current.plan) {
+      errorsAsData.plan = {
+        label: "Plan",
+        message: "Please select a plan.",
+      }
+    }
+    if (Object.keys(errorsAsData).length > 0) {
+      setFormError(new BadRequest("Please check your entries.", errorsAsData))
+      return
+    }
     onSubmit(formPayload.current)
   }
   const changeProfileColors = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -100,14 +172,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ className, onSubmit }) => {
       },
       pattern: pattern.join(","),
     }))
-  }
-
-  const updateAgreement = (agreedToTerms: boolean) => {
-    setFormPreview((state) => ({
-      ...state,
-      agreedToTerms,
-    }))
-    console.info("[RegisterForm] @updateAgreement", agreedToTerms)
   }
 
   const updatePreview = (key: keyof RegisterFormPayload, value: string) => {
@@ -141,6 +205,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ className, onSubmit }) => {
 
   return (
     <Form onSubmit={handleOnSubmit} className={`RegisterForm ${className}`}>
+      <ErrorManager error={formError || error} />
       <section className="mb-3 d-flex flex-wrap gap-2 align-items-center">
         {Plans.map((plan) => (
           <Form.Check
@@ -148,20 +213,35 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ className, onSubmit }) => {
             key={plan}
             type="radio"
             label={PlanLabels[plan]}
+            checked={formPayload.current.plan === plan}
             name="plan"
             onChange={() => updatePreview("plan", plan)}
             id={`ModalRegisterForm.${plan}`}
           />
         ))}
       </section>
-      <Form.Group className="mb-3" controlId="ModalRegisterForm.email">
-        <Form.Label className="font-weight-bold">Email address</Form.Label>
-        <Form.Control
-          onChange={(e) => updatePreview("email", e.target.value)}
-          type="email"
-          placeholder="name@example.com"
-        />
-      </Form.Group>
+      <Row>
+        <Col>
+          <Form.Group className="mb-3" controlId="ModalRegisterForm.email">
+            <Form.Label className="font-weight-bold">Email address</Form.Label>
+            <Form.Control
+              onChange={(e) => updatePreview("email", e.target.value)}
+              type="email"
+              placeholder="name@example.com"
+            />
+          </Form.Group>
+        </Col>
+        <Col>
+          {/* username */}
+          <Form.Group className="mb-3" controlId="ModalRegisterForm.username">
+            <Form.Label className="font-weight-bold">Username</Form.Label>
+            <Form.Control
+              onChange={(e) => updatePreview("username", e.target.value)}
+              placeholder="your username"
+            />
+          </Form.Group>
+        </Col>
+      </Row>
       <Form.Group className="mb-3" controlId="ModalRegisterForm.firstname">
         <Form.Label className="font-weight-bold">First name</Form.Label>
         <Form.Control
@@ -206,9 +286,25 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ className, onSubmit }) => {
       </Row>
       <Form.Group className="mb-3" controlId="ModalRegisterForm.agreedToTerms">
         <Form.Check
-          onChange={(e) => updateAgreement(e.target.checked)}
+          checked={acceptTermsDate !== null}
+          onChange={(e) => {
+            if (acceptTermsDate) {
+              return
+            }
+            setView(BrowserViewTermsOfUse)
+          }}
           label="I agree to the terms and conditions"
         />
+        {acceptTermsDate !== null && (
+          <p className="m-2 px-3">
+            You accepted the Terms of Use <br />
+            <b>
+              {DateTime.fromISO(acceptTermsDate)
+                .setLocale("en-GB")
+                .toLocaleString(DateTime.DATETIME_FULL)}
+            </b>
+          </p>
+        )}
       </Form.Group>
       <section className="d-flex gap-4 align-items-center mb-2">
         <div>Preview:</div>

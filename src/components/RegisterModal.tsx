@@ -1,24 +1,43 @@
 import { Modal } from "react-bootstrap"
 import { useBrowserStore } from "../store"
-import { BrowserViewRegister } from "../constants"
+import {
+  BrowserViewConfirmRegistration,
+  BrowserViewRegister,
+} from "../constants"
 // import { useState } from "react"
 // import { type User } from "./UserCard"
-import RegisterForm from "./RegisterForm"
+import RegisterForm, { type RegisterFormPayload } from "./RegisterForm"
 import Link from "./Link"
+import { useEffect, useState } from "react"
+import type { FeathersError } from "@feathersjs/errors"
+import { usersService } from "../services"
 
 const RegisterModal = () => {
   const view = useBrowserStore((state) => state.view)
   const setView = useBrowserStore((state) => state.setView)
-  // const [candidate, setCandidate] = useState<User>(() => ({
-  //   username: "",
-  //   isStaff: false,
-  //   firstname: "",
-  //   lastname: "",
-  //   profile: {
-  //     pattern: [],
-  //   },
-  //   agreedToTerms: false,
-  // }))
+
+  const [error, setError] = useState<FeathersError | null>(null)
+
+  const createUser = (payload: RegisterFormPayload) => {
+    usersService
+      .create({
+        ...payload,
+        displayName: `${payload.firstname} ${payload.lastname}`,
+      })
+      .then((data) => {
+        console.log("[RegisterModal] create", data)
+        // setAuthenticatedUser(data.user, data.accessToken)
+        setView(BrowserViewConfirmRegistration)
+      })
+      .catch((err: FeathersError) => {
+        setError(err)
+        console.error("[RegisterModal] create", err, err.data)
+      })
+  }
+
+  useEffect(() => {
+    setError(null)
+  }, [view])
 
   return (
     <Modal
@@ -39,9 +58,11 @@ const RegisterModal = () => {
           to check which one describes best your situation.
         </p>
         <RegisterForm
-          onSubmit={(payload) =>
+          onSubmit={(payload) => {
             console.info("[RegisterModal] @onSubmit", payload)
-          }
+            createUser(payload)
+          }}
+          error={error}
         />
       </Modal.Body>
     </Modal>
