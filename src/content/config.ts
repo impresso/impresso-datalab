@@ -10,7 +10,7 @@ import {
 const notebooks = defineCollection({
   type: "content", // v2.5.0 and later
   schema: z.object({
-    title: z.string(),
+    title: z.string().optional(),
     url: z.string().url().optional(),
     githubUrl: z.string().url().optional(),
     googleColabUrl: z.string().url().optional(),
