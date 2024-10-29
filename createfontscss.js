@@ -37,6 +37,12 @@ const fonts = (basepath) => `
   font-display: swap;
   font-style: italic;
 }
+
+body{
+  background-image: url("${basepath}/background.png");
+  background-attachment: fixed;
+  background-size: cover;
+}
 `
 console.log("fonts.css expected contents:", fonts(basepath))
 fs.writeFileSync(FontsCssFilePath, fonts(basepath))

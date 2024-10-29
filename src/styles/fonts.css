@@ -18,3 +18,9 @@
   font-display: swap;
   font-style: italic;
 }
+
+body{
+  background-image: url("/datalab/background.png");
+  background-attachment: fixed;
+  background-size: cover;
+}

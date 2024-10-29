@@ -136,7 +136,7 @@ body {
   margin: 0;
   font-family: var(--bs-font-sans-serif) !important;
   color: var(--black);
-  background: var(--bs-light);
+  background-color: var(--bs-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
