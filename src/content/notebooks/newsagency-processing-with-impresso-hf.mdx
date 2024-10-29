@@ -5,8 +5,8 @@ excerpt: Impresso BERT-based pipeline, trained on Swiss and Luxembourgish
   newspapers from the Impresso project, identifies and links news agencies in
   historical articles. This notebook guides you through setting up a workflow to
   detect these entities in your own text.
-sha: cc67ffaed97d3d02719878f01ffdcadce3def6a1
-date: 2024-10-24T19:33:03Z
+sha: cc20b1b70db4da2aea4042c0e8d82a52e6ffb762
+date: 2024-10-27T13:47:15Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/newsagency-processing_ImpressoHF.ipynb
 authors:
   - impresso-team
@@ -28,43 +28,50 @@ seealso:
 ---
 
 {/* cell:0 cell_type:markdown */}
+
+
+{/* cell:1 cell_type:markdown */}
 Delivering swift and reliable news since the 1830s and 1840s, news agencies have played a pivotal role both nationally and internationally. However, understanding their precise impact on shaping news content has remained somewhat elusive. Our goal is to illuminate this aspect by identifying news agencies within historical newspaper articles. Using data from newspapers in Switzerland and Luxembourg as part of the Impresso project, we've trained our pipeline to recognize these entities.
 
 If you're here, you likely seek to detect news agency entities in your own text. This notebook will guide you through the process of setting up a workflow to identify specific newspaper or agency mentions within your text.
 
 You can also access our [News Agency Recognition](https://huggingface.co/spaces/impresso-project/multilingual-news-agency-recognition) demo app through [HuggingFace Spaces](https://huggingface.co/docs/hub/en/spaces).
 
-{/* cell:1 cell_type:markdown */}
+{/* cell:2 cell_type:markdown */}
 Install necessary libraries (if not already installed) and
 download the necessary NLTK data.
 
-{/* cell:2 cell_type:code */}
+{/* cell:3 cell_type:code */}
 ```python
 !pip install transformers
 !pip install stopwordsiso
 !pip install nltk
 ```
 
-{/* cell:3 cell_type:markdown */}
+{/* cell:4 cell_type:markdown */}
 Now the fun part, this function will download the requried model and gives you the keys to successfullly detect news agencies in your text.
 
-{/* cell:4 cell_type:code */}
+{/* cell:5 cell_type:code */}
 ```python
 from transformers import pipeline
 
-newsagency_ner_pipeline = pipeline("newsagency-ner", model="impresso-project/ner-newsagency-bert-multilingual", trust_remote_code=True)
+newsagency_ner_pipeline = pipeline("newsagency-ner", 
+                                   model="impresso-project/ner-newsagency-bert-multilingual", 
+                                   trust_remote_code=True, 
+                                   device='cpu')
 ```
 
-{/* cell:5 cell_type:markdown */}
+{/* cell:6 cell_type:markdown */}
 Run the example below to see how it works.
 
-{/* cell:6 cell_type:code */}
+{/* cell:7 cell_type:code */}
 ```python
-sentence = """Apple est créée le 1er avril 1976 dans le garage de la maison
-          d'enfance de Steve Jobs à Los Altos en Californie par Steve Jobs, Steve Wozniak
-          et Ronald Wayne, puis constituée sous forme de société le 3 janvier 1977 à l'origine
-          sous le nom d'Apple Computer, mais pour ses 30 ans et pour refléter la diversification
-          de ses produits, le mot « computer » est retiré le 9 janvier 2015. (Reuter)"""
+sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles, 
+        where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly, 
+        debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun, 
+        regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia, 
+        George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State, 
+        were drafting policies for the newly established American government following the signing of the Constitution. (Reuter)"""
 
 # Function to print each entry nicely
 def print_nicely(data):
@@ -74,10 +81,11 @@ def print_nicely(data):
         print()  # Blank line between entries
 
 news_agencies = newsagency_ner_pipeline(sentence)
+
 print_nicely(news_agencies)
 ```
 
-{/* cell:7 cell_type:markdown */}
+{/* cell:8 cell_type:markdown */}
 
 ## About Impresso
 
@@ -109,17 +117,17 @@ v3 or later.
 </p>
 
 
-{/* cell:8 cell_type:code */}
-```python
-
-```
-
 {/* cell:9 cell_type:code */}
 ```python
 
 ```
 
 {/* cell:10 cell_type:code */}
+```python
+
+```
+
+{/* cell:11 cell_type:code */}
 ```python
 
 ```

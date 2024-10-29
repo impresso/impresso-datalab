@@ -7,8 +7,8 @@ excerpt: Trained on the [HIPE
   2020](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md)
   dataset, the Impresso models recognize both coarse and fine-grained named
   entities, linking mentions to knowledge bases when possible.
-sha: dd13ddcc0ba2f4a2b24face9790c46595dc2ebca
-date: 2024-10-27T13:19:55Z
+sha: cc20b1b70db4da2aea4042c0e8d82a52e6ffb762
+date: 2024-10-27T13:47:15Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb
 seealso:
   - ne-processing-with-impresso-api
@@ -19,6 +19,10 @@ links:
     label: HIPE-2022 dataset
   - href: https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md
     label: HIPE typology
+  - href: https://huggingface.co/dbmdz/bert-medium-historic-multilingual-cased
+    label: dbmdz/bert-medium-historic-multilingual-cased
+  - href: https://huggingface.co/facebook/mgenre-wiki
+    label: mGENRE,
   - href: https://huggingface.co/spaces/impresso-project/multilingual-named-entity-recognition
     label: NER space
   - href: https://huggingface.co/spaces/impresso-project/multilingual-entity-linking
@@ -44,9 +48,9 @@ NER detects and classifies entities such as persons, locations, and organization
 
 In this notebook, both NER and EL are performed using models trained by Impresso and hosted on [Hugging Face](https://huggingface.co/impresso-project/) (thus the 'HF' suffix in the notebook name):
 
-- The **Impresso NER model** is a Transformer model trained on the Impresso HIPE-2020 portion of the [HIPE-2022 dataset](https://github.com/hipe-eval/HIPE-2022-data). It recognizes entity types such as person, location, and organization while supporting the complete [HIPE typology](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md), including coarse and fine-grained entity types as well as components like names, titles, and roles.
+- The **Impresso NER model** is a Transformer model trained on the Impresso HIPE-2020 portion of the [HIPE-2022 dataset](https://github.com/hipe-eval/HIPE-2022-data). It recognizes entity types such as person, location, and organization while supporting the complete [HIPE typology](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md), including coarse and fine-grained entity types as well as components like names, titles, and roles. Additionally, the NER model's backbone ([dbmdz/bert-medium-historic-multilingual-cased](https://huggingface.co/dbmdz/bert-medium-historic-multilingual-cased)) was trained on various European historical datasets, giving it a broader language capability.  This training included data from the Europeana and British Library collections across multiple languages: German, French, English, Finnish, and Swedish. Due to this multilingual backbone, the NER model may also recognize entities in other languages beyond French and German.
   
-- The **Impresso NEL model** links detected entities to unique identifiers in Wikipedia and Wikidata or assigns a 'NIL' label (indicating "not in list" in NLP) if no reference is found.
+- The **Impresso NEL model** links detected entities to unique identifiers in Wikipedia and Wikidata or assigns a 'NIL' label (indicating "not in list" in NLP) if no reference is found. The NEL model was trained on various historical datasets (AjMC, CLEF-HIPE-2020, LeTemps, Living with Machines, NewsEye, SoNAR) across multiple languages, including German, French, English, Finnish, and Swedish, to support comprehensive entity linking (EL) and named entity recognition (NER). Its backbone, [mGENRE,](https://huggingface.co/facebook/mgenre-wiki) uses a multilingual text generation approach for Wikipedia entity prediction, trained on 105 languages from Wikipedia.
 
 Both models can also be tested interactively in Hugging Face spaces: the [NER space](https://huggingface.co/spaces/impresso-project/multilingual-named-entity-recognition) and the [EL space](https://huggingface.co/spaces/impresso-project/multilingual-entity-linking).
 
