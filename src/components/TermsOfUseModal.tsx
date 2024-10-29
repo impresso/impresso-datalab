@@ -190,7 +190,10 @@ const TermsOfUseModal: React.FC<{
             )}
           </Col>
           <div style={{ minHeight: "100vh" }}>
-            <MarkdownSnippet value={content} />
+            <MarkdownSnippet
+              value={content}
+              onClick={() => setEnableAcceptTermsButton(true)}
+            />
           </div>
           <div ref={bottomRef}>&nbsp;</div>
         </Row>
