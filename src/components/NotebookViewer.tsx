@@ -14,7 +14,7 @@ export interface NotebookViewerProps {
 }
 
 const splitTextWithCellInfo = (
-  text: string,
+  text: string
 ): Array<{ cellNumber: number; cellType: string; content: string }> => {
   const cells: Array<{
     cellNumber: number
@@ -49,6 +49,19 @@ const splitTextWithCellInfo = (
 
   return cells
 }
+const getGithubIssuesUrl = (
+  githubUrl: string
+): { url: string; account: string; repository: string } => {
+  const repoPattern = /github\.com\/([^/]+)\/([^/]+)/
+  const match = repoPattern.exec(githubUrl)
+  if (match) {
+    const account = match[1]
+    const repository = match[2]
+    const url = `https://github.com/${account}/${repository}/issues`
+    return { url, account, repository }
+  }
+  return { url: "", account: "", repository: "" }
+}
 
 const NotebookViewer: React.FC<NotebookViewerProps> = ({
   notebook,
@@ -60,6 +73,11 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
   const accessTime = notebook.date ?? new Date()
   const accessDateTime = DateTime.fromJSDate(accessTime)
   const excerpt = notebook.excerpt ?? ""
+
+  // Example usage:
+  const githubUrl = notebook.githubUrl ?? ""
+  const { url: issueUrl } = getGithubIssuesUrl(githubUrl)
+
   return (
     <Container className="NotebookViewer">
       <Row className="my-3">
@@ -98,7 +116,11 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
             </div>
           </Alert>
         </Col>
-        <Col lg="5"></Col>
+        <Col lg="5">
+          <a target="_blank" href={issueUrl}>
+            Report an issue
+          </a>
+        </Col>
       </Row>
       <Row className="mb-3">
         <Col lg="7">
