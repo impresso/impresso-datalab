@@ -462,3 +462,29 @@ a.dropdown-item::after {
 a.dropdown-item:hover::after {
   transform: scaleX(1);
 }
+
+.lang-tag-name {
+  font-size: var(--fs14px);
+  color: rgba(var(--impresso-color-black-rgb), 0.68);
+  font-weight: var(--impresso-wght-bold);
+  background-color: var(--impresso-color-yellow);
+  padding: 0.1rem 0.3rem;
+  border-radius: var(--impresso-border-radius-xs);
+}
+
+.NotebookCard .lang-tag-name {
+  position: absolute;
+  scale: 0.8;
+  left: -0.5rem;
+  top: -0.5rem;
+  padding: 0 0.2rem;
+}
+
+.LangModelTag {
+  display: flex;
+  align-items: center;
+}
+
+.LangModelTag p {
+  font-size: var(--fs14px);
+}

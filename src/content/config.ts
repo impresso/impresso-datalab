@@ -12,6 +12,7 @@ const notebooks = defineCollection({
   schema: z.object({
     title: z.string().optional(),
     url: z.string().url().optional(),
+    langModel: z.string().optional(),
     githubUrl: z.string().url().optional(),
     googleColabUrl: z.string().url().optional(),
     sha: z.string().optional(),
@@ -42,7 +43,7 @@ const plans = defineCollection({
           status: z.string().optional(),
           iconColor: z.string().optional(),
           icon: z.enum(PlanIcons as any).optional(),
-        }),
+        })
       )
       .optional(),
     requirements: z.array(z.enum(Requirements as any)),

@@ -4,11 +4,13 @@ import Link from "./Link.tsx"
 import Avatar from "boring-avatars"
 import { ArrowRight } from "iconoir-react"
 import { DateTime } from "luxon"
+import { OverlayTrigger, Tooltip } from "react-bootstrap"
 
 export interface Notebook {
   slug: string
   href: string
   title: string
+  langModel?: string
   excerpt?: string
   githubUrl?: string
   googleColabUrl?: string
@@ -32,20 +34,33 @@ const NotebookCard: React.FC<{
     accessDateTime,
     "- title:",
     notebook?.title,
+    "notebook.langModel",
+    notebook.langModel
   )
   return (
     <div className={`NotebookCard shadow-sm ${className}`}>
       <div className="px-3 py-2 d-flex align-items-center">
-        <div className="Avatar">
+        <div className="Avatar position-relative">
           <Avatar
             size={40}
             name={notebook.href}
             variant="marble"
             square={false}
           />
+          <div className="LangModelTag">
+            <OverlayTrigger
+              overlay={
+                <Tooltip id="button-tooltip-3">
+                  <span>Model language tag</span>
+                </Tooltip>
+              }
+            >
+              <span className="lang-tag-name">{notebook.langModel}</span>
+            </OverlayTrigger>
+          </div>
         </div>
         <div className="mx-3">
-          <a target="_blank" className="small" href={notebook.googleColabUrl}>
+          <a target="_blank" className="small" href={notebook?.langModel}>
             <img
               src="https://img.shields.io/badge/Open_in_Colab-fafafa?logo=googlecolab"
               alt="Open In Colab"

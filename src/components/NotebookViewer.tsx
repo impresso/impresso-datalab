@@ -7,6 +7,7 @@ import AuthorCard from "./AuthorCard"
 import Alert from "./Alert"
 import { DateTime } from "luxon"
 import "./NotebookViewer.css"
+import { OverlayTrigger, Tooltip } from "react-bootstrap"
 
 export interface NotebookViewerProps {
   notebook: Notebook
@@ -85,11 +86,27 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
       </Row>
       <Row className="my-3">
         <Col lg="7">
-          <section>
-            By{" "}
-            {notebook.authors.map((author) => (
-              <AuthorCard key={author.name} author={author} />
-            ))}
+          <section className="d-flex  justify-content-between">
+            <div>
+              By{" "}
+              {notebook.authors.map((author) => (
+                <AuthorCard key={author.name} author={author} />
+              ))}
+            </div>
+            {notebook.langModel && (
+              <div className="LangModelTag d-flex">
+                <p className="m-0">Language model is in:&nbsp;</p>
+                <OverlayTrigger
+                  overlay={
+                    <Tooltip id="button-tooltip-3">
+                      <span>Language model tag</span>
+                    </Tooltip>
+                  }
+                >
+                  <span className="lang-tag-name">{notebook.langModel}</span>
+                </OverlayTrigger>
+              </div>
+            )}
           </section>
           <section className="d-flex gap-2 align-items-center">
             {notebook.googleColabUrl ? (
