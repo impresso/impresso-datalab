@@ -465,7 +465,7 @@ a.dropdown-item:hover::after {
 
 .lang-tag-name {
   font-size: var(--fs14px);
-  color: rgba(var(--impresso-color-black-rgb), 0.7);
+  color: rgba(var(--impresso-color-black-rgb), 0.68);
   font-weight: var(--impresso-wght-bold);
   background-color: var(--impresso-color-yellow);
   padding: 0.1rem 0.3rem;
