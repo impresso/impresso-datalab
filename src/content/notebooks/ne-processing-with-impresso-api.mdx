@@ -5,6 +5,7 @@ authors:
   - impresso-team
 sha: cc20b1b70db4da2aea4042c0e8d82a52e6ffb762
 date: 2024-10-27T13:47:15Z
+langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb
 links:
   - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb
@@ -19,23 +20,32 @@ seealso:
 
 {/* cell:0 cell_type:markdown */}
 
-<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+<a
+  target="_blank"
+  href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb"
+>
+  <img
+    src="https://colab.research.google.com/assets/colab-badge.svg"
+    alt="Open In Colab"
+  />
 </a>
 
 {/* cell:1 cell_type:markdown */}
+
 ## What is this notebook about?
 
-This notebook is similar to the [NE-processing_ImpressoHF](https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb) one, except that instead of loading the model from Hugging Face and executing them locally (or on Colab), here we use the annotation functionalities provided by the Impresso API, using the Impresso Python Library. Behind the scene the same models are used. 
+This notebook is similar to the [NE-processing_ImpressoHF](https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb) one, except that instead of loading the model from Hugging Face and executing them locally (or on Colab), here we use the annotation functionalities provided by the Impresso API, using the Impresso Python Library. Behind the scene the same models are used.
 
 For more information on the models, please refer to the [NE-processing_ImpressoHF](https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb) notebook (we advised starting with it).
 
 For an introduction to the Impresso Python Library, please refer to the [basics_ImpressoAPI](https://github.com/impresso/impresso-datalab-notebooks/blob/main/starter/basics_ImpressoAPI.ipynb).
 
 ## What will you learn in this notebook?
+
 By the end of this notebook, you will know how to call the NER and EL Impresso annotation services through the Impresso API, using the Impresso Python Library
 
 {/* cell:2 cell_type:code */}
+
 ```python
 !pip install --upgrade --force-reinstall impresso
 from impresso import version
@@ -43,22 +53,25 @@ print(version)
 ```
 
 {/* cell:3 cell_type:code */}
+
 ```python
 from impresso import connect
 impresso_session = connect()
 ```
 
 {/* cell:4 cell_type:markdown */}
+
 ## Named entity recognition
 
 {/* cell:5 cell_type:code */}
+
 ```python
 # We define some test input
-text = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles, 
-        where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly, 
-        debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun, 
-        regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia, 
-        George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State, 
+text = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles,
+        where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly,
+        debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun,
+        regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia,
+        George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State,
         were drafting policies for the newly established American government following the signing of the Constitution."""
 
 print(text)
@@ -71,16 +84,18 @@ result.df.tail(10)
 ```
 
 {/* cell:6 cell_type:markdown */}
+
 ## Named entity linking
 
 {/* cell:7 cell_type:code */}
+
 ```python
 # We define some test input
-text_with_markers = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles, 
-                where [START] Marie Antoinette, the Queen of France [END], alongside Maximilien Robespierre, a leading member of the National Assembly, 
-                debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun, 
-                regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia, 
-                George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State, 
+text_with_markers = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles,
+                where [START] Marie Antoinette, the Queen of France [END], alongside Maximilien Robespierre, a leading member of the National Assembly,
+                debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun,
+                regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia,
+                George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State,
                 were drafting policies for the newly established American government following the signing of the Constitution."""
 
 print(text_with_markers)
@@ -92,9 +107,11 @@ result
 ```
 
 {/* cell:8 cell_type:markdown */}
+
 ## Named entity processing
 
 {/* cell:9 cell_type:code */}
+
 ```python
 result = impresso_session.tools.ner_nel(
     text=text
@@ -103,6 +120,7 @@ result.df
 ```
 
 {/* cell:10 cell_type:code */}
+
 ```python
 
 ```
