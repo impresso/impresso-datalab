@@ -63,7 +63,7 @@ The Impresso Datalab is built using AstroJS and MDX. The Impresso Datalab is con
 npm install
 
 PUBLIC_IMPRESSO_API_HOST=http://ws.localhost \
-PUBLIC_IMPRESSO_API_PATH=/public-api \
+PUBLIC_IMPRESSO_API_PATH=/public-api/v1 \
 PUBLIC_IMPRESSO_WS_API_HOST=http://api.localhost \
 PUBLIC_IMPRESSO_WS_API_PATH=/api/socket.io \
 npm run dev

@@ -64,7 +64,7 @@ const Footer: React.FC<{
           <Col md="6" lg="3" xxl="3">
             <p>
               Check out our{" "}
-              <a href="/public-api/docs">Rest API documentation</a> or the
+              <a href="/public-api/v1/docs">Rest API documentation</a> or the
               documentation of our{" "}
               <a href="https://pypi.org/project/impresso">
                 Impresso Python Library

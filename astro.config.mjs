@@ -11,10 +11,10 @@ const WsApiPath = process.env.PUBLIC_IMPRESSO_WS_API_PATH ?? "/api/socket.io"
 
 const PublicApiTarget =
   process.env.PUBLIC_IMPRESSO_API_HOST ?? "http://localhost"
-const PublicApiPath = process.env.PUBLIC_IMPRESSO_API_PATH ?? "/public-api"
+const PublicApiPath = process.env.PUBLIC_IMPRESSO_API_PATH ?? "/public-api/v1"
 
 // these values are relevant only when the proxy is used with different paths, e.g; for a local instance of impresso middle layer
-const ProxyPublicApiPath = process.env.PUBLIC_IMPRESSO_API_PATH ?? "/public-api"
+const ProxyPublicApiPath = process.env.PUBLIC_IMPRESSO_API_PATH ?? "/public-api/v1"
 const ProxyWsApiPath =
   process.env.PUBLIC_IMPRESSO_WS_API_PATH ?? "/api/socket.io"
 
