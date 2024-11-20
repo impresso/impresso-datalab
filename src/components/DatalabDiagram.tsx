@@ -295,7 +295,7 @@ const DatalabDiagram: React.FC<DatalabDiagramProps> = ({
             className="font-weight bold h5"
           >
             <a
-              href="https://dev.impresso-project.ch/public-api/docs/"
+              href="https://dev.impresso-project.ch/public-api/v1/docs/"
               target="_blank"
             >
               Impresso Public API
