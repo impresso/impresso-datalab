@@ -6,7 +6,7 @@ interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string
   fullscreen?: string | true | undefined
   subtitle?: string
-  size?: ModalProps["size"]
+  size?: ModalProps["size"] | "xxl"
   modalBodyClassName?: string
   modalFooterClassName?: string
   footer?: React.ReactNode
@@ -72,7 +72,7 @@ const Page: React.FC<PageProps> = ({
       show={show}
       onHide={handleClose}
       backdrop="static"
-      size={size}
+      size={size === "xxl" ? "xl" : size}
       keyboard={false}
       scrollable
     >

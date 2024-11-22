@@ -11,6 +11,26 @@ import {
   RequirementsLabels,
   DataFeatureLabels,
   RequirementToU,
+  DataFeatureMetadata,
+  DataFeatureAudioPublicDomain,
+  DataFeatureFacsimilesPublicDomain,
+  DataFeatureTranscriptsPublicDomain,
+  DataFeatureImages,
+  DataFeatureImagesPublicDomain,
+  DataFeatureSemanticEnrichments,
+  DataFeatureFacsimiles,
+  DataFeatureAudio,
+  DataFeatureTranscripts,
+  ExportFeatureFacsimilesPublicDomain,
+  ExportFeatureAudioPublicDomain,
+  ExportFeatureTranscriptsPublicDomain,
+  ExportFeatureImagesPublicDomain,
+  ExportFeatureMetadata,
+  ExportFeatureFacsimiles,
+  ExportFeatureAudio,
+  ExportFeatureTranscripts,
+  ExportFeatureImages,
+  ExportFeatureSemanticEnrichments,
 } from "../constants"
 import {
   CheckCircleSolid,
@@ -22,6 +42,8 @@ import {
 } from "iconoir-react"
 import "./PlansModal.css"
 import PlanFeature from "./PlanFeatureCard"
+import MarkdownSnippet from "./MarkdownSnippet"
+import PlansModalFeatureRow from "./PlansModalFeatureRow"
 
 const BootstrapColumnLayoutForLabels = {
   lg: 2,
@@ -30,9 +52,19 @@ const BootstrapColumnLayoutForLabels = {
 
 export type PlansModalProps = {
   plans: Plan[]
+  title?: string
+  modalTitle?: string
+  content: string
+  displayFeatures?: boolean
 }
 
-const PlansModal: React.FC<PlansModalProps> = ({ plans = [] }) => {
+const PlansModal: React.FC<PlansModalProps> = ({
+  plans = [],
+  title = "Plans",
+  modalTitle = "Choose a plan",
+  content = "Choose the plan that best fits your needs.",
+  displayFeatures = false,
+}) => {
   const [user, acceptedTermsDate] = usePersistentStore((state) => [
     state.user,
     state.acceptTermsDate,
@@ -44,12 +76,18 @@ const PlansModal: React.FC<PlansModalProps> = ({ plans = [] }) => {
   }
   return (
     <Page
-      title="Plans for Impresso Datalab"
+      title={modalTitle}
       fullscreen="xl-down"
-      size="xl"
+      size="xxl"
       modalBodyClassName="pt-0 pe-4 ps-2 PlansModal mx-1"
     >
       <Container>
+        <Row className="my-3">
+          <Col sm={12}>
+            <h1>{title}</h1>
+            <MarkdownSnippet value={content} />
+          </Col>
+        </Row>
         <Row
           className="position-sticky top-0"
           style={{
@@ -65,7 +103,7 @@ const PlansModal: React.FC<PlansModalProps> = ({ plans = [] }) => {
               <h2 className="m-0 font-weight-bold text-center">
                 {plan.title}
                 {plan.id === useActivePlan ? (
-                  <div className="badge small-caps mt-2 shadow-sm bg-primary text-dark">
+                  <div className="badge d-block small-caps mt-2 shadow-sm bg-primary text-dark">
                     current plan
                   </div>
                 ) : null}
@@ -86,36 +124,39 @@ const PlansModal: React.FC<PlansModalProps> = ({ plans = [] }) => {
           ))}
         </Row>
 
-        {Object.keys(GenericFeatureLabels).map((i) => (
-          <Row className="PlansModal__hRow" key={i}>
-            <Col {...BootstrapColumnLayoutForLabels}>
-              {GenericFeatureLabels[i]}
-            </Col>
-            {plans.map((plan) => {
-              const feature = plan.features.find((d) => d.ref === i)
-              return (
-                <Col
-                  className="d-flex row justify-content-center align-items-center"
-                  key={plan.id}
-                >
-                  {feature ? (
-                    <>
-                      <CheckCircleSolid color={feature.iconColor ?? "purple"} />
-                      {feature.title ? (
-                        <p
-                          className="d-block mt-2 mb-0 very-small text-muted"
-                          dangerouslySetInnerHTML={{ __html: feature.title }}
-                        ></p>
-                      ) : null}
-                    </>
-                  ) : (
-                    <Xmark />
-                  )}
-                </Col>
-              )
-            })}
-          </Row>
-        ))}
+        {displayFeatures &&
+          Object.keys(GenericFeatureLabels).map((i) => (
+            <Row className="PlansModal__hRow" key={i}>
+              <Col {...BootstrapColumnLayoutForLabels}>
+                {GenericFeatureLabels[i]}
+              </Col>
+              {plans.map((plan) => {
+                const feature = plan.features.find((d) => d.ref === i)
+                return (
+                  <Col
+                    className="d-flex row justify-content-center align-items-center"
+                    key={plan.id}
+                  >
+                    {feature ? (
+                      <>
+                        <CheckCircleSolid
+                          color={feature.iconColor ?? "purple"}
+                        />
+                        {feature.title ? (
+                          <p
+                            className="d-block mt-2 mb-0 very-small text-muted"
+                            dangerouslySetInnerHTML={{ __html: feature.title }}
+                          ></p>
+                        ) : null}
+                      </>
+                    ) : (
+                      <Xmark />
+                    )}
+                  </Col>
+                )
+              })}
+            </Row>
+          ))}
         <Row className="my-1">
           <Col sm={12}>
             <div className="border-dark border-bottom h-1px"></div>
@@ -155,35 +196,95 @@ const PlansModal: React.FC<PlansModalProps> = ({ plans = [] }) => {
         </Row>
         <Row>
           <Col>
-            <h3 className="font-size-inherit mt-2">Data availability</h3>
+            <h3 className="font-size-inherit mt-2">Data accessibility</h3>
+          </Col>
+          {plans.map((plan) => (
+            <Col key={plan.id}>
+              <Row>
+                <Col>
+                  <h4 className="very-small mt-2 text-center">
+                    Access in Impresso App
+                  </h4>
+                </Col>
+                <Col>
+                  <h4 className="very-small mt-2 text-center">
+                    Export / Download Impresso App & Datalab
+                  </h4>
+                </Col>
+              </Row>
+            </Col>
+          ))}
+        </Row>
+        <Row>
+          <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
+            <h4 className="font-size-inherit mt-2">Metadata</h4>
           </Col>
         </Row>
-        {Object.keys(DataFeatureLabels).map((key, i) => (
-          <Fragment key={key}>
-            <Row className="PlansModal__hRow">
-              <Col
-                {...BootstrapColumnLayoutForLabels}
-                dangerouslySetInnerHTML={{ __html: DataFeatureLabels[key] }}
-              ></Col>
-              {plans.map((plan) => {
-                const feature = plan.features.find((d) => d.ref === key)
-                return (
-                  <Col
-                    className="d-flex justify-content-center align-items-center "
-                    key={plan.id}
-                  >
-                    {feature ? <PlanFeature feature={feature} /> : <Xmark />}
-                  </Col>
-                )
-              })}
-            </Row>
-            {i % 2 ? (
-              <Row>
-                <Col className="pt-1 mb-1 border-bottom border-dark border-dotted" />
-              </Row>
-            ) : null}
-          </Fragment>
+        {/* DataFeatureMetadata */}
+        <PlansModalFeatureRow
+          plans={plans}
+          label={DataFeatureLabels[DataFeatureMetadata]}
+          featureIds={[DataFeatureMetadata, ExportFeatureMetadata]}
+          className="PlansModal__hRow"
+        ></PlansModalFeatureRow>
+        <Row>
+          <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
+            <h4 className="font-size-inherit mt-2">Public Data Domain</h4>
+          </Col>
+        </Row>
+        {[
+          [
+            DataFeatureFacsimilesPublicDomain,
+            ExportFeatureFacsimilesPublicDomain,
+          ],
+          [DataFeatureAudioPublicDomain, ExportFeatureAudioPublicDomain],
+          [
+            DataFeatureTranscriptsPublicDomain,
+            ExportFeatureTranscriptsPublicDomain,
+          ],
+          [DataFeatureImagesPublicDomain, ExportFeatureImagesPublicDomain],
+        ].map(([keyData, keyExport]) => (
+          <PlansModalFeatureRow
+            key={keyData}
+            plans={plans}
+            label={DataFeatureLabels[keyData]}
+            featureIds={[keyData, keyExport]}
+            className="PlansModal__hRow"
+          />
         ))}
+        <Row>
+          <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
+            <h4 className="font-size-inherit mt-2">Protected Data Domain</h4>
+          </Col>
+        </Row>
+        {[
+          [DataFeatureFacsimiles, ExportFeatureFacsimiles],
+          [DataFeatureAudio, ExportFeatureAudio],
+          [DataFeatureTranscripts, ExportFeatureTranscripts],
+          [DataFeatureImages, ExportFeatureImages],
+        ].map(([keyData, keyExport]) => (
+          <PlansModalFeatureRow
+            key={keyData}
+            plans={plans}
+            label={DataFeatureLabels[keyData]}
+            featureIds={[keyData, keyExport]}
+            className="PlansModal__hRow"
+          />
+        ))}
+        <Row>
+          <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
+            <h4 className="font-size-inherit mt-2">Semantic Enrichments</h4>
+          </Col>
+        </Row>
+        <PlansModalFeatureRow
+          plans={plans}
+          label={DataFeatureLabels[DataFeatureSemanticEnrichments]}
+          featureIds={[
+            DataFeatureSemanticEnrichments,
+            ExportFeatureSemanticEnrichments,
+          ]}
+          className="PlansModal__hRow"
+        />
       </Container>
     </Page>
   )
