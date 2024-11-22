@@ -43,7 +43,7 @@ const plans = defineCollection({
           status: z.string().optional(),
           iconColor: z.string().optional(),
           icon: z.enum(PlanIcons as any).optional(),
-        })
+        }),
       )
       .optional(),
     requirements: z.array(z.enum(Requirements as any)),
@@ -81,6 +81,7 @@ const pagesContents = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
+    modalTitle: z.string().optional(),
     excerpt: z.string().optional(),
   }),
 })
