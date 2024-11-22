@@ -72,7 +72,7 @@ const Page: React.FC<PageProps> = ({
       show={show}
       onHide={handleClose}
       backdrop="static"
-      size={size}
+      size={size === "xxl" ? "xl" : size}
       keyboard={false}
       scrollable
     >
