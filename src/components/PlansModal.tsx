@@ -21,6 +21,16 @@ import {
   DataFeatureFacsimiles,
   DataFeatureAudio,
   DataFeatureTranscripts,
+  ExportFeatureFacsimilesPublicDomain,
+  ExportFeatureAudioPublicDomain,
+  ExportFeatureTranscriptsPublicDomain,
+  ExportFeatureImagesPublicDomain,
+  ExportFeatureMetadata,
+  ExportFeatureFacsimiles,
+  ExportFeatureAudio,
+  ExportFeatureTranscripts,
+  ExportFeatureImages,
+  ExportFeatureSemanticEnrichments,
 } from "../constants"
 import {
   CheckCircleSolid,
@@ -188,12 +198,33 @@ const PlansModal: React.FC<PlansModalProps> = ({
           <Col>
             <h3 className="font-size-inherit mt-2">Data accessibility</h3>
           </Col>
+          {plans.map((plan) => (
+            <Col key={plan.id}>
+              <Row>
+                <Col>
+                  <h4 className="very-small mt-2 text-center">
+                    Access in Impresso App
+                  </h4>
+                </Col>
+                <Col>
+                  <h4 className="very-small mt-2 text-center">
+                    Export / Download Impresso App & Datalab
+                  </h4>
+                </Col>
+              </Row>
+            </Col>
+          ))}
+        </Row>
+        <Row>
+          <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
+            <h4 className="font-size-inherit mt-2">Metadata</h4>
+          </Col>
         </Row>
         {/* DataFeatureMetadata */}
         <PlansModalFeatureRow
           plans={plans}
           label={DataFeatureLabels[DataFeatureMetadata]}
-          featureId={DataFeatureMetadata}
+          featureIds={[DataFeatureMetadata, ExportFeatureMetadata]}
           className="PlansModal__hRow"
         ></PlansModalFeatureRow>
         <Row>
@@ -202,16 +233,22 @@ const PlansModal: React.FC<PlansModalProps> = ({
           </Col>
         </Row>
         {[
-          DataFeatureFacsimilesPublicDomain,
-          DataFeatureAudioPublicDomain,
-          DataFeatureTranscriptsPublicDomain,
-          DataFeatureImagesPublicDomain,
-        ].map((key) => (
+          [
+            DataFeatureFacsimilesPublicDomain,
+            ExportFeatureFacsimilesPublicDomain,
+          ],
+          [DataFeatureAudioPublicDomain, ExportFeatureAudioPublicDomain],
+          [
+            DataFeatureTranscriptsPublicDomain,
+            ExportFeatureTranscriptsPublicDomain,
+          ],
+          [DataFeatureImagesPublicDomain, ExportFeatureImagesPublicDomain],
+        ].map(([keyData, keyExport]) => (
           <PlansModalFeatureRow
-            key={key}
+            key={keyData}
             plans={plans}
-            label={DataFeatureLabels[key]}
-            featureId={key}
+            label={DataFeatureLabels[keyData]}
+            featureIds={[keyData, keyExport]}
             className="PlansModal__hRow"
           />
         ))}
@@ -221,28 +258,31 @@ const PlansModal: React.FC<PlansModalProps> = ({
           </Col>
         </Row>
         {[
-          DataFeatureFacsimiles,
-          DataFeatureAudio,
-          DataFeatureTranscripts,
-          DataFeatureImages,
-        ].map((key) => (
+          [DataFeatureFacsimiles, ExportFeatureFacsimiles],
+          [DataFeatureAudio, ExportFeatureAudio],
+          [DataFeatureTranscripts, ExportFeatureTranscripts],
+          [DataFeatureImages, ExportFeatureImages],
+        ].map(([keyData, keyExport]) => (
           <PlansModalFeatureRow
-            key={key}
+            key={keyData}
             plans={plans}
-            label={DataFeatureLabels[key]}
-            featureId={key}
+            label={DataFeatureLabels[keyData]}
+            featureIds={[keyData, keyExport]}
             className="PlansModal__hRow"
           />
         ))}
         <Row>
           <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
-            <h4 className="font-size-inherit mt-2">Enrichments</h4>
+            <h4 className="font-size-inherit mt-2">Semantic Enrichments</h4>
           </Col>
         </Row>
         <PlansModalFeatureRow
           plans={plans}
           label={DataFeatureLabels[DataFeatureSemanticEnrichments]}
-          featureId={DataFeatureSemanticEnrichments}
+          featureIds={[
+            DataFeatureSemanticEnrichments,
+            ExportFeatureSemanticEnrichments,
+          ]}
           className="PlansModal__hRow"
         />
       </Container>

@@ -10,14 +10,14 @@ const BootstrapColumnLayoutForLabels = {
 
 export type PlansModalFeatureRowProps = {
   plans: Plan[]
-  label?: string
-  featureId?: string
+  label: string
+  featureIds?: string[]
   className?: string
 }
 
 const PlansModalFeatureRow: React.FC<PlansModalFeatureRowProps> = ({
   label = "",
-  featureId = "",
+  featureIds = [],
   plans = [],
   className = "",
 }) => {
@@ -30,13 +30,29 @@ const PlansModalFeatureRow: React.FC<PlansModalFeatureRowProps> = ({
         }}
       ></Col>
       {plans.map((plan) => {
-        const feature = plan.features.find((d) => d.ref === featureId)
         return (
-          <Col
-            className="d-flex justify-content-center align-items-center "
-            key={plan.id}
-          >
-            {feature ? <PlanFeatureCard feature={feature} /> : <Xmark />}
+          <Col key={plan.id}>
+            <Row className="d-flex align-items-center h-100">
+              {featureIds.map((ref, i) => {
+                const feature = plan.features.find((f) => f.ref === ref)
+                const hasBorder =
+                  featureIds.length > 1 && i < featureIds.length - 1
+                return (
+                  <Col
+                    key={ref}
+                    className={`d-flex justify-content-center align-items-center ${
+                      hasBorder ? "border-end" : ""
+                    }`}
+                  >
+                    {feature ? (
+                      <PlanFeatureCard feature={feature} />
+                    ) : (
+                      <Xmark />
+                    )}
+                  </Col>
+                )
+              })}
+            </Row>
           </Col>
         )
       })}
