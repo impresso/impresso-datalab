@@ -6,7 +6,7 @@ interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string
   fullscreen?: string | true | undefined
   subtitle?: string
-  size?: ModalProps["size"]
+  size?: ModalProps["size"] | "xxl"
   modalBodyClassName?: string
   modalFooterClassName?: string
   footer?: React.ReactNode
