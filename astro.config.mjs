@@ -3,8 +3,10 @@ import react from "@astrojs/react"
 import mdx from "@astrojs/mdx"
 import dotenv from "dotenv"
 
-dotenv.config()
-
+// load .env.local file, .env.development file, and .env file
+dotenv.config({
+  path: [".env.local", `.env.${process.env.NODE_ENV}`, ".env"],
+})
 const WsApiTarget =
   process.env.PUBLIC_IMPRESSO_WS_API_HOST ?? "http://localhost"
 const WsApiPath = process.env.PUBLIC_IMPRESSO_WS_API_PATH ?? "/api/socket.io"
@@ -14,7 +16,8 @@ const PublicApiTarget =
 const PublicApiPath = process.env.PUBLIC_IMPRESSO_API_PATH ?? "/public-api/v1"
 
 // these values are relevant only when the proxy is used with different paths, e.g; for a local instance of impresso middle layer
-const ProxyPublicApiPath = process.env.PUBLIC_IMPRESSO_API_PATH ?? "/public-api/v1"
+const ProxyPublicApiPath =
+  process.env.PUBLIC_IMPRESSO_API_PATH ?? "/public-api/v1"
 const ProxyWsApiPath =
   process.env.PUBLIC_IMPRESSO_WS_API_PATH ?? "/api/socket.io"
 

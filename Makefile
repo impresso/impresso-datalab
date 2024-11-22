@@ -7,10 +7,6 @@ run-dev:
 	PUBLIC_GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD) \
 	PUBLIC_BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
 	PUBLIC_GIT_REMOTE=$(shell git config --get remote.origin.url) \
-	PUBLIC_IMPRESSO_API_PATH="/public-api/v1" \
-	PUBLIC_IMPRESSO_WS_API_PATH="/api/socket.io" \
-	PUBLIC_IMPRESSO_DATALAB_BASE="/datalab" \
-	PUBLIC_IMPRESSO_DATALAB_SITE="https://impresso-project.ch" \
 	npm run dev
 
 build-dev:
