@@ -21,12 +21,12 @@ export const Requirements: string[] = [
 
 export const RequirementsLabels: Record<string, string> = {
   [RequirementToU]: "Agreement to Terms of Use",
-  [RequirementImpressoAccount]: "Creation of an Impresso Account",
+  [RequirementImpressoAccount]: "Impresso Account creation",
   [RequirementProofStudentEnrollment]:
-    "Proof of current student enrollment in higher education",
+    "Proof of enrollement in higher education (for students)",
   [RequirementProofAcademicAffiliation]: "Proof of academic affiliation",
   [RequirementDataAccessGranted]:
-    "Data access requires approval by content provider",
+    "Account creation request must receive approval from content provider",
 }
 
 export const GenericFeatureExploreAll = "explore-all-features"
@@ -78,9 +78,8 @@ export const DataFeatures: string[] = [
 ]
 
 export const DataFeatureLabels: Record<string, string> = {
-  [DataFeatureMetadata]: "Bibliographic Metadata",
-  [DataFeatureMetadataPublicDomain]:
-    "Bibliographic Metadata </br><b>public domain</b>",
+  [DataFeatureMetadata]:
+    "Metadata (bibliographic, descriptive, technical - public and protected domain)",
   [DataFeatureFacsimiles]:
     "Facsimiles - images of documents created during scanning",
   [DataFeatureFacsimilesPublicDomain]:
@@ -106,7 +105,7 @@ export const DataFeatureLabels: Record<string, string> = {
 export const Features: string[] = [...GenericFeatures, ...DataFeatures]
 
 export const PlanGuest = "guest"
-export const PlanImpressoUser = "impresso-user"
+export const PlanImpressoUser = "basic-user"
 export const PlanStudentUser = "student-user"
 export const PlanAcademicUser = "academic-user"
 export const PlanAcademicUserPlus = "academic-user-plus"
