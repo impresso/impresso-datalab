@@ -15,13 +15,14 @@ const LoginModal = () => {
   const [error, setError] = useState<FeathersError | null>(null)
 
   const checkCredentials = (credentials: LoginFormPayload) => {
+    console.debug("[LoginModal] call loginService...")
     loginService
       .create({
         strategy: "local",
         ...credentials,
       })
       .then((data) => {
-        // console.log("loginService.create", data)
+        console.debug("[LoginModal] loginService.create", data)
         setAuthenticatedUser(data.user, data.accessToken)
         setView(null)
       })

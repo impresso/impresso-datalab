@@ -11,6 +11,7 @@ const socket = io("", {
   forceNew: true,
   transports: ["websocket"],
 })
+let timeoutTimer: NodeJS.Timeout | null = null
 // print ut socket version
 const app = feathers()
 app.configure(
@@ -26,13 +27,20 @@ app.configure(
 console.info("[services] socket.io version", socket.io.engine.id)
 
 socket.on("connect_error", (err) => {
-  console.error("[services] socket.io connection error:", err)
+  console.error("[services] socket.io connection error:", err.message)
   // reconnnect using transports
   socket.disconnect()
   setWsStatus("closed")
+  // automatically try to reconnect after 5 seconds
+  if (timeoutTimer !== null) {
+    clearTimeout(timeoutTimer)
+  }
+  timeoutTimer = setTimeout(() => {
+    socket.connect()
+  }, 5000)
 })
-socket.on("connect_timeout", (timeout) => {
-  console.error("[services] socket.io connection timeout:", timeout)
+socket.on("connect_timeout", (err) => {
+  console.error("[services] socket.io connection timeout:", err.message)
   setWsStatus("closed")
 })
 socket.on("connect", async () => {
@@ -47,7 +55,7 @@ socket.on("connect", async () => {
     .catch((err) => {
       console.warn(
         "[services] @connect reAuthenticate failure, skip. Error:",
-        err,
+        err.message,
       )
       return null
     })
@@ -63,5 +71,5 @@ socket.on("reconnect", (attemptNumber) => {
 export const versionService = app.service("version")
 export const userService = app.service("me")
 export const usersService = app.service("users")
-export const accountDetailsService = app.service("account-details")
+export const termsOfUseService = app.service("terms-of-use")
 export const loginService = app.service("authentication")

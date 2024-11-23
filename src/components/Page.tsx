@@ -13,6 +13,7 @@ interface PageProps extends React.HTMLAttributes<HTMLDivElement> {
   autoOpenAfterDelay?: boolean
   manualOpen?: boolean
   onHide?: () => void
+  onShow?: () => void
 }
 
 const Page: React.FC<PageProps> = ({
@@ -29,6 +30,7 @@ const Page: React.FC<PageProps> = ({
   // this is used only when autoOpenAfterDelay is false
   manualOpen = false,
   onHide,
+  onShow,
 }) => {
   const [show, setShow] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
@@ -48,6 +50,11 @@ const Page: React.FC<PageProps> = ({
         import.meta.env.PUBLIC_IMPRESSO_DATALAB_BASE,
       )
     }, 1000)
+  }
+  const handleShow = () => {
+    if (typeof onShow === "function") {
+      onShow()
+    }
   }
 
   useEffect(() => {
@@ -71,6 +78,7 @@ const Page: React.FC<PageProps> = ({
       fullscreen={fullscreen}
       show={show}
       onHide={handleClose}
+      onShow={handleShow}
       backdrop="static"
       size={size === "xxl" ? "xl" : size}
       keyboard={false}
