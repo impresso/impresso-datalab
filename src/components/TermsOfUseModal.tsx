@@ -1,10 +1,16 @@
-import { useCallback, useEffect, useState, type ChangeEvent } from "react"
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+} from "react"
 import AcceptTermsOfUse from "./AcceptTermsOfUse"
 import Page from "./Page"
 import Alert from "./Alert"
 import { Col, Container, Row } from "react-bootstrap"
 import { useBrowserStore, usePersistentStore } from "../store"
-import { accountDetailsService } from "../services"
+import { termsOfUseService } from "../services"
 import { DateTime } from "luxon"
 import MarkdownSnippet from "./MarkdownSnippet"
 import { BrowserViewTermsOfUse } from "../constants"
@@ -13,28 +19,10 @@ const TermsOfUseModal: React.FC<{
   content: string
   autoOpenAfterDelay?: boolean
 }> = ({ content, autoOpenAfterDelay = true }) => {
+  const bottomRef = useRef<HTMLDivElement>(null)
   const [isIntersecting, setIsIntersecting] = useState<boolean>(false)
-
-  const bottomRef = useCallback((node: HTMLDivElement | null) => {
-    let observer: IntersectionObserver | null = null
-    if (node !== null) {
-      node.textContent = ""
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          setIsIntersecting(entry.isIntersecting)
-        },
-        { threshold: 0.5 },
-      )
-      observer.observe(node)
-    }
-    return () => {
-      console.debug("[TermsOfUseModal] bottomRef cleanup")
-      if (node && observer) {
-        observer.unobserve(node)
-      }
-    }
-  }, [])
-
+  const [isBottomRefUnavailable, setIsBottomRefUnavailable] =
+    useState<boolean>(false)
   const [wsStatus, view] = useBrowserStore((state) => [
     state.wsStatus,
     state.view,
@@ -56,6 +44,28 @@ const TermsOfUseModal: React.FC<{
   const isAcceptedTermsDateValid = acceptedTermsDate
     ? DateTime.fromISO(acceptedTermsDate).isValid
     : false
+
+  const onShowHandler = useCallback(() => {
+    if (!bottomRef.current) {
+      console.warn(
+        "[TermsOfUseModal] onShowHandler - bottomRef.current is null!",
+      )
+      setIsBottomRefUnavailable(true)
+      return
+    }
+    console.debug("[TermsOfUseModal] onShowHandler create BottomRef")
+    const observer: IntersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting(entry.isIntersecting)
+      },
+      { threshold: 0.5 },
+    )
+    observer.observe(bottomRef.current)
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   useEffect(
     () => {
       if (wsStatus !== "connected") {
@@ -72,7 +82,8 @@ const TermsOfUseModal: React.FC<{
         "[TermsOfUseModal] @useEffect - ws connected, call accountDetails.find() ...",
       )
       setIsBusy(true)
-      accountDetailsService
+
+      termsOfUseService
         .find()
         .then((data) => {
           console.debug(
@@ -105,6 +116,7 @@ const TermsOfUseModal: React.FC<{
       setView(null)
     }
   }, [acceptedTermsDate])
+
   useEffect(() => {
     if (!enableAcceptTermsButton && isIntersecting) {
       setEnableAcceptTermsButton(true)
@@ -128,7 +140,7 @@ const TermsOfUseModal: React.FC<{
     setAcceptedTermsDate(DateTime.now().toISOTime())
     setIsBusy(true)
 
-    accountDetailsService
+    termsOfUseService
       .patch(null, {
         acceptTerms: event.target.checked,
       })
@@ -154,12 +166,19 @@ const TermsOfUseModal: React.FC<{
       onHide={() => {
         setView(null)
       }}
+      onShow={onShowHandler}
       footer={
-        <AcceptTermsOfUse
-          checked={isAcceptedTermsDateValid}
-          onChange={AcceptTermsOfUseOnChangeHandler}
-          disabled={!enableAcceptTermsButton}
-        />
+        isBottomRefUnavailable ? (
+          <div className="py-3 text-center w-100 border-top">
+            Please read carefully our Terms of Use
+          </div>
+        ) : (
+          <AcceptTermsOfUse
+            checked={isAcceptedTermsDateValid}
+            onChange={AcceptTermsOfUseOnChangeHandler}
+            disabled={!enableAcceptTermsButton}
+          />
+        )
       }
     >
       <Container>
@@ -194,6 +213,12 @@ const TermsOfUseModal: React.FC<{
               value={content}
               onClick={() => setEnableAcceptTermsButton(true)}
             />
+            {isBottomRefUnavailable ? (
+              <AcceptTermsOfUse
+                checked={isAcceptedTermsDateValid}
+                onChange={AcceptTermsOfUseOnChangeHandler}
+              />
+            ) : null}
           </div>
           <div ref={bottomRef}>&nbsp;</div>
         </Row>
