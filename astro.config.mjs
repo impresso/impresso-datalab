@@ -3,9 +3,11 @@ import react from "@astrojs/react"
 import mdx from "@astrojs/mdx"
 import dotenv from "dotenv"
 
-// load .env.local file, .env.development file, and .env file
+console.log("NODE_ENV:", process.env.NODE_ENV)
 dotenv.config({
-  path: [".env.local", `.env.${process.env.NODE_ENV}`, ".env"],
+  path: [".env", ".env.local", `.env.${process.env.NODE_ENV}`],
+  debug: true,
+  override: true,
 })
 const WsApiTarget =
   process.env.PUBLIC_IMPRESSO_WS_API_HOST ?? "http://localhost"
