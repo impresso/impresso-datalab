@@ -31,7 +31,7 @@ const RegisterModal = () => {
       })
       .catch((err: FeathersError) => {
         setError(err)
-        console.error("[RegisterModal] create", err, err.data)
+        console.error("[RegisterModal] create", err, err.message, err.data)
       })
   }
 
