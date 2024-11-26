@@ -226,7 +226,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       <section className="mb-3 d-flex flex-wrap gap-2 align-items-center">
         {Plans.map((plan) => (
           <Form.Check
-            className="border rounded"
+            className={`border rounded-md shadow-sm ${formPayload.current.plan === plan ? "active" : ""}`}
             key={plan}
             type="radio"
             label={PlanLabels[plan]}
