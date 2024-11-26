@@ -304,7 +304,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       <Form.Group className="mb-3" controlId="ModalRegisterForm.agreedToTerms">
         <Form.Check
           checked={acceptTermsDate !== null}
-          onChange={(e) => {
+          onChange={() => {
             if (acceptTermsDate) {
               return
             }
