@@ -136,9 +136,9 @@ export const Features: string[] = [
 ]
 
 export const PlanGuest = "guest"
-export const PlanImpressoUser = "basic-user"
-export const PlanStudentUser = "student-user"
-export const PlanAcademicUser = "academic-user"
+export const PlanImpressoUser = "plan-basic"
+export const PlanStudentUser = "plan-educational"
+export const PlanAcademicUser = "plan-academic"
 export const PlanAcademicUserPlus = "academic-user-plus"
 export const PlanLabels: Record<string, string> = {
   [PlanGuest]: "Guest",

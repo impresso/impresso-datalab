@@ -1,8 +1,4 @@
-import {
-  BadRequest,
-  NotAuthenticated,
-  type FeathersError,
-} from "@feathersjs/errors"
+import { type FeathersError } from "@feathersjs/errors"
 import React, { useRef } from "react"
 import { Form } from "react-bootstrap"
 import { useBrowserStore } from "../store"

@@ -61,6 +61,20 @@ export interface RegisterFormPayload {
   plan: string
 }
 
+export interface RegisterFormPreview {
+  email: string
+  firstname: string
+  lastname: string
+  username: string
+  profile: {
+    pattern: string[]
+  }
+  pattern: string
+  isStaff: boolean
+  agreedToTerms: boolean
+  groups: string[]
+}
+
 export interface RegisterFormProps {
   className?: string
   onSubmit: (payload: RegisterFormPayload) => void
@@ -76,7 +90,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const acceptTermsDate = usePersistentStore((state) => state.acceptTermsDate)
   const setView = useBrowserStore((state) => state.setView)
   const [formError, setFormError] = useState<Error | null>(null)
-  const [formPreview, setFormPreview] = useState(() => ({
+  const [formPreview, setFormPreview] = useState<RegisterFormPreview>(() => ({
     email: "",
     firstname: "-",
     lastname: "-",
@@ -84,8 +98,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     profile: {
       pattern: generatePattern(),
     },
+    pattern: "",
     isStaff: false,
     agreedToTerms: false,
+    groups: [],
   }))
 
   const formPayload = useRef<RegisterFormPayload>({
@@ -191,8 +207,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         firstname: formPayload.current.firstname,
         lastname: formPayload.current.lastname,
         username: formPayload.current.email,
+        groups: [formPayload.current.plan],
       }))
-    }, 1000)
+    }, 100)
   }
 
   useEffect(() => {
@@ -205,7 +222,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
 
   return (
     <Form onSubmit={handleOnSubmit} className={`RegisterForm ${className}`}>
-      <ErrorManager error={formError || error} />
+      <ErrorManager error={error || formError} />
       <section className="mb-3 d-flex flex-wrap gap-2 align-items-center">
         {Plans.map((plan) => (
           <Form.Check
@@ -287,7 +304,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       <Form.Group className="mb-3" controlId="ModalRegisterForm.agreedToTerms">
         <Form.Check
           checked={acceptTermsDate !== null}
-          onChange={(e) => {
+          onChange={() => {
             if (acceptTermsDate) {
               return
             }

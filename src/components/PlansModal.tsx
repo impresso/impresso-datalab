@@ -1,7 +1,6 @@
-import { Fragment } from "react"
 import Page from "./Page"
 // import PlanCard from "./PlanCard"
-import { Col, Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap"
+import { Col, Container, Row } from "react-bootstrap"
 import type { Plan } from "./PlanCard"
 import { usePersistentStore } from "../store"
 import {
@@ -38,10 +37,8 @@ import {
   Minus,
   WarningCircle,
   Xmark,
-  UserBadgeCheck,
 } from "iconoir-react"
 import "./PlansModal.css"
-import PlanFeature from "./PlanFeatureCard"
 import MarkdownSnippet from "./MarkdownSnippet"
 import PlansModalFeatureRow from "./PlansModalFeatureRow"
 

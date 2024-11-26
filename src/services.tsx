@@ -24,6 +24,22 @@ app.configure(
     timeout: 20000,
   }),
 )
+app.hooks({
+  error: {
+    all: [
+      (context) => {
+        console.error(
+          `[services] error hook on ${context.path}/${context.method}`,
+        )
+        console.error("[services] error `data`:", context.error?.data)
+        console.error("[services] error `message`:", context.error?.message)
+        console.error("[services] error object:", context.error)
+        return
+      },
+    ],
+  },
+})
+
 console.info("[services] socket.io version", socket.io.engine.id)
 
 socket.on("connect_error", (err) => {

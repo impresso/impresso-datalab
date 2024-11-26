@@ -1,4 +1,5 @@
 import Avatar from "boring-avatars"
+import { PlanAcademicUser, PlanStudentUser } from "../constants"
 
 export interface User {
   username: string
@@ -23,6 +24,16 @@ const UserCard = ({
   user: User
 }) => {
   console.debug("[UserCard] rendering:", user)
+  let role = user.isStaff ? "Staff" : "Basic User"
+
+  if (user.groups) {
+    if (user.groups.includes(PlanStudentUser)) {
+      role = "Student"
+    } else if (user.groups.includes(PlanAcademicUser)) {
+      role = "Academic"
+    }
+  }
+
   return (
     <div className={`UserCard d-flex align-items-center ${className}`}>
       <div className="me-2">
@@ -37,9 +48,7 @@ const UserCard = ({
         <h3 className="m-0 small">
           {user.firstname} {user.lastname}
         </h3>
-        <p className="m-0 smallcaps">
-          {user.isStaff ? "staff" : "researcher"}{" "}
-        </p>
+        <p className="m-0 smallcaps">{role}</p>
       </div>
     </div>
   )
