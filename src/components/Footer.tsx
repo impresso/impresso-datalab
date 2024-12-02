@@ -213,7 +213,6 @@ const Footer: React.FC<{
                   Plans
                 </Link>
               </li>
-              <li>&nbsp;</li>
               <li>
                 <Link underline to="/terms-of-use">
                   Terms of Use
