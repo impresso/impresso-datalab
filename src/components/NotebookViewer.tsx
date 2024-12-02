@@ -1,3 +1,4 @@
+import React from "react"
 import { Col, Container, Row } from "react-bootstrap"
 import CodeSnippet from "./CodeSnippet"
 import MarkdownSnipped from "./MarkdownSnippet"
@@ -14,16 +15,19 @@ export interface NotebookViewerProps {
   raw?: string
 }
 
-const splitTextWithCellInfo = (
-  text: string
-): Array<{ cellNumber: number; cellType: string; content: string }> => {
-  const cells: Array<{
-    cellNumber: number
-    cellType: string
-    content: string
-    idx: number
-    l: number
-  }> = []
+export type CellInfo = {
+  cellNumber: number
+  cellType: string
+  content: string
+  idx: number
+  l: number
+  //  headingLevel
+  hl?: number
+  h: string
+}
+
+const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
+  const cells: Array<CellInfo> = []
   const regex = /\{\/*\*\s*cell:(\d+)\s*cell_type:(\w+)\s*\*\/\}/g
   let match
   while ((match = regex.exec(text)) !== null) {
@@ -33,6 +37,8 @@ const splitTextWithCellInfo = (
       cellNumber: parseInt(match[1]),
       cellType: match[2],
       content: "",
+      hl: 0,
+      h: "",
     })
   }
 
@@ -40,18 +46,28 @@ const splitTextWithCellInfo = (
   for (let i = 0; i < cells.length; i++) {
     const start = cells[i].idx + cells[i].l
     const end = cells[i + 1]?.idx
+
     cells[i].content = text
       .slice(start, end)
       .trim()
       .replace(/^```python/, "")
       .replace(/```$/, "")
       .trim()
+
+    // check if the cell is markdown and extract the heading level
+    if (cells[i].cellType === "markdown") {
+      const headingMatch = cells[i].content.match(/^#+ /)
+      if (headingMatch) {
+        cells[i].hl = headingMatch[0].length
+        cells[i].h = cells[i].content.split("\n")[0].replace(/^#+ /, "")
+      }
+    }
   }
 
   return cells
 }
 const getGithubIssuesUrl = (
-  githubUrl: string
+  githubUrl: string,
 ): { url: string; account: string; repository: string } => {
   const repoPattern = /github\.com\/([^/]+)\/([^/]+)/
   const match = repoPattern.exec(githubUrl)
@@ -75,12 +91,31 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
   const accessDateTime = DateTime.fromJSDate(accessTime)
   const excerpt = notebook.excerpt ?? ""
 
+  const headings = cells.filter((cell) => cell.hl)
   // Example usage:
   const githubUrl = notebook.githubUrl ?? ""
   const { url: issueUrl } = getGithubIssuesUrl(githubUrl)
+  const containerRef = React.useRef<HTMLDivElement>(null)
 
+  const scrollToHeading = (cellNumber: number) => {
+    const heading = document.getElementById(notebook.href + cellNumber)
+
+    if (heading) {
+      const offsetTop = heading.getBoundingClientRect().top
+
+      const container = containerRef.current?.parentElement
+      if (container) {
+        console.log("offsetTop", offsetTop)
+
+        container.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        })
+      }
+    }
+  }
   return (
-    <Container className="NotebookViewer">
+    <Container className="NotebookViewer" ref={containerRef}>
       <Row className="my-3">
         <h1 dangerouslySetInnerHTML={{ __html: notebook.title }} />
       </Row>
@@ -133,7 +168,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
             </div>
           </Alert>
         </Col>
-        <Col lg="5">
+        <Col lg="5" className="ps-4">
           <a target="_blank" href={issueUrl}>
             Report an issue
           </a>
@@ -149,17 +184,20 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
               return true
             })
             .map((cell, i) => (
-              <div key={cell.cellNumber}>
-                {cell.cellType === "markdown" && (
-                  <MarkdownSnipped
-                    className={i > 0 ? "my-3" : "mb-3"}
-                    value={cell.content}
-                  />
-                )}
-                {cell.cellType === "code" && (
-                  <CodeSnippet value={cell.content} readonly />
-                )}
-              </div>
+              <React.Fragment key={cell.cellNumber}>
+                {cell.hl && <a id={notebook.href + cell.cellNumber}></a>}
+                <div>
+                  {cell.cellType === "markdown" && (
+                    <MarkdownSnipped
+                      className={i > 0 ? "my-3" : "mb-3"}
+                      value={cell.content}
+                    />
+                  )}
+                  {cell.cellType === "code" && (
+                    <CodeSnippet value={cell.content} readonly />
+                  )}
+                </div>
+              </React.Fragment>
             ))}
         </Col>
         <Col lg="5" className="ps-4">
@@ -169,12 +207,29 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
               <MarkdownSnipped className="m-0 small" value={excerpt} />
             </>
           )}
+
           <div
             style={{
               position: "sticky",
               top: 0,
             }}
           >
+            {headings.length > 0 && (
+              <>
+                <h4>Table of contents</h4>
+                <ul className="list-unstyled">
+                  {headings.map((heading) => (
+                    <li key={heading.cellNumber}>
+                      <button
+                        className="btn btn-link no-smallcaps text-decoration-none"
+                        onClick={() => scrollToHeading(heading.cellNumber)}
+                        dangerouslySetInnerHTML={{ __html: heading.h }}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
             {Array.isArray(notebook.seealso) ? (
               <>
                 <h4>See also</h4>
@@ -192,7 +247,9 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
                 </ul>
               </>
             ) : null}
-            {Array.isArray(notebook.links) && notebook.links.length > 0 ? (
+            {notebook.showLinks &&
+            Array.isArray(notebook.links) &&
+            notebook.links.length > 0 ? (
               <>
                 <h4>Links</h4>
                 <ul

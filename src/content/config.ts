@@ -22,6 +22,7 @@ const notebooks = defineCollection({
     links: z
       .array(z.object({ label: z.string(), href: z.string().url() }))
       .optional(),
+    showLinks: z.boolean().optional(),
     authors: z.array(reference("authors")).optional(),
     // this gives circular reference
     seealso: z.array(z.string()).optional(),

@@ -180,6 +180,14 @@ button svg {
   white-space: nowrap;
   --bs-border-radius: var(--impresso-border-radius-sm);
 }
+.btn.no-smallcaps {
+  font-size: inherit;
+  text-transform: none;
+  font-variant: none;
+  letter-spacing: normal;
+  font-weight: var(--impresso-wght-medium);
+  font-variation-settings: "wght" var(--impresso-wght-medium);
+}
 .btn-primary {
   --bs-btn-color: var(--impresso-color-black);
   --bs-btn-bg: var(--impresso-color-yellow);

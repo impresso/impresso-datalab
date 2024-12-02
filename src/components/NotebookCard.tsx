@@ -18,6 +18,7 @@ export interface Notebook {
   authors: Author[]
   date?: Date
   seealso?: Notebook[]
+  showLinks?: boolean
   links?: { label: string; href: string }[]
 }
 
@@ -35,7 +36,7 @@ const NotebookCard: React.FC<{
     "- title:",
     notebook?.title,
     "notebook.langModel",
-    notebook.langModel
+    notebook.langModel,
   )
   return (
     <div className={`NotebookCard shadow-sm ${className}`}>
