@@ -33,17 +33,16 @@ const GitInfo: React.FC<GitInfoProps> = ({
   const commitUrl = `https://github.com/${gitUsername}/${gitRepo}/commit/${gitCommitSha}`
   const gitHubUrl = `https://github.com/${gitUsername}/${gitRepo}`
 
-  const versionName = version === gitTag ? version : `${version} (${gitTag})`
+  const versionName = version === gitTag ? version : gitTag
+
   return (
     <div className="GitInfo">
       <div className="d-flex flex-wrap gap-2">
         <a className="text-decoration-none" href={gitHubUrl}>
           <GithubCircle />
         </a>
-        <a href={commitUrl}>
-          <b>{versionName}</b>
-          &nbsp;&mdash;&nbsp;
-          {gitBranch}/{gitCommitSha.slice(0, 7)}
+        <a href={commitUrl} title={`${gitBranch}/${gitCommitSha.slice(0, 7)}`}>
+          <b>{versionName.length > 0 ? versionName : "latest"}</b>
         </a>
         <p>{buildDate}</p>
       </div>
