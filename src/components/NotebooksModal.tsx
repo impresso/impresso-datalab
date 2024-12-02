@@ -9,7 +9,7 @@ interface NotebookModalProps {
 
 const NotebooksModal: React.FC<NotebookModalProps> = ({ notebooks = [] }) => {
   return (
-    <Page title="Browse our Ipynb Notebooks" fullscreen="xl-down" size="xl">
+    <Page title="Browse our Notebooks" fullscreen="xl-down" size="xl">
       <Container>
         <Row>
           <Col md={4}>

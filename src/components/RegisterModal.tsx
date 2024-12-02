@@ -50,12 +50,13 @@ const RegisterModal = () => {
       </Modal.Header>
       <Modal.Body className="p-3">
         <p>
-          Register a new Account to access all features of the Impresso App and
-          Impresso Datalab.{" "}
+          Create your Impresso account to explore the full potential of our
+          Datalab and Web App.{" "}
           <Link to="/plans" underline>
-            View available Plans
+            Select the User Plan
           </Link>{" "}
-          to check which one describes best your situation.
+          which fits your profile and be ready to provide evidence for Student
+          User, Academic Users and Academic User+ registrations.
         </p>
         <RegisterForm
           onSubmit={(payload) => {

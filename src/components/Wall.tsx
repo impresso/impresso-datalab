@@ -62,8 +62,7 @@ const Wall = ({
               Media Monitoring
             </h1>
             <h2 className="m-0 p-0">
-              Explore and work programmatically with the Impresso Corpus, Data
-              and Models
+              Programmatic access to Impresso's Corpus, Data and Models
             </h2>
             <p style={{ width: "85%" }} className="d-none">
               We collected <b>{numberOfNotebooks}</b>{" "}
@@ -87,15 +86,16 @@ const Wall = ({
             >
               Impresso project
             </a>{" "}
-            strives to create meaningful links across distinct datasets. The
-            Impresso <em>Datalab</em> is a platform for{" "}
-            <b>programmatic data access</b> and <b>annotation services</b>.
+            strives to create meaningful links across historical media
+            collections. The new <i>Impresso Datalab</i> complements the Web App
+            and offers a platform for programmatic data access and annotation
+            services.
             <p>
-              It offers access to our data and models via API and a dedicated
-              Python library via Jupyter notebooks. The Datalab enables custom
-              analyses of the Impresso corpus and the semantic indexation of
-              external document collections with the help of models created by
-              the project.
+              It provides access to our data and models via API and a dedicated
+              Python library via Jupyter notebooks. All this with the goal to
+              enable custom analyses of the Impresso corpus and the semantic
+              indexation of external document collections with the help of
+              models created by the project.
             </p>
           </Col>
         </Row>

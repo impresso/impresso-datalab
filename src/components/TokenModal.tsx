@@ -6,7 +6,7 @@ const TokenModal: React.FC = () => {
     <Page
       size="lg"
       fullscreen="md-down"
-      title="Your Api Token - Impresso Datalab"
+      title="Your API Token - Impresso Datalab"
     >
       <TokenWrapper />
     </Page>

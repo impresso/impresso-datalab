@@ -98,7 +98,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
         <div className="ms-3">
           {acceptTermsDate !== null ? (
             <p className="m-0">
-              API access is always subject to the&nbsp;
+              API access is always subject to our&nbsp;
               <button
                 className="btn btn-link d-inline-block"
                 onClick={() => {
@@ -135,7 +135,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
       )}
       {showLoginForm && (
         <section className="my-4 d-flex flex-column justify-content-center">
-          <h2 className="mx-auto ">Please login to get your Api Token</h2>
+          <h2 className="mx-auto ">Please login to get your API Token</h2>
           <button
             type="submit"
             className="btn btn-secondary mx-auto d-flex justify-content-center px-5"

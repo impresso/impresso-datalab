@@ -201,9 +201,8 @@ const TermsOfUseModal: React.FC<{
             ) : (
               <Alert>
                 <p className="m-0">
-                  You have not accepted the terms of use yet. Please read the{" "}
-                  <b>entire</b> terms of use document carefully and accept it at
-                  the bottom to continue.
+                  To continue, please review our Terms of Use. Scroll to the
+                  bottom of the document and click the checkbox to accept them.
                 </p>
               </Alert>
             )}
