@@ -178,7 +178,12 @@ export const BrowserViewLogin = "login"
 export const BrowserViewRegister = "signup"
 export const BrowserViewConfirmRegistration = "confirm-registration"
 export const BrowserViewTermsOfUse = "terms-of-use"
-export const BrowserViews: string[] = [BrowserViewLogin, BrowserViewRegister]
+export const BrowserViewProfile = "profile"
+export const BrowserViews: string[] = [
+  BrowserViewLogin,
+  BrowserViewRegister,
+  BrowserViewProfile,
+]
 
 export const BrowserWsStatusIdle = "idle"
 export const BrowserWsStatusConnecting = "connecting"
