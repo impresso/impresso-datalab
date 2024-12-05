@@ -79,30 +79,36 @@ export interface RegisterFormProps {
   className?: string
   onSubmit: (payload: RegisterFormPayload) => void
   error?: FeathersError | null
+  initialValues?: RegisterFormPreview
+}
+
+const InitialDefaultValues: RegisterFormPreview = {
+  email: "",
+  firstname: "-",
+  lastname: "-",
+  username: "",
+  profile: {
+    pattern: generatePattern(),
+  },
+  pattern: "",
+  isStaff: false,
+  agreedToTerms: false,
+  groups: [],
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
   className,
   onSubmit,
   error,
+  initialValues = InitialDefaultValues,
 }) => {
   const previewDelayTimerRef = useRef<NodeJS.Timeout | null>(null)
   const acceptTermsDate = usePersistentStore((state) => state.acceptTermsDate)
   const setView = useBrowserStore((state) => state.setView)
   const [formError, setFormError] = useState<Error | null>(null)
-  const [formPreview, setFormPreview] = useState<RegisterFormPreview>(() => ({
-    email: "",
-    firstname: "-",
-    lastname: "-",
-    username: "",
-    profile: {
-      pattern: generatePattern(),
-    },
-    pattern: "",
-    isStaff: false,
-    agreedToTerms: false,
-    groups: [],
-  }))
+  const [formPreview, setFormPreview] = useState<RegisterFormPreview>(
+    () => initialValues
+  )
 
   const formPayload = useRef<RegisterFormPayload>({
     email: "",
@@ -127,7 +133,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     // verufy password is complicated enough using a nice regex, numbers, uppercase andlowervase letter and a punctuation mark
     if (
       !formPayload.current.password.match(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
       )
     ) {
       errorsAsData.password = {
@@ -198,7 +204,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       console.info(
         "[RegisterForm] @updatePreview",
         "previewing",
-        formPayload.current,
+        formPayload.current
       )
       setFormPreview((state) => ({
         ...state,
@@ -226,7 +232,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       <section className="mb-3 d-flex flex-wrap gap-2 align-items-center">
         {Plans.map((plan) => (
           <Form.Check
-            className={`border rounded-md shadow-sm ${formPayload.current.plan === plan ? "active" : ""}`}
+            className={`border rounded-md shadow-sm ${
+              formPayload.current.plan === plan ? "active" : ""
+            }`}
             key={plan}
             type="radio"
             label={PlanLabels[plan]}
@@ -323,8 +331,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           </p>
         )}
       </Form.Group>
-      <section className="d-flex gap-4 align-items-center mb-2">
-        <div>Preview:</div>
+      <section className="d-flex gap-4 align-items-center mb-2 border border-dark">
+        <div>Preview:ss</div>
         <UserCard
           user={formPreview}
           className=" shadow-sm border-radius-lg ps-2 py-2 pe-3 "
