@@ -6,7 +6,7 @@ import { getEntry } from "astro:content";
 import { CanonicalUrl } from "../constants";
 import { AstroSeo } from "@astrolib/seo";
 
-const pageContent = await getEntry("pagesContents", "about");
+const pageContent = await getEntry("pagesContents", "about") as any;
 
 ---
 

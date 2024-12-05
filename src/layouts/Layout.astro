@@ -1,6 +1,6 @@
 ---
 
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/fonts.css";
@@ -33,7 +33,7 @@ const favicon = import.meta.env.PUBLIC_IMPRESSO_DATALAB_BASE + "/favicon.svg";
 				max-width: calc(100% - 2rem);
 			}
 		</style>
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body>
 			<slot />

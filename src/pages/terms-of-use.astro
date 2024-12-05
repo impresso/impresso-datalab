@@ -6,7 +6,7 @@ import Layout from "../layouts/Layout.astro";
 import { CanonicalUrl } from "../constants";
 import { AstroSeo } from "@astrolib/seo";
 
-const pageContent = await getEntry("pagesContents", "terms-of-use");
+const pageContent = await getEntry("pagesContents", "terms-of-use") as any;
 
 ---
 
