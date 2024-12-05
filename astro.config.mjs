@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 
 console.log("NODE_ENV:", process.env.NODE_ENV)
 dotenv.config({
-  path: [".env", ".env.local", `.env.${process.env.NODE_ENV}`],
+  path: [".env", ".env.local", `.env.${process.env.NODE_ENV}`, `.env.${process.env.NODE_ENV}.local`],
   debug: true,
   override: true,
 })
