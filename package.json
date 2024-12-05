@@ -65,9 +65,10 @@
     "@types/luxon": "^3.4.2",
     "dotenv": "^16.4.5",
     "http-proxy-middleware": "^3.0.2",
-    "msw": "^2.4.4",
+    "msw": "^2.6.6",
     "msw-storybook-addon": "^2.0.3",
-    "storybook": "^8.3.1"
+    "storybook": "^8.3.1",
+    "vite": "^6.0.2"
   },
   "msw": {
     "workerDirectory": [
