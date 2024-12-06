@@ -1,4 +1,4 @@
-FROM node:22 AS builder
+FROM node:23-alpine AS builder
 
 ARG PUBLIC_VERSION
 ARG PUBLIC_GIT_TAG
