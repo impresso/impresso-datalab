@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 22
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
       - name: Update Notebooks
         run: node updatenotebooks.js
       - name: commit and push

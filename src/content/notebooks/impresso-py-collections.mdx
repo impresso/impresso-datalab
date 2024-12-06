@@ -3,79 +3,75 @@ githubUrl: https://github.com/impresso/impresso-py/blob/main/examples/notebooks/
 authors:
   - impresso-team
 title: Search collections
-sha: 4a05f4772be7279de1908f46c93dc12de334d112
-date: 2024-10-11T07:37:06Z
+sha: d1cdf81bac81863f65410f6d7fba79c6a1acc354
+date: 2024-11-15T07:16:09Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-py/blob/main/examples/notebooks/collections.ipynb
 links: []
-excerpt: The notebook shows how to find collections associated with your Impresso account and retrieve details about specific collections using their IDs. Then it demonstrates how to search, get, add, and remove items from collections using the Impresso Python Library.
+excerpt: The notebook shows how to find collections associated with your
+  Impresso account and retrieve details about specific collections using their
+  IDs. Then it demonstrates how to search, get, add, and remove items from
+  collections using the Impresso Python Library.
 ---
 
 {/* cell:0 cell_type:code */}
-
 ```python
 from impresso import connect
 
 impresso = connect()
 ```
 
-{/* cell:1 cell_type:code */}
+{/* cell:1 cell_type:markdown */}
 
+Find all collections that your Impresso account owns.
+
+{/* cell:2 cell_type:code */}
 ```python
 result = impresso.collections.find()
 result
 ```
 
-{/* cell:2 cell_type:markdown */}
-
+{/* cell:3 cell_type:markdown */}
 # Get collection
 
 Get metadata of a colection by its ID.
 
-{/* cell:3 cell_type:code */}
-
+{/* cell:4 cell_type:code */}
 ```python
 result = impresso.collections.get("local-roka-tOrwrOG3")
 result
 ```
 
-{/* cell:4 cell_type:markdown */}
-
+{/* cell:5 cell_type:markdown */}
 ## Get collection items
 
 Get items from a collection by its ID.
 
-{/* cell:5 cell_type:code */}
-
+{/* cell:6 cell_type:code */}
 ```python
 colection_id = result.raw["uid"]
 items = impresso.collections.items(colection_id)
 items
 ```
 
-{/* cell:6 cell_type:markdown */}
-
+{/* cell:7 cell_type:markdown */}
 ## Remove items from collection
 
-{/* cell:7 cell_type:code */}
-
+{/* cell:8 cell_type:code */}
 ```python
 item_id = items.pydantic.data[0].uid
 item_id
 ```
 
-{/* cell:8 cell_type:code */}
-
+{/* cell:9 cell_type:code */}
 ```python
 impresso.collections.remove_items(colection_id, [item_id])
 ```
 
-{/* cell:9 cell_type:markdown */}
-
+{/* cell:10 cell_type:markdown */}
 ## Add items to collection
 
-{/* cell:10 cell_type:code */}
-
+{/* cell:11 cell_type:code */}
 ```python
 impresso.collections.add_items(colection_id, [item_id])
 ```
