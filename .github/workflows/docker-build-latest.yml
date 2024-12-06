@@ -21,7 +21,23 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  updateNotebooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+      - name: Update Notebooks
+        run: node updatenotebooks.js
+      - name: commit and push
+        uses: stefanzweifel/git-auto-commit-action@v5
   docker:
+    needs: updateNotebooks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
