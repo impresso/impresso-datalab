@@ -262,6 +262,9 @@ button.btn-secodary:hover {
 .btn:hover {
   border: 2px var(--impresso-color-black) solid;
 }
+.btn.btn-outline-secondary:hover {
+  border: 1px var(--impresso-color-black) solid;
+}
 
 .btn.btn-sm {
   padding: 0rem 0.5rem;
@@ -330,6 +333,9 @@ button.btn-secodary:hover {
 }
 .border-radius-sm {
   border-radius: var(--impresso-border-radius-sm);
+}
+.border-radius-md {
+  border-radius: var(--impresso-border-radius-xl);
 }
 .border-radius-lg {
   border-radius: var(--impresso-border-radius-lg);

@@ -13,8 +13,9 @@ const ProfileModal = () => {
   const view = useBrowserStore((state) => state.view)
   const setView = useBrowserStore((state) => state.setView)
   const [error, setError] = useState<FeathersError | null>(null)
-  const [userFormPreview, setUserFormPreview] =
-    useState<RegisterFormPreview | null>(null)
+  const [userFormPreview, setUserFormPreview] = useState<
+    RegisterFormPreview | undefined
+  >(undefined)
   useEffect(() => {
     setError(null)
     if (view !== BrowserViewProfile) {
@@ -54,12 +55,15 @@ const ProfileModal = () => {
         <Modal.Title>Edit Profile</Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-3">
-        <RegisterForm
-          onSubmit={(payload) => {
-            console.info("[RegisterModal] @onSubmit", payload)
-          }}
-          error={error}
-        />
+        {userFormPreview ? (
+          <RegisterForm
+            initialValues={userFormPreview}
+            onSubmit={(payload) => {
+              console.info("[RegisterModal] @onSubmit", payload)
+            }}
+            error={error}
+          />
+        ) : null}
       </Modal.Body>
     </Modal>
   )
