@@ -7,8 +7,8 @@ excerpt: Trained on the [HIPE
   2020](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md)
   dataset, the Impresso models recognize both coarse and fine-grained named
   entities, linking mentions to knowledge bases when possible.
-sha: cc20b1b70db4da2aea4042c0e8d82a52e6ffb762
-date: 2024-10-27T13:47:15Z
+sha: e6afe655ddc4d5e16d7a9ff9e04b0ac437f908f6
+date: 2024-10-29T16:04:09Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb
 seealso:
   - ne-processing-with-impresso-api
@@ -359,38 +359,45 @@ Are the previously recognised entities present in the Impresso Corpus? For each 
 
 {/* cell:32 cell_type:code */}
 ```python
+!pip install --upgrade --force-reinstall impresso
+from impresso import version
+print(version)
+```
+
+{/* cell:33 cell_type:code */}
+```python
 from impresso import connect
 
 impresso_session = connect()
 ```
 
-{/* cell:33 cell_type:code */}
+{/* cell:34 cell_type:code */}
 ```python
 entity = impresso_session.entities.find("Maximilien Robespierre")
 
 entity
 ```
 
-{/* cell:34 cell_type:markdown */}
+{/* cell:35 cell_type:markdown */}
 This command checks if "Maximilien Robespierre" exists in the Impresso database. Similarly, we test the resilience of the search function by querying slightly altered names (e.g., "Max1milien Robespierre").
 
 
 
-{/* cell:35 cell_type:code */}
+{/* cell:36 cell_type:code */}
 ```python
 entity = impresso_session.entities.find("Max1milien Robespierre")
 
 entity
 ```
 
-{/* cell:36 cell_type:code */}
+{/* cell:37 cell_type:code */}
 ```python
 entity = impresso_session.entities.find("Marie Antoinette")
 
 entity
 ```
 
-{/* cell:37 cell_type:code */}
+{/* cell:38 cell_type:code */}
 ```python
 
 ```
