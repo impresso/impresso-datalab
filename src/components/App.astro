@@ -55,6 +55,6 @@ const termsOfuseContent = await getEntry("pagesContents", "terms-of-use");
   numberOfSeries={numberOfSeries}
   numberOfAuthors={numberOfAuthors}
 />
-<Modals client:only="react" termsOfuseContent={termsOfuseContent.body}/>
+<Modals client:only="react" termsOfuseContent={termsOfuseContent?.body}/>
 <!-- <Background client:only="react" /> -->
 <Footer client:only="react" associatedPartners={associatedPartnersData}/>

@@ -4,6 +4,12 @@ export const CanonicalUrl =
     ? import.meta.env?.PUBLIC_IMPRESSO_DATALAB_SITE
     : "https://impresso-project.ch"
 
+export const WsApiPath =
+  typeof import.meta !== "undefined" &&
+  import.meta.env?.PUBLIC_IMPRESSO_WS_API_PATH
+    ? import.meta.env?.PUBLIC_IMPRESSO_WS_API_PATH
+    : "/mock-socket.io"
+
 export const RequirementToU = "terms-of-use"
 export const RequirementImpressoAccount = "impresso-account"
 export const RequirementProofStudentEnrollment = "proof-of-student-enrollment"
@@ -178,7 +184,12 @@ export const BrowserViewLogin = "login"
 export const BrowserViewRegister = "signup"
 export const BrowserViewConfirmRegistration = "confirm-registration"
 export const BrowserViewTermsOfUse = "terms-of-use"
-export const BrowserViews: string[] = [BrowserViewLogin, BrowserViewRegister]
+export const BrowserViewProfile = "profile"
+export const BrowserViews: string[] = [
+  BrowserViewLogin,
+  BrowserViewRegister,
+  BrowserViewProfile,
+]
 
 export const BrowserWsStatusIdle = "idle"
 export const BrowserWsStatusConnecting = "connecting"

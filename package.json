@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^3.1.9",
-    "@astrojs/react": "^3.6.3",
+    "@astrojs/mdx": "^4.0.1",
+    "@astrojs/react": "^4.0.0",
     "@astrolib/seo": "^1.0.0-beta.6",
     "@codemirror/lang-python": "^6.1.6",
     "@feathersjs/authentication-client": "^5.0.30",
@@ -34,7 +34,7 @@
     "@uiw/codemirror-theme-nord": "^4.23.1",
     "@uiw/codemirror-themes": "^4.23.5",
     "@uiw/react-codemirror": "^4.23.1",
-    "astro": "^4.16.14",
+    "astro": "^5.0.2",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "boring-avatars": "^1.11.2",
@@ -65,9 +65,10 @@
     "@types/luxon": "^3.4.2",
     "dotenv": "^16.4.5",
     "http-proxy-middleware": "^3.0.2",
-    "msw": "^2.4.4",
+    "msw": "^2.6.6",
     "msw-storybook-addon": "^2.0.3",
-    "storybook": "^8.3.1"
+    "storybook": "^8.3.1",
+    "vite": "^6.0.2"
   },
   "msw": {
     "workerDirectory": [

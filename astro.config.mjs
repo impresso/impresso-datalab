@@ -5,7 +5,12 @@ import dotenv from "dotenv"
 
 console.log("NODE_ENV:", process.env.NODE_ENV)
 dotenv.config({
-  path: [".env", ".env.local", `.env.${process.env.NODE_ENV}`],
+  path: [
+    ".env",
+    ".env.local",
+    `.env.${process.env.NODE_ENV}`,
+    `.env.${process.env.NODE_ENV}.local`,
+  ],
   debug: true,
   override: true,
 })
@@ -34,6 +39,9 @@ if (process.env.NODE_ENV === "development") {
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), mdx()],
+  legacy: {
+    collections: true,
+  },
   site: process.env.PUBLIC_IMPRESSO_DATALAB_SITE || "http://localhost:4321",
   base: process.env.PUBLIC_IMPRESSO_DATALAB_BASE || "/",
   ssr: {
@@ -54,7 +62,7 @@ export default defineConfig({
               "[PROXY WS]",
               path,
               "->",
-              `${WsApiTarget}${rewrittenPath}`,
+              `${WsApiTarget}${rewrittenPath}`
             )
             return rewrittenPath
           },
@@ -70,7 +78,7 @@ export default defineConfig({
               "[PROXY]",
               path,
               "->",
-              `${PublicApiTarget}${rewrittenPath}`,
+              `${PublicApiTarget}${rewrittenPath}`
             )
             return rewrittenPath
           },

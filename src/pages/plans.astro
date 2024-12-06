@@ -17,7 +17,7 @@ const plansProps = await Promise.all(plans.map(async (plan) => {
 }))
 
 
-const pageContent = await getEntry("pagesContents", "plans");
+const pageContent = await getEntry("pagesContents", "plans") as any;
 
 ---
 
@@ -26,7 +26,7 @@ const pageContent = await getEntry("pagesContents", "plans");
   description={pageContent.data.excerpt}
 >
   <AstroSeo
-    title={pageContent.data.title}}
+    title={pageContent.data.title}
     description={pageContent.data.excerpt}
     canonical={CanonicalUrl}
   />

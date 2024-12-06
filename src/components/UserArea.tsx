@@ -4,7 +4,12 @@ import UserCard from "./UserCard"
 import { userService } from "../services"
 import { forwardRef, useEffect } from "react"
 import { PageDown } from "iconoir-react"
-import { BrowserViewLogin, BrowserViewRegister } from "../constants"
+import {
+  BrowserViewLogin,
+  BrowserViewProfile,
+  BrowserViewRegister,
+  BrowserViewTermsOfUse,
+} from "../constants"
 
 const CustomToggle = forwardRef(
   (
@@ -12,7 +17,7 @@ const CustomToggle = forwardRef(
       children?: React.ReactNode
       onClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {}
     },
-    ref: React.Ref<HTMLAnchorElement>,
+    ref: React.Ref<HTMLAnchorElement>
   ) => (
     <a
       href=""
@@ -26,7 +31,7 @@ const CustomToggle = forwardRef(
       {props.children}
       <PageDown className="ms-2" />
     </a>
-  ),
+  )
 )
 
 const UserArea = () => {
@@ -43,7 +48,7 @@ const UserArea = () => {
     if (wsStatus !== "connected") {
       console.debug(
         "[UserArea] @useEffect - ws not connected, current status",
-        wsStatus,
+        wsStatus
       )
       return
     }
@@ -64,7 +69,7 @@ const UserArea = () => {
         })
     } else {
       console.debug(
-        "[UserArea] @useEffect - ws connected, but no token available. Reset user.",
+        "[UserArea] @useEffect - ws connected, but no token available. Reset user."
       )
       setUser(null)
     }
@@ -79,10 +84,21 @@ const UserArea = () => {
               <UserCard user={user} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {/* <Dropdown.Item onClick={() => setView("profile")}>
+              <Dropdown.Item onClick={() => setView(BrowserViewProfile)}>
                 Profile
-              </Dropdown.Item> */}
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => setView(BrowserViewTermsOfUse)}>
+                Terms Of Use
+              </Dropdown.Item>
               <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
+              {/* add separator */}
+              <Dropdown.Divider />
+              <Dropdown.Item
+                target="_blank"
+                href="https://join.slack.com/t/impresso-community/shared_invite/enQtNTg5MzY2NDg2NTAyLTdiMmI2ZWU5ZjliNGNjN2M4NTgxM2UzOTQyYTkxYWU4MTgwN2I1MzQxMzg3N2Y0NGU3OGFjMzFmMGIyNGRlZmQ"
+              >
+                Join Slack Channel
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </>

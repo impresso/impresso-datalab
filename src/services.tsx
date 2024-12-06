@@ -3,11 +3,12 @@ import socketio from "@feathersjs/socketio-client"
 import auth from "@feathersjs/authentication-client"
 import io from "socket.io-client"
 import { usePersistentStore, useBrowserStore } from "./store"
+import { WsApiPath } from "./constants"
 
 const setToken = usePersistentStore.getState().setToken
 const setWsStatus = useBrowserStore.getState().setWsStatus
 const socket = io("", {
-  path: import.meta.env.PUBLIC_IMPRESSO_WS_API_PATH,
+  path: WsApiPath,
   forceNew: true,
   transports: ["websocket"],
 })
@@ -17,19 +18,19 @@ const app = feathers()
 app.configure(
   auth({
     storage: window.localStorage,
-  }),
+  })
 )
 app.configure(
   socketio(socket, {
     timeout: 20000,
-  }),
+  })
 )
 app.hooks({
   error: {
     all: [
       (context) => {
         console.error(
-          `[services] error hook on ${context.path}/${context.method}`,
+          `[services] error hook on ${context.path}/${context.method}`
         )
         console.error("[services] error `data`:", context.error?.data)
         console.error("[services] error `message`:", context.error?.message)
@@ -71,7 +72,7 @@ socket.on("connect", async () => {
     .catch((err) => {
       console.warn(
         "[services] @connect reAuthenticate failure, skip. Error:",
-        err.message,
+        err.message
       )
       return null
     })

@@ -79,40 +79,50 @@ export interface RegisterFormProps {
   className?: string
   onSubmit: (payload: RegisterFormPayload) => void
   error?: FeathersError | null
+  initialValues?: RegisterFormPreview
+}
+
+export const InitialDefaultValues: RegisterFormPreview = {
+  email: "",
+  firstname: "",
+  lastname: "",
+  username: "",
+  profile: {
+    pattern: generatePattern(),
+  },
+  pattern: "",
+  isStaff: false,
+  agreedToTerms: false,
+  groups: [],
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
   className,
   onSubmit,
   error,
+  initialValues = InitialDefaultValues,
 }) => {
   const previewDelayTimerRef = useRef<NodeJS.Timeout | null>(null)
   const acceptTermsDate = usePersistentStore((state) => state.acceptTermsDate)
   const setView = useBrowserStore((state) => state.setView)
   const [formError, setFormError] = useState<Error | null>(null)
-  const [formPreview, setFormPreview] = useState<RegisterFormPreview>(() => ({
-    email: "",
-    firstname: "-",
-    lastname: "-",
-    username: "",
-    profile: {
-      pattern: generatePattern(),
-    },
-    pattern: "",
-    isStaff: false,
-    agreedToTerms: false,
-    groups: [],
-  }))
+  const [formPreview, setFormPreview] = useState<RegisterFormPreview>(
+    () => initialValues
+  )
 
   const formPayload = useRef<RegisterFormPayload>({
-    email: "",
+    email: initialValues.email,
     password: "",
     verifyPassword: "",
-    username: "",
-    firstname: "-",
-    lastname: "-",
+    username: initialValues.username,
+    firstname: initialValues.firstname,
+    lastname: initialValues.lastname,
+
     plan: PlanImpressoUser,
   })
+
+  console.info("[RegisterForm] @initialValues", initialValues)
+
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // check errors
@@ -127,7 +137,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     // verufy password is complicated enough using a nice regex, numbers, uppercase andlowervase letter and a punctuation mark
     if (
       !formPayload.current.password.match(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
       )
     ) {
       errorsAsData.password = {
@@ -195,23 +205,31 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     console.info("[RegisterForm] @updatePreview", key, value)
     // handpick the fields to preview
     previewDelayTimerRef.current = setTimeout(() => {
-      console.info(
-        "[RegisterForm] @updatePreview",
-        "previewing",
-        formPayload.current,
-      )
       setFormPreview((state) => ({
         ...state,
         pattern: state.profile.pattern.join(","),
         email: formPayload.current.email,
         firstname: formPayload.current.firstname,
         lastname: formPayload.current.lastname,
-        username: formPayload.current.email,
+        username: formPayload.current.username,
         groups: [formPayload.current.plan],
       }))
     }, 100)
   }
 
+  useEffect(() => {
+    console.debug("[RegisterForm] @useEffect - initialValues", initialValues)
+    formPayload.current = {
+      email: initialValues.email,
+      password: formPayload.current.password,
+      verifyPassword: formPayload.current.verifyPassword,
+      username: initialValues.username,
+      firstname: initialValues.firstname,
+      lastname: initialValues.lastname,
+      plan: PlanImpressoUser,
+    }
+    setFormPreview(initialValues)
+  }, [initialValues])
   useEffect(() => {
     return () => {
       if (previewDelayTimerRef.current) {
@@ -226,7 +244,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       <section className="mb-3 d-flex flex-wrap gap-2 align-items-center">
         {Plans.map((plan) => (
           <Form.Check
-            className={`border rounded-md shadow-sm ${formPayload.current.plan === plan ? "active" : ""}`}
+            className={`border rounded-md shadow-sm ${
+              formPayload.current.plan === plan ? "active" : ""
+            }`}
             key={plan}
             type="radio"
             label={PlanLabels[plan]}
@@ -244,6 +264,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             <Form.Control
               onChange={(e) => updatePreview("email", e.target.value)}
               type="email"
+              value={formPayload.current.email}
               placeholder="name@example.com"
             />
           </Form.Group>
@@ -254,6 +275,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             <Form.Label className="font-weight-bold">Username</Form.Label>
             <Form.Control
               onChange={(e) => updatePreview("username", e.target.value)}
+              value={formPayload.current.username}
               placeholder="your username"
             />
           </Form.Group>
@@ -263,6 +285,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         <Form.Label className="font-weight-bold">First name</Form.Label>
         <Form.Control
           onChange={(e) => updatePreview("firstname", e.target.value)}
+          value={formPayload.current.firstname}
           placeholder="your first name"
         />
       </Form.Group>
@@ -270,6 +293,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         <Form.Label className="font-weight-bold">Last name</Form.Label>
         <Form.Control
           onChange={(e) => updatePreview("lastname", e.target.value)}
+          value={formPayload.current.lastname}
           placeholder="your last name"
         />
       </Form.Group>
@@ -323,14 +347,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           </p>
         )}
       </Form.Group>
-      <section className="d-flex gap-4 align-items-center mb-2">
+      <section className="d-flex p-2  gap-4 align-items-center mb-2 border-radius-sm ">
         <div>Preview:</div>
         <UserCard
           user={formPreview}
-          className=" shadow-sm border-radius-lg ps-2 py-2 pe-3 "
+          className="shadow-sm border-radius-lg ps-2 py-2 pe-3 "
         />
         <button
-          className="btn btn-outline-secondary ms-auto btn-sm"
+          className="btn btn-outline-secondary btn-sm"
           onClick={changeProfileColors}
         >
           change colors
