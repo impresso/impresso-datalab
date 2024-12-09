@@ -15,7 +15,7 @@ export type DatasetPeriod = {
   partner_bitmap_index: number
 }
 
-type Dataset = {
+export type Dataset = {
   title: string
   description: string
   periods: DatasetPeriod[]
