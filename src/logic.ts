@@ -3,11 +3,11 @@ import { getEntry } from "astro:content"
 export async function getRecursivelyEntryData(entry: any) {
   const result: any = {}
 
-  if (entry.collection && entry.slug) {
+  if (entry.collection && entry.id) {
     result.collection = entry.collection
-    result.href = `${entry.collection}/${entry.slug}`
-  } else if (entry.slug) {
-    result.href = `${entry.slug}`
+    result.href = `${entry.collection}/${entry.id}`
+  } else if (entry.id) {
+    result.href = `${entry.id}`
   }
 
   for (const k of Object.keys(entry.data)) {
