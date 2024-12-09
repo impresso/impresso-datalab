@@ -18,7 +18,7 @@ const NotebooksModal: React.FC<NotebookModalProps> = ({ notebooks = [] }) => {
           <Col>
             {notebooks.map((notebook) => (
               <NotebookCard
-                key={notebook.slug}
+                key={notebook.id}
                 className="my-2"
                 notebook={notebook}
               />

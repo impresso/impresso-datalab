@@ -7,7 +7,7 @@ import { DateTime } from "luxon"
 import { OverlayTrigger, Tooltip } from "react-bootstrap"
 
 export interface Notebook {
-  slug: string
+  id: string
   href: string
   title: string
   langModel?: string
@@ -36,7 +36,7 @@ const NotebookCard: React.FC<{
     "- title:",
     notebook?.title,
     "notebook.langModel",
-    notebook.langModel,
+    notebook.langModel
   )
   return (
     <div className={`NotebookCard shadow-sm ${className}`}>

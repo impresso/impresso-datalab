@@ -67,7 +67,7 @@ const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
   return cells
 }
 const getGithubIssuesUrl = (
-  githubUrl: string,
+  githubUrl: string
 ): { url: string; account: string; repository: string } => {
   const repoPattern = /github\.com\/([^/]+)\/([^/]+)/
   const match = repoPattern.exec(githubUrl)
@@ -125,7 +125,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
             <div>
               By{" "}
               {notebook.authors.map((author) => (
-                <AuthorCard key={author.name} author={author} />
+                <AuthorCard key={author.id} author={author} />
               ))}
             </div>
             {notebook.langModel && (
@@ -240,7 +240,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
                   }}
                 >
                   {notebook.seealso.map((notebook) => (
-                    <li key={notebook.slug} className="mb-2">
+                    <li key={notebook.id} className="mb-2">
                       <NotebookCard notebook={notebook} />
                     </li>
                   ))}
