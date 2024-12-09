@@ -1,5 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
+import type { Dataset } from "./DatasetCard"
 import Page from "./Page"
 import { Col, Container, Row } from "react-bootstrap"
 
@@ -8,6 +7,7 @@ export type DatasetModalProps = {
   modalTitle?: string
   content: string
   displayFeatures?: boolean
+  datasets: Dataset[]
 }
 
 const DatasetModal: React.FC<DatasetModalProps> = ({
@@ -15,17 +15,8 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
   // content,
   // displayFeatures = true,
   // title,
+  datasets = [],
 }) => {
-  const { status, data } = useQuery({
-    queryKey: ["datasets"],
-    queryFn: async () => {
-      const response = await axios.get(
-        "https://raw.githubusercontent.com/impresso/impresso-corpus-metadata/refs/heads/master/data/access_rights_masterfiles/corpus_access_catalogue.json"
-      )
-      return response.data
-    },
-  })
-
   return (
     <Page
       title={modalTitle}
@@ -39,7 +30,10 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
             <h1>{status}</h1>
           </Col>
         </Row>
-        <Row>jejejejeej</Row>
+        <Row>
+          jejejejeej
+          <pre>{JSON.stringify(datasets, null, 2)}</pre>
+        </Row>
       </Container>
     </Page>
   )
