@@ -1,65 +1,97 @@
 import type { FC } from "react"
-
-export type DatasetPeriod = {
-  data_partner_institution: string
-  media_alias: string
-  media_title: string
-  time_period: string
-  media: string
-  medium: string
-  copyright_or_copyright_status: string
-  permitted_use: string
-  minimum_user_plan_required_to_explore_in_the_webapp: string
-  minimum_user_plan_required_to_export_transcripts: string
-  minimum_user_plan_required_to_export_illustration: string
-  partner_bitmap_index: number
-}
-
-export type Dataset = {
-  title: string
-  description: string
-  periods: DatasetPeriod[]
-}
+import type { Dataset } from "../types"
+import { Col, OverlayTrigger, Row, Tooltip } from "react-bootstrap"
+import { CheckCircleSolid, Xmark, XmarkCircleSolid } from "iconoir-react"
+import {
+  PlanAvailabilityLabels,
+  PlanEducational,
+  PlanGuest,
+  PlanImpressoUser,
+  PlanNone,
+  PlanResearcher,
+} from "../constants"
 
 export type DatasetCardProps = {
   dataset: Dataset
+  userPlan?: string
+  className?: string
 }
 
-const DatasetPeriodCard: FC<{ period: DatasetPeriod; className?: string }> = ({
-  period,
-  className = "",
-}) => {
+const compareDatasetPlanWithUserPlan = (
+  userPlan: string,
+  datasetPlan: string
+) => {
+  if (userPlan === datasetPlan || datasetPlan === PlanGuest) {
+    return <CheckCircleSolid color="green" />
+  }
+  if (
+    [PlanGuest, PlanImpressoUser].includes(datasetPlan) &&
+    [PlanImpressoUser, PlanResearcher, PlanEducational].includes(userPlan)
+  ) {
+    return <CheckCircleSolid color="green" />
+  }
+  if (datasetPlan === PlanNone) {
+    return (
+      <OverlayTrigger
+        overlay={
+          <Tooltip id="button-tooltip-3">
+            <span> This feature is not yet avalable to any plan</span>
+          </Tooltip>
+        }
+      >
+        <XmarkCircleSolid />
+      </OverlayTrigger>
+    )
+  }
+
   return (
-    <div
-      className={`DatasetPeriodCard shadow-sm bg-white border-radius-sm ${className}`}
+    <OverlayTrigger
+      overlay={
+        <Tooltip id="button-tooltip-3">
+          <span>{PlanAvailabilityLabels[datasetPlan] ?? datasetPlan}</span>
+        </Tooltip>
+      }
     >
-      <h3 className="font-size-inherit">
-        {period.media_title}
-        &mdash; {period.data_partner_institution}
-      </h3>
-      <div className="d-flex">
-        <p>{period.time_period}</p>
-        <div>
-          {period.media}
-          <br />
-          {period.medium}
-        </div>
-      </div>
-      <div>{period.permitted_use}</div>
-    </div>
+      <Xmark />
+    </OverlayTrigger>
   )
 }
 
-const DatasetCard: FC<DatasetCardProps> = ({ dataset }) => {
+const DatasetCard: FC<DatasetCardProps> = ({
+  dataset,
+  userPlan = PlanGuest,
+  className = "",
+}) => {
+  // translate
   return (
-    <div className="DatasetCard">
-      <h2>{dataset.title}</h2>
-      <p>{dataset.description}</p>
+    <Row key={dataset.id} className={`DatasetCard ${className}`}>
+      <Col sm={1}>{dataset.startYear}</Col>
+      <Col sm={1}>{dataset.endYear}</Col>
+      <Col sm={2}>{dataset.medium}</Col>
+      <Col sm={5}>
+        <h3 className="font-size-inherit mb-1">
+          {dataset.mediaTitle} &mdash; {dataset.associatedPartner}
+        </h3>
+        <div className="d-flex">
+          <div className="small-caps">{dataset.media}</div>
+        </div>
+        {dataset.permittedUse}
+      </Col>
 
-      {dataset.periods.map((period, index) => (
-        <DatasetPeriodCard key={index} period={period} className="p-2 m-1" />
+      {[
+        dataset.minimumUserPlanRequiredToExploreInWebapp,
+        dataset.minimumUserPlanRequiredToExportTranscripts,
+        dataset.minimumUserPlanRequiredToExportIllustration,
+      ].map((plan, i) => (
+        <Col key={i} sm={1}>
+          {compareDatasetPlanWithUserPlan(userPlan, plan)}
+        </Col>
       ))}
-    </div>
+
+      <Col sm={12}>
+        <div className="pt-3 border-bottom h-1px"></div>
+      </Col>
+    </Row>
   )
 }
 
