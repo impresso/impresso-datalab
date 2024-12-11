@@ -18,7 +18,7 @@ type Story = StoryObj<typeof NotebookCard>
 export const Default: Story = {
   args: {
     notebook: {
-      slug: "notebook-1",
+      id: "notebook-1",
       href: "/notebook-1",
       title: "Notebook 1",
       authors: [

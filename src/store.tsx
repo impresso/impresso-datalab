@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
-import type { User } from "./components/UserCard"
+
 import {
   AccessTokenKey,
   BrowserWsStatuses,
@@ -12,10 +12,11 @@ import {
   Plans,
   PlanImpressoUser,
 } from "./constants"
+import type { User } from "./types"
 
 interface PersistentStoreState {
   user: User | null
-  userPlan: (typeof Plans)[number] | null
+  userPlan: (typeof Plans)[number]
   token: string | null
   acceptTermsDate: string | null
   setAuthenticatedUser: (user: User, token: string) => void

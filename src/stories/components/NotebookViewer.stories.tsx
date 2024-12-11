@@ -36,7 +36,7 @@ export const Default: Story = {
       title: "Notebook 1",
       authors: [
         {
-          slug: "author-1",
+          id: "author-1",
           name: "Author 1",
         },
       ],
