@@ -7,7 +7,48 @@ import {
   SeriesCategories,
   SeriesPositions,
   PlanIcons,
+  PlanGuest,
+  PlanResearcher,
+  PlanImpressoUser,
+  PlanNone,
+  PlanEducational,
 } from "../constants"
+const CorpusAccessUserPlansToPlan: Record<string, string> = {
+  "Guest User Plan": PlanGuest,
+  "Basic User Plan": PlanImpressoUser,
+  "Student User Plan": PlanEducational,
+  "Academic User Plan": PlanResearcher,
+  "Not Possible": PlanNone,
+}
+const datasetMapper = (dataset: any) => {
+  return {
+    id: [dataset.data_partner_institution, dataset.media_alias].join("-"),
+    associatedPartner: dataset.data_partner_institution,
+    mediaId: dataset.media_alias,
+    mediaTitle: dataset.media_title,
+    timePeriod: dataset.time_period,
+    startYear: parseInt(dataset.time_period.split("-").shift(), 10),
+    endYear: parseInt(dataset.time_period.split("-").pop(), 10),
+    media: dataset.media, // e.g. Newspaper
+    medium: dataset.medium, // eg Print
+    copyright: dataset.copyright_or_copyright_status,
+    permittedUse: dataset.permitted_use,
+    minimumUserPlanRequiredToExploreInWebapp:
+      CorpusAccessUserPlansToPlan[
+        dataset.minimum_user_plan_required_to_explore_in_the_webapp
+      ],
+    minimumUserPlanRequiredToExportTranscripts:
+      CorpusAccessUserPlansToPlan[
+        dataset.minimum_user_plan_required_to_export_transcripts
+      ],
+    minimumUserPlanRequiredToExportIllustration:
+      CorpusAccessUserPlansToPlan[
+        dataset.minimum_user_plan_required_to_export_illustration
+      ],
+    partnerBitmapIndex: dataset.partner_bitmap_index,
+  }
+}
+
 const datasets = defineCollection({
   loader: () =>
     axios
@@ -22,24 +63,7 @@ const datasets = defineCollection({
       .then((res) => {
         const response = res.data
 
-        return response.map((dataset: any) => ({
-          id: [dataset.data_partner_institution, dataset.media_alias].join("-"),
-          associatedPartner: dataset.data_partner_institution,
-          mediaId: dataset.media_alias,
-          mediaTitle: dataset.media_title,
-          timePeriod: dataset.time_period,
-          media: dataset.media, // e.g. Newspaper
-          medium: dataset.medium, // eg Print
-          copyright: dataset.copyright_or_copyright_status,
-          permittedUse: dataset.permitted_use,
-          minimumUserPlanRequiredToExploreInWebapp:
-            dataset.minimum_user_plan_required_to_explore_in_the_webapp,
-          minimumUserPlanRequiredToExportTranscripts:
-            dataset.minimum_user_plan_required_to_export_transcripts,
-          minimumUserPlanRequiredToExportIllustration:
-            dataset.minimum_user_plan_required_to_export_illustration,
-          partnerBitmapIndex: dataset.partner_bitmap_index,
-        }))
+        return response.map(datasetMapper)
       })
       .catch((err) => {
         console.error(err, process.env.GITHUB_TOKEN)
@@ -51,6 +75,8 @@ const datasets = defineCollection({
     mediaId: z.string(),
     mediaTitle: z.string(),
     timePeriod: z.string(),
+    startYear: z.number(),
+    endYear: z.number(),
     media: z.string(),
     medium: z.string(),
     copyright: z.string(),
