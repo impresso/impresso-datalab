@@ -34,3 +34,4 @@ src/styles/fonts.css
 impresso-datalab.code-workspace
 .env.development
 .env.local
+*.local
