@@ -42,7 +42,11 @@ const UserArea = () => {
   const setView = useBrowserStore((state) => state.setView)
 
   const wsStatus = useBrowserStore((state) => state.wsStatus)
-  const [token, user] = usePersistentStore((state) => [state.token, state.user])
+  const [token, user, userPlan] = usePersistentStore((state) => [
+    state.token,
+    state.user,
+    state.userPlan,
+  ])
 
   useEffect(() => {
     if (wsStatus !== "connected") {
@@ -81,12 +85,13 @@ const UserArea = () => {
         <>
           <Dropdown align={"end"}>
             <Dropdown.Toggle as={CustomToggle}>
-              <UserCard user={user} />
+              <UserCard user={user} userPlan={userPlan} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item onClick={() => setView(BrowserViewProfile)}>
                 Profile
               </Dropdown.Item>
+              <Dropdown.Item href="/datalab/datasets">Datasets</Dropdown.Item>
               <Dropdown.Item onClick={() => setView(BrowserViewTermsOfUse)}>
                 Terms Of Use
               </Dropdown.Item>

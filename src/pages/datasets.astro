@@ -1,0 +1,27 @@
+---
+import { getEntry } from "astro:content";
+import App from "../components/App.astro";
+import Layout from "../layouts/Layout.astro";
+import { CanonicalUrl } from "../constants";
+import { AstroSeo } from "@astrolib/seo";
+import DatasetModal from "../components/DatasetsModal";
+import { getCollection } from "astro:content";
+import { getRecursivelyEntryData } from "../logic";
+
+const pageContent = await getEntry("pagesContents", "datasets") as any;
+
+// load all notebooks, order by date
+const datasets = await getCollection('datasets')
+const datasetsProps = await Promise.all(datasets.map((datasets) => getRecursivelyEntryData(datasets)))
+
+---
+
+<Layout title={pageContent.data.title}>
+  <AstroSeo
+    canonical={CanonicalUrl}
+    title={pageContent.data.title}
+    description={pageContent.data.excerpt}
+  />
+  <App transition:persist/>
+  <DatasetModal datasets={datasetsProps} title={pageContent.data.title} client:only="react" content={pageContent.body}/>
+</Layout>

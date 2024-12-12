@@ -22,8 +22,8 @@ const seriesDataIndex = {} as any
 const numberOfSeries = series.length
 
 for(const seriesEntry of series){
-  seriesDataIndex[seriesEntry.slug] = await getRecursivelyEntryData(seriesEntry)
-  seriesDataIndex[seriesEntry.slug]['body'] = seriesEntry.body
+  seriesDataIndex[seriesEntry.id] = await getRecursivelyEntryData(seriesEntry)
+  seriesDataIndex[seriesEntry.id]['body'] = seriesEntry.body
 }
 
 const seriesValues:Collection[] = Object.values(seriesDataIndex) 

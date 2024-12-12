@@ -31,12 +31,12 @@ type Story = StoryObj<typeof NotebookViewer>
 export const Default: Story = {
   args: {
     notebook: {
-      slug: "notebook-1",
+      id: "notebook-1",
       href: "/notebook-1",
       title: "Notebook 1",
       authors: [
         {
-          slug: "author-1",
+          id: "author-1",
           name: "Author 1",
         },
       ],

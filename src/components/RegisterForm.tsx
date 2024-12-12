@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react"
 import { Col, Form, Row } from "react-bootstrap"
 import UserCard from "./UserCard"
 import {
-  PlanAcademicUser,
+  PlanResearcher,
   PlanImpressoUser,
-  PlanStudentUser,
+  PlanEducational,
   PlanLabels,
   BrowserViewTermsOfUse,
 } from "../constants"
@@ -12,6 +12,7 @@ import { useBrowserStore, usePersistentStore } from "../store"
 import { DateTime } from "luxon"
 import { BadRequest, type FeathersError } from "@feathersjs/errors"
 import ErrorManager, { type BadRequestData } from "./ErrorManager"
+import type { Group } from "../types"
 
 const Colors: string[] = [
   "#96ceb4",
@@ -49,7 +50,7 @@ const generatePattern = (): string[] => {
   return colors
 }
 
-const Plans = [PlanImpressoUser, PlanStudentUser, PlanAcademicUser]
+const Plans = [PlanImpressoUser, PlanEducational, PlanResearcher]
 
 export interface RegisterFormPayload {
   email: string
@@ -72,7 +73,7 @@ export interface RegisterFormPreview {
   pattern: string
   isStaff: boolean
   agreedToTerms: boolean
-  groups: string[]
+  groups: Group[]
 }
 
 export interface RegisterFormProps {
@@ -212,7 +213,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         firstname: formPayload.current.firstname,
         lastname: formPayload.current.lastname,
         username: formPayload.current.username,
-        groups: [formPayload.current.plan],
+        groups: [
+          {
+            id: 1,
+            name: formPayload.current.plan,
+          },
+        ],
       }))
     }, 100)
   }

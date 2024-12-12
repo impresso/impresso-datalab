@@ -143,15 +143,36 @@ export const Features: string[] = [
 
 export const PlanGuest = "guest"
 export const PlanImpressoUser = "plan-basic"
-export const PlanStudentUser = "plan-educational"
-export const PlanAcademicUser = "plan-academic"
-export const PlanAcademicUserPlus = "academic-user-plus"
+// IMPRESSO_GROUP_USER_PLAN_EDUCATIONAL = "plan-educational"
+// IMPRESSO_GROUP_USER_PLAN_RESEARCHER = "plan-researcher"
+export const PlanEducational = "plan-educational"
+export const PlanResearcher = "plan-researcher"
+export const PlanResearcherPlus = "academic-user-plus"
+export const PlanNone = "no-plan"
 export const PlanLabels: Record<string, string> = {
   [PlanGuest]: "Guest",
   [PlanImpressoUser]: "No academic affiliation",
-  [PlanStudentUser]: "Student",
-  [PlanAcademicUser]: "Academic",
-  [PlanAcademicUserPlus]: "Academic User Plus",
+  [PlanEducational]: "Student",
+  [PlanResearcher]: "Academic",
+  [PlanResearcherPlus]: "Academic User Plus",
+  [PlanNone]: "No Plan",
+}
+export const Plans: string[] = [
+  PlanGuest,
+  PlanImpressoUser,
+  PlanEducational,
+  PlanResearcher,
+  PlanResearcherPlus,
+  PlanNone,
+]
+
+export const PlanAvailabilityLabels: Record<string, string> = {
+  [PlanGuest]: "Public Domain, always accessible",
+  [PlanImpressoUser]: "Feature accessible with a basic account",
+  [PlanEducational]: "Feature accessible with a student account",
+  [PlanResearcher]: "Feature accessible with an academic account",
+  [PlanResearcherPlus]: "Feature accessible with an academic account",
+  [PlanNone]: "Feature not accessible",
 }
 
 export const PlanIconRestrictedAccessNoDownload =

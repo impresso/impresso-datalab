@@ -1,15 +1,22 @@
 import { create } from "zustand"
 import { createJSONStorage, persist } from "zustand/middleware"
-import type { User } from "./components/UserCard"
+
 import {
   AccessTokenKey,
   BrowserWsStatuses,
   BrowserWsStatusIdle,
   BrowserViews,
+  PlanGuest,
+  PlanEducational,
+  PlanResearcher,
+  Plans,
+  PlanImpressoUser,
 } from "./constants"
+import type { User } from "./types"
 
 interface PersistentStoreState {
   user: User | null
+  userPlan: (typeof Plans)[number]
   token: string | null
   acceptTermsDate: string | null
   setAuthenticatedUser: (user: User, token: string) => void
@@ -38,6 +45,7 @@ export const usePersistentStore = create<
   persist(
     (set, get) => ({
       user: null,
+      userPlan: PlanGuest,
       token: null,
       rememberCredentials: false,
       acceptTermsDate: null,
@@ -51,7 +59,19 @@ export const usePersistentStore = create<
         set({ user, token })
       },
       setUser(user) {
-        set({ user })
+        let userPlan = user !== null ? PlanImpressoUser : PlanGuest
+        if (user !== null && user.groups) {
+          for (const group of user.groups) {
+            if (
+              group.name === PlanEducational ||
+              group.name === PlanResearcher
+            ) {
+              userPlan = group.name
+              break
+            }
+          }
+        }
+        set({ user, userPlan })
       },
       setToken(token) {
         set({ token })
@@ -74,8 +94,8 @@ export const usePersistentStore = create<
     {
       name: "impresso-datalab",
       storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
-    },
-  ),
+    }
+  )
 )
 
 // get fresh data from the localstorage

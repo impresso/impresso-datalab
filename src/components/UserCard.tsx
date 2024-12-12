@@ -1,35 +1,27 @@
 import Avatar from "boring-avatars"
-import { PlanAcademicUser, PlanStudentUser } from "../constants"
-
-export interface User {
-  username: string
-  isStaff: boolean
-  firstname?: string
-  lastname?: string
-  pattern?: string
-  email?: string
-  profile?: {
-    pattern: string[]
-  }
-  bitmap?: string
-  groups?: string[]
-  agreedToTerms?: boolean
-}
+import {
+  PlanResearcher,
+  PlanEducational,
+  Plans,
+  PlanImpressoUser,
+} from "../constants"
+import type { User } from "../types"
 
 const UserCard = ({
   className = "",
   user,
+  userPlan = PlanImpressoUser,
 }: {
   className?: string
   user: User
+  userPlan?: (typeof Plans)[number] | null
 }) => {
   console.debug("[UserCard] rendering:", user)
   let role = user.isStaff ? "Staff - as Basic User" : "Basic User"
-
-  if (user.groups) {
-    if (user.groups.includes(PlanStudentUser)) {
+  if (userPlan) {
+    if (userPlan === PlanEducational) {
       role = user.isStaff ? "Staff - as Student" : "Student"
-    } else if (user.groups.includes(PlanAcademicUser)) {
+    } else if (userPlan === PlanResearcher) {
       role = user.isStaff ? "Staff - as Academic" : "Academic"
     }
   }

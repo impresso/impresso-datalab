@@ -1,5 +1,5 @@
 export interface Author {
-  slug: string
+  id: string
   name: string
   fullName?: string
 }

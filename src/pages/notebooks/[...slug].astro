@@ -11,7 +11,7 @@ import { AstroSeo } from '@astrolib/seo';
 export async function getStaticPaths() {
   const notebooks = await getCollection('notebooks');
   return notebooks.map(notebook => ({
-    params: { slug: notebook.slug }, props: { notebook },
+    params: { slug: notebook.id }, props: { notebook },
   }));
 }
 // 2. For your template, you can get the entry directly from the prop

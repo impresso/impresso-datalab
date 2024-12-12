@@ -39,9 +39,9 @@ if (process.env.NODE_ENV === "development") {
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), mdx()],
-  legacy: {
-    collections: true,
-  },
+  // legacy: {
+  //   collections: true,
+  // },
   site: process.env.PUBLIC_IMPRESSO_DATALAB_SITE || "http://localhost:4321",
   base: process.env.PUBLIC_IMPRESSO_DATALAB_BASE || "/",
   ssr: {

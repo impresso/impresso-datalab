@@ -320,6 +320,14 @@ button.btn-secodary:hover {
   font-weight: var(--impresso-wght-bold);
   font-variation-settings: "wght" var(--impresso-wght-bold);
 }
+.font-weight-normal {
+  font-weight: var(--impresso-wght-normal);
+  font-variation-settings: "wght" var(--impresso-wght-normal);
+}
+.font-weight-medium {
+  font-weight: var(--impresso-wght-medium);
+  font-variation-settings: "wght" var(--impresso-wght-medium);
+}
 .font-weight-bold {
   font-weight: var(--impresso-wght-bold);
   font-variation-settings: "wght" var(--impresso-wght-bold);
@@ -342,6 +350,10 @@ button.btn-secodary:hover {
 }
 .border-dotted {
   --bs-border-style: dotted;
+}
+/* colored text */
+.text-paper {
+  color: var(--impresso-color-paper);
 }
 /* ... */
 h1 {
@@ -504,7 +516,7 @@ hr {
 }
 a.dropdown-item {
   position: relative;
-  display: inline-block;
+  display: block;
   width: auto;
 }
 a.dropdown-item::after {

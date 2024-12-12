@@ -1,14 +1,148 @@
 import { z, defineCollection, reference } from "astro:content"
+import { glob, file } from "astro/loaders"
+import axios from "axios"
 import {
   Requirements,
   Features,
   SeriesCategories,
   SeriesPositions,
   PlanIcons,
+  PlanGuest,
+  PlanResearcher,
+  PlanImpressoUser,
+  PlanNone,
+  PlanEducational,
 } from "../constants"
 
+const CorpusAccessUserPlansToPlan: Record<string, string> = {
+  "Guest User Plan": PlanGuest,
+  "Basic User Plan": PlanImpressoUser,
+  "Student User Plan": PlanEducational,
+  "Academic User Plan": PlanResearcher,
+  "Not Possible": PlanNone,
+}
+
+const CorpusAccessToDatasetMapper = (dataset: any) => {
+  return {
+    id: [dataset.data_partner_institution, dataset.media_alias].join("-"),
+    associatedPartner: dataset.data_partner_institution,
+    mediaId: dataset.media_alias,
+    mediaTitle: dataset.media_title,
+    timePeriod: dataset.time_period,
+    startYear: parseInt(dataset.time_period.split("-").shift(), 10),
+    endYear: parseInt(dataset.time_period.split("-").pop(), 10),
+    media: dataset.media, // e.g. Newspaper
+    medium: dataset.medium, // eg Print
+    copyright: dataset.copyright_or_copyright_status,
+    permittedUse: dataset.permitted_use,
+    minimumUserPlanRequiredToExploreInWebapp:
+      CorpusAccessUserPlansToPlan[
+        dataset.minimum_user_plan_required_to_explore_in_the_webapp
+      ],
+    minimumUserPlanRequiredToExportTranscripts:
+      CorpusAccessUserPlansToPlan[
+        dataset.minimum_user_plan_required_to_export_transcripts
+      ],
+    minimumUserPlanRequiredToExportIllustration:
+      CorpusAccessUserPlansToPlan[
+        dataset.minimum_user_plan_required_to_export_illustration
+      ],
+    partnerBitmapIndex: dataset.partner_bitmap_index,
+  }
+}
+
+const datasets = defineCollection({
+  loader: () =>
+    axios
+      .get(
+        "https://raw.githubusercontent.com/impresso/impresso-corpus-metadata/refs/heads/master/data/access_rights_masterfiles/corpus_access_catalogue.json",
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+          },
+        }
+      )
+      .then((res) => {
+        const response = res.data
+
+        return response.map(CorpusAccessToDatasetMapper)
+      })
+      .catch((err) => {
+        console.error(err.mssage, process.env.GITHUB_TOKEN)
+        return [
+          CorpusAccessToDatasetMapper({
+            data_partner_institution: "SNL",
+            media_alias: "BLB",
+            media_title: "B\u00fcndner Landbote",
+            time_period: "1846-1847",
+            media: "Newspaper",
+            medium: "print",
+            copyright_or_copyright_status: "Public Domain",
+            permitted_use: "Personal, Research and Educational",
+            minimum_user_plan_required_to_explore_in_the_webapp:
+              "Guest User Plan",
+            minimum_user_plan_required_to_export_transcripts: "Basic User Plan",
+            minimum_user_plan_required_to_export_illustration:
+              "Basic User Plan",
+            partner_bitmap_index: 5,
+          }),
+          CorpusAccessToDatasetMapper({
+            data_partner_institution: "BCUF",
+            media_alias: "FZG",
+            media_title: "Freiburger Nachrichten",
+            time_period: "1865-2018",
+            media: "Newspaper",
+            medium: "print",
+            copyright_or_copyright_status: "Protected Domain: In copyright",
+            permitted_use: "Research and Educational",
+            minimum_user_plan_required_to_explore_in_the_webapp:
+              "Basic User Plan",
+            minimum_user_plan_required_to_export_transcripts:
+              "Student User Plan",
+            minimum_user_plan_required_to_export_illustration:
+              "Student User Plan",
+            partner_bitmap_index: 23,
+          }),
+          CorpusAccessToDatasetMapper({
+            data_partner_institution: "BCUL",
+            media_alias: "RN",
+            media_title: "Bulletins du Grand Conseil",
+            time_period: "1829-2020",
+            media: "Newspaper",
+            medium: "print",
+            copyright_or_copyright_status: "Protected Domain: In copyright",
+            permitted_use: "Research",
+            minimum_user_plan_required_to_explore_in_the_webapp:
+              "Academic User Plan",
+            minimum_user_plan_required_to_export_transcripts:
+              "Academic User Plan",
+            minimum_user_plan_required_to_export_illustration:
+              "Academic User Plan",
+            partner_bitmap_index: 22,
+          }),
+        ]
+      }),
+  schema: z.object({
+    id: z.string(),
+    associatedPartner: z.string(),
+    mediaId: z.string(),
+    mediaTitle: z.string(),
+    timePeriod: z.string(),
+    startYear: z.number(),
+    endYear: z.number(),
+    media: z.string(),
+    medium: z.string(),
+    copyright: z.string(),
+    permittedUse: z.string(),
+    minimumUserPlanRequiredToExploreInWebapp: z.string(),
+    minimumUserPlanRequiredToExportTranscripts: z.string(),
+    minimumUserPlanRequiredToExportIllustration: z.string(),
+    partnerBitmapIndex: z.number(),
+  }),
+})
+
 const notebooks = defineCollection({
-  type: "content", // v2.5.0 and later
+  loader: glob({ pattern: "*.mdx", base: "./src/content/notebooks" }),
   schema: z.object({
     title: z.string().optional(),
     url: z.string().url().optional(),
@@ -31,7 +165,7 @@ const notebooks = defineCollection({
 })
 
 const plans = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "*.mdx", base: "./src/content/plans" }),
   schema: z.object({
     id: z.string().optional(),
     title: z.string(),
@@ -44,7 +178,7 @@ const plans = defineCollection({
           status: z.string().optional(),
           iconColor: z.string().optional(),
           icon: z.enum(PlanIcons as any).optional(),
-        }),
+        })
       )
       .optional(),
     requirements: z.array(z.enum(Requirements as any)),
@@ -52,7 +186,7 @@ const plans = defineCollection({
 })
 
 const authors = defineCollection({
-  type: "data",
+  loader: file("./src/content/authors.yaml"),
   schema: z.object({
     name: z.string(),
     url: z.string().url().optional(),
@@ -60,7 +194,7 @@ const authors = defineCollection({
 })
 
 const associatedPartners = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.yaml", base: "./src/content/associatedPartners" }),
   schema: z.object({
     name: z.string(),
     url: z.string().url(),
@@ -68,7 +202,7 @@ const associatedPartners = defineCollection({
 })
 
 const series = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "*.mdx", base: "./src/content/series" }),
   schema: z.object({
     title: z.string(),
     excerpt: z.string(),
@@ -79,7 +213,7 @@ const series = defineCollection({
 })
 
 const pagesContents = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "*.md", base: "./src/content/pagesContents" }),
   schema: z.object({
     title: z.string(),
     modalTitle: z.string().optional(),
@@ -95,4 +229,5 @@ export const collections = {
   associatedPartners,
   plans,
   pagesContents,
+  datasets,
 }
