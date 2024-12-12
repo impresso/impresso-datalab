@@ -4,7 +4,6 @@ import Link from "./Link.tsx"
 import Avatar from "boring-avatars"
 import { ArrowRight } from "iconoir-react"
 import { DateTime } from "luxon"
-import { OverlayTrigger, Tooltip } from "react-bootstrap"
 
 export interface Notebook {
   id: string
@@ -48,17 +47,6 @@ const NotebookCard: React.FC<{
             variant="marble"
             square={false}
           />
-          <div className="LangModelTag">
-            <OverlayTrigger
-              overlay={
-                <Tooltip id="button-tooltip-3">
-                  <span>Model language tag</span>
-                </Tooltip>
-              }
-            >
-              <span className="lang-tag-name">{notebook.langModel}</span>
-            </OverlayTrigger>
-          </div>
         </div>
         <div className="mx-3">
           <a target="_blank" className="small" href={notebook?.langModel}>
