@@ -134,7 +134,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     if (formPayload.current.password !== formPayload.current.verifyPassword) {
       errorsAsData.verifyPassword = {
         label: "Verify password",
-        message: 'Values of "password" and "verify password" do not match.',
+        message: "The passwords you entered don't match. Please try again.",
       }
     }
     // verufy password is complicated enough using a nice regex, numbers, uppercase andlowervase letter and a punctuation mark
@@ -146,7 +146,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       errorsAsData.password = {
         label: "Password",
         message:
-          "Password must contain at least 8 characters, including uppercase, lowercase, numbers and a punctuation mark.",
+          "Your password must contain at least 8 characters, including uppercase, lowercase, numbers and a punctuation mark.",
       }
     }
 
@@ -162,7 +162,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       errorsAsData.username = {
         label: "Your user name",
         message:
-          'Please enter a valid username that contains at least 8 characters. We accept usernames containing only lowercase letters and numbers, e.g. "johndoe84".',
+          "Your user name must be at least 8 characters long, using only lowercase letters and numbers (e.g., johndoe84).",
       }
     }
     // check lastname and firstname not to be empty
