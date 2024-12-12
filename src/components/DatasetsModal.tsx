@@ -6,6 +6,7 @@ import DatasetCard from "./DatasetCard"
 import { useBrowserStore, usePersistentStore } from "../store"
 import { BrowserViewLogin } from "../constants"
 import MarkdownSnippet from "./MarkdownSnippet"
+import { DocStar, MediaImage } from "iconoir-react"
 
 export type DatasetModalProps = {
   title?: string
@@ -158,7 +159,7 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
             >
               {user ? userPlan : "(guest)"}
             </div>
-            <div className="very-small mt-2 muted">
+            <div className="very-small mt-2 mb-2 muted">
               {user ? (
                 "Discover Available Datasets according to your plan"
               ) : (
@@ -174,6 +175,17 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
                 </span>
               )}
             </div>
+          </Col>
+          <Col sm={{ offset: 9, span: 1 }}>
+            <div className="very-small">Explore in Impresso App</div>
+          </Col>
+          <Col sm={1}>
+            <DocStar />
+            <div className="very-small">Export transcripts</div>
+          </Col>
+          <Col sm={1}>
+            <MediaImage />
+            <div className="very-small">Export illustrations</div>
           </Col>
           <Col sm={12}>
             <div className="border-dark pt-3 border-bottom h-1px"></div>
