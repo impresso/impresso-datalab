@@ -48,7 +48,7 @@ const TermsOfUseModal: React.FC<{
   const onShowHandler = useCallback(() => {
     if (!bottomRef.current) {
       console.warn(
-        "[TermsOfUseModal] onShowHandler - bottomRef.current is null!",
+        "[TermsOfUseModal] onShowHandler - bottomRef.current is null!"
       )
       setIsBottomRefUnavailable(true)
       return
@@ -58,7 +58,7 @@ const TermsOfUseModal: React.FC<{
       ([entry]) => {
         setIsIntersecting(entry.isIntersecting)
       },
-      { threshold: 0.5 },
+      { threshold: 0.5 }
     )
     observer.observe(bottomRef.current)
     return () => {
@@ -71,7 +71,7 @@ const TermsOfUseModal: React.FC<{
       if (wsStatus !== "connected") {
         console.debug(
           "[TermsOfUseModal] @useEffect - ws not connected, current status",
-          wsStatus,
+          wsStatus
         )
         return
       }
@@ -79,7 +79,7 @@ const TermsOfUseModal: React.FC<{
         return
       }
       console.debug(
-        "[TermsOfUseModal] @useEffect - ws connected, call accountDetails.find() ...",
+        "[TermsOfUseModal] @useEffect - ws connected, call accountDetails.find() ..."
       )
       setIsBusy(true)
 
@@ -88,7 +88,7 @@ const TermsOfUseModal: React.FC<{
         .then((data) => {
           console.debug(
             "[TermsOfUseModal] @useEffect accountDetails.find() success:",
-            data,
+            data
           )
           setAcceptedTermsDate(data.dateAcceptedTerms)
           setIsBusy(false)
@@ -99,7 +99,7 @@ const TermsOfUseModal: React.FC<{
           if (err.code === 404) {
             // we assume that there is not yet an accepted terms date...
             console.debug(
-              "[TermsOfUseModal] @useEffect - 404, no accepted terms date",
+              "[TermsOfUseModal] @useEffect - 404, no accepted terms date"
             )
             return
           }
@@ -107,7 +107,7 @@ const TermsOfUseModal: React.FC<{
         })
     },
     // eslint-disable-next-line
-    [wsStatus, token],
+    [wsStatus, token]
   )
 
   useEffect(() => {
@@ -124,14 +124,14 @@ const TermsOfUseModal: React.FC<{
   }, [enableAcceptTermsButton, isIntersecting])
 
   const AcceptTermsOfUseOnChangeHandler = (
-    event: ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>
   ) => {
     if (isBusy) {
       console.debug("[TermsOfUseModal] AcceptTermsOfUse@onChange - isBusy")
       return
     }
     console.debug(
-      "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() ...",
+      "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() ..."
     )
     if (process.env.NODE_ENV == "development" && !event.target.checked) {
       setAcceptedTermsDate(null)
@@ -147,7 +147,7 @@ const TermsOfUseModal: React.FC<{
       .then((data) => {
         console.debug(
           "[TermsOfUseModal] AcceptTermsOfUse@onChange call accountDetails.patch() success:",
-          data,
+          data
         )
       })
       .finally(() => {
@@ -201,8 +201,9 @@ const TermsOfUseModal: React.FC<{
             ) : (
               <Alert>
                 <p className="m-0">
-                  To continue, please review our Terms of Use. Scroll to the
-                  bottom of the document and click the checkbox to accept them.
+                  You have not accepted the terms of use yet. Please read the
+                  entire terms of use document carefully and accept it at the
+                  bottom to continue.
                 </p>
               </Alert>
             )}
