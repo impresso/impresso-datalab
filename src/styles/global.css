@@ -87,9 +87,12 @@
   /* small caps & Variable font settings*/
   --impresso-font-size-smallcaps: 0.72em;
   --impresso-letter-spacing-smallcaps: 0.08em;
+  --impresso-font-size-smallcaps-lg: 0.86em;
+  --impresso-letter-spacing-smallcaps-lg: 0.085em;
 
   --impresso-wght-normal: 450;
   --impresso-wght-smallcaps: 580;
+  --impresso-wght-smallcaps-lg: 650;
   --impresso-wght-bold: 650;
   --impresso-wght-medium: 550;
   --impresso-wght-bolder: 750;
@@ -273,7 +276,12 @@ button.btn-secodary:hover {
   letter-spacing: 1.1px;
   border-radius: 0.9rem;
 }
-
+.btn.btn-lg {
+  font-size: var(--impresso-font-size-smallcaps-lg);
+  letter-spacing: var(--impresso-letter-spacing-smallcaps-lg);
+  font-weight: var(--impresso-wght-smallcaps-lg);
+  font-variation-settings: "wght" var(--impresso-wght-smallcaps-lg);
+}
 .link-button {
   background-color: rgba(var(--impresso-color-black-rgb), 0.08);
   display: flex;
