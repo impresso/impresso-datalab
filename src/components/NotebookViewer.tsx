@@ -9,21 +9,11 @@ import Alert from "./Alert"
 import { DateTime } from "luxon"
 import "./NotebookViewer.css"
 import { OverlayTrigger, Tooltip } from "react-bootstrap"
+import type { CellInfo } from "../types"
 
 export interface NotebookViewerProps {
   notebook: Notebook
   raw?: string
-}
-
-export type CellInfo = {
-  cellNumber: number
-  cellType: string
-  content: string
-  idx: number
-  l: number
-  //  headingLevel
-  hl?: number
-  h: string
 }
 
 const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
@@ -185,7 +175,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
             })
             .map((cell, i) => (
               <React.Fragment key={cell.cellNumber}>
-                {cell.hl && <a id={notebook.href + cell.cellNumber}></a>}
+                {cell.hl ? <a id={notebook.href + cell.cellNumber}></a> : null}
                 <div>
                   {cell.cellType === "markdown" && (
                     <MarkdownSnipped
