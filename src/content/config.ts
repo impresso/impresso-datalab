@@ -64,11 +64,17 @@ const datasets = defineCollection({
       )
       .then((res) => {
         const response = res.data
-
+        console.log(
+          "Reading Corpus Access JSON granted, syncinc contents:",
+          res.data.length
+        )
         return response.map(CorpusAccessToDatasetMapper)
       })
       .catch((err) => {
-        console.error(err.mssage, process.env.GITHUB_TOKEN)
+        console.error(
+          err.message,
+          process.env.GITHUB_TOKEN ? "using token: YES" : "without token"
+        )
         return [
           CorpusAccessToDatasetMapper({
             data_partner_institution: "SNL",
