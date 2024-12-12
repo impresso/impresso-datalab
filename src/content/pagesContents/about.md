@@ -20,8 +20,8 @@ Overall, the Datalab supports researchers who are confronted with digitised coll
 
 ## Access management
 
-The Impresso project works with a consortium of partnering libraries and archives on the grounds of legal agreements which respect diverse copyright regulations. The Impresso Terms of Use describe which data is available and how it may be used.
-Our User Plans reflect variations in access rights for the general public, students and researchers. Note that user plans will evolve in the course of the project and make sure to consult our corpus overview page to understand which data is currently available.
+The Impresso project works with a consortium of partnering libraries and archives on the grounds of legal agreements which respect diverse copyright regulations. The Impresso [Terms of Use](/datalab/terms-of-use) describe which data is available and how it may be used.
+Our [User Plans](/datalab/plans) reflect variations in access rights for the general public, students and researchers. Note that user plans will evolve in the course of the project and make sure to consult our [corpus overview page](/datalab/datasets) to understand which data is currently available.
 
 ## Continuous development and feedback
 

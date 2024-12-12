@@ -36,6 +36,17 @@ export type Dataset = {
   partnerBitmapIndex: number
 }
 
+export type CellInfo = {
+  cellNumber: number
+  cellType: string
+  content: string
+  idx: number
+  l: number
+  //  headingLevel
+  hl?: number
+  h: string
+}
+
 // see values in constants
 export enum Plans {
   PlanGuest = "guest",

@@ -93,11 +93,8 @@ const PlansModal: React.FC<PlansModalProps> = ({
         >
           <Col {...BootstrapColumnLayoutForLabels}></Col>
           {plans.map((plan) => (
-            <Col
-              className="py-3 d-flex align-items-center justify-content-center"
-              key={plan.id}
-            >
-              <h2 className="m-0 font-weight-bold text-center">
+            <Col className="py-3 d-flex align-items-end" key={plan.id}>
+              <h2 className="m-0 font-weight-bold">
                 {plan.title}
                 {plan.id === useActivePlan ? (
                   <div className="badge d-block small-caps mt-2 shadow-sm bg-primary text-dark">

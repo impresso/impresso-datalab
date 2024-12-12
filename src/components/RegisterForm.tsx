@@ -7,12 +7,14 @@ import {
   PlanEducational,
   PlanLabels,
   BrowserViewTermsOfUse,
+  PlanResearcherPlus,
 } from "../constants"
 import { useBrowserStore, usePersistentStore } from "../store"
 import { DateTime } from "luxon"
 import { BadRequest, type FeathersError } from "@feathersjs/errors"
 import ErrorManager, { type BadRequestData } from "./ErrorManager"
 import type { Group } from "../types"
+import { FloppyDiskArrowIn, Refresh } from "iconoir-react"
 
 const Colors: string[] = [
   "#96ceb4",
@@ -132,7 +134,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     if (formPayload.current.password !== formPayload.current.verifyPassword) {
       errorsAsData.verifyPassword = {
         label: "Verify password",
-        message: 'Values of "password" and "verify password" do not match.',
+        message: "The passwords you entered don't match. Please try again.",
       }
     }
     // verufy password is complicated enough using a nice regex, numbers, uppercase andlowervase letter and a punctuation mark
@@ -144,7 +146,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       errorsAsData.password = {
         label: "Password",
         message:
-          "Password must contain at least 8 characters, including uppercase, lowercase, numbers and a punctuation mark.",
+          "Your password must contain at least 8 characters, including uppercase, lowercase, numbers and a punctuation mark.",
       }
     }
 
@@ -158,9 +160,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     // check username is lwercase and number only, with '.' and '_' and "-"
     if (!formPayload.current.username.match(/^[a-z0-9-]{8,}$/)) {
       errorsAsData.username = {
-        label: "Username",
+        label: "Your user name",
         message:
-          'Please enter a valid username that contains at least 8 characters. We accept usernames containing only lowercase letters and numbers, e.g. "johndoe84".',
+          "Your user name must be at least 8 characters long, using only lowercase letters and numbers (e.g., johndoe84).",
       }
     }
     // check lastname and firstname not to be empty
@@ -278,11 +280,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         <Col>
           {/* username */}
           <Form.Group className="mb-3" controlId="ModalRegisterForm.username">
-            <Form.Label className="font-weight-bold">Username</Form.Label>
+            <Form.Label className="font-weight-bold">User name</Form.Label>
             <Form.Control
               onChange={(e) => updatePreview("username", e.target.value)}
               value={formPayload.current.username}
-              placeholder="your username"
+              placeholder="your user name"
             />
           </Form.Group>
         </Col>
@@ -292,7 +294,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         <Form.Control
           onChange={(e) => updatePreview("firstname", e.target.value)}
           value={formPayload.current.firstname}
-          placeholder="your first name"
+          placeholder="Your first name"
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="ModalRegisterForm.lastname">
@@ -300,7 +302,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         <Form.Control
           onChange={(e) => updatePreview("lastname", e.target.value)}
           value={formPayload.current.lastname}
-          placeholder="your last name"
+          placeholder="Your last name"
         />
       </Form.Group>
       <Row>
@@ -320,7 +322,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             controlId="ModalRegisterForm.verifyPassword"
           >
             <Form.Label className="font-weight-bold">
-              Verify Password
+              Verify password
             </Form.Label>
             <Form.Control
               onChange={(e) =>
@@ -340,7 +342,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             }
             setView(BrowserViewTermsOfUse)
           }}
-          label="I agree to the terms and conditions"
+          label="I agree to the Terms of Use"
         />
         {acceptTermsDate !== null && (
           <p className="m-2 px-3">
@@ -363,11 +365,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           className="btn btn-outline-secondary btn-sm"
           onClick={changeProfileColors}
         >
-          change colors
+          <Refresh /> <span className="ms-1">change colors</span>
         </button>
       </section>
-      <button type="submit" className="btn btn-primary btn-lg">
-        Register
+      <button type="submit" className="btn btn-primary btn-lg px-4">
+        <FloppyDiskArrowIn /> <span className="ms-2">Register</span>
       </button>
     </Form>
   )

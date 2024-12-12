@@ -9,21 +9,12 @@ import Alert from "./Alert"
 import { DateTime } from "luxon"
 import "./NotebookViewer.css"
 import { OverlayTrigger, Tooltip } from "react-bootstrap"
+import type { CellInfo } from "../types"
+import { ModelLanguagesLabels } from "../constants"
 
 export interface NotebookViewerProps {
   notebook: Notebook
   raw?: string
-}
-
-export type CellInfo = {
-  cellNumber: number
-  cellType: string
-  content: string
-  idx: number
-  l: number
-  //  headingLevel
-  hl?: number
-  h: string
 }
 
 const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
@@ -52,8 +43,9 @@ const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
       .trim()
       .replace(/^```python/, "")
       .replace(/```$/, "")
+      // remove all links in html format
+      .replace(/<a[\s\S]*?<\/a>/g, "")
       .trim()
-
     // check if the cell is markdown and extract the heading level
     if (cells[i].cellType === "markdown") {
       const headingMatch = cells[i].content.match(/^#+ /)
@@ -128,20 +120,26 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
                 <AuthorCard key={author.id} author={author} />
               ))}
             </div>
-            {notebook.langModel && (
+            {notebook.langModel ? (
               <div className="LangModelTag d-flex">
-                <p className="m-0">Language model is in:&nbsp;</p>
+                <p className="m-0">Language model is limited to:&nbsp;</p>
                 <OverlayTrigger
                   overlay={
                     <Tooltip id="button-tooltip-3">
-                      <span>Language model tag</span>
+                      <span>
+                        {
+                          ModelLanguagesLabels[
+                            notebook.langModel.toLocaleLowerCase()
+                          ]
+                        }
+                      </span>
                     </Tooltip>
                   }
                 >
                   <span className="lang-tag-name">{notebook.langModel}</span>
                 </OverlayTrigger>
               </div>
-            )}
+            ) : null}
           </section>
           <section className="d-flex gap-2 align-items-center">
             {notebook.googleColabUrl ? (
@@ -185,7 +183,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
             })
             .map((cell, i) => (
               <React.Fragment key={cell.cellNumber}>
-                {cell.hl && <a id={notebook.href + cell.cellNumber}></a>}
+                {cell.hl ? <a id={notebook.href + cell.cellNumber}></a> : null}
                 <div>
                   {cell.cellType === "markdown" && (
                     <MarkdownSnipped

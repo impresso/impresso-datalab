@@ -39,7 +39,11 @@ const Footer: React.FC<{
         <Row>
           <Col md="6" lg="3" xxl="3">
             <p>
-              Browse all <b>Impresso models</b> at{" "}
+              Visit the{" "}
+              <a href="https://impresso-project.ch">Impresso project website</a>{" "}
+              to learn more about our work.
+              <br />
+              Find all Impresso models on{" "}
               <a
                 href="https://huggingface.co/impresso-project/"
                 style={{
@@ -48,7 +52,7 @@ const Footer: React.FC<{
               >
                 🤗 Hugging Face
               </a>{" "}
-              and the source code of all our tools in our{" "}
+              and explore our source code on{" "}
               <a
                 href="https://github.com/impresso"
                 style={{
@@ -56,7 +60,7 @@ const Footer: React.FC<{
                 }}
               >
                 <GithubCircle width={16} />
-                &nbsp;GitHub repositories
+                &nbsp;GitHub
               </a>
               .
             </p>
