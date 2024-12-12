@@ -244,3 +244,11 @@ export const SeriesPositions: string[] = [
   SeriesPositionCentralColumn,
   SeriesPositionTrailingColumn,
 ]
+
+export const ModelLanguagesLabels: Record<string, string> = {
+  en: "English",
+  fr: "French",
+  de: "German",
+  it: "Italian",
+  "en-fr-de": "English, French, German",
+}
