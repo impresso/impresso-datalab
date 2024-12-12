@@ -214,6 +214,11 @@ const Footer: React.FC<{
                 </Link>
               </li>
               <li>
+                <Link underline to="/datasets">
+                  Datasets
+                </Link>
+              </li>
+              <li>
                 <Link underline to="/terms-of-use">
                   Terms of Use
                 </Link>

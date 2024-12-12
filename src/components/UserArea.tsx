@@ -91,6 +91,7 @@ const UserArea = () => {
               <Dropdown.Item onClick={() => setView(BrowserViewProfile)}>
                 Profile
               </Dropdown.Item>
+              <Dropdown.Item href="/datalab/datasets">Datasets</Dropdown.Item>
               <Dropdown.Item onClick={() => setView(BrowserViewTermsOfUse)}>
                 Terms Of Use
               </Dropdown.Item>

@@ -516,7 +516,7 @@ hr {
 }
 a.dropdown-item {
   position: relative;
-  display: inline-block;
+  display: block;
   width: auto;
 }
 a.dropdown-item::after {

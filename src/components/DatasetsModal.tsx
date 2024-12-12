@@ -5,6 +5,7 @@ import { Col, Container, Form, Row } from "react-bootstrap"
 import DatasetCard from "./DatasetCard"
 import { useBrowserStore, usePersistentStore } from "../store"
 import { BrowserViewLogin } from "../constants"
+import MarkdownSnippet from "./MarkdownSnippet"
 
 export type DatasetModalProps = {
   title?: string
@@ -48,9 +49,8 @@ interface DatasetFilter {
 
 const DatasetModal: React.FC<DatasetModalProps> = ({
   modalTitle = "Datasets",
-  // content,
-  // displayFeatures = true,
-  // title,
+  content,
+  title,
   datasets = [],
 }) => {
   const [user, userPlan] = usePersistentStore((state) => [
@@ -111,6 +111,12 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
       modalBodyClassName="pt-0 pe-2 ps-2 PlansModal mx-1"
     >
       <Container>
+        <Row className="my-3">
+          <Col sm={12}>
+            <h1>{title}</h1>
+            <MarkdownSnippet value={content} />
+          </Col>
+        </Row>
         <Row
           className="position-sticky top-0 d-flex align-items-bottom"
           style={{
@@ -154,7 +160,7 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
             </div>
             <div className="very-small mt-2 muted">
               {user ? (
-                "See below the datasets available according to your plan"
+                "Discover Available Datasets according to your plan"
               ) : (
                 <span>
                   Please{" "}

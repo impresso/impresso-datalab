@@ -13,6 +13,7 @@ import {
   PlanNone,
   PlanEducational,
 } from "../constants"
+
 const CorpusAccessUserPlansToPlan: Record<string, string> = {
   "Guest User Plan": PlanGuest,
   "Basic User Plan": PlanImpressoUser,
@@ -20,7 +21,8 @@ const CorpusAccessUserPlansToPlan: Record<string, string> = {
   "Academic User Plan": PlanResearcher,
   "Not Possible": PlanNone,
 }
-const datasetMapper = (dataset: any) => {
+
+const CorpusAccessToDatasetMapper = (dataset: any) => {
   return {
     id: [dataset.data_partner_institution, dataset.media_alias].join("-"),
     associatedPartner: dataset.data_partner_institution,
@@ -63,11 +65,62 @@ const datasets = defineCollection({
       .then((res) => {
         const response = res.data
 
-        return response.map(datasetMapper)
+        return response.map(CorpusAccessToDatasetMapper)
       })
       .catch((err) => {
-        console.error(err, process.env.GITHUB_TOKEN)
-        return []
+        console.error(err.mssage, process.env.GITHUB_TOKEN)
+        return [
+          CorpusAccessToDatasetMapper({
+            data_partner_institution: "SNL",
+            media_alias: "BLB",
+            media_title: "B\u00fcndner Landbote",
+            time_period: "1846-1847",
+            media: "Newspaper",
+            medium: "print",
+            copyright_or_copyright_status: "Public Domain",
+            permitted_use: "Personal, Research and Educational",
+            minimum_user_plan_required_to_explore_in_the_webapp:
+              "Guest User Plan",
+            minimum_user_plan_required_to_export_transcripts: "Basic User Plan",
+            minimum_user_plan_required_to_export_illustration:
+              "Basic User Plan",
+            partner_bitmap_index: 5,
+          }),
+          CorpusAccessToDatasetMapper({
+            data_partner_institution: "BCUF",
+            media_alias: "FZG",
+            media_title: "Freiburger Nachrichten",
+            time_period: "1865-2018",
+            media: "Newspaper",
+            medium: "print",
+            copyright_or_copyright_status: "Protected Domain: In copyright",
+            permitted_use: "Research and Educational",
+            minimum_user_plan_required_to_explore_in_the_webapp:
+              "Basic User Plan",
+            minimum_user_plan_required_to_export_transcripts:
+              "Student User Plan",
+            minimum_user_plan_required_to_export_illustration:
+              "Student User Plan",
+            partner_bitmap_index: 23,
+          }),
+          CorpusAccessToDatasetMapper({
+            data_partner_institution: "BCUL",
+            media_alias: "RN",
+            media_title: "Bulletins du Grand Conseil",
+            time_period: "1829-2020",
+            media: "Newspaper",
+            medium: "print",
+            copyright_or_copyright_status: "Protected Domain: In copyright",
+            permitted_use: "Research",
+            minimum_user_plan_required_to_explore_in_the_webapp:
+              "Academic User Plan",
+            minimum_user_plan_required_to_export_transcripts:
+              "Academic User Plan",
+            minimum_user_plan_required_to_export_illustration:
+              "Academic User Plan",
+            partner_bitmap_index: 22,
+          }),
+        ]
       }),
   schema: z.object({
     id: z.string(),
