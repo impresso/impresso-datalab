@@ -1,6 +1,6 @@
 import Page from "./Page"
-import type { Notebook } from "./NotebookCard"
 import NotebookViewer from "./NotebookViewer"
+import type { Notebook } from "../types"
 
 interface NotebookModalProps {
   notebook: Notebook

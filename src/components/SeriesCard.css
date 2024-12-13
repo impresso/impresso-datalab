@@ -1,4 +1,4 @@
-.CollectionCard {
+.SeriesCard {
   position: relative;
   overflow: hidden;
   border-radius: var(--impresso-border-radius-lg);
@@ -6,25 +6,25 @@
   background-color: rgba(255, 255, 255, 0.29);
 }
 
-.CollectionCard ol {
+.SeriesCard ol {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.CollectionCard h2,
-.CollectionCard h3 {
+.SeriesCard h2,
+.SeriesCard h3 {
   font-size: inherit;
   font-weight: var(--impresso-wght-bold);
 
   font-variation-settings: "wght" var(--impresso-wght-bold);
 }
-.CollectionCard h2 {
+.SeriesCard h2 {
   font-size: 1.5rem;
   margin: 0;
   font-variation-settings: "wght" var(--impresso-wght-medium);
 }
-.CollectionCard .map-bg img {
+.SeriesCard .map-bg img {
   position: absolute;
   top: 0;
   left: 0;
@@ -35,7 +35,7 @@
   object-fit: cover;
 }
 
-.CollectionCard .overlay {
+.SeriesCard .overlay {
   position: absolute;
   z-index: -1;
   top: 0;

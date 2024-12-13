@@ -29,20 +29,9 @@ if (notebookProps.seealso) {
     seealsoNotebooksProps.push(seealsoProps)
   }
   notebookProps.seealso = seealsoNotebooksProps
+
 }
 
-// load all the series where it has been used
-// const series = await getCollection('series')
-// console.log(series.map(d => d.data.notebooks))
-// const seriesWithNotebook = series.filter(s => s.data.notebooks.some((n) => n.slug === "setup"))
-// const seriesWithNotebooksProps = []
-// for (const s of seriesWithNotebook) {
-//   const seriesProps = await getRecursivelyEntryData(s)
-//   seriesWithNotebooksProps.push(seriesProps)
-// }
-// console.log(seriesWithNotebooksProps)
-
-// 3. Render the entry data
 
 ---
 
@@ -56,7 +45,8 @@ if (notebookProps.seealso) {
   />
   <App transition:persist/>
   <NotebookModal client:only="react" 
-    notebook={notebookProps} 
+    notebook={notebookProps}
+
     raw={notebook.body} 
   />
 </Layout>

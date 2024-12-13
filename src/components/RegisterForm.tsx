@@ -7,7 +7,6 @@ import {
   PlanEducational,
   PlanLabels,
   BrowserViewTermsOfUse,
-  PlanResearcherPlus,
 } from "../constants"
 import { useBrowserStore, usePersistentStore } from "../store"
 import { DateTime } from "luxon"

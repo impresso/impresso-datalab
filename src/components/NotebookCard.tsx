@@ -1,25 +1,11 @@
-import AuthorCard, { type Author } from "./AuthorCard.tsx"
+import AuthorCard from "./AuthorCard.tsx"
 import "./NotebookCard.css"
 import Link from "./Link.tsx"
 import Avatar from "boring-avatars"
 import { ArrowRight } from "iconoir-react"
 import { DateTime } from "luxon"
-
-export interface Notebook {
-  id: string
-  href: string
-  title: string
-  langModel?: string
-  excerpt?: string
-  githubUrl?: string
-  googleColabUrl?: string
-  sha?: string
-  authors: Author[]
-  date?: Date
-  seealso?: Notebook[]
-  showLinks?: boolean
-  links?: { label: string; href: string }[]
-}
+import type { Notebook } from "../types.ts"
+import { NotebookLevelColors } from "../constants.ts"
 
 // const AvatarVariants = ["marble", "beam", "pixel", "sunset", "ring", "bauhaus"]
 const NotebookCard: React.FC<{
@@ -35,7 +21,8 @@ const NotebookCard: React.FC<{
     "- title:",
     notebook?.title,
     "notebook.langModel",
-    notebook.langModel
+    notebook.langModel,
+    notebook
   )
   return (
     <div className={`NotebookCard shadow-sm ${className}`}>
@@ -43,9 +30,12 @@ const NotebookCard: React.FC<{
         <div className="Avatar position-relative">
           <Avatar
             size={40}
-            name={notebook.href}
+            name={notebook.id}
             variant="marble"
             square={false}
+            colors={NotebookLevelColors[notebook.levels.method].concat(
+              NotebookLevelColors[notebook.levels.coding]
+            )}
           />
         </div>
         <div className="mx-3">

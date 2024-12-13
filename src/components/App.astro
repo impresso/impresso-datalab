@@ -7,8 +7,9 @@ import Footer from '../components/Footer';
 import { getCollection, getEntry } from 'astro:content';
 import { getRecursivelyEntryData } from '../logic'
 import Modals from './Modals';
-import type { Collection } from './CollectionCard';
+
 import { SeriesPositionLeadingColumn, SeriesPositionCentralColumn, SeriesPositionTrailingColumn } from '../constants';
+import type { Series } from '../types';
 
 
 const authors = await getCollection('authors')
@@ -26,7 +27,7 @@ for(const seriesEntry of series){
   seriesDataIndex[seriesEntry.id]['body'] = seriesEntry.body
 }
 
-const seriesValues:Collection[] = Object.values(seriesDataIndex) 
+const seriesValues:Series[] = Object.values(seriesDataIndex) 
 
 const associatedPartners = await getCollection('associatedPartners')
 const associatedPartnersData = associatedPartners.map((entry) => {

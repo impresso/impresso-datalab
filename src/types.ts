@@ -2,6 +2,47 @@ export type Group = {
   name: string
   id: number
 }
+export type Author = {
+  id: string
+  name: string
+  fullName?: string
+}
+
+export type Notebook = {
+  id: string
+  href: string
+  title: string
+  langModel?: string
+  excerpt?: string
+  githubUrl?: string
+  googleColabUrl?: string
+  sha?: string
+  levels: {
+    coding: string
+    method: string
+  }
+  authors: Author[]
+  date?: Date
+  seealso?: Notebook[]
+  showLinks?: boolean
+  links?: { label: string; href: string }[]
+}
+
+export interface Series {
+  title: string
+  excerpt: string
+  body?: string
+  cover?:
+    | {
+        url: string
+        alt: string
+      }
+    | null
+    | undefined
+  category?: string[]
+  position?: string
+  notebooks: Notebook[]
+}
 
 export type User = {
   username: string

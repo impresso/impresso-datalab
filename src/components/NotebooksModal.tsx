@@ -1,7 +1,7 @@
 import Page from "./Page"
-import type { Notebook } from "./NotebookCard"
 import NotebookCard from "./NotebookCard"
 import { Col, Container, Row } from "react-bootstrap"
+import type { Notebook } from "../types"
 
 interface NotebookModalProps {
   notebooks: Notebook[]

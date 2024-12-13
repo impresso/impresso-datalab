@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 // import { fn } from "@storybook/test"
 import NotebookCard from "../../components/NotebookCard"
-import type { Notebook } from "../../components/NotebookCard"
+import type { Notebook } from "../../types"
 
 const meta: Meta<typeof NotebookCard> = {
   component: NotebookCard,

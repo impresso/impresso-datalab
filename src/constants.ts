@@ -253,10 +253,28 @@ export const ModelLanguagesLabels: Record<string, string> = {
   "en-fr-de": "English, French, German",
 }
 
+export const NotebookLevelBeginner = "beginner"
+export const NotebookLevelApprentice = "apprentice"
+export const NotebookLevelIntermediate = "intermediate"
+export const NotebookLevelAdvanced = "advanced"
+
 export const NotebookLevels = [
-  "beginner",
-  "expert-in-methods",
-  "skilled-in-methods",
-  "expert-in-domain",
-  "skilled-in-domain",
+  NotebookLevelBeginner,
+  NotebookLevelApprentice,
+  NotebookLevelIntermediate,
+  NotebookLevelAdvanced,
 ]
+
+export const NotebookLevelLabels: Record<string, string> = {
+  [NotebookLevelBeginner]: "Beginner",
+  [NotebookLevelApprentice]: "Apprentice",
+  [NotebookLevelIntermediate]: "Intermediate",
+  [NotebookLevelAdvanced]: "Advanced",
+}
+
+export const NotebookLevelColors: Record<string, string[]> = {
+  [NotebookLevelBeginner]: ["#98FB98", "#c7EA46"],
+  [NotebookLevelApprentice]: ["#29AB87", "#C7EA46"],
+  [NotebookLevelIntermediate]: ["#01796F", "#29AB87"],
+  [NotebookLevelAdvanced]: ["#87015a"],
+}

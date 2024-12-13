@@ -7,6 +7,9 @@ sha: 413491d26bddf2b9c04cc45481be4664661852ae
 date: 2024-10-29T10:33:05Z
 links: []
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/search_multilingual_docs-ImpressoHF.ipynb
+levels:
+  method: advanced
+  coding: intermediate
 ---
 
 {/* cell:0 cell_type:markdown */}
@@ -17,21 +20,20 @@ We'll load the model, embed the texts and demonstrate use cases on how to find r
 
 Reccomended Hardware: GPU support, the colab free one (T4) is sufficient. Alternatively, calculations with CPU are possible but much slower.
 
-
-
-
 {/* cell:1 cell_type:markdown */}
+
 ## 1. Install Dependencies
 
 First, we need to install `sentence-transformers`
 
-
 {/* cell:2 cell_type:code */}
+
 ```python
 !pip install sentence-transformers
 ```
 
 {/* cell:3 cell_type:markdown */}
+
 ## 2. Model Information
 
 In this example, we are using an off the shelf multilingual embedding model hosted on Huggingface: `gte-multilingual-base'.
@@ -40,13 +42,14 @@ Note: Newer impresso version of the model is in the works.
 
 This model predicts an embedding representation (list of numbers that stores the "meaning") of a given text (sentence, paragraph, article) that can be used to measure similarity between two texts.
 
-
 {/* cell:4 cell_type:markdown */}
+
 ## 3. Loading the embedding model
 
 This class downloads the model from Hugging Face and loads it ready for prediction. We use the SentenceTransformers library to benefit from their functionality and documentation.
 
 {/* cell:5 cell_type:code */}
+
 ```python
 from sentence_transformers import SentenceTransformer
 from scipy.spatial.distance import cosine
@@ -55,15 +58,18 @@ embedding_model = SentenceTransformer("Alibaba-NLP/gte-multilingual-base", trust
 ```
 
 {/* cell:6 cell_type:markdown */}
+
 ### Simple Test
 
 {/* cell:7 cell_type:code */}
+
 ```python
 sentence1_en = "This is an example test sentence"
 sentence2_en = "This constitutes a sample sentence"
 ```
 
 {/* cell:8 cell_type:code */}
+
 ```python
 embedding1_en = embedding_model.encode(sentence1_en)
 embedding2_en = embedding_model.encode(sentence2_en)
@@ -78,6 +84,7 @@ Those numbers look intriguing, but do they really mean something?
 Answer: Yes, they can show us the similarity of the two texts
 
 {/* cell:10 cell_type:code */}
+
 ```python
 similarity_value = round(1 - cosine(embedding1_en, embedding2_en),2)
 print("Sentence1 and Sentence2 have a cosine similarity of " + str(similarity_value))
@@ -93,44 +100,53 @@ The higher the cosine similarity, the more similar the two texts are. Range of w
 Based on our experiments on contemporary texts, cosine similarity of 0.85+ means the two texts are mostly equivalent
 
 {/* cell:12 cell_type:markdown */}
+
 ### Simple Test Across Languages
 
 {/* cell:13 cell_type:code */}
+
 ```python
 sentence1_de = "Das ist ein Beispieltestsatz"
 ```
 
 {/* cell:14 cell_type:code */}
+
 ```python
 embedding1_de = embedding_model.encode(sentence1_de)
 ```
 
 {/* cell:15 cell_type:code */}
+
 ```python
 similarity_value = round(1 - cosine(embedding1_en, embedding1_de),2)
 print("Sentence1 in English and Sentence1 in German have a cosine similarity of " + str(similarity_value))
 ```
 
 {/* cell:16 cell_type:markdown */}
+
 ### Try your own similarity calculation
 
 {/* cell:17 cell_type:code */}
+
 ```python
 input1 = input()
 ```
 
 {/* cell:18 cell_type:code */}
+
 ```python
 input2 = input()
 ```
 
 {/* cell:19 cell_type:code */}
+
 ```python
 embedding1 = embedding_model.encode(input1)
 embedding2 = embedding_model.encode(input2)
 ```
 
 {/* cell:20 cell_type:code */}
+
 ```python
 similarity_value = round(1 - cosine(embedding1, embedding2),2)
 print("Input1 and Input2 have a cosine similarity of " + str(similarity_value))
@@ -140,33 +156,35 @@ print("Input1 and Input2 have a cosine similarity of " + str(similarity_value))
 Note: You can also calculate the similarity of inputs from different languages
 
 {/* cell:22 cell_type:markdown */}
+
 ## 4. Finding similar texts within collections using the embedding model
 
 Now that we have seen how the model creates a representation and how we can use it to get the similarity of two texts, let's apply it to a couple of collections.
 
 {/* cell:23 cell_type:markdown */}
+
 ## Setting up utility functions
 
 Here we setup utilities functions that we use for later. You can safely ignore details of the implementation. You simply need to have the code cell executed
 
 For these functions we just need to have a high level understanding of the following key information:
 
-***create_embedding_collection(texts, embedding_model)***
+**_create_embedding_collection(texts, embedding_model)_**
 
 This function creates a collection of embeddings from a list of sentences, texts, using the embedding model which we already loaded. It outputs a list of tuples pairing each text with its embedding
 
-***find_best_match_in_collection(source_collection, target_collection)***
+**_find_best_match_in_collection(source_collection, target_collection)_**
 
 This function finds the most similar text in a target_collection for each text in a source_collection based on their precomputed embeddings. Each collection should be a list of tuples (direct output of the create_embedding_collection function) where each tuple contains a sentence and its embedding.
 
-***print_matches_formatted(matches, link=False, threshold=0)***
+**_print_matches_formatted(matches, link=False, threshold=0)_**
 
 This function formats and prints each match from the matches output of find_best_match_in_collection. It takes an optional threshold value to display only matches with a similarity above a certain value.
-
 
 Example usage can be found on Section 4.1
 
 {/* cell:24 cell_type:code */}
+
 ```python
 from scipy.spatial.distance import cosine
 
@@ -274,12 +292,14 @@ def print_matches_formatted(matches, link=False, threshold=0):
 ```
 
 {/* cell:25 cell_type:markdown */}
+
 ## 4.1 Searching in a Dummy Sentence Level Collection
 
 {/* cell:26 cell_type:markdown */}
 Here we create a sample sentence text collection to see what the model matches as most similar using minimal additional code.
 
 {/* cell:27 cell_type:code */}
+
 ```python
 german_sentences = [
     "Mit diesen drei Kernkraftwerken wird die Schweiz 1972 die höchste installierte nukleare Kapazität pro Kopf der Bevölkerung aller kontinentaleuropäischer Länder aufweisen .",
@@ -300,6 +320,7 @@ french_collection = create_embedding_collection(french_sentences, embedding_mode
 ```
 
 {/* cell:28 cell_type:code */}
+
 ```python
 # Example of finding and printing the best matches
 matches = find_best_match_in_collection(source_collection=german_collection, target_collection=french_collection)  # Find best matches
@@ -307,6 +328,7 @@ print_matches_formatted(matches)  # Print the matches
 ```
 
 {/* cell:29 cell_type:markdown */}
+
 ## 4.2 Searching in an Article collection exported from the interface
 
 {/* cell:30 cell_type:markdown */}
@@ -314,8 +336,8 @@ Here we are working with collections exported directly from the Impresso Interfa
 
 In this example, we work on article level and filter for articles with a minimum length of 2000 characters. You can customise this filter by changing the parameter minimum_characters_in_article or pre-filter your dataframe in any way you please before providing it to the function.
 
-
 {/* cell:31 cell_type:code */}
+
 ```python
 def interface_exported_csv_to_collection(df, embedding_model, batch_size=16, minimum_characters_in_article=2000):
     """
@@ -359,6 +381,7 @@ def interface_exported_csv_to_collection(df, embedding_model, batch_size=16, min
 I setup the file on my google drive so you can also replicate with these files using this code. For another collection, you can simply drag and drop the files into the file interface of the notebook
 
 {/* cell:33 cell_type:code */}
+
 ```python
 !pip install gdown
 import gdown
@@ -372,6 +395,7 @@ gdown.download(f"https://drive.google.com/uc?export=download&id={file_id_german}
 ```
 
 {/* cell:34 cell_type:code */}
+
 ```python
 import pandas as pd
 
@@ -381,6 +405,7 @@ marie_curie_df_french = pd.read_csv("mariecurie_french.csv", sep=";")
 ```
 
 {/* cell:35 cell_type:code */}
+
 ```python
 marie_curie_german_collection = interface_exported_csv_to_collection(marie_curie_df_german, embedding_model, minimum_characters_in_article=2000)
 print("German articles prepared: " + str(len(marie_curie_german_collection)))
@@ -392,6 +417,7 @@ print("French articles prepared: " + str(len(marie_curie_french_collection)))
 Now we have reached the same data format and so we can use the same utility functions as before. An addition to earlier I add a hyperlink to the interface so we can browse all the details. To do so, we set the value of "link" to True.
 
 {/* cell:37 cell_type:code */}
+
 ```python
 # Example of finding and printing the best matches
 matches = find_best_match_in_collection(source_collection=marie_curie_french_collection, target_collection=marie_curie_german_collection, link=True)  # Find best matches
@@ -402,6 +428,7 @@ print_matches_formatted(matches, link=True, threshold=0.70)  # Print the matches
 U might want to save the results into a csv file, here is a utility function to do that. Within Google colab, just download the resulting file as an extra step.
 
 {/* cell:39 cell_type:code */}
+
 ```python
 def save_matches_to_csv(matches, filename, link=False, threshold=0):
     """
@@ -433,12 +460,14 @@ save_matches_to_csv(matches, "marie_curie_first10french_matches.csv", link=True,
 ```
 
 {/* cell:40 cell_type:markdown */}
+
 ## 4.3 Searching in an Article collection sourced from Impresso Datalab
 
 {/* cell:41 cell_type:markdown */}
 Currently, embeddings are not available in the Impresso Datalab, so we will compute them here instead.
 
 {/* cell:42 cell_type:code */}
+
 ```python
 %pip install --upgrade --force-reinstall impresso
 import impresso
@@ -446,6 +475,7 @@ impresso_session = impresso.connect()
 ```
 
 {/* cell:43 cell_type:code */}
+
 ```python
 # some search and get data
 fr_result = impresso_session.search.find(
@@ -463,6 +493,7 @@ for uri in fr_result.df.index[:40]:
 ```
 
 {/* cell:44 cell_type:code */}
+
 ```python
 # some search and get data
 de_result = impresso_session.search.find(
@@ -480,12 +511,14 @@ for uri in de_result.df.index[:400]:
 ```
 
 {/* cell:45 cell_type:code */}
+
 ```python
 recipes_fr_collection = create_embedding_collection(fr_texts, embedding_model, uids=fr_uids)
 recipes_de_collection = create_embedding_collection(de_texts, embedding_model, uids=de_uids)
 ```
 
 {/* cell:46 cell_type:code */}
+
 ```python
 # Example of finding and printing the best matches
 matches = find_best_match_in_collection(source_collection=recipes_fr_collection, target_collection=recipes_de_collection, link=True)  # Find best matches
@@ -493,6 +526,7 @@ print_matches_formatted(matches, link=True, threshold=0.60)  # Print the matches
 ```
 
 {/* cell:47 cell_type:markdown */}
+
 ## 5. Summary and Next Steps
 
 The pipeline, models and codes we provide is not the only method to find similar texts. You can always experiment with different models. pipelines and data filtering methods. Feel free to re-use our code!

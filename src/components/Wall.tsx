@@ -1,9 +1,9 @@
 import { Col, Container, Row } from "react-bootstrap"
-import CollectionCard, { type Collection } from "./CollectionCard"
+import SeriesCard from "./SeriesCard"
 import CodeSnippet from "./CodeSnippet"
 import { useEffect } from "react"
-import Link from "./Link"
 import GettingStarted from "./GettingStarted"
+import type { Series } from "../types"
 
 const CodeSample = `# Install the impresso library
 %pip install impresso
@@ -40,11 +40,11 @@ const Wall = ({
   numberOfAuthors?: number
   numberOfNotebooks?: number
   numberOfSeries?: number
-  seriesInTrailingColumn?: Collection[]
-  seriesInLeadingColumn?: Collection[]
-  seriesInCentralColumn?: Collection[]
-  enterImpressoPy: Collection
-  enterImpressoModels: Collection
+  seriesInTrailingColumn?: Series[]
+  seriesInLeadingColumn?: Series[]
+  seriesInCentralColumn?: Series[]
+  enterImpressoPy: Series
+  enterImpressoModels: Series
   scrollToTop?: boolean
 }) => {
   useEffect(() => {
@@ -52,6 +52,16 @@ const Wall = ({
       window.scrollTo(0, 0)
     }
   }, [scrollToTop])
+
+  console.info(
+    "[Wall] - numberOfAuthors:",
+    numberOfAuthors,
+    "- numberOfNotebooks:",
+    numberOfNotebooks,
+    "- numberOfSeries:",
+    numberOfSeries
+  )
+
   return (
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
       <Container fluid>
@@ -64,14 +74,6 @@ const Wall = ({
             <h2 className="m-0 p-0">
               Programmatic access to Impresso's Corpus, Data and Models
             </h2>
-            <p style={{ width: "85%" }} className="d-none">
-              We collected <b>{numberOfNotebooks}</b>{" "}
-              <Link to="/notebooks" underline>
-                Jupyter Ipynb notebooks
-              </Link>{" "}
-              in <b>{numberOfSeries}</b> series, maintained and developed by{" "}
-              <b>{numberOfAuthors}</b> authors.
-            </p>
           </Col>
           <Col md={6} lg={6} xxl={5}>
             <h3>
@@ -114,43 +116,31 @@ const Wall = ({
         </Row>
         <Row className="my-3  align-items-bottom">
           <Col md={6} xl={4} className="order-md-1 order-xl-1">
-            <CollectionCard className="mb-3" collection={enterImpressoPy}>
+            <SeriesCard className="mb-3" series={enterImpressoPy}>
               <GettingStarted />
               <p className="very-small text-muted px-2">
                 Copy the code below in a blank jupyter notebook to get started
               </p>
               <CodeSnippet value={CodeSample} />
-            </CollectionCard>
-            {seriesInLeadingColumn.map((collection) => (
-              <CollectionCard
-                className="mb-3"
-                key={collection.title}
-                collection={collection}
-              />
+            </SeriesCard>
+            {seriesInLeadingColumn.map((series) => (
+              <SeriesCard className="mb-3" key={series.title} series={series} />
             ))}
           </Col>
           <Col md={6} xl={4} className="order-md-3 order-xl-2">
-            {seriesInCentralColumn.map((collection) => (
-              <CollectionCard
-                className="mb-3"
-                key={collection.title}
-                collection={collection}
-              />
+            {seriesInCentralColumn.map((series) => (
+              <SeriesCard className="mb-3" key={series.title} series={series} />
             ))}
           </Col>
           <Col md={6} xl={4} className="order-md-2  order-xl-3">
-            <CollectionCard className="mb-3" collection={enterImpressoModels}>
+            <SeriesCard className="mb-3" series={enterImpressoModels}>
               <p className="very-small text-muted px-2">
                 Copy the code below in a blank jupyter notebook to get started
               </p>
               <CodeSnippet value={ImpressoModelsCodeSample} />
-            </CollectionCard>
-            {seriesInTrailingColumn.map((collection) => (
-              <CollectionCard
-                key={collection.title}
-                collection={collection}
-                className="mb-3"
-              />
+            </SeriesCard>
+            {seriesInTrailingColumn.map((series) => (
+              <SeriesCard key={series.title} series={series} className="mb-3" />
             ))}
           </Col>
         </Row>
