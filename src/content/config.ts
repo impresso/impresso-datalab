@@ -12,6 +12,7 @@ import {
   PlanImpressoUser,
   PlanNone,
   PlanEducational,
+  NotebookLevels,
 } from "../constants"
 
 const CorpusAccessUserPlansToPlan: Record<string, string> = {
@@ -164,8 +165,10 @@ const notebooks = defineCollection({
       .optional(),
     showLinks: z.boolean().optional(),
     authors: z.array(reference("authors")).optional(),
-    // this gives circular reference
+    // note: this prevents circular reference
+    // BEFORE: seealso: z.array(z.lazy(() => reference("notebooks"))).optional(),
     seealso: z.array(z.string()).optional(),
+    level: z.enum(NotebookLevels as any).default("beginner"),
     // seealso: z.array(z.lazy(() => reference("notebooks"))).optional(),
   }),
 })

@@ -252,3 +252,11 @@ export const ModelLanguagesLabels: Record<string, string> = {
   it: "Italian",
   "en-fr-de": "English, French, German",
 }
+
+export const NotebookLevels = [
+  "beginner",
+  "expert-in-methods",
+  "skilled-in-methods",
+  "expert-in-domain",
+  "skilled-in-domain",
+]
