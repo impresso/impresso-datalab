@@ -1,8 +1,11 @@
 import { Col, Container, Form, Modal, Row } from "react-bootstrap"
-import { BrowserViewChangePassword } from "../constants"
+import {
+  BrowserViewChangePassword,
+  BrowserViewConfirmChangePassword,
+} from "../constants"
 import { useBrowserStore } from "../store"
 import Alert from "./Alert"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import ChangePasswordForm, {
   type ChangePasswordFormPayload,
 } from "./ChangePasswordForm"
@@ -16,23 +19,28 @@ const ChangePassword = () => {
 
   const handleOnSubmit = (payload: ChangePasswordFormPayload) => {
     console.info("[ChangePasswordModal] @handleOnSubmit", payload)
+
     changePasswordService
       .create({
         password: payload.password,
-        currentPassword: payload.currentPassword,
+        verifyPassword: payload.verifyPassword,
       })
       .then((data) => {
         console.info(
           "[ChangePasswordModal] Password changed successfully. data:",
           data
         )
-        setView(null)
+        setView(BrowserViewConfirmChangePassword)
       })
       .catch((err: FeathersError) => {
         setError(err)
         console.error("[ChangePasswordModal] create", err.message, err.data)
       })
   }
+
+  useEffect(() => {
+    setError(null)
+  }, [view])
 
   return (
     <Modal

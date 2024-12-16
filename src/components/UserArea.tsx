@@ -95,6 +95,7 @@ const UserArea = () => {
               <Dropdown.Item onClick={() => setView(BrowserViewChangePassword)}>
                 Change Password
               </Dropdown.Item>
+
               <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
               {/* add separator */}
               <Dropdown.Divider />

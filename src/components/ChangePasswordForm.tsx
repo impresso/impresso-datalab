@@ -5,7 +5,6 @@ import ErrorManager, { type BadRequestData } from "./ErrorManager"
 import { FloppyDiskArrowIn } from "iconoir-react"
 
 export type ChangePasswordFormPayload = {
-  currentPassword: string
   password: string
   verifyPassword: string
 }
@@ -25,16 +24,46 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
   const [formError, setFormError] = useState<Error | null>(null)
 
   const formPayload = useRef<ChangePasswordFormPayload>({
-    currentPassword: "",
     password: "",
     verifyPassword: "",
   })
 
+  const isEmpty = () => {
+    return (
+      formPayload.current.password.length === 0 ||
+      formPayload.current.verifyPassword.length === 0
+    )
+  }
+  const validate = () => {
+    const errorsAsData: { [key: string]: BadRequestData } = {}
+    if (
+      formPayload.current.password.length === 0 ||
+      formPayload.current.password !== formPayload.current.verifyPassword
+    ) {
+      errorsAsData.verifyPassword = {
+        label: "Verify password",
+        message: "The passwords you entered don't match. Please try again.",
+      }
+    }
+    if (Object.keys(errorsAsData).length > 0) {
+      setFormError(new BadRequest("Please check your entries.", errorsAsData))
+      return false
+    }
+    return true
+  }
+
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.info("[ChangePasswordForm] @handleOnSubmit")
+    if (isEmpty()) {
+      setFormError(new BadRequest("Please fill in all the fields."))
+      return
+    }
     const errorsAsData: { [key: string]: BadRequestData } = {}
-    if (formPayload.current.password !== formPayload.current.verifyPassword) {
+    if (
+      formPayload.current.password.length === 0 ||
+      formPayload.current.password !== formPayload.current.verifyPassword
+    ) {
       errorsAsData.verifyPassword = {
         label: "Verify password",
         message: "The passwords you entered don't match. Please try again.",
@@ -52,7 +81,9 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
     console.info("[RegisterForm] @updatePreview", key, value)
     // handpick the fields to preview
     delayTimerRef.current = setTimeout(() => {
-      setFormError(null)
+      if (validate()) {
+        setFormError(null)
+      }
     }, 400)
   }
 
@@ -72,18 +103,8 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
         onSubmit={handleOnSubmit}
         className={`ChangePasswordForm ${className}`}
       >
-        <ErrorManager error={error || formError} />
+        <ErrorManager error={formError || error} />
 
-        <Form.Group
-          className="mb-3"
-          controlId="ModalChangePasswordorm.password"
-        >
-          <Form.Label className="font-weight-bold">Current Password</Form.Label>
-          <Form.Control
-            onChange={(e) => updateValue("currentPassword", e.target.value)}
-            type="password"
-          />
-        </Form.Group>
         <Form.Group className="mb-3" controlId="ModalChangePassword.password">
           <Form.Label className="font-weight-bold">New Password</Form.Label>
           <Form.Control
@@ -103,7 +124,11 @@ const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({
             type="password"
           />
         </Form.Group>
-        <button type="submit" className="btn btn-primary btn-lg px-4">
+        <button
+          type="submit"
+          disabled={formError !== null}
+          className="btn btn-primary btn-lg px-4"
+        >
           <FloppyDiskArrowIn /> <span className="ms-2">Register</span>
         </button>
       </Form>
