@@ -1,7 +1,7 @@
 ---
-title: Dataset Availability by Plan
-modalTitle: Datasets
-excerpt: Overview of the different user plans available for the Impresso Project
+title: Impresso Corpus Overview
+modalTitle: Impresso Corpus Overview
+excerpt: Data Accessibility and Usage Permissions
 ---
 
 Explore a wide range of datasets featuring newspapers and radio content, each associated with its permitted use. This table allows you to find the resources you need for your research.

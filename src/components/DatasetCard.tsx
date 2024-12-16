@@ -7,6 +7,7 @@ import {
   PlanEducational,
   PlanGuest,
   PlanImpressoUser,
+  PlanLabels,
   PlanNone,
   PlanResearcher,
 } from "../constants"
@@ -15,6 +16,16 @@ export type DatasetCardProps = {
   dataset: Dataset
   userPlan?: string
   className?: string
+}
+
+const compareDatasetPlanWithUserPlans = (userPlan: string, plans: string[]) => {
+  return (
+    <Row>
+      {plans.map((plan, i) => (
+        <Col key={i}>{compareDatasetPlanWithUserPlan(userPlan, plan)}</Col>
+      ))}
+    </Row>
+  )
 }
 
 const compareDatasetPlanWithUserPlan = (
@@ -65,15 +76,20 @@ const DatasetCard: FC<DatasetCardProps> = ({
   // translate
   return (
     <Row key={dataset.id} className={`DatasetCard ${className}`}>
-      <Col sm={1}>{dataset.startYear}</Col>
-      <Col sm={1}>{dataset.endYear}</Col>
-      <Col sm={2}>{dataset.medium}</Col>
-      <Col sm={5}>
+      <Col sm={3}>
+        <Row>
+          <Col>
+            {dataset.startYear} - {dataset.endYear}
+          </Col>
+          <Col>{dataset.media}</Col>
+        </Row>
+      </Col>
+      <Col sm={4}>
         <h3 className="font-size-inherit mb-1">
           {dataset.mediaTitle} &mdash; {dataset.associatedPartner}
         </h3>
         <div className="d-flex">
-          <div className="small-caps">{dataset.media}</div>
+          <div className="small-caps">{dataset.medium}</div>
         </div>
         {dataset.permittedUse}
       </Col>
@@ -84,10 +100,16 @@ const DatasetCard: FC<DatasetCardProps> = ({
         dataset.minimumUserPlanRequiredToExportIllustration,
       ].map((plan, i) => (
         <Col key={i} sm={1}>
-          {compareDatasetPlanWithUserPlan(userPlan, plan)}
+          {PlanLabels[plan]}
         </Col>
       ))}
-
+      <Col>
+        {compareDatasetPlanWithUserPlans(userPlan, [
+          dataset.minimumUserPlanRequiredToExploreInWebapp,
+          dataset.minimumUserPlanRequiredToExportTranscripts,
+          dataset.minimumUserPlanRequiredToExportIllustration,
+        ])}
+      </Col>
       <Col sm={12}>
         <div className="pt-3 border-bottom h-1px"></div>
       </Col>

@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import type { Dataset } from "./../types"
+import type { Dataset } from "../types"
 import Page from "./Page"
 import { Col, Container, Form, Row } from "react-bootstrap"
 import DatasetCard from "./DatasetCard"
@@ -8,7 +8,7 @@ import { BrowserViewLogin } from "../constants"
 import MarkdownSnippet from "./MarkdownSnippet"
 import { DocStar, MediaImage } from "iconoir-react"
 
-export type DatasetModalProps = {
+export type CorpusOverviewModalProps = {
   title?: string
   modalTitle?: string
   content: string
@@ -48,8 +48,8 @@ interface DatasetFilter {
   accessor: (dataset: Dataset) => boolean
 }
 
-const DatasetModal: React.FC<DatasetModalProps> = ({
-  modalTitle = "Datasets",
+const CorpusOverviewModal: React.FC<CorpusOverviewModalProps> = ({
+  modalTitle = "Impresso Corpus Overview",
   content,
   title,
   datasets = [],
@@ -76,7 +76,7 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
 
   const updateFilterBy = (key: keyof filterValues, value: string) => {
     filterValuesRef.current[key] = value
-    console.info("[DatasetModal] @updateFilterBy", key, value)
+    console.info("[CorpusOverviewModal] @updateFilterBy", key, value)
     // handpick the fields to preview
     if (delaySetStateTimerRef.current) {
       clearTimeout(delaySetStateTimerRef.current)
@@ -127,13 +127,13 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
           <Col sm={12}>
             <div className="pt-3 h-1px"></div>
           </Col>
-          <Col sm={2} className="font-weight-medium border-end">
-            Period
+          <Col sm={3} className="font-weight-medium border-end">
+            <Row className="h-100">
+              <Col className="border-end">Period</Col>
+              <Col>Media</Col>
+            </Row>
           </Col>
-          <Col sm={2} className="font-weight-medium">
-            Medium
-          </Col>
-          <Col sm={5}>
+          <Col sm={4}>
             <Form.Group controlId="ModalRegisterForm.email">
               <Form.Label className="font-weight-bold">
                 Title{" "}
@@ -151,7 +151,9 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
           </Col>
           <Col sm={3} className="font-weight-medium">
             Data Availability
-            <br />
+          </Col>
+          <Col sm={2} className="font-weight-medium">
+            Availability for <br />
             <div
               className={`badge d-inline-block small-caps px-2 shadow-sm   ${
                 user ? "bg-primary text-dark" : "bg-secondary text-paper"
@@ -159,6 +161,25 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
             >
               {user ? userPlan : "(guest)"}
             </div>
+          </Col>
+          <Col sm={3} className="font-weight-medium border-end">
+            <Row className="h-100">
+              <Col className="border-end"></Col>
+              <Col></Col>
+            </Row>
+          </Col>
+          <Col sm={{ offset: 4, span: 1 }}>
+            <div className="very-small">Explore in Impresso App</div>
+          </Col>
+          <Col sm={1}>
+            <DocStar />
+            <div className="very-small">Export transcripts</div>
+          </Col>
+          <Col sm={1}>
+            <MediaImage />
+            <div className="very-small">Export illustrations</div>
+          </Col>
+          <Col sm={2}>
             <div className="very-small mt-2 mb-2 muted">
               {user ? (
                 "Discover Available Datasets according to your plan"
@@ -175,17 +196,6 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
                 </span>
               )}
             </div>
-          </Col>
-          <Col sm={{ offset: 9, span: 1 }}>
-            <div className="very-small">Explore in Impresso App</div>
-          </Col>
-          <Col sm={1}>
-            <DocStar />
-            <div className="very-small">Export transcripts</div>
-          </Col>
-          <Col sm={1}>
-            <MediaImage />
-            <div className="very-small">Export illustrations</div>
           </Col>
           <Col sm={12}>
             <div className="border-dark pt-3 border-bottom h-1px"></div>
@@ -204,4 +214,4 @@ const DatasetModal: React.FC<DatasetModalProps> = ({
   )
 }
 
-export default DatasetModal
+export default CorpusOverviewModal
