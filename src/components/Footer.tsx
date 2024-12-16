@@ -218,8 +218,8 @@ const Footer: React.FC<{
                 </Link>
               </li>
               <li>
-                <Link underline to="/datasets">
-                  Datasets
+                <Link underline to="/corpus-overview">
+                  Corpus Overview
                 </Link>
               </li>
               <li>

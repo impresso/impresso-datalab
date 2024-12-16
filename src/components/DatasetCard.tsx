@@ -104,6 +104,7 @@ const DatasetCard: FC<DatasetCardProps> = ({
         </Col>
       ))}
       <Col>
+        {dataset.copyright}
         {compareDatasetPlanWithUserPlans(userPlan, [
           dataset.minimumUserPlanRequiredToExploreInWebapp,
           dataset.minimumUserPlanRequiredToExportTranscripts,

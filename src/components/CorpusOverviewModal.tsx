@@ -129,14 +129,14 @@ const CorpusOverviewModal: React.FC<CorpusOverviewModalProps> = ({
           </Col>
           <Col sm={3} className="font-weight-medium border-end">
             <Row className="h-100">
-              <Col className="border-end">Period</Col>
+              <Col className="border-end">Time period</Col>
               <Col>Media</Col>
             </Row>
           </Col>
           <Col sm={4}>
             <Form.Group controlId="ModalRegisterForm.email">
               <Form.Label className="font-weight-bold">
-                Title{" "}
+                Media title{" "}
                 {filterBy.length ? (
                   <span className="font-weight-normal">
                     {sortedDatasets.length} of {datasets.length}
@@ -190,9 +190,9 @@ const CorpusOverviewModal: React.FC<CorpusOverviewModalProps> = ({
                     className="underline"
                     onClick={() => setView(BrowserViewLogin)}
                   >
-                    login
+                    lo in
                   </a>{" "}
-                  to check data availability according to your plan
+                  to view data accessibility conditions based on your plan.
                 </span>
               )}
             </div>
