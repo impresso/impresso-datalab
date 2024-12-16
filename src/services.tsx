@@ -88,5 +88,6 @@ socket.on("reconnect", (attemptNumber) => {
 export const versionService = app.service("version")
 export const userService = app.service("me")
 export const usersService = app.service("users")
+export const changePasswordService = app.service("change-password")
 export const termsOfUseService = app.service("terms-of-use")
 export const loginService = app.service("authentication")

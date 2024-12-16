@@ -3,15 +3,17 @@ import LoginModal from "./LoginModal"
 import RegisterModal from "./RegisterModal"
 import ProfileModal from "./ProfileModal"
 import TermsOfUseModal from "./TermsOfUseModal"
+import ChangePasswordModal from "./ChangePasswordModal"
 
 const Modals: React.FC<{ termsOfuseContent?: string }> = ({
-  termsOfuseContent='',
+  termsOfuseContent = "",
 }) => {
   return (
     <div className="Modals">
       <LoginModal />
       <RegisterModal />
       <ProfileModal />
+      <ChangePasswordModal />
       <ConfirmRegistrationModal />
       <TermsOfUseModal content={termsOfuseContent} autoOpenAfterDelay={false} />
     </div>
