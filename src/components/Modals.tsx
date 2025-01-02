@@ -5,6 +5,8 @@ import ProfileModal from "./ProfileModal"
 import TermsOfUseModal from "./TermsOfUseModal"
 import ChangePasswordModal from "./ChangePasswordModal"
 import ConfirmChangePasswordModal from "./ConfirmChangePasswordModal"
+import ConfirmChangePlanRequestModal from "./ConfirmChangePlanRequestModal"
+import ChangePlanRequestModal from "./ChangePlanRequestModal"
 
 const Modals: React.FC<{ termsOfuseContent?: string }> = ({
   termsOfuseContent = "",
@@ -15,8 +17,10 @@ const Modals: React.FC<{ termsOfuseContent?: string }> = ({
       <RegisterModal />
       <ProfileModal />
       <ChangePasswordModal />
+      <ChangePlanRequestModal />
       <ConfirmRegistrationModal />
       <ConfirmChangePasswordModal />
+      <ConfirmChangePlanRequestModal />
       <TermsOfUseModal content={termsOfuseContent} autoOpenAfterDelay={false} />
     </div>
   )

@@ -6,6 +6,7 @@ import { forwardRef, useEffect } from "react"
 import { PageDown } from "iconoir-react"
 import {
   BrowserViewChangePassword,
+  BrowserViewChangePlanRequest,
   BrowserViewLogin,
   BrowserViewProfile,
   BrowserViewRegister,
@@ -95,19 +96,23 @@ const UserArea = () => {
               <Dropdown.Item onClick={() => setView(BrowserViewChangePassword)}>
                 Change Password
               </Dropdown.Item>
-
+              <Dropdown.Item
+                onClick={() => setView(BrowserViewChangePlanRequest)}
+              >
+                Change Plan
+              </Dropdown.Item>
               <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
               {/* add separator */}
               <Dropdown.Divider />
-              {/* add separator */}
-              <Dropdown.Divider />
+
               <Dropdown.Item href="/datalab/corpus-overview">
                 Corpus Overview
               </Dropdown.Item>
               <Dropdown.Item onClick={() => setView(BrowserViewTermsOfUse)}>
                 Terms Of Use
               </Dropdown.Item>
-
+              {/* add separator */}
+              <Dropdown.Divider />
               <Dropdown.Item
                 target="_blank"
                 href="https://join.slack.com/t/impresso-community/shared_invite/enQtNTg5MzY2NDg2NTAyLTdiMmI2ZWU5ZjliNGNjN2M4NTgxM2UzOTQyYTkxYWU4MTgwN2I1MzQxMzg3N2Y0NGU3OGFjMzFmMGIyNGRlZmQ"

@@ -166,6 +166,12 @@ export const Plans: string[] = [
   PlanNone,
 ]
 
+export const AvailablePlans = [
+  PlanImpressoUser,
+  PlanEducational,
+  PlanResearcher,
+]
+
 export const PlanAvailabilityLabels: Record<string, string> = {
   [PlanGuest]: "Public Domain, always accessible",
   [PlanImpressoUser]: "Feature accessible with a basic account",
@@ -208,11 +214,16 @@ export const BrowserViewTermsOfUse = "terms-of-use"
 export const BrowserViewProfile = "profile"
 export const BrowserViewChangePassword = "change-password"
 export const BrowserViewConfirmChangePassword = "confirm-change-password"
+export const BrowserViewChangePlanRequest = "change-plan-request"
+export const BrowserViewConfirmChangePlanRequest = "confirm-change-plan-request"
 export const BrowserViews: string[] = [
   BrowserViewLogin,
   BrowserViewRegister,
   BrowserViewProfile,
   BrowserViewChangePassword,
+  BrowserViewConfirmChangePassword,
+  BrowserViewChangePlanRequest,
+  BrowserViewConfirmRegistration,
 ]
 
 export const BrowserWsStatusIdle = "idle"
