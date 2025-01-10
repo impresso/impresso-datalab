@@ -190,7 +190,7 @@ const CorpusOverviewModal: React.FC<CorpusOverviewModalProps> = ({
                     className="underline"
                     onClick={() => setView(BrowserViewLogin)}
                   >
-                    lo in
+                    log in
                   </a>{" "}
                   to view data accessibility conditions based on your plan.
                 </span>

@@ -32,7 +32,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
       axios
         .post(
           `${import.meta.env.PUBLIC_IMPRESSO_API_PATH}/authentication`,
-          payload,
+          payload
         )
         .then((res) => res.data)
 
@@ -44,7 +44,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
       console.info(
         "[TokenWrapper] llToken is set, calling the mutation in",
         delay,
-        "ms",
+        "ms"
       )
       clearTimeout(timerRef.current)
       setIsBusy(true)
@@ -135,7 +135,7 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
       )}
       {showLoginForm && (
         <section className="my-4 d-flex flex-column justify-content-center">
-          <h2 className="mx-auto ">Please login to get your API Token</h2>
+          <h2 className="mx-auto ">Please log in to get your API Token</h2>
           <button
             type="submit"
             className="btn btn-secondary mx-auto d-flex justify-content-center px-5"
