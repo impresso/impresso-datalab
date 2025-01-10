@@ -1,9 +1,9 @@
 import { type FeathersError } from "@feathersjs/errors"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
 import ErrorManager from "./ErrorManager"
 import { SendMail } from "iconoir-react"
-import { AvailablePlans, PlanImpressoUser, PlanLabels } from "../constants"
+import { AvailablePlans, PlanLabels } from "../constants"
 
 export type ChangePlanRequestFormPayload = {
   plan: string
@@ -49,20 +49,34 @@ const ChangePlanRequestForm: React.FC<ChangePlanRequestFormProps> = ({
       >
         <ErrorManager error={error} />
         <section className="mb-3 d-flex flex-wrap gap-2 align-items-center">
-          {AvailablePlans.map((plan) => (
-            <Form.Check
-              className={`border rounded-md shadow-sm ${
-                selectedPlan === plan ? "active" : ""
-              }`}
-              key={plan}
-              type="radio"
-              label={PlanLabels[plan]}
-              checked={selectedPlan === plan}
-              name="plan"
-              onChange={() => setSelectedPlan(plan)}
-              id={`ChangePlanRequestForm.${plan}`}
-            />
-          ))}
+          {AvailablePlans.map((availablePlan) => {
+            const LabelComponent = () => (
+              <div>
+                {PlanLabels[availablePlan]}
+                {plan === availablePlan && (
+                  <div>
+                    <span className="badge bg-primary text-dark">
+                      Your current plan
+                    </span>
+                  </div>
+                )}
+              </div>
+            )
+            return (
+              <Form.Check
+                key={availablePlan}
+                className={`border rounded-md shadow-sm ${
+                  selectedPlan === availablePlan ? "active" : ""
+                }`}
+                type="radio"
+                label={<LabelComponent />}
+                checked={selectedPlan === availablePlan}
+                name="plan"
+                onChange={() => setSelectedPlan(availablePlan)}
+                id={`ChangePlanRequestForm.${availablePlan}`}
+              />
+            )
+          })}
         </section>
         <button
           type="submit"

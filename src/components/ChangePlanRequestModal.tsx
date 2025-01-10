@@ -15,7 +15,10 @@ import ChangePlanRequestForm, {
 import { DateTime } from "luxon"
 
 const ChangePlanRequestModal = () => {
-  const user = usePersistentStore((state) => state.user)
+  const [user, userPlan] = usePersistentStore((state) => [
+    state.user,
+    state.userPlan,
+  ])
   const view = useBrowserStore((state) => state.view)
   const setView = useBrowserStore((state) => state.setView)
   const [error, setError] = useState<FeathersError | null>(null)
@@ -87,6 +90,10 @@ const ChangePlanRequestModal = () => {
   }, [view, user])
 
   console.debug("[ChangePlanRequestModal] @render", { view, response })
+
+  const isFormVisible =
+    response.status === "success" || response.status === "error"
+
   return (
     <Modal
       centered
@@ -114,11 +121,11 @@ const ChangePlanRequestModal = () => {
               </span>
             </Alert>
           )}
-          {response.status === "success" && (
+          {isFormVisible && (
             <>
               <ChangePlanRequestForm
                 onSubmit={handleOnSubmit}
-                plan={response.data.plan.name}
+                plan={userPlan}
                 error={error}
               />
             </>
