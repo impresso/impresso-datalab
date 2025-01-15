@@ -5,7 +5,7 @@ import { useEffect } from "react"
 import GettingStarted from "./GettingStarted"
 import type { Series } from "../types"
 
-const CodeSample = `# Install the impresso library
+const CodeSample = `# Install the Impresso library
 %pip install impresso
 
 from impresso import connect
