@@ -148,6 +148,7 @@ export const PlanImpressoUser = "plan-basic"
 export const PlanEducational = "plan-educational"
 export const PlanResearcher = "plan-researcher"
 export const PlanResearcherPlus = "academic-user-plus"
+export const PlanSpecialMembership = "plan-special-membership"
 export const PlanNone = "no-plan"
 export const PlanLabels: Record<string, string> = {
   [PlanGuest]: "Guest",
@@ -156,6 +157,7 @@ export const PlanLabels: Record<string, string> = {
   [PlanResearcher]: "Academic User",
   [PlanResearcherPlus]: "Academic User +",
   [PlanNone]: "No Plan",
+  [PlanSpecialMembership]: "Special Membership",
 }
 export const Plans: string[] = [
   PlanGuest,
@@ -164,6 +166,7 @@ export const Plans: string[] = [
   PlanResearcher,
   PlanResearcherPlus,
   PlanNone,
+  PlanSpecialMembership,
 ]
 
 export const AvailablePlans = [

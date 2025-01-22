@@ -14,6 +14,7 @@ import {
   PlanEducational,
   NotebookLevels,
   NotebookLevelBeginner,
+  Plans,
 } from "../constants"
 
 const CorpusAccessUserPlansToPlan: Record<string, string> = {
@@ -189,6 +190,7 @@ const plans = defineCollection({
     id: z.string().optional(),
     title: z.string(),
     icon: z.string().optional(),
+    plan: z.enum(Plans as any).optional(),
     features: z
       .array(
         z.object({
