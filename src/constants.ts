@@ -114,6 +114,22 @@ export const ExportFeatures: string[] = [
   ExportFeatureSemanticEnrichments,
 ]
 
+export const ExportFeatureLabels: Record<string, string> = {
+  [ExportFeatureMetadata]: "Export Metadata",
+  [ExportFeatureMetadataPublicDomain]: "Export Metadata - Public Domain",
+  [ExportFeatureFacsimiles]: "Export Facsimiles",
+  [ExportFeatureFacsimilesPublicDomain]: "Export Facsimiles - Public Domain",
+  [ExportFeatureAudio]: "Export Audio",
+  [ExportFeatureAudioPublicDomain]: "Export Audio - Public Domain",
+  [ExportFeatureTranscripts]: "Export Transcripts",
+  [ExportFeatureTranscriptsPublicDomain]: "Export Transcripts - Public Domain",
+  [ExportFeatureImages]: "Export Images",
+  [ExportFeatureImagesPublicDomain]: "Export Images - Public Domain",
+  [ExportFeatureSemanticEnrichments]: "Export Semantic Enrichments",
+  [ExportFeatureSemanticEnrichmentsPublicDomain]:
+    "Export Semantic Enrichments - Public Domain",
+}
+
 export const DataFeatureLabels: Record<string, string> = {
   [DataFeatureMetadata]:
     "Metadata (bibliographic, descriptive, technical - public and protected domain)",
