@@ -63,7 +63,7 @@ export async function GET() {
     return {
       title,
       icon,
-      plan,
+      id: plan,
       features,
       requirements,
       body,
