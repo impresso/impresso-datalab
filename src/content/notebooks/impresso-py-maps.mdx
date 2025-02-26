@@ -3,8 +3,8 @@ title: Visualising Place Entities on Maps
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 authors:
   - impresso-team
-sha: caf4e6e0a677569953b866f9c6ffe0c6d3d12dc5
-date: 2024-10-25T13:17:54Z
+sha: 1478d8fc0a739dcf02f9a9cb35e9c950446135af
+date: 2025-02-26T08:28:30Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 links:
   - href: https://impresso-project.ch/
@@ -13,50 +13,52 @@ links:
     label: ipyleaflet
 seealso:
   - impresso-py-search
-excerpt: This notebook provides a way to analyze and explore the geographic distribution of entities mentioned in Impresso using the Impresso Python Library.
+excerpt: This notebook provides a way to analyze and explore the geographic
+  distribution of entities mentioned in Impresso using the Impresso Python
+  Library.
 levels:
   method: apprentice
 ---
 
 {/* cell:0 cell_type:markdown */}
 
+<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+{/* cell:1 cell_type:markdown */}
 ## Install dependencies
 
 We need the following packages:
 
-- [impresso-py](https://impresso-project.ch/)
-- [ipyleaflet](https://ipyleaflet.readthedocs.io/en/latest/index.html)
+ * [impresso-py](https://impresso-project.ch/)
+ * [ipyleaflet](https://ipyleaflet.readthedocs.io/en/latest/index.html)
 
-{/* cell:1 cell_type:code */}
-
+{/* cell:2 cell_type:code */}
 ```python
 %pip install -q impresso ipyleaflet
 ```
 
-{/* cell:2 cell_type:markdown */}
-
+{/* cell:3 cell_type:markdown */}
 ## Connect to the Impresso API
 
-{/* cell:3 cell_type:code */}
-
+{/* cell:4 cell_type:code */}
 ```python
 from impresso import connect, OR, DateRange
 
 impresso = connect()
 ```
 
-{/* cell:4 cell_type:markdown */}
-
+{/* cell:5 cell_type:markdown */}
 ## Search and collect entities
 
 Find top 100 location entities mentioned in articles that talk about nuclear power plants in the first three decades following the second world war in English, French and German.
 
-{/* cell:5 cell_type:code */}
-
+{/* cell:6 cell_type:code */}
 ```python
 locations = impresso.search.facet(
     "location",
-    q=OR("centrale nucléaire", "nuclear power plant", "Kernkraftwerk"),
+    term=OR("centrale nucléaire", "nuclear power plant", "Kernkraftwerk"),
     date_range=DateRange("1945-05-01", "1975-05-01"),
     limit=100,
     order_by="-count"
@@ -64,58 +66,53 @@ locations = impresso.search.facet(
 locations
 ```
 
-{/* cell:6 cell_type:markdown */}
+{/* cell:7 cell_type:markdown */}
 Get entities details, including wikidata details
 
-{/* cell:7 cell_type:code */}
-
+{/* cell:8 cell_type:code */}
 ```python
 entities_ids = locations.df.index.tolist()
-entities = impresso.entities.find(entity_id=OR(*entities_ids), load_wikidata=True, limit=len(entities_ids))
+entities = impresso.entities.find(entity_id=OR(*entities_ids), resolve=True, limit=len(entities_ids))
 entities
 ```
 
-{/* cell:8 cell_type:markdown */}
+{/* cell:9 cell_type:markdown */}
 Filter out entities that have no coordinates and add a country tag.
 
-{/* cell:9 cell_type:code */}
-
+{/* cell:10 cell_type:code */}
 ```python
 import pandas as pd
 # disable "copy-on-write" warning
 pd.options.mode.copy_on_write = True
 
 df = entities.df
-entities_with_coordinates = df[df['wikidata.coordinates.latitude'].notna() & df['wikidata.coordinates.longitude'].notna()]
+entities_with_coordinates = df[df['wikidataDetails.coordinates.latitude'].notna() & df['wikidataDetails.coordinates.longitude'].notna()]
 
 # entity-type == "item" indicates it's a country
-entities_with_coordinates['is_country'] = entities_with_coordinates['wikidata.descriptions.fr'].str.contains('pays')
+entities_with_coordinates['is_country'] = entities_with_coordinates['wikidataDetails.descriptions.fr'].str.contains('pays')
 entities_with_coordinates
 ```
 
-{/* cell:10 cell_type:markdown */}
+{/* cell:11 cell_type:markdown */}
 Add counts of mentions to the entities dataframe.
 
-{/* cell:11 cell_type:code */}
-
+{/* cell:12 cell_type:code */}
 ```python
 entities_with_coordinates['mentions_count'] = entities_with_coordinates.index.map(locations.df['count'])
 ```
 
-{/* cell:12 cell_type:markdown */}
+{/* cell:13 cell_type:markdown */}
 Plot entities on the map.
 
-{/* cell:13 cell_type:markdown */}
-
+{/* cell:14 cell_type:markdown */}
 ### Utility methods
 
 Functions used to calculate extra details needed to plot data on a map.
 
-{/* cell:14 cell_type:markdown */}
+{/* cell:15 cell_type:markdown */}
 Find geo bounds of a group of items.
 
-{/* cell:15 cell_type:code */}
-
+{/* cell:16 cell_type:code */}
 ```python
 def find_bounds(coordinates):
   """
@@ -146,11 +143,10 @@ def find_bounds(coordinates):
 
 ```
 
-{/* cell:16 cell_type:markdown */}
+{/* cell:17 cell_type:markdown */}
 Create an HTML used for rendering the hover pop-up.
 
-{/* cell:17 cell_type:code */}
-
+{/* cell:18 cell_type:code */}
 ```python
 from ipywidgets import HTML
 from ipyleaflet import Popup
@@ -176,14 +172,12 @@ def build_hover_popup(title: str, subtitle: str, mentions: int) -> Popup:
   return popup
 ```
 
-{/* cell:18 cell_type:markdown */}
-
+{/* cell:19 cell_type:markdown */}
 ### Map with adaptive pins
 
 Display entities on a map with pin size based on the number of mentions (more mentions = bigger pin). The pins are colored based on the type of the entity (country or location).
 
-{/* cell:19 cell_type:code */}
-
+{/* cell:20 cell_type:code */}
 ```python
 from ipyleaflet import Map, Marker, AwesomeIcon, CircleMarker
 
@@ -207,10 +201,10 @@ coordinates = []
 markers = []
 # Build markers
 for index, row in entities_with_coordinates.iterrows():
-    lat = row['wikidata.coordinates.latitude']
-    lon = row['wikidata.coordinates.longitude']
-    label = row['wikidata.labels.en']
-    description = row['wikidata.descriptions.en']
+    lat = row['wikidataDetails.coordinates.latitude']
+    lon = row['wikidataDetails.coordinates.longitude']
+    label = row['wikidataDetails.labels.en']
+    description = row['wikidataDetails.descriptions.en']
     is_country = row['is_country']
 
     radius = (row['mentions_count'] / max_mentions_count) * 20
@@ -248,14 +242,12 @@ for m in markers:
 display(map)
 ```
 
-{/* cell:20 cell_type:markdown */}
-
+{/* cell:21 cell_type:markdown */}
 ### Heatmap
 
 Display entities on a map with a heatmap overlay where the colour intensity is higher where the entities are more concentrated and more frequently mentioned.
 
-{/* cell:21 cell_type:code */}
-
+{/* cell:22 cell_type:code */}
 ```python
 from ipyleaflet import Map, Heatmap
 
@@ -263,8 +255,8 @@ map = Map(zoom=0)
 
 locations = []
 for index, row in entities_with_coordinates.iterrows():
-    lat = row['wikidata.coordinates.latitude']
-    lon = row['wikidata.coordinates.longitude']
+    lat = row['wikidataDetails.coordinates.latitude']
+    lon = row['wikidataDetails.coordinates.longitude']
     # add every coordinate 30 times to make the heatmap more visible
     locations.extend([(lat, lon) for i in range(30)])
 
