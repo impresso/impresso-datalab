@@ -37,6 +37,7 @@ const Wall = ({
   enterImpressoPy,
   enterImpressoModels,
   scrollToTop = false,
+  showImpressoModelsCodeSample = false,
 }: {
   numberOfAuthors?: number
   numberOfNotebooks?: number
@@ -47,6 +48,7 @@ const Wall = ({
   enterImpressoPy: Series
   enterImpressoModels: Series
   scrollToTop?: boolean
+  showImpressoModelsCodeSample?: boolean
 }) => {
   useEffect(() => {
     if (scrollToTop) {
@@ -138,7 +140,9 @@ const Wall = ({
               <p className="very-small text-muted px-2">
                 Copy the code below in a blank jupyter notebook to get started
               </p>
-              <CodeSnippet value={ImpressoModelsCodeSample} />
+              {showImpressoModelsCodeSample ? (
+                <CodeSnippet value={ImpressoModelsCodeSample} />
+              ) : null}
             </SeriesCard>
             {seriesInTrailingColumn.map((series) => (
               <SeriesCard key={series.title} series={series} className="mb-3" />
