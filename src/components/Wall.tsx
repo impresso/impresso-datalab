@@ -12,7 +12,8 @@ from impresso import connect
 
 impresso = connect()
 
-results = impresso.search("moon landing")`
+results = impresso.search.find("moon landing")
+results`
 
 const ImpressoModelsCodeSample = `# Use a pipeline as a high-level helper
 %pip install transformers
