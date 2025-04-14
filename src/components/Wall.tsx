@@ -137,9 +137,11 @@ const Wall = ({
           </Col>
           <Col md={6} xl={4} className="order-md-2  order-xl-3">
             <SeriesCard className="mb-3" series={enterImpressoModels}>
-              <p className="very-small text-muted px-2">
-                Copy the code below in a blank jupyter notebook to get started
-              </p>
+              {showImpressoModelsCodeSample ? (
+                <p className="very-small text-muted px-2">
+                  Copy the code below in a blank jupyter notebook to get started
+                </p>
+              ) : null}
               {showImpressoModelsCodeSample ? (
                 <CodeSnippet value={ImpressoModelsCodeSample} />
               ) : null}
