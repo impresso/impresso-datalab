@@ -17,5 +17,20 @@ services:
                   cp -r /app/* /app_files/ &&
                   echo 'Files in /app_files :' &&
                   ls -lat /app_files/"
+  generate-search-embeddings:
+    build:
+      context: ./generateSearchEmbeddings
+    volumes:
+      - ./public/search-embeddings:/app/data/output:z
+      - ./src/content/notebooks:/app/data/input:z
+    profiles:
+      - cli
+    entrypoint:
+      [
+        "node",
+        "generateSearchEmbeddings.js",
+        "/app/data/input",
+        "/app/data/output",
+      ]
 volumes:
   app_files:
