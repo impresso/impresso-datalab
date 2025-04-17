@@ -3,13 +3,36 @@ title: Exploring Entity Co-occurrence Networks
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 authors:
   - impresso-team
-sha: 1478d8fc0a739dcf02f9a9cb35e9c950446135af
-date: 2025-02-26T08:28:30Z
+sha: 13d95b0edf526615aec62c60edcd5c25edd92385
+date: 2025-04-16T14:26:17Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 links:
+  - href: https://programminghistorian.org/en/lessons/exploring-and-analyzing-network-data-with-python
+    label: Exploring and Analyzing Network Data with Python
+  - href: https://programminghistorian.org/en/lessons/creating-network-diagrams-from-historical-sources
+    label: "From Hermeneutics to Data to Networks: Data Extraction and Network
+      Visualization of Historical Sources"
+  - href: https://impresso-project.ch/datalab/
+    label: Impresso Datalab
   - href: https://en.wikipedia.org/wiki/Prague_Spring
     label: Prague Spring
+  - href: https://networkx.org
+    label: NetworkX
+  - href: https://impresso-project.ch/app/faq#what-is-nep
+    label: FAQ
+  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb
+    label: Visualising Place Entities on Maps
+  - href: data:image/png;base64,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
+    label: "![CreditLogo.png"
+  - href: https://impresso-project.ch
+    label: Impresso - Media Monitoring of the Past
+  - href: http://p3.snf.ch/project-173719
+    label: CRSII5_173719
+  - href: https://data.snf.ch/grants/grant/213585
+    label: CRSII5_213585
+  - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
+    label: GNU Affero General Public License
 seealso:
   - impresso-py-search
 levels:
@@ -24,34 +47,74 @@ levels:
 </a>
 
 {/* cell:1 cell_type:markdown */}
-## Install dependencies
+## What is this notebook about?
 
-{/* cell:2 cell_type:code */}
+This notebook guides you step-by-step through how to create network graphs that represent people's connections in historical newspapers. We define people's connections based on whether they occur in the same content item.
+
+> In Impresso, a **Content Item** is the smallest unit of editorial content within a newspaper or radio collection. This can be an article (for newspapers) or a radio show or episode (for radio programs). Content items can also vary by type, including articles, advertisements, tables, images, and more. Please note that when a newspaper does not have segmentation (OLR) content items for this title correspond to pages.
+
+With this notebook, you can produce a representation of the media narratives by looking at how people have been associated to others by the press. Interpreting this association, however, can be tricky. It doesn't mean necessarily that those people have had any type of relationship. It just means that their names have been mentioned in, for example, the same news article. To unveil the reasons why they occur together, further analysis using different methods is necessary. 
+
+{/* cell:2 cell_type:markdown */}
+## What will you learn?
+
+* How to retrieve a list of persons mentioned in content items for a given query; 
+* To transform this list of entities into a dataframe that can be used to produce network graphs;
+* To display an interactive network graph to visualise connections between persons occurring in Impresso.
+
+You will be able to download the dataframes you produced, which guarantees reproducibility of your research. 
+
+At the end, you can also download the network graph in different formats. 
+
+{/* cell:3 cell_type:markdown */}
+## Useful resources
+
+These are some resources that might help you with some important concepts this notebook involves:
+
+- [Exploring and Analyzing Network Data with Python](https://programminghistorian.org/en/lessons/exploring-and-analyzing-network-data-with-python)
+- [From Hermeneutics to Data to Networks: Data Extraction and Network Visualization of Historical Sources](https://programminghistorian.org/en/lessons/creating-network-diagrams-from-historical-sources)
+
+
+
+{/* cell:4 cell_type:markdown */}
+---
+## Prerequisites
+
+
+{/* cell:5 cell_type:markdown */}
+Install dependencies. You may need to restart the kernel to use updated packages. To do so, on Google Colab, go to *Runtime* and select *Restart session*.
+
+{/* cell:6 cell_type:code */}
 ```python
 %pip install -q impresso ipysigma networkx tqdm
 ```
 
-{/* cell:3 cell_type:markdown */}
-## Connect to Impresso
+{/* cell:7 cell_type:markdown */}
+Connect to Impresso. The following command will prompt you to enter your Impresso token if it has not been authenticated recently (it expires after 8 hours).
 
-{/* cell:4 cell_type:code */}
+To get access to an Impresso API token, go to [Impresso Datalab](https://impresso-project.ch/datalab/) and select *Get API Token* on the menu.
+
+{/* cell:8 cell_type:code */}
 ```python
 from impresso import connect, OR, AND
 
 impresso_session = connect()
 ```
 
-{/* cell:5 cell_type:markdown */}
-## Part 1: Get entities and their co-occurrences
+{/* cell:9 cell_type:markdown */}
+# Part 1. Prepare your data
 
-### First, we retrieve all person entities mentioned in all articles that talk about the [Prague Spring](https://en.wikipedia.org/wiki/Prague_Spring).
+{/* cell:10 cell_type:markdown */}
+## Get entities and their co-occurrences
 
-{/* cell:6 cell_type:code */}
+First, we retrieve all person entities mentioned in all articles that talk about the [Prague Spring](https://en.wikipedia.org/wiki/Prague_Spring) using search facets method from Impresso Python library. 
+
+{/* cell:11 cell_type:code */}
 ```python
 query = OR("Prague Spring", "Prager Frühling", "Printemps de Prague")
 ```
 
-{/* cell:7 cell_type:code */}
+{/* cell:12 cell_type:code */}
 ```python
 persons = impresso_session.search.facet(
   facet="person",
@@ -62,14 +125,16 @@ persons = impresso_session.search.facet(
 persons
 ```
 
-{/* cell:8 cell_type:markdown */}
-### Next, we generate all unique pairs of entities with a mention count higher than `n`.
+{/* cell:13 cell_type:markdown */}
+Next, we generate all unique pairs of entities with a mention count higher than `n`. This will filter out pairs of entities that are mentioned just a few times. 
+
+**Important note:** for now, we are just combining all the entities in pairs. The documents in which they occur will be found later.
  
 First, entities that meet the mention threshold are selected, and then all possible pairs are generated using the `itertools.combinations` function.
 
 The `n` value can be adjusted so that we don't get too many entity combinations. A sweet spot is just under 500 combinations.
 
-{/* cell:9 cell_type:code */}
+{/* cell:14 cell_type:code */}
 ```python
 import itertools
 
@@ -82,10 +147,10 @@ print(f"Total persons selected: {len(persons_ids)}")
 
 person_ids_combinations = list(itertools.combinations(persons_ids, 2))
 print(f"Total combinations: {len(person_ids_combinations)}")
-```
 
-{/* cell:10 cell_type:code */}
-```python
+# The code below outputs an Execption message in case the number of combinations exceed 500. 
+# If this happens to you, try to increase the value of 'n'. 
+
 if len(person_ids_combinations) > 500:
   msg = (
       f"The number of combinations is quite high ({len(person_ids_combinations)}). " +
@@ -94,15 +159,18 @@ if len(person_ids_combinations) > 500:
       "You can also disable this error by commenting out this cell, if this number of combinations is expected."
   )
   raise Exception(msg)
+
 ```
 
-{/* cell:11 cell_type:markdown */}
+{/* cell:15 cell_type:markdown */}
 
-### We also retrieve the dates and the number of articles where person entity pairs appear in.
+## Find articles where the entity pairs occur
+
+We also retrieve the dates and the number of articles where person entity pairs occur.
 
 This piece of code gets a facet for every combination of named entities. It is a single call per combination so it may take a while for a large number of combinations.
 
-{/* cell:12 cell_type:code */}
+{/* cell:16 cell_type:code */}
 ```python
 from impresso.util.error import ImpressoError
 from time import sleep
@@ -134,10 +202,10 @@ for idx, combo in tqdm(enumerate(person_ids_combinations), total=len(person_ids_
     connections.append((combo, items))
 ```
 
-{/* cell:13 cell_type:markdown */}
+{/* cell:17 cell_type:markdown */}
 We put all in a dataframe
 
-{/* cell:14 cell_type:code */}
+{/* cell:18 cell_type:code */}
 ```python
 import pandas as pd
 
@@ -153,10 +221,10 @@ connections_df = pd.DataFrame(connections_denormalised, columns=('node_a', 'node
 connections_df
 ```
 
-{/* cell:15 cell_type:markdown */}
-And save the connections to a CSV file that can be visualised independently in Part 2. Provide a name for the file.
+{/* cell:19 cell_type:markdown */}
+And save the connections into a CSV file that can be visualised independently in Part 2. Here you will be prompted to provide a name for the file.
 
-{/* cell:16 cell_type:code */}
+{/* cell:20 cell_type:code */}
 ```python
 from tempfile import gettempdir
 
@@ -168,10 +236,13 @@ connections_df.to_csv(connections_csv_filepath)
 print(f"File saved in {connections_csv_filepath}")
 ```
 
-{/* cell:17 cell_type:markdown */}
-## Part 2: visualise
+{/* cell:21 cell_type:markdown */}
+## Part 2: Visualise your data 
 
-{/* cell:18 cell_type:code */}
+{/* cell:22 cell_type:markdown */}
+Import the CSV file you created in Part 1
+
+{/* cell:23 cell_type:code */}
 ```python
 import pandas as pd
 
@@ -179,10 +250,12 @@ connections_df = pd.read_csv(connections_csv_filepath)
 connections_df
 ```
 
-{/* cell:19 cell_type:markdown */}
-Group connections counting number of mentions and preserve the URL.
+{/* cell:24 cell_type:markdown */}
+Now, we group results by frequency of pairs to create connections, and count the number of connections. We also preserve the URL. 
 
-{/* cell:20 cell_type:code */}
+**Important information**: The URL does not contain DateRange information, that's why they can be grouped here as they just refer to the search terms and the pair of persons occuring in documents.
+
+{/* cell:25 cell_type:code */}
 ```python
 grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
     .agg({'timestamp': lambda x: ', '.join(list(x)), 'count': 'sum', 'url': lambda x: list(set(x))[0]}) \
@@ -190,7 +263,12 @@ grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
 grouped_connections_df
 ```
 
-{/* cell:21 cell_type:code */}
+{/* cell:26 cell_type:markdown */}
+In the cell below, we use the [NetworkX](https://networkx.org) python library, designed for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks. 
+
+Here, we start creating our network by defining the 'source' and 'taget', as well as the edges attributes. 
+
+{/* cell:27 cell_type:code */}
 ```python
 import networkx as nx
 
@@ -206,10 +284,10 @@ for i in sorted(G.nodes()):
 G.nodes
 ```
 
-{/* cell:22 cell_type:markdown */}
-Save the file so that it could be downloaded and used elsewhere.
+{/* cell:28 cell_type:markdown */}
+To ensure reprocibility, save the file so that it can be downloaded and used elsewhere.
 
-{/* cell:23 cell_type:code */}
+{/* cell:29 cell_type:code */}
 ```python
 from tempfile import gettempdir
 
@@ -223,10 +301,13 @@ nx.write_gexf(G, gefx_filepath)
 print(f"File saved in {gefx_filepath}")
 ```
 
-{/* cell:24 cell_type:markdown */}
-If running in Colab - activate custom widgets to allow `ipysigma` to render the graph.
+{/* cell:30 cell_type:markdown */}
+If running in Colab - activate custom widgets to allow `ipysigma` to render the graph. 
 
-{/* cell:25 cell_type:code */}
+Ipysigma allows you produce an interactive graph, as well as manipulate the graph's settings. 
+
+
+{/* cell:31 cell_type:code */}
 ```python
 try:
     from google.colab import output
@@ -235,10 +316,12 @@ except:
     pass
 ```
 
-{/* cell:26 cell_type:markdown */}
-Render the graph.
+{/* cell:32 cell_type:markdown */}
+Run the cell below to render the graph. 
 
-{/* cell:27 cell_type:code */}
+The output will prompt you to choose 'what should represent the size of the nodes' in your graph. Select it before you continue.
+
+{/* cell:33 cell_type:code */}
 ```python
 import ipywidgets
 
@@ -257,10 +340,12 @@ ipywidgets.Box(
 
 ```
 
-{/* cell:28 cell_type:markdown */}
-Refresh the next cell after changing the value above.
+{/* cell:34 cell_type:markdown */}
+Refresh the next cell after changing the value above. 
 
-{/* cell:29 cell_type:code */}
+This cell reads the node size method chosen above and plots the visualisation. 
+
+{/* cell:35 cell_type:code */}
 ```python
 import networkx as nx
 from ipysigma import Sigma
@@ -289,3 +374,45 @@ print("See the following link for more information about centrality measures: ht
 # a color mapped on a categorical attribute of the nodes
 Sigma(g, node_size=node_size, edge_size='count', clickable_edges=True, )
 ```
+
+{/* cell:36 cell_type:markdown */}
+The graph display allows you to download the visualisation in png, svg, gexf, and json. 
+
+{/* cell:37 cell_type:markdown */}
+## Conclusion
+
+This notebook provided you with a comprehensive pipeline to create network graphs using the Impresso corpus. 
+
+It is important to have in mind that only persons who have been tagged as entity 'persons' in the Impresso corpus will be added to this graph. Because of the way Named Entity Recognition (NER) works, it is possible that some people that are mentioned in the texts are not recognised as 'person' by the algorithms. In this case, those people will not be shown in the graph. For more information on NER, check our [FAQ](https://impresso-project.ch/app/faq#what-is-nep).
+
+## Next Steps
+
+That's it for now! Next, you can explore:
+
+- the [Visualising Place Entities on Maps](https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb) notebook, which demonstrates how to visualise in a map mentions to places in the Impresso corpus.
+- the [Named Entity Recognition with impresso-pipelines]() notebook, which allows you reuse Impresso NER models and apply them to your own data. 
+
+{/* cell:38 cell_type:markdown */}
+---
+## Project and License info
+
+### Credits [![CreditLogo.png](data:image/png;base64,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)](https://credit.niso.org/)
+
+
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an interdisciplinary research project that aims to develop and consolidate tools for processing and exploring large collections of media archives across modalities, time, languages and national borders. The first project (2017-2021) was funded by the Swiss National Science Foundation under grant No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027) by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585) and the Luxembourg National Research Fund under grant No. 17498891.
+
+### Copyright
+
+Copyright (C) 2024 The Impresso team.
+
+### License
+
+This program is provided as open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>

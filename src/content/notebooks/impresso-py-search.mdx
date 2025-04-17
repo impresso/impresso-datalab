@@ -1,410 +1,525 @@
 ---
-title: Search
+title: A quick guide to searching with Impresso library
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/starter/search_ImpressoAPI.ipynb
 authors:
   - impresso-team
 seealso:
   - impresso-py-collections
-sha: bb13dee9b67100ff6772e740a1e52f900529acfa
-date: 2025-04-14T09:47:09Z
+sha: 9ef5adeaf9a5885b21f76137978ae180cf2e969e
+date: 2025-04-14T14:42:10Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/starter/search_ImpressoAPI.ipynb
-links: []
+links:
+  - href: https://impresso.github.io/impresso-py/
+    label: Impresso Python Library
+  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/starter/basics_ImpressoAPI.ipynb
+    label: Introduction to the Impresso Python Library
+  - href: https://impresso.github.io/impresso-py/
+    label: documentation here
+  - href: https://impresso-project.ch
+    label: Impresso - Media Monitoring of the Past
+  - href: http://p3.snf.ch/project-173719
+    label: CRSII5_173719
+  - href: https://data.snf.ch/grants/grant/213585
+    label: CRSII5_213585
+  - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
+    label: GNU Affero General Public License
 excerpt: This notebook provides an overview of the search capabilities of the
   Impresso Python Library.
 ---
 
-{/* cell:0 cell_type:code */}
+{/* cell:0 cell_type:markdown */}
+
+
+{/* cell:1 cell_type:markdown */}
+## What is this notebook about?
+
+This notebook serves as a quick guide to searching with [Impresso Python Library](https://impresso.github.io/impresso-py/). By using this, you will be able to find content items in Impresso using a variety of filters. While it is useful to introduce new users to the capabilities of the library, it can also be used as a cheatsheet, to which you can always refer to when you need a rapid solution. 
+
+_Please, note that some news headlines (titles) and transcripts might be shown as **[redacted]** depending on the copyright access your user plan allows._ 
+
+{/* cell:2 cell_type:markdown */}
+---
+
+## What will you learn?
+
+In this notebook, you will learn how to:
+
+- Navigate the Impresso corpus via API
+- Use the diffent search functionalities available on the Impresso Python library.
+- Write complex queries (including AND and OR queries)
+
+This notebook will guide you through these core functionalities and help you get familiar with the Impresso library capabilities.
+
+{/* cell:3 cell_type:markdown */}
+---
+## Prerequisites
+
+Run the following cell to install the `impresso` python library. You may need to restart the kernel to use updated packages. To do so, on Google Colab, go to *Runtime* and select *Restart session*.
+
+{/* cell:4 cell_type:code */}
 ```python
 from impresso import connect
 
 impresso = connect()
 ```
 
-{/* cell:1 cell_type:markdown */}
+{/* cell:5 cell_type:markdown */}
+### `term`
 
-Find content items in Impresso using a variety of different filters.
+Start by searching for content items containing the keyword 'impresso'.
+> In Impresso, a **Content Item** is the smallest unit of editorial content within a newspaper or radio collection. This can be an article (for newspapers) or a radio show or episode (for radio programs). Content items can also vary by type, including articles, advertisements, tables, images, and more. Please note that when a newspaper does not have segmentation (OLR) content items for this title correspond to pages.
 
-{/* cell:2 cell_type:markdown */}
-## Term
+**Important note:** on the output, you will find the option 'See this result in the Impresso App'. By clicking on the link, you will be able to visualise the same result you retrieve using this notebook by using the powerful interface of the Impresso App. This is part of the Impresso project effort of integrating the workflow of the Web App and the Datalab!  
 
-Find all items containing "impresso" keyword.
-
-{/* cell:3 cell_type:code */}
+{/* cell:6 cell_type:code */}
 ```python
 impresso.search.find(term="impresso")
 ```
 
-{/* cell:4 cell_type:markdown */}
-## With text content only
+{/* cell:7 cell_type:markdown */}
+### `with_text_contents`
 
-Limit to content items that have text.
+Retrieve only content items that contain textal data. 
 
-{/* cell:5 cell_type:code */}
+{/* cell:8 cell_type:code */}
 ```python
 impresso.search.find(term="impresso", with_text_contents=True)
 ```
 
-{/* cell:6 cell_type:markdown */}
-## Title
-Find items that have the keyword "impresso" in their title.
+{/* cell:9 cell_type:markdown */}
+### `Title`
+Retrieve only content itens that have the keyword 'impresso' in the title (news headline).
 
-{/* cell:7 cell_type:code */}
+{/* cell:10 cell_type:code */}
 ```python
 impresso.search.find(title="impresso")
 ```
 
-{/* cell:8 cell_type:markdown */}
-### Complex term requests
-Find items that have both terms.
+{/* cell:11 cell_type:markdown */}
+## Complex term requests
 
-{/* cell:9 cell_type:code */}
+
+{/* cell:12 cell_type:markdown */}
+### `AND` queries
+Find content items that contain more than one term.
+
+{/* cell:13 cell_type:code */}
 ```python
 from impresso import AND
 
 impresso.search.find(title=AND("homme", "femme"))
 ```
 
-{/* cell:10 cell_type:markdown */}
-Find items that have either one term or the other.
+{/* cell:14 cell_type:markdown */}
+### `OR` queries
+Find content items that contain either one or another term.
 
-Here we find all content items that contain either "homme" or "femme" in the title.
-
-{/* cell:11 cell_type:code */}
+{/* cell:15 cell_type:code */}
 ```python
 from impresso import OR
 
 impresso.search.find(title=OR("homme", "femme"))
 ```
 
-{/* cell:12 cell_type:markdown */}
-## Inverted search (everything excluding term A __OR__ term B).
+{/* cell:16 cell_type:markdown */}
+### Inverted search (everything excluding term A __OR__ term B).
 
-We want to find all content items with the word "luddite" in the title that do not mention neither "textile" nor "machine"
+To find all content items containing the word "luddite" in the title that do not mention neither "textile" nor "machine", you can use `~` before **OR**
 
-{/* cell:13 cell_type:code */}
+{/* cell:17 cell_type:code */}
 ```python
 from impresso import OR
 
 impresso.search.find(title="luddite", term=~OR("textile", "machine"))
 ```
 
-{/* cell:14 cell_type:markdown */}
+{/* cell:18 cell_type:markdown */}
 ### Complex combintation of terms
 
-The following cell searches all content items with all of the the following condition:
+The following cell searches all content items with all of the the following conditions:
 
-* mentioning "hitler" and "stalin"
-* also mentioning one of: "molotow" or "ribbentrop"
-* and not mentioning "churchill"
+* mentioning 'hitler' AND 'stalin'
+* also mentioning either 'molotow' OR 'ribbentrop'
+* and not mentioning 'churchill'
 
-{/* cell:15 cell_type:code */}
+{/* cell:19 cell_type:code */}
 ```python
 from impresso import AND, OR
 
 impresso.search.find(term=AND("hitler", "stalin") & OR("molotow", "ribbentrop") & ~OR("churchill"))
 ```
 
-{/* cell:16 cell_type:markdown */}
-## Front page
+{/* cell:20 cell_type:markdown */}
+### `front_page`
 
-Find content items published on the front page only
+Retrieve content items published on the newspaper's front page only
 
-{/* cell:17 cell_type:code */}
+{/* cell:21 cell_type:code */}
 ```python
 impresso.search.find(term="impresso", front_page=True)
 ```
 
-{/* cell:18 cell_type:markdown */}
-## Entity ID
+{/* cell:22 cell_type:markdown */}
+### `entity_id`
 
-Search by entity ID
+Search by entity ID. All entities in the Impresso corpus have a specific id. You can use that id to retrieve content items where this specific entity is mention. 
 
-{/* cell:19 cell_type:code */}
+{/* cell:23 cell_type:code */}
 ```python
 impresso.search.find(entity_id="aida-0001-54-Switzerland")
 ```
 
-{/* cell:20 cell_type:markdown */}
-Find all content items that mention Switzerland and Albert Einstein.
+{/* cell:24 cell_type:markdown */}
+But where do I find the entity id? You can simply make a search for the entity using the cell below and the `entity_id` will be shown in the first column.
 
-{/* cell:21 cell_type:code */}
+PS: There are various entities mentioning Switzerland. We are looking for the Country, so we use the fist one in the output. The others refer to cities or Cantons. 
+
+{/* cell:25 cell_type:code */}
+```python
+impresso.entities.find(term="Switzerland")
+```
+
+{/* cell:26 cell_type:markdown */}
+You can retrieve all content items that mention both the entities Switzerland **AND** Albert Einstein.
+
+{/* cell:27 cell_type:code */}
 ```python
 impresso.search.find(entity_id=AND("aida-0001-54-Switzerland", "aida-0001-50-Albert_Einstein"))
 ```
 
-{/* cell:22 cell_type:markdown */}
-Find all content items that mention either Switzerland or Albert Einstein.
+{/* cell:28 cell_type:markdown */}
+Also, find all content items that mention either Switzerland **OR** Albert Einstein.
 
-{/* cell:23 cell_type:code */}
+{/* cell:29 cell_type:code */}
 ```python
 impresso.search.find(entity_id=OR("aida-0001-54-Switzerland", "aida-0001-50-Albert_Einstein"))
 ```
 
-{/* cell:24 cell_type:markdown */}
-## Newspaper
+{/* cell:30 cell_type:markdown */}
+### `newspaper_id`
 
-Limit search to two newspapers
+Retrieve content items that have been published by a specific newspapers. In the case below, either by EXP (L'Express) or GDL (Gazette de Lausanne)
 
-{/* cell:25 cell_type:code */}
+{/* cell:31 cell_type:code */}
 ```python
 impresso.search.find(term="independence", newspaper_id=OR("EXP", "GDL"))
 ```
 
-{/* cell:26 cell_type:markdown */}
-## Date range
+{/* cell:32 cell_type:markdown */}
+But how do I find the newspapers' acronyms? 
 
-Items published between dates
+You can simply use Facet search method to retrieve all newspapers that are relevant to your keyword search. 
 
-{/* cell:27 cell_type:code */}
+{/* cell:33 cell_type:code */}
+```python
+df_newspapers = impresso.search.facet("newspaper", term="independence", limit=100)
+df_newspapers.df
+```
+
+{/* cell:34 cell_type:markdown */}
+### `DateRange`
+
+By using `DateRange`, you can delimit a timeframe for your search. In the example below, we will find content items mentioning the word 'independence', published between 21st May 1921 and 2nd January 2001. 
+
+{/* cell:35 cell_type:code */}
 ```python
 from impresso import DateRange
 
 impresso.search.find(term="independence", date_range=DateRange("1921-05-21", "2001-01-02"))
 ```
 
-{/* cell:28 cell_type:markdown */}
-Content items published at any time excluding the range (not the `~` that negates the range).
+{/* cell:36 cell_type:markdown */}
+You can also search for content items published outside the date range by using the `~` .
 
-{/* cell:29 cell_type:code */}
+{/* cell:37 cell_type:code */}
 ```python
 from impresso import DateRange
 
 impresso.search.find(term="independence", date_range=~DateRange("1921-05-21", "2001-01-02"))
 ```
 
-{/* cell:30 cell_type:markdown */}
-## Language
-
-Search for the term "banana" in English or Italian.
-
-{/* cell:31 cell_type:code */}
-```python
-impresso.search.find(term="banana", language=OR("it", "en"))
-```
-
-{/* cell:32 cell_type:markdown */}
-And now search for the word "banana" in any language _except_ English or Italian.
-
-{/* cell:33 cell_type:code */}
-```python
-impresso.search.find(term="banana", language=~OR("it", "en"))
-```
-
-{/* cell:34 cell_type:markdown */}
-## Entity mention
-
-Find content items that mention two entities.
-
-{/* cell:35 cell_type:code */}
-```python
-impresso.search.find(mention=AND("Charlie Chaplin", "Switzerland"))
-```
-
-{/* cell:36 cell_type:markdown */}
-## Topic
-
-Find content items that match either of the two topics.
-
-{/* cell:37 cell_type:code */}
-```python
-impresso.search.find(topic_id=OR("tm-fr-all-v2.0_tp07_fr", "tm-fr-all-v2.0_tp48_fr"))
-```
-
 {/* cell:38 cell_type:markdown */}
-## Collection
+### `language`
 
-Find all content items in a collection.
+Search for the term "Paris" in content items in German or English language.
 
 {/* cell:39 cell_type:code */}
 ```python
-impresso.search.find(collection_id="REPLACEME")
+impresso.search.find(term="Paris", language=OR("de", "en"))
 ```
 
 {/* cell:40 cell_type:markdown */}
-## Country
+And now search for the word "banana" in any language **except** English or German.
+
+{/* cell:41 cell_type:code */}
+```python
+impresso.search.find(term="banana", language=~OR("de", "en"))
+```
+
+{/* cell:42 cell_type:markdown */}
+### `topic_id`
+
+Find content items that match either of the two topics.
+
+{/* cell:43 cell_type:code */}
+```python
+impresso.search.find(topic_id=OR("tm-fr-all-v2.0_tp07_fr", "tm-fr-all-v2.0_tp48_fr")) 
+```
+
+{/* cell:44 cell_type:markdown */}
+But how do I know the topic_id?
+
+You can search for a specific term using a facet search method. The `topic_id` will be displayed in the first column. See example below:
+
+{/* cell:45 cell_type:code */}
+```python
+impresso.search.facet("topic", term="Paris")
+```
+
+{/* cell:46 cell_type:markdown */}
+### `collection_id`
+You can display all content items you saved in one of your collections.
+
+{/* cell:47 cell_type:code */}
+```python
+impresso.search.find(collection_id="ADD_COLLECTION_ID_HERE")
+```
+
+{/* cell:48 cell_type:markdown */}
+To find the id of one of your collections, you can use the code below:
+
+{/* cell:49 cell_type:code */}
+```python
+impresso.search.facet("collection")
+```
+
+{/* cell:50 cell_type:markdown */}
+### `country`
 
 Find all content items published in either of the two specified countries.
 
-{/* cell:41 cell_type:code */}
+{/* cell:51 cell_type:code */}
 ```python
 impresso.search.find(term="Schengen", country=OR("FR", "CH"))
 ```
 
-{/* cell:42 cell_type:markdown */}
-## Partner
+{/* cell:52 cell_type:markdown */}
+### `partner_id`
 
 Limit search to content items provided by a specific partner of the Impresso project.
 
-{/* cell:43 cell_type:code */}
+{/* cell:53 cell_type:code */}
 ```python
 impresso.search.find(term="Schengen", partner_id="Migros")
 ```
 
-{/* cell:44 cell_type:markdown */}
-## Text reuse cluster
+{/* cell:54 cell_type:markdown */}
+### `text_reuse_cluster_id`
 
 Find all content items that are part of a specific text reuse cluster.
 
-{/* cell:45 cell_type:code */}
+{/* cell:55 cell_type:code */}
 ```python
 from impresso import OR
 impresso.search.find(text_reuse_cluster_id=OR("tr-nobp-all-v01-c29"))
 ```
 
-{/* cell:46 cell_type:markdown */}
-# Facets
+{/* cell:56 cell_type:markdown */}
+## Facets
 
-Facets are a way to get a summary of the search results from the perspective of a specific field. In a facet search result the field values are grouped together and the number of items in each group is displayed.
+Facets search is a way to get statistics for your search using Impresso metadata. Facets search method has the same attributes as the search method.
 
-Facet search method has the same attributes as the search method.
+Some of these Facet search methods have been used above already. Here you will find more:
 
-{/* cell:47 cell_type:markdown */}
-## Date range
+{/* cell:57 cell_type:markdown */}
+### Date range
 
-Get the number of content items that mention "Impresso", published on ever particular date.
+Get the number of content items that mention 'Impresso', published on a particular date.
 
-{/* cell:48 cell_type:code */}
+{/* cell:58 cell_type:code */}
 ```python
 impresso.search.facet("daterange", term="impresso")
 ```
 
-{/* cell:49 cell_type:markdown */}
-## Year
+{/* cell:59 cell_type:markdown */}
+### Year
 
-Get the number of content items that mention "impresso", published during every particular year.
+Get the number of content items that mention 'impresso', published during a particular year.
 
-{/* cell:50 cell_type:code */}
+{/* cell:60 cell_type:code */}
 ```python
 impresso.search.facet("year", term="impresso")
 ```
 
-{/* cell:51 cell_type:markdown */}
-## Content length
+{/* cell:61 cell_type:markdown */}
+### Content length
 
-Get the number of content items that mention "impresso", grouped by content length.
+Get the number of content items that mention 'impresso', grouped by content length.
 
-{/* cell:52 cell_type:code */}
+Results are grouped by 100 words. This way, 0 means content items containing between 0 - 100 words. 
+
+{/* cell:62 cell_type:code */}
 ```python
-impresso.search.facet("contentLength", term="impresso")
+impresso.search.facet("contentLength", term="impresso") 
 ```
 
-{/* cell:53 cell_type:markdown */}
-## Month
+{/* cell:63 cell_type:markdown */}
+### Month
 
-Get the number of content items that mention "impresso", published during every particular month.
+Get the number of content items that mention 'impresso', published during a particular month.
 
-{/* cell:54 cell_type:code */}
+PS: Months are represented by numbers in column 'value'. 1 = January...
+
+{/* cell:64 cell_type:code */}
 ```python
-impresso.search.facet("month", term="impresso")
+impresso.search.facet("month", term="impresso") 
 ```
 
-{/* cell:55 cell_type:markdown */}
-## Country
+{/* cell:65 cell_type:markdown */}
+### Country
 
-Get the number of content items that mention "impresso", grouped by country they were published in.
+Get the number of content items that mention 'impresso', grouped by country of publication.
 
-{/* cell:56 cell_type:code */}
+{/* cell:66 cell_type:code */}
 ```python
 impresso.search.facet("country", term="impresso")
 ```
 
-{/* cell:57 cell_type:markdown */}
-## Type
+{/* cell:67 cell_type:markdown */}
+### Type
 
-Get the number of items that mention "impresso", grouped by type of item.
+Get the number of items that mention 'impresso', grouped by type of item.
 
-{/* cell:58 cell_type:code */}
+Dictionary:
+
+* ad = advertisement
+* ar = article
+* ob = obtuary 
+
+{/* cell:68 cell_type:code */}
 ```python
 impresso.search.facet("type")
 ```
 
-{/* cell:59 cell_type:markdown */}
-## Topic
+{/* cell:69 cell_type:markdown */}
+### Topic
 
-Find topics that the content items mentioning "impresso" are related to.
+Find topics that the content items mentioning 'impresso' are related to.
 
-{/* cell:60 cell_type:code */}
+{/* cell:70 cell_type:code */}
 ```python
 impresso.search.facet("topic", term="pomme")
 ```
 
-{/* cell:61 cell_type:markdown */}
-## Collection
+{/* cell:71 cell_type:markdown */}
+### Collection
 
-Find collections the content items mentioning "pomme" are part of.
+Find within your collections, a collection in which a content items containing 'pomme' is stored. This will just work if you have a collection in Impresso. 
 
-{/* cell:62 cell_type:code */}
+{/* cell:72 cell_type:code */}
 ```python
 impresso.search.facet("collection", term="pomme")
 ```
 
-{/* cell:63 cell_type:markdown */}
-## Newspaper
+{/* cell:73 cell_type:markdown */}
+### Newspaper
 
-Find newspapers that the content items mentioning "Schengen" were published in.
+Find newspapers in which content items mentioning the keyword 'Schengen' have been published in.
 
-{/* cell:64 cell_type:code */}
+{/* cell:74 cell_type:code */}
 ```python
 impresso.search.facet("newspaper", term="Schengen")
 ```
 
-{/* cell:65 cell_type:markdown */}
-## Language
+{/* cell:75 cell_type:markdown */}
+### Language
 
-Find all languages the content items mentioning "impresso" were published in.
+Find the languages of content items mentioning the keyword 'impresso'.
 
-{/* cell:66 cell_type:code */}
+{/* cell:76 cell_type:code */}
 ```python
 impresso.search.facet("language", term="Schengen")
 ```
 
-{/* cell:67 cell_type:markdown */}
-## Person
+{/* cell:77 cell_type:markdown */}
+### Person
 
-Find all persons mentioned in content items that mention "Schengen". Get only the last page.
+Find all persons mentioned in content items that contain the keyword 'Schengen'. 
 
-{/* cell:68 cell_type:code */}
+{/* cell:78 cell_type:code */}
 ```python
 impresso.search.facet("person", term="Schengen", offset=7140)
 ```
 
-{/* cell:69 cell_type:markdown */}
-## Location
+{/* cell:79 cell_type:markdown */}
+### Location
 
-Find all locations mentioned in content items that mention "Schengen". Get only the last page.
+Find all locations mentioned in content items that mention 'Schengen'.
 
-{/* cell:70 cell_type:code */}
+{/* cell:80 cell_type:code */}
 ```python
 impresso.search.facet("location", term="Schengen", offset=3310)
 ```
 
-{/* cell:71 cell_type:markdown */}
-## NAG
+{/* cell:81 cell_type:markdown */}
+### NAG
 
-Find all entities without a known type mentioned in content items that mention "homme" and "femme".
+Find all entities without a known entity type (not tagged as person or location, for example) mentioned in content items that contain the keywords 'homme' and 'femme'.
 
-{/* cell:72 cell_type:code */}
+{/* cell:82 cell_type:code */}
 ```python
 from impresso import AND
 impresso.search.facet("nag", title=AND("homme", "femme"))
 ```
 
-{/* cell:73 cell_type:markdown */}
-## Access rights
+{/* cell:83 cell_type:markdown */}
+### Access rights
 
-Get access rights of content items mentioning "pomme".
+Get access rights of content items mentioning 'pomme'.
 
-{/* cell:74 cell_type:code */}
+{/* cell:84 cell_type:code */}
 ```python
 impresso.search.facet("accessRight", term="pomme")
 ```
 
-{/* cell:75 cell_type:markdown */}
-## Partner
+{/* cell:85 cell_type:markdown */}
+### Partner
 
-Get Impresso partners that provided content items mentioning "pomme".
+Get Impresso partners that provided content items mentioning 'pomme'.
 
-{/* cell:76 cell_type:code */}
+{/* cell:86 cell_type:code */}
 ```python
 impresso.search.facet("partner", term="pomme")
 ```
+
+{/* cell:87 cell_type:markdown */}
+## Conclusion
+That's it for now! Next, you can explore:
+
+- the [Introduction to the Impresso Python Library](https://github.com/impresso/impresso-datalab-notebooks/blob/main/starter/basics_ImpressoAPI.ipynb) notebook, which demonstrates how to use the Impresso Library further, including managing collections and much more.
+- if you want to learn more about the Impresso Python library, you can find its [documentation here](https://impresso.github.io/impresso-py/)
+
+{/* cell:88 cell_type:markdown */}
+---
+## Project and License info
+
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an interdisciplinary research project that aims to develop and consolidate tools for processing and exploring large collections of media archives across modalities, time, languages and national borders. The first project (2017-2021) was funded by the Swiss National Science Foundation under grant No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027) by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585) and the Luxembourg National Research Fund under grant No. 17498891.
+
+### Copyright
+
+Copyright (C) 2024 The Impresso team.
+
+### License
+
+This program is provided as open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>
+
+{/* cell:89 cell_type:markdown */}
+
