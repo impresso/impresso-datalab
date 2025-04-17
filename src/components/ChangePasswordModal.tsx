@@ -1,11 +1,11 @@
-import { Col, Container, Form, Modal, Row } from "react-bootstrap"
+import { Modal } from "react-bootstrap"
 import {
   BrowserViewChangePassword,
   BrowserViewConfirmChangePassword,
 } from "../constants"
 import { useBrowserStore } from "../store"
 import Alert from "./Alert"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import ChangePasswordForm, {
   type ChangePasswordFormPayload,
 } from "./ChangePasswordForm"

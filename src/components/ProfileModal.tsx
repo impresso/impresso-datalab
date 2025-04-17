@@ -36,6 +36,7 @@ const ProfileModal = () => {
           isStaff: data.isStaff,
           pattern: data.pattern,
           groups: data.groups,
+          plan: data.plan,
         })
       })
       .catch((error) => {
