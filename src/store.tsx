@@ -78,7 +78,7 @@ export const usePersistentStore = create<
       },
       reset() {
         localStorage.removeItem(AccessTokenKey)
-        set({ user: null, token: null })
+        set({ user: null, token: null, acceptTermsDate: null })
       },
       patchUser(user: User) {
         // get the current user and patch it with the new user
