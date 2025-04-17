@@ -185,7 +185,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       setFormError(new BadRequest("Please check your entries.", errorsAsData))
       return
     }
-    onSubmit(formPayload.current)
+
+    onSubmit({
+      ...formPayload.current,
+      username: formPayload.current.email.replace(/[^a-z]/g, ""),
+    })
   }
   const changeProfileColors = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -202,12 +206,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
 
   const updatePreview = (key: keyof RegisterFormPayload, value: string) => {
     formPayload.current[key] = value
-    console.info(
-      "[RegisterForm] @updatePreview",
-      key,
-      value,
-      JSON.stringify(formPayload.current)
-    )
     // handpick the fields to preview
     clearTimeout(previewDelayTimerRef.current!)
     previewDelayTimerRef.current = setTimeout(() => {

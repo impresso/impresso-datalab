@@ -61,7 +61,7 @@ const RegisterModal = () => {
         </p>
         <RegisterForm
           onSubmit={(payload) => {
-            console.info("[RegisterModal] @onSubmit", payload)
+            console.info("[RegisterModal] @onSubmit", payload.username)
             createUser(payload)
           }}
           error={error}
