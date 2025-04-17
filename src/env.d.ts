@@ -12,7 +12,6 @@ interface ImportMetaEnv {
   readonly PUBLIC_IMPRESSO_API_PATH: string
   readonly PUBLIC_IMPRESSO_WS_API_HOST: string
   readonly PUBLIC_IMPRESSO_WS_API_PATH: string
-  readonly LATEST_RELEASE_CARD_URL: string
 }
 
 interface ImportMeta {

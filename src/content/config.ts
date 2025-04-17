@@ -16,6 +16,7 @@ import {
   NotebookLevelBeginner,
   Plans,
 } from "../constants"
+import { toCamelCase } from "../logic"
 
 const CorpusAccessUserPlansToPlan: Record<string, string> = {
   "Guest User Plan": PlanGuest,
@@ -57,20 +58,18 @@ const CorpusAccessToDatasetMapper = (dataset: any) => {
 const datasets = defineCollection({
   loader: () =>
     axios
-      .get(
-        "https://raw.githubusercontent.com/impresso/impresso-corpus-metadata/refs/heads/master/data/access_rights_masterfiles/corpus_access_catalogue.json",
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-          },
-        }
-      )
+      .get(process.env.DATASETS_URL || "", {
+        headers: {
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        },
+      })
       .then((res) => {
         const response = res.data
         console.log(
-          "Reading Corpus Access JSON granted, syncinc contents:",
-          res.data.length
+          "\n [datasets] \n - requesting url: \n  ",
+          process.env.DATASETS_URL
         )
+        console.log("   received:", res.data.length)
         return response.map(CorpusAccessToDatasetMapper)
       })
       .catch((err) => {
@@ -150,63 +149,108 @@ const datasets = defineCollection({
   }),
 })
 
-const DataReleaseCardFromJson = (card: any) => {
-  return [
-    {
-      id: "latest",
-      version: card["Release Version"],
-      releaseName: card["Release Name"],
-      stats: card["Impresso Corpus Overview"]?.nps_stats,
-    },
-  ]
-}
-
-const dataReleaseCard = defineCollection({
+const dataReleaseCards = defineCollection({
   loader: () =>
-    axios
-      .get(`${process.env.LATEST_DATA_RELEASE_CARD_URL}`, {
-        headers: {
-          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-        },
-      })
-      .then((res) => {
-        const response = res.data
-        console.log(
-          "Reading latest Release Card JSON granted, syncinc contents:",
-          res.data
-        )
-        return DataReleaseCardFromJson(response)
-      })
-      .catch((err) => {
-        console.error(
-          err.message,
-          process.env.GITHUB_TOKEN ? "using token: YES" : "without token"
-        )
-        return [
-          {
-            id: "N/A",
-            version: "0.0.0",
-            releaseName: "No Release Name",
-            stats: {
-              total: 0,
-              newspapers: 0,
-              articles: 0,
-              pages: 0,
-              words: 0,
+    Promise.all(
+      (process.env.DATA_RELEASE_CARD_URLS || "").split(",").map((url) =>
+        axios
+          .get(url, {
+            headers: {
+              Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
             },
-          },
-        ]
-      }),
+          })
+          .then((res) => {
+            const response = res.data
+            console.log("\n [dataReleaseCards] \n - requesting url: \n  ", url)
+            const transformedResponse = toCamelCase({
+              // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
+              id: url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2"),
+              ...response,
+            })
+            console.log(
+              "   received:",
+              "\n   id:",
+              transformedResponse.id,
+              "\n   releaseName:",
+              transformedResponse.releaseName
+            )
+            return transformedResponse
+          })
+          .catch((err) => {
+            console.error(
+              err.message,
+              process.env.GITHUB_TOKEN ? "using token: YES" : "without token"
+            )
+            return {
+              id: "N/A",
+              releaseVersion: "0.0.0",
+              releaseName: "No Release Name",
+              impressoCorpusOverview: {
+                npsStats: {
+                  titles: 112,
+                  issues: 173424,
+                  pages: 7483588,
+                  contentItems: 3286536,
+                  images: 4002089,
+                  tokens: 1643977083,
+                },
+              },
+              impressoEnrichments: {
+                lingproc: { models: [] },
+                langident: { models: [] },
+                textreuse: { models: [] },
+                entities: { models: [] },
+                newsagencies: { models: [] },
+                topics: { models: [] },
+                ocrqa: { models: [] },
+                embImages: { models: [] },
+                embDocs: { models: [] },
+              },
+            }
+          })
+      )
+    ),
   schema: z.object({
     id: z.string(),
-    version: z.string(),
     releaseName: z.string(),
-    stats: z.object({
-      total: z.number(),
-      newspapers: z.number(),
-      articles: z.number(),
-      pages: z.number(),
-      words: z.number(),
+    releaseVersion: z.string(),
+    impressoEnrichments: z.object({
+      lingproc: z.object({
+        models: z.array(z.any()),
+        enrichmentStats: z.any().optional(),
+      }),
+      langident: z.object({
+        models: z.array(z.any()),
+        enrichmentStats: z.any().optional(),
+      }),
+      textreuse: z.object({
+        models: z.array(z.any()),
+        enrichmentStats: z.any().optional(),
+      }),
+      entities: z.object({
+        models: z.array(z.any()),
+        enrichmentStats: z.any().optional(),
+      }),
+      newsagencies: z.object({
+        models: z.array(z.any()),
+        enrichmentStats: z.any().optional(),
+      }),
+      topics: z.object({
+        models: z.array(z.any()),
+        enrichmentStats: z.any().optional(),
+      }),
+      ocrqa: z.object({
+        models: z.array(z.any()),
+        enrichmentStats: z.any().optional(),
+      }),
+      embImages: z.object({
+        models: z.array(z.any()),
+        enrichmentStats: z.any().optional(),
+      }),
+      embDocs: z.object({
+        models: z.array(z.any()),
+        enrichmentStats: z.any().optional(),
+      }),
     }),
   }),
 })
@@ -313,5 +357,5 @@ export const collections = {
   plans,
   pagesContents,
   datasets,
-  dataReleaseCard,
+  dataReleaseCards,
 }
