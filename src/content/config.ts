@@ -150,6 +150,60 @@ const datasets = defineCollection({
   }),
 })
 
+const DataReleaseCardFromJson = (card: any) => {
+  return {
+    version: card["Release Version"],
+    releaseName: card["Release Name"],
+    stats: card["Impresso Corpus Overview"]?.nps_stats,
+  }
+}
+
+const dataReleaseCard = defineCollection({
+  loader: () =>
+    axios
+      .get(`${process.env.LATEST_DATA_RELEASE_CARD_URL}`, {
+        headers: {
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        },
+      })
+      .then((res) => {
+        const response = res.data
+        console.log(
+          "Reading latest Release Card JSON granted, syncinc contents:",
+          res.data.length
+        )
+        return DataReleaseCardFromJson(response)
+      })
+      .catch((err) => {
+        console.error(
+          err.message,
+          process.env.GITHUB_TOKEN ? "using token: YES" : "without token"
+        )
+        return {
+          version: "0.0.0",
+          releaseName: "No Release Name",
+          stats: {
+            total: 0,
+            newspapers: 0,
+            articles: 0,
+            pages: 0,
+            words: 0,
+          },
+        }
+      }),
+  schema: z.object({
+    version: z.string(),
+    releaseName: z.string(),
+    stats: z.object({
+      total: z.number(),
+      newspapers: z.number(),
+      articles: z.number(),
+      pages: z.number(),
+      words: z.number(),
+    }),
+  }),
+})
+
 const notebooks = defineCollection({
   loader: glob({ pattern: "*.mdx", base: "./src/content/notebooks" }),
   schema: z.object({
@@ -241,6 +295,7 @@ const pagesContents = defineCollection({
     excerpt: z.string().optional(),
   }),
 })
+
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"
 export const collections = {
@@ -251,4 +306,5 @@ export const collections = {
   plans,
   pagesContents,
   datasets,
+  dataReleaseCard,
 }
