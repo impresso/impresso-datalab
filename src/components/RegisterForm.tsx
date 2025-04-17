@@ -6,14 +6,14 @@ import {
   PlanImpressoUser,
   PlanEducational,
   PlanLabels,
-  BrowserViewTermsOfUse,
 } from "../constants"
-import { useBrowserStore, usePersistentStore } from "../store"
+import { usePersistentStore } from "../store"
 import { DateTime } from "luxon"
 import { BadRequest, type FeathersError } from "@feathersjs/errors"
 import ErrorManager, { type BadRequestData } from "./ErrorManager"
-import type { Group } from "../types"
+import type { Group, User } from "../types"
 import { FloppyDiskArrowIn, Refresh } from "iconoir-react"
+import Link from "./Link"
 
 const Colors: string[] = [
   "#96ceb4",
@@ -75,16 +75,21 @@ export interface RegisterFormPreview {
   isStaff: boolean
   agreedToTerms: boolean
   groups: Group[]
+  plan: string
 }
 
 export interface RegisterFormProps {
   className?: string
   onSubmit: (payload: RegisterFormPayload) => void
   error?: FeathersError | null
-  initialValues?: RegisterFormPreview
+  initialValues?: IUserPreview
 }
 
-export const InitialDefaultValues: RegisterFormPreview = {
+interface IUserPreview extends User {
+  plan: string
+}
+
+export const InitialDefaultValues: IUserPreview = {
   email: "",
   firstname: "",
   lastname: "",
@@ -92,10 +97,11 @@ export const InitialDefaultValues: RegisterFormPreview = {
   profile: {
     pattern: generatePattern(),
   },
-  pattern: "",
+  pattern: "#660000",
   isStaff: false,
   agreedToTerms: false,
   groups: [],
+  plan: PlanImpressoUser,
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({
@@ -106,11 +112,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
 }) => {
   const previewDelayTimerRef = useRef<NodeJS.Timeout | null>(null)
   const acceptTermsDate = usePersistentStore((state) => state.acceptTermsDate)
-  const setView = useBrowserStore((state) => state.setView)
-  const [formError, setFormError] = useState<Error | null>(null)
-  const [formPreview, setFormPreview] = useState<RegisterFormPreview>(
-    () => initialValues
+  const setAcceptedTermsDate = usePersistentStore(
+    (state) => state.setAcceptedTermsDate
   )
+  const [formError, setFormError] = useState<Error | null>(null)
+  const [userPreview, setUserPreview] = useState<IUserPreview>(initialValues)
 
   const formPayload = useRef<RegisterFormPayload>({
     email: initialValues.email,
@@ -119,7 +125,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     username: initialValues.username,
     firstname: initialValues.firstname,
     lastname: initialValues.lastname,
-
     plan: PlanImpressoUser,
   })
 
@@ -156,14 +161,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         message: "Please enter a valid email address.",
       }
     }
-    // check username is lwercase and number only, with '.' and '_' and "-"
-    if (!formPayload.current.username.match(/^[a-z0-9-]{8,}$/)) {
-      errorsAsData.username = {
-        label: "Your user name",
-        message:
-          "Your user name must be at least 8 characters long, using only lowercase letters and numbers (e.g., johndoe84).",
-      }
-    }
+
     // check lastname and firstname not to be empty
     if (formPayload.current.firstname.trim().length < 2) {
       errorsAsData.firstname = {
@@ -193,7 +191,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     e.preventDefault()
     console.info("[RegisterForm] @changeProfileColors")
     const pattern = generatePattern()
-    setFormPreview((state) => ({
+    setUserPreview((state) => ({
       ...state,
       profile: {
         pattern,
@@ -204,16 +202,23 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
 
   const updatePreview = (key: keyof RegisterFormPayload, value: string) => {
     formPayload.current[key] = value
-    console.info("[RegisterForm] @updatePreview", key, value)
+    console.info(
+      "[RegisterForm] @updatePreview",
+      key,
+      value,
+      JSON.stringify(formPayload.current)
+    )
     // handpick the fields to preview
+    clearTimeout(previewDelayTimerRef.current!)
     previewDelayTimerRef.current = setTimeout(() => {
-      setFormPreview((state) => ({
+      setUserPreview((state) => ({
         ...state,
-        pattern: state.profile.pattern.join(","),
+        plan: formPayload.current.plan,
         email: formPayload.current.email,
+        pattern: state.profile!.pattern.join(","),
         firstname: formPayload.current.firstname,
         lastname: formPayload.current.lastname,
-        username: formPayload.current.username,
+        username: formPayload.current.email.replace(/[^a-z]/g, ""),
         groups: [
           {
             id: 1,
@@ -235,8 +240,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       lastname: initialValues.lastname,
       plan: PlanImpressoUser,
     }
-    setFormPreview(initialValues)
+    setUserPreview({
+      ...initialValues,
+      pattern: initialValues.profile?.pattern.join(",") ?? "",
+    })
   }, [initialValues])
+
   useEffect(() => {
     return () => {
       if (previewDelayTimerRef.current) {
@@ -264,35 +273,21 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           />
         ))}
       </section>
-      <Row>
-        <Col>
-          <Form.Group className="mb-3" controlId="ModalRegisterForm.email">
-            <Form.Label className="font-weight-bold">Email address</Form.Label>
-            <Form.Control
-              onChange={(e) => updatePreview("email", e.target.value)}
-              type="email"
-              value={formPayload.current.email}
-              placeholder="name@example.com"
-            />
-          </Form.Group>
-        </Col>
-        <Col>
-          {/* username */}
-          <Form.Group className="mb-3" controlId="ModalRegisterForm.username">
-            <Form.Label className="font-weight-bold">User name</Form.Label>
-            <Form.Control
-              onChange={(e) => updatePreview("username", e.target.value)}
-              value={formPayload.current.username}
-              placeholder="your user name"
-            />
-          </Form.Group>
-        </Col>
-      </Row>
+
+      <Form.Group className="mb-3" controlId="ModalRegisterForm.email">
+        <Form.Label className="font-weight-bold">Email address</Form.Label>
+        <Form.Control
+          onChange={(e) => updatePreview("email", e.target.value)}
+          type="email"
+          placeholder="name@example.com"
+          autoComplete="email"
+        />
+      </Form.Group>
+
       <Form.Group className="mb-3" controlId="ModalRegisterForm.firstname">
         <Form.Label className="font-weight-bold">First name</Form.Label>
         <Form.Control
           onChange={(e) => updatePreview("firstname", e.target.value)}
-          value={formPayload.current.firstname}
           placeholder="Your first name"
         />
       </Form.Group>
@@ -300,7 +295,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         <Form.Label className="font-weight-bold">Last name</Form.Label>
         <Form.Control
           onChange={(e) => updatePreview("lastname", e.target.value)}
-          value={formPayload.current.lastname}
           placeholder="Your last name"
         />
       </Form.Group>
@@ -332,32 +326,34 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           </Form.Group>
         </Col>
       </Row>
-      <Form.Group className="mb-3" controlId="ModalRegisterForm.agreedToTerms">
+      <Form.Group
+        className="mb-0 d-flex align-items-center"
+        controlId="ModalRegisterForm.agreedToTerms"
+      >
         <Form.Check
           checked={acceptTermsDate !== null}
           onChange={() => {
             if (acceptTermsDate) {
-              return
+              setAcceptedTermsDate(null)
+            } else {
+              setAcceptedTermsDate(DateTime.now().toISO())
             }
-            setView(BrowserViewTermsOfUse)
           }}
-          label="I agree to the Terms of Use"
+          label="I HAVE READ and I AGREE to the"
         />
-        {acceptTermsDate !== null && (
-          <p className="m-2 px-3">
-            You accepted the Terms of Use <br />
-            <b>
-              {DateTime.fromISO(acceptTermsDate)
-                .setLocale("en-GB")
-                .toLocaleString(DateTime.DATETIME_FULL)}
-            </b>
-          </p>
-        )}
+        <span className="pb-1 mb-1">
+          {" "}
+          <Link to="/terms-of-use" underline target="_blank">
+            Impresso Terms of Use
+          </Link>
+        </span>
       </Form.Group>
+
       <section className="d-flex p-2  gap-4 align-items-center mb-2 border-radius-sm ">
-        <div>Preview:</div>
+        <div>Preview of your user badge:</div>
         <UserCard
-          user={formPreview}
+          user={userPreview}
+          userPlan={userPreview.plan}
           className="shadow-sm border-radius-lg ps-2 py-2 pe-3 "
         />
         <button
@@ -367,7 +363,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           <Refresh /> <span className="ms-1">change colors</span>
         </button>
       </section>
-      <button type="submit" className="btn btn-primary btn-lg px-4">
+      <button
+        type="submit"
+        className="btn btn-primary btn-lg px-4"
+        disabled={!acceptTermsDate}
+      >
         <FloppyDiskArrowIn /> <span className="ms-2">Register</span>
       </button>
     </Form>

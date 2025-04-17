@@ -50,13 +50,14 @@ const RegisterModal = () => {
       </Modal.Header>
       <Modal.Body className="p-3">
         <p>
-          Create your Impresso account to explore the full potential of our
-          Datalab and Web App.{" "}
-          <Link to="/plans" underline>
-            Select the User Plan
+          Create your Impresso account to explore the full potential of our Web
+          App and Datalab. Be careful to select the{" "}
+          <Link to="/plans" target="_blank" underline>
+            User Plan
           </Link>{" "}
-          which fits your profile and be ready to provide evidence for Student
-          User, Academic Users and Academic User+ registrations.
+          which best describes your current status and be prepared to{" "}
+          <b>provide evidence</b> for Student User and Academic User
+          registrations.
         </p>
         <RegisterForm
           onSubmit={(payload) => {

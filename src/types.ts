@@ -47,10 +47,10 @@ export interface Series {
 export type User = {
   username: string
   isStaff: boolean
-  firstname?: string
-  lastname?: string
-  pattern?: string
-  email?: string
+  firstname: string
+  lastname: string
+  pattern: string
+  email: string
   profile?: {
     pattern: string[]
   }

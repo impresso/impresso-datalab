@@ -6,7 +6,7 @@ import {
 } from "../constants"
 import { useBrowserStore, usePersistentStore } from "../store"
 import Alert from "./Alert"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import type { FeathersError } from "@feathersjs/errors"
 import { userChangePlanRequestService } from "../services"
 import ChangePlanRequestForm, {
