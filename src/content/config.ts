@@ -151,11 +151,14 @@ const datasets = defineCollection({
 })
 
 const DataReleaseCardFromJson = (card: any) => {
-  return {
-    version: card["Release Version"],
-    releaseName: card["Release Name"],
-    stats: card["Impresso Corpus Overview"]?.nps_stats,
-  }
+  return [
+    {
+      id: "latest",
+      version: card["Release Version"],
+      releaseName: card["Release Name"],
+      stats: card["Impresso Corpus Overview"]?.nps_stats,
+    },
+  ]
 }
 
 const dataReleaseCard = defineCollection({
@@ -170,7 +173,7 @@ const dataReleaseCard = defineCollection({
         const response = res.data
         console.log(
           "Reading latest Release Card JSON granted, syncinc contents:",
-          res.data.length
+          res.data
         )
         return DataReleaseCardFromJson(response)
       })
@@ -179,19 +182,23 @@ const dataReleaseCard = defineCollection({
           err.message,
           process.env.GITHUB_TOKEN ? "using token: YES" : "without token"
         )
-        return {
-          version: "0.0.0",
-          releaseName: "No Release Name",
-          stats: {
-            total: 0,
-            newspapers: 0,
-            articles: 0,
-            pages: 0,
-            words: 0,
+        return [
+          {
+            id: "N/A",
+            version: "0.0.0",
+            releaseName: "No Release Name",
+            stats: {
+              total: 0,
+              newspapers: 0,
+              articles: 0,
+              pages: 0,
+              words: 0,
+            },
           },
-        }
+        ]
       }),
   schema: z.object({
+    id: z.string(),
     version: z.string(),
     releaseName: z.string(),
     stats: z.object({
