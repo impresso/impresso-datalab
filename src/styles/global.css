@@ -527,6 +527,7 @@ a.dropdown-item {
   display: inline-block;
   width: auto;
 }
+
 a.dropdown-item::after {
   content: "";
   position: absolute;
@@ -541,6 +542,10 @@ a.dropdown-item::after {
 }
 a.dropdown-item:hover::after {
   transform: scaleX(1);
+}
+
+.UserArea a.dropdown-item {
+  display: block;
 }
 
 .lang-tag-name {

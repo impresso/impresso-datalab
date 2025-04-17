@@ -85,7 +85,7 @@ const UserArea = () => {
     <div className="UserArea me-3 d-flex">
       {user !== null ? (
         <>
-          <Dropdown align={"end"}>
+          <Dropdown align={"start"}>
             <Dropdown.Toggle as={CustomToggle}>
               <UserCard user={user} userPlan={userPlan} />
             </Dropdown.Toggle>
@@ -115,9 +115,9 @@ const UserArea = () => {
               <Dropdown.Divider />
               <Dropdown.Item
                 target="_blank"
-                href="https://join.slack.com/t/impresso-community/shared_invite/enQtNTg5MzY2NDg2NTAyLTdiMmI2ZWU5ZjliNGNjN2M4NTgxM2UzOTQyYTkxYWU4MTgwN2I1MzQxMzg3N2Y0NGU3OGFjMzFmMGIyNGRlZmQ"
+                href={import.meta.env.PUBLIC_DISCUSSION_CHANNEL_URL}
               >
-                Join Slack Channel
+                Join our Discord Channel
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
