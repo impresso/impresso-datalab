@@ -2,7 +2,7 @@
 title: Terms of use
 ---
 
-**Last update:** 8 October 2024
+**Last update**: 4 Feb 2025 (v1.0.3)
 
 ### 1. ABOUT
 
@@ -91,11 +91,11 @@ There are two Media Archive Copyright Domains:
 
 2. **Protected Domain**: Media Archive that are under copyright but are accessible and usable for personal use or for research purposes or for educational purposes.
 
-Access to Media Archive within the Protected Domain may be conditioned according to academic affiliation and partner cultural heritage institution, as explained on this information page: LINK-TO-ADD.
+Access to Media Archive within the Protected Domain may be conditioned according to academic affiliation and partner cultural heritage institution. Please refer to the [Impresso Corpus Overview Table]() ADD LINK.
 
 ### 7. PERMITTED USE OF THE DATA
 
-**7.1 Media Archives** 
+**7.1 Media Archives**
 
 Media Archives accessible via the Impresso Interface and API can be used under the following conditions:
 
@@ -119,9 +119,9 @@ Within the Impresso Interface and API, Protected Domain Media Archives are label
 
 The Media Archive Copyright Domain and permitted use of Media Archive are indicated at the level of Data elements. This information is available in various views within the Interface and in the data export format.
 
-**It is the User’s responsibility to verify the data domain and Permitted Uuse of Data Elements before any usage.** In case of doubt, the User must treat the Data elements(s) as if they belong to the Protected Domain and discuss any questions he/she has with a representative of the Impresso project.
+**It is the User’s responsibility to verify the data domain and Permitted Use of Data Elements before any usage.** In case of doubt, the User must treat the Data elements(s) as if they belong to the Protected Domain and discuss any questions he/she has with a representative of the Impresso project.
 
-**The User** **must take appropriate safeguards to prevent use, access to, or disclosure of the Media Archives other than permitted by these Terms of Use.**
+**The User must take appropriate safeguards to prevent use, access to, or disclosure of the Media Archives other than permitted by these Terms of Use.**
 
 **7.2 Metadata**. 
 
@@ -144,7 +144,11 @@ The Impresso Services **are designed to facilitate research and are not intended
 
 ### 9. CITATION OF DATA.
 
-Users shall cite digital items in accordance with standard academic and scientific practice and with [Article 25](https://www.admin.ch/opc/en/classified-compilation/19920251/index.html#a25) of the Swiss Federal Act on Copyright and Related Rights. In particular, citations of Media Archive item(s) should always include their archive owner and the Impresso interface URL if they are found and accessed through it.
+Users shall cite digital items in accordance with standard academic and scientific practice, and with [Article 25](https://www.admin.ch/opc/en/classified-compilation/19920251/index.html#a25) of the Swiss Federal Act on Copyright and Related Rights and any other applicable law. Citations must be appropriately credited, respect the moral rights of the authors, and remain within the bounds of brevity and purpose as defined by applicable law. The ability to cite items may also depend on specific restrictions or legal obligations imposed by the Data owner. 
+
+In the case of INA Media Archive items, citations must comply with the legal framework of the right to quote and, more specifically, the French "droit de courte citation" (Article L.122-5 of the French Intellectual Property Code). 
+
+In general, citations of Impresso Media Archive item(s) should always include the Data owner, the Impresso interface URL if they are found and accessed through it, and the permanent URL (permalink) of the archival record, if available.
 
 ### 10. PERSONAL DATA
 
