@@ -1,0 +1,315 @@
+---
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/langident_pipeline_demo.ipynb
+authors:
+  - impresso-team
+title: Language Identification with `impresso-pipelines` Package
+sha: 6112eb10313e9eedd1efd8fbb257e1d3f03b4fc9
+date: 2025-04-09T09:37:45Z
+links:
+  - href: https://pypi.org/project/impresso-pipelines/
+    label: "`impresso-pipelines"
+  - href: https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/ocrqa_pipeline_demo.ipynb
+    label: OCRQA
+  - href: https://github.com/impresso/impresso-pipelines/tree/mallet_pipeline
+    label: "**Impresso Pipelines package**"
+  - href: https://impresso-project.ch
+    label: Impresso - Media Monitoring of the Past
+  - href: http://p3.snf.ch/project-173719
+    label: CRSII5_173719
+  - href: https://data.snf.ch/grants/grant/213585
+    label: CRSII5_213585
+  - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
+    label: GNU Affero General Public License
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/langident_pipeline_demo.ipynb
+---
+
+{/* cell:0 cell_type:markdown */}
+
+<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/langident_pipeline_demo.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+
+{/* cell:1 cell_type:markdown */}
+## What is this notebook about?
+
+This notebook introduces the language identification component of the
+[`impresso-pipelines](https://pypi.org/project/impresso-pipelines/) Python package. The broader goal of impresso pipelines is to make
+the internal data processing workflows of the impresso project reusable and accessible
+to others. It allows external users—such as researchers, developers, or digital
+humanities practitioners—to apply the same processing steps we used on our historical
+newspaper collections to their own text collections.
+
+The package is designed to require as little coding effort as possible. By offering ready-to-use pipelines, users can replicate impresso’s approach to document processing with minimal configuration. This ensures consistency, comparability, and transparency in how text data is prepared and analyzed.
+
+In this notebook, we introduce the `langident` subpackage, which performs
+automatic language detection on historical documents with considerable OCR noise for languages supported by impresso. You will learn how to apply language identification to
+your multilingual document collection and explore tools for understanding and diagnosing the
+results.
+
+## What will you learn?
+
+In this notebook, you will:
+
+- Understand how to use the `langident` subpackage from the impresso Pipelines package for language detection.
+
+- Learn how to classify text into different languages using a simple pipeline.
+
+- Explore diagnostic features to analyze language predictions.
+
+- Identify common challenges in language detection, such as handling short texts or
+  ambiguous words.
+
+- Experiment with multilingual and edge-case scenarios to observe model behavior.
+
+This hands-on guide will provide you with practical insights into language identification and its limitations. ​
+
+
+{/* cell:2 cell_type:markdown */}
+
+
+{/* cell:3 cell_type:markdown */}
+## Prerequisites
+
+First, you should install Impresso Pipelines package:
+
+
+{/* cell:4 cell_type:code */}
+```python
+%pip install -q impresso_pipelines[langident]
+```
+
+{/* cell:5 cell_type:markdown */}
+## Workflow
+
+### Basic usage
+
+Start by importing the necessary module from Impresso Pipelines package
+
+
+{/* cell:6 cell_type:code */}
+```python
+from impresso_pipelines.langident import LangIdentPipeline
+
+lang_pipeline = LangIdentPipeline()
+```
+
+{/* cell:7 cell_type:markdown */}
+Once you initialize the pipeline, you can simply provide the text you'd like to classify. This example demonstrates the use of German text.
+
+
+{/* cell:8 cell_type:code */}
+```python
+de_text = "Ein kleiner Hund namens Max lebte in einem ruhigen Dorf."
+```
+
+{/* cell:9 cell_type:code */}
+```python
+lang_pipeline(de_text)
+```
+
+{/* cell:10 cell_type:markdown */}
+The default output of the pipeline is a dictionary containing the top predicted language and its corresponding score (expressed as a probability). The score is rounded to three decimal places for better readability. Please note that the probabilities for all supported languages add up to 1 (by default, only the top language is returned).
+
+As shown, the pipeline uses the language identification model to correctly classify this text as German, with a rounded probability of 100%.
+
+
+{/* cell:11 cell_type:markdown */}
+### Advanced usage
+
+
+{/* cell:12 cell_type:markdown */}
+When using the pipeline with text, you can additionally specify two parameters: `diagnostics` and `model_id`.
+
+- `diagnostics`: A boolean value. If set to True, it returns not only the top predicted language but also all languages that the model can detect, along with their corresponding scores.
+
+- `model_id`: A boolean value. If set to True, it returns the name of the model used to identify the language of the text.
+
+
+{/* cell:13 cell_type:markdown */}
+Here we skip the part of module importing and initialization as it was done above.
+
+
+{/* cell:14 cell_type:code */}
+```python
+# Using text example from before
+lang_pipeline(de_text, diagnostics=True)
+```
+
+{/* cell:15 cell_type:markdown */}
+As shown, it returns a `language_dict` containing a list of all supported languages and their corresponding scores. Since the text is purely in German, all other scores are 0.0.
+
+
+{/* cell:16 cell_type:markdown */}
+Below is an example of using `model_id` with and without `diagnostics`.
+
+
+{/* cell:17 cell_type:code */}
+```python
+lang_pipeline(de_text, model_id=True)
+```
+
+{/* cell:18 cell_type:code */}
+```python
+lang_pipeline(de_text, model_id=True, diagnostics=True)
+```
+
+{/* cell:19 cell_type:markdown */}
+In both cases, we can see an additional key, `model_name`, which stores the name of the language identification model used by the pipeline.
+
+
+{/* cell:20 cell_type:markdown */}
+### Mixed language example
+
+
+{/* cell:21 cell_type:code */}
+```python
+mixed_text = (
+    "Max marchait doucement. Der vento soffiait fort, aber la strada restait vide."
+)
+```
+
+{/* cell:22 cell_type:code */}
+```python
+lang_pipeline(mixed_text, diagnostics=True)
+```
+
+{/* cell:23 cell_type:markdown */}
+As shown, this time the model clearly detects some French and even Italian, but French remains the top predicted language, with German as the second most likely.
+
+
+{/* cell:24 cell_type:markdown */}
+### Advanced Pipeline Initialization
+
+
+{/* cell:25 cell_type:markdown */}
+By default, the pipeline automatically selects the most recent language identification model from the Impresso HF repository: `impresso-project/impresso-floret-langident`.
+
+
+{/* cell:26 cell_type:markdown */}
+However, the module initialization allows you to pass additional arguments to use a specific model instead of the default one. These arguments include `model_id`, `repo_id`, and `revision`.
+
+- `model_id`: Specifies the name of the model.
+- `repo_id`: Specifies the repository where the model is located.
+
+- `revision`: Specifies the branch name of the repository.
+
+By providing all three, you can force the pipeline to use the language model you have specified.
+
+
+{/* cell:27 cell_type:code */}
+```python
+from impresso_pipelines.langident import (
+    LangIdentPipeline,
+)  # There's no need to import the module again if it has already been imported
+
+lang_pipeline = LangIdentPipeline(
+    model_id="langident-v1.0.0.bin",
+    repo_id="impresso-project/impresso-floret-langident",
+    revision="main",
+)
+```
+
+{/* cell:28 cell_type:code */}
+```python
+# Using text example from before
+lang_pipeline(de_text)
+```
+
+{/* cell:29 cell_type:markdown */}
+Once again, we see the same pipeline output as before.
+
+
+{/* cell:30 cell_type:markdown */}
+### Common Pitfalls in Language Detection
+
+
+{/* cell:31 cell_type:code */}
+```python
+short_fr_text = "Je mange."
+```
+
+{/* cell:32 cell_type:code */}
+```python
+short_de_text = "Der Computer auf dem Tisch funktioniert gut."
+```
+
+{/* cell:33 cell_type:code */}
+```python
+short_de_text_with_unusual_name = "Gleb geht ins Büro."
+```
+
+{/* cell:34 cell_type:code */}
+```python
+# Example 1: Very short sentence
+lang_pipeline(short_fr_text, diagnostics=True)
+```
+
+{/* cell:35 cell_type:code */}
+```python
+# Exaple 2: Not language specific sentence
+lang_pipeline(short_de_text, diagnostics=True)
+```
+
+{/* cell:36 cell_type:code */}
+```python
+# Example 3: Short sentence and unsual name
+lang_pipeline(short_de_text_with_unusual_name, diagnostics=True)
+```
+
+{/* cell:37 cell_type:markdown */}
+As demonstrated, this pipeline struggles to accurately detect the language when the text is too short. This challenge becomes even more pronounced when the words used are not strongly tied to a specific language. Additionally, the model encounters difficulties with short sentences that contain uncommon names. In general, the longer the text sample, the higher the detection accuracy.
+
+As shown above, despite low confidence scores, the pipeline correctly predicts the language in the first two cases (a short French text and a non-language-specific German text). However, in the third example—where the sentence is both short and includes an unusual, non-German name—the model makes an incorrect prediction.
+
+This example highlights the importance of longer, more language-distinctive sentences for achieving higher accuracy and confidence in language classification.
+
+
+{/* cell:38 cell_type:markdown */}
+---
+
+## Conclusion
+
+
+{/* cell:39 cell_type:markdown */}
+### Summary
+
+This notebook provides a step-by-step guide on using the `langident` subpackage from the Impresso Python package for language detection. It begins with an introduction to the package and instructions on installing the necessary dependencies.
+
+The workflow section covers:
+
+- Basic Usage: Initializing the language identification pipeline and classifying single-language texts.
+- Advanced Usage: Exploring additional pipeline features, such as retrieving full probability distributions for multiple languages.
+- Handling Challenging Cases: Analyzing model limitations when dealing with short or ambiguous texts, multilingual content, and names that may not be strongly language-specific.
+
+
+{/* cell:40 cell_type:markdown */}
+### Next steps
+
+You might also be interested in a follow-up notebook on the Impresso Pipeline package, [OCRQA](https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/ocrqa_pipeline_demo.ipynb), which utilizes the `langident` language detection.
+
+Additionally, you can find more technical details in the repository of the [**Impresso Pipelines package**](https://github.com/impresso/impresso-pipelines/tree/mallet_pipeline).
+
+
+{/* cell:41 cell_type:markdown */}
+---
+## Project and License info
+
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an interdisciplinary research project that aims to develop and consolidate tools for processing and exploring large collections of media archives across modalities, time, languages and national borders. The first project (2017-2021) was funded by the Swiss National Science Foundation under grant No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027) by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585) and the Luxembourg National Research Fund under grant No. 17498891.
+
+### Copyright
+
+Copyright (C) 2024 The Impresso team.
+
+### License
+
+This program is provided as open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>
+
