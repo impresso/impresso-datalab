@@ -13,10 +13,10 @@ const AboutModal: React.FC<{ content: string }> = ({
       <Container>
         <Row>
           <h1 className="my-3">About</h1>
-          <DatalabDiagram />
           <Col className="mt-3">
             <MarkdownSnippet value={content} />
           </Col>
+          <DatalabDiagram />
         </Row>
       </Container>
     </Page>
