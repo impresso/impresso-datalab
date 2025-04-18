@@ -1,7 +1,18 @@
 .NotebookViewer h2 {
   font-size: var(--font-size-h2);
+  padding-top: var(--spacer-3);
 }
 
 .NotebookViewer h3 {
   font-size: var(--font-size-h3);
+  padding-top: var(--spacer-3);
+}
+
+.NotebookViewer h2 > a,
+.NotebookViewer h3 > a {
+  display: inline-block;
+}
+
+.NotebookViewer hr {
+  display: none;
 }
