@@ -35,11 +35,13 @@ const SeriesCard: React.FC<SeriesCardProps> = ({
         {children}
       </section>
       <ol className="mb-3 mx-3">
-        {series.notebooks.map((notebook) => (
-          <li key={notebook.href} className="mt-2">
-            <NotebookCard notebook={notebook} />
-          </li>
-        ))}
+        {series.notebooks
+          .filter((notebook) => !notebook.draft)
+          .map((notebook) => (
+            <li key={notebook.href} className="mt-2">
+              <NotebookCard notebook={notebook} />
+            </li>
+          ))}
       </ol>
       {hasCover && (
         <div className="map-bg">

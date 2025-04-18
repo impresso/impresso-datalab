@@ -9,7 +9,7 @@ import { AstroSeo } from "@astrolib/seo"
 
 // load all notebooks, order by date
 const notebooks = await getCollection('notebooks')
-const notebooksProps = await Promise.all(notebooks.map(async (notebook) => {
+const notebooksProps = await Promise.all(notebooks.filter(notebook => !notebook.data.draft).map(async (notebook) => {
   const notebookProps = await getRecursivelyEntryData(notebook)
   return notebookProps
 }))

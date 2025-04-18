@@ -259,6 +259,7 @@ const notebooks = defineCollection({
   loader: glob({ pattern: "*.mdx", base: "./src/content/notebooks" }),
   schema: z.object({
     title: z.string().optional(),
+    draft: z.boolean().optional(),
     url: z.string().url().optional(),
     langModel: z.string().optional(),
     githubUrl: z.string().url().optional(),

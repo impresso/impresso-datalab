@@ -1,5 +1,6 @@
 ---
 title: Named Entity Processing with Impresso Models
+draft: true
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb
 authors:
   - impresso-team
@@ -35,11 +36,18 @@ links:
 
 {/* cell:0 cell_type:markdown */}
 
-<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+<a
+  target="_blank"
+  href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb"
+>
+  <img
+    src="https://colab.research.google.com/assets/colab-badge.svg"
+    alt="Open In Colab"
+  />
 </a>
 
 {/* cell:1 cell_type:markdown */}
+
 ## What is this notebook about?
 
 This notebook demonstrates how to use Impresso models for named entity recognition (NER) and entity linking (EL).
@@ -48,8 +56,7 @@ NER detects and classifies entities such as persons, locations, and organization
 
 In this notebook, both NER and EL are performed using models trained by Impresso and hosted on [Hugging Face](https://huggingface.co/impresso-project/) (thus the 'HF' suffix in the notebook name):
 
-- The **Impresso NER model** is a Transformer model trained on the Impresso HIPE-2020 portion of the [HIPE-2022 dataset](https://github.com/hipe-eval/HIPE-2022-data). It recognizes entity types such as person, location, and organization while supporting the complete [HIPE typology](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md), including coarse and fine-grained entity types as well as components like names, titles, and roles. Additionally, the NER model's backbone ([dbmdz/bert-medium-historic-multilingual-cased](https://huggingface.co/dbmdz/bert-medium-historic-multilingual-cased)) was trained on various European historical datasets, giving it a broader language capability.  This training included data from the Europeana and British Library collections across multiple languages: German, French, English, Finnish, and Swedish. Due to this multilingual backbone, the NER model may also recognize entities in other languages beyond French and German.
-  
+- The **Impresso NER model** is a Transformer model trained on the Impresso HIPE-2020 portion of the [HIPE-2022 dataset](https://github.com/hipe-eval/HIPE-2022-data). It recognizes entity types such as person, location, and organization while supporting the complete [HIPE typology](https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md), including coarse and fine-grained entity types as well as components like names, titles, and roles. Additionally, the NER model's backbone ([dbmdz/bert-medium-historic-multilingual-cased](https://huggingface.co/dbmdz/bert-medium-historic-multilingual-cased)) was trained on various European historical datasets, giving it a broader language capability. This training included data from the Europeana and British Library collections across multiple languages: German, French, English, Finnish, and Swedish. Due to this multilingual backbone, the NER model may also recognize entities in other languages beyond French and German.
 - The **Impresso NEL model** links detected entities to unique identifiers in Wikipedia and Wikidata or assigns a 'NIL' label (indicating "not in list" in NLP) if no reference is found. The NEL model was trained on various historical datasets (AjMC, CLEF-HIPE-2020, LeTemps, Living with Machines, NewsEye, SoNAR) across multiple languages, including German, French, English, Finnish, and Swedish, to support comprehensive entity linking (EL) and named entity recognition (NER). Its backbone, [mGENRE,](https://huggingface.co/facebook/mgenre-wiki) uses a multilingual text generation approach for Wikipedia entity prediction, trained on 105 languages from Wikipedia.
 
 Both models can also be tested interactively in Hugging Face spaces: the [NER space](https://huggingface.co/spaces/impresso-project/multilingual-named-entity-recognition) and the [EL space](https://huggingface.co/spaces/impresso-project/multilingual-entity-linking).
@@ -57,6 +64,7 @@ Both models can also be tested interactively in Hugging Face spaces: the [NER sp
 ## What will you learn in this notebook?
 
 By the end of this notebook, you will know how to:
+
 - Install the necessary libraries to run the models
 - Load the models and modules from Hugging Face
 - Perform NER on a text input
@@ -66,14 +74,16 @@ By the end of this notebook, you will know how to:
 To use this notebook, you may need to set the `HF_TOKEN` environment variable in the `.env` file (refer to `.env.example`). You can obtain a token by signing up on the [Hugging Face website](https://huggingface.co/join) and find additional information in the [official documentation](https://huggingface.co/docs/huggingface_hub/v0.20.2/en/quick-start#environment-variable). If you do not want to register an account on HF, simply select Cancel when prompted for a Hugging Face token — no token is needed for this notebook.
 
 {/* cell:2 cell_type:markdown */}
+
 ## Prerequisites
+
 First, we install and download necessary libraries:
 
 - **torch**: PyTorch is a popular open-source library for deep learning that provides tools for tensor computation, GPU acceleration, and building neural networks.
-- **protobuf**: Protobuf, short for 'Protocol Buffers', is a library developed by Google for serializing structured data in a fast and efficient way, ideal for communication between services. 
+- **protobuf**: Protobuf, short for 'Protocol Buffers', is a library developed by Google for serializing structured data in a fast and efficient way, ideal for communication between services.
 - **sentencepiece**: SentencePiece is a text processing library used primarily for tokenization, especially for languages with complex scripts. It supports subword tokenization, which is key for training language models that need flexible token units (e.g., parts of words). BERT and transformers in general often use SentencePiece for multilingual support.
-- **transformers**:  Developed by Hugging Face, this library offers many functionalities to support the development of NLP deep learning models. It provides pre-trained models for various tasks, supports architectures like BERT, GPT, T5, and others for model developement and manipulation, offers useful pipelines and easily integrates with PyTorch. The models developed by Impresso are BERT-based-
-**nltk**: The Natural Language Toolkit is a library for NLP in Python that offers tools for text processing tasks like tokenization, stemming, lemmatization, and parsing, as well as datasets for linguistic research and training. 
+- **transformers**: Developed by Hugging Face, this library offers many functionalities to support the development of NLP deep learning models. It provides pre-trained models for various tasks, supports architectures like BERT, GPT, T5, and others for model developement and manipulation, offers useful pipelines and easily integrates with PyTorch. The models developed by Impresso are BERT-based-
+  **nltk**: The Natural Language Toolkit is a library for NLP in Python that offers tools for text processing tasks like tokenization, stemming, lemmatization, and parsing, as well as datasets for linguistic research and training.
 
 Libraries can be installed from the notebook, or within your environment:
 
@@ -82,6 +92,7 @@ pip install torch protobuf sentencepiece transformers nltk
 ```
 
 {/* cell:3 cell_type:code */}
+
 ```python
 !pip install torch
 !pip install protobuf
@@ -91,9 +102,11 @@ pip install torch protobuf sentencepiece transformers nltk
 ```
 
 {/* cell:4 cell_type:markdown */}
+
 ## Entity Recognition
 
 {/* cell:5 cell_type:code */}
+
 ```python
 # Import necessary Python modules from the Transformers library
 from transformers import AutoModelForTokenClassification, AutoTokenizer
@@ -104,6 +117,7 @@ from transformers import pipeline
 For NER, we use the Impresso NER model named 'ner-stacked-bert-multilingual' and published on Hugging Face: https://huggingface.co/impresso-project/ner-stacked-bert-multilingual.
 
 {/* cell:7 cell_type:code */}
+
 ```python
 # We set the model_name variable to our chosen model, enabling us to load it and use it for token classification and NER
 MODEL_NAME = "impresso-project/ner-stacked-bert-multilingual"
@@ -115,29 +129,31 @@ ner_tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 {/* cell:8 cell_type:markdown */}
 It is necessary to create a pipeline for our task (`generic-ner`), using the loaded model and tokenizer. This pipeline handles multiple tasks under the hood. This custom NER pipeline streamlines tokenization, language-specific rules, and post-processing into a single workflow. It accurately identifies, aligns, and cleans entities while managing complexities like multilingual punctuation rules, attachment of complementary information (e.g., titles), and removal of redundant tokens. Using this pipeline simplifies our task by handling the NER within a single, streamlined process, making the workflow efficient and minimizing manual data processing.
 
-
 {/* cell:9 cell_type:code */}
+
 ```python
-ner_pipeline = pipeline("generic-ner", model=MODEL_NAME, 
-                        tokenizer=ner_tokenizer, 
+ner_pipeline = pipeline("generic-ner", model=MODEL_NAME,
+                        tokenizer=ner_tokenizer,
                         trust_remote_code=True,
                         device='cpu')
 ```
 
 {/* cell:10 cell_type:code */}
+
 ```python
 # We define some test input
-sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles, 
-                where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly, 
-                debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun, 
-                regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia, 
-                George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State, 
+sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles,
+                where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly,
+                debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun,
+                regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia,
+                George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State,
                 were drafting policies for the newly established American government following the signing of the Constitution."""
 
 print(sentence)
 ```
 
 {/* cell:11 cell_type:code */}
+
 ```python
 # A function that formats and displays the model output in a readable structure
 def print_nicely(data):
@@ -145,13 +161,14 @@ def print_nicely(data):
         for key, value in entry.items():
             print(f"  {key.capitalize()}: {value}")
         print()  # Blank line between entries
-        
+
 ```
 
 {/* cell:12 cell_type:markdown */}
 We apply the pipeline on the input and print nicely the output
 
 {/* cell:13 cell_type:code */}
+
 ```python
 # Recognize stacked entities for each sentence
 entities = ner_pipeline(sentence)
@@ -161,11 +178,13 @@ print_nicely(entities)
 ```
 
 {/* cell:14 cell_type:markdown */}
+
 ### Example of Entity Recognition with OCR Errors
 
 Below, we introduce simulated OCR errors, such as character misrecognition, missing spaces, and incorrect capitalization.
 
 {/* cell:15 cell_type:code */}
+
 ```python
 sentence_with_ocr_errors = """In the year 1789, K1ng L0uis XVl, ruler of France, convened the Estatzs-General at the Palaceof Versailles,
                 where Marie Antoinette, the Qveen of France, alongside Max1milien Robespierre, a leading member of the National Assembly,
@@ -179,8 +198,8 @@ sentence_with_ocr_errors = """In the year 1789, K1ng L0uis XVl, ruler of France,
 {/* cell:16 cell_type:markdown */}
 Now, let’s run the OCR-affected text through the NER pipeline to observe how well the algorithm performs under OCR-induced distortions.
 
-
 {/* cell:17 cell_type:code */}
+
 ```python
 entities_with_errors = ner_pipeline(sentence_with_ocr_errors)
 
@@ -188,6 +207,7 @@ print_nicely(entities_with_errors)
 ```
 
 {/* cell:18 cell_type:code */}
+
 ```python
 # Verify that the entity counts match for the original and OCR-affected sentences
 original_entities = ner_pipeline(sentence)
@@ -200,6 +220,7 @@ print("Are entity counts equal?", len(original_entities) == len(entities_with_er
 ```
 
 {/* cell:19 cell_type:markdown */}
+
 ## Entity Linking
 
 {/* cell:20 cell_type:markdown */}
@@ -208,6 +229,7 @@ With the EL model, we can link the previously recognised entity mentions to uniq
 We use the Impresso model named 'nel-mgenre-multilingual' and published on Hugging Face: https://huggingface.co/impresso-project/nel-mgenre-multilingual.
 
 {/* cell:21 cell_type:code */}
+
 ```python
 # Import the necessary modules from the transformers library
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
@@ -221,9 +243,10 @@ nel_tokenizer = AutoTokenizer.from_pretrained("impresso-project/nel-mgenre-multi
 ```
 
 {/* cell:22 cell_type:code */}
+
 ```python
-nel_pipeline = pipeline("generic-nel", model=NEL_MODEL_NAME, 
-                        tokenizer=nel_tokenizer, 
+nel_pipeline = pipeline("generic-nel", model=NEL_MODEL_NAME,
+                        tokenizer=nel_tokenizer,
                         trust_remote_code=True,
                         device='cpu')
 ```
@@ -235,7 +258,7 @@ Our entity linker requires a specific format to correctly identify the entity th
 The event was held at the [START] Palace of Versailles [END], a symbol of French monarchy.
 ```
 
-Assuming that the string "Palace of Versailles" was previously detected by an NER tool, we need to surround it with the `[START]` and `[END]` markers. 
+Assuming that the string "Palace of Versailles" was previously detected by an NER tool, we need to surround it with the `[START]` and `[END]` markers.
 
 The EL pipeline processes only one entity per input text. Therefore, for multiple entities within the same input, we must create separate inputs for each entity. For instance:
 
@@ -247,6 +270,7 @@ The event was held at the Palace of Versailles, a symbol of [START] French monar
 Let's take this example:
 
 {/* cell:24 cell_type:code */}
+
 ```python
 simple_sentence = "The event was held at the [START] Palace of Versailles [END], a symbol of French monarchy."
 
@@ -259,6 +283,7 @@ print_nicely(linked_entity)
 It _could_ work without the special markers and texts mentioning only one entity, but we do not recommend it.
 
 {/* cell:26 cell_type:code */}
+
 ```python
 simple_sentence = "The event was held at the Palace of Versailles, a symbol of French monarchy."
 
@@ -271,6 +296,7 @@ print_nicely(linked_entity)
 By using our NER tool, we can automatically generate sentences with entity markers and subsequently link each entity:
 
 {/* cell:28 cell_type:code */}
+
 ```python
 # Run the NER pipeline on the input sentence and store the results
 entities = ner_pipeline(sentence)
@@ -309,13 +335,13 @@ for entity in entities:
 ```
 
 {/* cell:29 cell_type:markdown */}
+
 ### Example of Entity Linking with OCR Errors
 
 To evaluate the robustness of entity linking with OCR errors, we use both the original and OCR-affected sentences. Below, the entities identified by NER are linked individually to unique Wikipedia/Wikidata entries, while OCR errors are present.
 
-
-
 {/* cell:30 cell_type:code */}
+
 ```python
 print(f'{len(entities_with_errors)} entities were previously detected in OCR-affected text.')
 
@@ -353,11 +379,13 @@ for entity in entities_with_errors:
 ```
 
 {/* cell:31 cell_type:markdown */}
+
 ## Looking up entities in the Impresso Corpus
 
-Are the previously recognised entities present in the Impresso Corpus? For each entity, we use impresso_session.entities.find() to look it up by name. This search will attempt to find a match for the exact name provided. If OCR errors are introduced (e.g., "Max1milien Robespierre" instead of "Maximilien Robespierre"), we can observe how resilient the search function is to variations. Let's explore using the Impresso API and Python Library. 
+Are the previously recognised entities present in the Impresso Corpus? For each entity, we use impresso_session.entities.find() to look it up by name. This search will attempt to find a match for the exact name provided. If OCR errors are introduced (e.g., "Max1milien Robespierre" instead of "Maximilien Robespierre"), we can observe how resilient the search function is to variations. Let's explore using the Impresso API and Python Library.
 
 {/* cell:32 cell_type:code */}
+
 ```python
 !pip install --upgrade --force-reinstall impresso
 from impresso import version
@@ -365,6 +393,7 @@ print(version)
 ```
 
 {/* cell:33 cell_type:code */}
+
 ```python
 from impresso import connect
 
@@ -372,6 +401,7 @@ impresso_session = connect()
 ```
 
 {/* cell:34 cell_type:code */}
+
 ```python
 entity = impresso_session.entities.find("Maximilien Robespierre")
 
@@ -381,9 +411,8 @@ entity
 {/* cell:35 cell_type:markdown */}
 This command checks if "Maximilien Robespierre" exists in the Impresso database. Similarly, we test the resilience of the search function by querying slightly altered names (e.g., "Max1milien Robespierre").
 
-
-
 {/* cell:36 cell_type:code */}
+
 ```python
 entity = impresso_session.entities.find("Max1milien Robespierre")
 
@@ -391,6 +420,7 @@ entity
 ```
 
 {/* cell:37 cell_type:code */}
+
 ```python
 entity = impresso_session.entities.find("Marie Antoinette")
 
@@ -398,6 +428,7 @@ entity
 ```
 
 {/* cell:38 cell_type:code */}
+
 ```python
 
 ```
