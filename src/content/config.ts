@@ -172,7 +172,8 @@ const dataReleaseCards = defineCollection({
               "\n   id:",
               transformedResponse.id,
               "\n   releaseName:",
-              transformedResponse.releaseName
+              transformedResponse.releaseName,
+              transformedResponse
             )
             return transformedResponse
           })
@@ -214,6 +215,16 @@ const dataReleaseCards = defineCollection({
     id: z.string(),
     releaseName: z.string(),
     releaseVersion: z.string(),
+    impressoCorpusOverview: z.object({
+      npsStats: z.object({
+        titles: z.number(),
+        issues: z.number(),
+        pages: z.number(),
+        contentItems: z.number(),
+        images: z.number(),
+        tokens: z.number(),
+      }),
+    }),
     impressoEnrichments: z.object({
       lingproc: z.object({
         models: z.array(z.any()),
