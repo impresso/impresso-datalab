@@ -4,7 +4,6 @@ import {
   BrowserViewConfirmChangePassword,
 } from "../constants"
 import { useBrowserStore } from "../store"
-import Alert from "./Alert"
 import { useEffect, useState } from "react"
 import ChangePasswordForm, {
   type ChangePasswordFormPayload,
