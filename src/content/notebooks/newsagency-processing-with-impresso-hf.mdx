@@ -5,17 +5,47 @@ excerpt: Impresso BERT-based pipeline, trained on Swiss and Luxembourgish
   newspapers from the Impresso project, identifies and links news agencies in
   historical articles. This notebook guides you through setting up a workflow to
   detect these entities in your own text.
-sha: 55363ab9c8cb7fb53b8aa24e3fcc05cbe109ffc6
-date: 2025-04-30T08:18:23Z
+sha: 1c174216a26ce06ec79dafe56cf2213c7537ffa2
+date: 2025-04-30T12:47:36Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/newsagency-processing_ImpressoHF.ipynb
 authors:
   - impresso-team
 links:
+  - href: https://en.wikipedia.org/wiki/Language_model
+    label: language model
+  - href: https://en.wikipedia.org/wiki/BERT_(language_model
+    label: BERT
+  - href: https://en.wikipedia.org/wiki/Named-entity_recognition
+    label: NER
+  - href: https://infoscience.epfl.ch/entities/publication/0ca6e53d-d37e-4cdf-a360-2dd9f34a8271
+    label: Marxen, 2023
+  - href: https://infoscience.epfl.ch/entities/publication/0ca6e53d-d37e-4cdf-a360-2dd9f34a8271
+    label: Marxen, 2023
   - href: https://huggingface.co/spaces/impresso-project/multilingual-news-agency-recognition
     label: News Agency Recognition
   - href: https://huggingface.co/docs/hub/en/spaces
     label: HuggingFace Spaces
+  - href: https://huggingface.co/overview
+    label: What is Hugging Face?
+  - href: https://impresso-project.ch
+    label: Impresso Project Website
+  - href: https://en.wikipedia.org/wiki/Andrew_Ng
+    label: Andrew Ng
+  - href: https://huggingface.co/transformers/model_doc/bert.html
+    label: Introduction to BERT Models
+  - href: https://huggingface.co/transformers/task_summary.html#named-entity-recognition
+    label: Named Entity Recognition with Transformers
+  - href: https://en.wikipedia.org/wiki/Andrew_Ng
+    label: Andrew Ng
+  - href: https://huggingface.co/spaces/impresso-project/multilingual-news-agency-recognition
+    label: Multilingual News Agency Recognition Demo (HF Spaces)
+  - href: https://github.com/impresso/newsagency-classification
+    label: Model Source Code and Training Data
+  - href: https://en.wikipedia.org/wiki/Andrew_Ng
+    label: Andrew Ng
+  - href: https://arxiv.org/pdf/2410.05864
+    label: tokens are almost the equivalent of words
   - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb
     label: Visualising Place Entities on Maps
   - href: data:image/png;base64,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
@@ -43,97 +73,291 @@ seealso:
 {/* cell:1 cell_type:markdown */}
 ## What is this notebook about?
 
-(example) This notebook demonstrates how to, by loading a model from HuggingFace into the notebook, find mentions to news agencies in historical newspaper articles. 
+This notebook demonstrates how to find mentions of news agencies in historical newspaper articles by loading a pre-trained model from Hugging Face. The model, part of the Impresso Project, is designed to recognize agency names such as Reuters, AFP, Havas, or DPA in texts written in French and German.
+
+It leverages a [language model](https://en.wikipedia.org/wiki/Language_model)-based (more exacly, [BERT](https://en.wikipedia.org/wiki/BERT_(language_model))) multilingual named entity recognition ([NER](https://en.wikipedia.org/wiki/Named-entity_recognition)) model, fine-tuned on manually annotated articles from Swiss and Luxembourgish press (1840–2000), and provides a practical, reproducible way to detect these mentions in your own text collections. More details about how the model and data were created are detailed in the Master thesis of [Marxen, 2023](https://infoscience.epfl.ch/entities/publication/0ca6e53d-d37e-4cdf-a360-2dd9f34a8271).
+
 
 ## Why is this useful?
 
-Delivering swift and reliable news since the 1830s and 1840s, news agencies have played a pivotal role both nationally and internationally. However, understanding their precise impact on shaping news content has remained somewhat elusive. Our goal is to illuminate this aspect by identifying news agencies within historical newspaper articles. Using data from newspapers in Switzerland and Luxembourg as part of the Impresso project, we've trained our pipeline to recognize these entities.
+Delivering swift and reliable news since the 1830s and 1840s, news agencies have played a pivotal role both nationally and internationally. However, understanding their precise influence on shaping historical news content has remained somewhat elusive. Our goal is to illuminate this hidden infrastructure by identifying when and where agency material appeared in the press.
 
-If you're here, you likely seek to detect news agency entities in your own text. This notebook will guide you through the process of setting up a workflow to identify specific newspaper or agency mentions within your text.
+We concentrated on articles we could confidently identify as having agency content, which motivated the following working definition:
+> *"An article with news agency content is anything that explicitly cites a news agency as a source."*
+
+This approach ensures high-quality, unambiguous supervision during training — but it also means the model expects mentions to follow certain typical patterns.
+
+#### What counts as an “explicit” mention?
+
+In the training data, agency mentions most commonly appear in specific, identifiable formats, including:
+* At the beginning or end of an article:
+> ATS-REUTERS, Genève, mardi —
+> BERLIN, 10 mars (DPA) –
+* As a parenthetical or attributed clause:
+> La dépêche vient de (Reuter)
+> Selon l’A.F.P., le conflit s’aggrave…
+* As a stylistic line break after the dateline:
+> LONDRES, 2. — Agence — Les Anglais…
+
+Because these formats appeared more frequently in the dataset, the model is naturally better at detecting them. This is not due to any explicit bias in annotation, but rather a reflection of how agency content was typically presented in 19th–20th century newspaper writing.
+
+#### What the model might not detect
+
+Mentions embedded deep in the article body or framed narratively, like in the following example, are more difficult:
+
+> "Reuters reports from Calcutta that the earthquake threatened part of eastern India..."
+
+Even though this refers to a news agency ("Reuters"), the model might not recognise it as such because:
+* There is no explicit label or cue marking it as an agency (e.g., "(EXTEL)" or "—Agence—").
+* The mention is part of narrative reporting, not in a typographically distinct format.
+* The phrasing may not match surface forms seen frequently enough during training.
+
+#### Best practices for effective use
+
+To achieve the most reliable results:
+* Use texts where the agency name appears in a clear, structured format, ideally as part of the byline or first sentence.
+* Focus on articles where explicit agency attribution is given, especially through acronyms (e.g., AFP, SDA, DPA).
+* Be cautious with more literary or narrative texts, where attribution may be implicit or ambiguous.
+* When in doubt, consult [Marxen, 2023](https://infoscience.epfl.ch/entities/publication/0ca6e53d-d37e-4cdf-a360-2dd9f34a8271).
+
+
+If you're here, you likely seek to detect news agency entities in your own text. This notebook will walk you through how to load the model, apply it to your data, and interpret the output. If your material contains agency mentions in less-standardised forms, the detection of news agencies cannot be ensured.
 
 You can also access our [News Agency Recognition](https://huggingface.co/spaces/impresso-project/multilingual-news-agency-recognition) demo app through [HuggingFace Spaces](https://huggingface.co/docs/hub/en/spaces).
 
 {/* cell:2 cell_type:markdown */}
+## How it works
 
+This notebook uses a named entity recognition (NER) model built on top of dbmdz/bert-base-historic-multilingual-cased, fine-tuned specifically to identify news agency mentions in historical texts.
+
+The model is applied using the Hugging Face pipeline interface. It performs token classification, labeling each token in the input text with a BIO-style tag that indicates whether it belongs to a recognized agency (e.g., B-Reuters, I-Reuters) or not.
+
+Under the hood, the model has learned to associate known agency names, variants, and historical abbreviations (like "Reuter", "A.F.P.", "dépêche Belga", etc.) with specific tags. It also recognizes more generic cases such as ag (for "agence") and `articleauthor` (for personal bylines).
+
+
+{/* cell:3 cell_type:markdown */}
 ## What will you learn?
 
 In this notebook, you will:
 
-* (example) learn how to make use of HuggingFace models
-* xxx
-* xxx
+* Learn how to load and apply a custom NER model from Hugging Face using the transformers library
+* Understand how to identify mentions of news agencies in French and German historical newspaper articles
+* Explore how the model outputs structured information including entity type, surface form, position, and confidence
+* Gain insight into using entity recognition for media provenance analysis in historical datasets
 
 ## Useful resources
 
-Any useful resources that would help the user understand this notebook? (not mandatory)
+Here are some resources grouped by level of familiarity, with helpful reminders along the way:
 
-(example) - What is HuggingFace? What are BERT models? 
+#### Beginner
 
-{/* cell:3 cell_type:markdown */}
+- [What is Hugging Face?](https://huggingface.co/overview)  
+  A simple introduction to the Hugging Face ecosystem and what it offers.
+
+- [Impresso Project Website](https://impresso-project.ch)  
+  Overview of the project behind this model, focusing on historical media analysis.
+
+> *"If you don’t understand something now, don't worry — just keep going. It'll often make more sense later."* – [Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng)
+
+#### Intermediate
+
+- [Introduction to BERT Models](https://huggingface.co/transformers/model_doc/bert.html)  
+  A technical overview of how BERT works and how it’s used in NLP tasks.
+
+- [Named Entity Recognition with Transformers](https://huggingface.co/transformers/task_summary.html#named-entity-recognition)  
+  Explanation of how to apply pretrained transformer models for NER tasks.
+
+> *"Learning is not a linear process. Sometimes, understanding comes after you've seen the bigger picture."* – [Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng)
+
+#### Advanced
+
+- [Multilingual News Agency Recognition Demo (HF Spaces)](https://huggingface.co/spaces/impresso-project/multilingual-news-agency-recognition)  
+  Explore how the news agency recognition model performs in real-world examples, and try customizing inputs for evaluation.
+
+- [Model Source Code and Training Data](https://github.com/impresso/newsagency-classification)  
+  Dive into the codebase used for training and deploying the model, including data preparation and fine-tuning details.
+
+> *"Trust yourself. You understand more than you think you do."* – [Andrew Ng](https://en.wikipedia.org/wiki/Andrew_Ng)
+
+{/* cell:4 cell_type:markdown */}
 ## Prerequisites
 
 Install necessary libraries (if not already installed) and
 download the necessary NLTK data.
 
-{/* cell:4 cell_type:code */}
+{/* cell:5 cell_type:code */}
 ```python
 !pip install transformers
 !pip install stopwordsiso
 !pip install nltk
 ```
 
-{/* cell:5 cell_type:markdown */}
-Now the fun part, this function will download the requried model and gives you the keys to successfullly detect news agencies in your text.
+{/* cell:6 cell_type:markdown */}
+## Basic Usage
 
-{/* cell:6 cell_type:code */}
+To get started, you can load the model directly from Hugging Face using the transformers pipeline. This gives you a simple interface to process texts and extract news agency mentions.
+
+{/* cell:7 cell_type:code */}
 ```python
 from transformers import pipeline
 
-newsagency_ner_pipeline = pipeline("newsagency-ner", 
-                                   model="impresso-project/ner-newsagency-bert-multilingual", 
-                                   trust_remote_code=True, 
-                                   device='cpu')
+nlp = pipeline("newsagency-ner", model="impresso-project/ner-newsagency-bert-multilingual", trust_remote_code=True)
+
+text = "REUTERS, Osaka – New severe earthquakes in Japan. Telephone and telegraph connections between Tokyo and Osaka have been disrupted by an earthquake. Trams in Tokyo are at a standstill. Fires have broken out in Sugamo, a Tokyo suburb. A train plunged into the Basubawa, a river between Gotemba and Tokyo. Six trains were overturned. In Yokohama, 600 houses were destroyed."
+results = nlp(text)
 ```
 
-{/* cell:7 cell_type:markdown */}
-Run the example below to see how it works.
+{/* cell:8 cell_type:markdown */}
+The output is a list of detected entities with their type, surface form, character offsets, and confidence.
 
-{/* cell:8 cell_type:code */}
+{/* cell:9 cell_type:code */}
 ```python
-sentence = """In the year 1789, King Louis XVI, ruler of France, convened the Estates-General at the Palace of Versailles, 
-        where Marie Antoinette, the Queen of France, alongside Maximilien Robespierre, a leading member of the National Assembly, 
-        debated with Jean-Jacques Rousseau, the famous philosopher, and Charles de Talleyrand, the Bishop of Autun, 
-        regarding the future of the French monarchy. At the same time, across the Atlantic in Philadelphia, 
-        George Washington, the first President of the United States, and Thomas Jefferson, the nation's Secretary of State, 
-        were drafting policies for the newly established American government following the signing of the Constitution. (Reuter)"""
-
-# Function to print each entry nicely
-def print_nicely(data):
-    for idx, entry in enumerate(data, start=1):
-        for key, value in entry.items():
-            print(f"  {key.capitalize()}: {value}")
-        print()  # Blank line between entries
-
-news_agencies = newsagency_ner_pipeline(sentence)
-
-print_nicely(news_agencies)
+results
 ```
 
-{/* cell:9 cell_type:markdown */}
+{/* cell:10 cell_type:markdown */}
+## Advanced Usage
+
+In real-world use cases, especially when working with long articles or batches of OCRed texts, it can be useful to not just extract individual mentions of news agencies but to summarise what agencies appear, how confidently they were detected, and whether the article might be sourced from an agency.
+
+To help with this, we define a simple helper function `analyse_agency_mentions` that takes a full article, uses the model to extract agency mentions, and returns a short analysis including:
+* Which agencies were found
+* How often each one appears
+* The average confidence for each
+* A heuristic-based guess on whether the article might contain original news agency content
+
+This is particularly helpful if you're filtering large corpora to identify texts likely to have originated from agencies such as AFP, Havas, Reuters, or DPA.
+
+
+
+{/* cell:11 cell_type:code */}
+```python
+import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')
+from nltk.tokenize import sent_tokenize
+```
+
+{/* cell:12 cell_type:markdown */}
+If you're working with longer articles or entire OCRed pages, it's often best to break the text into sentences or chunks before applying the model. This avoids truncation issues (BERT has a token limit of 512 tokens where [tokens are almost the equivalent of words](https://arxiv.org/pdf/2410.05864)) and improves precision.
+
+{/* cell:13 cell_type:code */}
+```python
+# A long historical article (example)
+article = """London, 3 September (AFP) – A powerful earthquake struck eastern Japan early this morning. 
+Reuters reports that the tremors, which began at 3:57 a.m., caused widespread disruption in Tokyo and Yokohama. 
+Fires broke out in the districts of Sugamo and Bunkyo, and several train lines have been suspended.
+
+According to (Reuters), over 600 homes have been destroyed, and dozens are missing or injured. 
+AFP correspondents in Yokohama describe scenes of panic, with emergency services struggling to reach the worst-hit areas.
+
+Meanwhile, (DPA) confirms that the German consulate in Yokohama may have suffered structural collapse. 
+A bulletin issued by DPA's Kobe bureau states that telegraph lines between Kobe and Tokyo are down, complicating relief efforts.
+
+Further updates are expected later today from (Reuters), (AFP), and (DPA).
+"""
+# Sentence splitting
+sentences = sent_tokenize(article, language="french")
+
+sentences[0]
+```
+
+{/* cell:14 cell_type:code */}
+```python
+import numpy as np
+
+def analyse_agency_mentions(sentences, confidence_threshold=0.8):
+    """
+    Analyse a list of sentences for news agency mentions and print the findings.
+
+    Args:
+        sentences (list of str): The input sentences to analyze.
+        confidence_threshold (float): Minimum confidence to consider a detection valid.
+
+    Returns:
+        details (dict): Dictionary with agency stats and source-likeness scores.
+    """
+    results = []
+    for sentence in sentences:
+        results += nlp(sentence)
+
+    if not results:
+        print("No news agency mentions found in the text.")
+        return {}
+
+    # Collect agency hits
+    agency_hits = {}
+    for ent in results:
+        agency_type = ent.get("type", "unknown")
+        confidence = ent.get("confidence", 0.0)
+        agency_hits.setdefault(agency_type, []).append(confidence)
+
+    print("This article mentions the following news agencies:")
+
+    total_mentions = sum(len(confidences) for confidences in agency_hits.values())
+    details = {}
+    source_scores = {}
+
+    for agency, confidences in agency_hits.items():
+        count = len(confidences)
+        avg_conf = round(np.mean(confidences), 2)
+        norm_count = count / total_mentions if total_mentions > 0 else 0
+        source_score = round(0.6 * norm_count + 0.4 * avg_conf, 2)
+
+        details[agency] = {
+            "occurrences": count,
+            "avg_confidence": avg_conf,
+            "source_likeness_score": source_score
+        }
+        source_scores[agency] = source_score
+        print(f"- {agency}: {count} occurrence(s), avg. confidence {avg_conf:.2f}, source-likeness score: {source_score}")
+
+    # Identify top candidate
+    top_agency = max(source_scores.items(), key=lambda x: x[1])[0]
+    top_score = source_scores[top_agency]
+
+    if top_score >= confidence_threshold:
+        print(f"✅ This article might be original news agency material from {top_agency}.")
+    else:
+        print("ℹ️ This article may reference agencies, but is unlikely to be original agency content.")
+
+    return details
+```
+
+{/* cell:15 cell_type:code */}
+```python
+details = analyse_agency_mentions(sentences, confidence_threshold=0.6)
+```
+
+{/* cell:16 cell_type:code */}
+```python
+print(details)
+```
+
+{/* cell:17 cell_type:markdown */}
+The function uses a confidence threshold (default 0.8) to decide whether an article is likely to contain primary agency content. This is based on the idea that original material typically begins with an explicit agency attribution (e.g., "AFP, Berlin, 2 mars – ...").
+
+You can adjust the threshold or modify the logic depending on how conservative or inclusive you want to be in defining "first agency material."
+
+
+{/* cell:18 cell_type:markdown */}
 ## Conclusion
 
-This notebook provided you with a... (summary)
+This notebook provided you with a practical introduction to identifying news agency mentions in historical newspaper articles using a multilingual NER model developed as part of the Impresso project. You learned how to load and apply the model, understand how it interprets explicit agency attributions, and even analyze whether an article might contain first-source agency content.
 
-What should people consider when using this notebook? What are the potentials and limitations? 
+When using this notebook, keep in mind that the model was trained on texts with explicit, surface-level mentions of agencies (e.g., AFP, DPA, Havas) and may not detect more subtle or implicit attributions. Its performance is best on OCR-cleaned historical articles in French or German, particularly from the 19th and 20th centuries.
+
+Despite these limitations, the tool offers a scalable, reusable method for investigating media sourcing, information flows, and content provenance in digitized historical corpora.
 
 ## Next Steps
 
-That's it for now! Next, you can explore:
+That’s it for now! If you're interested in expanding your analysis, here are some next steps:
 
 - the [Visualising Place Entities on Maps](https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb) notebook, which demonstrates how to visualise in a map mentions to places in the Impresso corpus.
-- the [Named Entity Recognition with impresso-pipelines]() notebook, which allows you reuse Impresso NER models and apply them to your own data. 
+- the [Named Entity Recognition with impresso-pipelines]() notebook, which allows you reuse Impresso NER models and apply them to your own data.
+- Apply this news agency pipeline to your own OCR collections, or combine it with metadata (dates, locations, publishers) to study the historical dynamics of international news coverage.
 
-{/* cell:10 cell_type:markdown */}
+{/* cell:19 cell_type:markdown */}
 ---
 ## Project and License info
 
