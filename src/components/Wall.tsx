@@ -69,7 +69,7 @@ const Wall = ({
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
       <Container fluid>
         <Row className="d-flex align-items-end mb-5">
-          <Col md={6}>
+          <Col md={5} lg={5} xxl={4}>
             <h1 className="display-3 mb-4" style={{ width: "85%" }}>
               Boost your <br />
               Media Monitoring
@@ -78,7 +78,7 @@ const Wall = ({
               Programmatic access to Impresso's Corpus, Data and Models
             </h2>
           </Col>
-          <Col md={6} lg={6} xxl={5}>
+          <Col md={5} lg={5} xxl={5}>
             <h3>
               Join us in this early stage of development and help us to improve
               the platform.
@@ -102,6 +102,31 @@ const Wall = ({
               indexation of external document collections with the help of
               models created by the project.
             </p>
+          </Col>
+          <Col md={2} lg={2} xxl={3}>
+            <div className="shadow-sm p-3 border-radius-sm">
+              <h3>Docs</h3>
+              <ul className="list-unstyled">
+                <li>
+                  <a href="https://pypi.org/project/impresso" target="_blank">
+                    Python library
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://huggingface.co/impresso-project/"
+                    target="_blank"
+                  >
+                    Huggingface models
+                  </a>
+                </li>
+                <li>
+                  <a href="/public-api/v1/docs" target="_blank">
+                    Rest API
+                  </a>
+                </li>
+              </ul>
+            </div>
           </Col>
         </Row>
         <Row className="my-3  align-items-bottom d-none">

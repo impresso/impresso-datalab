@@ -488,6 +488,22 @@ hr {
   }
 }
 
+/* Shadows */
+.shadow-xs {
+  box-shadow: var(--shadow-xs);
+}
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+.shadow {
+  box-shadow: var(--shadow);
+}
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+.shadow-xl {
+  box-shadow: var(--shadow-lg);
+}
 /* Dropdown menu*/
 .dropdown-menu {
   --bs-dropdown-bg: var(--impresso-color-black);
