@@ -1,0 +1,25 @@
+---
+import impressoCssRaw from "impresso-ui-components/impresso-style.css?raw"
+
+import Alert from "impresso-ui-components/components/Alert.vue"
+import Icon from "impresso-ui-components/components/Icon.vue"
+import Layout from "../layouts/Layout.astro"
+import AlertReact from "../components/Alert.tsx"
+---
+
+<Layout title="test" description="Test page">
+  <Alert type="error">
+    This is a Vue alert with SSR <Icon name="check" />
+  </Alert>
+  <AlertReact value="This is a React alert with SSR" />
+
+  <Alert type="error" client:load>
+    This is a Vue alert with client-side rendering <Icon name="check" />
+  </Alert>
+  <AlertReact
+    client:load
+    value="This is a React alert with client-side rendering"
+  />
+</Layout>
+
+<style is:inline set:html={impressoCssRaw}></style>

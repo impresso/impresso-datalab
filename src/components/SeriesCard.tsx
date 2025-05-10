@@ -1,4 +1,3 @@
-import React from "react"
 import "./SeriesCard.css"
 import NotebookCard from "./NotebookCard.tsx"
 import MarkdownSnippet from "./MarkdownSnippet.tsx"

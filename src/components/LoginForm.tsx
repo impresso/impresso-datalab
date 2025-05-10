@@ -1,5 +1,5 @@
 import { type FeathersError } from "@feathersjs/errors"
-import React, { useRef } from "react"
+import { useRef } from "react"
 import { Form } from "react-bootstrap"
 import { useBrowserStore } from "../store"
 import { BrowserViewRegister } from "../constants"

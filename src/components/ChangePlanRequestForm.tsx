@@ -1,5 +1,5 @@
 import { type FeathersError } from "@feathersjs/errors"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Form } from "react-bootstrap"
 import ErrorManager from "./ErrorManager"
 import { SendMail } from "iconoir-react"

@@ -1,5 +1,5 @@
 import { BadRequest, type FeathersError } from "@feathersjs/errors"
-import React, { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Form } from "react-bootstrap"
 import ErrorManager, { type BadRequestData } from "./ErrorManager"
 import { FloppyDiskArrowIn } from "iconoir-react"
