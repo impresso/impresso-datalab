@@ -1,6 +1,6 @@
 import Page from "./Page"
 // import PlanCard from "./PlanCard"
-import { Col, Container, Row } from "react-bootstrap"
+import { Col, Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap"
 import type { Plan } from "./PlanCard"
 import { usePersistentStore } from "../store"
 import {
@@ -30,6 +30,9 @@ import {
   ExportFeatureTranscripts,
   ExportFeatureImages,
   ExportFeatureSemanticEnrichments,
+  RequirementProofStudentEnrollment,
+  RequirementImpressoAccount,
+  RequirementsTooltips,
 } from "../constants"
 import {
   CheckCircleSolid,
@@ -175,7 +178,20 @@ const PlansModal: React.FC<PlansModalProps> = ({
                 {key === RequirementToU && acceptedTermsDate ? (
                   <CheckCircle color="green" />
                 ) : plan.requirements.includes(key) ? (
-                  <WarningCircle />
+                  <OverlayTrigger
+                    overlay={
+                      <Tooltip>
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              RequirementsTooltips[key] || "Action Required.",
+                          }}
+                        ></span>
+                      </Tooltip>
+                    }
+                  >
+                    <WarningCircle />
+                  </OverlayTrigger>
                 ) : (
                   <Minus />
                 )}

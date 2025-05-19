@@ -35,6 +35,18 @@ export const RequirementsLabels: Record<string, string> = {
     "Account creation request must receive approval from content provider",
 }
 
+export const RequirementsTooltips: Record<string, string> = {
+  [RequirementToU]: "You must agree to the Terms of Use.",
+  [RequirementImpressoAccount]:
+    "You must create an Impresso account. Always use an <b>institution email</b> if available",
+  [RequirementProofStudentEnrollment]:
+    "You must create an Impresso account using your <b>institution email address</b>.",
+  [RequirementProofAcademicAffiliation]:
+    "You must create an Impresso account using your <b>institution email address</b> AND <b>an institutional profile page</b>",
+  [RequirementDataAccessGranted]:
+    "Your special membership creation request must be approved by the content provider for data access.",
+}
+
 export const GenericFeatureExploreAll = "explore-all-features"
 export const GenericFeatureCreateStoreExportCollections =
   "create-store-export-collections"
