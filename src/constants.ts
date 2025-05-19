@@ -142,6 +142,8 @@ export const ExportFeatureLabels: Record<string, string> = {
     "Export Semantic Enrichments - Public Domain",
 }
 
+export const PlanFeatureTooltipBy: Record<string, Record<string, string>> = {}
+
 export const DataFeatureLabels: Record<string, string> = {
   [DataFeatureMetadata]:
     "Metadata (bibliographic, descriptive, technical - public and protected domain)",
@@ -213,11 +215,10 @@ export const PlanAvailabilityLabels: Record<string, string> = {
 }
 
 export const PlanIconRestrictedAccessNoDownload =
-  "restricted-only-access-no-download"
-export const PlanIconRestrictedAccessDownload =
-  "restricted-only-access-download"
+  "restricted-yes-access-no-download"
+export const PlanIconRestrictedAccessDownload = "restricted-yes-access-download"
 export const PlanIconPublicDomainAccessNoDownload =
-  "public-domain-only-access-no-download"
+  "public-domain-yes-access-no-download"
 export const PlanIcons: string[] = [
   PlanIconRestrictedAccessNoDownload,
   PlanIconRestrictedAccessDownload,
