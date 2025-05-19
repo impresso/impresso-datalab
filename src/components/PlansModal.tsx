@@ -158,7 +158,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
         </Row>
         <Row>
           <Col>
-            <h3 className="font-size-inherit mt-2">Requirements</h3>
+            <h4 className="mt-2">Requirements</h4>
           </Col>
         </Row>
         {Object.keys(RequirementsLabels).map((key) => (
@@ -188,21 +188,27 @@ const PlansModal: React.FC<PlansModalProps> = ({
             <div className="border-dark border-bottom h-1px"></div>
           </Col>
         </Row>
-        <Row>
+        <Row
+          className="position-sticky border-bottom border-dark border-dotted"
+          style={{
+            top: 90,
+            backgroundColor: "var(--impresso-color-paper)",
+          }}
+        >
           <Col>
-            <h3 className="font-size-inherit mt-2">Data accessibility</h3>
+            <h4 className="mt-2">Data Accessibility</h4>
           </Col>
           {plans.map((plan) => (
             <Col key={plan.id}>
               <Row>
                 <Col>
                   <h4 className="very-small mt-2 text-center">
-                    Access in Impresso App
+                    Explore (Impresso WebApp)
                   </h4>
                 </Col>
                 <Col>
                   <h4 className="very-small mt-2 text-center">
-                    Export / Download Impresso App & Datalab
+                    Export (Impresso WebApp & Datalab)
                   </h4>
                 </Col>
               </Row>
@@ -210,7 +216,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
           ))}
         </Row>
         <Row>
-          <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
+          <Col className="pt-1 mb-1 ">
             <h4 className="font-size-inherit mt-2">Metadata</h4>
           </Col>
         </Row>
@@ -222,7 +228,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
           className="PlansModal__hRow"
         ></PlansModalFeatureRow>
         <Row>
-          <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
+          <Col className="pt-1 mb-1 border-top border-dark border-dotted">
             <h4 className="font-size-inherit mt-2">Public Data Domain</h4>
           </Col>
         </Row>
@@ -247,7 +253,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
           />
         ))}
         <Row>
-          <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
+          <Col className="pt-1 mb-1 border-top border-dark border-dotted">
             <h4 className="font-size-inherit mt-2">Protected Data Domain</h4>
           </Col>
         </Row>
@@ -266,7 +272,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
           />
         ))}
         <Row>
-          <Col className="pt-1 mb-1 border-bottom border-dark border-dotted">
+          <Col className="pt-1 mb-1 border-top border-dark border-dotted">
             <h4 className="font-size-inherit mt-2">Semantic Enrichments</h4>
           </Col>
         </Row>

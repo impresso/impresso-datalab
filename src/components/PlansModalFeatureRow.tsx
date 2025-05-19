@@ -41,7 +41,7 @@ const PlansModalFeatureRow: React.FC<PlansModalFeatureRowProps> = ({
                   <Col
                     key={ref}
                     className={`d-flex justify-content-center align-items-center ${
-                      hasBorder ? "border-end" : ""
+                      hasBorder ? "" : "border-end"
                     }`}
                   >
                     {feature ? (

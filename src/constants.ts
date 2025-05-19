@@ -29,7 +29,7 @@ export const RequirementsLabels: Record<string, string> = {
   [RequirementToU]: "Agreement to Terms of Use",
   [RequirementImpressoAccount]: "Impresso Account creation",
   [RequirementProofStudentEnrollment]:
-    "Proof of enrollement in higher education (for students)",
+    "Proof of enrollment in higher education (for students)",
   [RequirementProofAcademicAffiliation]: "Proof of academic affiliation",
   [RequirementDataAccessGranted]:
     "Account creation request must receive approval from content provider",
