@@ -29,10 +29,22 @@ export const RequirementsLabels: Record<string, string> = {
   [RequirementToU]: "Agreement to Terms of Use",
   [RequirementImpressoAccount]: "Impresso Account creation",
   [RequirementProofStudentEnrollment]:
-    "Proof of enrollement in higher education (for students)",
+    "Proof of enrollment in higher education (for students)",
   [RequirementProofAcademicAffiliation]: "Proof of academic affiliation",
   [RequirementDataAccessGranted]:
     "Account creation request must receive approval from content provider",
+}
+
+export const RequirementsTooltips: Record<string, string> = {
+  [RequirementToU]: "You must agree to the Terms of Use.",
+  [RequirementImpressoAccount]:
+    "You must create an Impresso account. Always use an <b>institution email</b> if available",
+  [RequirementProofStudentEnrollment]:
+    "You must create an Impresso account using your <b>institution email address</b>.",
+  [RequirementProofAcademicAffiliation]:
+    "You must create an Impresso account using your <b>institution email address</b> AND <b>an institutional profile page</b>",
+  [RequirementDataAccessGranted]:
+    "Your special membership creation request must be approved by the content provider for data access.",
 }
 
 export const GenericFeatureExploreAll = "explore-all-features"
@@ -130,6 +142,8 @@ export const ExportFeatureLabels: Record<string, string> = {
     "Export Semantic Enrichments - Public Domain",
 }
 
+export const PlanFeatureTooltipBy: Record<string, Record<string, string>> = {}
+
 export const DataFeatureLabels: Record<string, string> = {
   [DataFeatureMetadata]:
     "Metadata (bibliographic, descriptive, technical - public and protected domain)",
@@ -201,11 +215,10 @@ export const PlanAvailabilityLabels: Record<string, string> = {
 }
 
 export const PlanIconRestrictedAccessNoDownload =
-  "restricted-only-access-no-download"
-export const PlanIconRestrictedAccessDownload =
-  "restricted-only-access-download"
+  "restricted-yes-access-no-download"
+export const PlanIconRestrictedAccessDownload = "restricted-yes-access-download"
 export const PlanIconPublicDomainAccessNoDownload =
-  "public-domain-only-access-no-download"
+  "public-domain-yes-access-no-download"
 export const PlanIcons: string[] = [
   PlanIconRestrictedAccessNoDownload,
   PlanIconRestrictedAccessDownload,

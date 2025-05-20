@@ -1,6 +1,6 @@
 ---
-title: Impresso Corpus Overview
-modalTitle: "Impresso Corpus Overview:  Data Accessibility and Usage Permissions"
+title: Impresso Corpus Catalogue
+modalTitle: "Impresso Corpus Catalogue:  Data Accessibility and Usage Permissions"
 excerpt: Data Accessibility and Usage Permissions
 ---
 
