@@ -42,11 +42,7 @@ const ChangePassword = () => {
   }, [view])
 
   return (
-    <Modal
-      centered
-      show={view === BrowserViewChangePassword}
-      onHide={() => setView(null)}
-    >
+    <Modal centered show={view === "deprecated"} onHide={() => setView(null)}>
       <Modal.Header closeButton>
         <Modal.Title>Change Password</Modal.Title>
       </Modal.Header>

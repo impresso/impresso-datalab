@@ -10,6 +10,7 @@ import Modals from './Modals';
 
 import { SeriesPositionLeadingColumn, SeriesPositionCentralColumn, SeriesPositionTrailingColumn } from '../constants';
 import type { Series } from '../types';
+import ChangePasswordModal from './ChangePasswordModal.vue';
 
 
 const authors = await getCollection('authors')
@@ -57,5 +58,7 @@ const termsOfuseContent = await getEntry("pagesContents", "terms-of-use");
   numberOfAuthors={numberOfAuthors}
 />
 <Modals client:only="react" termsOfuseContent={termsOfuseContent?.body}/>
+
+<ChangePasswordModal client:load client:only/>
 <!-- <Background client:only="react" /> -->
 <Footer client:only="react" associatedPartners={associatedPartnersData}/>
