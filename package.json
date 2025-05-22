@@ -25,6 +25,7 @@
     "@feathersjs/errors": "^5.0.30",
     "@feathersjs/feathers": "^5.0.30",
     "@feathersjs/socketio-client": "^5.0.30",
+    "@iconoir/vue": "^7.11.0",
     "@react-spring/web": "^9.7.5",
     "@tanstack/react-query": "^5.55.4",
     "@types/react": "^18.3.3",
