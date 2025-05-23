@@ -1,5 +1,4 @@
 <template>
-  {{ view }}
   <ChangePasswordModal
     @close="close"
     :show="view === BrowserViewChangePassword"
