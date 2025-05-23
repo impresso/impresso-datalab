@@ -22,6 +22,7 @@
   --impresso-color-success: #28a745;
   --impresso-border-radius-xs: 5px;
   --impresso-border-radius-sm: 20px;
+  --impresso-border-radius-md: 10px;
   --impresso-border-radius-lg: 30px;
   --impresso-border-radius-xl: 40px;
 
@@ -114,6 +115,7 @@
   --spacer-1-2: 0.3rem;
   --spacer-2: 0.5rem;
   --spacer-3: 1rem;
+  --spacing-3: 1rem;
   --spacer-3-4: 1.25rem;
   --spacer-4: 1.5rem;
   --spacer-5: 3rem;
@@ -492,7 +494,94 @@ hr {
 /* form inside modals*/
 .modal .form-group label,
 .form-label {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacer-2);
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+  font-size: smaller;
+}
+.modal .form-group {
+  margin-bottom: var(--spacer-2);
+}
+.modal {
+  --bs-white-rgb: var(--impresso-color-paper-rgb);
+}
+/* add pl-* and pr-* even they're depreceted are still used */
+.pl-0 {
+  padding-left: 0 !important;
+}
+.pl-1 {
+  padding-left: var(--spacer-1) !important;
+}
+.pl-2 {
+  padding-left: var(--spacer-2) !important;
+}
+.pl-3 {
+  padding-left: var(--spacer-3) !important;
+}
+.pl-4 {
+  padding-left: var(--spacer-4) !important;
+}
+.pl-5 {
+  padding-left: var(--spacer-5) !important;
+}
+.pr-0 {
+  padding-right: 0 !important;
+}
+.pr-1 {
+  padding-right: var(--spacer-1) !important;
+}
+.pr-2 {
+  padding-right: var(--spacer-2) !important;
+}
+.pr-3 {
+  padding-right: var(--spacer-3) !important;
+}
+.pr-4 {
+  padding-right: var(--spacer-4) !important;
+}
+.pr-5 {
+  padding-right: var(--spacer-5) !important;
+}
+.ml-0 {
+  padding-left: 0 !important;
+}
+.ml-1 {
+  padding-left: var(--spacer-1) !important;
+}
+.ml-2 {
+  padding-left: var(--spacer-2) !important;
+}
+.ml-3 {
+  padding-left: var(--spacer-3) !important;
+}
+.ml-4 {
+  padding-left: var(--spacer-4) !important;
+}
+.ml-5 {
+  padding-left: var(--spacer-5) !important;
+}
+.mr-0 {
+  margin-right: 0 !important;
+}
+.mr-1 {
+  margin-right: var(--spacer-1) !important;
+}
+.mr-2 {
+  margin-right: var(--spacer-2) !important;
+}
+.mr-3 {
+  margin-right: var(--spacer-3) !important;
+}
+.mr-4 {
+  margin-right: var(--spacer-4) !important;
+}
+.mr-5 {
+  margin-right: var(--spacer-5) !important;
+}
+.rounded-sm {
+  border-radius: 3px;
+}
+.rounded-md {
+  border-radius: 10px;
 }
 /* Shadows */
 .shadow-xs {
