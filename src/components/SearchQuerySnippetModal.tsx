@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap"
 import Page from "./Page"
 import SearchQuerySnippet from "./SearchQuerySnippet"
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { protobuf } from "impresso-jscommons"
 import Alert from "./Alert"
 

@@ -1,4 +1,3 @@
-import React from "react"
 import { Col, Container, Row } from "react-bootstrap"
 import CodeSnippet from "./CodeSnippet"
 import MarkdownSnipped from "./MarkdownSnippet"
@@ -58,7 +57,7 @@ const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
   return cells
 }
 const getGithubIssuesUrl = (
-  githubUrl: string
+  githubUrl: string,
 ): { url: string; account: string; repository: string } => {
   const repoPattern = /github\.com\/([^/]+)\/([^/]+)/
   const match = repoPattern.exec(githubUrl)

@@ -32,6 +32,7 @@
   --error-rgb: 242, 153, 74;
   --warning-rgb: 255, 182, 114;
   /* Bootstrap overrides */
+  --bs-border-color: #9e9c99;
   --bs-border-radius-lg: var(--impresso-border-radius-lg);
   --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -488,6 +489,11 @@ hr {
   }
 }
 
+/* form inside modals*/
+.modal .form-group label,
+.form-label {
+  margin-bottom: 0.5rem;
+}
 /* Shadows */
 .shadow-xs {
   box-shadow: var(--shadow-xs);
