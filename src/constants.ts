@@ -205,6 +205,25 @@ export const AvailablePlans = [
   PlanResearcher,
 ]
 
+export const AvailablePlansWithLabels = [
+  {
+    name: PlanImpressoUser,
+    label: PlanLabels[PlanImpressoUser],
+    description: "Select if not enrolled in an academic institution",
+  },
+  {
+    name: PlanEducational,
+    label: PlanLabels[PlanEducational],
+    description:
+      "Select if you are enrolled as a student in an academic institution",
+  },
+  {
+    name: PlanResearcher,
+    label: PlanLabels[PlanResearcher],
+    description: "Select if you are research staff in an academic institution",
+  },
+]
+
 export const PlanAvailabilityLabels: Record<string, string> = {
   [PlanGuest]: "Public Domain, always accessible",
   [PlanImpressoUser]: "Feature accessible with a basic account",
