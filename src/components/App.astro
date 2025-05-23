@@ -6,11 +6,10 @@ import Footer from '../components/Footer';
 // import Background from '../components/Background';
 import { getCollection, getEntry } from 'astro:content';
 import { getRecursivelyEntryData } from '../logic'
-import Modals from './Modals';
-
+import ReactModals from './Modals';
+import VueModals from './Modals.vue'
 import { SeriesPositionLeadingColumn, SeriesPositionCentralColumn, SeriesPositionTrailingColumn } from '../constants';
 import type { Series } from '../types';
-import ChangePasswordModal from './ChangePasswordModal.vue';
 
 
 const authors = await getCollection('authors')
@@ -57,8 +56,7 @@ const termsOfuseContent = await getEntry("pagesContents", "terms-of-use");
   numberOfSeries={numberOfSeries}
   numberOfAuthors={numberOfAuthors}
 />
-<Modals client:only="react" termsOfuseContent={termsOfuseContent?.body}/>
-
-<ChangePasswordModal client:load client:only/>
+<ReactModals client:only="react" termsOfuseContent={termsOfuseContent?.body}/>
+<VueModals client:only="vue" />
 <!-- <Background client:only="react" /> -->
 <Footer client:only="react" associatedPartners={associatedPartnersData}/>

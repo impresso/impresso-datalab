@@ -1,8 +1,8 @@
 <template>
   <Modal
     hideFooter
-    :show="view === BrowserViewChangePassword"
-    @close="handleDismiss"
+    :show="show"
+    @close="() => emit('dismiss')"
     bodyClass="p-3"
     dialogClass="ChangePasswordModal modal-md modal-dialog-centered"
   >
@@ -37,18 +37,14 @@
   </Modal>
 </template>
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue"
+import { ref } from "vue"
 import { FloppyDiskArrowIn } from "@iconoir/vue"
 import Alert from "impresso-ui-components/components/Alert.vue"
-
 import ChangePasswordForm from "impresso-ui-components/components/ChangePasswordForm.vue"
 import type { PasswordChangePayload } from "impresso-ui-components/components/ChangePasswordForm.vue"
 import type { FeathersError } from "@feathersjs/errors"
 import Modal from "impresso-ui-components/components/legacy/BModal.vue"
-import {
-  BrowserViewChangePassword,
-  BrowserViewConfirmChangePassword,
-} from "../constants"
+import { BrowserViewConfirmChangePassword } from "../constants"
 import { changePasswordService } from "../services"
 import { useBrowserStore } from "../store"
 
@@ -79,21 +75,15 @@ function handleOnSubmit(payload: PasswordChangePayload) {
   // Handle form submission logic here
 }
 
-const view = ref<string | null>(null)
-
-function handleDismiss() {
-  useBrowserStore.getState().setView(null)
+export interface ChangePasswordFormProps {
+  show?: boolean
 }
 
-onMounted(() => {
-  const unsubscribe = useBrowserStore.subscribe(
-    (state) => (view.value = state.view)
-  )
-
-  onBeforeUnmount(() => {
-    unsubscribe()
-  })
+const props = withDefaults(defineProps<ChangePasswordFormProps>(), {
+  show: false,
 })
+
+const emit = defineEmits(["dismiss"])
 </script>
 <style>
 .ChangePasswordModal {
