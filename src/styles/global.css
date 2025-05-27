@@ -468,6 +468,9 @@ hr {
   }
 }
 @media (min-width: 1024px) {
+  .modal-md-lg{
+    --bs-modal-width: 700px;
+  }
   .modal-lg,
   .modal-xl,
   .modal-xxl {

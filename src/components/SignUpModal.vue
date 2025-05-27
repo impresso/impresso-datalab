@@ -4,7 +4,7 @@
     :show="show"
     @close="() => emit('close')"
     bodyClass="px-3 pt-3 pb-0"
-    dialogClass="SignUpModal modal-md modal-dialog modal-dialog-centered modal-dialog-scrollable"
+    dialogClass="SignUpModal modal-md-lg modal-dialog modal-dialog-centered modal-dialog-scrollable"
   >
     <template #modal-header="{ close }">
       <h4 class="modal-title h4">Register</h4>
