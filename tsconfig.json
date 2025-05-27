@@ -4,5 +4,9 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   },
-  "exclude": ["node_modules", ".astro", "dist"]
+  "exclude": ["node_modules", ".astro", "dist"],
+  "include": [
+    "src/**/*", // <– this must cover your `.d.ts` file
+    "src/types/**/*" // <– if you put it in a separate types folder
+  ]
 }

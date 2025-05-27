@@ -9,6 +9,8 @@ import "./NotebookViewer.css"
 import { OverlayTrigger, Tooltip } from "react-bootstrap"
 import type { CellInfo, Notebook } from "../types"
 import { ModelLanguagesLabels } from "../constants"
+import { Fragment } from "react/jsx-runtime"
+import { useRef } from "react"
 
 export interface NotebookViewerProps {
   notebook: Notebook
@@ -57,7 +59,7 @@ const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
   return cells
 }
 const getGithubIssuesUrl = (
-  githubUrl: string,
+  githubUrl: string
 ): { url: string; account: string; repository: string } => {
   const repoPattern = /github\.com\/([^/]+)\/([^/]+)/
   const match = repoPattern.exec(githubUrl)
@@ -85,7 +87,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
   // Example usage:
   const githubUrl = notebook.githubUrl ?? ""
   const { url: issueUrl } = getGithubIssuesUrl(githubUrl)
-  const containerRef = React.useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const scrollToHeading = (cellNumber: number) => {
     const heading = document.getElementById(notebook.href + cellNumber)
@@ -180,7 +182,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
               return true
             })
             .map((cell, i) => (
-              <React.Fragment key={cell.cellNumber}>
+              <Fragment key={cell.cellNumber}>
                 {cell.hl ? <a id={notebook.href + cell.cellNumber}></a> : null}
                 <div>
                   {cell.cellType === "markdown" && (
@@ -193,7 +195,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
                     <CodeSnippet value={cell.content} readonly />
                   )}
                 </div>
-              </React.Fragment>
+              </Fragment>
             ))}
         </Col>
         <Col lg="5" className="ps-4">

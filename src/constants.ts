@@ -10,6 +10,12 @@ export const WsApiPath =
     ? import.meta.env?.PUBLIC_IMPRESSO_WS_API_PATH
     : "/mock-socket.io"
 
+export const BaseUrl =
+  typeof import.meta !== "undefined" &&
+  typeof import.meta.env.VITE_IMPRESSO_DATALAB_BASE === "string"
+    ? import.meta.env.VITE_IMPRESSO_DATALAB_BASE
+    : "/datalab"
+
 export const RequirementToU = "terms-of-use"
 export const RequirementImpressoAccount = "impresso-account"
 export const RequirementProofStudentEnrollment = "proof-of-student-enrollment"

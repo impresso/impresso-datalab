@@ -4,6 +4,7 @@
     :show="view === BrowserViewChangePassword"
   />
   <SignUpModal @close="close" :show="view === BrowserViewRegister" />
+  <ChangeProfileModal @close="close" :show="view === BrowserViewProfile" />
 </template>
 
 <script setup lang="ts">
@@ -17,8 +18,13 @@
  */
 import { onBeforeUnmount, onMounted, ref } from "vue"
 import { useBrowserStore } from "../store"
-import { BrowserViewChangePassword, BrowserViewRegister } from "../constants"
+import {
+  BrowserViewChangePassword,
+  BrowserViewRegister,
+  BrowserViewProfile,
+} from "../constants"
 import ChangePasswordModal from "./ChangePasswordModal.vue"
+import ChangeProfileModal from "./ChangeProfileModal.vue"
 import SignUpModal from "./SignUpModal.vue"
 const view = ref<string | null>(null)
 
