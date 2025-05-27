@@ -1,6 +1,6 @@
 ---
 title: Impresso User Plans
-modalTitle: User Plans overview
+modalTitle: User Plans Overview
 excerpt: Overview of the different user plans available for the Impresso Project
 ---
 
