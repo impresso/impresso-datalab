@@ -3,9 +3,9 @@ on:
   # Trigger the workflow on push or pull request,
   # for the develop branch and all new tags
   push:
-    branches:
-      - develop
-      - main
+    tags:
+      - v*
+      - preview-*
   workflow_dispatch:
 
 # Allow this job to clone the repo and create a page deployment
@@ -64,7 +64,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: impresso/impresso-datalab:latest
+          tags: "impresso/impresso-datalab:${{env.PUBLIC_GIT_TAG}}"
           build-args: |
             PUBLIC_VERSION=latest
             PUBLIC_GIT_COMMIT_SHA=${{ env.PUBLIC_GIT_COMMIT_SHA }}

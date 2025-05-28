@@ -1,0 +1,80 @@
+name: Build and publish latest Docker image
+on:
+  # Trigger the workflow on push or pull request,
+  # for the develop branch and all new tags
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, we do cancel in-progress runs as we want to get the latest production deployments.
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  updateNotebooks:
+    runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+      - name: Update Notebooks
+        run: node updatenotebooks.js
+      - name: commit and push
+        uses: stefanzweifel/git-auto-commit-action@v5
+  docker:
+    needs: updateNotebooks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: get env variables for GIT related info
+        run: |
+          echo "PUBLIC_GIT_COMMIT_SHA=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+          echo "PUBLIC_BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
+          echo "PUBLIC_GIT_BRANCH=$(echo $GITHUB_REF | sed 's/refs\/heads\///')" >> $GITHUB_ENV
+          echo "PUBLIC_GIT_REMOTE=$(git config --get remote.origin.url)" >> $GITHUB_ENV
+          echo "PUBLIC_GIT_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+          echo "PUBLIC_GIT_REMOTE=$(git config --get remote.origin.url)" >> $GITHUB_ENV
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: impresso/impresso-datalab:latest
+          build-args: |
+            PUBLIC_VERSION=latest
+            PUBLIC_GIT_COMMIT_SHA=${{ env.PUBLIC_GIT_COMMIT_SHA }}
+            PUBLIC_BUILD_DATE=${{ env.PUBLIC_BUILD_DATE }}
+            PUBLIC_GIT_BRANCH=${{ env.PUBLIC_GIT_BRANCH }}
+            PUBLIC_GIT_REMOTE=${{ env.PUBLIC_GIT_REMOTE }}
+            PUBLIC_GIT_TAG=${{ env.PUBLIC_GIT_TAG }}
+            PUBLIC_IMPRESSO_DATALAB_SITE=${{ secrets.IMPRESSO_DATALAB_SITE }}
+            PUBLIC_IMPRESSO_DATALAB_BASE=${{ secrets.PUBLIC_IMPRESSO_DATALAB_BASE }}
+            PUBLIC_IMPRESSO_API_PATH=/public-api/v1
+            PUBLIC_IMPRESSO_WS_API_PATH=/api/socket.io
+            GITHUB_TOKEN=${{ secrets.PAT_GITHUB_TOKEN }}
+            DATASETS_URL=${{ vars.DATASETS_URL }}
+            DATA_RELEASE_CARD_URLS=${{ vars.DATA_RELEASE_CARD_URLS }}
