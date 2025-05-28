@@ -15,6 +15,7 @@
       ></button>
     </template>
     <ProfileForm
+      :mode="'edit'"
       :initialValues="signUpFormInitialValues"
       :show="show"
       bodyClass="px-3 pt-3 pb-0"
