@@ -3,7 +3,11 @@
     @close="close"
     :show="view === BrowserViewChangePassword"
   />
-  <SignUpModal @close="close" :show="view === BrowserViewRegister" />
+  <SignUpModal
+    @success="() => changeView(BrowserViewConfirmRegistration)"
+    @close="close"
+    :show="view === BrowserViewRegister"
+  />
   <ChangeProfileModal @close="close" :show="view === BrowserViewProfile" />
 </template>
 
@@ -22,6 +26,7 @@ import {
   BrowserViewChangePassword,
   BrowserViewRegister,
   BrowserViewProfile,
+  BrowserViewConfirmRegistration,
 } from "../constants"
 import ChangePasswordModal from "./ChangePasswordModal.vue"
 import ChangeProfileModal from "./ChangeProfileModal.vue"
@@ -29,7 +34,11 @@ import SignUpModal from "./SignUpModal.vue"
 const view = ref<string | null>(null)
 
 function close() {
-  useBrowserStore.getState().setView(null)
+  changeView(null)
+}
+
+function changeView(newView: string | null) {
+  useBrowserStore.getState().setView(newView)
 }
 
 onMounted(() => {
