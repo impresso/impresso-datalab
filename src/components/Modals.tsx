@@ -1,7 +1,6 @@
 import ConfirmRegistrationModal from "./ConfirmRegistrationModal"
 import LoginModal from "./LoginModal"
-import RegisterModal from "./RegisterModal"
-import ProfileModal from "./ProfileModal"
+// import ProfileModal from "./ProfileModal"
 import TermsOfUseModal from "./TermsOfUseModal"
 import ConfirmChangePasswordModal from "./ConfirmChangePasswordModal"
 import ConfirmChangePlanRequestModal from "./ConfirmChangePlanRequestModal"
@@ -13,8 +12,7 @@ const Modals: React.FC<{ termsOfuseContent?: string }> = ({
   return (
     <div className="Modals">
       <LoginModal />
-      <RegisterModal />
-      <ProfileModal />
+      {/* <ProfileModal /> */}
       <ChangePlanRequestModal />
       <ConfirmRegistrationModal />
       <ConfirmChangePasswordModal />

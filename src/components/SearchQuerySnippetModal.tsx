@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap"
 import Page from "./Page"
 import SearchQuerySnippet from "./SearchQuerySnippet"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { protobuf } from "impresso-jscommons"
 import Alert from "./Alert"
 
@@ -14,8 +14,8 @@ const SearchQuerySnippetModal: React.FC<SearchQuerySnippetModalProps> = ({
   sq = "",
   debug = false,
 }) => {
-  const [searchQuery, setSearchQuery] = React.useState<string>("")
-  const [error, setError] = React.useState<string>("")
+  const [searchQuery, setSearchQuery] = useState<string>("")
+  const [error, setError] = useState<string>("")
   const appSearchHref = `/app/search?sq=${searchQuery}`
 
   const checkSearchQueryValidity = (sq: string) => {

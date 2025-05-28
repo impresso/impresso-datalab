@@ -10,6 +10,12 @@ export const WsApiPath =
     ? import.meta.env?.PUBLIC_IMPRESSO_WS_API_PATH
     : "/mock-socket.io"
 
+export const BaseUrl =
+  typeof import.meta !== "undefined" &&
+  typeof import.meta.env.VITE_IMPRESSO_DATALAB_BASE === "string"
+    ? import.meta.env.VITE_IMPRESSO_DATALAB_BASE
+    : "/datalab"
+
 export const RequirementToU = "terms-of-use"
 export const RequirementImpressoAccount = "impresso-account"
 export const RequirementProofStudentEnrollment = "proof-of-student-enrollment"
@@ -203,6 +209,25 @@ export const AvailablePlans = [
   PlanImpressoUser,
   PlanEducational,
   PlanResearcher,
+]
+
+export const AvailablePlansWithLabels = [
+  {
+    name: PlanImpressoUser,
+    label: PlanLabels[PlanImpressoUser],
+    description: "Select if not enrolled in an academic institution",
+  },
+  {
+    name: PlanEducational,
+    label: PlanLabels[PlanEducational],
+    description:
+      "Select if you are enrolled as a student in an academic institution",
+  },
+  {
+    name: PlanResearcher,
+    label: PlanLabels[PlanResearcher],
+    description: "Select if you are research staff in an academic institution",
+  },
 ]
 
 export const PlanAvailabilityLabels: Record<string, string> = {

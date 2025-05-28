@@ -2,7 +2,6 @@ import { CheckCircleSolid, EyeSolid, UserBadgeCheck } from "iconoir-react"
 import { OverlayTrigger, Tooltip } from "react-bootstrap"
 import {
   PlanIconColors,
-  PlanIconLabels,
   PlanIconPublicDomainAccessNoDownload,
   PlanIconRestrictedAccessDownload,
   PlanIconRestrictedAccessNoDownload,

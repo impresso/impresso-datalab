@@ -30,8 +30,8 @@ import {
   ExportFeatureTranscripts,
   ExportFeatureImages,
   ExportFeatureSemanticEnrichments,
-  RequirementProofStudentEnrollment,
-  RequirementImpressoAccount,
+  // RequirementProofStudentEnrollment,
+  // RequirementImpressoAccount,
   RequirementsTooltips,
 } from "../constants"
 import {
