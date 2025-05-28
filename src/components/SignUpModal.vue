@@ -32,6 +32,7 @@
     </p>
 
     <ChangePlanForm
+      inline
       @change="({ plan }) => (selectedPlan = plan)"
       :availablePlans="AvailablePlansWithLabels"
     >
@@ -43,6 +44,7 @@
     <h2 class="mt-4">2. Complete the registration form</h2>
 
     <ProfileForm
+      hideAffiliationFields
       @submit="handleOnSubmit"
       @changeAcceptTerms="
         (value) => {
@@ -50,6 +52,9 @@
         }
       "
     >
+      <template v-if="error" #form-errors>
+        <Alert class="mb-3" type="error">{{ error.message }}</Alert>
+      </template>
       <template #submit-button="{ submit }">
         <button
           type="button"
@@ -79,10 +84,14 @@
 import Modal from "impresso-ui-components/components/legacy/BModal.vue"
 import ChangePlanForm from "impresso-ui-components/components/ChangePlanForm.vue"
 import ProfileForm from "impresso-ui-components/components/ProfileForm.vue"
+import type { ProfileFormPayload } from "impresso-ui-components/components/ProfileForm.vue"
 import Link from "./Link.vue"
 import { FloppyDiskArrowIn } from "@iconoir/vue"
 import { AvailablePlansWithLabels } from "../constants"
 import { ref } from "vue"
+import { BadRequest, FeathersError } from "@feathersjs/errors"
+import { usersService } from "../services"
+import Alert from "impresso-ui-components/components/Alert.vue"
 
 withDefaults(
   defineProps<{
@@ -92,12 +101,38 @@ withDefaults(
     show: false,
   }
 )
-const emit = defineEmits(["close"])
-const selectedPlan = ref(null)
+const emit = defineEmits(["close", "success"])
+const selectedPlan = ref<string | null>(null)
+const error = ref<FeathersError | null>(null)
 const acceptedTermsOfUse = ref(false)
-function handleOnSubmit(payload: any) {
+function handleOnSubmit(payload: ProfileFormPayload) {
   console.log("handleOnSubmit:", payload)
   // Handle the selected plan here
+  if (!selectedPlan.value) {
+    error.value = new BadRequest("Please select a plan before submitting.")
+    return
+  }
+  console.debug("[SignUpModal] payload:", payload)
+  usersService
+    .create({
+      ...payload,
+      plan: selectedPlan.value,
+      username: payload.email.replace(/[^a-z]/g, ""),
+      displayName: `${payload.firstname} ${payload.lastname}`,
+    })
+    .then((data) => {
+      console.debug("[RegisterModal] created!")
+      // setAuthenticatedUser(data.user, data.accessToken)
+      emit("success")
+    })
+    .catch((err: FeathersError) => {
+      error.value = err
+      console.warn("[RegisterModal] create", err, err.message, err.data)
+    })
 }
 </script>
-<style></style>
+<style>
+.SignUpModal .bg-white {
+  --bs-bg-opacity: 0.9;
+}
+</style>
