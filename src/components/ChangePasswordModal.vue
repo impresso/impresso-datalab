@@ -55,7 +55,14 @@ function handleOnSubmit(payload: PasswordChangePayload) {
   isLoading.value = true
   error.value = null
   changePasswordService
-    .create(payload)
+    .create({
+      ...payload,
+      // add previous values as well (now deprecated, but at least we are compatible with older versions)
+      // @deprecated
+      password: payload.newPassword,
+      // @deprecated
+      verifyPassword: payload.repeatNewPassword,
+    })
     .then((data) => {
       console.info(
         "[ChangePasswordModal] Password changed successfully. data:",
