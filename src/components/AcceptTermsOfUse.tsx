@@ -16,7 +16,7 @@ const AcceptTermsOfUse: FC<AcceptTermsOfUseProps> = ({
 }) => {
   return (
     <section className="AcceptTermsOfUse border-top mx-3 py-4 mt-0 w-100 d-flex justify-content-center">
-      <Form.Check className="d-inline-block w-auto">
+      <Form.Check className="d-flex w-auto align-items-center">
         <Form.Check.Input
           type="checkbox"
           id="terms-of-use"
