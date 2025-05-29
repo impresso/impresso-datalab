@@ -61,6 +61,7 @@ export interface RegisterFormPayload {
   firstname: string
   lastname: string
   plan: string
+  pattern: string
 }
 
 export interface RegisterFormPreview {
@@ -126,15 +127,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     firstname: initialValues.firstname,
     lastname: initialValues.lastname,
     plan: PlanImpressoUser,
+    pattern: initialValues.profile?.pattern.join(",") ?? "",
   })
-
-  console.info("[RegisterForm] @initialValues", initialValues)
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // check errors
     const errorsAsData: { [key: string]: BadRequestData } = {}
-    console.info("[RegisterForm] @handleOnSubmit")
+    console.info("[RegisterForm] @handleOnSubmit", formPayload.current)
     if (formPayload.current.password !== formPayload.current.verifyPassword) {
       errorsAsData.verifyPassword = {
         label: "Verify password",
@@ -185,7 +185,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       setFormError(new BadRequest("Please check your entries.", errorsAsData))
       return
     }
-
+    debugger
     onSubmit({
       ...formPayload.current,
       username: formPayload.current.email.replace(/[^a-z]/g, ""),
@@ -237,6 +237,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       firstname: initialValues.firstname,
       lastname: initialValues.lastname,
       plan: PlanImpressoUser,
+      pattern: initialValues.profile?.pattern.join(",") ?? "",
     }
     setUserPreview({
       ...initialValues,

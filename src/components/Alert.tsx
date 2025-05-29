@@ -1,4 +1,3 @@
-import React from "react"
 import { InfoCircle, WarningTriangle } from "iconoir-react"
 import "./Alert.css"
 

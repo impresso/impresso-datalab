@@ -6,6 +6,7 @@ import { ArrowRight } from "iconoir-react"
 import { DateTime } from "luxon"
 import type { Notebook } from "../types.ts"
 import { NotebookLevelColors } from "../constants.ts"
+import { marked } from "marked"
 
 // const AvatarVariants = ["marble", "beam", "pixel", "sunset", "ring", "bauhaus"]
 const NotebookCard: React.FC<{
@@ -46,7 +47,12 @@ const NotebookCard: React.FC<{
             />
           </a>
           <Link to={notebook.href}>
-            <h3 className="mx-0 my-2">{notebook?.title}</h3>
+            <h3
+              className="mx-0 my-2"
+              dangerouslySetInnerHTML={{
+                __html: marked.parseInline(notebook?.title ?? "", {}),
+              }}
+            ></h3>
           </Link>
           {/* <div className="small"> {accessDateTime.toFormat("yyyy LLL dd")}</div> */}
           <ol className="NotebookCard__authors small list-unstyled d-flex flex-wrap mb-2">

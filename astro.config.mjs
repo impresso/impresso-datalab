@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config"
 import react from "@astrojs/react"
+import vue from "@astrojs/vue"
 import mdx from "@astrojs/mdx"
 import dotenv from "dotenv"
 
@@ -38,16 +39,24 @@ if (process.env.NODE_ENV === "development") {
 }
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), mdx()],
-  // legacy: {
-  //   collections: true,
-  // },
+  integrations: [
+    vue({
+      /* 
+        if this is set to `true` - extra configuration needed to reconcile react and vue.
+        See https://docs.astro.build/en/guides/integrations-guide/react/#combining-multiple-jsx-frameworks
+      */
+      jsx: false,
+    }),
+    react({}),
+    mdx(),
+  ],
   site: process.env.PUBLIC_IMPRESSO_DATALAB_SITE || "http://localhost:4321",
   base: process.env.PUBLIC_IMPRESSO_DATALAB_BASE || "/",
   ssr: {
     exclude: [WsApiPath, PublicApiPath],
   },
   vite: {
+    plugins: [],
     server: {
       proxy: {
         [WsApiPath]: {
@@ -62,7 +71,7 @@ export default defineConfig({
               "[PROXY WS]",
               path,
               "->",
-              `${WsApiTarget}${rewrittenPath}`
+              `${WsApiTarget}${rewrittenPath}`,
             )
             return rewrittenPath
           },
@@ -78,7 +87,7 @@ export default defineConfig({
               "[PROXY]",
               path,
               "->",
-              `${PublicApiTarget}${rewrittenPath}`
+              `${PublicApiTarget}${rewrittenPath}`,
             )
             return rewrittenPath
           },

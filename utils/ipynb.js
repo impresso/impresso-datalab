@@ -11,7 +11,7 @@ export const extractMdFromIpynbCells = (
   // kernelspec: kernelspec,
   // cells: cell[],
   kernelspec = {},
-  cells = [],
+  cells = []
 ) => {
   const language = kernelspec.language ?? "python"
   const content = cells
@@ -20,7 +20,14 @@ export const extractMdFromIpynbCells = (
         ? cell.source.join("")
         : cell.source
       if (cell.cell_type === "markdown") {
-        return `{/* cell:${i} cell_type:${cell.cell_type} */}\n${source}\n`
+        // apply some regex transformation, eg removing <br> tags
+        const regex = /<br\s*\/?>/gi
+        // or remove </br> tags
+        // const regex = /<\/br>/gi
+        const transformedSource = source
+          .replace(regex, "\n")
+          .replace(/<\/br\s*>/gi, "\n")
+        return `{/* cell:${i} cell_type:${cell.cell_type} */}\n${transformedSource}\n`
       }
       return `{/* cell:${i} cell_type:${cell.cell_type} */}\n\`\`\`${language}\n${source}\n\`\`\`\n`
     })

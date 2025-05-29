@@ -49,7 +49,7 @@ interface DatasetFilter {
 }
 
 const CorpusOverviewModal: React.FC<CorpusOverviewModalProps> = ({
-  modalTitle = "Impresso Corpus Overview",
+  modalTitle = "Impresso Corpus Catalogue",
   content,
   title,
   datasets = [],

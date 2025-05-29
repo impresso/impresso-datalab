@@ -10,6 +10,7 @@ export type Author = {
 
 export type Notebook = {
   id: string
+  draft?: boolean
   href: string
   title: string
   langModel?: string

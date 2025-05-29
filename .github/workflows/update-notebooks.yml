@@ -15,6 +15,8 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
       - name: Update Notebooks
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
         run: node updatenotebooks.js
       - name: commit and push
         uses: stefanzweifel/git-auto-commit-action@v5

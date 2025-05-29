@@ -10,6 +10,12 @@ export const WsApiPath =
     ? import.meta.env?.PUBLIC_IMPRESSO_WS_API_PATH
     : "/mock-socket.io"
 
+export const BaseUrl =
+  typeof import.meta !== "undefined" &&
+  typeof import.meta.env.VITE_IMPRESSO_DATALAB_BASE === "string"
+    ? import.meta.env.VITE_IMPRESSO_DATALAB_BASE
+    : "/datalab"
+
 export const RequirementToU = "terms-of-use"
 export const RequirementImpressoAccount = "impresso-account"
 export const RequirementProofStudentEnrollment = "proof-of-student-enrollment"
@@ -29,10 +35,22 @@ export const RequirementsLabels: Record<string, string> = {
   [RequirementToU]: "Agreement to Terms of Use",
   [RequirementImpressoAccount]: "Impresso Account creation",
   [RequirementProofStudentEnrollment]:
-    "Proof of enrollement in higher education (for students)",
+    "Proof of enrollment in higher education (for students)",
   [RequirementProofAcademicAffiliation]: "Proof of academic affiliation",
   [RequirementDataAccessGranted]:
     "Account creation request must receive approval from content provider",
+}
+
+export const RequirementsTooltips: Record<string, string> = {
+  [RequirementToU]: "You must agree to the Terms of Use.",
+  [RequirementImpressoAccount]:
+    "You must create an Impresso account. Always use an <b>institution email</b> if available",
+  [RequirementProofStudentEnrollment]:
+    "You must create an Impresso account using your <b>institution email address</b>.",
+  [RequirementProofAcademicAffiliation]:
+    "You must create an Impresso account using your <b>institution email address</b> AND <b>an institutional profile page</b>",
+  [RequirementDataAccessGranted]:
+    "Your special membership creation request must be approved by the content provider for data access.",
 }
 
 export const GenericFeatureExploreAll = "explore-all-features"
@@ -130,6 +148,8 @@ export const ExportFeatureLabels: Record<string, string> = {
     "Export Semantic Enrichments - Public Domain",
 }
 
+export const PlanFeatureTooltipBy: Record<string, Record<string, string>> = {}
+
 export const DataFeatureLabels: Record<string, string> = {
   [DataFeatureMetadata]:
     "Metadata (bibliographic, descriptive, technical - public and protected domain)",
@@ -191,6 +211,25 @@ export const AvailablePlans = [
   PlanResearcher,
 ]
 
+export const AvailablePlansWithLabels = [
+  {
+    name: PlanImpressoUser,
+    label: PlanLabels[PlanImpressoUser],
+    description: "Select if not enrolled in an academic institution",
+  },
+  {
+    name: PlanEducational,
+    label: PlanLabels[PlanEducational],
+    description:
+      "Select if you are enrolled as a student in an academic institution",
+  },
+  {
+    name: PlanResearcher,
+    label: PlanLabels[PlanResearcher],
+    description: "Select if you are research staff in an academic institution",
+  },
+]
+
 export const PlanAvailabilityLabels: Record<string, string> = {
   [PlanGuest]: "Public Domain, always accessible",
   [PlanImpressoUser]: "Feature accessible with a basic account",
@@ -201,11 +240,10 @@ export const PlanAvailabilityLabels: Record<string, string> = {
 }
 
 export const PlanIconRestrictedAccessNoDownload =
-  "restricted-only-access-no-download"
-export const PlanIconRestrictedAccessDownload =
-  "restricted-only-access-download"
+  "restricted-yes-access-no-download"
+export const PlanIconRestrictedAccessDownload = "restricted-yes-access-download"
 export const PlanIconPublicDomainAccessNoDownload =
-  "public-domain-only-access-no-download"
+  "public-domain-yes-access-no-download"
 export const PlanIcons: string[] = [
   PlanIconRestrictedAccessNoDownload,
   PlanIconRestrictedAccessDownload,

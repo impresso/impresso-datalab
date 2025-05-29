@@ -109,18 +109,22 @@ const ChangePlanRequestModal = () => {
             You can request to change your plan. Please select the plan you want
             to change to.
           </p>
-          {response.status === "success" && (
-            <Alert className="mb-2">
-              Plan: {PlanLabels[response.data.plan.name]}
-              <b className="mx-1">{response.data.status}</b>
-              for you on{" "}
-              <span>
-                {DateTime.fromISO(response.data.dateLastModified).toFormat(
-                  "yyyy LLL dd"
-                )}
-              </span>
-            </Alert>
-          )}
+          {response.status === "success" &&
+            response.data.status === "pending" && (
+              <Alert className="mb-2">
+                <div>
+                  There is already a request to change your plan to{" "}
+                  <b>{PlanLabels[response.data.plan.name]}</b>.{" "}
+                  <span>
+                    The request has been issued on{" "}
+                    {DateTime.fromISO(response.data.dateLastModified).toFormat(
+                      "yyyy LLL dd"
+                    )}
+                  </span>
+                  .
+                </div>
+              </Alert>
+            )}
           {isFormVisible && (
             <>
               <ChangePlanRequestForm

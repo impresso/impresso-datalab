@@ -18,8 +18,7 @@ if (process.env.GITHUB_TOKEN) {
 const handleError = (error) => {
   console.error(
     "\nError fetching data from Github API. Message:",
-    error.message,
-    error.request.path
+    error.message
   )
   console.error("\nResponse message, if any: ", error.response?.data?.message)
   process.exit(1)

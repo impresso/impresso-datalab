@@ -4,8 +4,8 @@ draft: true
 authors:
   - impresso-team
 title: Search collections
-sha: d1cdf81bac81863f65410f6d7fba79c6a1acc354
-date: 2024-11-15T07:16:09Z
+sha: 9316e6e98bfcd011f4cf57f04e53bcbe71791cce
+date: 2025-05-13T12:45:14Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-py/blob/main/examples/notebooks/collections.ipynb
 links: []
@@ -16,7 +16,6 @@ excerpt: The notebook shows how to find collections associated with your
 ---
 
 {/* cell:0 cell_type:code */}
-
 ```python
 from impresso import connect
 
@@ -28,62 +27,69 @@ impresso = connect()
 Find all collections that your Impresso account owns.
 
 {/* cell:2 cell_type:code */}
-
 ```python
 result = impresso.collections.find()
 result
 ```
 
 {/* cell:3 cell_type:markdown */}
+## Pagination
 
+{/* cell:4 cell_type:code */}
+```python
+result = impresso.collections.find(
+    limit=5,
+)
+
+print(f"Total items in the result set: {result.total}")
+for page in result.pages():
+    print(
+        f"Got page {page.offset} - {page.offset + page.size} of {page.total}. "
+        + f"The first title is {page.raw['data'][0]['title']}"
+    )
+```
+
+{/* cell:5 cell_type:markdown */}
 # Get collection
 
 Get metadata of a colection by its ID.
 
-{/* cell:4 cell_type:code */}
-
+{/* cell:6 cell_type:code */}
 ```python
 result = impresso.collections.get("local-roka-tOrwrOG3")
 result
 ```
 
-{/* cell:5 cell_type:markdown */}
-
+{/* cell:7 cell_type:markdown */}
 ## Get collection items
 
 Get items from a collection by its ID.
 
-{/* cell:6 cell_type:code */}
-
+{/* cell:8 cell_type:code */}
 ```python
 colection_id = result.raw["uid"]
 items = impresso.collections.items(colection_id)
 items
 ```
 
-{/* cell:7 cell_type:markdown */}
-
+{/* cell:9 cell_type:markdown */}
 ## Remove items from collection
 
-{/* cell:8 cell_type:code */}
-
+{/* cell:10 cell_type:code */}
 ```python
 item_id = items.pydantic.data[0].uid
 item_id
 ```
 
-{/* cell:9 cell_type:code */}
-
+{/* cell:11 cell_type:code */}
 ```python
 impresso.collections.remove_items(colection_id, [item_id])
 ```
 
-{/* cell:10 cell_type:markdown */}
-
+{/* cell:12 cell_type:markdown */}
 ## Add items to collection
 
-{/* cell:11 cell_type:code */}
-
+{/* cell:13 cell_type:code */}
 ```python
 impresso.collections.add_items(colection_id, [item_id])
 ```
