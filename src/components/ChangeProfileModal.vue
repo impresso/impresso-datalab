@@ -18,6 +18,7 @@
     <ProfileForm
       v-if="!isLoading"
       :mode="'edit'"
+      hide-affiliation-fields
       @submit="handleOnSubmit"
       :initialValues="signUpFormInitialValues"
       :show="show"
