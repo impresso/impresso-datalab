@@ -181,7 +181,7 @@ const TermsOfUseModal: React.FC<{
         )
       }
     >
-      <Container>
+      <Container className="TermsOfUseModal">
         <Row>
           <h1 className="my-3">Terms of Use</h1>
           <Col className="position-sticky top-0 bg-light m-0 py-2">

@@ -468,7 +468,7 @@ hr {
   }
 }
 @media (min-width: 1024px) {
-  .modal-md-lg{
+  .modal-md-lg {
     --bs-modal-width: 700px;
   }
   .modal-lg,
@@ -686,4 +686,9 @@ a.dropdown-item:hover::after {
 
 .LangModelTag p {
   font-size: var(--fs14px);
+}
+
+.TermsOfUseModal .bg-light {
+  --bs-light-rgb: var(--impresso-color-paper-rgb);
+  --bs-bg-opacity: 0.9;
 }
