@@ -172,8 +172,8 @@ const dataReleaseCards = defineCollection({
               "\n   id:",
               transformedResponse.id,
               "\n   releaseName:",
-              transformedResponse.releaseName,
-              transformedResponse
+              transformedResponse.releaseName
+              // transformedResponse
             )
             return transformedResponse
           })

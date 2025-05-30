@@ -58,6 +58,8 @@ export type User = {
   bitmap?: string
   groups?: Group[]
   agreedToTerms?: boolean
+  affiliation?: string
+  institutionalUrl?: string
 }
 
 export type Dataset = {
