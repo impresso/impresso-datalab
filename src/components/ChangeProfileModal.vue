@@ -52,6 +52,8 @@ import type { FeathersError } from "@feathersjs/errors"
 
 import { userService } from "../services"
 import Alert from "impresso-ui-components/components/Alert.vue"
+import { usePersistentStore } from "../store"
+import type { User } from "../types"
 
 const isLoading = ref(true)
 const error = ref<FeathersError | null>(null)
@@ -98,14 +100,34 @@ const fetchUser = async () => {
     })
 }
 
+const updatePersistentStoreUser = (user: Partial<User>) => {
+  // This function can be used to update the persistent store with the user data
+  // For example, you might want to use a store like Pinia or Vuex to manage the user state
+  console.debug("[ChangeProfileModal] updatePersistentStoreUser")
+  usePersistentStore.getState().patchUser(user)
+}
+
 const handleOnSubmit = async (payload: ProfileFormPayload) => {
-  console.debug("[ChangeProfileModal] handleOnSubmit:", payload)
-  // try {
-  //   await userService.update(payload)
-  //   emit("success")
-  // } catch (error) {
-  //   console.error("[ChangeProfileModal] Error updating profile:", error)
-  // }
+  console.debug("[ChangeProfileModal] handleOnSubmit...")
+  await userService
+    .update(null, {
+      ...payload,
+      displayName: `${payload.firstname} ${payload.lastname}`,
+      pattern: payload.pattern?.toLowerCase().split(",") || [],
+    })
+    .then(() => {
+      updatePersistentStoreUser({
+        firstname: payload.firstname,
+        lastname: payload.lastname,
+        pattern: payload.pattern?.toLowerCase() || "",
+      })
+      console.debug("[ChangeProfileModal] handleOnSubmit success")
+      emit("close")
+    })
+    .catch((err: FeathersError) => {
+      error.value = err
+      console.error("[ChangeProfileModal] Error updating profile:", err)
+    })
 }
 
 const props = withDefaults(
