@@ -21,6 +21,7 @@ interface PersistentStoreState {
   acceptTermsDate: string | null
   setAuthenticatedUser: (user: User, token: string) => void
   setUser: (user: User | null) => void
+  patchUser: (user: Partial<User>) => void
   setToken: (token: string | null) => void
   setAcceptedTermsDate: (date: string | null) => void
   reset: () => void
@@ -73,22 +74,22 @@ export const usePersistentStore = create<
         }
         set({ user, userPlan })
       },
-      setToken(token) {
-        set({ token })
-      },
-      reset() {
-        localStorage.removeItem(AccessTokenKey)
-        set({ user: null, token: null, acceptTermsDate: null })
-      },
-      patchUser(user: User) {
+      patchUser(user) {
         // get the current user and patch it with the new user
-        const currentUser = get().user
+        const currentUser: User = get().user as User
         set({
           user: {
             ...currentUser,
             ...user,
           },
         })
+      },
+      setToken(token) {
+        set({ token })
+      },
+      reset() {
+        localStorage.removeItem(AccessTokenKey)
+        set({ user: null, token: null, acceptTermsDate: null })
       },
     }),
     {
