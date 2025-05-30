@@ -44,7 +44,7 @@
     <h2 class="mt-4">2. Complete the registration form</h2>
 
     <ProfileForm
-      hideAffiliationFields
+      :hide-affiliation-fields="!EnableAffiliationFields"
       @submit="handleOnSubmit"
       @changeAcceptTerms="
         (value) => {
@@ -87,7 +87,7 @@ import ProfileForm from "impresso-ui-components/components/ProfileForm.vue"
 import type { ProfileFormPayload } from "impresso-ui-components/components/ProfileForm.vue"
 import Link from "./Link.vue"
 import { FloppyDiskArrowIn } from "@iconoir/vue"
-import { AvailablePlansWithLabels } from "../constants"
+import { AvailablePlansWithLabels, EnableAffiliationFields } from "../constants"
 import { ref } from "vue"
 import { BadRequest, FeathersError } from "@feathersjs/errors"
 import { usersService } from "../services"

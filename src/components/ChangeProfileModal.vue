@@ -18,7 +18,7 @@
     <ProfileForm
       v-if="!isLoading"
       :mode="'edit'"
-      hide-affiliation-fields
+      :hide-affiliation-fields="!EnableAffiliationFields"
       @submit="handleOnSubmit"
       :initialValues="signUpFormInitialValues"
       :show="show"
@@ -54,6 +54,7 @@ import { userService } from "../services"
 import Alert from "impresso-ui-components/components/Alert.vue"
 import { usePersistentStore } from "../store"
 import type { User } from "../types"
+import { EnableAffiliationFields } from "../constants"
 
 const isLoading = ref(true)
 const error = ref<FeathersError | null>(null)

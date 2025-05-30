@@ -16,6 +16,12 @@ export const BaseUrl =
     ? import.meta.env.VITE_IMPRESSO_DATALAB_BASE
     : "/datalab"
 
+export const EnableAffiliationFields =
+  typeof import.meta !== "undefined" &&
+  import.meta.env?.PUBLIC_IMPRESSO_ENABLE_AFFILIATION_FIELDS === "true"
+    ? true
+    : false
+
 export const RequirementToU = "terms-of-use"
 export const RequirementImpressoAccount = "impresso-account"
 export const RequirementProofStudentEnrollment = "proof-of-student-enrollment"
