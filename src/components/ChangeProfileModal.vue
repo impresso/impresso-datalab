@@ -111,7 +111,7 @@ const updatePersistentStoreUser = (user: Partial<User>) => {
 const handleOnSubmit = async (payload: ProfileFormPayload) => {
   console.debug("[ChangeProfileModal] handleOnSubmit...")
   await userService
-    .update(null, {
+    .patch(null, {
       ...payload,
       displayName: `${payload.firstname} ${payload.lastname}`,
       pattern: payload.pattern?.toLowerCase().split(",") || [],
