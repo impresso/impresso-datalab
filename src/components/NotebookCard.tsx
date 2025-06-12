@@ -40,7 +40,11 @@ const NotebookCard: React.FC<{
           />
         </div>
         <div className="mx-3">
-          <a target="_blank" className="small" href={notebook?.langModel}>
+          <a
+            target="_blank"
+            className="small cursor-pointer"
+            href={notebook?.googleColabUrl}
+          >
             <img
               src="https://img.shields.io/badge/Open_in_Colab-fafafa?logo=googlecolab"
               alt="Open In Colab"
