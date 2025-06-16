@@ -55,9 +55,9 @@ import { AvailablePlansWithLabels } from "../constants"
 import { onBeforeUnmount, onMounted, ref, watch } from "vue"
 import { Send } from "@iconoir/vue"
 import type { FeathersError } from "@feathersjs/errors"
-import { userChangePlanRequestService, userService } from "@/services"
+import { userChangePlanRequestService, userService } from "../services"
 import type { User, UserChangePlanRequest } from "../types"
-import { usePersistentStore } from "@/store"
+import { usePersistentStore } from "../store"
 
 export interface ChangePlanRequestModalProps {
   show?: boolean

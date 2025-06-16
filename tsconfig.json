@@ -3,20 +3,7 @@
   "compilerOptions": {
     // For React support
     "jsx": "react-jsx",
-    "jsxImportSource": "react",
-
-    // General setup
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "lib": ["DOM", "ESNext"],
-    "types": ["vite/client"],
-
-    // Optional: for path aliases
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "jsxImportSource": "react"
   },
   "include": ["src/**/*", "src/types/**/*", "src/env.d.ts"],
   "exclude": ["node_modules", ".astro", "dist"]
