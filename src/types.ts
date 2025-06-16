@@ -91,6 +91,16 @@ export type CellInfo = {
   h: string
 }
 
+export type UserChangePlanRequest = {
+  id: string
+  dateCreated: string
+  dateLastModified: string
+  status: "pending" | "approved" | "rejected"
+  plan: {
+    id: string
+    name: string
+  }
+}
 // see values in constants
 export enum Plans {
   PlanGuest = "guest",
