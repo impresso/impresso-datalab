@@ -36,11 +36,11 @@
           type="button"
           @click="submit"
           :disabled="isLoading || disabled"
-          className="btn btn-primary btn-lg px-4 "
+          class="btn btn-primary btn-lg px-4 "
         >
           <Send />
-          <span className="ms-2" v-if="isLoading"> Updating...</span>
-          <span className="ms-2" v-else> Send Plan change request</span>
+          <span class="ms-2" v-if="isLoading"> Updating...</span>
+          <span class="ms-2" v-else> Send Plan change request</span>
         </button>
       </template>
     </ChangePlanForm>
