@@ -117,7 +117,7 @@ async function handleOnSubmit(payload: {
     })
     .then((data) => {
       console.info(
-        "[ChangePlanModal] Password changed successfully. data:",
+        "[ChangePlanModal] Plan-change request created successfully. data:",
         data
       )
       emit("success")
