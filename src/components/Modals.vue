@@ -9,6 +9,11 @@
     :show="view === BrowserViewRegister"
   />
   <ChangeProfileModal @close="close" :show="view === BrowserViewProfile" />
+  <ChangePlanRequestModal
+    @success="() => changeView(BrowserViewConfirmChangePlanRequest)"
+    @close="close"
+    :show="view === BrowserViewChangePlanRequest"
+  />
 </template>
 
 <script setup lang="ts">
@@ -27,8 +32,11 @@ import {
   BrowserViewRegister,
   BrowserViewProfile,
   BrowserViewConfirmRegistration,
+  BrowserViewChangePlanRequest,
+  BrowserViewConfirmChangePlanRequest,
 } from "../constants"
 import ChangePasswordModal from "./ChangePasswordModal.vue"
+import ChangePlanRequestModal from "./ChangePlanRequestModal.vue"
 import ChangeProfileModal from "./ChangeProfileModal.vue"
 import SignUpModal from "./SignUpModal.vue"
 const view = ref<string | null>(null)
