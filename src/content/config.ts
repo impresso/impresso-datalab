@@ -1,3 +1,4 @@
+import { writeFileSync } from "fs"
 import { z, defineCollection, reference } from "astro:content"
 import { glob, file } from "astro/loaders"
 import axios from "axios"
@@ -35,8 +36,8 @@ const CorpusAccessToDatasetMapper = (dataset: any) => {
     timePeriod: dataset.time_period,
     startYear: parseInt(dataset.time_period.split("-").shift(), 10),
     endYear: parseInt(dataset.time_period.split("-").pop(), 10),
-    media: dataset.media, // e.g. Newspaper
-    medium: dataset.medium, // eg Print
+    media: dataset.source_type, // e.g. Newspaper
+    medium: dataset.source_medium, // eg Print
     copyright: dataset.copyright_or_copyright_status,
     permittedUse: dataset.permitted_use,
     minimumUserPlanRequiredToExploreInWebapp:
@@ -71,6 +72,17 @@ const datasets = defineCollection({
         )
         console.log("   received:", res.data.length)
         return response.map(CorpusAccessToDatasetMapper)
+      })
+      .then((data) => {
+        // write results to a temporary file on disk.
+        writeFileSync(
+          `./logs/${(process.env.DATASETS_URL || "datasets").replace(
+            /^.*\/([^\/]+)\/([^\/]+)$/,
+            "$1-$2"
+          )}`,
+          JSON.stringify(data, null, 2)
+        )
+        return data
       })
       .catch((err) => {
         console.error(
@@ -161,6 +173,9 @@ const dataReleaseCards = defineCollection({
           })
           .then((res) => {
             const response = res.data
+
+            // console.log(" [dataReleaseCards] - written to disk")
+
             console.log("\n [dataReleaseCards] \n - requesting url: \n  ", url)
             const transformedResponse = toCamelCase({
               // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
@@ -171,11 +186,19 @@ const dataReleaseCards = defineCollection({
               "   received:",
               "\n   id:",
               transformedResponse.id,
-              "\n   releaseName:",
+              "\n   releaseName (private):",
               transformedResponse.releaseName
               // transformedResponse
             )
             return transformedResponse
+          })
+          .then((data) => {
+            // write results to a temporary file on disk.
+            writeFileSync(
+              `./logs/${url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1-$2")}`,
+              JSON.stringify(data, null, 2)
+            )
+            return data
           })
           .catch((err) => {
             console.error(
@@ -187,7 +210,7 @@ const dataReleaseCards = defineCollection({
               releaseVersion: "0.0.0",
               releaseName: "No Release Name",
               impressoCorpusOverview: {
-                npsStats: {
+                mediaStats: {
                   titles: 112,
                   issues: 173424,
                   pages: 7483588,
@@ -216,7 +239,7 @@ const dataReleaseCards = defineCollection({
     releaseName: z.string(),
     releaseVersion: z.string(),
     impressoCorpusOverview: z.object({
-      npsStats: z.object({
+      mediaStats: z.object({
         titles: z.number(),
         issues: z.number(),
         pages: z.number(),
@@ -308,6 +331,7 @@ const plans = defineCollection({
     title: z.string(),
     icon: z.string().optional(),
     plan: z.enum(Plans as any).optional(),
+    ordering: z.number().min(0).optional().default(0),
     features: z
       .array(
         z.object({
