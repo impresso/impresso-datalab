@@ -1,7 +1,7 @@
 import { Xmark } from "iconoir-react"
 import { Row, Col } from "react-bootstrap"
 import PlanFeatureCard from "./PlanFeatureCard"
-import type { Plan } from "./PlanCard"
+import type { Plan } from "../types"
 
 const BootstrapColumnLayoutForLabels = {
   lg: 2,

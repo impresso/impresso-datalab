@@ -6,7 +6,7 @@ import {
   PlanIconRestrictedAccessDownload,
   PlanIconRestrictedAccessNoDownload,
 } from "../constants"
-import type { PlanFeature } from "./PlanCard"
+import type { PlanFeature } from "../types"
 const IconsByIconName: { [key: string]: React.ComponentType } = {
   [PlanIconRestrictedAccessNoDownload]: UserBadgeCheck,
   [PlanIconRestrictedAccessDownload]: UserBadgeCheck,

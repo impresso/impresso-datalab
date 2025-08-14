@@ -57,18 +57,24 @@ import {
 export async function GET() {
   const posts = await getCollection("plans")
   const planContent = await getEntry("pagesContents", "plans")
-  const plans = posts.map(({ body, data }) => {
-    const { title, icon, plan, features, requirements } = data
+  const plans = posts
+    .map(({ body, data }) => {
+      const { title, icon, name, features, requirements, ordering } = data
 
-    return {
-      title,
-      icon,
-      id: plan,
-      features,
-      requirements,
-      body,
-    }
-  })
+      return {
+        title,
+        icon,
+        id: name,
+        name,
+        ordering,
+        features,
+        requirements,
+        body,
+      }
+    })
+    .sort((a, b) => {
+      return a.ordering - b.ordering
+    })
 
   return new Response(
     JSON.stringify(
