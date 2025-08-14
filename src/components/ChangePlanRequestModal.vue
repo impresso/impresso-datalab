@@ -25,6 +25,7 @@
       :currentAffiliation="currentAffiliation"
       :currentInstitutionalUrl="currentInstitutionalUrl"
       :currentEmail="currentEmail"
+      enableAdditionalFields
     >
       <template #form-errors v-if="error">
         <Alert type="warning" class="mb-3 p-3" role="alert">
@@ -36,7 +37,7 @@
           type="button"
           @click="submit"
           :disabled="isLoading || disabled"
-          class="btn btn-primary btn-lg px-4 "
+          class="btn btn-primary btn-lg px-4"
         >
           <Send />
           <span class="ms-2" v-if="isLoading"> Updating...</span>
@@ -52,7 +53,7 @@ import ChangePlanForm from "impresso-ui-components/components/ChangePlanForm.vue
 import Modal from "impresso-ui-components/components/legacy/BModal.vue"
 import Alert from "impresso-ui-components/components/Alert.vue"
 import { AvailablePlansWithLabels } from "../constants"
-import { onBeforeUnmount, onMounted, ref, watch } from "vue"
+import { ref, watch } from "vue"
 import { Send } from "@iconoir/vue"
 import type { FeathersError } from "@feathersjs/errors"
 import { userChangePlanRequestService, userService } from "../services"
