@@ -111,6 +111,7 @@ export type PlanFeature = {
 
 export type Plan = {
   id: string
+  name: string
   title: string
   body: string
   features: PlanFeature[]
