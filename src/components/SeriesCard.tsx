@@ -1,7 +1,7 @@
 import "./SeriesCard.css"
 import NotebookCard from "./NotebookCard.tsx"
 import MarkdownSnippet from "./MarkdownSnippet.tsx"
-import type { Series } from "../types.ts"
+import type { Series } from "../types"
 
 /**
  * Props for the SeriesCard component.

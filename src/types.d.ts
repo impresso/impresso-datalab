@@ -1,3 +1,5 @@
+import type { Features, PlanIcons } from "./constants"
+
 export type Group = {
   name: string
   id: number
@@ -97,4 +99,24 @@ export enum Plans {
   PlanImpressoUser = "plan-basic",
   PlanEducational = "plan-student",
   PlanResearcher = "plan-academic",
+}
+
+export type PlanFeature = {
+  title: string
+  status: string
+  iconColor: string
+  icon?: (typeof PlanIcons)[number]
+  ref?: (typeof Features)[number]
+}
+
+export type Plan = {
+  id: string
+  title: string
+  body: string
+  features: PlanFeature[]
+  ordering: number
+  requirements: string[]
+  icon: string
+  collection?: string
+  href?: string
 }

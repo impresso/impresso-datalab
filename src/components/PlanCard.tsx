@@ -2,27 +2,9 @@ import { CheckCircle, Timer, ProfileCircle } from "iconoir-react"
 import "./PlanCard.css"
 import PlanIcon from "./PlanIcon"
 import { marked } from "marked"
-import { RequirementToU, Features, PlanIcons } from "../constants"
+import { RequirementToU } from "../constants"
 import Requirement from "./Requirement"
-
-export type PlanFeature = {
-  title: string
-  status: string
-  iconColor: string
-  icon?: (typeof PlanIcons)[number]
-  ref?: (typeof Features)[number]
-}
-
-export type Plan = {
-  id: string
-  title: string
-  body: string
-  features: PlanFeature[]
-  requirements: string[]
-  icon: string
-  collection?: string
-  href?: string
-}
+import type { Plan } from "../types"
 
 export type PlanCardProps = {
   plan: Plan
@@ -87,20 +69,22 @@ const PlanCard: React.FC<PlanCardProps> = ({
         {plan.features?.map(
           (
             feature: { title: string; status: string; iconColor: string },
-            index: number,
+            index: number
           ) => (
             <div
               key={index}
               className="PlanCard-item d-flex align-items-center mb-2 "
             >
               <div
-                className={`PlanCard-icon d-flex ${iconColorCheck(feature.iconColor)}`}
+                className={`PlanCard-icon d-flex ${iconColorCheck(
+                  feature.iconColor
+                )}`}
               >
                 {iconStatusCheck(feature.status)}
               </div>
               <p className="m-0">{feature.title}</p>
             </div>
-          ),
+          )
         )}
         <h3 className="mt-2">Requirements</h3>
         {plan.requirements.map((requirement: string) => (
