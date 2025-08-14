@@ -59,12 +59,13 @@ export async function GET() {
   const planContent = await getEntry("pagesContents", "plans")
   const plans = posts
     .map(({ body, data }) => {
-      const { title, icon, plan, features, requirements, ordering } = data
+      const { title, icon, name, features, requirements, ordering } = data
 
       return {
         title,
         icon,
-        id: plan,
+        id: name,
+        name,
         ordering,
         features,
         requirements,
