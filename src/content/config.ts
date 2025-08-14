@@ -327,10 +327,12 @@ const notebooks = defineCollection({
 const plans = defineCollection({
   loader: glob({ pattern: "*.mdx", base: "./src/content/plans" }),
   schema: z.object({
-    id: z.string().optional(),
     title: z.string(),
     icon: z.string().optional(),
-    plan: z.enum(Plans as any).optional(),
+    // this is the plan identifier (group name in django) used in the PlanCard component
+    // it should match the PlanGuest, PlanImpressoUser, PlanEducational, PlanResearcher constants
+    // in src/constants.ts
+    name: z.enum(Plans as any),
     ordering: z.number().min(0).optional().default(0),
     features: z
       .array(
