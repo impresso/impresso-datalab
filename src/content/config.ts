@@ -27,6 +27,45 @@ const CorpusAccessUserPlansToPlan: Record<string, string> = {
   "Not Possible": PlanNone,
 }
 
+/**
+ * Writes the provided data to a log file if the environment is set to "development".
+ *
+ * - The log file path is determined by the `DATASETS_URL` environment variable,
+ *   or defaults to "datasets" if not set. The path is transformed to a filename
+ *   using a regular expression, extracting the last two segments and joining them
+ *   with a hyphen.
+ * - The data is serialized as pretty-printed JSON and written to the file.
+ * - In non-development environments, the function does not write to disk and simply returns the data.
+ *
+ * @param data - The data to be logged and written to the file.
+ * @param filename - Optional filename to use for the log file. Defaults to 'log.json'.
+ * @returns The original data, regardless of environment.
+ *
+ * @remarks
+ * This function is intended for debugging and development purposes only.
+ * It uses Node.js `writeFileSync` to write logs synchronously.
+ *
+ * @example
+ * ```typescript
+ * writeDataToLogFile({ foo: "bar" });
+ * ```
+ */
+const writeDataToLogFile = (data: any, filename: string = "log.json") => {
+  console.log(
+    "[config.ts -> writeDataToLogFile] process.env.NODE_ENV = ",
+    process.env.NODE_ENV
+  )
+  if (process.env.NODE_ENV !== "development") {
+    return data
+  }
+  const filepath: string = `./logs/${filename}`
+  console.log("[writeDataToLogFile] - writing log to:", filepath)
+
+  // write results to a temporary file on disk.
+  writeFileSync(filepath, JSON.stringify(data, null, 2))
+  return data
+}
+
 const CorpusAccessToDatasetMapper = (dataset: any) => {
   return {
     id: [dataset.data_partner_institution, dataset.media_alias].join("-"),
@@ -73,17 +112,7 @@ const datasets = defineCollection({
         console.log("   received:", res.data.length)
         return response.map(CorpusAccessToDatasetMapper)
       })
-      .then((data) => {
-        // write results to a temporary file on disk.
-        writeFileSync(
-          `./logs/${(process.env.DATASETS_URL || "datasets").replace(
-            /^.*\/([^\/]+)\/([^\/]+)$/,
-            "$1-$2"
-          )}`,
-          JSON.stringify(data, null, 2)
-        )
-        return data
-      })
+      .then((data) => writeDataToLogFile(data, "datasets.log.json"))
       .catch((err) => {
         console.error(
           err.message,
@@ -182,6 +211,7 @@ const dataReleaseCards = defineCollection({
               id: url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2"),
               ...response,
             })
+
             console.log(
               "   received:",
               "\n   id:",
@@ -190,16 +220,13 @@ const dataReleaseCards = defineCollection({
               transformedResponse.releaseName
               // transformedResponse
             )
+            if (transformedResponse.impressoCorpusOverview?.mediaStats) {
+              transformedResponse.impressoCorpusOverview.npsStats =
+                transformedResponse.impressoCorpusOverview.mediaStats
+            }
             return transformedResponse
           })
-          .then((data) => {
-            // write results to a temporary file on disk.
-            writeFileSync(
-              `./logs/${url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1-$2")}`,
-              JSON.stringify(data, null, 2)
-            )
-            return data
-          })
+          .then((data) => writeDataToLogFile(data, "dataReleaseCards.log.json"))
           .catch((err) => {
             console.error(
               err.message,
@@ -210,7 +237,7 @@ const dataReleaseCards = defineCollection({
               releaseVersion: "0.0.0",
               releaseName: "No Release Name",
               impressoCorpusOverview: {
-                mediaStats: {
+                npsStats: {
                   titles: 112,
                   issues: 173424,
                   pages: 7483588,
@@ -239,7 +266,7 @@ const dataReleaseCards = defineCollection({
     releaseName: z.string(),
     releaseVersion: z.string(),
     impressoCorpusOverview: z.object({
-      mediaStats: z.object({
+      npsStats: z.object({
         titles: z.number(),
         issues: z.number(),
         pages: z.number(),
