@@ -44,7 +44,7 @@
     <h2 class="mt-4">2. Complete the registration form</h2>
 
     <ProfileForm
-      :hide-affiliation-fields="!EnableAffiliationFields"
+      :hide-affiliation-fields="hideAffiliationFields"
       @submit="handleOnSubmit"
       @changeAcceptTerms="
         (value) => {
@@ -53,7 +53,9 @@
       "
     >
       <template v-if="error" #form-errors>
-        <Alert class="mb-3" type="error">{{ error.message }}</Alert>
+        <Alert class="mb-3" type="error"
+          ><FeathersErrorManager :error="error"
+        /></Alert>
       </template>
       <template #submit-button="{ submit }">
         <button
@@ -74,7 +76,7 @@
           class="text-decoration-underline"
           target="_blank"
         >
-          Impresso Terms of Use</Link
+          Impresso Terms of Use </Link
         >.
       </template>
     </ProfileForm>
@@ -87,11 +89,17 @@ import ProfileForm from "impresso-ui-components/components/ProfileForm.vue"
 import type { ProfileFormPayload } from "impresso-ui-components/components/ProfileForm.vue"
 import Link from "./Link.vue"
 import { FloppyDiskArrowIn } from "@iconoir/vue"
-import { AvailablePlansWithLabels, EnableAffiliationFields } from "../constants"
-import { ref } from "vue"
+import {
+  AvailablePlansWithLabels,
+  PlanEducational,
+  PlanImpressoUser,
+  PlanResearcher,
+} from "../constants"
+import { computed, ref } from "vue"
 import { BadRequest, FeathersError } from "@feathersjs/errors"
 import { usersService } from "../services"
 import Alert from "impresso-ui-components/components/Alert.vue"
+import FeathersErrorManager from "./FeathersErrorManager.vue"
 
 withDefaults(
   defineProps<{
@@ -105,6 +113,13 @@ const emit = defineEmits(["close", "success"])
 const selectedPlan = ref<string | null>(null)
 const error = ref<FeathersError | null>(null)
 const acceptedTermsOfUse = ref(false)
+
+const hideAffiliationFields = computed(
+  () =>
+    selectedPlan.value !== PlanEducational &&
+    selectedPlan.value !== PlanResearcher
+)
+
 function handleOnSubmit(payload: ProfileFormPayload) {
   console.log("handleOnSubmit:", payload)
   // Handle the selected plan here
@@ -112,10 +127,29 @@ function handleOnSubmit(payload: ProfileFormPayload) {
     error.value = new BadRequest("Please select a plan before submitting.")
     return
   }
-  console.debug("[SignUpModal] payload:", payload)
+  const affiliationFields = {} as {
+    affiliation?: string
+    institutionalUrl?: string
+  }
+
+  if (
+    selectedPlan.value === PlanEducational ||
+    selectedPlan.value === PlanResearcher
+  ) {
+    affiliationFields.affiliation = payload.affiliation
+  }
+  if (selectedPlan.value === PlanResearcher) {
+    affiliationFields.institutionalUrl = payload.institutionalUrl
+  }
   usersService
     .create({
-      ...payload,
+      firstname: payload.firstname,
+      lastname: payload.lastname,
+      email: payload.email,
+      password: payload.password,
+      repeatPassword: payload.repeatPassword,
+      ...affiliationFields,
+      pattern: payload.pattern,
       plan: selectedPlan.value,
       username: payload.email.replace(/[^a-z]/g, ""),
       displayName: `${payload.firstname} ${payload.lastname}`,
