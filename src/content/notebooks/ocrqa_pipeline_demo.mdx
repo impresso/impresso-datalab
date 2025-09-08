@@ -3,9 +3,11 @@ githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/anno
 authors:
   - impresso-team
 title: OCR Quality Assessment with impresso-pipelines Package
-sha: 6c83dc03a5a5f9190d8a8ab71052d8ee49511961
-date: 2025-08-13T13:12:42Z
+sha: 44b1b63ced7830f920acd9326d8afb9f381b57f7
+date: 2025-08-26T10:06:24Z
 links:
+  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
+    label: report a problem
   - href: https://pypi.org/project/impresso-pipelines/
     label: impresso-pipelines
   - href: https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/ocrqa
@@ -48,6 +50,8 @@ googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datal
 <a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/ocrqa_pipeline_demo.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
+
+If something doesn't work, you can [report a problem](https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md).
 
 
 {/* cell:1 cell_type:markdown */}
@@ -136,12 +140,12 @@ Once you initialize the pipeline, you can simply provide the text you'd like to 
 
 {/* cell:10 cell_type:code */}
 ```python
-de_text = "Ein kleiner Hund wqeg Max lebte in einem ruhigen Dorf."
+text = "Ein kleiner Hund wqeg Max lebte in einem ruhigen Dorf."
 ```
 
 {/* cell:11 cell_type:code */}
 ```python
-ocrqa_pipeline(de_text)
+ocrqa_pipeline(text)
 ```
 
 {/* cell:12 cell_type:markdown */}
@@ -182,7 +186,7 @@ These attributes can be used individually, in combination with each other, or al
 {/* cell:16 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, language="lb")
+ocrqa_pipeline(text, language="lb")
 ```
 
 {/* cell:17 cell_type:markdown */}
@@ -196,7 +200,7 @@ Even though the provided text is clearly in German, specifying the language as L
 {/* cell:19 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, version="1.0.5")
+ocrqa_pipeline(text, version="1.0.5")
 ```
 
 {/* cell:20 cell_type:markdown */}
@@ -210,7 +214,7 @@ In the example above, by explicitly setting the `version` to _1.0.5_ , you are i
 {/* cell:22 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, diagnostics=True)
+ocrqa_pipeline(text, diagnostics=True)
 ```
 
 {/* cell:23 cell_type:markdown */}
@@ -224,7 +228,7 @@ Once you set `diagnostics` to _True_ , an additional key, `diagnostics`, will be
 {/* cell:25 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, model_id=True)
+ocrqa_pipeline(text, model_id=True)
 ```
 
 {/* cell:26 cell_type:markdown */}
@@ -238,7 +242,7 @@ Similar to the `diagnostics` attribute, the `model_id` attribute is a simpler ve
 {/* cell:28 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, supported_languages=True)
+ocrqa_pipeline(text, supported_languages=True)
 ```
 
 {/* cell:29 cell_type:markdown */}
@@ -253,7 +257,7 @@ Once `supported_languages` is set to _True_, the pipeline returns an additional 
 ```python
 # Using the same German text example as before
 ocrqa_pipeline(
-    de_text,
+    text,
     language="fr",
     version="1.0.5",
     diagnostics=True,
@@ -272,13 +276,13 @@ You can use a mix of additional parameters, or all of them at once, to gain a de
 
 {/* cell:34 cell_type:code */}
 ```python
-short_de_text_with_unusual_name = "Glebs geht ins Büro."
+short_text_with_unusual_name = "Glebs geht ins Büro."
 ```
 
 {/* cell:35 cell_type:code */}
 ```python
 # Example 1: Very short sentence
-ocrqa_pipeline(short_de_text_with_unusual_name, diagnostics=True)
+ocrqa_pipeline(short_text_with_unusual_name, diagnostics=True)
 ```
 
 {/* cell:36 cell_type:markdown */}
@@ -342,7 +346,4 @@ All Impresso code is published open source under the [GNU Affero General Public 
   <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
 </p>
 
-
-
-{/* cell:41 cell_type:markdown */}
 

@@ -3,9 +3,11 @@ githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/anno
 authors:
   - impresso-team
 title: Language Identification with impresso-pipelines Package
-sha: 98b90f56dd132d986e1c3ee6984e92cc19f4728c
-date: 2025-06-17T14:26:01Z
+sha: 44b1b63ced7830f920acd9326d8afb9f381b57f7
+date: 2025-08-26T10:06:24Z
 links:
+  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
+    label: report a problem
   - href: https://pypi.org/project/impresso-pipelines/
     label: impresso-pipelines
   - href: https://github.com/impresso/impresso-pipelines/tree/main
@@ -35,6 +37,7 @@ googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datal
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
+If something doesn't work, you can [report a problem](https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md).
 
 {/* cell:1 cell_type:markdown */}
 ## What is this notebook about?
@@ -109,12 +112,12 @@ Once you initialize the pipeline, you can simply provide the text you'd like to 
 
 {/* cell:9 cell_type:code */}
 ```python
-de_text = "Ein kleiner Hund namens Max lebte in einem ruhigen Dorf."
+text = "Ein kleiner Hund namens Max lebte in einem ruhigen Dorf."
 ```
 
 {/* cell:10 cell_type:code */}
 ```python
-lang_pipeline(de_text)
+lang_pipeline(text)
 ```
 
 {/* cell:11 cell_type:markdown */}
@@ -142,7 +145,7 @@ Here we skip the part of module importing and initialization as it was done abov
 {/* cell:15 cell_type:code */}
 ```python
 # Using text example from before
-lang_pipeline(de_text, diagnostics=True)
+lang_pipeline(text, diagnostics=True)
 ```
 
 {/* cell:16 cell_type:markdown */}
@@ -155,12 +158,12 @@ Below is an example of using `model_id` with and without `diagnostics`.
 
 {/* cell:18 cell_type:code */}
 ```python
-lang_pipeline(de_text, model_id=True)
+lang_pipeline(text, model_id=True)
 ```
 
 {/* cell:19 cell_type:code */}
 ```python
-lang_pipeline(de_text, model_id=True, diagnostics=True)
+lang_pipeline(text, model_id=True, diagnostics=True)
 ```
 
 {/* cell:20 cell_type:markdown */}
@@ -222,7 +225,7 @@ lang_pipeline = LangIdentPipeline(
 {/* cell:29 cell_type:code */}
 ```python
 # Using text example from before
-lang_pipeline(de_text)
+lang_pipeline(text)
 ```
 
 {/* cell:30 cell_type:markdown */}
@@ -240,12 +243,12 @@ short_fr_text = "Je mange."
 
 {/* cell:33 cell_type:code */}
 ```python
-short_de_text = "Der Computer auf dem Tisch funktioniert gut."
+short_text = "Der Computer auf dem Tisch funktioniert gut."
 ```
 
 {/* cell:34 cell_type:code */}
 ```python
-short_de_text_with_unusual_name = "Gleb geht ins Büro."
+short_text_with_unusual_name = "Gleb geht ins Büro."
 ```
 
 {/* cell:35 cell_type:code */}
@@ -257,13 +260,13 @@ lang_pipeline(short_fr_text, diagnostics=True)
 {/* cell:36 cell_type:code */}
 ```python
 # Exaple 2: Not language specific sentence
-lang_pipeline(short_de_text, diagnostics=True)
+lang_pipeline(short_text, diagnostics=True)
 ```
 
 {/* cell:37 cell_type:code */}
 ```python
 # Example 3: Short sentence and unsual name
-lang_pipeline(short_de_text_with_unusual_name, diagnostics=True)
+lang_pipeline(short_text_with_unusual_name, diagnostics=True)
 ```
 
 {/* cell:38 cell_type:markdown */}
