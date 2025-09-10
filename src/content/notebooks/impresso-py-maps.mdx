@@ -3,8 +3,8 @@ title: Visualising Place Entities on Maps
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 authors:
   - impresso-team
-sha: d43dff704482b20e2cbed1613538d109c5cb202d
-date: 2025-08-22T10:44:21Z
+sha: 927749caceb9bda05d3ded77d7bcf4078cdf4bcb
+date: 2025-09-10T10:37:12Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 links:
   - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
@@ -183,7 +183,7 @@ selected_columns
 
 {/* cell:14 cell_type:code */}
 ```python
-# You can check what the removed entities are by running this code
+# You can check what the removed entities are by running this code (if result is empty, all entities have coordinates)
 
 entities_without_coordinates = df[df['wikidataDetails.coordinates.latitude'].isna() & df['wikidataDetails.coordinates.longitude'].isna()]
 entities_without_coordinates[['label', 'wikidataId', 'wikidataDetails.coordinates.latitude', 'wikidataDetails.coordinates.longitude', 'wikidataDetails.descriptions.fr']]

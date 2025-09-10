@@ -3,8 +3,8 @@ title: Exploring Entity Co-occurrence Networks
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 authors:
   - impresso-team
-sha: d43dff704482b20e2cbed1613538d109c5cb202d
-date: 2025-08-22T10:44:21Z
+sha: 1efe95de38aa61ebfb1bf85854db14ec607d99b9
+date: 2025-09-10T11:17:43Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 links:
@@ -179,7 +179,7 @@ The `n` value can be adjusted so that we don't get too many entity combinations.
 ```python
 import itertools
 
-n = 6
+n = 30
 
 df = persons.df
 df = df[df["count"] > n]
@@ -223,7 +223,7 @@ connections = []
 # the `query` variable hold the same value as above, i.e. keyword search for articles
 for idx, combo in tqdm(enumerate(person_ids_combinations), total=len(person_ids_combinations)):
   try:
-    result = impresso_session.search.facet(
+    result = client.search.facet(
       facet="daterange",
       term=query,
       entity_id=AND(*combo),
@@ -236,7 +236,7 @@ for idx, combo in tqdm(enumerate(person_ids_combinations), total=len(person_ids_
       print(f"Request throttled for {combo}. Retrying in 2s...")
       sleep(2)
       try:
-          result = impresso_session.search.facet(
+          result = client.search.facet(
           facet="daterange",
           term=query,
           entity_id=AND(*combo),

@@ -5,8 +5,8 @@ authors:
   - impresso-team
 seealso:
   - impresso-py-collections
-sha: dd4327734018c4c187c787cd310e5db398c8c181
-date: 2025-08-22T13:33:00Z
+sha: 927749caceb9bda05d3ded77d7bcf4078cdf4bcb
+date: 2025-09-10T10:37:12Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/starter/search_ImpressoAPI.ipynb
 links:
   - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
@@ -244,7 +244,7 @@ Search by entity ID.
 
 {/* cell:30 cell_type:code */}
 ```python
-client.search.find(entity_id="aida-0001-50-James_Cameron")
+client.search.find(entity_id="2-50-James_Cameron")
 ```
 
 {/* cell:31 cell_type:markdown */}
@@ -252,7 +252,7 @@ You can retrieve all content items that mention both the entities James Cameron 
 
 {/* cell:32 cell_type:code */}
 ```python
-client.search.find(entity_id=AND("aida-0001-50-James_Cameron", "aida-0001-50-Leonardo_DiCaprio"))
+client.search.find(entity_id=AND("2-50-James_Cameron", "2-50-Leonardo_DiCaprio"))
 ```
 
 {/* cell:33 cell_type:markdown */}
@@ -260,7 +260,7 @@ Also, find all content items that mention the word 'titanic' and either the enti
 
 {/* cell:34 cell_type:code */}
 ```python
-client.search.find(term="titanic", entity_id=OR("aida-0001-50-James_Cameron", "aida-0001-50-Barbara_Stanwyck"))
+client.search.find(term="titanic", entity_id=OR("2-50-James_Cameron", "2-50-Barbara_Stanwyck"))
 ```
 
 {/* cell:35 cell_type:markdown */}
@@ -499,13 +499,13 @@ client.search.facet("location", term="titanic")
 ```
 
 {/* cell:79 cell_type:markdown */}
-### Access rights
+### Copyright
 
-Get access rights of content items mentioning 'titanic'.
+Get copyright information for content items mentioning 'titanic'. Results are either 'in copyright' (in_cpy) or 'public' (pbl).
 
 {/* cell:80 cell_type:code */}
 ```python
-client.search.facet("accessRight", term="titanic")
+client.search.facet("copyright", term="titanic")
 ```
 
 {/* cell:81 cell_type:markdown */}
