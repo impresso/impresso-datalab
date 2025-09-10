@@ -21,7 +21,8 @@ const TooltipByIconName: { [key: string]: string } = {
   [PlanIconRestrictedAccessDownload]: "Restricted access, download available.",
   [PlanIconPublicDomainAccessNoDownload]:
     "Public domain access, no download available.",
-  [PlanIconByCollection]: "Varies by collection. See Access Registry.",
+  [PlanIconByCollection]:
+    "Subject to partner conditions – see Corpus Catalogue",
 }
 
 const PlanFeatureCard: React.FC<{ feature: PlanFeature }> = ({ feature }) => {
