@@ -34,13 +34,7 @@ import {
   // RequirementImpressoAccount,
   RequirementsTooltips,
 } from "../constants"
-import {
-  CheckCircleSolid,
-  CheckCircle,
-  Minus,
-  WarningCircle,
-  Xmark,
-} from "iconoir-react"
+import { CheckCircleSolid, Minus, WarningCircle, Xmark } from "iconoir-react"
 import "./PlansModal.css"
 import MarkdownSnippet from "./MarkdownSnippet"
 import PlansModalFeatureRow from "./PlansModalFeatureRow"
@@ -137,7 +131,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
                     {feature ? (
                       <>
                         <CheckCircleSolid
-                          color={feature.iconColor ?? "purple"}
+                          color={feature.iconColor ?? "green"}
                         />
                         {feature.title ? (
                           <p
@@ -176,7 +170,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
                 key={plan.id}
               >
                 {key === RequirementToU && acceptedTermsDate ? (
-                  <CheckCircle color="green" />
+                  <CheckCircleSolid color="purple" />
                 ) : plan.requirements.includes(key) ? (
                   <OverlayTrigger
                     overlay={
