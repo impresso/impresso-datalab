@@ -233,7 +233,6 @@ watch(
 .ChangePlanRequestModal .ChangePlanForm .rejected {
   border-color: #ffb800 !important;
 
-  border-color: #ffb800 !important;
   -webkit-box-shadow: 0 0 0 4px rgba(var(--bs-warning-rgb), 0.7) !important;
   box-shadow: 0 0 0 4px rgba(var(--bs-warning-rgb), 0.7) !important;
 }
