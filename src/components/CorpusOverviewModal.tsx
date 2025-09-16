@@ -108,7 +108,7 @@ const CorpusOverviewModal: React.FC<CorpusOverviewModalProps> = ({
     <Page
       title={modalTitle}
       fullscreen="xl-down"
-      size="xxl"
+      size="xl"
       modalBodyClassName="pt-0 pe-2 ps-2 PlansModal mx-1"
     >
       <Container>

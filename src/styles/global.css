@@ -488,6 +488,11 @@ hr {
     max-width: 100%;
   }
 }
+@media (min-width: 1200px) {
+  .modal-xl {
+    max-width: 1140px;
+  }
+}
 @media (min-width: 1600px) {
   .modal-xxl {
     --bs-modal-width: 1550px !important;

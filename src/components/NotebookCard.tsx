@@ -4,7 +4,7 @@ import Link from "./Link.tsx"
 import Avatar from "boring-avatars"
 import { ArrowRight } from "iconoir-react"
 import { DateTime } from "luxon"
-import type { Notebook } from "../types.ts"
+import type { Notebook } from "../types"
 import { NotebookLevelColors } from "../constants.ts"
 import { marked } from "marked"
 

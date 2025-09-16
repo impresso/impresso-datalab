@@ -2,10 +2,12 @@
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/ocrqa_pipeline_demo.ipynb
 authors:
   - impresso-team
-title: OCR Quality Assessment with *impresso-pipelines* Package
-sha: 1c174216a26ce06ec79dafe56cf2213c7537ffa2
-date: 2025-04-30T12:47:36Z
+title: OCR Quality Assessment with impresso-pipelines Package
+sha: 44b1b63ced7830f920acd9326d8afb9f381b57f7
+date: 2025-08-26T10:06:24Z
 links:
+  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
+    label: report a problem
   - href: https://pypi.org/project/impresso-pipelines/
     label: impresso-pipelines
   - href: https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/ocrqa
@@ -48,6 +50,8 @@ googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datal
 <a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/ocrqa_pipeline_demo.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
+
+If something doesn't work, you can [report a problem](https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md).
 
 
 {/* cell:1 cell_type:markdown */}
@@ -111,7 +115,7 @@ First, start by installing `impresso-pipelines` package.
 
 {/* cell:5 cell_type:code */}
 ```python
-%pip install impresso_pipelines[ocrqa]
+%pip install "impresso_pipelines[ocrqa]"
 ```
 
 {/* cell:6 cell_type:markdown */}
@@ -136,12 +140,12 @@ Once you initialize the pipeline, you can simply provide the text you'd like to 
 
 {/* cell:10 cell_type:code */}
 ```python
-de_text = "Ein kleiner Hund wqeg Max lebte in einem ruhigen Dorf."
+text = "Ein kleiner Hund wqeg Max lebte in einem ruhigen Dorf."
 ```
 
 {/* cell:11 cell_type:code */}
 ```python
-ocrqa_pipeline(de_text)
+ocrqa_pipeline(text)
 ```
 
 {/* cell:12 cell_type:markdown */}
@@ -182,7 +186,7 @@ These attributes can be used individually, in combination with each other, or al
 {/* cell:16 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, language="lb")
+ocrqa_pipeline(text, language="lb")
 ```
 
 {/* cell:17 cell_type:markdown */}
@@ -196,7 +200,7 @@ Even though the provided text is clearly in German, specifying the language as L
 {/* cell:19 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, version="1.0.5")
+ocrqa_pipeline(text, version="1.0.5")
 ```
 
 {/* cell:20 cell_type:markdown */}
@@ -210,7 +214,7 @@ In the example above, by explicitly setting the `version` to _1.0.5_ , you are i
 {/* cell:22 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, diagnostics=True)
+ocrqa_pipeline(text, diagnostics=True)
 ```
 
 {/* cell:23 cell_type:markdown */}
@@ -224,7 +228,7 @@ Once you set `diagnostics` to _True_ , an additional key, `diagnostics`, will be
 {/* cell:25 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, model_id=True)
+ocrqa_pipeline(text, model_id=True)
 ```
 
 {/* cell:26 cell_type:markdown */}
@@ -238,7 +242,7 @@ Similar to the `diagnostics` attribute, the `model_id` attribute is a simpler ve
 {/* cell:28 cell_type:code */}
 ```python
 # Using the same German text example as before
-ocrqa_pipeline(de_text, supported_languages=True)
+ocrqa_pipeline(text, supported_languages=True)
 ```
 
 {/* cell:29 cell_type:markdown */}
@@ -253,7 +257,7 @@ Once `supported_languages` is set to _True_, the pipeline returns an additional 
 ```python
 # Using the same German text example as before
 ocrqa_pipeline(
-    de_text,
+    text,
     language="fr",
     version="1.0.5",
     diagnostics=True,
@@ -272,13 +276,13 @@ You can use a mix of additional parameters, or all of them at once, to gain a de
 
 {/* cell:34 cell_type:code */}
 ```python
-short_de_text_with_unusual_name = "Glebs geht ins Büro."
+short_text_with_unusual_name = "Glebs geht ins Büro."
 ```
 
 {/* cell:35 cell_type:code */}
 ```python
 # Example 1: Very short sentence
-ocrqa_pipeline(short_de_text_with_unusual_name, diagnostics=True)
+ocrqa_pipeline(short_text_with_unusual_name, diagnostics=True)
 ```
 
 {/* cell:36 cell_type:markdown */}
@@ -314,7 +318,7 @@ Additionally, you can find more technical details in the repository of the [Impr
 ## Project and License info
 
 ### Notebook credits [![CreditLogo.png](data:image/png;base64,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)](https://credit.niso.org/)
-**Writing - Original draft:** Glebs Vinarskis. **Conceptualization:** Simon Clematide, Glebs Vinarskis. **Software:** Simon Clematide, Juri Opitz, Andrianos Michail. **Writing - Review & Editing:** Caio Mello. **Validation:** Estelle Bunout. **Datalab editorial board:** Caio Mello (Managing), Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Simon Clematide, Glebs Vinarskis. **Supervision:** Simon Clematide. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
+**Writing - Original draft:** Glebs Vinarskis. **Conceptualization:** Simon Clematide, Glebs Vinarskis. **Software:** Simon Clematide, Juri Opitz, Andrianos Michail. **Writing - Review & Editing:** Caio Mello. **Validation:** Estelle Bunout, Kirill Veprikov. **Datalab editorial board:** Caio Mello (Managing), Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Simon Clematide, Glebs Vinarskis. **Supervision:** Simon Clematide. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
 
 
 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
