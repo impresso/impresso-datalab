@@ -154,7 +154,7 @@ const fetchUser = async () => {
   isLoading.value = true
   // get user plan from store
   userPlan.value = usePersistentStore.getState().userPlan
-  // get affiliation adn insitutionalUrl from user service
+  // get affiliation and institutionalUrl from user service
   await userService
     .find()
     .then((data: User) => {
