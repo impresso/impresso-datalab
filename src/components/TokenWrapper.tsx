@@ -12,7 +12,10 @@ import { Container } from "react-bootstrap"
 import { BrowserViewLogin, BrowserViewTermsOfUse } from "../constants"
 import { DateTime } from "luxon"
 
-const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
+const TokenWrapper: React.FC<{
+  delay?: number
+  authenticationTimeout?: number
+}> = ({ delay = 2000, authenticationTimeout = 1000 }) => {
   const [llToken, acceptTermsDate] = usePersistentStore((state) => [
     state.token,
     state.acceptTermsDate,
@@ -23,20 +26,27 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
 
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
   const { status, data, error, mutate } = useMutation({
-    mutationFn: (payload: {
+    retry: 3,
+    retryDelay: authenticationTimeout,
+    onSettled: () => {
+      setIsBusy(false)
+    },
+    onMutate: () => setIsBusy(true),
+    mutationFn: async (payload: {
       strategy: string
       accessToken?: string
       email?: string
       password?: string
-    }) =>
-      axios
-        .post(
-          `${import.meta.env.PUBLIC_IMPRESSO_API_PATH}/authentication`,
-          payload
-        )
-        .then((res) => res.data)
-
-        .finally(() => setIsBusy(false)),
+    }) => {
+      const response = await axios.post(
+        `${import.meta.env.PUBLIC_IMPRESSO_API_PATH}/authentication`,
+        payload,
+        {
+          timeout: authenticationTimeout,
+        }
+      )
+      return response.data
+    },
   })
 
   useEffect(() => {
@@ -69,16 +79,22 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
     (status === "idle" && !llToken) ||
     (status === "error" && errorIsUnauthorized)
 
+  let apiTokenStatusTranslationKey = "..."
+  if (status === "idle" && !isBusy) {
+    apiTokenStatusTranslationKey = "..."
+  } else if (isBusy || status === "pending") {
+    apiTokenStatusTranslationKey = "is being generated..."
+  } else if (status === "error" && errorIsFailure && !isBusy) {
+    apiTokenStatusTranslationKey =
+      "cannot be generated: an unexpected error happened. Please try again later or contact us if the problem persists."
+  } else if (status === "success" && !isBusy) {
+    apiTokenStatusTranslationKey = "is here!"
+  }
   return (
     <Container>
       <h1>
-        {status === "idle" && !isBusy && "Generate your API token"}
-        {(isBusy || status === "pending") && "Generating your API token..."}
-        {status === "error" &&
-          errorIsFailure &&
-          !isBusy &&
-          "An unexpected error happened. It happens..."}
-        {status === "success" && !isBusy && "Your Api token"}
+        Your API token{" "}
+        <span className="text-muted">{apiTokenStatusTranslationKey}</span>
       </h1>
 
       {errorIsFailure && (
@@ -90,40 +106,42 @@ const TokenWrapper: React.FC<{ delay?: number }> = ({ delay = 2000 }) => {
           {error.message}
         </Alert>
       )}
-      <Alert
-        className={"mb-3"}
-        type={!acceptTermsDate ? "warning" : "info"}
-        value=""
-      >
-        <div className="ms-3">
-          {acceptTermsDate !== null ? (
-            <p className="m-0">
-              API access is always subject to our&nbsp;
-              <button
-                className="btn btn-link d-inline-block"
-                onClick={() => {
-                  setView(BrowserViewTermsOfUse)
-                }}
-              >
-                Terms of use
-              </button>
-              . You accepted the Terms of Use{" "}
-              <b>
-                {DateTime.fromISO(acceptTermsDate)
-                  .setLocale("en-GB")
-                  .toLocaleString(DateTime.DATETIME_FULL)}
-              </b>
-            </p>
-          ) : (
-            <p className="m-0">
-              You have not accepted our <b>Terms of Use</b> yet. Please read the{" "}
-              <b>entire</b> terms of use document carefully and accept it before
-              using the token.
-            </p>
-          )}
-        </div>
-      </Alert>
-      {acceptTermsDate === null && (
+      {!isBusy && !showLoginForm && (
+        <Alert
+          className={"mb-3"}
+          type={!acceptTermsDate ? "warning" : "info"}
+          value=""
+        >
+          <div className="ms-3">
+            {acceptTermsDate !== null ? (
+              <p className="m-0">
+                API access is always subject to our&nbsp;
+                <button
+                  className="btn btn-link d-inline-block"
+                  onClick={() => {
+                    setView(BrowserViewTermsOfUse)
+                  }}
+                >
+                  Terms of use
+                </button>
+                . You accepted the Terms of Use{" "}
+                <b>
+                  {DateTime.fromISO(acceptTermsDate)
+                    .setLocale("en-GB")
+                    .toLocaleString(DateTime.DATETIME_FULL)}
+                </b>
+              </p>
+            ) : (
+              <p className="m-0">
+                You have not accepted our <b>Terms of Use</b> yet. Please read
+                the <b>entire</b> terms of use document carefully and accept it
+                before using the token.
+              </p>
+            )}
+          </div>
+        </Alert>
+      )}
+      {!showLoginForm && acceptTermsDate === null && (
         <button
           className="btn btn-secondary mt-3 mx-auto"
           onClick={() => {
