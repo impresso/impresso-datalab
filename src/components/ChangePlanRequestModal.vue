@@ -244,7 +244,6 @@ watch(
 .ChangePlanRequestModal .ChangePlanForm .pending {
   border-color: #00b0a3 !important;
 
-  border-color: #00b0a3 !important;
   -webkit-box-shadow: 0 0 0 4px rgba(var(--bs-info-rgb), 0.7) !important;
   box-shadow: 0 0 0 4px rgba(var(--bs-info-rgb), 0.7) !important;
 }
