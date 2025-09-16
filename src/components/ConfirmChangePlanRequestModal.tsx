@@ -12,7 +12,7 @@ const ConfirmChangePlanRequestModal = () => {
       onHide={() => setView(null)}
     >
       <Modal.Header closeButton>
-        <Modal.Title>
+        <Modal.Title className="pe-4">
           Your request to change your plan has been submitted.
         </Modal.Title>
       </Modal.Header>

@@ -37,9 +37,9 @@
       :availablePlans="AvailablePlansWithLabels"
       @submit="handleOnSubmit"
       :is-loading="isLoading"
-      :currentPlan="userPlan"
-      :rejectedPlan="rejectedPlan"
-      :pendingPlan="pendingPlan"
+      :currentPlan="userPlan || undefined"
+      :rejectedPlan="rejectedPlan || undefined"
+      :pendingPlan="pendingPlan || undefined"
       :currentAffiliation="currentAffiliation"
       :currentInstitutionalUrl="currentInstitutionalUrl"
       :currentEmail="currentEmail"
@@ -227,6 +227,18 @@ watch(
 
 .ChangePlanRequestModal .ChangePlanForm label .badge.bg-info {
   background-color: rgb(var(--bs-info-rgb)) !important;
+}
+
+/* // bg-warning  */
+.ChangePlanRequestModal .ChangePlanForm .rejected {
+  border-color: #ffb800 !important;
+
+  border-color: #ffb800 !important;
+  -webkit-box-shadow: 0 0 0 4px rgba(var(--bs-warning-rgb), 0.7) !important;
+  box-shadow: 0 0 0 4px rgba(var(--bs-warning-rgb), 0.7) !important;
+}
+.ChangePlanRequestModal .ChangePlanForm label .badge.bg-warning {
+  background-color: rgb(var(--bs-warning-rgb)) !important;
 }
 
 .ChangePlanRequestModal .ChangePlanForm .pending {
