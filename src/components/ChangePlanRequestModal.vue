@@ -4,7 +4,7 @@
     :show="show"
     @close="() => emit('dismiss')"
     bodyClass="px-3"
-    dialogClass="ChangePlanRequestModal modal-lg-md modal-dialog-centered"
+    dialogClass="ChangePlanRequestModal modal-dialog-centered"
     ><template #modal-header="{ close }">
       <h5 class="modal-title">Change Plan</h5>
       <button
@@ -14,8 +14,26 @@
         @click="close"
       ></button>
     </template>
+    You can request to change your plan any time if your situation changed. More
+    information about the plans can be found in the
+    <Link underline to="/plans">Plans</Link> page.
+
+    <Alert
+      type="info"
+      class="my-3 p-3"
+      role="alert"
+      v-if="!isLoading && pendingPlan"
+    >
+      <p class="m-0">
+        You have a pending plan change request to
+        <strong class="text-capitalize">{{ PlanLabels[pendingPlan] }}</strong>
+        plan. You cannot submit a new request until the current one is
+        processed.
+      </p>
+    </Alert>
     <ChangePlanForm
       v-if="!isLoading"
+      inline
       :availablePlans="AvailablePlansWithLabels"
       @submit="handleOnSubmit"
       :is-loading="isLoading"
@@ -25,6 +43,7 @@
       :currentAffiliation="currentAffiliation"
       :currentInstitutionalUrl="currentInstitutionalUrl"
       :currentEmail="currentEmail"
+      class="small"
     >
       <template #form-errors v-if="error">
         <Alert type="warning" class="mb-3 p-3" role="alert">
@@ -36,7 +55,7 @@
           type="button"
           @click="submit"
           :disabled="isLoading || disabled"
-          class="btn btn-primary btn-lg px-4 "
+          class="btn btn-primary btn-lg px-4"
         >
           <Send />
           <span class="ms-2" v-if="isLoading"> Updating...</span>
@@ -51,13 +70,14 @@
 import ChangePlanForm from "impresso-ui-components/components/ChangePlanForm.vue"
 import Modal from "impresso-ui-components/components/legacy/BModal.vue"
 import Alert from "impresso-ui-components/components/Alert.vue"
-import { AvailablePlansWithLabels } from "../constants"
+import { AvailablePlansWithLabels, PlanLabels } from "../constants"
 import { onBeforeUnmount, onMounted, ref, watch } from "vue"
 import { Send } from "@iconoir/vue"
 import type { FeathersError } from "@feathersjs/errors"
 import { userChangePlanRequestService, userService } from "../services"
 import type { User, UserChangePlanRequest } from "../types"
 import { usePersistentStore } from "../store"
+import Link from "./Link.vue"
 
 export interface ChangePlanRequestModalProps {
   show?: boolean
@@ -106,7 +126,7 @@ async function handleOnSubmit(payload: {
         console.error(
           "[ChangePlanModal] Error updating user:",
           err.message,
-          err.data
+          err.data,
         )
       })
   }
@@ -118,7 +138,7 @@ async function handleOnSubmit(payload: {
     .then((data) => {
       console.info(
         "[ChangePlanModal] Plan-change request created successfully. data:",
-        data
+        data,
       )
       emit("success")
     })
@@ -144,7 +164,7 @@ const fetchUser = async () => {
         "[ChangePlanRequestModal] fetchUser success:",
         currentAffiliation.value,
         currentInstitutionalUrl.value,
-        currentEmail.value
+        currentEmail.value,
       )
     })
     .catch((err: FeathersError) => {
@@ -153,7 +173,7 @@ const fetchUser = async () => {
         "[ChangePlanRequestModal] fetchUser error ",
         err,
         err.message,
-        err.data
+        err.data,
       )
     })
   await userChangePlanRequestService
@@ -161,7 +181,7 @@ const fetchUser = async () => {
     .then((data: UserChangePlanRequest) => {
       console.info(
         "[ChangePlanRequestModal] @useEffect - userChangePlanRequestService",
-        data
+        data,
       )
       rejectedPlan.value = data.status === "rejected" ? data.plan.name : null
       pendingPlan.value = data.status === "pending" ? data.plan.name : null
@@ -171,7 +191,7 @@ const fetchUser = async () => {
       console.error(
         "[ChangePlanModal] @useEffect - userChangePlanRequestService",
         err.message,
-        err.data
+        err.data,
       )
     })
   isLoading.value = false
@@ -184,7 +204,7 @@ watch(
       fetchUser()
     }
   },
-  { immediate: true }
+  { immediate: true },
 )
 </script>
 <style>
@@ -194,7 +214,25 @@ watch(
 .ChangePlanRequestModal .bg-white {
   --bs-bg-opacity: 0;
 }
+.ChangePlanRequestModal .ChangePlanForm {
+  --bs-info-rgb: 195, 252, 241;
+}
+.ChangePlanRequestModal .ChangePlanForm .toggleHeightFieldsContainer {
+  margin-top: var(--spacer-3);
+}
 .ChangePlanRequestModal .ChangePlanForm label .badge {
   background-color: var(--impresso-color-black) !important;
+}
+
+.ChangePlanRequestModal .ChangePlanForm label .badge.bg-info {
+  background-color: rgb(var(--bs-info-rgb)) !important;
+}
+
+.ChangePlanRequestModal .ChangePlanForm .pending {
+  border-color: #00b0a3 !important;
+
+  border-color: #00b0a3 !important;
+  -webkit-box-shadow: 0 0 0 4px rgba(var(--bs-info-rgb), 0.7) !important;
+  box-shadow: 0 0 0 4px rgba(var(--bs-info-rgb), 0.7) !important;
 }
 </style>
