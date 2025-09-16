@@ -6,7 +6,8 @@
   --impresso-color-black-rgb: 52, 58, 64;
   --impresso-color-black: rgb(var(--impresso-color-black-rgb));
   --impresso-color-black-rgb: 52, 58, 64;
-
+  --impresso-color-black-alpha-20: rgba(52, 58, 64, 0.2);
+  --impresso-color-purple: #8a5de8;
   /* // paper transparency */
   --impresso-color-paper-rgb: 250, 251, 242;
   --impresso-color-paper-rgba-90: rgba(250, 251, 242, 0.9);
@@ -29,17 +30,18 @@
   /* Card additional colors */
   --impresso-card-purple-icon: #8a5de8;
   --impresso-card-orange-icon: #f2994a;
-
+  --info-rgb: 195, 252, 241;
   --error-rgb: 242, 153, 74;
   --warning-rgb: 255, 182, 114;
   /* Bootstrap overrides */
   --bs-border-color: #9e9c99;
   --bs-border-radius-lg: var(--impresso-border-radius-lg);
-  --bs-font-sans-serif: "Satoshi-Variable", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  --bs-font-sans-serif-italic: "Satoshi-VariableItalic", -apple-system,
-    BlinkMacSystemFont, sans-serif;
+  --bs-font-sans-serif:
+    "Satoshi-Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  --bs-font-sans-serif-italic:
+    "Satoshi-VariableItalic", -apple-system, BlinkMacSystemFont, sans-serif;
   --bs-light: #fefefe;
   --bs-link-color-rgb: var(--impresso-color-black-rgb);
   --bs-link-hover-color-rgb: var(--impresso-color-black-rgb);
@@ -126,12 +128,15 @@
   --negative-spacer-4: -1.5rem;
   --negative-spacer-5: -3rem;
   /* SHADOWS */
-  --shadow-xs: rgba(52, 58, 64, 0.1) 0px 10px 15px -3px,
+  --shadow-xs:
+    rgba(52, 58, 64, 0.1) 0px 10px 15px -3px,
     rgba(52, 58, 64, 0.05) 0px 4px 6px -2px;
 
   --shadow-sm: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
   --shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 0 1.5rem 0 rgba(0, 0, 0, 0.1);
+
+  --impresso-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
