@@ -1,7 +1,7 @@
 ---
-id: academic-user-plus
 title: "Coming soon: Special Membership"
-plan: plan-special-membership
+name: plan-special-membership
+ordering: 5
 icon: basic
 features:
   - ref: explore-all-features
@@ -13,27 +13,33 @@ features:
   - ref: export-metadata
 
   - ref: facsimiles-public-domain
-    icon: public-domain-yes-access-no-download
 
   - ref: facsimiles
-    icon: restricted-yes-access-no-download
+    icon: by-collection
 
   - ref: audio-public-domain
-    icon: public-domain-yes-access-no-download
 
   - ref: audio
-    icon: restricted-yes-access-no-download
+    icon: by-collection
 
   - ref: transcripts-public-domain
   - ref: transcripts
-    icon: restricted-yes-access-download
+    icon: by-collection
+  - ref: export-transcripts-public-domain
+  - ref: export-transcripts
+    icon: by-collection
 
   - ref: images-public-domain
   - ref: images
-    icon: restricted-yes-access-download
+    icon: by-collection
+  - ref: export-images-public-domain
+  - ref: export-images
+    icon: by-collection
 
   - ref: semantic-enrichments-public-domain
   - ref: semantic-enrichments
+
+  - ref: export-semantic-enrichments
 
 requirements:
   - terms-of-use
@@ -41,4 +47,4 @@ requirements:
   - data-access-granted
 ---
 
-The Academic User+ Plan offers extended access, including collections that require approval from content providers for an Impresso user account.
+The Special Membership Plan offers extended access, including collections that require approval from content providers for an Impresso user account.

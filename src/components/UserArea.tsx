@@ -19,7 +19,7 @@ const CustomToggle = forwardRef(
       children?: React.ReactNode
       onClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {}
     },
-    ref: React.Ref<HTMLAnchorElement>
+    ref: React.Ref<HTMLAnchorElement>,
   ) => (
     <a
       href=""
@@ -33,7 +33,7 @@ const CustomToggle = forwardRef(
       {props.children}
       <PageDown className="ms-2" />
     </a>
-  )
+  ),
 )
 
 const UserArea = () => {
@@ -54,7 +54,7 @@ const UserArea = () => {
     if (wsStatus !== "connected") {
       console.debug(
         "[UserArea] @useEffect - ws not connected, current status",
-        wsStatus
+        wsStatus,
       )
       return
     }
@@ -75,7 +75,7 @@ const UserArea = () => {
         })
     } else {
       console.debug(
-        "[UserArea] @useEffect - ws connected, but no token available. Reset user."
+        "[UserArea] @useEffect - ws connected, but no token available. Reset user.",
       )
       setUser(null)
     }
@@ -99,7 +99,7 @@ const UserArea = () => {
               <Dropdown.Item
                 onClick={() => setView(BrowserViewChangePlanRequest)}
               >
-                Change Plan
+                Request change of plan
               </Dropdown.Item>
               <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
               {/* add separator */}

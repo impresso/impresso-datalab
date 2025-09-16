@@ -1,3 +1,4 @@
+import { writeFileSync } from "fs"
 import { z, defineCollection, reference } from "astro:content"
 import { glob, file } from "astro/loaders"
 import axios from "axios"
@@ -26,6 +27,45 @@ const CorpusAccessUserPlansToPlan: Record<string, string> = {
   "Not Possible": PlanNone,
 }
 
+/**
+ * Writes the provided data to a log file if the environment is set to "development".
+ *
+ * - The log file path is determined by the `DATASETS_URL` environment variable,
+ *   or defaults to "datasets" if not set. The path is transformed to a filename
+ *   using a regular expression, extracting the last two segments and joining them
+ *   with a hyphen.
+ * - The data is serialized as pretty-printed JSON and written to the file.
+ * - In non-development environments, the function does not write to disk and simply returns the data.
+ *
+ * @param data - The data to be logged and written to the file.
+ * @param filename - Optional filename to use for the log file. Defaults to 'log.json'.
+ * @returns The original data, regardless of environment.
+ *
+ * @remarks
+ * This function is intended for debugging and development purposes only.
+ * It uses Node.js `writeFileSync` to write logs synchronously.
+ *
+ * @example
+ * ```typescript
+ * writeDataToLogFile({ foo: "bar" });
+ * ```
+ */
+const writeDataToLogFile = (data: any, filename: string = "log.json") => {
+  console.log(
+    "[config.ts -> writeDataToLogFile] process.env.NODE_ENV = ",
+    process.env.NODE_ENV
+  )
+  if (process.env.NODE_ENV !== "development") {
+    return data
+  }
+  const filepath: string = `./logs/${filename}`
+  console.log("[writeDataToLogFile] - writing log to:", filepath)
+
+  // write results to a temporary file on disk.
+  writeFileSync(filepath, JSON.stringify(data, null, 2))
+  return data
+}
+
 const CorpusAccessToDatasetMapper = (dataset: any) => {
   return {
     id: [dataset.data_partner_institution, dataset.media_alias].join("-"),
@@ -35,8 +75,8 @@ const CorpusAccessToDatasetMapper = (dataset: any) => {
     timePeriod: dataset.time_period,
     startYear: parseInt(dataset.time_period.split("-").shift(), 10),
     endYear: parseInt(dataset.time_period.split("-").pop(), 10),
-    media: dataset.media, // e.g. Newspaper
-    medium: dataset.medium, // eg Print
+    media: dataset.source_type, // e.g. Newspaper
+    medium: dataset.source_medium, // eg Print
     copyright: dataset.copyright_or_copyright_status,
     permittedUse: dataset.permitted_use,
     minimumUserPlanRequiredToExploreInWebapp:
@@ -72,6 +112,7 @@ const datasets = defineCollection({
         console.log("   received:", res.data.length)
         return response.map(CorpusAccessToDatasetMapper)
       })
+      .then((data) => writeDataToLogFile(data, "datasets.log.json"))
       .catch((err) => {
         console.error(
           err.message,
@@ -161,22 +202,31 @@ const dataReleaseCards = defineCollection({
           })
           .then((res) => {
             const response = res.data
+
+            // console.log(" [dataReleaseCards] - written to disk")
+
             console.log("\n [dataReleaseCards] \n - requesting url: \n  ", url)
             const transformedResponse = toCamelCase({
               // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
               id: url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2"),
               ...response,
             })
+
             console.log(
               "   received:",
               "\n   id:",
               transformedResponse.id,
-              "\n   releaseName:",
+              "\n   releaseName (private):",
               transformedResponse.releaseName
               // transformedResponse
             )
+            if (transformedResponse.impressoCorpusOverview?.mediaStats) {
+              transformedResponse.impressoCorpusOverview.npsStats =
+                transformedResponse.impressoCorpusOverview.mediaStats
+            }
             return transformedResponse
           })
+          .then((data) => writeDataToLogFile(data, "dataReleaseCards.log.json"))
           .catch((err) => {
             console.error(
               err.message,
@@ -304,10 +354,13 @@ const notebooks = defineCollection({
 const plans = defineCollection({
   loader: glob({ pattern: "*.mdx", base: "./src/content/plans" }),
   schema: z.object({
-    id: z.string().optional(),
     title: z.string(),
     icon: z.string().optional(),
-    plan: z.enum(Plans as any).optional(),
+    // this is the plan identifier (group name in django) used in the PlanCard component
+    // it should match the PlanGuest, PlanImpressoUser, PlanEducational, PlanResearcher constants
+    // in src/constants.ts
+    name: z.enum(Plans as any),
+    ordering: z.number().min(0).optional().default(0),
     features: z
       .array(
         z.object({

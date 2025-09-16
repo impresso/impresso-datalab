@@ -1,7 +1,7 @@
 import { Xmark } from "iconoir-react"
 import { Row, Col } from "react-bootstrap"
 import PlanFeatureCard from "./PlanFeatureCard"
-import type { Plan } from "./PlanCard"
+import type { Plan } from "../types"
 
 const BootstrapColumnLayoutForLabels = {
   lg: 2,
@@ -39,7 +39,7 @@ const PlansModalFeatureRow: React.FC<PlansModalFeatureRowProps> = ({
                   featureIds.length > 1 && i < featureIds.length - 1
                 return (
                   <Col
-                    key={ref}
+                    key={i}
                     className={`d-flex justify-content-center align-items-center ${
                       hasBorder ? "" : "border-end"
                     }`}

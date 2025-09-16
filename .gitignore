@@ -35,3 +35,7 @@ impresso-datalab.code-workspace
 .env.development
 .env.local
 *.local
+*.env.development.*
+
+logs/*
+!logs/.gitkeep

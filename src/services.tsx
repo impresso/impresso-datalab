@@ -21,6 +21,7 @@ app.configure(
   })
 )
 app.configure(
+  // @ts-ignore
   socketio(socket, {
     timeout: 20000,
   })

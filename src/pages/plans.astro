@@ -4,8 +4,10 @@ import { getRecursivelyEntryData } from "../logic"
 import App from "../components/App.astro"
 import Layout from "../layouts/Layout.astro"
 import PlansModal from "../components/PlansModal"
-import { AstroSeo } from '@astrolib/seo';
+import { AstroSeo } from '@astrolib/seo'
 import { CanonicalUrl } from "../constants"
+import type { Plan } from "../types"
+
 // load all notebooks, order by date
 const plans = await getCollection('plans')
 const plansProps = await Promise.all(plans.map(async (plan) => {
@@ -13,9 +15,8 @@ const plansProps = await Promise.all(plans.map(async (plan) => {
   return {
     ...planProps,
     body: plan.body
-  }
-}))
-
+  } as Plan
+})).then(plans => plans.sort((a:Plan, b) => (a.ordering - b.ordering)))
 
 const pageContent = await getEntry("pagesContents", "plans") as any;
 

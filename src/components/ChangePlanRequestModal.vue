@@ -4,7 +4,7 @@
     :show="show"
     @close="() => emit('dismiss')"
     bodyClass="px-3"
-    dialogClass="ChangePlanRequestModal modal-lg-md modal-dialog-centered"
+    dialogClass="ChangePlanRequestModal modal-dialog-centered"
     ><template #modal-header="{ close }">
       <h5 class="modal-title">Change Plan</h5>
       <button
@@ -14,8 +14,26 @@
         @click="close"
       ></button>
     </template>
+    You can request to change your plan any time if your situation changed. More
+    information about the plans can be found in the
+    <Link underline to="/plans">Plans</Link> page.
+
+    <Alert
+      type="info"
+      class="my-3 p-3"
+      role="alert"
+      v-if="!isLoading && pendingPlan"
+    >
+      <p class="m-0">
+        You have a pending plan change request to
+        <strong class="text-capitalize">{{ PlanLabels[pendingPlan] }}</strong>
+        plan. You cannot submit a new request until the current one is
+        processed.
+      </p>
+    </Alert>
     <ChangePlanForm
       v-if="!isLoading"
+      inline
       :availablePlans="AvailablePlansWithLabels"
       @submit="handleOnSubmit"
       :is-loading="isLoading"
@@ -26,6 +44,7 @@
       :currentInstitutionalUrl="currentInstitutionalUrl"
       :currentEmail="currentEmail"
       enableAdditionalFields
+      class="small"
     >
       <template #form-errors v-if="error">
         <Alert type="warning" class="mb-3 p-3" role="alert">
@@ -52,13 +71,14 @@
 import ChangePlanForm from "impresso-ui-components/components/ChangePlanForm.vue"
 import Modal from "impresso-ui-components/components/legacy/BModal.vue"
 import Alert from "impresso-ui-components/components/Alert.vue"
-import { AvailablePlansWithLabels } from "../constants"
+import { AvailablePlansWithLabels, PlanLabels } from "../constants"
 import { ref, watch } from "vue"
 import { Send } from "@iconoir/vue"
 import type { FeathersError } from "@feathersjs/errors"
 import { userChangePlanRequestService, userService } from "../services"
 import type { User, UserChangePlanRequest } from "../types"
 import { usePersistentStore } from "../store"
+import Link from "./Link.vue"
 
 export interface ChangePlanRequestModalProps {
   show?: boolean
@@ -195,7 +215,25 @@ watch(
 .ChangePlanRequestModal .bg-white {
   --bs-bg-opacity: 0;
 }
+.ChangePlanRequestModal .ChangePlanForm {
+  --bs-info-rgb: 195, 252, 241;
+}
+.ChangePlanRequestModal .ChangePlanForm .toggleHeightFieldsContainer {
+  margin-top: var(--spacer-3);
+}
 .ChangePlanRequestModal .ChangePlanForm label .badge {
   background-color: var(--impresso-color-black) !important;
+}
+
+.ChangePlanRequestModal .ChangePlanForm label .badge.bg-info {
+  background-color: rgb(var(--bs-info-rgb)) !important;
+}
+
+.ChangePlanRequestModal .ChangePlanForm .pending {
+  border-color: #00b0a3 !important;
+
+  border-color: #00b0a3 !important;
+  -webkit-box-shadow: 0 0 0 4px rgba(var(--bs-info-rgb), 0.7) !important;
+  box-shadow: 0 0 0 4px rgba(var(--bs-info-rgb), 0.7) !important;
 }
 </style>
