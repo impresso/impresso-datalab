@@ -201,6 +201,7 @@ export const PlanLabels: Record<string, string> = {
   [PlanNone]: "No Plan",
   [PlanSpecialMembership]: "Special Membership",
 }
+
 export const Plans: string[] = [
   PlanGuest,
   PlanImpressoUser,
@@ -222,17 +223,23 @@ export const AvailablePlansWithLabels = [
     name: PlanImpressoUser,
     label: PlanLabels[PlanImpressoUser],
     description: "Select if not enrolled in an academic institution",
+    requireAffiliation: false,
+    requireInstitutionalUrl: false,
   },
   {
     name: PlanEducational,
     label: PlanLabels[PlanEducational],
     description:
       "Select if you are enrolled as a student in an academic institution",
+    requireAffiliation: true,
+    requireInstitutionalUrl: false,
   },
   {
     name: PlanResearcher,
     label: PlanLabels[PlanResearcher],
     description: "Select if you are research staff in an academic institution",
+    requireAffiliation: true,
+    requireInstitutionalUrl: true,
   },
 ]
 
@@ -250,10 +257,12 @@ export const PlanIconRestrictedAccessNoDownload =
 export const PlanIconRestrictedAccessDownload = "restricted-yes-access-download"
 export const PlanIconPublicDomainAccessNoDownload =
   "public-domain-yes-access-no-download"
+export const PlanIconByCollection = "by-collection"
 export const PlanIcons: string[] = [
   PlanIconRestrictedAccessNoDownload,
   PlanIconRestrictedAccessDownload,
   PlanIconPublicDomainAccessNoDownload,
+  PlanIconByCollection,
 ]
 export const PlanIconLabels: Record<string, string> = {
   [PlanIconRestrictedAccessNoDownload]:
@@ -262,12 +271,15 @@ export const PlanIconLabels: Record<string, string> = {
     "Access and download to protected data determined only by Impresso partners.",
   [PlanIconPublicDomainAccessNoDownload]:
     "Access Granted, <b>Download Not Available<b>",
+  [PlanIconByCollection]:
+    "Subject to partner conditions – see Corpus Catalogue",
 }
 
 export const PlanIconColors: Record<string, string> = {
   [PlanIconRestrictedAccessNoDownload]: "orange",
   [PlanIconRestrictedAccessDownload]: "purple",
   [PlanIconPublicDomainAccessNoDownload]: "purple",
+  [PlanIconByCollection]: "purple",
 }
 
 export const BrowserViewLogin = "login"

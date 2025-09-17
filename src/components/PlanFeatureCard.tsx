@@ -1,16 +1,18 @@
-import { CheckCircleSolid, EyeSolid, UserBadgeCheck } from "iconoir-react"
+import { CheckCircleSolid, WarningCircle } from "iconoir-react"
 import { OverlayTrigger, Tooltip } from "react-bootstrap"
 import {
   PlanIconColors,
   PlanIconPublicDomainAccessNoDownload,
   PlanIconRestrictedAccessDownload,
   PlanIconRestrictedAccessNoDownload,
+  PlanIconByCollection,
 } from "../constants"
-import type { PlanFeature } from "./PlanCard"
+import type { PlanFeature } from "../types"
 const IconsByIconName: { [key: string]: React.ComponentType } = {
-  [PlanIconRestrictedAccessNoDownload]: UserBadgeCheck,
-  [PlanIconRestrictedAccessDownload]: UserBadgeCheck,
-  [PlanIconPublicDomainAccessNoDownload]: EyeSolid,
+  [PlanIconRestrictedAccessNoDownload]: WarningCircle,
+  [PlanIconRestrictedAccessDownload]: WarningCircle,
+  [PlanIconPublicDomainAccessNoDownload]: WarningCircle,
+  [PlanIconByCollection]: WarningCircle,
 }
 
 const TooltipByIconName: { [key: string]: string } = {
@@ -19,6 +21,8 @@ const TooltipByIconName: { [key: string]: string } = {
   [PlanIconRestrictedAccessDownload]: "Restricted access, download available.",
   [PlanIconPublicDomainAccessNoDownload]:
     "Public domain access, no download available.",
+  [PlanIconByCollection]:
+    "Subject to partner conditions – see Corpus Catalogue",
 }
 
 const PlanFeatureCard: React.FC<{ feature: PlanFeature }> = ({ feature }) => {

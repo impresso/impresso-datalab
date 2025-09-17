@@ -4,7 +4,7 @@ import Link from "./Link.tsx"
 import Avatar from "boring-avatars"
 import { ArrowRight } from "iconoir-react"
 import { DateTime } from "luxon"
-import type { Notebook } from "../types.ts"
+import type { Notebook } from "../types"
 import { NotebookLevelColors } from "../constants.ts"
 import { marked } from "marked"
 
@@ -40,7 +40,11 @@ const NotebookCard: React.FC<{
           />
         </div>
         <div className="mx-3">
-          <a target="_blank" className="small" href={notebook?.langModel}>
+          <a
+            target="_blank"
+            className="small cursor-pointer"
+            href={notebook?.googleColabUrl}
+          >
             <img
               src="https://img.shields.io/badge/Open_in_Colab-fafafa?logo=googlecolab"
               alt="Open In Colab"

@@ -1,7 +1,7 @@
 import Page from "./Page"
 // import PlanCard from "./PlanCard"
 import { Col, Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap"
-import type { Plan } from "./PlanCard"
+import type { Plan } from "../types"
 import { usePersistentStore } from "../store"
 import {
   PlanGuest,
@@ -34,13 +34,7 @@ import {
   // RequirementImpressoAccount,
   RequirementsTooltips,
 } from "../constants"
-import {
-  CheckCircleSolid,
-  CheckCircle,
-  Minus,
-  WarningCircle,
-  Xmark,
-} from "iconoir-react"
+import { CheckCircleSolid, Minus, WarningCircle, Xmark } from "iconoir-react"
 import "./PlansModal.css"
 import MarkdownSnippet from "./MarkdownSnippet"
 import PlansModalFeatureRow from "./PlansModalFeatureRow"
@@ -70,15 +64,15 @@ const PlansModal: React.FC<PlansModalProps> = ({
     state.acceptTermsDate,
   ])
 
-  let useActivePlan = PlanGuest
+  let currentPlanName = PlanGuest
   if (user !== null) {
-    useActivePlan = PlanImpressoUser
+    currentPlanName = PlanImpressoUser
   }
   return (
     <Page
       title={modalTitle}
       fullscreen="xl-down"
-      size="xxl"
+      size="xl"
       modalBodyClassName="pt-0 pe-4 ps-2 PlansModal mx-1"
     >
       <Container>
@@ -94,12 +88,12 @@ const PlansModal: React.FC<PlansModalProps> = ({
             backgroundColor: "var(--impresso-color-paper)",
           }}
         >
-          <Col {...BootstrapColumnLayoutForLabels}></Col>
+          <Col {...BootstrapColumnLayoutForLabels}>{currentPlanName}</Col>
           {plans.map((plan) => (
-            <Col className="py-3 d-flex align-items-end" key={plan.id}>
+            <Col className="py-3 d-flex align-items-end" key={plan.name}>
               <h2 className="m-0 font-weight-bold">
                 {plan.title}
-                {plan.id === useActivePlan ? (
+                {plan.name === currentPlanName ? (
                   <div className="badge d-block small-caps mt-2 shadow-sm bg-primary text-dark">
                     current plan
                   </div>
@@ -137,7 +131,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
                     {feature ? (
                       <>
                         <CheckCircleSolid
-                          color={feature.iconColor ?? "purple"}
+                          color={feature.iconColor ?? "green"}
                         />
                         {feature.title ? (
                           <p
@@ -176,7 +170,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
                 key={plan.id}
               >
                 {key === RequirementToU && acceptedTermsDate ? (
-                  <CheckCircle color="green" />
+                  <CheckCircleSolid color="purple" />
                 ) : plan.requirements.includes(key) ? (
                   <OverlayTrigger
                     overlay={
