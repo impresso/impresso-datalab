@@ -59,15 +59,11 @@ const PlansModal: React.FC<PlansModalProps> = ({
   content = "Choose the plan that best fits your needs.",
   displayFeatures = false,
 }) => {
-  const [user, acceptedTermsDate] = usePersistentStore((state) => [
+  const [user, acceptedTermsDate, userPlan] = usePersistentStore((state) => [
     state.user,
     state.acceptTermsDate,
+    state.userPlan,
   ])
-
-  let currentPlanName = PlanGuest
-  if (user !== null) {
-    currentPlanName = PlanImpressoUser
-  }
   return (
     <Page
       title={modalTitle}
@@ -88,12 +84,12 @@ const PlansModal: React.FC<PlansModalProps> = ({
             backgroundColor: "var(--impresso-color-paper)",
           }}
         >
-          <Col {...BootstrapColumnLayoutForLabels}>{currentPlanName}</Col>
+          <Col {...BootstrapColumnLayoutForLabels}>{userPlan}</Col>
           {plans.map((plan) => (
             <Col className="py-3 d-flex align-items-end" key={plan.name}>
               <h2 className="m-0 font-weight-bold">
                 {plan.title}
-                {plan.name === currentPlanName ? (
+                {plan.name === userPlan ? (
                   <div className="badge d-block small-caps mt-2 shadow-sm bg-primary text-dark">
                     current plan
                   </div>
@@ -109,7 +105,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
         <Row className="my-2">
           <Col {...BootstrapColumnLayoutForLabels}></Col>
           {plans.map((plan) => (
-            <Col key={plan.id}>
+            <Col key={plan.name}>
               <p className="small">{plan.body}</p>
             </Col>
           ))}
@@ -126,7 +122,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
                 return (
                   <Col
                     className="d-flex row justify-content-center align-items-center"
-                    key={plan.id}
+                    key={plan.name}
                   >
                     {feature ? (
                       <>
