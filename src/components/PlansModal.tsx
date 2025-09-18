@@ -59,8 +59,7 @@ const PlansModal: React.FC<PlansModalProps> = ({
   content = "Choose the plan that best fits your needs.",
   displayFeatures = false,
 }) => {
-  const [user, acceptedTermsDate, userPlan] = usePersistentStore((state) => [
-    state.user,
+  const [acceptedTermsDate, userPlan] = usePersistentStore((state) => [
     state.acceptTermsDate,
     state.userPlan,
   ])
