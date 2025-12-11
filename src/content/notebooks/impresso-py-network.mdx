@@ -3,8 +3,8 @@ title: Exploring Entity Co-occurrence Networks
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 authors:
   - impresso-team
-sha: 1efe95de38aa61ebfb1bf85854db14ec607d99b9
-date: 2025-09-10T11:17:43Z
+sha: 84cb15d4b5b16b5a418b60f53bf56ea9a6885ed6
+date: 2025-09-29T14:39:36Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 links:
@@ -31,9 +31,11 @@ links:
     label: Prague Spring
   - href: https://networkx.org
     label: NetworkX
+  - href: https://impresso-project.ch/public-api/v1/docs/
+    label: Impresso API
   - href: https://impresso-project.ch/app/faq#what-is-nep
     label: FAQ
-  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb
+  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
     label: Visualising Place Entities on Maps
   - href: https://www.youtube.com/playlist?list=PL4iQXwvEG8CQSy4T1Z3cJZunvPtQp4dRy
     label: Introduction to Social Network Analysis
@@ -115,36 +117,41 @@ Additional references:
 
 
 {/* cell:5 cell_type:markdown */}
-Install dependencies. You may need to restart the kernel to use updated packages. To do so, on Google Colab, go to *Runtime* and select *Restart session*.
+Install dependencies:
 
-{/* cell:6 cell_type:code */}
+{/* cell:6 cell_type:markdown */}
+> You may need to restart the kernel to use updated packages. To do so, on Google Colab, go to *Runtime* and select *Restart session*.
+
+{/* cell:7 cell_type:code */}
 ```python
 %pip install -q impresso ipysigma networkx tqdm
 ```
 
-{/* cell:7 cell_type:markdown */}
-Connect to Impresso. The following command will prompt you to enter your Impresso token if it has not been authenticated recently (it expires after 8 hours).
+{/* cell:8 cell_type:markdown */}
+Connect to Impresso: 
+
+The following command will prompt you to enter your Impresso token if it has not been authenticated recently (it expires after 8 hours).
 
 To get access to an Impresso API token, go to [Impresso Datalab](https://impresso-project.ch/datalab/) and select *Get API Token* on the menu.
 
-{/* cell:8 cell_type:code */}
+{/* cell:9 cell_type:code */}
 ```python
 from impresso import connect, OR, AND
 
 client = connect()
 ```
 
-{/* cell:9 cell_type:markdown */}
+{/* cell:10 cell_type:markdown */}
 # Part 1. Prepare your data
 
-{/* cell:10 cell_type:markdown */}
+{/* cell:11 cell_type:markdown */}
 ## Get entities and their co-occurrences
 
 First, we retrieve the top 100 most frequently mentioned person entities in all articles that talk about the [Prague Spring](https://en.wikipedia.org/wiki/Prague_Spring) using search facets method from the Impresso Python library. 
 
-> **Facets** are properties of the data. In Impresso, some facets you can use to filter articles are language, newspaper, date of publication, etc. By using search facets method, you can filter by, for example, *persons* as shown in the example below.
+> **Facets** are properties of the data. In Impresso, some facets you can use to filter articles are 'language', 'newspaper', 'date of publication', etc. By using search facets method, you can filter by, for example, 'persons' as shown in the example below.
 
-{/* cell:11 cell_type:code */}
+{/* cell:12 cell_type:code */}
 ```python
 query = OR("Prague Spring", "Prager Frühling", "Printemps de Prague")
 
@@ -157,25 +164,25 @@ persons = client.search.facet(
 persons
 ```
 
-{/* cell:12 cell_type:markdown */}
+{/* cell:13 cell_type:markdown */}
 The result is a list of the 100 most frequently mentioned person entities, where each entry includes:
 
 * a unique identifier (value),
 * the number of times the person is mentioned (count),
 * and the display name (label).
 
-Note: these 100 entries are the most frequent out of a total of 2,355 persons mentioned in all matched content items.
+> These 100 entries are the most frequent out of a total of 2,355 persons mentioned in all matched content items.
 
-{/* cell:13 cell_type:markdown */}
+{/* cell:14 cell_type:markdown */}
 Next, we generate all unique pairs of entities with a mention count higher than `n`. This will filter out pairs of entities that are mentioned just a few times. 
 
-**Important note:** for now, we are just combining all the entities in pairs. The documents in which they occur will be found later.
+> For now, we are just combining all the entities in pairs. The documents in which they occur will be found later.
  
 First, entities that meet the mention threshold are selected, and then all possible pairs are generated using the `itertools.combinations` function.
 
 The `n` value can be adjusted so that we don't get too many entity combinations. A sweet spot is just under 500 combinations. Keeping the number of combinations under 500 is typically recommended to avoid API throttling.
 
-{/* cell:14 cell_type:code */}
+{/* cell:15 cell_type:code */}
 ```python
 import itertools
 
@@ -203,7 +210,7 @@ if len(person_ids_combinations) > 500:
 
 ```
 
-{/* cell:15 cell_type:markdown */}
+{/* cell:16 cell_type:markdown */}
 
 ## Find articles where the entity pairs occur
 
@@ -211,7 +218,7 @@ We also retrieve the dates and the number of articles where person entity pairs 
 
 This piece of code gets a facet for every combination of named entities. It is a single call per combination so it may take a while for a large number of combinations.
 
-{/* cell:16 cell_type:code */}
+{/* cell:17 cell_type:code */}
 ```python
 from impresso.util.error import ImpressoError
 from time import sleep
@@ -254,7 +261,7 @@ for idx, combo in tqdm(enumerate(person_ids_combinations), total=len(person_ids_
     connections.append((combo, items))
 ```
 
-{/* cell:17 cell_type:markdown */}
+{/* cell:18 cell_type:markdown */}
 We put all in a dataframe. Each row represents a co-occurrence event between two named persons in the Impresso dataset, for a specific date.
 
 The dataframe includes:
@@ -264,7 +271,7 @@ The dataframe includes:
 * **count:** the number of articles on that date mentioning both entities;
 * **url:** a direct link to the matching articles in the Impresso web app. 
 
-{/* cell:18 cell_type:code */}
+{/* cell:19 cell_type:code */}
 ```python
 import pandas as pd
 
@@ -277,10 +284,10 @@ connections_df = pd.DataFrame(connections_denormalised, columns=('node_a', 'node
 connections_df
 ```
 
-{/* cell:19 cell_type:markdown */}
-And save the connections into a CSV file that can be visualised independently in Part 2. Here you will be prompted to provide a name for the file.
+{/* cell:20 cell_type:markdown */}
+We then save the connections into a CSV file that can be visualised independently in **Part 2**. Here you will be prompted to provide a name for the file.
 
-{/* cell:20 cell_type:code */}
+{/* cell:21 cell_type:code */}
 ```python
 from tempfile import gettempdir
 
@@ -296,13 +303,13 @@ from google.colab import files
 files.download(connections_csv_filepath)
 ```
 
-{/* cell:21 cell_type:markdown */}
+{/* cell:22 cell_type:markdown */}
 ## Part 2: Visualise your data 
 
-{/* cell:22 cell_type:markdown */}
-Import the CSV file you created in Part 1
+{/* cell:23 cell_type:markdown */}
+Import the CSV file you created in **Part 1**:
 
-{/* cell:23 cell_type:code */}
+{/* cell:24 cell_type:code */}
 ```python
 import pandas as pd
 
@@ -310,12 +317,12 @@ connections_df = pd.read_csv(connections_csv_filepath)
 connections_df
 ```
 
-{/* cell:24 cell_type:markdown */}
+{/* cell:25 cell_type:markdown */}
 Now, we group results by frequency of pairs to create connections (edges), and count the number of connections. We also preserve the URL. 
 
-**Important information**: The URL does not contain DateRange information, that's why they can be grouped here as they just refer to the search terms and the pair of persons occuring in documents.
+> The URL does not contain DateRange information, that's why they can be grouped here as they just refer to the search terms and the pair of persons occuring in documents.
 
-{/* cell:25 cell_type:code */}
+{/* cell:26 cell_type:code */}
 ```python
 grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
     .agg({'timestamp': lambda x: ', '.join(list(x)), 'count': 'sum', 'url': lambda x: list(set(x))[0]}) \
@@ -323,12 +330,12 @@ grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
 grouped_connections_df
 ```
 
-{/* cell:26 cell_type:markdown */}
+{/* cell:27 cell_type:markdown */}
 In the cell below, we use the [NetworkX](https://networkx.org) python library, designed for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks. 
 
 Here, we start creating our network by defining the 'source' and 'target', as well as the edges attributes. 
 
-{/* cell:27 cell_type:code */}
+{/* cell:28 cell_type:code */}
 ```python
 import networkx as nx
 
@@ -347,11 +354,11 @@ for i in sorted(G.nodes()):
 G.nodes
 ```
 
-{/* cell:28 cell_type:markdown */}
+{/* cell:29 cell_type:markdown */}
 To ensure reprocibility, save the file so that it can be downloaded and used elsewhere.
-> The file format GEFX is compatible with other network analysis tools like Gephi
+> The file format GEFX is compatible with other network analysis tools like Gephi.
 
-{/* cell:29 cell_type:code */}
+{/* cell:30 cell_type:code */}
 ```python
 from tempfile import gettempdir
 
@@ -368,13 +375,13 @@ print(f"File saved in {gefx_filepath}")
 files.download(gefx_filepath)
 ```
 
-{/* cell:30 cell_type:markdown */}
+{/* cell:31 cell_type:markdown */}
 If running in Colab, activate custom widgets to allow `ipysigma` to render the graph by running the cell below. 
 
 Ipysigma allows you to produce an interactive graph, as well as manipulate the graph's settings. 
 
 
-{/* cell:31 cell_type:code */}
+{/* cell:32 cell_type:code */}
 ```python
 try:
     from google.colab import output
@@ -383,12 +390,12 @@ except:
     pass
 ```
 
-{/* cell:32 cell_type:markdown */}
+{/* cell:33 cell_type:markdown */}
 Run the cell below to render the graph. 
 
 The output will prompt you to choose from a dropdown list 'what should represent the size of the nodes', i.e. which centrality measure should determine the size of the nodes in your graph. Select it before you continue. These measures help reveal the structural importance of each node within the network.
 
-{/* cell:33 cell_type:code */}
+{/* cell:34 cell_type:code */}
 ```python
 import ipywidgets
 
@@ -407,12 +414,12 @@ ipywidgets.Box(
 
 ```
 
-{/* cell:34 cell_type:markdown */}
+{/* cell:35 cell_type:markdown */}
 The next cell reads the node size method chosen above and plots the visualisation. 
->If you want to change the centrality measure above, re-run the next cell to update the visualisation
+>If you want to change the centrality measure above, re-run the next cell to update the visualisation.
 
 
-{/* cell:35 cell_type:code */}
+{/* cell:36 cell_type:code */}
 ```python
 import networkx as nx
 from ipysigma import Sigma
@@ -442,15 +449,15 @@ print("See the following link for more information about centrality measures: ht
 Sigma(g, node_size=node_size, edge_size='count', clickable_edges=True, )
 ```
 
-{/* cell:36 cell_type:markdown */}
-The graph display allows you to download the visualisation in png, svg, gexf, and json. 
-
 {/* cell:37 cell_type:markdown */}
+The graph display allows you to download the visualisation in **png**, **svg**, **gexf**, and **json**. 
+
+{/* cell:38 cell_type:markdown */}
 # Limitations
 
 Producing network graphs can be a good strategy to explore mentions to people in your collections. However, it's important to be mindful of some limitations before interpreting your results.
 
-In this notebook, we showed you how to produce network graphs based on entities retrieved from the Impresso API. These are entities linked to wikidata, the same you see in the Impresso Web App. Linking entities to wikidata helps with differentiating, for example, whether a mention to 'apple' refers to the company or the fruit, by linking the entity to a unique ID. However, if we just look at linked entities, we might be ignoring other important entities that either could not be linked to wikidata due to technical limitations of the models, or entities that do not exist in wikidata. 
+In this notebook, we showed you how to produce network graphs based on entities retrieved from the [Impresso API](https://impresso-project.ch/public-api/v1/docs/). These are entities linked to wikidata, the same you see in the Impresso Web App. Linking entities to wikidata helps with differentiating, for example, whether a mention to 'apple' refers to the company or the fruit, by linking the entity to a unique ID. However, if we just look at linked entities, we might be ignoring other important entities that either could not be linked to wikidata due to technical limitations of the models, or entities that do not exist in wikidata. 
 
 It is also possible that some entities that do exist in the content items do not show up in your network due to:
 - Grammatical errors or OCR mistakes (such as Fidel Castros, instead of Fidel Castro);
@@ -460,7 +467,7 @@ It is also possible that some entities that do exist in the content items do not
 
 
 
-{/* cell:38 cell_type:markdown */}
+{/* cell:39 cell_type:markdown */}
 ## Conclusion
 
 This notebook provided you with a comprehensive pipeline to create network graphs using the Impresso corpus. 
@@ -469,27 +476,24 @@ It is important to have in mind that only persons who have been tagged as entity
 
 ## Next Steps
 
-That's it for now! Next, you can explore:
-
-- the [Visualising Place Entities on Maps](https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb) notebook, which demonstrates how to visualise in a map mentions to places in the Impresso corpus.
-- the [Named Entity Recognition with impresso-pipelines]() notebook, which allows you reuse Impresso NER models and apply them to your own data. 
+That's it for now! Next, you can explore the [Visualising Place Entities on Maps](https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb) notebook, which demonstrates how to visualise in a map mentions to places in the Impresso corpus.
 
 **Also, a suggestion of other resources:**
 
 [Introduction to Social Network Analysis](https://www.youtube.com/playlist?list=PL4iQXwvEG8CQSy4T1Z3cJZunvPtQp4dRy): Youtube tutorials by Martin Grandjean reviewing the main concepts of social network analysis, and highlighting the challenges that arise when analyzing relational historical objects.
 
-[Demystifying Networks, Parts I & II by Scott B. Weingart](https://journalofdigitalhumanities.org/1-1/demystifying-networks-by-scott-weingart/): an older but still interesting resource with a simple introduction to networks, including concept definitions and key vocabulary
+[Demystifying Networks, Parts I & II by Scott B. Weingart](https://journalofdigitalhumanities.org/1-1/demystifying-networks-by-scott-weingart/): An older but still interesting resource with a simple introduction to networks, including concept definitions and key vocabulary
 
-[The Six Degrees of Francis Bacon Project](http://sixdegreesoffrancisbacon.com/?ids=10000473&min_confidence=60&type=network): a DH project that reconstructs the social network of early modern intellectual life in Britain and includes publications and methodology.
+[The Six Degrees of Francis Bacon Project](http://sixdegreesoffrancisbacon.com/?ids=10000473&min_confidence=60&type=network): A DH project that reconstructs the social network of early modern intellectual life in Britain and includes publications and methodology.
 
 [Historical Network Research Community](https://historicalnetworkresearch.org/): A hub for scholars working at the intersection of history and network analysis. Offers conference proceedings, reading lists, and tutorials.
 
-{/* cell:39 cell_type:markdown */}
+{/* cell:40 cell_type:markdown */}
 ---
 ## Project and License info
 
 ### Notebook credits [![CreditLogo.png](data:image/png;base64,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)](https://credit.niso.org/)
-**Writing - Original draft:** Roman Kalyakin. **Conceptualization:** Roman Kalyakin, Marten Düring. **Software:** Roman Kalyakin. **Writing - Review & Editing:** Caio Mello. **Validation:** Marten Düring, Ferdaous Affan, Kirill Veprikov. **Datalab editorial board:** Caio Mello (Managing), Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Roman Kalyakin. **Supervision:** Marten Düring. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
+**Writing - Original draft:** Roman Kalyakin. **Conceptualization:** Roman Kalyakin, Marten Düring. **Software:** Roman Kalyakin. **Writing - Review & Editing:** Caio Mello. **Validation:** Marten Düring, Ferdaous Affan, Kirill Veprikov, Cao Vy. **Datalab editorial board:** Caio Mello (Managing), Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout, Cao Vy. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Roman Kalyakin. **Supervision:** Marten Düring. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
 
 
 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">

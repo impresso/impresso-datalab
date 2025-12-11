@@ -1,0 +1,197 @@
+---
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/Impresso_Intro_Embedding_API.ipynb
+authors:
+  - impresso-team
+title: A Quick Overview of the Impresso Embedding API
+sha: 441d5e49bae1aad9de56704ca0a89afd4fddacfd
+date: 2025-10-29T14:10:19Z
+links:
+  - href: https://dev.impresso-project.ch/datalab/notebooks/impresso-py-connect/
+    label: The Impresso Python Library
+  - href: https://dev.impresso-project.ch/datalab/notebooks/impresso-py-search/
+    label: Searching with the Impresso library
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/Impresso_Intro_Embedding_API.ipynb
+levels:
+  coding: intermediate
+  method: advanced
+---
+
+{/* cell:0 cell_type:markdown */}
+
+<a
+  target="_blank"
+  href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/Impresso_Intro_Embedding_API.ipynb"
+>
+  <img
+    src="https://colab.research.google.com/assets/colab-badge.svg"
+    alt="Open In Colab"
+  />
+</a>
+
+{/* cell:1 cell_type:markdown */}
+
+This notebook aims to give a concise overview of the basic API functionalities for embeddings.
+
+We show how to
+
+- embed documents (either image or text)
+- retrieve embeddings from the database directly
+- query the vector space
+
+{/* cell:2 cell_type:markdown */}
+## Installation
+
+Install the Impresso library (for now a specific branch).
+
+{/* cell:3 cell_type:code */}
+
+```python
+!pip install -qqq git+https://github.com/impresso/impresso-py.git@embeddings-search
+```
+
+{/* cell:4 cell_type:markdown */}
+Go to https://dev.impresso-project.ch/datalab/
+
+... and create an API key!
+
+{/* cell:5 cell_type:markdown */}
+## Connect to Impresso client
+
+{/* cell:6 cell_type:code */}
+
+```python
+from impresso import connect
+
+impresso_session = connect('https://dev.impresso-project.ch/public-api/v1')
+```
+
+{/* cell:7 cell_type:markdown */}
+
+## Embed a Document
+
+{/* cell:8 cell_type:code */}
+
+```python
+embedding = impresso_session.tools.embed_text(text="Schumann politicien", target="text")
+```
+
+{/* cell:9 cell_type:code */}
+
+```python
+embedding
+```
+
+{/* cell:10 cell_type:markdown */}
+# Embedding Search
+
+{/* cell:11 cell_type:code */}
+
+```python
+impresso_session.search.find(
+  embedding=embedding,
+  limit=5
+)
+```
+
+{/* cell:12 cell_type:code */}
+
+```python
+impresso_session.search.find(
+  country='FR',
+  embedding=embedding,
+  limit=5
+)
+```
+
+{/* cell:13 cell_type:markdown */}
+For more search options, please consult the documentation or these notebooks.
+
+- [The Impresso Python Library](https://dev.impresso-project.ch/datalab/notebooks/impresso-py-connect/)
+- [Searching with the Impresso library](https://dev.impresso-project.ch/datalab/notebooks/impresso-py-search/)
+
+{/* cell:14 cell_type:markdown */}
+## Retrieve Embedding
+
+{/* cell:15 cell_type:code */}
+
+```python
+original_embedding = impresso_session.content_items.get_embeddings("JDG-1963-09-06-a-i0004")[0]
+original_embedding
+```
+
+{/* cell:16 cell_type:markdown */}
+## Convert Embedding to Vector
+
+{/* cell:17 cell_type:code */}
+
+```python
+from impresso.util.embeddings import embedding_to_vector, vector_to_embedding
+
+array = embedding_to_vector(original_embedding)
+array[:10]  # show first 10 values
+```
+
+{/* cell:18 cell_type:markdown */}
+## Retrieve Image
+
+{/* cell:19 cell_type:code */}
+
+```python
+image_id = "luxwort-1930-09-26-a-i0036"
+image = impresso_session.images.get(image_id, include_embeddings=True)
+image
+```
+
+{/* cell:20 cell_type:markdown */}
+## Retrieve Image Embedding
+
+{/* cell:21 cell_type:code */}
+
+```python
+embeddings = impresso_session.images.get_embeddings(image_id)
+embeddings
+```
+
+{/* cell:22 cell_type:code */}
+
+```python
+impresso_session.images.find(
+  embedding=embeddings[0],
+  limit=3
+)
+```
+
+{/* cell:23 cell_type:markdown */}
+# Embed Text for Image Search
+
+{/* cell:24 cell_type:code */}
+
+```python
+impresso_session.images.find(
+  embedding=impresso_session.tools.embed_text(text="belval", target="image"),
+  # media_id="luxwort",
+  limit=3
+)
+```
+
+{/* cell:25 cell_type:markdown */}
+## Embed External Image for Image Search
+
+{/* cell:26 cell_type:code */}
+
+```python
+impresso_session.images.find(
+  embedding=impresso_session.tools.embed_image(image="https://upload.wikimedia.org/wikipedia/en/7/73/Trollface.png", target="image"),
+  limit=3
+)
+```
+
+{/* cell:27 cell_type:markdown */}
+
+# Fin.
+
+{/* cell:28 cell_type:code */}
+
+```python
+
+```
