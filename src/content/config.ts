@@ -1,4 +1,3 @@
-import { writeFileSync } from "fs"
 import { z, defineCollection, reference } from "astro:content"
 import { glob, file } from "astro/loaders"
 import axios from "axios"
@@ -18,6 +17,12 @@ import {
   Plans,
 } from "../constants"
 import { toCamelCase } from "../logic"
+import { getResourceWithBearerToken, writeDataToLogFile } from "./utils"
+import type {
+  CorpusAccessCatalogueItem,
+  DataReleaseCard,
+  SpecialMembershipAccessItem,
+} from "../types"
 
 const CorpusAccessUserPlansToPlan: Record<string, string> = {
   "Guest User Plan": PlanGuest,
@@ -27,54 +32,18 @@ const CorpusAccessUserPlansToPlan: Record<string, string> = {
   "Not Possible": PlanNone,
 }
 
-/**
- * Writes the provided data to a log file if the environment is set to "development".
- *
- * - The log file path is determined by the `DATASETS_URL` environment variable,
- *   or defaults to "datasets" if not set. The path is transformed to a filename
- *   using a regular expression, extracting the last two segments and joining them
- *   with a hyphen.
- * - The data is serialized as pretty-printed JSON and written to the file.
- * - In non-development environments, the function does not write to disk and simply returns the data.
- *
- * @param data - The data to be logged and written to the file.
- * @param filename - Optional filename to use for the log file. Defaults to 'log.json'.
- * @returns The original data, regardless of environment.
- *
- * @remarks
- * This function is intended for debugging and development purposes only.
- * It uses Node.js `writeFileSync` to write logs synchronously.
- *
- * @example
- * ```typescript
- * writeDataToLogFile({ foo: "bar" });
- * ```
- */
-const writeDataToLogFile = (data: any, filename: string = "log.json") => {
-  console.log(
-    "[config.ts -> writeDataToLogFile] process.env.NODE_ENV = ",
-    process.env.NODE_ENV
-  )
-  if (process.env.NODE_ENV !== "development") {
-    return data
-  }
-  const filepath: string = `./logs/${filename}`
-  console.log("[writeDataToLogFile] - writing log to:", filepath)
+const GitHubToken: string = process.env.GITHUB_TOKEN || ""
+console.log("[config.ts] - GitHub Token:", GitHubToken.length ? "YES" : "NO")
 
-  // write results to a temporary file on disk.
-  writeFileSync(filepath, JSON.stringify(data, null, 2))
-  return data
-}
-
-const CorpusAccessToDatasetMapper = (dataset: any) => {
+const CorpusAccessToDatasetMapper = (dataset: CorpusAccessCatalogueItem) => {
   return {
     id: [dataset.data_partner_institution, dataset.media_alias].join("-"),
     associatedPartner: dataset.data_partner_institution,
     mediaId: dataset.media_alias,
     mediaTitle: dataset.media_title,
     timePeriod: dataset.time_period,
-    startYear: parseInt(dataset.time_period.split("-").shift(), 10),
-    endYear: parseInt(dataset.time_period.split("-").pop(), 10),
+    startYear: parseInt(dataset.time_period.split("-").shift() as string, 10),
+    endYear: parseInt(dataset.time_period.split("-").pop() as string, 10),
     media: dataset.source_type, // e.g. Newspaper
     medium: dataset.source_medium, // eg Print
     copyright: dataset.copyright_or_copyright_status,
@@ -96,81 +65,12 @@ const CorpusAccessToDatasetMapper = (dataset: any) => {
 }
 
 const datasets = defineCollection({
-  loader: () =>
-    axios
-      .get(process.env.DATASETS_URL || "", {
-        headers: {
-          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-        },
-      })
-      .then((res) => {
-        const response = res.data
-        console.log(
-          "\n [datasets] \n - requesting url: \n  ",
-          process.env.DATASETS_URL
-        )
-        console.log("   received:", res.data.length)
-        return response.map(CorpusAccessToDatasetMapper)
-      })
-      .then((data) => writeDataToLogFile(data, "datasets.log.json"))
-      .catch((err) => {
-        console.error(
-          err.message,
-          process.env.GITHUB_TOKEN ? "using token: YES" : "without token"
-        )
-        return [
-          CorpusAccessToDatasetMapper({
-            data_partner_institution: "SNL",
-            media_alias: "BLB",
-            media_title: "B\u00fcndner Landbote",
-            time_period: "1846-1847",
-            media: "Newspaper",
-            medium: "print",
-            copyright_or_copyright_status: "Public Domain",
-            permitted_use: "Personal, Research and Educational",
-            minimum_user_plan_required_to_explore_in_the_webapp:
-              "Guest User Plan",
-            minimum_user_plan_required_to_export_transcripts: "Basic User Plan",
-            minimum_user_plan_required_to_export_illustration:
-              "Basic User Plan",
-            partner_bitmap_index: 5,
-          }),
-          CorpusAccessToDatasetMapper({
-            data_partner_institution: "BCUF",
-            media_alias: "FZG",
-            media_title: "Freiburger Nachrichten",
-            time_period: "1865-2018",
-            media: "Newspaper",
-            medium: "print",
-            copyright_or_copyright_status: "Protected Domain: In copyright",
-            permitted_use: "Research and Educational",
-            minimum_user_plan_required_to_explore_in_the_webapp:
-              "Basic User Plan",
-            minimum_user_plan_required_to_export_transcripts:
-              "Student User Plan",
-            minimum_user_plan_required_to_export_illustration:
-              "Student User Plan",
-            partner_bitmap_index: 23,
-          }),
-          CorpusAccessToDatasetMapper({
-            data_partner_institution: "BCUL",
-            media_alias: "RN",
-            media_title: "Bulletins du Grand Conseil",
-            time_period: "1829-2020",
-            media: "Newspaper",
-            medium: "print",
-            copyright_or_copyright_status: "Protected Domain: In copyright",
-            permitted_use: "Research",
-            minimum_user_plan_required_to_explore_in_the_webapp:
-              "Academic User Plan",
-            minimum_user_plan_required_to_export_transcripts:
-              "Academic User Plan",
-            minimum_user_plan_required_to_export_illustration:
-              "Academic User Plan",
-            partner_bitmap_index: 22,
-          }),
-        ]
-      }),
+  loader: (): Promise<SpecialMembershipAccessItem[]> =>
+    getResourceWithBearerToken<CorpusAccessCatalogueItem[]>(
+      process.env.DATASETS_URL || "",
+      GitHubToken,
+      "datasets.log.json",
+    ).then((data) => data.map(CorpusAccessToDatasetMapper)),
   schema: z.object({
     id: z.string(),
     associatedPartner: z.string(),
@@ -191,75 +91,29 @@ const datasets = defineCollection({
 })
 
 const dataReleaseCards = defineCollection({
-  loader: () =>
+  loader: (): Promise<DataReleaseCard[]> =>
     Promise.all(
-      (process.env.DATA_RELEASE_CARD_URLS || "").split(",").map((url) =>
-        axios
-          .get(url, {
-            headers: {
-              Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-            },
+      (process.env.DATA_RELEASE_CARD_URLS || "").split(",").map((url) => {
+        // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
+        const id = url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2")
+        const logFile = `dataReleaseCard-${id.split("/").join("-").replace(".json", "")}.log.json`
+        return getResourceWithBearerToken<DataReleaseCard>(
+          url,
+          GitHubToken,
+          logFile,
+        ).then((data) => {
+          const transformedResponse = toCamelCase({
+            // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
+            ...data,
+            id: url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2"),
           })
-          .then((res) => {
-            const response = res.data
-
-            // console.log(" [dataReleaseCards] - written to disk")
-
-            console.log("\n [dataReleaseCards] \n - requesting url: \n  ", url)
-            const transformedResponse = toCamelCase({
-              // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
-              id: url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2"),
-              ...response,
-            })
-
-            console.log(
-              "   received:",
-              "\n   id:",
-              transformedResponse.id,
-              "\n   releaseName (private):",
-              transformedResponse.releaseName
-              // transformedResponse
-            )
-            if (transformedResponse.impressoCorpusOverview?.mediaStats) {
-              transformedResponse.impressoCorpusOverview.npsStats =
-                transformedResponse.impressoCorpusOverview.mediaStats
-            }
-            return transformedResponse
-          })
-          .then((data) => writeDataToLogFile(data, "dataReleaseCards.log.json"))
-          .catch((err) => {
-            console.error(
-              err.message,
-              process.env.GITHUB_TOKEN ? "using token: YES" : "without token"
-            )
-            return {
-              id: "N/A",
-              releaseVersion: "0.0.0",
-              releaseName: "No Release Name",
-              impressoCorpusOverview: {
-                npsStats: {
-                  titles: 112,
-                  issues: 173424,
-                  pages: 7483588,
-                  contentItems: 3286536,
-                  images: 4002089,
-                  tokens: 1643977083,
-                },
-              },
-              impressoEnrichments: {
-                lingproc: { models: [] },
-                langident: { models: [] },
-                textreuse: { models: [] },
-                entities: { models: [] },
-                newsagencies: { models: [] },
-                topics: { models: [] },
-                ocrqa: { models: [] },
-                embImages: { models: [] },
-                embDocs: { models: [] },
-              },
-            }
-          })
-      )
+          if (transformedResponse.impressoCorpusOverview?.mediaStats) {
+            transformedResponse.impressoCorpusOverview.npsStats =
+              transformedResponse.impressoCorpusOverview.mediaStats
+          }
+          return transformedResponse
+        })
+      }),
     ),
   schema: z.object({
     id: z.string(),
@@ -369,7 +223,7 @@ const plans = defineCollection({
           status: z.string().optional(),
           iconColor: z.string().optional(),
           icon: z.enum(PlanIcons as any).optional(),
-        })
+        }),
       )
       .optional(),
     requirements: z.array(z.enum(Requirements as any)),
