@@ -1,5 +1,4 @@
 export type LogoJSONProps = {
-  color?: string
   width?: number
   className?: string
   href?: string
@@ -9,7 +8,6 @@ export type LogoJSONProps = {
 }
 
 const LogoJSON: React.FC<LogoJSONProps> = ({
-  color = "var(--impresso-color-black)",
   width = 20,
   className = "",
   href = "https://readthedocs.org/",

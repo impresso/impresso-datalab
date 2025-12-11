@@ -1,6 +1,5 @@
 import { z, defineCollection, reference } from "astro:content"
 import { glob, file } from "astro/loaders"
-import axios from "axios"
 import {
   Requirements,
   Features,
@@ -17,7 +16,7 @@ import {
   Plans,
 } from "../constants"
 import { toCamelCase } from "../logic"
-import { getResourceWithBearerToken, writeDataToLogFile } from "./utils"
+import { getResourceWithBearerToken } from "./utils"
 import type {
   CorpusAccessCatalogueItem,
   DataReleaseCard,
@@ -93,7 +92,7 @@ const datasets = defineCollection({
 const dataReleaseCards = defineCollection({
   loader: (): Promise<DataReleaseCard[]> =>
     Promise.all(
-      (process.env.DATA_RELEASE_CARD_URLS || "").split(",").map((url) => {
+      (process.env.DATA_RELEASE_CARD_URLS || "").split(",").map(async (url) => {
         // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
         const id = url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2")
         const logFile = `dataReleaseCard-${id.split("/").join("-").replace(".json", "")}.log.json`

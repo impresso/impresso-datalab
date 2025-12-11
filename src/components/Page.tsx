@@ -33,13 +33,15 @@ const Page: React.FC<PageProps> = ({
   onShow,
 }) => {
   const [show, setShow] = useState(false)
-  const timerRef = useRef<ReturnType<typeof setTimeout>>()
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
   const handleClose = () => {
     setShow(false)
     if (typeof onHide === "function") {
       onHide()
     }
-    clearTimeout(timerRef.current)
+    if (timerRef.current) {
+      clearTimeout(timerRef.current)
+    }
     timerRef.current = setTimeout(() => {
       console.info("[TokenModal] redirecting to impresso-datalab")
       // window.location.href = import.meta.env.PUBLIC_IMPRESSO_DATALAB_BASE
@@ -47,7 +49,7 @@ const Page: React.FC<PageProps> = ({
       window.history.pushState(
         {},
         "",
-        import.meta.env.PUBLIC_IMPRESSO_DATALAB_BASE
+        import.meta.env.PUBLIC_IMPRESSO_DATALAB_BASE,
       )
     }, 1000)
   }
@@ -58,13 +60,15 @@ const Page: React.FC<PageProps> = ({
   }
 
   useEffect(() => {
-    clearTimeout(timerRef.current)
+    if (timerRef.current) clearTimeout(timerRef.current)
     if (autoOpenAfterDelay) {
       timerRef.current = setTimeout(() => {
         setShow(true)
       }, delay)
     }
-    return () => clearTimeout(timerRef.current)
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
   }, [autoOpenAfterDelay])
 
   useEffect(() => {
