@@ -3,6 +3,7 @@ export type LogoGitHubProps = {
   width?: number
   className?: string
   href?: string
+  title?: string
   children?: React.ReactNode
 }
 
@@ -11,6 +12,7 @@ const LogoGitHub: React.FC<LogoGitHubProps> = ({
   width = 160,
   className = "",
   href = "https://github.com/impresso",
+  title = "GitHub",
   children,
 }) => {
   const ratio = 98 / 96
@@ -23,6 +25,7 @@ const LogoGitHub: React.FC<LogoGitHubProps> = ({
         className="d-flex gap-1 align-items-center"
         target="_blank"
         rel="noopener noreferrer"
+        title={title}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

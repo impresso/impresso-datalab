@@ -88,8 +88,8 @@ const Wall = ({
               <h3>
                 Access Impresso Datalab via API, Python library and Notebooks
               </h3>
-              <div className="mt-3 gx-3 gy-3 d-flex gap-4 flex-wrap">
-                <div>
+              <Row className="mt-3">
+                <Col md={3}>
                   <LogoReadTheDocs
                     width={22}
                     href="https://pypi.org/project/impresso"
@@ -97,8 +97,8 @@ const Wall = ({
                   >
                     Python library
                   </LogoReadTheDocs>
-                </div>
-                <div>
+                </Col>
+                <Col md={3}>
                   <LogoHuggingFace
                     width={22}
                     href="https://huggingface.co/impresso-project/"
@@ -106,17 +106,17 @@ const Wall = ({
                   >
                     Hugging Face
                   </LogoHuggingFace>
-                </div>
-                <div>
+                </Col>
+                <Col md={3}>
                   <LogoJSON
                     width={22}
                     href="/public-api/v1/docs"
                     title="Impresso Rest API documentation"
                   >
-                    Rest API
+                    Rest API docs
                   </LogoJSON>
-                </div>
-                <div>
+                </Col>
+                <Col md={3}>
                   <LogoGitHub
                     width={22}
                     href="https://github.com/impresso/impresso-datalab-notebooks"
@@ -124,8 +124,8 @@ const Wall = ({
                   >
                     Notebooks
                   </LogoGitHub>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </div>
             <div className="m-3">
               The{" "}
