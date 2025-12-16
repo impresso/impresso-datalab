@@ -83,17 +83,15 @@ const Wall = ({
             </h2>
           </Col>
 
-          <Col md={7} lg={7} xxl={8}>
+          <Col md={7} lg={7} xxl={6}>
             <div className="shadow-sm p-3 border-radius-sm mb-4 container-fluid">
-              <h3>
-                Access Impresso Datalab via API, Python library and Notebooks
-              </h3>
+              <h3>Docs & Resources</h3>
               <Row className="mt-3">
                 <Col md={3}>
                   <LogoReadTheDocs
                     width={22}
-                    href="https://pypi.org/project/impresso"
-                    title="Impresso Python library"
+                    href="https://impresso.readthedocs.io/en/latest/"
+                    title="Impresso Python library (Read the Docs)"
                   >
                     Python library
                   </LogoReadTheDocs>
