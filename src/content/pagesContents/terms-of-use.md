@@ -41,7 +41,6 @@ Three types of data are available through the Interface and API, namely **Media 
 Impresso receives Media Archive collections from partner cultural heritage institutions across Europe. Media Archive collections form the Impresso Corpus and correspond to:
 
 - **Print Media Archives**, i.e., **digitised collections of newspapers, radio magazines and radio tapescripts**, composed of the following:
-
   - Facsimiles of periodical pages;
   - Transcripts, i.e. the output of Optical Character Recognition (OCR);
   - Images (i.e. illustrations, drawings, photographs) appearing on facsimiles alongside the text.
@@ -77,7 +76,8 @@ These ToU apply to all Users irrespective of their status, and to all Data irres
 
 A User may register an Impresso User Account to access more Data and Services. This account is assigned individually and requires an email address and password for authentication.
 
-To open an Impresso Account, a User must complete the online registration form by providing his/her first and last name(s), email address, academic affiliation if any, and a brief description of the intended research. Once the registration has been validated by the Impresso Project and/or the Cultural Heritage Institution and the User has accepted the ToU, a confirmation email will be sent inviting the User to activate his/her interface or API account. Once the account has been activated, the User will receive a password that will allow him/her to log into the GUI and/or request a time-limited API token.
+To open an Impresso Account, a User must complete the online registration form by providing his/her first and last name(s), email address, academic affiliation if any, and a brief description of the intended research. Once the registration has been validated by the Impresso Project and/or the Cultural Heritage Institution and the User has accepted the ToU, a confirmation email will be sent inviting the User to activate his/her interface or API account.
+Once the account has been activated, the User will be able to log into the GUI and/or request a time-limited API token.
 
 The opening of an account by a User is free of charge. The User undertakes to provide accurate, complete and up-to-date personal information. It is strictly forbidden to create an account using a false identity, a pseudonym or in a fraudulent manner.
 
@@ -108,7 +108,6 @@ Media Archives accessible via the Impresso Interface and API can be used under t
 Within the Impresso Interface and API, Protected Domain Media Archives are labelled as "Protected - \[Permitted Use]" where \[Permitted Use] corresponds to "Research Use", "Educational Use", "Personal Use", or a combination thereof.
 
 - **Research Use** includes the following permissions:
-
   - Users are permitted to use Media Archives for academic research activities, as long as they do not fall within the unauthorised uses listed in Section 8. Users have the right to save or print digital documents.
 
   - Users may cite digital documents in scientific publications and other dissemination activities (e.g. scientific presentations, blogs or websites, social media).
