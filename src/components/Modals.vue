@@ -14,6 +14,18 @@
     @close="close"
     :show="view === BrowserViewChangePlanRequest"
   />
+  <div
+    class="position-fixed top-0 w-100"
+    style="z-index: var(--z-index-switch-app)"
+  >
+    <SwitchBetweenAppDatalab
+      isApp
+      href="/app"
+      class="very-small-caps-bold shadow-sm"
+      style="background-color: var(--impresso-color-paper)"
+      >Switch to Impresso App
+    </SwitchBetweenAppDatalab>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -39,6 +51,8 @@ import ChangePasswordModal from "./ChangePasswordModal.vue"
 import ChangePlanRequestModal from "./ChangePlanRequestModal.vue"
 import ChangeProfileModal from "./ChangeProfileModal.vue"
 import SignUpModal from "./SignUpModal.vue"
+import SwitchBetweenAppDatalab from "impresso-ui-components/components/logos/SwitchBetweenAppDatalab.vue"
+
 const view = ref<string | null>(null)
 
 function close() {
@@ -51,7 +65,7 @@ function changeView(newView: string | null) {
 
 onMounted(() => {
   const unsubscribe = useBrowserStore.subscribe(
-    (state) => (view.value = state.view)
+    (state) => (view.value = state.view),
   )
   onBeforeUnmount(() => {
     unsubscribe()
