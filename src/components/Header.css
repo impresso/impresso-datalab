@@ -10,6 +10,7 @@
     0 -6px 10px 5px rgba(0, 0, 0, 0),
     inset 0 2px 0 0px var(--impresso-color-black); */
   border-bottom-color: transparent;
+  height: 70px;
 }
 .Header.active {
   background-color: var(--impresso-color-paper-rgba-90);

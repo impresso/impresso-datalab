@@ -1,4 +1,4 @@
-FROM node:23-alpine AS builder
+FROM node:25-alpine AS builder
 
 ARG PUBLIC_VERSION
 ARG PUBLIC_GIT_TAG
@@ -21,7 +21,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --legacy-peer-deps
+RUN npm install
 
 # Copy the rest of the application code
 COPY public ./public

@@ -56,7 +56,7 @@ const Background = () => {
         <div className="g1"></div>
         <div className="g2"></div>
         <div className="g3"></div>
-        <a.div className="interactive " style={{ x, y }} />
+        <a.div style={{ x, y }} />
       </div>
     </div>
   )

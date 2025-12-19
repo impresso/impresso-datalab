@@ -25,7 +25,7 @@ const Header: React.FC = () => {
   }, [])
   return (
     <header ref={headerRef} className="Header position-fixed top-0 w-100 z-1">
-      <Navbar>
+      <Navbar className="h-100">
         <Container fluid>
           <Navbar.Brand className="mx-3">
             <Link to="/">

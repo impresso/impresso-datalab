@@ -90,15 +90,26 @@
 
   /* small caps & Variable font settings*/
   --impresso-font-size-smallcaps: 0.72em;
+
   --impresso-letter-spacing-smallcaps: 0.08em;
   --impresso-font-size-smallcaps-lg: 0.86em;
   --impresso-letter-spacing-smallcaps-lg: 0.085em;
+  --impresso-letter-spacing-smallcaps: 0.08em;
+  --impresso-letter-spacing-smallcaps-md: 0.12em;
+  --impresso-font-size-verysmallcaps: 0.65em;
+  --impresso-letter-spacing-verysmallcaps: 0.09em;
+
+  --impresso-wght: 450;
+  --impresso-wght-medium: 600;
+  --impresso-wght-bold: 700;
+  --impresso-wght-smallcaps: 580;
+  --impresso-wght-smallcaps-bold: 800;
+  --impresso-wght-verysmallcaps: 550;
 
   --impresso-wght-normal: 450;
   --impresso-wght-smallcaps: 580;
   --impresso-wght-smallcaps-lg: 650;
-  --impresso-wght-bold: 650;
-  --impresso-wght-medium: 550;
+  --impresso-wght-bold: 700;
   --impresso-wght-bolder: 750;
   --impresso-wght-extrabold: 900;
   --impresso-font-size-sm: var(--fs12px);
@@ -113,6 +124,7 @@
   --easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
 
   --z-index-header: 10;
+  --z-index-switch-app: 11;
   --spacer-1: 0.25rem;
   --spacer-1-2: 0.3rem;
   --spacer-2: 0.5rem;
@@ -137,6 +149,7 @@
   --shadow-lg: 0 0 1.5rem 0 rgba(0, 0, 0, 0.1);
 
   --impresso-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --impresso-transition-duration: 0.2s;
 }
 
 html {
@@ -335,6 +348,23 @@ button.btn-secodary:hover {
   letter-spacing: var(--impresso-letter-spacing-smallcaps);
   font-weight: var(--impresso-wght-bold);
   font-variation-settings: "wght" var(--impresso-wght-bold);
+}
+
+.very-small-caps {
+  text-transform: uppercase;
+  font-size: var(--impresso-font-size-verysmallcaps);
+  font-variant: normal;
+  letter-spacing: var(--impresso-letter-spacing-verysmallcaps);
+  font-weight: var(--impresso-wght-verysmallcaps);
+  font-variation-settings: "wght" var(--impresso-wght-verysmallcaps);
+}
+.very-small-caps-bold {
+  text-transform: uppercase;
+  font-size: var(--impresso-font-size-verysmallcaps);
+  font-variant: normal;
+  letter-spacing: var(--impresso-letter-spacing-verysmallcaps);
+  font-weight: var(--impresso-wght-smallcaps-bold);
+  font-variation-settings: "wght" var(--impresso-wght-smallcaps-bold);
 }
 .font-weight-normal {
   font-weight: var(--impresso-wght-normal);

@@ -24,7 +24,7 @@ const TokenWrapper: React.FC<{
   const setView = useBrowserStore((state) => state.setView)
   const [isBusy, setIsBusy] = useState(false)
 
-  const timerRef = useRef<ReturnType<typeof setTimeout>>()
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
   const { status, data, error, mutate } = useMutation({
     retry: 3,
     retryDelay: authenticationTimeout,
@@ -43,7 +43,7 @@ const TokenWrapper: React.FC<{
         payload,
         {
           timeout: authenticationTimeout,
-        }
+        },
       )
       return response.data
     },
@@ -54,9 +54,9 @@ const TokenWrapper: React.FC<{
       console.info(
         "[TokenWrapper] llToken is set, calling the mutation in",
         delay,
-        "ms"
+        "ms",
       )
-      clearTimeout(timerRef.current)
+      if (timerRef.current) clearTimeout(timerRef.current)
       setIsBusy(true)
       timerRef.current = setTimeout(() => {
         mutate({
@@ -65,7 +65,9 @@ const TokenWrapper: React.FC<{
         })
       }, delay)
     }
-    return () => clearTimeout(timerRef.current)
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
   }, [llToken, acceptTermsDate])
 
   const errorIsUnauthorized = (error as AxiosError)

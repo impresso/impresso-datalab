@@ -4,8 +4,6 @@ import { Col, Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap"
 import type { Plan } from "../types"
 import { usePersistentStore } from "../store"
 import {
-  PlanGuest,
-  PlanImpressoUser,
   GenericFeatureLabels,
   RequirementsLabels,
   DataFeatureLabels,
