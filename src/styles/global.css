@@ -1,6 +1,7 @@
 /* override Bootstrap vars and add specific vars */
 :root {
   --impresso-color-paper: #fafbf2;
+  --impresso-color-paper-dark: #fff3ad;
   --impresso-color-yellow-code: 255, 235, 120;
   --impresso-color-yellow: #ffeb78;
   --impresso-color-black-rgb: 52, 58, 64;
@@ -105,6 +106,7 @@
   --impresso-wght-smallcaps: 580;
   --impresso-wght-smallcaps-bold: 800;
   --impresso-wght-verysmallcaps: 550;
+  --impresso-wght-verysmallcaps-medium: 700;
 
   --impresso-wght-normal: 450;
   --impresso-wght-smallcaps: 580;
@@ -333,36 +335,48 @@ button.btn-secodary:hover {
   font-size: var(--impresso-font-size-sm);
 }
 .small-caps,
-.smallcaps {
+.smallcaps,
+.small-caps-bold,
+.very-small-caps,
+.very-small-caps-medium,
+.very-small-caps-bold {
   text-transform: uppercase;
-  font-size: var(--impresso-font-size-smallcaps);
   font-variant: normal;
-  letter-spacing: var(--impresso-letter-spacing-smallcaps);
-  font-weight: var(--impresso-wght-smallcaps);
   font-variation-settings: "wght" var(--impresso-wght-smallcaps);
 }
-.small-caps-bold {
-  text-transform: uppercase;
+
+.small-caps,
+.smallcaps {
   font-size: var(--impresso-font-size-smallcaps);
-  font-variant: normal;
+  letter-spacing: var(--impresso-letter-spacing-smallcaps);
+  font-weight: var(--impresso-wght-smallcaps);
+}
+
+.small-caps-bold {
+  font-size: var(--impresso-font-size-smallcaps);
   letter-spacing: var(--impresso-letter-spacing-smallcaps);
   font-weight: var(--impresso-wght-bold);
   font-variation-settings: "wght" var(--impresso-wght-bold);
 }
 
-.very-small-caps {
-  text-transform: uppercase;
+.very-small-caps,
+.very-small-caps-medium,
+.very-small-caps-bold {
   font-size: var(--impresso-font-size-verysmallcaps);
-  font-variant: normal;
   letter-spacing: var(--impresso-letter-spacing-verysmallcaps);
+}
+
+.very-small-caps {
   font-weight: var(--impresso-wght-verysmallcaps);
   font-variation-settings: "wght" var(--impresso-wght-verysmallcaps);
 }
+
+.very-small-caps-medium {
+  font-weight: var(--impresso-wght-verysmallcaps-medium);
+  font-variation-settings: "wght" var(--impresso-wght-verysmallcaps-medium);
+}
+
 .very-small-caps-bold {
-  text-transform: uppercase;
-  font-size: var(--impresso-font-size-verysmallcaps);
-  font-variant: normal;
-  letter-spacing: var(--impresso-letter-spacing-verysmallcaps);
   font-weight: var(--impresso-wght-smallcaps-bold);
   font-variation-settings: "wght" var(--impresso-wght-smallcaps-bold);
 }

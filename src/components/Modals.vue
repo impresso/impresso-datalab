@@ -21,8 +21,12 @@
     <SwitchBetweenAppDatalab
       isApp
       href="/app"
-      class="very-small-caps-bold shadow-sm"
-      style="background-color: var(--impresso-color-paper)"
+      class="very-small-caps-medium shadow-none"
+      color=" var(--impresso-color-black)"
+      style="
+        background-color: var(--impresso-color-paper-dark);
+        color: var(--impresso-color-black);
+      "
       >Switch to Impresso App
     </SwitchBetweenAppDatalab>
   </div>

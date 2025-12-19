@@ -27,12 +27,12 @@ const Header: React.FC = () => {
     <header ref={headerRef} className="Header position-fixed top-0 w-100 z-1">
       <Navbar className="h-100">
         <Container fluid>
-          <Navbar.Brand className="mx-3">
+          <Navbar.Brand className="ms-2">
             <Link to="/">
               <LogoImpressoDataLab width={90} />
             </Link>
           </Navbar.Brand>
-          <Nav className="mx-3">
+          <Nav className="mx-2">
             <Nav.Item>
               <Link to="/token" className="nav-link ">
                 get API token

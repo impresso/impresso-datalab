@@ -10,7 +10,19 @@
     0 -6px 10px 5px rgba(0, 0, 0, 0),
     inset 0 2px 0 0px var(--impresso-color-black); */
   border-bottom-color: transparent;
-  height: 70px;
+  /** Set height to match Impresso App Navbar height + 1px border bottom */
+  height: 57px;
+}
+
+.Header::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 1.5px;
+  background-color: var(--impresso-color-yellow);
+  content: "";
 }
 .Header.active {
   background-color: var(--impresso-color-paper-rgba-90);
