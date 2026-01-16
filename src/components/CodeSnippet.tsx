@@ -55,7 +55,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
     foldGutter: false,
   },
 }) => {
-  const timerRef = useRef<ReturnType<typeof setTimeout>>()
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
   const codeMirrorRef = useRef<ReactCodeMirrorRef>(null)
   const [isCopied, setIsCopied] = useState(false)
 
@@ -78,14 +78,14 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
   }
 
   useEffect(() => {
-    clearTimeout(timerRef.current)
+    if (timerRef.current) clearTimeout(timerRef.current)
     // reset the copy state after 2 seconds
     timerRef.current = setTimeout(() => {
       setIsCopied(false)
     }, 3500)
 
     return () => {
-      clearTimeout(timerRef.current)
+      if (timerRef.current) clearTimeout(timerRef.current)
     }
   }, [isCopied])
 

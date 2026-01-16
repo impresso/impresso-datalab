@@ -4,8 +4,8 @@ draft: true
 authors:
   - impresso-team
 title: Search collections
-sha: 9316e6e98bfcd011f4cf57f04e53bcbe71791cce
-date: 2025-05-13T12:45:14Z
+sha: 47ede4068fced3b6a30439d525152849b8851603
+date: 2025-12-10T16:04:47Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-py/blob/main/examples/notebooks/collections.ipynb
 links: []
@@ -60,36 +60,46 @@ result = impresso.collections.get("local-roka-tOrwrOG3")
 result
 ```
 
-{/* cell:7 cell_type:markdown */}
+{/* cell:7 cell_type:code */}
+```python
+test_collection_id = result.raw["uid"]
+test_collection_id
+```
+
+{/* cell:8 cell_type:markdown */}
+## Add item to collection
+
+{/* cell:9 cell_type:code */}
+```python
+content_item = impresso.content_items.get("NZZ-1794-08-09-a-i0002")
+impresso.collections.add_items(test_collection_id, [content_item.pydantic.uid])
+```
+
+{/* cell:10 cell_type:markdown */}
 ## Get collection items
 
 Get items from a collection by its ID.
 
-{/* cell:8 cell_type:code */}
+{/* cell:11 cell_type:code */}
 ```python
-colection_id = result.raw["uid"]
-items = impresso.collections.items(colection_id)
+items = impresso.collections.items(test_collection_id)
 items
 ```
 
-{/* cell:9 cell_type:markdown */}
-## Remove items from collection
-
-{/* cell:10 cell_type:code */}
-```python
-item_id = items.pydantic.data[0].uid
-item_id
-```
-
-{/* cell:11 cell_type:code */}
-```python
-impresso.collections.remove_items(colection_id, [item_id])
-```
-
 {/* cell:12 cell_type:markdown */}
-## Add items to collection
+## Remove items from collection
 
 {/* cell:13 cell_type:code */}
 ```python
-impresso.collections.add_items(colection_id, [item_id])
+impresso.collections.remove_items(test_collection_id, [content_item.pydantic.uid])
+```
+
+{/* cell:14 cell_type:markdown */}
+## Get items again to verify that it has been removed
+
+NOTE: You may still see the old items for some time because the results may still be cached by the database.
+
+{/* cell:15 cell_type:code */}
+```python
+impresso.collections.items(test_collection_id)
 ```

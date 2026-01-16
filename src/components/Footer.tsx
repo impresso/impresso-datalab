@@ -156,7 +156,7 @@ const Footer: React.FC<{
             </span>
           </Col>
           <Col md="6" lg="3" xxl="3" className="footer-logo py-4">
-            <LogoUnil width={180} className="mb-3" />
+            <LogoUnil width={120} className="mb-3" />
             <span>History department, University of Lausanne, Switzerland</span>
           </Col>
         </Row>

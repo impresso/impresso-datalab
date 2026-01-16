@@ -131,3 +131,90 @@ export type Plan = {
   collection?: string
   href?: string
 }
+
+export type SpecialMembershipAccessItem = {
+  id: string
+  associatedPartner: string
+  mediaId: string
+  mediaTitle: string
+  timePeriod: string
+  startYear: number
+  endYear: number
+  media: string
+  medium: string
+  copyright: string
+  permittedUse: string
+  minimumUserPlanRequiredToExploreInWebapp: string
+  minimumUserPlanRequiredToExportTranscripts: string
+  minimumUserPlanRequiredToExportIllustration: string
+  partnerBitmapIndex: number
+}
+
+export type CorpusAccessCatalogueItem = {
+  data_partner_institution: string
+  media_alias: string
+  media_title: string
+  time_period: string
+  source_type: string
+  source_medium: string
+  copyright_or_copyright_status: string
+  permitted_use: string
+  minimum_user_plan_required_to_explore_in_the_webapp: string
+  minimum_user_plan_required_to_export_transcripts: string
+  minimum_user_plan_required_to_export_illustration: string
+  partner_bitmap_index: number
+}
+
+export type DataReleaseCard = {
+  id: string
+  releaseName: string
+  releaseVersion: string
+  impressoCorpusOverview: {
+    npsStats: {
+      titles: number
+      issues: number
+      pages: number
+      contentItems: number
+      images: number
+      tokens: number
+    }
+  }
+  impressoEnrichments: {
+    lingproc: {
+      models: any[]
+      enrichmentStats?: any
+    }
+    langident: {
+      models: any[]
+      enrichmentStats?: any
+    }
+    textreuse: {
+      models: any[]
+      enrichmentStats?: any
+    }
+    entities: {
+      models: any[]
+      enrichmentStats?: any
+    }
+    newsagencies: {
+      models: any[]
+      enrichmentStats?: any
+    }
+    topics: {
+      models: any[]
+      enrichmentStats?: any
+    }
+    ocrqa: {
+      models: any[]
+      enrichmentStats?: any
+    }
+    embImages: {
+      models: any[]
+      enrichmentStats?: any
+    }
+    embDocs: {
+      models: any[]
+      enrichmentStats?: any
+    }
+  }
+}

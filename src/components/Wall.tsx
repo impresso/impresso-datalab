@@ -4,6 +4,10 @@ import CodeSnippet from "./CodeSnippet"
 import { useEffect } from "react"
 import GettingStarted from "./GettingStarted"
 import type { Series } from "../types"
+import LogoReadTheDocs from "./logos/LogoReadTheDocs"
+import LogoHuggingFace from "./logos/LogoHuggingFace"
+import LogoJSON from "./logos/LogoJSON"
+import LogoGitHub from "./logos/LogoGitHub"
 
 const CodeSample = `# Install the Impresso library
 %pip install impresso
@@ -62,7 +66,7 @@ const Wall = ({
     "- numberOfNotebooks:",
     numberOfNotebooks,
     "- numberOfSeries:",
-    numberOfSeries
+    numberOfSeries,
   )
 
   return (
@@ -78,54 +82,69 @@ const Wall = ({
               Programmatic access to Impresso's Corpus, Data and Models
             </h2>
           </Col>
-          <Col md={5} lg={5} xxl={5}>
-            <h3>
-              Join us in this early stage of development and help us to improve
-              the platform.
-            </h3>
-            The{" "}
-            <a
-              href="https://impresso-project.ch"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Impresso project
-            </a>{" "}
-            strives to create meaningful links across historical media
-            collections. The new <i>Impresso Datalab</i> complements the Web App
-            and offers a platform for programmatic data access and annotation
-            services.
-            <p>
-              It provides access to our data and models via API and a dedicated
-              Python library via Jupyter notebooks. All this with the goal to
-              enable custom analyses of the Impresso corpus and the semantic
-              indexation of external document collections with the help of
-              models created by the project.
-            </p>
-          </Col>
-          <Col md={2} lg={2} xxl={3}>
-            <div className="shadow-sm p-3 border-radius-sm">
-              <h3>Docs</h3>
-              <ul className="list-unstyled">
-                <li>
-                  <a href="https://pypi.org/project/impresso" target="_blank">
-                    Python library
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://huggingface.co/impresso-project/"
-                    target="_blank"
+
+          <Col md={7} lg={7} xxl={6}>
+            <div className="shadow-sm p-3 border-radius-sm mb-4 container-fluid">
+              <h3>Docs & Resources</h3>
+              <Row className="mt-3">
+                <Col md={3}>
+                  <LogoReadTheDocs
+                    width={22}
+                    href="https://impresso.readthedocs.io/en/latest/"
+                    title="Impresso Python library (Read the Docs)"
                   >
-                    Huggingface models
-                  </a>
-                </li>
-                <li>
-                  <a href="/public-api/v1/docs" target="_blank">
-                    Rest API
-                  </a>
-                </li>
-              </ul>
+                    Python library
+                  </LogoReadTheDocs>
+                </Col>
+                <Col md={3}>
+                  <LogoHuggingFace
+                    width={22}
+                    href="https://huggingface.co/impresso-project/"
+                    title="Impresso models on Hugging Face"
+                  >
+                    Hugging Face
+                  </LogoHuggingFace>
+                </Col>
+                <Col md={3}>
+                  <LogoJSON
+                    width={22}
+                    href="/public-api/v1/docs"
+                    title="Impresso Rest API documentation"
+                  >
+                    Rest API docs
+                  </LogoJSON>
+                </Col>
+                <Col md={3}>
+                  <LogoGitHub
+                    width={22}
+                    href="https://github.com/impresso/impresso-datalab-notebooks"
+                    title="Impresso Datalab Notebooks on GitHub"
+                  >
+                    Notebooks
+                  </LogoGitHub>
+                </Col>
+              </Row>
+            </div>
+            <div className="m-3">
+              The{" "}
+              <a
+                href="https://impresso-project.ch"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Impresso project
+              </a>{" "}
+              strives to create meaningful links across historical media
+              collections. The new <i>Impresso Datalab</i> complements the Web
+              App and offers a platform for programmatic data access and
+              annotation services.
+              <p>
+                It provides access to our data and models via API and a
+                dedicated Python library via Jupyter notebooks. All this with
+                the goal to enable custom analyses of the Impresso corpus and
+                the semantic indexation of external document collections with
+                the help of models created by the project.
+              </p>
             </div>
           </Col>
         </Row>
@@ -157,7 +176,7 @@ const Wall = ({
           </Col>
           <Col md={6} xl={4} className="order-md-3 order-xl-2">
             {seriesInCentralColumn.map((series) => (
-              <SeriesCard className="mb-3" key={series.title} series={series} />
+              <SeriesCard className="mb-4" key={series.title} series={series} />
             ))}
           </Col>
           <Col md={6} xl={4} className="order-md-2  order-xl-3">

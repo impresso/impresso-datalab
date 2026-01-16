@@ -3,8 +3,8 @@ title: Visualising Place Entities on Maps
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 authors:
   - impresso-team
-sha: 927749caceb9bda05d3ded77d7bcf4078cdf4bcb
-date: 2025-09-10T10:37:12Z
+sha: 84cb15d4b5b16b5a418b60f53bf56ea9a6885ed6
+date: 2025-09-29T14:39:36Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 links:
   - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
@@ -13,7 +13,7 @@ links:
     label: Impresso Datalab Website
   - href: https://web.archive.org/web/20241110022144/https://stephencredmond.medium.com/a-review-of-how-charts-lie-by-alberto-cairo-2763286237a6
     label: How Charts Lie
-  - href: https://cssbook.net/content/chapter03.html
+  - href: https://cssbook.net/content/chapter02.html#sec-fungeo
     label: "Chapter 2.3: Fun with visualising geographic information"
   - href: https://cssbook.net/
     label: Computational Analysis of Communication
@@ -65,7 +65,7 @@ If something doesn't work, you can [report a problem](https://github.com/impress
 {/* cell:1 cell_type:markdown */}
 ## What is this notebook about?
 
-This notebook presents a step-by-step guide to retrieve names of places cited in the Impresso corpus and plot them on a map for a given search query.
+This notebook presents a step-by-step guide to retrieve names of places mentionned in the Impresso corpus and plot them on a map for a given search query.
 
  To access the data, you will need an Impresso account. If you do not have one yet, you can register on the [Impresso Datalab Website](https://impresso-project.ch/datalab/).
 
@@ -84,7 +84,7 @@ In this notebook, you will learn how to:
 These are some useful resources to complement this notebook's content: 
 
 - [How Charts Lie](https://web.archive.org/web/20241110022144/https://stephencredmond.medium.com/a-review-of-how-charts-lie-by-alberto-cairo-2763286237a6) by Alberto Cairo (2019) provides a comprehensive introduction to critical data visualisation;
-- [Chapter 2.3: Fun with visualising geographic information](https://cssbook.net/content/chapter03.html) of the book [Computational Analysis of Communication](https://cssbook.net/) by Van Atteveldt, W., Trilling, D., & Calderón, C. A. (2022).
+- [Chapter 2.3: Fun with visualising geographic information](https://cssbook.net/content/chapter02.html#sec-fungeo) of the book [Computational Analysis of Communication](https://cssbook.net/) by Van Atteveldt, W., Trilling, D., & Calderón, C. A. (2022).
 
 {/* cell:3 cell_type:markdown */}
 ## Prerequisites
@@ -96,7 +96,7 @@ Run the following cell to install the required packages:
 * `impresso-py` - [See documentation](https://impresso.github.io/impresso-py/)
 * `ipyleaflet` - [See documentation](https://ipyleaflet.readthedocs.io/en/latest/index.html)
 
-You may need to restart the kernel to use updated packages. To do so, on Google Colab, go to *Runtime* and select *Restart session*. 
+> You may need to restart the kernel to use updated packages. To do so, on Google Colab, go to *Runtime* and select *Restart session*. 
 
 {/* cell:4 cell_type:code */}
 ```python
@@ -131,7 +131,7 @@ Let's begin by searching for the top 100 place entities (or locations) mentioned
 
 > In Impresso, a **Content Item** is the smallest unit of editorial content within a newspaper or radio collection. This can be an article (for newspapers) or a radio show or episode (for radio programs). Content items can also vary by type, including articles, advertisements, tables, images, and more. Please note that when a newspaper does not have segmentation ([OLR - Optical Layout Recognition](https://impresso-project.ch/app/faq#What-OCR)) content items for this title correspond to pages.
 
-Search will be conducted using French, English and German keywords. Results are sorted by frequency of location mentions (in descending order `-count`)
+Search will be conducted using French, English and German keywords. Results are sorted by frequency of location mentions (in descending order `-count`).
 
 {/* cell:9 cell_type:code */}
 ```python
@@ -204,7 +204,7 @@ selected_columns_countries
 ```
 
 {/* cell:17 cell_type:markdown */}
-Now, you count how many times each place entity occurs in our dataframe and add this value to a new column named 'mentions_count'
+Now, you count how many times each place entity occurs in our dataframe and add this value to a new column named 'mentions_count'.
 
 {/* cell:18 cell_type:code */}
 ```python
@@ -354,7 +354,7 @@ display(map)
 {/* cell:27 cell_type:markdown */}
 ## Try a heatmap
 
-This is just an alternative visualisation. It displays entities on a map with a heatmap overlay where the colour intensity is higher where the entities are more concentrated and more frequently mentioned. This map style is, however, considerably less accessible. It's worth considering which map meets best your needs and the needs of your audiences.
+This is just an alternative visualisation. It displays entities on a map with a heatmap overlay. The colour intensity is higher where the entities are more concentrated and more frequently mentioned. This map style is, however, considerably less accessible. It's worth considering which map meets best your needs and the needs of your audiences.
 
 {/* cell:28 cell_type:code */}
 ```python
@@ -389,17 +389,14 @@ It is important to have in mind that only places that have been tagged as entity
 
 ## Next Steps
 
-That's it for now! Next, you can explore:
-
-- the [Exploring Entity Co-occurrence Networks](https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb) notebook, which demonstrates how to create network graphs to represent persons that are mentioned in the Impresso corpus.
-- the [Named Entity Recognition with impresso-pipelines]() notebook, which allows you reuse Impresso NER models and apply them to your own data. 
+That's it for now! Next, you can explore the [Exploring Entity Co-occurrence Networks](https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb) notebook, which demonstrates how to create network graphs to represent persons that are mentioned in the Impresso corpus.
 
 {/* cell:30 cell_type:markdown */}
 ---
 ## Project and License info
 
 ### Notebook credits [![CreditLogo.png](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAARCAYAAAGnXcxvAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAJYAAAABAAAAlgAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEQAAAACvX75vAAAACXBIWXMAABcSAAAXEgFnn9JSAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgoZXuEHAAAD/UlEQVQ4ES1UW2hcVRRd+9w7907mkUfTmEczkzRpraH1gUWaZBKJ0BY/FKsSwS9BClbxv1V/RlAC/vghghShBVuVRo2GQv1Qa0xSalAi2sxMJNF2Yt7oJDOZmZs795zjvtMe5s7A2Xevvddaew/A51asz00CAun2Xp2bmNbpfb3aDyDFF/4vzR0eilBeHqc/AB15423/Ztii/NpzNNs5VB/c2M55pVn/VQTa+/4yy54t7JIDo/4otGQMIrMaTccSF1Oxfobhs9B8TN9CRKcfOa7nYJTE7vomJHZgn+yHB1lD89xJZXkNxN1RR3MFSe4zHU+Mp2N9Sz4EXcGw8XB87eWoVudz0iuR1DWwREW7SghDmD0rN8l8MLZ808vmHzW/GkH4l99C0aEEcqNfWw3Dp1C4MYM7l20tfDgGrH6s2D7kv59AeKAPheuTKCTPAU4FxFREpiPxmi3VBw50hTMC0FpxnhcSptWZnSZ+KSkISZWJJ15Q0EmtdZdB9Ilh1b1+YOGayzU0P8BiPKEdx63AMkBSmVpQuVEbof8s48We2y2jlIn1b6qGYNT7/QfbbD0GtfozVzrAqQsIdw+iGGyxhRUQe6k2ZLeOXUXo9NPY+9kXCAwPou2naRQX16XIr3wjdknr1pG3sPrsUzD21MOsjaI8egGluQzEQ+1Ca/m4sDXR6tl30Hb1W0ABW+PXfEGgHRdwpSISk35PORUyI2p+xiTrAVBzEDANYKkIq6UGOlgfrLL7Jz6g87Li0zUZmB1EJQwRKJJ4qSfbetlXnNqzUxyyXtFCbPiVBInxC0snjZ7s1CXCqPQVJ0aozuGf+xMnlNQjURJHLYYrKYmy3yhHQ1ygRhhwtEYResqDOHckOznt5zPw3a9UbPBUrcBYcdeFrLOLVBcKUZG1KTHBxrBPEnqjAIraYEmVIpRtpxKmnIPdgHii5/bUjyIV7z/boPVYPkiOXFuGml8MW48dIXGwHervAsyDcYhYE+TaDPNrhOhuE2a8OaS62+BsO049ieupjsHTlGrvK4uoFaykJ9D0+ZeAlNj6+FPI67PYc+k9qJ0deP/mUJvoxZ2hATSdvwir+T6sP3MG4lCnNssV8jRWqqNbFcjnabAVzFjOZlmWErTrIti1H7WD/dh4/yNeJLZ2hxXie40se8M390QiXs8360Dvbtlw9cKyhUgDrOd57rYKkL8uAGELen4TxtAhqMwKELHuJvNuKEFuA5nWNvSZquKZ+MBwHdGVnOcqTpREFIDkhVBczn/YKVj8v1B0QbwB7L2LXc+KGgF2FSfuz059V7X/nn060znwJAN8WEeii31Cmfeu4oPwCfCQ1JBRpVfQas5D4NXDSxOTHK2Oz/88172PBBmtMAAAAABJRU5ErkJggg==)](https://credit.niso.org/)
-**Writing - Original draft:**  Roman Kalyakin. **Conceptualization:** Marten Düring. **Software:** Roman Kalyakin. **Writing - Review & Editing**: Marten Düring, Caio Mello. **Validation:** Martin Grandjean, Kirill Veprikov. **Datalab editorial board:** Caio Mello (Managing), Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Roman Kalyakin. **Supervision:** Marten Düring. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
+**Writing - Original draft:**  Roman Kalyakin. **Conceptualization:** Marten Düring. **Software:** Roman Kalyakin. **Writing - Review & Editing**: Marten Düring, Caio Mello. **Validation:** Martin Grandjean, Kirill Veprikov, Cao Vy. **Datalab editorial board:** Caio Mello (Managing), Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout, Cao Vy. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Roman Kalyakin. **Supervision:** Marten Düring. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
 
 
 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
@@ -426,4 +423,7 @@ All Impresso code is published open source under the [GNU Affero General Public 
 <p align="center">
   <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
 </p>
+
+
+{/* cell:31 cell_type:markdown */}
 
