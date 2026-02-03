@@ -172,7 +172,7 @@ export const DataFeatureLabels: Record<string, string> = {
   [DataFeatureImagesPublicDomain]:
     "Images (illustrations, photographs, etc.) - Public Domain",
   [DataFeatureSemanticEnrichments]:
-    "Named entities, text reuse clusters, topics, image classification etc. (for both public and protected data)",
+    "Named entities, text reuse clusters, topics, image classification etc.",
   [DataFeatureSemanticEnrichmentsPublicDomain]:
     "Named entities, text reuse clusters, topics, image classification etc. </br><b>Public Domain</b>",
 }
