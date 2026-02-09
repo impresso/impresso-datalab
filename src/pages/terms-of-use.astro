@@ -16,6 +16,5 @@ const pageContent = await getEntry("pagesContents", "terms-of-use") as any;
     title={pageContent.data.title}
     description={pageContent.data.excerpt}
   />
-  <App transition:persist/>
   <TermsOfUseModal client:only="react" content={pageContent.body}/>
 </Layout>

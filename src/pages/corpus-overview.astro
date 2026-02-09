@@ -22,6 +22,5 @@ const datasetsProps = await Promise.all(datasets.map((datasets) => getRecursivel
     title={pageContent.data.title}
     description={pageContent.data.excerpt}
   />
-  <App transition:persist/>
   <CorpusOverviewModal datasets={datasetsProps} title={pageContent.data.title} client:only="react" content={pageContent.body}/>
 </Layout>

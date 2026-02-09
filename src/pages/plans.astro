@@ -31,7 +31,6 @@ const pageContent = await getEntry("pagesContents", "plans") as any;
     description={pageContent.data.excerpt}
     canonical={CanonicalUrl}
   />
-  <App transition:persist/>
   <PlansModal client:only="react" 
     title={pageContent.data.title}
     content={pageContent.body}
