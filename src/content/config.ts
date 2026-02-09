@@ -265,6 +265,26 @@ const pagesContents = defineCollection({
   }),
 })
 
+const dataProviders = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/dataProviders" }),
+  schema: z.object({
+    title: z.string(),
+    acronym: z.string(),
+    type: z.string(),
+    provider: z.string(),
+    links: z
+      .array(
+        z.object({
+          label: z.string(),
+          url: z.string().url(),
+          access: z.string().optional(),
+        }),
+      )
+      .optional(),
+    Reference: z.string().optional(),
+  }),
+})
+
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"
 export const collections = {
@@ -276,4 +296,5 @@ export const collections = {
   pagesContents,
   datasets,
   dataReleaseCards,
+  dataProviders,
 }
