@@ -16,6 +16,5 @@
 
 .TableOfContents .toc-link.active {
   color: var(--impresso-color-black);
-
   border-left-color: var(--impresso-color-black);
 }
