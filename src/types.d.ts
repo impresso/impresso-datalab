@@ -218,3 +218,23 @@ export type DataReleaseCard = {
     }
   }
 }
+
+export type DataProvider = {
+  id: string
+  title: string
+  acronym: string
+  type: string
+  provider: string
+  links?: {
+    label: string
+    url: string
+    access?: "public" | "developer" | "searchable"
+  }[]
+  Reference?: string
+}
+
+export type TOCEntry = {
+  id: string
+  title: string
+  level: number
+}

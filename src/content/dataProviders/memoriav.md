@@ -6,6 +6,20 @@ provider: Association for the preservation of the audiovisual heritage of Switze
 links:
   - label: Memoriav
     url: https://memoriav.ch/
+    access: public
+  - label: Memoriav Portal (Memobase)
+    url: https://memobase.ch/
+    access: public
+
+  - label: Fonoteca Nazionale (Lugano)
+    url: https://www.fonoteca.ch/
+    access: public
+  - label: Feminist & Community Radio Collections
+    url: https://memobase.ch/
+    access: public
+  - label: SRG SSR Centralized API (OPY)
+    url: https://developer.srgssr.ch/
+    access: developer
   - label: SRG SSR
     url: https://www.srgssr.ch/
   - label: SRF (German)
@@ -16,17 +30,7 @@ links:
     url: https://www.rsi.ch/
   - label: RTR (Romansh)
     url: https://www.rtr.ch/
-  - label: SRG SSR Centralized API (OPY)
-    url: https://developer.srgssr.ch/
-    access: developer
-  - label: Memoriav Portal (Memobase)
-    url: https://memobase.ch/
-    access: public
-  - label: Fonoteca Nazionale (Lugano)
-    url: https://www.fonoteca.ch/
-    access: searchable
-  - label: Feminist & Community Radio Collections
-    url: https://memobase.ch/
+
 Reference: "Müller, Rudolf. OHRA Interview with Rudolf Müller, Head of Sound and Radio Operations at Memoriav. Interview by Marten Düring and Carolyn Birdsall. Webex, January 21, 2025."
 ---
 

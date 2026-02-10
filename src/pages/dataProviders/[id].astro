@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DataProviderModal from '../../components/DataProviderModal';
+import { getCollection } from 'astro:content';
+import { getRecursivelyEntryData, getTableOfContents } from '../../logic';
+import { getEntry } from 'astro:content';
+import { CanonicalUrl } from '../../constants';
+import { AstroSeo } from '@astrolib/seo';
+import type { DataProvider, TOCEntry } from '../../types';
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const dataProviders = await getCollection('dataProviders');
+  return dataProviders.map(dataProvider => ({
+    params: { id: dataProvider.id },
+    props: { dataProvider },
+  }));
+}
+
+// 2. For your template, you can get the entry directly from the prop
+const { dataProvider } = Astro.props;
+const dataProviderProps: DataProvider = await getRecursivelyEntryData(dataProvider);
+
+// generate table of contents from the content body, if not already generated
+const toc: TOCEntry[] = getTableOfContents(dataProvider.body || "")
+console.log('dataProviderProps', toc)
+---
+
+<Layout title={dataProviderProps.title}>
+  <AstroSeo
+    canonical={CanonicalUrl}
+    title={dataProviderProps.title}
+    description={`${dataProviderProps.type} data provider: ${dataProviderProps.provider}`}
+  />
+  <DataProviderModal 
+    client:only="react" 
+    dataProvider={dataProviderProps}
+    content={dataProvider.body}
+    toc={toc}
+  />
+</Layout>

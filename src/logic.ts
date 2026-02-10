@@ -1,4 +1,5 @@
 import { getEntry } from "astro:content"
+import type { TOCEntry } from "./types"
 
 export async function getRecursivelyEntryData(entry: any) {
   const result: any = {}
@@ -61,7 +62,7 @@ export function toCamelCase(obj: any): any {
       if (Array.isArray(obj[key])) {
         // Handle arrays by mapping each element
         result[camelKey] = obj[key].map((item: any) =>
-          typeof item === "object" && item !== null ? toCamelCase(item) : item
+          typeof item === "object" && item !== null ? toCamelCase(item) : item,
         )
       } else {
         // Handle nested objects
@@ -74,4 +75,33 @@ export function toCamelCase(obj: any): any {
   })
 
   return result
+}
+
+/**
+ * Extracts table of contents entries from markdown text by parsing heading levels
+ * @param markdown The markdown string to parse
+ * @returns An array of TOC entries containing heading titles and their nesting levels (2-6)
+ */
+export function getTableOfContents(markdown: string): TOCEntry[] {
+  const lines = markdown.split("\n")
+  const toc: TOCEntry[] = []
+
+  lines.forEach((line) => {
+    // Matches 2 to 6 hashes followed by a space
+    const match = line.match(/^(#{2,6})\s+(.+)$/)
+
+    if (match) {
+      toc.push({
+        id: match[2]
+          .trim()
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-"),
+        level: match[1].length,
+        title: match[2].trim(),
+      })
+    }
+  })
+
+  return toc
 }

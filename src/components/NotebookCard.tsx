@@ -18,12 +18,11 @@ const NotebookCard: React.FC<{
   const accessDateTime = DateTime.fromJSDate(accessTime)
   console.debug(
     "[NotebookCard] - accessDateTime:",
-    accessDateTime,
-    "- title:",
+    accessDateTime.toISO(),
+    "\n - title:",
     notebook?.title,
-    "notebook.langModel",
+    "\n - langModel:",
     notebook.langModel,
-    notebook
   )
   return (
     <div className={`NotebookCard shadow-sm ${className}`}>
@@ -35,7 +34,7 @@ const NotebookCard: React.FC<{
             variant="marble"
             square={false}
             colors={NotebookLevelColors[notebook.levels.method].concat(
-              NotebookLevelColors[notebook.levels.coding]
+              NotebookLevelColors[notebook.levels.coding],
             )}
           />
         </div>

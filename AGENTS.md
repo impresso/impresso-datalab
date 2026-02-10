@@ -126,3 +126,9 @@ This pattern provides:
 
 - `/contents/mycollection.json` - Returns array of all items with metadata
 - `/contents/mycollection/[slug].json` - Returns individual item with rendered HTML content
+
+## React components
+
+When working on React components, please follow these guidelines:
+
+- to render markdown content, use the `MarkdownSnippet` component with the `value` prop. The `content` prop is deprecated and should not be used.
