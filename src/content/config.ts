@@ -278,6 +278,7 @@ const dataProviders = defineCollection({
           label: z.string(),
           url: z.string().url(),
           access: z.string().optional(),
+          description: z.string().optional(),
         }),
       )
       .optional(),
