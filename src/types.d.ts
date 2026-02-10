@@ -233,6 +233,28 @@ export type DataProvider = {
   Reference?: string
 }
 
+export type Tool = {
+  id: string
+  title: string
+  type: "huggingface-model" | "python-library"
+  summary?: string
+  tags?: string[]
+  license?: string
+  date?: Date
+  huggingface?: {
+    modelId?: string
+    modelUrl?: string
+    pipelineTag?: string
+    provider?: string
+  }
+  python?: {
+    package?: string
+    pypiUrl?: string
+    docsUrl?: string
+    repoUrl?: string
+  }
+}
+
 export type TOCEntry = {
   id: string
   title: string

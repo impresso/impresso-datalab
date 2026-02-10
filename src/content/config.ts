@@ -286,6 +286,34 @@ const dataProviders = defineCollection({
   }),
 })
 
+const tools = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/tools" }),
+  schema: z.object({
+    title: z.string(),
+    type: z.enum(["huggingface-model", "python-library"]),
+    summary: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    license: z.string().optional(),
+    date: z.date().optional(),
+    huggingface: z
+      .object({
+        modelId: z.string().optional(),
+        modelUrl: z.string().url().optional(),
+        pipelineTag: z.string().optional(),
+        provider: z.string().optional(),
+      })
+      .optional(),
+    python: z
+      .object({
+        package: z.string().optional(),
+        pypiUrl: z.string().url().optional(),
+        docsUrl: z.string().url().optional(),
+        repoUrl: z.string().url().optional(),
+      })
+      .optional(),
+  }),
+})
+
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"
 export const collections = {
@@ -298,4 +326,5 @@ export const collections = {
   datasets,
   dataReleaseCards,
   dataProviders,
+  tools,
 }

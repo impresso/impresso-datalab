@@ -1,0 +1,35 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import ToolModal from "../../components/ToolModal"
+import { getCollection } from "astro:content"
+import { getRecursivelyEntryData, getTableOfContents } from "../../logic"
+import { CanonicalUrl } from "../../constants"
+import { AstroSeo } from "@astrolib/seo"
+import type { Tool, TOCEntry } from "../../types"
+
+export async function getStaticPaths() {
+  const tools = await getCollection("tools")
+  return tools.map((tool) => ({
+    params: { id: tool.id },
+    props: { tool },
+  }))
+}
+
+const { tool } = Astro.props
+const toolProps: Tool = await getRecursivelyEntryData(tool)
+const toc: TOCEntry[] = getTableOfContents(tool.body || "")
+---
+
+<Layout title={toolProps.title}>
+  <AstroSeo
+    canonical={CanonicalUrl}
+    title={toolProps.title}
+    description={toolProps.summary || toolProps.title}
+  />
+  <ToolModal
+    client:only="react"
+    tool={toolProps}
+    content={tool.body}
+    toc={toc}
+  />
+</Layout>
