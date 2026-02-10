@@ -92,7 +92,6 @@ const DataProviderModal: React.FC<DataProviderModalProps> = ({
             {links.length === 0 && (
               <p>No resources links available for this data provider.</p>
             )}
-            <hr />
             <TableOfContents entries={toc} />
           </Col>
         </Row>
