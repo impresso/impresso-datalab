@@ -1,6 +1,5 @@
 ---
 title: Nederlands Instituut voor Beeld en Geluid / Netherlands Institute for Sound and Vision
-title: Description of the radio archive
 acronym: NISV
 type: Radio Archive
 provider: Nederlands Instituut voor Beeld en Geluid
@@ -16,6 +15,7 @@ links:
 Reference: |
   Agterberg, Bas. OHRA Interview with Bas Agterberg, archivist at Netherlands Institute for Sound and Vision. Interview by Carolyn Birdsall and Marten Düring. Webex, December 16, 2024.
 ---
+## Description of the Radio Archive
 
 The Netherlands Institute for Sound and Vision was formed in 1997 (then named “Dutch Audiovisual Archive”) as the result of merging the audiovisual archive center of the Dutch public broadcasting organization, the film archive of the RVD (Rijksvoorlichtingsdienst, Government Information Service), the Dutch film and science foundation and the broadcasting museum in the Netherlands. This merger created an independent, government-funded organization consolidating broadcast archives, academic collections, and specialized materials.
 NISV’s radio collection, comprising 20-30% of holdings, reflects this institutional complexity through varied provenance and preservation strategies. Early materials (1920s-1940s) consist primarily of fragments—colonial broadcasts, wartime recordings by private individuals, and production necessities rather than complete programs. Post-1950s systematic archiving introduced production-focused preservation, evolving toward heritage consciousness by the 1980s. Modern practice includes comprehensive 24/7 digital ingestion since 2012 and biannual complete recording weeks capturing all Dutch broadcasts.
@@ -71,3 +71,44 @@ The PHOHI collection contains 1930s colonial radio broadcasts from Philips direc
 The Radio Netherlands Worldwide collection spans 1947-2013 and represents a substantial digitized archive that could dramatically increase the radio collection percentage, but it remains largely inaccessible to researchers since it hasn't been properly integrated into the main database due to quality and metadata issues.
 
 The archive conducts comprehensive recording weeks twice yearly (typically in spring and fall) where they capture all Dutch radio and television broadcasts including commercial channels at lower quality, providing researchers with complete snapshots of the media landscape during those periods.
+
+## Research opportunities within Impresso collections
+
+In Preparation.
+
+## Sources in Impresso
+
+In Preparation.
+
+## Opportunities beyond Impresso collections 
+
+The SFW collection offers unique research opportunities as it contains academic oral history recordings and interviews from the 1930s onward, plus historic broadcast materials from 1963, but researchers must inquire directly since much of it remains unintegrated into the main searchable database due to the intensive requirements for preservation, legal clearance, documentation and contextualisation.
+
+The PHOHI collection contains 1930s colonial radio broadcasts from Philips directed to Indonesia, preserved because of time zone differences requiring pre-recording, but researchers should be aware that these are recordings of Dutch people in the Netherlands rather than content about or from Indonesia itself.
+
+The Radio Netherlands World Service collection, spanning 1947-2012, represents a substantial digitized archive that could dramatically increase the radio collection percentage, but it remains largely inaccessible to researchers since it hasn't been properly integrated into the main database due to quality and metadata issues.
+The archive conducts comprehensive recording weeks twice yearly (typically in spring and fall) where they capture all public and commercial Dutch radio and television broadcasts including commercial channels at lower quality, providing researchers with complete snapshots of the media landscape during those periods.
+
+## Relevant Literature
+
+Arentsen, Saskia, and Carolyn Birdsall. ['Heritage under Threat'](https://www.beeldengeluid.nl/tilt/heritage-under-threat) (2025).
+
+["Beeld & Geluid."](https://www.beeldengeluid.nl/bezoek/wat-er-te-doen/gamezomer) Accessed July 8, 2025.
+
+Boer, Tjeerd de. [Collection Plan for Sound and Vision 2019](https://publications.beeldengeluid.nl/pub/1822). Hilversum: NISV, 2020.
+
+["CLARIAH Media Suite."](https://mediasuite.clariah.nl/) Accessed July 8, 2025.
+
+Connelly, Charlie. Last Train to Hilversum: A Journey in Search of the Magic of Radio. London: Bloomsbury, 2020, 298-312.
+
+["EU Screen."](https://euscreen.eu/) Accessed July 8, 2025.
+
+Jong, Annemieke de. [Digital Preservation: Policy, Standards and Procedures](https://publications.beeldengeluid.nl/pub/679/Digital-Preservation_editie-2019.pdf). Hilversum: NISV, 2019.
+
+Jong, Annemieke de. [The Agile AV-Archive: Prestige and Identity in Times of Technological Change](https://publications.beeldengeluid.nl/pub/1845). Hilversum: NISV, 2020.
+
+Lauwers, Mieke. De interviewcollecties van Stichting Film en Wetenschap: Een audiografisch overzicht. Amsterdam: Stichting Film en Wetenschap, 1995.
+
+Netherlands Institute for Sound and Vision, [Multi-Year Policy Plan (2022-2026)](https://www.beeldengeluid.nl/en/about/mission-and-vision). Hilversum: NISV, 2022.
+
+Manders, Tim, and Mari Wigham. ["Metadata Fractures – Don't let them undermine your work"](https://data.beeldengeluid.nl/showcases/data-fractures) Sound & Vision Data, 24 January 2024.
