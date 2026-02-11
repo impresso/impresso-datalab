@@ -4,6 +4,7 @@ import Page from "./Page"
 import MarkdownSnippet from "./MarkdownSnippet"
 import TableOfContents from "./TableOfContents"
 import type { DataProvider, TOCEntry } from "../types"
+import "./DataProviderModal.css"
 
 interface DataProviderModalProps {
   dataProvider: DataProvider
@@ -96,36 +97,6 @@ const DataProviderModal: React.FC<DataProviderModalProps> = ({
           </Col>
         </Row>
       </Container>
-
-      <style>{`
-        .hover-shadow {
-          transition: all 0.3s ease;
-        }
-        .hover-shadow:hover {
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-          transform: translateY(-2px);
-        }
-        .markdown-content {
-          line-height: 1.8;
-        }
-        .markdown-content h2 {
-          margin-top: 2rem;
-          margin-bottom: 1rem;
-          font-size: 1.5rem;
-        }
-        .markdown-content h3 {
-          margin-top: 1.5rem;
-          margin-bottom: 0.75rem;
-          font-size: 1.25rem;
-        }
-        .markdown-content p {
-          margin-bottom: 1rem;
-        }
-        .markdown-content ul {
-          margin-bottom: 1rem;
-          padding-left: 2rem;
-        }
-      `}</style>
     </Page>
   )
 }

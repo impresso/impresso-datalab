@@ -1,0 +1,18 @@
+.DataProviderModal h2 {
+  padding-top: var(--spacer-4);
+  font-size: var(--font-size-h2);
+  font-weight: var(--impresso-wght-bold);
+  /* variable font weight */
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+}
+.DataProviderModal h3 {
+  padding-top: var(--spacer-3);
+  font-size: var(--font-size-h3);
+  font-weight: var(--impresso-wght-bold);
+  /* variable font weight */
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+}
+.DataProviderModal h2 > a,
+.DataProviderModal h3 > a {
+  text-decoration: none;
+}

@@ -45,6 +45,8 @@ export interface Series {
   category?: string[]
   position?: string
   notebooks: Notebook[]
+  tools?: Tool[]
+  dataProviders?: DataProvider[]
 }
 
 export type User = {
@@ -235,6 +237,7 @@ export type DataProvider = {
 
 export type Tool = {
   id: string
+  href: string
   title: string
   type: "huggingface-model" | "python-library"
   summary?: string

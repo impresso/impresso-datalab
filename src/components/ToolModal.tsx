@@ -147,29 +147,6 @@ const ToolModal: React.FC<ToolModalProps> = ({
           </Col>
         </Row>
       </Container>
-
-      <style>{`
-        .markdown-content {
-          line-height: 1.8;
-        }
-        .markdown-content h2 {
-          margin-top: 2rem;
-          margin-bottom: 1rem;
-          font-size: 1.5rem;
-        }
-        .markdown-content h3 {
-          margin-top: 1.5rem;
-          margin-bottom: 0.75rem;
-          font-size: 1.25rem;
-        }
-        .markdown-content p {
-          margin-bottom: 1rem;
-        }
-        .markdown-content ul {
-          margin-bottom: 1rem;
-          padding-left: 2rem;
-        }
-      `}</style>
     </Page>
   )
 }
