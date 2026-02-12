@@ -15,6 +15,7 @@ links:
 Reference: |
   Agterberg, Bas. OHRA Interview with Bas Agterberg, archivist at Netherlands Institute for Sound and Vision. Interview by Carolyn Birdsall and Marten Düring. Webex, December 16, 2024.
 ---
+
 ## Description of the Radio Archive
 
 The Netherlands Institute for Sound and Vision (NISV) was formed in 1997 (then named “Dutch Audiovisual Archive”) as the result of merging the audiovisual archives centre of the Dutch public broadcasting organization, the film archive of the RVD (Rijksvoorlichtingsdienst, Government Information Service), the Film and Science Foundation (Stichting Film & Wetenschap, or SFW) and the broadcast museum in the Netherlands. This merger created an independent, government-funded organization consolidating broadcast archives, academic collections, and specialized materials.
@@ -22,38 +23,47 @@ NISV’s radio collection, comprising approximately 20-30% of holdings, reflects
 More recently, digital ingest of radio started from 2008 onwards (in high-res WAV files as ‘archive copies, ’along with low-res MP3 files as ‘inspection copies’), with a selection of commercial radio being recorded from 2010 onwards, and from 2014 onwards, all six public radio channels were subject to a comprehensive 24/7 digital ingest. Since 2014, digital ingest has resulted in approximately 50,000 hours of public radio transmissions being recorded each year.. .
 Researchers face significant navigation challenges due to incomplete database integration legacy issues. Important collections like Radio Netherlands Worldwide (1947-2013) and academic oral histories remain largely inaccessible through standard access portals, requiring direct institutional contact. The archive's transformation from being primarily in the service of production needs to research infrastructure remains incomplete, requiring a sophisticated understanding of collection histories, system limitations, and alternative access pathways for effective scholarly engagement (although Dutch researchers can gain access via the CLARIAH Media Suite portal).
 
-
 ## Timeline
 
-## 1920-1939 Early recording era
+### 1920-1939 Early recording era
+
 Early collection begins with recordings for rebroadcasting purposes, like PHOHI's colonial service to Indonesia or accidental captures, rather than complete programs.
 
-## 1940-1945 Wartime broadcasting
+### 1940-1945 Wartime broadcasting
+
 Primarily broadcasts from Radio Oranje in London that were recorded by private individuals in the Netherlands, since Dutch broadcasters were shut down in 1941 and only reestablished in 1945. NISV also holds selected recordings of the Rijksradio, created under German occupation (1941-1945). German occupiers introduced a licensing fee which stayed in place after the war.
 
-## 1947 Start to dedicated archiving
+### 1947 Start to dedicated archiving
+
 Dutch broadcasting was organised along pillarised lines with separate Catholic, Protestant, socialist, and liberal broadcasters each having their own studios and facilities. After World War II, these different pillarised broadcasters began cooperating more on technical matters and shared resources like music libraries, which directly led to the creation of a national radio union and shared archival infrastructure.
 Dedicated radio archiving of mostly spoken word content and radio plays begins and increasingly reflects our contemporary notion of radio as a medium. Still, preservation remains selective and followed the practical needs of a media production archive.
 
-## 1955 Foundation of Stichting Film & Wetenschap (SFW) / Film & Science Foundation
+### 1955 Foundation of Stichting Film & Wetenschap (SFW) / Film & Science Foundation
+
 In 1970, the SFW takes over the Dutch radio corporation or NRU (Nederlands Radio Unie) collection of lacquer disks from the University of Utrecht’s historic sound archive (Historisch Geluidsarchief), which had been founded in 1961, and received 16,000 78 RPM discs and 2000 audio tapes from the NRU archive in 1962.
 
-## Since 1978: Selected recordings of Dutch public radio
+### Since 1978: Selected recordings of Dutch public radio
+
 Full recordings were made of whole weeks of Dutch public radio, first four times a year
 
-## 1980s Cultural heritage recognition
+### 1980s Cultural heritage recognition
+
 Turning point: Shift towards radio collections as ephemeral cultural heritage worthy of preservation for research purposes which ultimately led to the creation of NISV in 1997.
 
-## 1990s Institutional integration
+### 1990s Institutional integration
+
 Beginning in 1997, NISV integrates data from several institutions which remains a challenge for documentation and contextualisation until today.
 
-## Since 2003: Decrease of selected recordings of Dutch public radio
+### Since 2003: Decrease of selected recordings of Dutch public radio
+
 Dutch public radio in weeks 10 and 40 are recorded in full every year.
 
-## Since 2006 Hybrid approaches to preservation and selected digital ingest 
+### Since 2006 Hybrid approaches to preservation and selected digital ingest
+
 Preservation operates hybrid between digital and analogue techniques. Digital ingest of selected public radio stations.
 
-## Since 2014: Full digital ingest of Dutch public radio
+### Since 2014: Full digital ingest of Dutch public radio
+
 Digital ingest of all public radio stations, approx. 50.000 hours per year.
 
 ## Caveats and notes
@@ -65,8 +75,6 @@ The CLARIAH Media Suite and DAAN systems contain different search results becaus
 Date searches can return false positive results because the system finds date references in metadata fields or speech-to-text transcripts that don't correspond to the actual recording date, making it difficult to filter materials by specific time periods.
 Database migrations between systems resulted in incomplete metadata transfers, where some information exists in one system but not another, creating inconsistencies that can help or hinder searches depending on which system researchers use.
 
-
-
 ## Research opportunities within Impresso collections
 
 In Preparation.
@@ -75,7 +83,7 @@ In Preparation.
 
 In Preparation.
 
-## Opportunities beyond Impresso collections 
+## Opportunities beyond Impresso collections
 
 The SFW collection offers unique research opportunities as it contains academic oral history recordings and interviews from the 1930s onward, plus historic broadcast materials from 1963, but researchers must inquire directly since much of it remains unintegrated into the main searchable database due to the intensive requirements for preservation, legal clearance, documentation and contextualisation.
 
@@ -83,7 +91,6 @@ The PHOHI collection contains 1930s colonial radio broadcasts from Philips direc
 
 The Radio Netherlands World Service collection, spanning 1947-2012, represents a substantial digitized archive that could dramatically increase the radio collection percentage, but it remains largely inaccessible to researchers since it hasn't been properly integrated into the main database due to quality and metadata issues.
 The archive conducts comprehensive recording weeks twice yearly (typically in spring and fall) where they capture all public and commercial Dutch radio and television broadcasts including commercial channels at lower quality, providing researchers with complete snapshots of the media landscape during those periods.
-
 
 ## Relevant Literature
 

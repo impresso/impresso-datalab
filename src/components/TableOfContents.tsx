@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { TOCEntry } from "../types"
 import "./TableOfContents.css"
 
@@ -16,6 +16,12 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   title = "Table of Contents",
 }) => {
   const [activeIds, setActiveIds] = useState<Set<string>>(new Set())
+
+  const [listMaxHeight, setListMaxHeight] = useState<number | null>(null)
+  const listRef = useRef<HTMLUListElement | null>(null)
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const titleRef = useRef<HTMLHeadingElement | null>(null)
+  const isCurrentlyScrolled = useRef(false)
 
   useEffect(() => {
     if (entries.length === 0) return
@@ -53,10 +59,56 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
     }
   }, [entries])
 
+  useEffect(() => {
+    const updateListMaxHeight = () => {
+      const listEl = listRef.current
+      if (!listEl) return
+      const maxAvailableHeight = window.innerHeight || 0
+      if (maxAvailableHeight === 0) return
+      const { top } = listEl.getBoundingClientRect()
+      const { top: parentTop } =
+        sectionRef.current?.getBoundingClientRect() || { top: 0 }
+      const newMaxHeight = maxAvailableHeight - top - parentTop + 40 // 20px padding
+      console.log("Updating TOC max height:", newMaxHeight, parentTop)
+      setListMaxHeight(newMaxHeight > 100 ? newMaxHeight : null)
+    }
+
+    const updateOverflow = () => {
+      const listEl = listRef.current
+
+      if (!listEl) return
+
+      const isNowScrolled = listEl.scrollTop > 0
+
+      if (isNowScrolled !== isCurrentlyScrolled.current) {
+        isCurrentlyScrolled.current = isNowScrolled
+      }
+      // update element classname based on scroll state to show/hide top border, without triggering state cha nge
+      if (isNowScrolled) {
+        listEl.classList.add("scrolled")
+      } else {
+        listEl.classList.remove("scrolled")
+      }
+    }
+
+    const element = listRef.current
+    if (!element) return undefined
+
+    element.addEventListener("scroll", updateOverflow, { passive: true })
+    window.addEventListener("resize", updateListMaxHeight)
+    updateListMaxHeight()
+    updateOverflow()
+
+    return () => {
+      element.removeEventListener("scroll", updateOverflow)
+      window.removeEventListener("resize", updateListMaxHeight)
+    }
+  }, [entries])
+
   if (entries.length === 0) {
     return (
       <section
-        className={`TableOfContents ${sticky ? "sticky-top" : ""} mt-4 pt-4 ${className}`}
+        className={`TableOfContents ${sticky ? "sticky-top" : ""} ${className}`}
       >
         <h4>{title}</h4>
         <p>No table of contents available.</p>
@@ -66,10 +118,18 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 
   return (
     <section
-      className={`TableOfContents ${sticky ? "sticky-top" : ""} mt-4 pt-4 ${className}`}
+      ref={sectionRef}
+      className={`TableOfContents ${sticky ? "sticky-top" : ""} ${className}`}
     >
-      <h4>{title}</h4>
-      <ul style={{ listStyle: "none", padding: 0 }}>
+      <h4 ref={titleRef}>{title}</h4>
+      <ul
+        ref={listRef}
+        className="list-unstyled border-bottom me-2 ps-2 position-absolute"
+        style={{
+          maxHeight: listMaxHeight ? `${listMaxHeight}px` : "none",
+          overflowY: "auto",
+        }}
+      >
         {entries.map((entry, index) => (
           <li key={index} className={`ms-${(entry.level - 2) * 3}`}>
             <a

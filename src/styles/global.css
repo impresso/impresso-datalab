@@ -496,7 +496,7 @@ hr {
   padding-top: var(--spacer-3);
   padding-bottom: 0;
   font-weight: normal;
-  font-variation-settings: "wght" var(--impresso-wght-bold);
+  font-variation-settings: "wght" var(--impresso-wght-medium);
 }
 .modal h3 {
   font-size: var(--font-size-h3);

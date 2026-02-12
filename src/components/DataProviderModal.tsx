@@ -1,5 +1,5 @@
 import { Container, Row, Col, Badge, Card } from "react-bootstrap"
-import { Link as LinkIcon, OpenNewWindow } from "iconoir-react"
+import { ArrowRight, Link as LinkIcon, OpenNewWindow } from "iconoir-react"
 import Page from "./Page"
 import MarkdownSnippet from "./MarkdownSnippet"
 import TableOfContents from "./TableOfContents"
@@ -22,76 +22,78 @@ const DataProviderModal: React.FC<DataProviderModalProps> = ({
       <Container className="DataProviderModal">
         {/* Header Section */}
         <Row className="my-3">
-          <h1>{dataProvider.title}</h1>
+          <Col>
+            <h1>{dataProvider.title}</h1>
+          </Col>
         </Row>
 
-        <Row className="my-3">
+        <Row className="my-4">
           <Col lg="7">
             {/* Left Column: Overview and Reference */}
-            <div className="mb-4">
-              <div className="d-flex gap-2 mb-3 flex-wrap">
-                <Badge bg="primary" pill className="py-2 px-3">
-                  {dataProvider.type}
+
+            <div className="d-flex gap-2 mb-4 flex-wrap">
+              <Badge bg="primary" pill className="py-2 px-3 text-dark">
+                {dataProvider.type}
+              </Badge>
+              {dataProvider.acronym && (
+                <Badge bg="secondary" pill className="py-2 px-3">
+                  {dataProvider.acronym}
                 </Badge>
-                {dataProvider.acronym && (
-                  <Badge bg="secondary" pill className="py-2 px-3">
-                    {dataProvider.acronym}
-                  </Badge>
-                )}
-              </div>
-              <p className="text-muted fs-5 mb-4">{dataProvider.provider}</p>
-
-              <div className="markdown-content">
-                <MarkdownSnippet value={content} />
-              </div>
-
-              {dataProvider.Reference && (
-                <div className="mt-4 pt-4 border-top">
-                  <p className="mb-2">
-                    <strong>Reference:</strong>
-                  </p>
-                  <p className="text-muted small">{dataProvider.Reference}</p>
-                </div>
               )}
+            </div>
+
+            <div className="markdown-content">
+              <MarkdownSnippet value={content} />
             </div>
           </Col>
 
           <Col lg="5">
             {/* Right Column: All Links */}
             {/* Main Links */}
-
-            <h4>Links</h4>
-            <ul
-              style={{
-                listStyle: "none",
-                padding: 0,
-              }}
-            >
-              {links.map((link) => (
-                <li key={link.label} className="mb-2">
-                  <a href={link.url} target="_blank" rel="noopener noreferrer">
-                    {link.label}
-                    {link.access && (
-                      <Badge
-                        bg={
-                          link.access === "public"
-                            ? "info"
-                            : link.access === "developer"
-                              ? "warning"
-                              : "secondary"
-                        }
-                        className="text-dark small-caps ms-2 "
-                      >
-                        {link.access}
-                      </Badge>
-                    )}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            {links.length === 0 && (
-              <p>No resources links available for this data provider.</p>
+            {dataProvider.Reference && (
+              <section className=" mb-3 border-bottom border-dark">
+                <h4>Reference</h4>
+                <p className="text-muted small">{dataProvider.Reference}</p>
+              </section>
             )}
+            <section className="mb-3 border-bottom border-dark">
+              <h4>External Links</h4>
+              <ul className="list-unstyled">
+                {links.map((link) => (
+                  <li
+                    key={link.label}
+                    className="mb-1 d-flex align-items-start"
+                  >
+                    <ArrowRight className="me-1" width={16} />
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-underline link-underline-opacity-0 link-underline-opacity-100-hover"
+                    >
+                      {link.label}
+                      {link.access && (
+                        <Badge
+                          bg={
+                            link.access === "public"
+                              ? "info"
+                              : link.access === "developer"
+                                ? "warning"
+                                : "secondary"
+                          }
+                          className="text-dark small-caps ms-2 "
+                        >
+                          {link.access}
+                        </Badge>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              {links.length === 0 && (
+                <p>No resources links available for this data provider.</p>
+              )}
+            </section>
             <TableOfContents entries={toc} />
           </Col>
         </Row>
