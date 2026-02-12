@@ -1,5 +1,6 @@
 ---
 title: Deutschlandradio Archive
+excerpt: The Deutschlandradio archive combines collections from Deutschlandfunk, RIAS, and DS Kultur, with a production-focused preservation strategy resulting in selective retention of approximately 10-15% of broadcast material. The archive's complex multi-source structure and legal constraints on access present significant research challenges.
 acronym: DRadio
 type: Radio Archive
 provider: Deutschlandradio
@@ -11,7 +12,7 @@ links:
     description: This repository holds complete political files for RIAS operations, representing American administrative documentation separate from Deutschlandradio holdings.
   - label: Bundesarchiv Holdings
     url: https://www.bundesarchiv.de/
-    descriptuion: The Bundesarchiv contains a substantial collection of all Deutschlandfunk news broadcasts from the 1960s-1970s due to early federal funding connections.
+    description: The Bundesarchiv contains a substantial collection of all Deutschlandfunk news broadcasts from the 1960s-1970s due to early federal funding connections.
   - label: Deutsches Rundfunkarchiv
     url: https://www.dra.de/de/
     description: Deutsches Rundfunkarchiv is the recommended central coordination point for multi-institutional research.

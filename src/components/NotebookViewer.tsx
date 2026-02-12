@@ -5,7 +5,6 @@ import NotebookCard from "./NotebookCard"
 import AuthorCard from "./AuthorCard"
 import Alert from "./Alert"
 import { DateTime } from "luxon"
-import "./NotebookViewer.css"
 import { OverlayTrigger, Tooltip } from "react-bootstrap"
 import type { CellInfo, Notebook } from "../types"
 import { ModelLanguagesLabels } from "../constants"
@@ -59,7 +58,7 @@ const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
   return cells
 }
 const getGithubIssuesUrl = (
-  githubUrl: string
+  githubUrl: string,
 ): { url: string; account: string; repository: string } => {
   const repoPattern = /github\.com\/([^/]+)\/([^/]+)/
   const match = repoPattern.exec(githubUrl)

@@ -1,0 +1,31 @@
+.DataProviderCard {
+  border-radius: var(--impresso-border-radius-sm);
+}
+
+.DataProviderCard h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.DataProviderCard .link-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--color-paper);
+  color: var(--color-text);
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.DataProviderCard .link-button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+}
+
+.DataProviderCard .badge {
+  font-weight: normal;
+}

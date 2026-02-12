@@ -26,6 +26,7 @@ Note that the feathersJS token is not the same as the API token, but it is used 
 When working on this project, please adhere to the following guidelines:
 
 - Follow the existing code style and conventions used in the project.
+- use css vars whenever possible, for example `var(--impresso-border-radius-sm);`. The list of css vars available is in the `src/styles/global.css` file.
 - Ensure that any new code is well-documented and includes comments where necessary. Always use interface definition for every component props and function parameters.
 - Write unit tests for any new functionality you add, and ensure that all existing tests pass before submitting your changes.
 

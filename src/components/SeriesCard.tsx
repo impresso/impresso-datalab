@@ -2,6 +2,8 @@ import "./SeriesCard.css"
 import NotebookCard from "./NotebookCard.tsx"
 import MarkdownSnippet from "./MarkdownSnippet.tsx"
 import type { Series } from "../types"
+import ToolCard from "./ToolCard.tsx"
+import DataProviderCard from "./DataProviderCard.tsx"
 
 /**
  * Props for the SeriesCard component.
@@ -33,6 +35,28 @@ const SeriesCard: React.FC<SeriesCardProps> = ({
         {series.body ? <MarkdownSnippet value={series.body} /> : null}
         {children}
       </section>
+      {series.tools && series.tools.length > 0 && (
+        <ol className="mx-3">
+          {series.tools
+            ?.filter((tool) => tool)
+            .map((tool) => (
+              <li key={tool.id} className="mt-2">
+                <ToolCard tool={tool} />
+              </li>
+            ))}
+        </ol>
+      )}
+      {series.dataProviders && series.dataProviders.length > 0 && (
+        <ol className="mx-3">
+          {series.dataProviders
+            ?.filter((dataProvider) => dataProvider)
+            .map((dataProvider) => (
+              <li key={dataProvider.id} className="mt-2">
+                <DataProviderCard dataProvider={dataProvider} />
+              </li>
+            ))}
+        </ol>
+      )}
       <ol className="mb-3 mx-3">
         {series.notebooks
           .filter((notebook) => !notebook.draft)
