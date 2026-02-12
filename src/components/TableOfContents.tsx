@@ -19,8 +19,6 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 
   const [listMaxHeight, setListMaxHeight] = useState<number | null>(null)
   const listRef = useRef<HTMLUListElement | null>(null)
-  const sectionRef = useRef<HTMLElement | null>(null)
-  const titleRef = useRef<HTMLHeadingElement | null>(null)
   const isCurrentlyScrolled = useRef(false)
 
   useEffect(() => {
@@ -65,11 +63,9 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
       if (!listEl) return
       const maxAvailableHeight = window.innerHeight || 0
       if (maxAvailableHeight === 0) return
-      const { top } = listEl.getBoundingClientRect()
-      const { top: parentTop } =
-        sectionRef.current?.getBoundingClientRect() || { top: 0 }
-      const newMaxHeight = maxAvailableHeight - top - parentTop + 40 // 20px padding
-      console.log("Updating TOC max height:", newMaxHeight, parentTop)
+
+      const newMaxHeight = maxAvailableHeight - 200 // leave some space for header/footer and potential margins
+
       setListMaxHeight(newMaxHeight > 100 ? newMaxHeight : null)
     }
 
@@ -118,10 +114,9 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 
   return (
     <section
-      ref={sectionRef}
       className={`TableOfContents ${sticky ? "sticky-top" : ""} ${className}`}
     >
-      <h4 ref={titleRef}>{title}</h4>
+      <h4 className="pb-2">{title}</h4>
       <ul
         ref={listRef}
         className="list-unstyled border-bottom me-2 ps-2 position-absolute"

@@ -18,3 +18,20 @@
   color: var(--impresso-color-black);
   border-left-color: var(--impresso-color-black);
 }
+
+.TableOfContents ul {
+  /* Ensure the mask doesn't clip important content initially */
+  mask-image: linear-gradient(to bottom, black 100%, transparent 100%);
+}
+.TableOfContents ul.scrolled {
+  border-top: 1px solid var(--bs-secondary);
+  /* Start the transparency AFTER the border (e.g., at 2px) */
+  mask-image: linear-gradient(
+    to bottom,
+    black 0px,
+    /* Keep border visible */ black 1px,
+    transparent 1px,
+    /* Start fade immediately after */ black 40px
+      /* Fully visible again by 40px */
+  );
+}
