@@ -58,12 +58,13 @@ Digital ingest of all public radio stations, approx. 50.000 hours per year.
 
 ## Caveats and notes
 
-The Stichting Film & Wetenschap (SFW) archive created conservation tapes by combining multiple unrelated recordings from different time periods and collections onto single tapes to save money, which now makes it extremely difficult to digitize and work with specific collections. Itarchive relied on archivists' personal knowledge and informal handwritten documentation in booklets rather than systematic record-keeping. These could only be partially mapped to metadata and making it nearly impossible to understand collections after those archivists retired.
+The Stichting Film & Wetenschap (SFW) archive created conservation tapes by combining multiple unrelated recordings from different time periods and collections onto single tapes to save money, which now makes it extremely difficult to digitize and work with specific collections. Itarchive relied on archivists' personal knowledge and informal handwritten documentation in booklets rather than systematic record-keeping. These could only be partially mapped to metadata and made it difficult to understand choices made with the collections after those archivists retired.
 
-Before 1997, the NISV’s radio collections contain both original recordings and conservation copies (duplicates transferred to different tapes), but it is unpredictable which versions exist since some originals were discarded while others were kept alongside their copies.
+Before 1997, the NISV’s radio collections contained both original recordings and conservation copies (duplicates transferred to different tapes), but it is unpredictable which versions exist since some originals were discarded while others were kept alongside their copies.
 The CLARIAH Media Suite and DAAN systems contain different search results because not all metadata fields are mapped equally between systems during database migrations, requiring researchers to check both systems to find all available materials.
 Date searches can return false positive results because the system finds date references in metadata fields or speech-to-text transcripts that don't correspond to the actual recording date, making it difficult to filter materials by specific time periods.
 Database migrations between systems resulted in incomplete metadata transfers, where some information exists in one system but not another, creating inconsistencies that can help or hinder searches depending on which system researchers use.
+
 
 
 ## Research opportunities within Impresso collections
