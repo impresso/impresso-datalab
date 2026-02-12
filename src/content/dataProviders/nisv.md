@@ -25,20 +25,20 @@ Researchers face significant navigation challenges due to incomplete database in
 
 ## Timeline
 
-### 1920-1939 Early recording era
+### 1920-1939: Early recording era
 
 Early collection begins with recordings for rebroadcasting purposes, like PHOHI's colonial service to Indonesia or accidental captures, rather than complete programs.
 
-### 1940-1945 Wartime broadcasting
+### 1940-1945: Wartime broadcasting
 
 Primarily broadcasts from Radio Oranje in London that were recorded by private individuals in the Netherlands, since Dutch broadcasters were shut down in 1941 and only reestablished in 1945. NISV also holds selected recordings of the Rijksradio, created under German occupation (1941-1945). German occupiers introduced a licensing fee which stayed in place after the war.
 
-### 1947 Start to dedicated archiving
+### 1947: Start to dedicated archiving
 
 Dutch broadcasting was organised along pillarised lines with separate Catholic, Protestant, socialist, and liberal broadcasters each having their own studios and facilities. After World War II, these different pillarised broadcasters began cooperating more on technical matters and shared resources like music libraries, which directly led to the creation of a national radio union and shared archival infrastructure.
 Dedicated radio archiving of mostly spoken word content and radio plays begins and increasingly reflects our contemporary notion of radio as a medium. Still, preservation remains selective and followed the practical needs of a media production archive.
 
-### 1955 Foundation of Stichting Film & Wetenschap (SFW) / Film & Science Foundation
+### 1955: Foundation of Stichting Film & Wetenschap (SFW) / Film & Science Foundation
 
 In 1970, the SFW takes over the Dutch radio corporation or NRU (Nederlands Radio Unie) collection of lacquer disks from the University of Utrecht’s historic sound archive (Historisch Geluidsarchief), which had been founded in 1961, and received 16,000 78 RPM discs and 2000 audio tapes from the NRU archive in 1962.
 
@@ -46,11 +46,11 @@ In 1970, the SFW takes over the Dutch radio corporation or NRU (Nederlands Radio
 
 Full recordings were made of whole weeks of Dutch public radio, first four times a year
 
-### 1980s Cultural heritage recognition
+### 1980s: Cultural heritage recognition
 
 Turning point: Shift towards radio collections as ephemeral cultural heritage worthy of preservation for research purposes which ultimately led to the creation of NISV in 1997.
 
-### 1990s Institutional integration
+### 1990s: Institutional integration
 
 Beginning in 1997, NISV integrates data from several institutions which remains a challenge for documentation and contextualisation until today.
 
@@ -58,7 +58,7 @@ Beginning in 1997, NISV integrates data from several institutions which remains 
 
 Dutch public radio in weeks 10 and 40 are recorded in full every year.
 
-### Since 2006 Hybrid approaches to preservation and selected digital ingest
+### Since 2006: Hybrid approaches to preservation and selected digital ingest
 
 Preservation operates hybrid between digital and analogue techniques. Digital ingest of selected public radio stations.
 
