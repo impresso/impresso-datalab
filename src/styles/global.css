@@ -492,9 +492,29 @@ hr {
   text-decoration: none;
 }
 .modal h2 {
-  font-size: inherit;
+  font-size: var(--font-size-h2);
+  padding-top: var(--spacer-3);
   padding-bottom: 0;
+  font-weight: normal;
+  font-variation-settings: "wght" var(--impresso-wght-bold);
 }
+.modal h3 {
+  font-size: var(--font-size-h3);
+  padding-top: var(--spacer-3);
+  padding-bottom: 0;
+  font-weight: normal;
+  font-variation-settings: "wght" var(--impresso-wght-medium);
+}
+.modal h2 > a,
+.modal h3 > a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.modal hr {
+  display: none;
+}
+
 .modal-header {
   padding: 0 0 var(--spacer-3) 0;
   border-bottom: 1px solid var(--impresso-color-black-rgba-25);
@@ -517,6 +537,10 @@ hr {
   }
 }
 @media (min-width: 1024px) {
+  .modal {
+    --font-size-h2: var(--fs28px);
+    --font-size-h3: var(--fs18px);
+  }
   .modal-md-lg {
     --bs-modal-width: 700px;
   }

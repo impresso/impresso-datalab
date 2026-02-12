@@ -35,7 +35,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
         })
       },
       {
-        rootMargin: "-80px 0px -40% 0px",
+        rootMargin: "-80px 0px -35% 0px",
         threshold: [0, 1],
       },
     )

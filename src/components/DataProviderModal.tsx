@@ -4,7 +4,6 @@ import Page from "./Page"
 import MarkdownSnippet from "./MarkdownSnippet"
 import TableOfContents from "./TableOfContents"
 import type { DataProvider, TOCEntry } from "../types"
-import "./DataProviderModal.css"
 
 interface DataProviderModalProps {
   dataProvider: DataProvider
