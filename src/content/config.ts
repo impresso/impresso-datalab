@@ -246,7 +246,7 @@ const associatedPartners = defineCollection({
 })
 
 const tools = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./src/content/tools" }),
+  loader: glob({ pattern: "*.mdx", base: "./src/content/tools" }),
   schema: z.object({
     title: z.string(),
     type: z.enum(["huggingface-model", "python-library"]),
@@ -254,6 +254,7 @@ const tools = defineCollection({
     tags: z.array(z.string()).optional(),
     license: z.string().optional(),
     date: z.date().optional(),
+    publications: z.array(z.string()).optional(),
     huggingface: z
       .object({
         modelId: z.string().optional(),
