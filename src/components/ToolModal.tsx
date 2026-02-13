@@ -63,86 +63,16 @@ const ToolModal: React.FC<ToolModalProps> = ({
           </Col>
 
           <Col lg="5">
-            {tool.type === "huggingface-model" && (
-              <div className="mb-4">
-                <h4>Hugging Face</h4>
-                <ul style={{ listStyle: "none", padding: 0 }}>
-                  {huggingface?.modelId && (
-                    <li className="mb-2">
-                      <strong>Model:</strong> {huggingface.modelId}
-                    </li>
-                  )}
-                  {huggingface?.modelUrl && (
-                    <li className="mb-2">
-                      <a
-                        href={huggingface.modelUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Model page
-                      </a>
-                    </li>
-                  )}
-                  {huggingface?.pipelineTag && (
-                    <li className="mb-2">
-                      <strong>Pipeline:</strong> {huggingface.pipelineTag}
-                    </li>
-                  )}
-                  {huggingface?.provider && (
-                    <li className="mb-2">
-                      <strong>Provider:</strong> {huggingface.provider}
-                    </li>
-                  )}
-                </ul>
-              </div>
+            <h4>Publications</h4>
+            {tool.publications && tool.publications.length > 0 ? (
+              <ul>
+                {tool.publications.map((pub, index) => (
+                  <li key={index}>{pub}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-muted">No publications available.</p>
             )}
-
-            {tool.type === "python-library" && (
-              <div className="mb-4">
-                <h4>Python Library</h4>
-                <ul style={{ listStyle: "none", padding: 0 }}>
-                  {python?.package && (
-                    <li className="mb-2">
-                      <strong>Package:</strong> {python.package}
-                    </li>
-                  )}
-                  {python?.pypiUrl && (
-                    <li className="mb-2">
-                      <a
-                        href={python.pypiUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        PyPI
-                      </a>
-                    </li>
-                  )}
-                  {python?.docsUrl && (
-                    <li className="mb-2">
-                      <a
-                        href={python.docsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Documentation
-                      </a>
-                    </li>
-                  )}
-                  {python?.repoUrl && (
-                    <li className="mb-2">
-                      <a
-                        href={python.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Repository
-                      </a>
-                    </li>
-                  )}
-                </ul>
-              </div>
-            )}
-
             <TableOfContents entries={toc} />
           </Col>
         </Row>
