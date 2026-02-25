@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "npm run createfontscss && npm run sync-search-dev && astro dev",
+    "dev": "npm run createfontscss && npm run cp-search-dev && astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "npm run createfontscss && astro check && astro build",
+    "build": "npm run createfontscss && astro check &&  astro build && npm run build-search",
     "preview": "astro preview",
     "astro": "astro",
     "createfontscss": "node ./createfontscss.js",
@@ -14,7 +14,7 @@
     "build-storybook": "storybook build",
     "updatenotebooks": "node ./updatenotebooks.js",
     "build-search": "pagefind --site dist",
-    "sync-search-dev": "npm run build-search && node -e \"fs.cpSync('./dist/pagefind', './public/pagefind', {recursive: true})\""
+    "cp-search-dev": "node -e \"fs.cpSync('./dist/pagefind', './public/pagefind', {recursive: true})\""
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",

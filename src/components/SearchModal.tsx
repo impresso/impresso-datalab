@@ -1,10 +1,23 @@
 import React, { useState, useEffect, useRef } from "react"
-import { Container, Row, Pagination, Spinner } from "react-bootstrap"
+import {
+  Container,
+  Row,
+  Col,
+  Pagination,
+  Spinner,
+  ListGroup,
+  Badge,
+} from "react-bootstrap"
 import Page from "./Page"
 
 interface PagefindResult {
   url: string
   excerpt: string
+  word_count: number
+  filters: {
+    contentCollection?: string[]
+    tag?: string[]
+  }
   meta: {
     title: string
     [key: string]: any
@@ -15,14 +28,19 @@ const PAGE_SIZE = 10
 
 const SearchModal: React.FC = () => {
   const [query, setQuery] = useState("")
-  const [allRawResults, setAllRawResults] = useState<any[]>([]) // Store the raw refs
-  const [pagedResults, setPagedResults] = useState<PagefindResult[]>([]) // Store the hydrated data
+  const [allRawResults, setAllRawResults] = useState<any[]>([])
+  const [pagedResults, setPagedResults] = useState<PagefindResult[]>([])
+  const [availableFilters, setAvailableFilters] = useState<
+    Record<string, Record<string, number>>
+  >({})
+  const [selectedCollection, setSelectedCollection] = useState<string | null>(
+    null,
+  )
   const [currentPage, setCurrentPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const [isReady, setIsReady] = useState(false)
   const pagefind = useRef<any>(null)
 
-  // 1. Initialization (Same as before)
   useEffect(() => {
     const initPagefind = () => {
       if ((window as any).pagefind) {
@@ -35,45 +53,45 @@ const SearchModal: React.FC = () => {
     return () => window.removeEventListener("pagefind-ready", initPagefind)
   }, [])
 
-  // 2. Fetching the Result List (Raw)
   useEffect(() => {
     if (!isReady) return
 
     const fetchResults = async () => {
       setLoading(true)
-      // If query is empty/short, search(null) returns all indexed pages
       const searchTerm = query.length > 1 ? query : null
-      const search = await pagefind.current.search(searchTerm)
 
+      const searchOptions: any = {
+        filters: selectedCollection
+          ? { contentCollection: selectedCollection }
+          : {},
+      }
+
+      const search = await pagefind.current.search(searchTerm, searchOptions)
+      console.debug("search results", search)
+      setAvailableFilters(search.filters)
       setAllRawResults(search.results)
-      setCurrentPage(1) // Reset to page 1 on new search
+      setCurrentPage(1)
       setLoading(false)
     }
 
     const handler = setTimeout(fetchResults, 300)
     return () => clearTimeout(handler)
-  }, [query, isReady])
+  }, [query, isReady, selectedCollection])
 
-  // 3. Hydration Logic (Pagination)
   useEffect(() => {
     const hydratePage = async () => {
       if (allRawResults.length === 0) {
         setPagedResults([])
         return
       }
-
       setLoading(true)
       const start = (currentPage - 1) * PAGE_SIZE
       const end = start + PAGE_SIZE
-
-      // Only hydrate the slice we need
       const batch = allRawResults.slice(start, end)
       const dataResults = await Promise.all(batch.map((r: any) => r.data()))
-
-      setPagedResults(dataResults)
+      setPagedResults(dataResults as PagefindResult[])
       setLoading(false)
     }
-
     hydratePage()
   }, [allRawResults, currentPage])
 
@@ -82,83 +100,90 @@ const SearchModal: React.FC = () => {
   return (
     <Page title="Search - Impresso Datalab" fullscreen="xl-down" size="xl">
       <Container>
-        <Row className="mb-4">
-          <div className="position-relative">
+        <Row>
+          <Col md={3}>
+            <h4>Collections</h4>
+            <ListGroup>
+              <ListGroup.Item
+                action
+                active={selectedCollection === null}
+                onClick={() => setSelectedCollection(null)}
+              >
+                All
+              </ListGroup.Item>
+              {availableFilters.contentCollection &&
+                Object.entries(availableFilters.contentCollection).map(
+                  ([name, count]) => (
+                    <ListGroup.Item
+                      key={name}
+                      action
+                      active={selectedCollection === name}
+                      onClick={() => setSelectedCollection(name)}
+                    >
+                      {name} ({count})
+                    </ListGroup.Item>
+                  ),
+                )}
+            </ListGroup>
+          </Col>
+
+          <Col md={9}>
             <input
               type="text"
               className="form-control"
-              placeholder={
-                isReady
-                  ? "Search or leave empty to browse all..."
-                  : "Initializing..."
-              }
-              autoFocus
+              placeholder="Search..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-            {loading && (
-              <div className="position-absolute top-50 end-0 translate-middle-y me-3">
-                <Spinner animation="border" size="sm" variant="secondary" />
-              </div>
-            )}
-          </div>
-        </Row>
 
-        <Row>
-          {pagedResults.length > 0 ? (
-            <>
-              <p className="text-muted small">
-                Showing {pagedResults.length} of {allRawResults.length} results
-              </p>
+            {loading && <Spinner animation="border" size="sm" />}
 
-              <div className="list-group mb-4">
-                {pagedResults.map((res, i) => (
-                  <a
-                    key={i}
-                    href={res.url}
-                    className="list-group-item list-group-item-action"
-                  >
-                    <h5 className="mb-1">{res.meta.title}</h5>
-                    <p
-                      className="mb-1 small text-muted"
-                      dangerouslySetInnerHTML={{ __html: res.excerpt }}
-                    />
-                    <small className="text-primary">{res.url}</small>
-                    {JSON.stringify(res)}
-                  </a>
-                ))}
-              </div>
-
-              {totalPages > 1 && (
-                <Pagination className="justify-content-center">
-                  <Pagination.Prev
-                    disabled={currentPage === 1}
-                    onClick={() => setCurrentPage((prev) => prev - 1)}
-                  />
-                  {[...Array(totalPages)].map((_, i) => (
-                    // Simple logic: only show nearby pages if totalPages is huge
-                    <Pagination.Item
-                      key={i + 1}
-                      active={i + 1 === currentPage}
-                      onClick={() => setCurrentPage(i + 1)}
-                    >
-                      {i + 1}
-                    </Pagination.Item>
+            {pagedResults.length > 0 ? (
+              <>
+                <p>{allRawResults.length} results</p>
+                <div>
+                  {pagedResults.map((res, i) => (
+                    <div key={i} style={{ marginBottom: "20px" }}>
+                      <a href={res.url}>
+                        <h5>{res.meta.title}</h5>
+                      </a>
+                      <p dangerouslySetInnerHTML={{ __html: res.excerpt }} />
+                      <small>
+                        {res.url} | {res.word_count} words
+                      </small>
+                      <div>
+                        {res.filters.tag?.map((t) => (
+                          <Badge
+                            key={t}
+                            bg="secondary"
+                            style={{ marginRight: "5px" }}
+                          >
+                            {t}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
                   ))}
-                  <Pagination.Next
-                    disabled={currentPage === totalPages}
-                    onClick={() => setCurrentPage((prev) => prev + 1)}
-                  />
-                </Pagination>
-              )}
-            </>
-          ) : (
-            !loading && (
-              <p className="text-center py-5 text-muted">
-                No results found matching "{query}"
-              </p>
-            )
-          )}
+                </div>
+
+                {totalPages > 1 && (
+                  <Pagination>
+                    <Pagination.Prev
+                      onClick={() => setCurrentPage((p) => p - 1)}
+                      disabled={currentPage === 1}
+                    />
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Next
+                      onClick={() => setCurrentPage((p) => p + 1)}
+                      disabled={currentPage === totalPages}
+                    />
+                  </Pagination>
+                )}
+              </>
+            ) : (
+              !loading && <p>No results found.</p>
+            )}
+          </Col>
         </Row>
       </Container>
     </Page>
