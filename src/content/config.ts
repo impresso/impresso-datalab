@@ -249,28 +249,11 @@ const tools = defineCollection({
   loader: glob({ pattern: "*.mdx", base: "./src/content/tools" }),
   schema: z.object({
     title: z.string(),
-    type: z.enum(["huggingface-model", "python-library"]),
     summary: z.string().optional(),
     tags: z.array(z.string()).optional(),
     license: z.string().optional(),
     date: z.date().optional(),
     publications: z.array(z.string()).optional(),
-    huggingface: z
-      .object({
-        modelId: z.string().optional(),
-        modelUrl: z.string().url().optional(),
-        pipelineTag: z.string().optional(),
-        provider: z.string().optional(),
-      })
-      .optional(),
-    python: z
-      .object({
-        package: z.string().optional(),
-        pypiUrl: z.string().url().optional(),
-        docsUrl: z.string().url().optional(),
-        repoUrl: z.string().url().optional(),
-      })
-      .optional(),
   }),
 })
 
