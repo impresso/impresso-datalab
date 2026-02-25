@@ -16,13 +16,8 @@ const ToolModal: React.FC<ToolModalProps> = ({
   toc = [],
 }) => {
   const tags = tool.tags || []
-  const huggingface = tool.huggingface
-  const python = tool.python
-  const typeLabel =
-    tool.type === "huggingface-model" ? "Hugging Face Model" : "Python Library"
-
   return (
-    <Page title={tool.title} fullscreen="xl-down" size="lg">
+    <Page title="Tools" fullscreen="xl-down" size="lg">
       <Container className="ToolModal">
         <Row className="my-3">
           <h1>{tool.title}</h1>
@@ -32,9 +27,17 @@ const ToolModal: React.FC<ToolModalProps> = ({
           <Col lg="7">
             <div className="mb-4">
               <div className="d-flex gap-2 mb-3 flex-wrap">
-                <Badge bg="primary" pill className="py-2 px-3">
-                  {typeLabel}
-                </Badge>
+                {tool.tags?.map((tag) => (
+                  <Badge
+                    key={tag}
+                    bg="primary"
+                    pill
+                    className="py-2 px-3 text-dark"
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+
                 {tool.license && (
                   <Badge bg="secondary" pill className="py-2 px-3">
                     {tool.license}
@@ -66,7 +69,7 @@ const ToolModal: React.FC<ToolModalProps> = ({
             <h4>Publications</h4>
             {tool.publications && tool.publications.length > 0 ? (
               <ul>
-                {tool.publications.map((pub, index) => (
+                {tool.publications.map((pub: any, index: number) => (
                   <li key={index}>{pub}</li>
                 ))}
               </ul>
