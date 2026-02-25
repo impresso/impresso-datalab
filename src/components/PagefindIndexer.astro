@@ -1,0 +1,22 @@
+---
+// PagefindIndexer.astro
+interface Props {
+  title: string;
+  content: string;
+  contentCollection: string;
+  tags?: string[];
+}
+
+const { title, content, contentCollection, tags = [] } = Astro.props;
+---
+
+<div data-pagefind-body style="display: none;" aria-hidden="true">
+  <h1>{title}</h1>
+  <div>{content}</div>
+  <div data-pagefind-filter="contentCollection">{contentCollection}</span>
+  {tags.length > 0 && (
+    <ul>
+      {tags.map(tag => <li data-pagefind-filter="tag">{tag}</li>)}
+    </ul>
+  )}
+</div>

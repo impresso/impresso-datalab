@@ -1,0 +1,36 @@
+---
+import SearchModal  from "../components/SearchModal";
+import Layout from "../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+import { CanonicalUrl } from "../constants";
+import { AstroSeo } from "@astrolib/seo";
+
+
+---
+
+<Layout title="Search">
+  <script is:inline>
+  async function setupPagefind() {
+    try {
+      // Import the library and attach to window
+      const pf = await import("/datalab/pagefind/pagefind.js");
+      await pf.init();
+      window.pagefind = pf;
+      
+      // Dispatch a custom event so the React component knows it's ready
+      window.dispatchEvent(new CustomEvent('pagefind-ready'));
+      console.info("Pagefind global initialized");
+    } catch (e) {
+      console.error("Failed to load Pagefind via inline script", e);
+    }
+  }
+
+  setupPagefind();
+</script>
+  <AstroSeo
+    canonical={CanonicalUrl}
+    title="Search"
+    description="Search the Impresso Datalab"
+  />
+  <SearchModal client:only="react"/>
+</Layout>

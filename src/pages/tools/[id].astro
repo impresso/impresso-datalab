@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro"
+import PagefindIndexer from "../../components/PagefindIndexer.astro"
 import ToolModal from "../../components/ToolModal"
 import { getCollection } from "astro:content"
 import { getRecursivelyEntryData, getTableOfContents } from "../../logic"
@@ -25,6 +26,12 @@ const toc: TOCEntry[] = getTableOfContents(tool.body || "")
     canonical={CanonicalUrl}
     title={toolProps.title}
     description={toolProps.summary || toolProps.title}
+  />
+  <PagefindIndexer
+    contentCollection="tool"
+    title={toolProps.title} 
+    content={tool.body ?? ''} 
+    tags={toolProps.tags} 
   />
   <ToolModal
     client:only="react"

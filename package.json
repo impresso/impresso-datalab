@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "npm run createfontscss && astro dev",
+    "dev": "npm run createfontscss && npm run sync-search-dev && astro dev",
     "start": "astro dev",
     "check": "astro check",
     "build": "npm run createfontscss && astro check && astro build",
@@ -12,7 +12,9 @@
     "createfontscss": "node ./createfontscss.js",
     "storybook": "npm run createfontscss && storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "updatenotebooks": "node ./updatenotebooks.js"
+    "updatenotebooks": "node ./updatenotebooks.js",
+    "build-search": "pagefind --site dist",
+    "sync-search-dev": "npm run build-search && node -e \"fs.cpSync('./dist/pagefind', './public/pagefind', {recursive: true})\""
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -34,7 +36,7 @@
     "@uiw/codemirror-theme-nord": "^4.23.1",
     "@uiw/codemirror-themes": "^4.23.5",
     "@uiw/react-codemirror": "^4.23.1",
-    "astro": "^5.17.1",
+    "astro": "^5.17.3",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "boring-avatars": "^1.11.2",
@@ -43,6 +45,7 @@
     "impresso-ui-components": "github:impresso/impresso-ui-components#develop",
     "luxon": "^3.5.0",
     "marked": "^14.1.2",
+    "pagefind": "^1.4.0",
     "react": "^18.3.0",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
