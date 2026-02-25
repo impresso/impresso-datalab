@@ -239,23 +239,10 @@ export type Tool = {
   id: string
   href: string
   title: string
-  type: "huggingface-model" | "python-library"
   summary?: string
   tags?: string[]
   license?: string
-  date?: Date
-  huggingface?: {
-    modelId?: string
-    modelUrl?: string
-    pipelineTag?: string
-    provider?: string
-  }
-  python?: {
-    package?: string
-    pypiUrl?: string
-    docsUrl?: string
-    repoUrl?: string
-  }
+  publications: string[]
 }
 
 export type TOCEntry = {
