@@ -7,6 +7,7 @@ interface TableOfContentsProps {
   sticky?: boolean
   className?: string
   title?: string
+  minEntriesToEnableObserver?: number
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({
@@ -14,6 +15,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   sticky = true,
   className = "",
   title = "Table of Contents",
+  minEntriesToEnableObserver = 3,
 }) => {
   const [activeIds, setActiveIds] = useState<Set<string>>(new Set())
 
@@ -22,7 +24,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   const isCurrentlyScrolled = useRef(false)
 
   useEffect(() => {
-    if (entries.length === 0) return
+    if (entries.length === 0 || entries.length < minEntriesToEnableObserver)
+      return
 
     const observer = new IntersectionObserver(
       (observedEntries) => {
@@ -119,7 +122,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
       <h4 className="pb-2">{title}</h4>
       <ul
         ref={listRef}
-        className="list-unstyled border-bottom me-2 ps-2 position-absolute"
+        className={`list-unstyled ${entries.length >= minEntriesToEnableObserver ? "border-bottom" : ""} me-2 ps-2 position-absolute`}
         style={{
           maxHeight: listMaxHeight ? `${listMaxHeight}px` : "none",
           overflowY: "auto",
