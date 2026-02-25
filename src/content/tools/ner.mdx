@@ -8,7 +8,39 @@ huggingface:
   pipelineTag: text-generation
   provider: huggingface
 publications:
-  - Boros, Emanuela, Ahmed Hamdi, Elvys Linhares Pontes, et al. ‘Alleviating Digitization Errors in Named Entity Recognition for Historical Documents’. In Proceedings of the 24th Conference on Computational Natural Language Learning, edited by Raquel Fernández and Tal Linzen. Association for Computational Linguistics, 2020. https://doi.org/10.18653/v1/2020.conll-1.35.
+  - |
+    @inproceedings{boros_alleviating_2020,
+    address = {Online},
+    title = {Alleviating {Digitization} {Errors} in {Named} {Entity} {Recognition} for {Historical} {Documents}},
+    url = {https://aclanthology.org/2020.conll-1.35},
+    doi = {10.18653/v1/2020.conll-1.35},
+    abstract = {This paper tackles the task of named entity recognition (NER) applied to digitized historical texts obtained from processing digital images of newspapers using optical character recognition (OCR) techniques. We argue that the main challenge for this task is that the OCR process leads to misspellings and linguistic errors in the output text. Moreover, historical variations can be present in aged documents, which can impact the performance of the NER process. We conduct a comparative evaluation on two historical datasets in German and French against previous state-of-the-art models, and we propose a model based on a hierarchical stack of Transformers to approach the NER task for historical data. Our findings show that the proposed model clearly improves the results on both historical datasets, and does not degrade the results for modern datasets.},
+    urldate = {2024-06-30},
+    booktitle = {Proceedings of the 24th {Conference} on {Computational} {Natural} {Language} {Learning}},
+    publisher = {Association for Computational Linguistics},
+    author = {Boros, Emanuela and Hamdi, Ahmed and Linhares Pontes, Elvys and Cabrera-Diego, Luis Adrián and Moreno, Jose G. and Sidere, Nicolas and Doucet, Antoine},
+    editor = {Fernández, Raquel and Linzen, Tal},
+    month = nov,
+    year = {2020},
+    note = {tex.ids= boros2020alleviating, boros_alleviating_2020},
+    keywords = {to cite},
+    pages = {431--441},
+    file = {Boros et al. - 2020 - Alleviating Digitization Errors in Named Entity Re.pdf:/Users/daniele.guido/Zotero/storage/8QPXDXGU/Boros et al. - 2020 - Alleviating Digitization Errors in Named Entity Re.pdf:application/pdf},
+    }
+  - |
+    @misc{ehrmann_named_2018,
+    type = {Blogpost},
+    title = {Named entity processing in a nutshell},
+    url = {https://impresso-project.ch/news/2018/06/12/tradingzone-ner.html},
+    abstract = {Trading zone part 1: Named Entity Processing. This blog post is part of Stepping in the NLP / History trading zone: a series of posts.},
+    language = {en},
+    urldate = {2019-01-09},
+    journal = {impresso},
+    author = {Ehrmann, Maud},
+    month = jun,
+    year = {2018},
+    file = {Snapshot:/Users/daniele.guido/Zotero/storage/9F9K6RPX/tradingzone-ner.html:text/html},
+    }
 ---
 
 ## Notebooks
@@ -34,36 +66,3 @@ Model 2 HF: https://huggingface.co/impresso-project/ner-stacked-bert-multilingua
 ### Impresso Py tool:
 
 https://impresso.readthedocs.io/en/latest/resources/#impresso.resources.tools.ToolsResource.ner
-
-@inproceedings{boros_alleviating_2020,
-address = {Online},
-title = {Alleviating {Digitization} {Errors} in {Named} {Entity} {Recognition} for {Historical} {Documents}},
-url = {https://aclanthology.org/2020.conll-1.35},
-doi = {10.18653/v1/2020.conll-1.35},
-abstract = {This paper tackles the task of named entity recognition (NER) applied to digitized historical texts obtained from processing digital images of newspapers using optical character recognition (OCR) techniques. We argue that the main challenge for this task is that the OCR process leads to misspellings and linguistic errors in the output text. Moreover, historical variations can be present in aged documents, which can impact the performance of the NER process. We conduct a comparative evaluation on two historical datasets in German and French against previous state-of-the-art models, and we propose a model based on a hierarchical stack of Transformers to approach the NER task for historical data. Our findings show that the proposed model clearly improves the results on both historical datasets, and does not degrade the results for modern datasets.},
-urldate = {2024-06-30},
-booktitle = {Proceedings of the 24th {Conference} on {Computational} {Natural} {Language} {Learning}},
-publisher = {Association for Computational Linguistics},
-author = {Boros, Emanuela and Hamdi, Ahmed and Linhares Pontes, Elvys and Cabrera-Diego, Luis Adrián and Moreno, Jose G. and Sidere, Nicolas and Doucet, Antoine},
-editor = {Fernández, Raquel and Linzen, Tal},
-month = nov,
-year = {2020},
-note = {tex.ids= boros2020alleviating, boros_alleviating_2020},
-keywords = {to cite},
-pages = {431--441},
-file = {Boros et al. - 2020 - Alleviating Digitization Errors in Named Entity Re.pdf:/Users/daniele.guido/Zotero/storage/8QPXDXGU/Boros et al. - 2020 - Alleviating Digitization Errors in Named Entity Re.pdf:application/pdf},
-}
-
-@misc{ehrmann_named_2018,
-type = {Blogpost},
-title = {Named entity processing in a nutshell},
-url = {https://impresso-project.ch/news/2018/06/12/tradingzone-ner.html},
-abstract = {Trading zone part 1: Named Entity Processing. This blog post is part of Stepping in the NLP / History trading zone: a series of posts.},
-language = {en},
-urldate = {2019-01-09},
-journal = {impresso},
-author = {Ehrmann, Maud},
-month = jun,
-year = {2018},
-file = {Snapshot:/Users/daniele.guido/Zotero/storage/9F9K6RPX/tradingzone-ner.html:text/html},
-}
