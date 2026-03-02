@@ -243,6 +243,7 @@ export type Tool = {
   tags?: string[]
   license?: string
   publications: string[]
+  notebooks?: Notebook[]
 }
 
 export type TOCEntry = {
