@@ -1,0 +1,14 @@
+.ToolModal .LinkAsCard {
+  text-decoration: none;
+  box-shadow: none;
+  display: inline-block;
+  font-weight: normal;
+  font-variation-settings: "wght" var(--impresso-wght-medium);
+}
+.ToolModal .LinkAsCard span.badge {
+  color: inherit;
+  background-color: transparent;
+  border: 1px solid;
+  opacity: 0.75;
+  text-decoration: none;
+}

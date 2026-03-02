@@ -3,6 +3,9 @@ import MarkdownSnippet from "./MarkdownSnippet"
 import Page from "./Page"
 import TableOfContents from "./TableOfContents"
 import type { Tool, TOCEntry } from "../types"
+import "./ToolModal.css"
+import NotebookCard from "./NotebookCard"
+import Citation from "./Citation"
 
 interface ToolModalProps {
   tool: Tool
@@ -58,15 +61,31 @@ const ToolModal: React.FC<ToolModalProps> = ({
           <Col lg="5">
             <h4>Publications</h4>
             {tool.publications && tool.publications.length > 0 ? (
-              <ul>
+              <ul className="list-unstyled">
                 {tool.publications.map((pub: any, index: number) => (
-                  <li key={index}>{pub}</li>
+                  <li key={index} className="mb-3">
+                    <Citation bibtex={pub} format="html" showCopyButton />
+                  </li>
                 ))}
               </ul>
             ) : (
               <p className="text-muted">No publications available.</p>
             )}
-            <TableOfContents entries={toc} />
+            <h4 className="mt-4">Notebooks</h4>
+            {tool.notebooks && tool.notebooks.length > 0 ? (
+              <ul className="list-unstyled">
+                {tool.notebooks
+                  .filter((notebook) => !notebook.draft)
+                  .map((notebook) => (
+                    <li key={notebook.href} className="mt-2">
+                      <NotebookCard notebook={notebook} />
+                    </li>
+                  ))}
+              </ul>
+            ) : (
+              <p className="text-muted">No notebooks available.</p>
+            )}
+            <TableOfContents footerClass="pb-4" entries={toc} />
           </Col>
         </Row>
       </Container>

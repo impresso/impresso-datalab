@@ -9,6 +9,7 @@ interface TableOfContentsProps {
   title?: string
   minEntriesToEnableObserver?: number
   minEntriesToEnableObserverClass?: string
+  footerClass?: string
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({
@@ -18,6 +19,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   title = "Table of Contents",
   minEntriesToEnableObserver = 3,
   minEntriesToEnableObserverClass = "",
+  footerClass = "",
 }) => {
   const [activeIds, setActiveIds] = useState<Set<string>>(new Set())
 
@@ -124,7 +126,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
       <h4 className="pb-2">{title}</h4>
       <ul
         ref={listRef}
-        className={`list-unstyled ${entries.length >= minEntriesToEnableObserver ? minEntriesToEnableObserverClass : ""} me-2 ps-2 position-absolute`}
+        className={`list-unstyled ${entries.length >= minEntriesToEnableObserver ? minEntriesToEnableObserverClass : ""} ${footerClass || ""} me-2 ps-2 position-absolute`}
         style={{
           maxHeight: listMaxHeight ? `${listMaxHeight}px` : "none",
           overflowY: "auto",
