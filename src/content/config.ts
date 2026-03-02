@@ -254,6 +254,7 @@ const tools = defineCollection({
     license: z.string().optional(),
     date: z.date().optional(),
     publications: z.array(z.string()).optional(),
+    notebooks: z.array(reference("notebooks")).optional(),
   }),
 })
 
