@@ -39,8 +39,8 @@ const Header: React.FC = () => {
               </Link>
             </Nav.Item>
             <Nav.Item>
-              <Link to="/notebooks" className="nav-link ">
-                browse notebooks
+              <Link to="/search" className="nav-link ">
+                Search notebooks
               </Link>
             </Nav.Item>
             <Nav.Item>
