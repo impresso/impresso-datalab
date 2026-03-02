@@ -2,6 +2,33 @@ import { marked } from "marked"
 import GithubSlugger from "github-slugger"
 import "./MarkdownSnippet.css"
 
+const UrlWithCustomCSSClass: {
+  url: string
+  className: string
+  badge: string
+}[] = [
+  {
+    url: "https://impresso.readthedocs.io/",
+    className: "LinkAsCard",
+    badge: "Py → Docs",
+  },
+  {
+    url: "https://huggingface.co/spaces/impresso-project/",
+    className: "LinkAsCard",
+    badge: "HF → spaces",
+  },
+  {
+    url: "https://huggingface.co/impresso-project/",
+    className: "LinkAsCard",
+    badge: "HF",
+  },
+  {
+    url: "https://huggingface.co/impresso-project/",
+    className: "LinkAsCard",
+    badge: "HF → models",
+  },
+]
+
 export interface MarkdownSnippetProps {
   value?: string
   className?: string
@@ -23,6 +50,24 @@ const MarkdownSnippet: React.FC<MarkdownSnippetProps> = ({
     return `<h${depth} id="${id}">
       <a href="#${id}" class="heading-link">${headingText}</a>
     </h${depth}>`
+  }
+
+  renderer.link = function link(token) {
+    const href = token.href
+    const text = this.parser.parseInline(token.tokens)
+    const title = token.title ? ` title="${token.title}"` : ""
+
+    for (const { url, className, badge } of UrlWithCustomCSSClass) {
+      if (href.includes(url)) {
+        const textContent: string = text.replace(url, "").trim()
+        return `<a href="${href}" class="${className}" target="_blank" rel="noopener noreferrer"${title}>
+            <span class="small-caps badge">${badge}</span> 
+            <span>${textContent}</span>
+        </a>`
+      }
+    }
+
+    return `<a href="${href}"${title}>${text}</a>`
   }
 
   const content = marked.parse(value, {
