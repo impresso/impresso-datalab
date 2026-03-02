@@ -17,7 +17,7 @@ const ToolCard: React.FC<{
           <Link to={tool.href}>
             <h3 className="mx-0 my-2">
               <span className="badge bg-secondary me-2 very-small-caps-medium">
-                tool
+                task
               </span>
               <span
                 dangerouslySetInnerHTML={{

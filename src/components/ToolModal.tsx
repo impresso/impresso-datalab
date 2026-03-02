@@ -17,7 +17,7 @@ const ToolModal: React.FC<ToolModalProps> = ({
 }) => {
   const tags = tool.tags || []
   return (
-    <Page title="Tools" fullscreen="xl-down" size="lg">
+    <Page title="Tasks" fullscreen="xl-down" size="lg">
       <Container className="ToolModal">
         <Row className="my-3">
           <h1>{tool.title}</h1>
@@ -47,16 +47,6 @@ const ToolModal: React.FC<ToolModalProps> = ({
 
               {tool.summary && (
                 <p className="text-muted fs-5 mb-4">{tool.summary}</p>
-              )}
-
-              {tags.length > 0 && (
-                <div className="d-flex gap-2 flex-wrap mb-4">
-                  {tags.map((tag) => (
-                    <Badge key={tag} bg="light" text="dark">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
               )}
 
               <div className="markdown-content">
