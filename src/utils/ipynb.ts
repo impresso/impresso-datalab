@@ -1,4 +1,5 @@
 import type { CellInfo } from "../types"
+import GithubSlugger from "github-slugger"
 
 /**
  * Parses notebook cell markup text and extracts structured cell information.
@@ -63,6 +64,7 @@ import type { CellInfo } from "../types"
  * - Heading level is calculated from the number of '#' characters
  */
 export const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
+  const slugger = new GithubSlugger()
   const cells: Array<CellInfo> = []
   const regex = /\{\/*\*\s*cell:(\d+)\s*cell_type:(\w+)\s*\*\/\}/g
   let match
@@ -97,6 +99,7 @@ export const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
       if (headingMatch) {
         cells[i].hl = headingMatch[0].length
         cells[i].h = cells[i].content.split("\n")[0].replace(/^#+ /, "")
+        cells[i].hId = slugger.slug(cells[i].h)
       }
     }
   }

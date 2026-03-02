@@ -92,6 +92,7 @@ export type CellInfo = {
   //  headingLevel
   hl?: number
   h: string
+  hId?: string
 }
 
 export type UserChangePlanRequest = {

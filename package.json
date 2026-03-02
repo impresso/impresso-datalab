@@ -20,7 +20,7 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
+    "@astrojs/check": "^0.9.2",
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/react": "^4.4.2",
     "@astrojs/vue": "^5.1.4",
@@ -43,6 +43,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "boring-avatars": "^1.11.2",
+    "github-slugger": "^2.0.0",
     "iconoir-react": "^7.9.0",
     "impresso-jscommons": "github:impresso/impresso-jscommons#v1.4.1",
     "impresso-ui-components": "github:impresso/impresso-ui-components#develop",
