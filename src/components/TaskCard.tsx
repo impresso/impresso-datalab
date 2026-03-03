@@ -29,14 +29,13 @@ const TaskCard: React.FC<{
           {children}
         </div>
 
-        <a
-          href={task.href}
+        <Link
+          to={task.href}
           target="_blank"
-          rel="noopener noreferrer"
           className="ms-auto link-button"
         >
           <ArrowRight strokeWidth={2} />
-        </a>
+        </Link>
       </div>
     </div>
   )

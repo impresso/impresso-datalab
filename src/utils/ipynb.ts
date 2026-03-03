@@ -5,9 +5,6 @@ import GithubSlugger from "github-slugger"
  * Parses notebook cell markup text and extracts structured cell information.
  *
  * This function processes text containing Jupyter notebook cells marked with
- * Parses notebook cell markup text and extracts structured cell information.
- *
- * This function processes text containing Jupyter notebook cells marked with
  * special comments in the format `{/* cell:N cell_type:TYPE *\/}`
  *
  * @param text - The notebook content string containing cell markers and content.
@@ -24,6 +21,7 @@ import GithubSlugger from "github-slugger"
  *
  * @example
  * const input = `
+ *   {/* cell:0 cell_type:markdown *\/}
  *   # Introduction
  *   This is a test notebook.
  *   {/* cell:1 cell_type:code *\/}
@@ -35,26 +33,7 @@ import GithubSlugger from "github-slugger"
  * // cells[0].cellNumber === 0
  * // cells[0].cellType === 'markdown'
  * // cells[0].h === 'Introduction'
- * // cells[0].hl === 2 (## = two hashes)
- *
- * @remarks
- * - Content is automatically trimmed and cleaned:
- *   - Python code fence markers are removed
- *   - HTML anchor tags are stripped
- * - Markdown headings are detected using regex `/^#+\s/`
- * - Heading level is calculated from the number of '#' characters}
- *   # Introduction
- *   This is a test notebook.
- *   {<comment> cell:1 cell_type:code <end comment>}
- *   \`\`\`python
- *   print("Hello")
- *   \`\`\`
- * `;
- * const cells = splitTextWithCellInfo(input);
- * // cells[0].cellNumber === 0
- * // cells[0].cellType === 'markdown'
- * // cells[0].h === 'Introduction'
- * // cells[0].hl === 2 (## = two hashes)
+ * // cells[0].hl === 1 (# = one hash)
  *
  * @remarks
  * - Content is automatically trimmed and cleaned:
@@ -66,13 +45,13 @@ import GithubSlugger from "github-slugger"
 export const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
   const slugger = new GithubSlugger()
   const cells: Array<CellInfo> = []
-  const regex = /\{\/*\*\s*cell:(\d+)\s*cell_type:(\w+)\s*\*\/\}/g
+  const regex = /\{\/\*\s*cell:(\d+)\s*cell_type:(\w+)\s*\*\/\}/g
   let match
   while ((match = regex.exec(text)) !== null) {
     cells.push({
       idx: match.index,
       l: match[0].length,
-      cellNumber: parseInt(match[1]),
+      cellNumber: parseInt(match[1], 10),
       cellType: match[2],
       content: "",
       hl: 0,

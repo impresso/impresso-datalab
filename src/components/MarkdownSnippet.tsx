@@ -22,11 +22,6 @@ const UrlWithCustomCSSClass: {
     className: "LinkAsCard",
     badge: "HF",
   },
-  {
-    url: "https://huggingface.co/impresso-project/",
-    className: "LinkAsCard",
-    badge: "HF → models",
-  },
 ]
 
 export interface MarkdownSnippetProps {

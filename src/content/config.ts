@@ -256,6 +256,15 @@ const tasks = defineCollection({
     date: z.date().optional(),
     publications: z.array(z.string()).optional(),
     notebooks: z.array(reference("notebooks")).optional(),
+    type: z.string().optional(),
+    huggingface: z
+      .object({
+        modelId: z.string().optional(),
+        modelUrl: z.string().url().optional(),
+        pipelineTag: z.string().optional(),
+        provider: z.string().optional(),
+      })
+      .optional(),
   }),
 })
 

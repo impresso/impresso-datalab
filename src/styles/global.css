@@ -7,7 +7,6 @@
   --impresso-color-black-rgb: 52, 58, 64;
   --impresso-color-black: rgb(var(--impresso-color-black-rgb));
   --impresso-color-white: #ffffff;
-  --impresso-color-black-rgb: 52, 58, 64;
   --impresso-color-black-alpha-20: rgba(52, 58, 64, 0.2);
   --impresso-color-purple: #8a5de8;
   /* // paper transparency */
