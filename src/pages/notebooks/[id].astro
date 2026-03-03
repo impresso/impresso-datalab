@@ -8,11 +8,15 @@ import { getEntry } from 'astro:content';
 import { CanonicalUrl } from '../../constants';
 import { AstroSeo } from '@astrolib/seo';
 import PagefindIndexer from '../../components/PagefindIndexer.astro';
+import type { CollectionEntry } from 'astro:content';
+
+type NotebookEntry = CollectionEntry<'notebooks'>;
+
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const notebooks = await getCollection('notebooks');
+  const notebooks: NotebookEntry[] = await getCollection('notebooks');
   return notebooks.map(notebook => ({
-    params: { slug: notebook.id }, props: { notebook },
+    params: { id: notebook.id }, props: { notebook },
   }));
 }
 // 2. For your template, you can get the entry directly from the prop

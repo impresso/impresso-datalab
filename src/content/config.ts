@@ -245,8 +245,8 @@ const associatedPartners = defineCollection({
   }),
 })
 
-const tools = defineCollection({
-  loader: glob({ pattern: "*.mdx", base: "./src/content/tools" }),
+const tasks = defineCollection({
+  loader: glob({ pattern: "*.mdx", base: "./src/content/tasks" }),
   schema: z.object({
     title: z.string(),
     summary: z.string().optional(),
@@ -296,7 +296,7 @@ const series = defineCollection({
     category: z.array(z.enum(SeriesCategories as any)).optional(),
     position: z.string(z.enum(SeriesPositions as any)).optional(),
     notebooks: z.array(reference("notebooks")),
-    tools: z.array(reference("tools")).optional(),
+    tasks: z.array(reference("tasks")).optional(),
     dataProviders: z.array(reference("dataProviders")).optional(),
   }),
 })
@@ -313,5 +313,5 @@ export const collections = {
   datasets,
   dataReleaseCards,
   dataProviders,
-  tools,
+  tasks,
 }

@@ -95,10 +95,10 @@ export const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
       .trim()
     // check if the cell is markdown and extract the heading level
     if (cells[i].cellType === "markdown") {
-      const headingMatch = cells[i].content.match(/^#+ /)
+      const headingMatch = cells[i].content.match(/^(#+)\s+/)
       if (headingMatch) {
-        cells[i].hl = headingMatch[0].length
-        cells[i].h = cells[i].content.split("\n")[0].replace(/^#+ /, "")
+        cells[i].hl = headingMatch[1].length
+        cells[i].h = cells[i].content.split("\n")[0].replace(/^#+\s*/, "")
         cells[i].hId = slugger.slug(cells[i].h)
       }
     }

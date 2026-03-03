@@ -1,27 +1,26 @@
-import "./ToolCard.css"
+import "./TaskCard.css"
 import { ArrowRight } from "iconoir-react"
-import { DateTime } from "luxon"
-import type { Tool } from "../types"
+import type { Task } from "../types"
 import { marked } from "marked"
 import Link from "./Link"
 
-const ToolCard: React.FC<{
-  tool: Tool
+const TaskCard: React.FC<{
+  task: Task
   children?: React.ReactNode
   className?: string
-}> = ({ tool, children, className = "" }) => {
+}> = ({ task, children, className = "" }) => {
   return (
-    <div className={`ToolCard shadow-sm ${className}`}>
+    <div className={`TaskCard shadow-sm ${className}`}>
       <div className="px-3 py-2 d-flex align-items-center">
         <div>
-          <Link to={tool.href}>
+          <Link to={task.href}>
             <h3 className="mx-0 my-2">
               <span className="badge bg-secondary me-2 very-small-caps-medium">
                 task
               </span>
               <span
                 dangerouslySetInnerHTML={{
-                  __html: marked.parseInline(tool?.title ?? "", {}),
+                  __html: marked.parseInline(task?.title ?? "", {}),
                 }}
               ></span>
             </h3>
@@ -31,7 +30,7 @@ const ToolCard: React.FC<{
         </div>
 
         <a
-          href={tool.href}
+          href={task.href}
           target="_blank"
           rel="noopener noreferrer"
           className="ms-auto link-button"
@@ -43,4 +42,4 @@ const ToolCard: React.FC<{
   )
 }
 
-export default ToolCard
+export default TaskCard

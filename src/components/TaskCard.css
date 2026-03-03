@@ -1,13 +1,13 @@
-.ToolCard {
+.TaskCard {
   border-radius: var(--impresso-border-radius-sm);
 }
-.ToolCard h3 {
+.TaskCard h3 {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-text);
 }
 
-.ToolCard .link-button {
+.TaskCard .link-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,11 +20,11 @@
   text-decoration: none;
 }
 
-.ToolCard .link-button:hover {
+.TaskCard .link-button:hover {
   background-color: var(--color-accent);
   color: var(--color-background);
 }
 
-.ToolCard .badge {
+.TaskCard .badge {
   font-weight: normal;
 }

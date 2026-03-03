@@ -25,7 +25,6 @@ print("hello")
 \`\`\``
 
     const result = splitTextWithCellInfo(input)
-
     expect(result).toHaveLength(2)
     expect(result[0].cellType).toBe("markdown")
     expect(result[1].cellType).toBe("code")
@@ -37,9 +36,8 @@ print("hello")
 Some content here`
 
     const result = splitTextWithCellInfo(input)
-
     expect(result[0].h).toBe("Section Title")
-    expect(result[0].hl).toBe(3) // "## " has 3 characters
+    expect(result[0].hl).toBe(2) // "## " level 2 heading
   })
 
   it("should handle non-heading markdown cells", () => {
@@ -123,11 +121,11 @@ Second cell content`
     const result = splitTextWithCellInfo(input)
 
     expect(result[0].h).toBe("Level 1")
-    expect(result[0].hl).toBe(2)
+    expect(result[0].hl).toBe(1)
     expect(result[1].h).toBe("Level 3")
-    expect(result[1].hl).toBe(4)
+    expect(result[1].hl).toBe(3)
     expect(result[2].h).toBe("Level 5")
-    expect(result[2].hl).toBe(6)
+    expect(result[2].hl).toBe(5)
   })
 
   it("should handle code cells with multiple code blocks", () => {

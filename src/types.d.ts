@@ -31,6 +31,8 @@ export type Notebook = {
 }
 
 export interface Series {
+  id: string
+  href: string
   title: string
   excerpt: string
   body?: string
@@ -44,7 +46,7 @@ export interface Series {
   category?: string[]
   position?: string
   notebooks: Notebook[]
-  tools?: Tool[]
+  tasks?: Task[]
   dataProviders?: DataProvider[]
 }
 
@@ -235,7 +237,7 @@ export type DataProvider = {
   Reference?: string
 }
 
-export type Tool = {
+export type Task = {
   id: string
   href: string
   title: string

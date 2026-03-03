@@ -2,35 +2,35 @@ import { Badge, Col, Container, Row } from "react-bootstrap"
 import MarkdownSnippet from "./MarkdownSnippet"
 import Page from "./Page"
 import TableOfContents from "./TableOfContents"
-import type { Tool, TOCEntry } from "../types"
-import "./ToolModal.css"
+import type { Task, TOCEntry } from "../types"
+import "./TaskModal.css"
 import NotebookCard from "./NotebookCard"
 import Citation from "./Citation"
 
-interface ToolModalProps {
-  tool: Tool
+interface TaskModalProps {
+  task: Task
   content?: string
   toc?: TOCEntry[]
 }
 
-const ToolModal: React.FC<ToolModalProps> = ({
-  tool,
+const TaskModal: React.FC<TaskModalProps> = ({
+  task,
   content = "",
   toc = [],
 }) => {
-  const tags = tool.tags || []
+  const tags = task.tags || []
   return (
     <Page title="Tasks" fullscreen="xl-down" size="lg">
-      <Container className="ToolModal">
+      <Container className="TaskModal">
         <Row className="my-3">
-          <h1>{tool.title}</h1>
+          <h1>{task.title}</h1>
         </Row>
 
         <Row className="my-3">
           <Col lg="7">
             <div className="mb-4">
               <div className="d-flex gap-2 mb-3 flex-wrap">
-                {tool.tags?.map((tag) => (
+                {tags.map((tag) => (
                   <Badge
                     key={tag}
                     bg="primary"
@@ -41,15 +41,15 @@ const ToolModal: React.FC<ToolModalProps> = ({
                   </Badge>
                 ))}
 
-                {tool.license && (
+                {task.license && (
                   <Badge bg="secondary" pill className="py-2 px-3">
-                    {tool.license}
+                    {task.license}
                   </Badge>
                 )}
               </div>
 
-              {tool.summary && (
-                <p className="text-muted fs-5 mb-4">{tool.summary}</p>
+              {task.summary && (
+                <p className="text-muted fs-5 mb-4">{task.summary}</p>
               )}
 
               <div className="markdown-content">
@@ -60,9 +60,9 @@ const ToolModal: React.FC<ToolModalProps> = ({
 
           <Col lg="5">
             <h4>Publications</h4>
-            {tool.publications && tool.publications.length > 0 ? (
+            {task.publications && task.publications.length > 0 ? (
               <ul className="list-unstyled">
-                {tool.publications.map((pub: any, index: number) => (
+                {task.publications.map((pub: any, index: number) => (
                   <li key={index} className="mb-3">
                     <Citation bibtex={pub} format="html" showCopyButton />
                   </li>
@@ -72,9 +72,9 @@ const ToolModal: React.FC<ToolModalProps> = ({
               <p className="text-muted">No publications available.</p>
             )}
             <h4 className="mt-4">Notebooks</h4>
-            {tool.notebooks && tool.notebooks.length > 0 ? (
+            {task.notebooks && task.notebooks.length > 0 ? (
               <ul className="list-unstyled">
-                {tool.notebooks
+                {task.notebooks
                   .filter((notebook) => !notebook.draft)
                   .map((notebook) => (
                     <li key={notebook.href} className="mt-2">
@@ -93,4 +93,4 @@ const ToolModal: React.FC<ToolModalProps> = ({
   )
 }
 
-export default ToolModal
+export default TaskModal

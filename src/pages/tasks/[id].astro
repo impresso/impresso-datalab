@@ -1,0 +1,45 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import PagefindIndexer from "../../components/PagefindIndexer.astro"
+import TaskModal from "../../components/TaskModal"
+import { getCollection } from "astro:content"
+import { getRecursivelyEntryData, getTableOfContents } from "../../logic"
+import { CanonicalUrl } from "../../constants"
+import { AstroSeo } from "@astrolib/seo"
+import type { Task, TOCEntry } from "../../types"
+import type { CollectionEntry } from 'astro:content';
+
+type TaskEntry = CollectionEntry<'tasks'>;
+
+export async function getStaticPaths() {
+  const tasks = await getCollection("tasks")
+  return tasks.map((task: TaskEntry) => ({
+    params: { id: task.id },
+    props: { task },
+  }))
+}
+
+const { task } = Astro.props as { task: TaskEntry };
+const taskProps: Task = await getRecursivelyEntryData(task)
+const toc: TOCEntry[] = getTableOfContents(task.body || "")
+---
+
+<Layout title={taskProps.title}>
+  <AstroSeo
+    canonical={CanonicalUrl}
+    title={taskProps.title}
+    description={taskProps.summary || taskProps.title}
+  />
+  <PagefindIndexer
+    contentCollection="task"
+    title={taskProps.title} 
+    content={task.body ?? ''} 
+    tags={taskProps.tags} 
+  />
+  <TaskModal
+    client:only="react"
+    task={taskProps}
+    content={task.body}
+    toc={toc}
+  />
+</Layout>

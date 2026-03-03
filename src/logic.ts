@@ -7,7 +7,9 @@ import type { TOCEntry } from "./types"
  * @returns
  */
 export async function getRecursivelyEntryData(entry: any) {
-  const result: any = {}
+  const result: any = {
+    id: entry.id,
+  }
 
   if (entry.collection && entry.id) {
     result.collection = entry.collection
