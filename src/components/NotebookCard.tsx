@@ -51,7 +51,7 @@ const NotebookCard: React.FC<{
           </a>
           <Link to={notebook.href}>
             <h3
-              className="mx-0 my-2"
+              className="m-0 py-1"
               dangerouslySetInnerHTML={{
                 __html: marked.parseInline(notebook?.title ?? "", {}),
               }}

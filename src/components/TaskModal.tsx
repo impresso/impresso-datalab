@@ -55,6 +55,20 @@ const TaskModal: React.FC<TaskModalProps> = ({
               <div className="markdown-content">
                 <MarkdownSnippet value={content} />
               </div>
+              <h2 className="mt-4">Notebooks</h2>
+              {task.notebooks && task.notebooks.length > 0 ? (
+                <ul className="list-unstyled">
+                  {task.notebooks
+                    .filter((notebook) => !notebook.draft)
+                    .map((notebook) => (
+                      <li key={notebook.href} className="mt-2">
+                        <NotebookCard notebook={notebook} />
+                      </li>
+                    ))}
+                </ul>
+              ) : (
+                <p className="text-muted">No notebooks available.</p>
+              )}
             </div>
           </Col>
 
@@ -71,20 +85,7 @@ const TaskModal: React.FC<TaskModalProps> = ({
             ) : (
               <p className="text-muted">No publications available.</p>
             )}
-            <h4 className="mt-4">Notebooks</h4>
-            {task.notebooks && task.notebooks.length > 0 ? (
-              <ul className="list-unstyled">
-                {task.notebooks
-                  .filter((notebook) => !notebook.draft)
-                  .map((notebook) => (
-                    <li key={notebook.href} className="mt-2">
-                      <NotebookCard notebook={notebook} />
-                    </li>
-                  ))}
-              </ul>
-            ) : (
-              <p className="text-muted">No notebooks available.</p>
-            )}
+
             <TableOfContents footerClass="pb-4" entries={toc} />
           </Col>
         </Row>

@@ -239,6 +239,7 @@ export type DataProvider = {
 
 export type Task = {
   id: string
+  draft?: boolean
   href: string
   title: string
   summary?: string

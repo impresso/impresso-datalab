@@ -249,6 +249,7 @@ const tasks = defineCollection({
   loader: glob({ pattern: "*.mdx", base: "./src/content/tasks" }),
   schema: z.object({
     title: z.string(),
+    draft: z.boolean().optional(),
     summary: z.string().optional(),
     tags: z.array(z.string()).optional(),
     license: z.string().optional(),
