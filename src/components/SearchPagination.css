@@ -1,0 +1,15 @@
+.SearchPagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+.SearchPagination .pagination {
+  --bs-pagination-bg: var(--impresso-color-paper);
+  --bs-pagination-active-bg: var(--impresso-color-black);
+  --bs-pagination-color: var(--impresso-color-black);
+  --bs-pagination-active-color: var(--impresso-color-paper);
+  --bs-pagination-border-color: var(--impresso-color-black);
+  --bs-pagination-active-border-color: var(--impresso-color-black);
+  --bs-pagination-hover-bg: var(--impresso-color-gray);
+  box-shadow: var(--shadow-sm);
+}

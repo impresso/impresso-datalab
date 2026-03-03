@@ -62,7 +62,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
     return () => {
       observer.disconnect()
     }
-  }, [entries])
+  }, [entries, minEntriesToEnableObserver])
 
   useEffect(() => {
     const updateListMaxHeight = () => {

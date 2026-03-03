@@ -42,25 +42,6 @@ import GithubSlugger from "github-slugger"
  *   - Python code fence markers are removed
  *   - HTML anchor tags are stripped
  * - Markdown headings are detected using regex `/^#+\s/`
- * - Heading level is calculated from the number of '#' characters}
- *   # Introduction
- *   This is a test notebook.
- *   {<comment> cell:1 cell_type:code <end comment>}
- *   \`\`\`python
- *   print("Hello")
- *   \`\`\`
- * `;
- * const cells = splitTextWithCellInfo(input);
- * // cells[0].cellNumber === 0
- * // cells[0].cellType === 'markdown'
- * // cells[0].h === 'Introduction'
- * // cells[0].hl === 2 (## = two hashes)
- *
- * @remarks
- * - Content is automatically trimmed and cleaned:
- *   - Python code fence markers are removed
- *   - HTML anchor tags are stripped
- * - Markdown headings are detected using regex `/^#+\s/`
  * - Heading level is calculated from the number of '#' characters
  */
 export const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
@@ -72,7 +53,7 @@ export const splitTextWithCellInfo = (text: string): Array<CellInfo> => {
     cells.push({
       idx: match.index,
       l: match[0].length,
-      cellNumber: parseInt(match[1]),
+      cellNumber: parseInt(match[1], 10),
       cellType: match[2],
       content: "",
       hl: 0,

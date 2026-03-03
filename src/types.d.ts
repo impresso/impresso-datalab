@@ -5,6 +5,7 @@ export type Group = {
   id: number
 }
 export type Author = {
+  id: string
   name: string
   fullName?: string
 }

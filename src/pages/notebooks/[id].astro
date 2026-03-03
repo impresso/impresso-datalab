@@ -1,5 +1,4 @@
 ---
-import App from '../../components/App.astro';
 import NotebookModal from '../../components/NotebookModal';
 import Layout from '../../layouts/Layout.astro'
 import { getCollection } from 'astro:content';
@@ -9,6 +8,8 @@ import { CanonicalUrl } from '../../constants';
 import { AstroSeo } from '@astrolib/seo';
 import PagefindIndexer from '../../components/PagefindIndexer.astro';
 import type { CollectionEntry } from 'astro:content';
+import type { CellInfo, Series } from '../../types';
+import { splitTextWithCellInfo } from '../../utils/ipynb';
 
 type NotebookEntry = CollectionEntry<'notebooks'>;
 
@@ -37,6 +38,28 @@ if (notebookProps.seealso) {
 
 }
 
+const cells: CellInfo[] = splitTextWithCellInfo(notebook.body ?? '')
+const pagefindIndexerContent = cells.reduce((acc, cell) => {
+  if(cell.cellType === "markdown") {
+    return acc + '\n\n' + cell.content
+  } else if (cell.cellType === "code") {
+    return acc + '\n\n' + '```python\n' + cell.content + '\n```\n'
+  } 
+  return acc
+}, '')
+
+
+const allSeries = await getCollection("series");
+
+const seriesMentioningThisTask:Partial<Series>[] = []
+for(const seriesEntry of allSeries){
+  if(seriesEntry.data.notebooks && seriesEntry.data.notebooks.some(t => t.id === notebook.id)){
+    seriesMentioningThisTask.push({
+      id: seriesEntry.id,
+      title: seriesEntry.data.title
+    })
+  }
+}
 
 ---
 
@@ -46,8 +69,8 @@ if (notebookProps.seealso) {
   <PagefindIndexer
     contentCollection="notebook"
     title={notebookProps.title} 
-    content={notebookProps.body ?? ''} 
-    tags={["notebook"]} 
+    content={pagefindIndexerContent} 
+    series={seriesMentioningThisTask as Series[]}
   />
   <AstroSeo
     canonical={CanonicalUrl}
@@ -57,6 +80,6 @@ if (notebookProps.seealso) {
   <NotebookModal client:only="react" 
     notebook={notebookProps}
 
-    raw={notebook.body} 
+    raw={notebook.body ?? ''} 
   />
 </Layout>

@@ -14,7 +14,7 @@
     "build-storybook": "storybook build",
     "updatenotebooks": "node ./updatenotebooks.js",
     "build-search": "pagefind --site dist",
-    "cp-search-dev": "node -e \"fs.cpSync('./dist/pagefind', './public/pagefind', {recursive: true})\"",
+    "cp-search-dev": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist/pagefind')) { fs.cpSync('./dist/pagefind', './public/pagefind', { recursive: true }); }\"",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui"

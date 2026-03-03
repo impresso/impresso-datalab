@@ -9,7 +9,6 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap"
 import type { CellInfo, Notebook, TOCEntry } from "../types"
 import { ModelLanguagesLabels } from "../constants"
 import { Fragment } from "react/jsx-runtime"
-import { useRef } from "react"
 import { splitTextWithCellInfo } from "../utils/ipynb"
 import TableOfContents from "./TableOfContents"
 

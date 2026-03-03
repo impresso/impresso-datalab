@@ -6,7 +6,7 @@ import { getCollection } from "astro:content"
 import { getRecursivelyEntryData, getTableOfContents } from "../../logic"
 import { CanonicalUrl } from "../../constants"
 import { AstroSeo } from "@astrolib/seo"
-import type { Task, TOCEntry } from "../../types"
+import type { Series, Task, TOCEntry } from "../../types"
 import type { CollectionEntry } from 'astro:content';
 
 type TaskEntry = CollectionEntry<'tasks'>;
@@ -20,8 +20,24 @@ export async function getStaticPaths() {
 }
 
 const { task } = Astro.props as { task: TaskEntry };
+
 const taskProps: Task = await getRecursivelyEntryData(task)
 const toc: TOCEntry[] = getTableOfContents(task.body || "")
+const tags = taskProps.tags || []
+
+const allSeries = await getCollection("series");
+
+const seriesMentioningThisTask:Partial<Series>[] = []
+for(const seriesEntry of allSeries){
+  if(seriesEntry.data.tasks && seriesEntry.data.tasks.some(t => t.id === task.id)){
+    seriesMentioningThisTask.push({
+      id: seriesEntry.id,
+      title: seriesEntry.data.title
+    })
+  }
+}
+
+
 ---
 
 <Layout title={taskProps.title}>
@@ -34,7 +50,8 @@ const toc: TOCEntry[] = getTableOfContents(task.body || "")
     contentCollection="task"
     title={taskProps.title} 
     content={task.body ?? ''} 
-    tags={taskProps.tags} 
+    tags={tags}
+    series={seriesMentioningThisTask as Series[]}
   />
   <TaskModal
     client:only="react"

@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest"
 import { splitTextWithCellInfo } from "./ipynb"
-import type { CellInfo } from "../types"
 
 describe("splitTextWithCellInfo", () => {
   it("should parse a single markdown cell", () => {

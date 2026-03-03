@@ -24,6 +24,10 @@ const NotebookCard: React.FC<{
     "\n - langModel:",
     notebook.langModel,
   )
+
+  const method: string = notebook.levels.method
+  const coding: string = notebook.levels.coding
+
   return (
     <div className={`NotebookCard shadow-sm ${className}`}>
       <div className="px-3 py-2 d-flex align-items-center">
@@ -33,9 +37,11 @@ const NotebookCard: React.FC<{
             name={notebook.id}
             variant="marble"
             square={false}
-            colors={NotebookLevelColors[notebook.levels.method].concat(
-              NotebookLevelColors[notebook.levels.coding],
-            )}
+            colors={
+              NotebookLevelColors[method]?.concat(
+                NotebookLevelColors[coding],
+              ) ?? []
+            }
           />
         </div>
         <div className="mx-3">
