@@ -20,7 +20,7 @@ const TaskModal: React.FC<TaskModalProps> = ({
 }) => {
   const tags = task.tags || []
   return (
-    <Page title="Tasks" fullscreen="xl-down" size="lg">
+    <Page title={`Tasks / ${task.title}`} fullscreen="xl-down" size="lg">
       <Container className="TaskModal">
         <Row className="my-3">
           <h1>{task.title}</h1>
@@ -29,24 +29,26 @@ const TaskModal: React.FC<TaskModalProps> = ({
         <Row className="my-3">
           <Col lg="7">
             <div className="mb-4">
-              <div className="d-flex gap-2 mb-3 flex-wrap">
-                {tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    bg="primary"
-                    pill
-                    className="py-2 px-3 text-dark"
-                  >
-                    {tag}
-                  </Badge>
-                ))}
+              {(tags.length > 0 || task.license) && (
+                <div className="d-flex gap-2 mb-3 flex-wrap">
+                  {tags.map((tag) => (
+                    <Badge
+                      key={tag}
+                      bg="primary"
+                      pill
+                      className="py-2 px-3 text-dark"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
 
-                {task.license && (
-                  <Badge bg="secondary" pill className="py-2 px-3">
-                    {task.license}
-                  </Badge>
-                )}
-              </div>
+                  {task.license && (
+                    <Badge bg="secondary" pill className="py-2 px-3">
+                      {task.license}
+                    </Badge>
+                  )}
+                </div>
+              )}
 
               {task.summary && (
                 <p className="text-muted fs-5 mb-4">{task.summary}</p>
@@ -55,7 +57,9 @@ const TaskModal: React.FC<TaskModalProps> = ({
               <div className="markdown-content">
                 <MarkdownSnippet value={content} />
               </div>
-              <h2 className="mt-4">Notebooks</h2>
+              <h2 className="mt-4" id="notebooks">
+                Notebooks
+              </h2>
               {task.notebooks && task.notebooks.length > 0 ? (
                 <ul className="list-unstyled">
                   {task.notebooks
@@ -86,7 +90,12 @@ const TaskModal: React.FC<TaskModalProps> = ({
               <p className="text-muted">No publications available.</p>
             )}
 
-            <TableOfContents footerClass="pb-4" entries={toc} />
+            <TableOfContents
+              footerClass="pb-4"
+              entries={toc.concat([
+                { level: 2, title: "Notebooks", id: "notebooks" },
+              ])}
+            />
           </Col>
         </Row>
       </Container>
