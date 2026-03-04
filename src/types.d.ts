@@ -32,6 +32,8 @@ export type Notebook = {
 }
 
 export interface Series {
+  id: string
+  href: string
   title: string
   excerpt: string
   body?: string
@@ -45,7 +47,7 @@ export interface Series {
   category?: string[]
   position?: string
   notebooks: Notebook[]
-  tools?: Tool[]
+  tasks?: Task[]
   dataProviders?: DataProvider[]
 }
 
@@ -93,6 +95,7 @@ export type CellInfo = {
   //  headingLevel
   hl?: number
   h: string
+  hId?: string
 }
 
 export type UserChangePlanRequest = {
@@ -235,27 +238,16 @@ export type DataProvider = {
   Reference?: string
 }
 
-export type Tool = {
+export type Task = {
   id: string
+  draft?: boolean
   href: string
   title: string
-  type: "huggingface-model" | "python-library"
   summary?: string
   tags?: string[]
   license?: string
-  date?: Date
-  huggingface?: {
-    modelId?: string
-    modelUrl?: string
-    pipelineTag?: string
-    provider?: string
-  }
-  python?: {
-    package?: string
-    pypiUrl?: string
-    docsUrl?: string
-    repoUrl?: string
-  }
+  publications: string[]
+  notebooks?: Notebook[]
 }
 
 export type TOCEntry = {

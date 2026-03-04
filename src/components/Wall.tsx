@@ -171,12 +171,12 @@ const Wall = ({
               <CodeSnippet value={CodeSample} />
             </SeriesCard>
             {seriesInLeadingColumn.map((series) => (
-              <SeriesCard className="mb-3" key={series.title} series={series} />
+              <SeriesCard className="mb-3" key={series.id} series={series} />
             ))}
           </Col>
           <Col md={6} xl={4} className="order-md-3 order-xl-2">
             {seriesInCentralColumn.map((series) => (
-              <SeriesCard className="mb-4" key={series.title} series={series} />
+              <SeriesCard className="mb-4" key={series.id} series={series} />
             ))}
           </Col>
           <Col md={6} xl={4} className="order-md-2  order-xl-3">
@@ -191,7 +191,7 @@ const Wall = ({
               ) : null}
             </SeriesCard>
             {seriesInTrailingColumn.map((series) => (
-              <SeriesCard key={series.title} series={series} className="mb-3" />
+              <SeriesCard key={series.id} series={series} className="mb-3" />
             ))}
           </Col>
         </Row>

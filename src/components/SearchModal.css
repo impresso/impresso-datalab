@@ -1,0 +1,18 @@
+.SearchModal .list-group {
+  --bs-list-group-border-radius: 0;
+  --bs-list-group-border-width: 0;
+  --bs-list-group-bg: var(--impresso-color-paper);
+  --bs-list-group-active-bg: var(--impresso-color-paper);
+  --bs-list-group-active-color: var(--impresso-color-black);
+}
+.SearchModal button.list-group-item.active {
+  font-variation-settings: "wght" var(--impresso-wght-bold);
+}
+/* .SearchModal button.list-group-item > span {
+  padding: var(--spacer-1) var(--spacer-3);
+  border-radius: var(--impresso-border-radius-sm);
+}
+.SearchModal button.list-group-item.active > span {
+  background-color: var(--impresso-color-black);
+  color: var(--impresso-color-paper);
+} */

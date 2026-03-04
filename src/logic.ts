@@ -1,8 +1,15 @@
 import { getEntry } from "astro:content"
 import type { TOCEntry } from "./types"
 
+/**
+ * The href should be used by <Link> as the component prefixed the base path
+ * @param entry
+ * @returns
+ */
 export async function getRecursivelyEntryData(entry: any) {
-  const result: any = {}
+  const result: any = {
+    id: entry.id,
+  }
 
   if (entry.collection && entry.id) {
     result.collection = entry.collection

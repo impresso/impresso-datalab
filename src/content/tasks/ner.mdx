@@ -1,0 +1,76 @@
+---
+title: Named Entity Recognition (NER)
+notebooks:
+  - ne-processing-with-impresso-hf
+  - ne-processing-with-impresso-api
+publications:
+  - |
+    @inproceedings{boros_alleviating_2020,
+    address = {Online},
+    title = {Alleviating {Digitization} {Errors} in {Named} {Entity} {Recognition} for {Historical} {Documents}},
+    url = {https://aclanthology.org/2020.conll-1.35},
+    doi = {10.18653/v1/2020.conll-1.35},
+    abstract = {This paper tackles the task of named entity recognition (NER) applied to digitized historical texts obtained from processing digital images of newspapers using optical character recognition (OCR) techniques. We argue that the main challenge for this task is that the OCR process leads to misspellings and linguistic errors in the output text. Moreover, historical variations can be present in aged documents, which can impact the performance of the NER process. We conduct a comparative evaluation on two historical datasets in German and French against previous state-of-the-art models, and we propose a model based on a hierarchical stack of Transformers to approach the NER task for historical data. Our findings show that the proposed model clearly improves the results on both historical datasets, and does not degrade the results for modern datasets.},
+    urldate = {2024-06-30},
+    booktitle = {Proceedings of the 24th {Conference} on {Computational} {Natural} {Language} {Learning}},
+    publisher = {Association for Computational Linguistics},
+    author = {Boros, Emanuela and Hamdi, Ahmed and Linhares Pontes, Elvys and Cabrera-Diego, Luis Adrián and Moreno, Jose G. and Sidere, Nicolas and Doucet, Antoine},
+    editor = {Fernández, Raquel and Linzen, Tal},
+    month = nov,
+    year = {2020},
+    note = {tex.ids= boros2020alleviating, boros_alleviating_2020},
+    keywords = {to cite},
+    pages = {431--441},
+    file = {Boros et al. - 2020 - Alleviating Digitization Errors in Named Entity Re.pdf:/Users/daniele.guido/Zotero/storage/8QPXDXGU/Boros et al. - 2020 - Alleviating Digitization Errors in Named Entity Re.pdf:application/pdf},
+    }
+  - |
+    @misc{ehrmann_named_2018,
+    type = {Blogpost},
+    title = {Named entity processing in a nutshell},
+    url = {https://impresso-project.ch/news/2018/06/12/tradingzone-ner.html},
+    abstract = {Trading zone part 1: Named Entity Processing. This blog post is part of Stepping in the NLP / History trading zone: a series of posts.},
+    language = {en},
+    urldate = {2019-01-09},
+    journal = {impresso},
+    author = {Ehrmann, Maud},
+    month = jun,
+    year = {2018},
+    file = {Snapshot:/Users/daniele.guido/Zotero/storage/9F9K6RPX/tradingzone-ner.html:text/html},
+    }
+---
+
+## Core concept
+
+Named Entity Recognition (NER) is a subtask of information extraction that seeks to
+locate and classify named entities mentioned in unstructured text into predefined categories
+such as person names, organizations, locations.
+
+In the context of historical documents, NER can be particularly challenging
+due to the presence of OCR errors and historical language variations.
+
+The Impresso project has developed models and tools to address these challenges and improve
+NER performance on historical texts.
+
+## Models
+
+the Impresso project has developed specialized models designed for high-performance extraction from digitized archives. The flagship model is a Stacked BERT-based token classification for named entity recognition, [ner-stacked-bert-multilingual-v1.1.0](https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-v1.1.0) and with support for multilingual historical texts.
+This approach allows for robust token classification across **French**, **German**, and **English**, ensuring that both coarse-grained categories (like locations) and fine-grained entities (like specific titles) are captured accurately despite the "noise" of historical datasets.
+
+There is a light version of the model,[Bert Multilingual light](https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-light), but it requires the input already tokenised.
+
+## Impresso Python library
+
+### Impresso Py tool:
+
+[resources.tools.ToolsResource.ner](https://impresso.readthedocs.io/en/latest/resources/#impresso.resources.tools.ToolsResource.ner)
+
+```python
+text = "Jean-Baptiste Nicolas Robert Schuman (29 June 1886 – 4 September 1963) was a Luxembourg-born French statesman."
+# Extract named entities from text (fast)
+result = impresso.tools.ner(text)
+result.df  # View entities as DataFrame
+```
+
+## HuggingFace spaces
+
+HF Space to test the NER model from the Impresso project: [Multilingual Named Entity Recognition](https://huggingface.co/spaces/impresso-project/multilingual-named-entity-recognition)

@@ -245,31 +245,17 @@ const associatedPartners = defineCollection({
   }),
 })
 
-const tools = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./src/content/tools" }),
+const tasks = defineCollection({
+  loader: glob({ pattern: "*.mdx", base: "./src/content/tasks" }),
   schema: z.object({
     title: z.string(),
-    type: z.enum(["huggingface-model", "python-library"]),
+    draft: z.boolean().optional(),
     summary: z.string().optional(),
     tags: z.array(z.string()).optional(),
     license: z.string().optional(),
     date: z.date().optional(),
-    huggingface: z
-      .object({
-        modelId: z.string().optional(),
-        modelUrl: z.string().url().optional(),
-        pipelineTag: z.string().optional(),
-        provider: z.string().optional(),
-      })
-      .optional(),
-    python: z
-      .object({
-        package: z.string().optional(),
-        pypiUrl: z.string().url().optional(),
-        docsUrl: z.string().url().optional(),
-        repoUrl: z.string().url().optional(),
-      })
-      .optional(),
+    publications: z.array(z.string()).optional(),
+    notebooks: z.array(reference("notebooks")).optional(),
   }),
 })
 
@@ -311,7 +297,7 @@ const series = defineCollection({
     category: z.array(z.enum(SeriesCategories as any)).optional(),
     position: z.string(z.enum(SeriesPositions as any)).optional(),
     notebooks: z.array(reference("notebooks")),
-    tools: z.array(reference("tools")).optional(),
+    tasks: z.array(reference("tasks")).optional(),
     dataProviders: z.array(reference("dataProviders")).optional(),
   }),
 })
@@ -328,5 +314,5 @@ export const collections = {
   datasets,
   dataReleaseCards,
   dataProviders,
-  tools,
+  tasks,
 }

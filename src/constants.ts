@@ -346,6 +346,8 @@ export const NotebookLevelBeginner = "beginner"
 export const NotebookLevelApprentice = "apprentice"
 export const NotebookLevelIntermediate = "intermediate"
 export const NotebookLevelAdvanced = "advanced"
+export const NotebookLevelMethodUnknown = "unknownMethod"
+export const NotebookLevelCodingUnknown = "unknownCoding"
 
 export const NotebookLevels = [
   NotebookLevelBeginner,
@@ -359,6 +361,8 @@ export const NotebookLevelLabels: Record<string, string> = {
   [NotebookLevelApprentice]: "Apprentice",
   [NotebookLevelIntermediate]: "Intermediate",
   [NotebookLevelAdvanced]: "Advanced",
+  [NotebookLevelMethodUnknown]: "Unknown Method",
+  [NotebookLevelCodingUnknown]: "Unknown Coding",
 }
 
 export const NotebookLevelColors: Record<string, string[]> = {
@@ -366,4 +370,6 @@ export const NotebookLevelColors: Record<string, string[]> = {
   [NotebookLevelApprentice]: ["#29AB87", "#C7EA46"],
   [NotebookLevelIntermediate]: ["#01796F", "#29AB87"],
   [NotebookLevelAdvanced]: ["#87015a"],
+  [NotebookLevelMethodUnknown]: ["#808080"],
+  [NotebookLevelCodingUnknown]: ["#b1fec5"],
 }

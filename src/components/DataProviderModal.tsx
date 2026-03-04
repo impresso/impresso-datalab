@@ -1,5 +1,5 @@
-import { Container, Row, Col, Badge, Card } from "react-bootstrap"
-import { ArrowRight, Link as LinkIcon, OpenNewWindow } from "iconoir-react"
+import { Container, Row, Col, Badge } from "react-bootstrap"
+import { ArrowRight } from "iconoir-react"
 import Page from "./Page"
 import MarkdownSnippet from "./MarkdownSnippet"
 import TableOfContents from "./TableOfContents"
