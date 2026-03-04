@@ -1,12 +1,5 @@
 ---
 title: Named Entity Recognition (NER)
-type: huggingface-model
-license: apache-2.0
-huggingface:
-  modelId: org/example-model
-  modelUrl: https://huggingface.co/org/example-model
-  pipelineTag: text-generation
-  provider: huggingface
 notebooks:
   - ne-processing-with-impresso-hf
   - ne-processing-with-impresso-api
@@ -60,8 +53,10 @@ NER performance on historical texts.
 
 ## Models
 
-Model 1 HF: https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-light
-Model 2 HF: https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-v1.1.0
+the Impresso project has developed specialized models designed for high-performance extraction from digitized archives. The flagship model is a Stacked BERT-based token classification for named entity recognition, [ner-stacked-bert-multilingual-v1.1.0](https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-v1.1.0) and with support for multilingual historical texts.
+This approach allows for robust token classification across **French**, **German**, and **English**, ensuring that both coarse-grained categories (like locations) and fine-grained entities (like specific titles) are captured accurately despite the "noise" of historical datasets.
+
+There is a light version of the model,[Bert Multilingual light](https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-light), but it requires the input already tokenised.
 
 ## Impresso Python library
 
@@ -69,15 +64,13 @@ Model 2 HF: https://huggingface.co/impresso-project/ner-stacked-bert-multilingua
 
 [resources.tools.ToolsResource.ner](https://impresso.readthedocs.io/en/latest/resources/#impresso.resources.tools.ToolsResource.ner)
 
-## Demo
-
-NB 1: NE-processingImpressoAPI
- https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoAPI.ipynb
-
-NB 2: NE-processing_ImpressoHF
-https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/NE-processing_ImpressoHF.ipynb
+```python
+text = "Jean-Baptiste Nicolas Robert Schuman (29 June 1886 – 4 September 1963) was a Luxembourg-born French statesman."
+# Extract named entities from text (fast)
+result = impresso.tools.ner(text)
+result.df  # View entities as DataFrame
+```
 
 ## HuggingFace spaces
 
-HF Space:
-https://huggingface.co/spaces/impresso-project/multilingual-named-entity-recognition
+HF Space to test the NER model from the Impresso project: [Multilingual Named Entity Recognition](https://huggingface.co/spaces/impresso-project/multilingual-named-entity-recognition)
