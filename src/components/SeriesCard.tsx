@@ -38,7 +38,7 @@ const SeriesCard: React.FC<SeriesCardProps> = ({
       {series.tasks && series.tasks.length > 0 && (
         <ol className="mx-3">
           {series.tasks
-            ?.filter((task) => task)
+            ?.filter((task) => task && !task.draft)
             .map((task: Task) => (
               <li key={task.id} className="mt-2">
                 <TaskCard task={task} />
