@@ -70,9 +70,9 @@ const Citation: React.FC<CitationProps> = ({
   if (!citationHtml.length) return null
 
   return (
-    <div className="Citation d-flex align-items-end gap-2">
+    <div className="Citation">
       <div
-        className="flex-grow-1"
+        className="flex-grow-1 mb-2"
         dangerouslySetInnerHTML={{ __html: citationHtml }}
       />
       {showCopyButton && (
