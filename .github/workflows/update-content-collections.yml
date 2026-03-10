@@ -1,0 +1,22 @@
+name: Update Content Collections
+on:
+  workflow_dispatch:
+
+jobs:
+  updateContentCollections:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Nodejs
+        uses: actions/setup-node@v6
+        with:
+          node-version: 25
+      - name: Install dependencies
+        run: npm install
+      - name: Update content collections
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
+        run: npm run update-data-release-cards && npm run update-datasets
+      - name: commit and push
+        uses: stefanzweifel/git-auto-commit-action@v7

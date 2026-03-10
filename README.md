@@ -75,6 +75,33 @@ To force the download of recent notebooks, you can run the following command:
 npm run updatenotebooks
 ```
 
+## Updating content collections
+
+The scripts in `scripts/` update the JSON content collections consumed by Astro.
+
+- `npm run update-data-release-cards`
+  - reads `DATA_RELEASE_CARD_URLS` (comma-separated list of `.json` URLs)
+  - writes transformed cards to `src/content/dataReleaseCards/`
+  - stores raw responses in `logs/dataReleaseCard-*.log.json`
+- `npm run update-datasets`
+  - reads `DATASETS_URL`
+  - writes transformed output to `src/content/datasets.json`
+  - stores raw response in `logs/dataReleaseCard-datasets.json.log.json`
+
+Required environment variables:
+
+- `GITHUB_TOKEN`
+- `DATA_RELEASE_CARD_URLS`
+- `DATASETS_URL`
+
+Run both updates together:
+
+```bash
+npm run update-data-release-cards && npm run update-datasets
+```
+
+The repository also includes a manual GitHub Actions workflow at `.github/workflows/update-content-collections.yml` (triggered with `workflow_dispatch`). It runs both scripts and commits/pushes resulting content changes. The workflow expects the `PAT_GITHUB_TOKEN` repository secret.
+
 ## Support
 
 If you encounter any issues or have questions about contributing, please open an issue in this repository.

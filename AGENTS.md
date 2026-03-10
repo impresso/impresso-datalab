@@ -39,6 +39,9 @@ When adding new AstroJS Content Collection, please follow these guidelines:
 
 We also use AstroJS content pages to serve markdown files through JSON APIs. When adding a new content collection served through JSON endpoints, follow these steps:
 
+For operational updates of existing JSON content collections, use `npm run update-data-release-cards` and `npm run update-datasets` (implemented in `scripts/updateDataReleaseCards.ts` and `scripts/updateDatasets.ts`). These scripts rely on `GITHUB_TOKEN`, `DATA_RELEASE_CARD_URLS`, and `DATASETS_URL`, and write updated files under `src/content/`.
+There is also a manual GitHub Actions workflow in `.github/workflows/update-content-collections.yml` using `workflow_dispatch`, which runs both scripts and auto-commits changes.
+
 ### 1. Add the collection definition to `/src/content/config.ts`
 
 Define your collection with `glob` loader and appropriate Zod schema:
