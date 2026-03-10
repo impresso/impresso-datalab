@@ -1,8 +1,5 @@
 import { Col, Container, Modal, Row } from "react-bootstrap"
-import { BrowserViewConfirmRegistration } from "../constants"
-import { useBrowserStore } from "../store"
 import Alert from "./Alert"
-import Link from "./Link"
 
 export interface ConfirmRegistrationModalProps {
   show: boolean
