@@ -1,14 +1,19 @@
 import { Modal } from "react-bootstrap"
 import { FeathersError } from "@feathersjs/errors"
-import { useBrowserStore, usePersistentStore } from "../store"
-import { BrowserViewLogin } from "../constants"
+import { usePersistentStore } from "../store"
 import LoginForm, { type LoginFormPayload } from "./LoginForm"
 import { loginService } from "../services"
 import { useEffect, useState } from "react"
 
-const LoginModal = () => {
-  const view = useBrowserStore((state) => state.view)
-  const setView = useBrowserStore((state) => state.setView)
+export interface LoginModalProps {
+  show: boolean
+  onHide: () => void
+}
+
+const LoginModal: React.FC<LoginModalProps> = ({
+  show = false,
+  onHide = () => {},
+}) => {
   const setAuthenticatedUser = usePersistentStore(
     (state) => state.setAuthenticatedUser,
   )
@@ -24,7 +29,7 @@ const LoginModal = () => {
       .then((data) => {
         console.debug("[LoginModal] loginService.create", data)
         setAuthenticatedUser(data.user, data.accessToken)
-        setView(null)
+        onHide()
       })
       .catch((err: FeathersError) => {
         setError(err)
@@ -34,13 +39,9 @@ const LoginModal = () => {
 
   useEffect(() => {
     setError(null)
-  }, [view])
+  }, [show])
   return (
-    <Modal
-      centered
-      show={view === BrowserViewLogin}
-      onHide={() => setView(null)}
-    >
+    <Modal centered show={show} onHide={onHide}>
       <Modal.Header closeButton>
         <Modal.Title>Login</Modal.Title>
       </Modal.Header>

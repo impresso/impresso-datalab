@@ -2,16 +2,19 @@ import { Col, Container, Modal, Row } from "react-bootstrap"
 import { BrowserViewConfirmRegistration } from "../constants"
 import { useBrowserStore } from "../store"
 import Alert from "./Alert"
+import Link from "./Link"
 
-const ConfirmRegistrationModal = () => {
-  const view = useBrowserStore((state) => state.view)
-  const setView = useBrowserStore((state) => state.setView)
+export interface ConfirmRegistrationModalProps {
+  show: boolean
+  onHide: () => void
+}
+
+const ConfirmRegistrationModal: React.FC<ConfirmRegistrationModalProps> = ({
+  show,
+  onHide,
+}) => {
   return (
-    <Modal
-      centered
-      show={view === BrowserViewConfirmRegistration}
-      onHide={() => setView(null)}
-    >
+    <Modal centered show={show} onHide={onHide}>
       <Modal.Header closeButton>
         <Modal.Title>Registration almost completed...</Modal.Title>
       </Modal.Header>
@@ -19,31 +22,30 @@ const ConfirmRegistrationModal = () => {
         <Container>
           <Row>
             <Col>
+              <h3 className="my-2 font-weight-bold font-size-inherit">
+                Thanks for signing up for Impresso!
+              </h3>
               <p>
-                Thank you for completing the first step of the registration.
+                One of our team members is now reviewing your information to
+                ensure everything is set up correctly.
               </p>
-              <Alert>
+              <Alert className="my-3">
                 <p className="m-0">
-                  Download and sign the{" "}
-                  <a
-                    href="https://impresso-project.ch/assets/documents/impresso_NDA.pdf"
-                    download
-                  >
-                    Non-Disclosure Agreement (NDA)
-                  </a>
-                  , then email it to{" "}
-                  <a href="mailto:info@impresso-project.ch">
-                    info@impresso-project.ch
-                  </a>{" "}
-                  to complete your registration.
+                  You'll receive a separate email notification as soon as your
+                  account is activated and ready to go.
                 </p>
               </Alert>
-              <p className="mt-3">
-                Once we have received the signed NDA, your account will be
-                activated within two working days. Download and sign the
-                Non-Disclosure Agreement (NDA), then email it to
-                info@impresso-project.ch to complete your registration.
+              <p>
+                If you have registered with a <b>Student User</b> or{" "}
+                <b>Academic User</b> plan, please be aware that your account
+                will be reviewed by our team before activation. We appreciate
+                your patience during this process.
               </p>
+              <div className="text-center mb-4">
+                <button onClick={onHide} className="btn btn-secondary px-5">
+                  Back to homepage
+                </button>
+              </div>
             </Col>
           </Row>
         </Container>
