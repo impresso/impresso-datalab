@@ -4,15 +4,17 @@ import { useBrowserStore } from "../store"
 import Alert from "./Alert"
 import Link from "./Link"
 
-const ConfirmRegistrationModal = () => {
-  const view = useBrowserStore((state) => state.view)
-  const setView = useBrowserStore((state) => state.setView)
+export interface ConfirmRegistrationModalProps {
+  show: boolean
+  onHide: () => void
+}
+
+const ConfirmRegistrationModal: React.FC<ConfirmRegistrationModalProps> = ({
+  show,
+  onHide,
+}) => {
   return (
-    <Modal
-      centered
-      show={view === BrowserViewConfirmRegistration}
-      onHide={() => setView(null)}
-    >
+    <Modal centered show={show} onHide={onHide}>
       <Modal.Header closeButton>
         <Modal.Title>Registration almost completed...</Modal.Title>
       </Modal.Header>
@@ -37,16 +39,12 @@ const ConfirmRegistrationModal = () => {
                 If you have registered with a <b>Student User</b> or{" "}
                 <b>Academic User</b> plan, please be aware that your account
                 will be reviewed by our team before activation. We appreciate
-                yourpatience during this process.
+                your patience during this process.
               </p>
               <div className="text-center mb-4">
-                <Link
-                  to="/"
-                  onClick={() => setView(null)}
-                  className="btn btn-secondary px-5"
-                >
+                <button onClick={onHide} className="btn btn-secondary px-5">
                   Back to homepage
-                </Link>
+                </button>
               </div>
             </Col>
           </Row>
