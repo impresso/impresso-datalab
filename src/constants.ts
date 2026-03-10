@@ -12,8 +12,8 @@ export const WsApiPath =
 
 export const BaseUrl =
   typeof import.meta !== "undefined" &&
-  typeof import.meta.env.VITE_IMPRESSO_DATALAB_BASE === "string"
-    ? import.meta.env.VITE_IMPRESSO_DATALAB_BASE
+  typeof import.meta.env?.VITE_IMPRESSO_DATALAB_BASE === "string"
+    ? import.meta.env?.VITE_IMPRESSO_DATALAB_BASE
     : "/datalab"
 
 export const EnableAffiliationFields =

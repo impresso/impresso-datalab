@@ -16,60 +16,18 @@ import {
   Plans,
 } from "../constants"
 import { toCamelCase } from "../logic"
-import { getResourceWithBearerToken } from "./utils"
+import { getResourceWithBearerToken } from "../../scripts/utils"
 import type {
   CorpusAccessCatalogueItem,
   DataReleaseCard,
   SpecialMembershipAccessItem,
 } from "../types"
 
-const CorpusAccessUserPlansToPlan: Record<string, string> = {
-  "Guest User Plan": PlanGuest,
-  "Basic User Plan": PlanImpressoUser,
-  "Student User Plan": PlanEducational,
-  "Academic User Plan": PlanResearcher,
-  "Not Possible": PlanNone,
-}
-
 const GitHubToken: string = process.env.GITHUB_TOKEN || ""
 console.log("[config.ts] - GitHub Token:", GitHubToken.length ? "YES" : "NO")
 
-const CorpusAccessToDatasetMapper = (dataset: CorpusAccessCatalogueItem) => {
-  return {
-    id: [dataset.data_partner_institution, dataset.media_alias].join("-"),
-    associatedPartner: dataset.data_partner_institution,
-    mediaId: dataset.media_alias,
-    mediaTitle: dataset.media_title,
-    timePeriod: dataset.time_period,
-    startYear: parseInt(dataset.time_period.split("-").shift() as string, 10),
-    endYear: parseInt(dataset.time_period.split("-").pop() as string, 10),
-    media: dataset.source_type, // e.g. Newspaper
-    medium: dataset.source_medium, // eg Print
-    copyright: dataset.copyright_or_copyright_status,
-    permittedUse: dataset.permitted_use,
-    minimumUserPlanRequiredToExploreInWebapp:
-      CorpusAccessUserPlansToPlan[
-        dataset.minimum_user_plan_required_to_explore_in_the_webapp
-      ],
-    minimumUserPlanRequiredToExportTranscripts:
-      CorpusAccessUserPlansToPlan[
-        dataset.minimum_user_plan_required_to_export_transcripts
-      ],
-    minimumUserPlanRequiredToExportIllustration:
-      CorpusAccessUserPlansToPlan[
-        dataset.minimum_user_plan_required_to_export_illustration
-      ],
-    partnerBitmapIndex: dataset.partner_bitmap_index,
-  }
-}
-
 const datasets = defineCollection({
-  loader: (): Promise<SpecialMembershipAccessItem[]> =>
-    getResourceWithBearerToken<CorpusAccessCatalogueItem[]>(
-      process.env.DATASETS_URL || "",
-      GitHubToken,
-      "datasets.log.json",
-    ).then((data) => data.map(CorpusAccessToDatasetMapper)),
+  loader: file("src/content/datasets.json"),
   schema: z.object({
     id: z.string(),
     associatedPartner: z.string(),
@@ -90,30 +48,7 @@ const datasets = defineCollection({
 })
 
 const dataReleaseCards = defineCollection({
-  loader: (): Promise<DataReleaseCard[]> =>
-    Promise.all(
-      (process.env.DATA_RELEASE_CARD_URLS || "").split(",").map(async (url) => {
-        // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
-        const id = url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2")
-        const logFile = `dataReleaseCard-${id.split("/").join("-").replace(".json", "")}.log.json`
-        return getResourceWithBearerToken<DataReleaseCard>(
-          url,
-          GitHubToken,
-          logFile,
-        ).then((data) => {
-          const transformedResponse = toCamelCase({
-            // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
-            ...data,
-            id: url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2"),
-          })
-          if (transformedResponse.impressoCorpusOverview?.mediaStats) {
-            transformedResponse.impressoCorpusOverview.npsStats =
-              transformedResponse.impressoCorpusOverview.mediaStats
-          }
-          return transformedResponse
-        })
-      }),
-    ),
+  loader: glob({ pattern: "*.json", base: "./src/content/dataReleaseCards" }),
   schema: z.object({
     id: z.string(),
     releaseName: z.string(),
