@@ -9,12 +9,16 @@ const meta: Meta<typeof ConfirmRegistrationModal> = {
   component: ConfirmRegistrationModal,
   render: () => {
     const setView = useBrowserStore((state) => state.setView)
+    const view = useBrowserStore((state) => state.view)
     useEffect(() => {
       setView(BrowserViewConfirmRegistration)
     }, [])
     return (
       <div style={{ maxWidth: "400px" }}>
-        <ConfirmRegistrationModal />
+        <ConfirmRegistrationModal
+          show={view === BrowserViewConfirmRegistration}
+          onHide={() => setView(null)}
+        />
       </div>
     )
   },
