@@ -4,8 +4,8 @@ draft: true
 authors:
   - impresso-team
 title: Search collections
-sha: 47ede4068fced3b6a30439d525152849b8851603
-date: 2025-12-10T16:04:47Z
+sha: 00f108ee9616762cde552be8df6e4e9cf8a69067
+date: 2026-03-06T21:05:48Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-py/blob/main/examples/notebooks/collections.ipynb
 links: []
@@ -62,7 +62,7 @@ result
 
 {/* cell:7 cell_type:code */}
 ```python
-test_collection_id = result.raw["uid"]
+test_collection_id = result.raw["id"]
 test_collection_id
 ```
 
@@ -72,7 +72,7 @@ test_collection_id
 {/* cell:9 cell_type:code */}
 ```python
 content_item = impresso.content_items.get("NZZ-1794-08-09-a-i0002")
-impresso.collections.add_items(test_collection_id, [content_item.pydantic.uid])
+impresso.collections.add_items(test_collection_id, [content_item.pydantic.id])
 ```
 
 {/* cell:10 cell_type:markdown */}
@@ -91,7 +91,7 @@ items
 
 {/* cell:13 cell_type:code */}
 ```python
-impresso.collections.remove_items(test_collection_id, [content_item.pydantic.uid])
+impresso.collections.remove_items(test_collection_id, [content_item.pydantic.id])
 ```
 
 {/* cell:14 cell_type:markdown */}
