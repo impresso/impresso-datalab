@@ -6,22 +6,10 @@ import {
   SeriesCategories,
   SeriesPositions,
   PlanIcons,
-  PlanGuest,
-  PlanResearcher,
-  PlanImpressoUser,
-  PlanNone,
-  PlanEducational,
   NotebookLevels,
   NotebookLevelBeginner,
   Plans,
 } from "../constants"
-import { toCamelCase } from "../logic"
-import { getResourceWithBearerToken } from "../../scripts/utils"
-import type {
-  CorpusAccessCatalogueItem,
-  DataReleaseCard,
-  SpecialMembershipAccessItem,
-} from "../types"
 
 const GitHubToken: string = process.env.GITHUB_TOKEN || ""
 console.log("[config.ts] - GitHub Token:", GitHubToken.length ? "YES" : "NO")

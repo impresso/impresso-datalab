@@ -87,7 +87,7 @@ const MarkdownSnippet: React.FC<MarkdownSnippetProps> = ({
       )
       codeBlocks.forEach((block) => {
         const code = block.textContent || ""
-        const language = block.getAttribute("data-language") || "python"
+        // const language = block.getAttribute("data-language") || "python"
         const root = ReactDOM.createRoot(block)
         root.render(
           <CodeSnippet value={code} basicSetup={{ lineNumbers: false }} />,

@@ -1,0 +1,437 @@
+---
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/explore_multimodal-embeddings.ipynb
+authors:
+  - impresso-team
+title: Exploring Image and Text-to-Image Embeddings
+sha: db79dd53048e288e42055b1c0dd06ca4d330b0db
+date: 2025-12-17T11:58:56Z
+links:
+  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
+    label: report a problem
+  - href: https://impresso.github.io/impresso-py/
+    label: Impresso Python Library
+  - href: https://ipyleaflet.readthedocs.io/en/latest/index.html
+    label: Impresso Huggind Face
+  - href: https://commons.wikimedia.org/wiki/Category:People_listening_to_radios
+    label: image
+  - href: https://commons.wikimedia.org/wiki/File:REA,_%22Little_girl_by_radio%22_-_NARA_-_195876.tif
+    label: image
+  - href: data:image/png;base64,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
+    label: "![CreditLogo.png"
+  - href: https://creativecommons.org/licenses/by/4.0/
+    label: CC BY 4.0 License
+  - href: https://impresso-project.ch
+    label: Impresso - Media Monitoring of the Past
+  - href: http://p3.snf.ch/project-173719
+    label: CRSII5_173719
+  - href: https://data.snf.ch/grants/grant/213585
+    label: CRSII5_213585
+  - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
+    label: GNU Affero General Public License
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/explore_multimodal-embeddings.ipynb
+---
+
+{/* cell:0 cell_type:markdown */}
+
+<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/explore_multimodal-embeddings.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+If something doesn't work, you can [report a problem](https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md).
+
+## What is this notebook about?
+
+This notebook demonstrates how to explore historical image collections using Impresso’s text-to-image and image-only embeddings, from keyword search to visual similarity retrieval.
+
+In the **first section**, we begin with Open-CLIP to perform text-to-image search. We start by choosing a small set of keywords and using them to retrieve relevant images. Next, we expand the keywords into longer textual descriptions and repeat the process, allowing us to observe how richer language produces more nuanced and precise results.
+
+In the **second section**, we work with DinoV2 image-only embeddings to identify visual similarities within the collection. Given a single reference image, we search for visually related items and interpret what features the model captures.
+
+We will explore **how radio is represented both in images, and in the programs**. This will allow us to explore the image and textual elements using both types of embeddings.
+
+## What you will learn?
+
+- Perform keyword-based image retrieval using image captions and Open-CLIP, and convert a text query into an embedding for text-to-image similarity search;
+- Use DINOv2 to search for visual similarities directly from a reference image;
+- Compare how multimodal embeddings and visual-only embeddings support different research strategies.
+
+## Useful resources
+
+- [Impresso Python Library](https://impresso.github.io/impresso-py/)
+- [Impresso Huggind Face](https://ipyleaflet.readthedocs.io/en/latest/index.html)
+
+{/* cell:1 cell_type:markdown */}
+## Prerequisites
+
+Run the following cells to install the required package and to connect to Imrpesso API:
+
+> If you are working with Google Colab, you may need to restart the kernel. Go to *Runtime* and select *Restart session*.
+
+{/* cell:2 cell_type:code */}
+```python
+# Impresso Python package with embeddings search feature
+!pip install impresso
+```
+
+{/* cell:3 cell_type:code */}
+```python
+
+# Connecting to Impresso API
+from impresso import connect, OR, AND, DateRange
+impresso_session = connect('https://dev.impresso-project.ch/public-api/v1')
+```
+
+{/* cell:4 cell_type:markdown */}
+> In this notebook, we will often move back and forth between the notebook and the Impresso App, so a small function for constructing links is useful. Due to copyright restrictions, images might not be fully displayed here but you can access them via the Impresso Web App.
+
+{/* cell:5 cell_type:code */}
+```python
+# Function to generate webapp URLs for images
+
+def img_webapp_url(uid, issue_mode=True):
+  mode = "issue" if issue_mode else "search/images"
+  pre, suf = uid.split('-a-')
+  suffix = f"{pre}-a/view?articleId={suf}" if issue_mode else uid
+  return f'https://dev.impresso-project.ch/app/{mode}/{suffix}'
+```
+
+{/* cell:6 cell_type:markdown */}
+# Text-to-Image embeddings with Open-Clip
+
+First, we examine how the system retrieves images from simple keywords or short phrases, providing an initial sense of the most similar results.
+
+## 1. Keyword search on image captions
+
+{/* cell:7 cell_type:code */}
+```python
+kw_radio = 'radio'
+
+result = impresso_session.images.find(term=kw_radio)
+result
+```
+
+{/* cell:8 cell_type:markdown */}
+## 2. Text-to-image similarity search with Open-Clip
+
+Next, we embed the same keyword with Open-CLIP and use this embedding to search through the Open-CLIP image embeddings, enabling text-to-image similarity retrieval.
+
+{/* cell:9 cell_type:code */}
+```python
+kw_embedding = impresso_session.tools.embed_text(text=kw_radio, target='multimodal')
+kw_embedding
+```
+
+{/* cell:10 cell_type:markdown */}
+> Having inspected the generated embedding, one might wonder what these weird characters and numbers mean: ```openclip-768:1zuRvAvlzLvJJxw9tRKdO5yyaryrbIK9wuLOvDO12bz...```
+The reason for why this embedding does not look like a vector of numbers is rather simple: **It's encoded in a data-efficient format**.
+
+{/* cell:11 cell_type:code */}
+```python
+# Searching images similar to the keywordembeddings
+results = impresso_session.images.find(
+  embedding=kw_embedding,
+  limit=6
+)
+results
+```
+
+{/* cell:12 cell_type:code */}
+```python
+results.df[['contentItemUid', 'imageTypes.visualContentType']].index
+```
+
+{/* cell:13 cell_type:code */}
+```python
+import numpy as np
+import pandas as pd
+
+# Print the URLs for the first 5 images 
+for uid, r in results.df.head(5).iterrows():
+  print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
+  if str(r.contentItemUid)!='nan':
+    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+```
+
+{/* cell:14 cell_type:markdown */}
+> The extracted images either feature iillustrations of radios (physical radio sets) or illustrated headers of radio sections.
+We can try to filter by image type, such as `Object`, `Non-Figurative Visual Content` and `Ornament or Illustrated Title`.
+
+
+{/* cell:15 cell_type:code */}
+```python
+# Filter results based on the image content type "Object"
+object_results = impresso_session.images.find(
+  content_type="Object",
+  embedding=kw_embedding,
+  limit=5
+)
+
+# Print the URLs for the first 5 images
+print(f"Results for images of type Object")
+for uid, r in object_results.df.head(5).iterrows():
+  print(f"Result {uid} - link to image CI {img_webapp_url(uid, issue_mode=False)}")
+  if str(r.contentItemUid)!='nan':
+    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+```
+
+{/* cell:16 cell_type:markdown */}
+> If you have opened all the links, you will notice that most of the elements from the previous search appear again, with the exception of the image `EXP-1960-03-31-a-i0096`. In addition, the images `EXP-2009-01-06-a-i0096` and `IMP-2009-01-06-a-i0080` were reused a few weeks later by the editors in `IMP-2010-02-02-a-i0120`.
+
+{/* cell:17 cell_type:code */}
+```python
+# Filter results based on the image content type "Non-Figurative Visual Content" OR "Ornament or Illustrated Title"
+non_fig_results = impresso_session.images.find(
+  content_type=OR("Non-Figurative Visual Content", "Ornament or Illustrated Title"),
+  embedding=kw_embedding,
+  limit=5
+)
+
+# Print the URLs for the first 5 images
+print(f"Results for images of type Non-Figurative Visual Content")
+for uid, r in non_fig_results.df.head(5).iterrows():
+  print(f"Result {uid} - link to image CI {img_webapp_url(uid, issue_mode=False)}")
+  if str(r.contentItemUid)!='nan':
+    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+```
+
+{/* cell:18 cell_type:markdown */}
+> There are far fewer results of this type, as they are generally rarer in the data. However, in both cases the model identifies the Radio section logo, likely because it also contains text.
+
+{/* cell:19 cell_type:markdown */}
+## 3. Complex search queries with embeddings
+
+Next, we refine our search by embedding a more **descriptive query** that targets the radio program section of a newspaper.
+
+{/* cell:20 cell_type:code */}
+```python
+program_query = "Weekly radio program"
+
+# Embed program_query prompt using Open-Clip model
+pgm_embedding = impresso_session.tools.embed_text(text=program_query, target='multimodal')
+pgm_embedding
+
+
+# Print the URLs for images similar to the query embeddings
+pgm_results = impresso_session.images.find(
+  embedding=pgm_embedding,
+  limit=6
+)
+
+for uid, r in pgm_results.df.head(5).iterrows():
+  print(f"Result {uid} - link to image CI {img_webapp_url(uid, issue_mode=False)} - type {r['imageTypes.visualContentType']}")
+  if str(r.contentItemUid)!='nan':
+    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+```
+
+{/* cell:21 cell_type:markdown */}
+> We have successfully retrieved the illustrated section titles!
+This query captures many of the radio program pages from L’Impartial in the late 1930s and early 1940s.
+
+> Since **CLIP is multilingual**, we can try the same search using a query in French.
+
+{/* cell:22 cell_type:code */}
+```python
+program_query_fr = "Programme Radio de la semaine"
+
+# Embed program_query_fr prompt using Open-Clip model
+pgm_fr_embedding = impresso_session.tools.embed_text(text=program_query_fr, target='multimodal')
+pgm_fr_embedding
+
+
+# Print the URLs for images similar to the query embeddings
+pgm_fr_results = impresso_session.images.find(
+  embedding=pgm_fr_embedding,
+  limit=6
+)
+
+for uid, r in pgm_fr_results.df.head(5).iterrows():
+  print(f"Result {uid} - link to image CI {img_webapp_url(uid, issue_mode=False)} - type {r['imageTypes.visualContentType']}")
+  if str(r.contentItemUid)!='nan':
+    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+```
+
+{/* cell:23 cell_type:markdown */}
+> We obtain very similar results: most of them are program pages, but this time they are more recent and often list TV programs (note that the Swiss national radio and TV share the same name).
+Now let’s see if we can go further and **retrieve actual images of radio stations**, ideally with people listening to the radio.
+
+
+{/* cell:24 cell_type:code */}
+```python
+radio_query_fr = "Personnes écoutant la radio à côté du poste de radio."
+
+# Embed radio_query_fr prompt using Open-Clip model
+radio_fr_embedding = impresso_session.tools.embed_text(text=radio_query_fr, target='multimodal')
+radio_fr_embedding
+
+
+# Print the URLs for images similar to the query embeddings
+radio_fr_results = impresso_session.images.find(
+  embedding=radio_fr_embedding,
+  limit=6
+)
+
+for uid, r in radio_fr_results.df.head(5).iterrows():
+
+  print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
+  if 'contentItemUid' in r and str(r.contentItemUid)!='nan':
+    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+```
+
+{/* cell:25 cell_type:markdown */}
+> We retrieve more images of actual radio stations, often with people present. It can be useful to compare this with a similar sentence in English, or to refine the query to explicitly require a human figure in the scene.
+
+{/* cell:26 cell_type:code */}
+```python
+radio_query_en = "People listening to a radio monitor."
+
+# Embed radio_query_en prompt using Open-Clip model
+radio_en_embedding = impresso_session.tools.embed_text(text=radio_query_en, target='multimodal')
+radio_en_embedding
+
+
+# Print the URLs for images similar to the query embeddings
+radio_en_results = impresso_session.images.find(
+  embedding=radio_en_embedding,
+  limit=6
+)
+
+for uid, r in radio_en_results.df.head(5).iterrows():
+
+  print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
+  if 'contentItemUid' in r and str(r.contentItemUid)!='nan':
+    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+```
+
+{/* cell:27 cell_type:markdown */}
+> Having a query in english seems to have done the trick here; as you can see most images are of the type human representation!
+**Don't hesitate to explore further with different queries, more complex and simple ones, varying languages and using the help of the image type filter** to specify more precisely what's of interest!
+
+{/* cell:28 cell_type:markdown */}
+# Image-only embeddings with DinoV2
+Let's dive more into **image-to-image embeddings**, and search for images that match ones that are of particular interest to us.
+
+## 1. Searching for similar images with an external image
+Suppose we are interested in studying the **spread of new technologies in the 1980s**: in that case, the image `EXP-1983-08-31-a-i0208` from content item `EXP-1983-08-31-a-i0195` could serve as a useful reference to discover similar articles.
+
+
+{/* cell:29 cell_type:code */}
+```python
+example_image_id = 'EXP-1983-08-31-a-i0208'
+
+example_embedding = impresso_session.images.get_embeddings(example_image_id)
+example_embedding[1]
+```
+
+{/* cell:30 cell_type:code */}
+```python
+dino_results = impresso_session.images.find(
+  embedding=example_embedding[1],
+  limit=7
+)
+
+# Print the URLs for images similar to the query embeddings
+for uid, r in dino_results.df.head(6).iterrows():
+  if uid != example_image_id:
+    print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
+    if 'contentItemUid' in r and str(r.contentItemUid)!='nan':
+      print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+```
+
+{/* cell:31 cell_type:markdown */}
+> We can see that the retrieved images are different, yet they share several key characteristics with our base image: they depict what appear to be mid to late-twentieth-century technologies and show people interacting with them.
+However, the publication dates of the corresponding articles vary widely, ranging from the late 1950s to the mid-1990s. To narrow the results, we can apply a date filter to restrict the search to images published in issues from the mid-1970s to the mid-1990s. We can further refine the query by using the type filter introduced earlier to ensure that people are present in the images.
+
+{/* cell:32 cell_type:markdown */}
+## 2. Searching for similar images with complex filters
+
+{/* cell:33 cell_type:code */}
+```python
+# Filter results based on the image content type "Human Representation - Scene" OR "Human Representation - Portrait" AND date range 1975-1995
+filter_results = impresso_session.images.find(
+  content_type=OR("Human Representation - Scene", "Human Representation - Portrait"),
+  embedding=example_embedding[1],
+  date_range=DateRange("1975-01-01", "1995-01-01"),
+  limit=7
+)
+
+# Print the URLs for images similar to the query embeddings
+for uid, r in filter_results.df.head(6).iterrows():
+  if uid != example_image_id:
+    print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
+    if 'contentItemUid' in r and str(r.contentItemUid)!='nan':
+      print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+```
+
+{/* cell:34 cell_type:markdown */}
+## 2. Searching for similar images with an external URL
+
+Finally, if we find an image online that fits our research interests, **we can also use it directly as input for our search**. We simply need to embed the image using the same model — in this case, DINOv2, and then run the same similarity search as before.
+
+For example, from the Wikimedia Commons category “People listening to radios”, we selected an [image](https://commons.wikimedia.org/wiki/Category:People_listening_to_radios) of a girl listening to the radio. To use it, we only need to choose a version of the [image](https://commons.wikimedia.org/wiki/File:REA,_%22Little_girl_by_radio%22_-_NARA_-_195876.tif) at an appropriate resolution - for instance, the 527 × 628 pixel version available on the image’s Wikimedia Commons page, and use its link as input for the embedding step.
+
+{/* cell:35 cell_type:code */}
+```python
+# Embedding an image from a URL
+
+image_url = 'https://gallica.bnf.fr/iiif/ark:/12148/bpt6k6069079/f2/775,369,1303,887/max/0/default.jpg'
+external_embedding = impresso_session.tools.embed_image(image=image_url, target="image")
+external_embedding
+
+```
+
+{/* cell:36 cell_type:code */}
+```python
+# Searching similar images from the embedded image URL
+
+results = impresso_session.images.find(
+  embedding=embedding,
+  limit=5
+)
+
+results
+```
+
+{/* cell:37 cell_type:markdown */}
+# Conclusion
+
+In this notebook, we explored how Impresso's models - **Open-CLIP for text-to-image search** and **DINOv2 for image-to-image similarity** - can be used to navigate historical visual collections.
+Starting from simple and more descriptive queries, we saw how Open-CLIP retrieves radio programs and illustrated section titles across languages, before turning to DINOv2 to find visually similar images from a single reference example.
+Together, these approaches show **how multimodal and visual embeddings can help us move beyond keyword search**.
+
+{/* cell:38 cell_type:markdown */}
+---
+## Project and License info
+
+### Notebook credits [![CreditLogo.png](data:image/png;base64,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)](https://credit.niso.org/)
+
+**Writing - Original draft:**  Roman Kalyakin. **Conceptualization:** Marten Düring. **Software:** Roman Kalyakin. **Writing - Review & Editing**: Pauline Conti, Cao Vy. **Validation:** Marten Düring. **Datalab editorial board:** Caio Mello (Managing), Cao Vy, Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Roman Kalyakin. **Supervision:** Marten Düring. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
+
+
+<a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+  <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"  width="100" alt="Open In Colab"/>
+</a>
+
+This notebook is published under [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/)
+
+For feedback on this notebook, please send an email to info@impresso-project.ch
+
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an interdisciplinary research project that aims to develop and consolidate tools for processing and exploring large collections of media archives across modalities, time, languages and national borders. The first project (2017-2021) was funded by the Swiss National Science Foundation under grant No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027) by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585) and the Luxembourg National Research Fund under grant No. 17498891.
+
+
+
+### License
+
+All Impresso code is published open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
+
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>
+
+
+{/* cell:39 cell_type:markdown */}
+

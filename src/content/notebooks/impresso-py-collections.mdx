@@ -4,8 +4,8 @@ draft: true
 authors:
   - impresso-team
 title: Search collections
-sha: 00f108ee9616762cde552be8df6e4e9cf8a69067
-date: 2026-03-06T21:05:48Z
+sha: 34189b6924dd322ac7be6dfaeab292b8076b856e
+date: 2026-03-19T15:59:32Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-py/blob/main/examples/notebooks/collections.ipynb
 links: []
@@ -102,4 +102,42 @@ NOTE: You may still see the old items for some time because the results may stil
 {/* cell:15 cell_type:code */}
 ```python
 impresso.collections.items(test_collection_id)
+```
+
+{/* cell:16 cell_type:markdown */}
+## Create, Rename, Delete a collection
+
+{/* cell:17 cell_type:code */}
+```python
+import uuid
+
+new_collection = impresso.collections.create(
+    title=f"Test {uuid.uuid4()}",
+    description="This is a test collection.",
+)
+new_collection
+```
+
+{/* cell:18 cell_type:code */}
+```python
+impresso.collections.get(new_collection.pydantic.id)
+```
+
+{/* cell:19 cell_type:code */}
+```python
+new_collection = impresso.collections.rename(new_collection.pydantic.id, f"Renamed {uuid.uuid4()}")
+new_collection
+```
+
+{/* cell:20 cell_type:code */}
+```python
+impresso.collections.delete(new_collection.pydantic.id)
+```
+
+{/* cell:21 cell_type:code */}
+```python
+try:
+  impresso.collections.get(new_collection.pydantic.id)
+except Exception as e:
+    print(f"Collection not found, as expected. Error: {e}")
 ```

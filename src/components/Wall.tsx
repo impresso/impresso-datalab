@@ -14,9 +14,9 @@ const CodeSample = `# Install the Impresso library
 
 from impresso import connect
 
-impresso = connect()
+client = connect()
 
-results = impresso.search.find("moon landing")
+results = client.search.find("moon landing")
 results`
 
 const ImpressoModelsCodeSample = `# Use a pipeline as a high-level helper
@@ -86,8 +86,8 @@ const Wall = ({
           <Col md={7} lg={7} xxl={6}>
             <div className="shadow-sm p-3 border-radius-sm mb-4 container-fluid">
               <h3>Docs & Resources</h3>
-              <Row className="mt-3">
-                <Col md={3}>
+              <Row>
+                <Col md={4} className="mt-3">
                   <LogoReadTheDocs
                     width={22}
                     href="https://impresso.readthedocs.io/en/latest/"
@@ -96,7 +96,7 @@ const Wall = ({
                     Python library
                   </LogoReadTheDocs>
                 </Col>
-                <Col md={3}>
+                <Col md={4} className="mt-3">
                   <LogoHuggingFace
                     width={22}
                     href="https://huggingface.co/impresso-project/"
@@ -105,7 +105,7 @@ const Wall = ({
                     Hugging Face
                   </LogoHuggingFace>
                 </Col>
-                <Col md={3}>
+                <Col md={4} className="mt-3">
                   <LogoJSON
                     width={22}
                     href="/public-api/v1/docs"
@@ -114,13 +114,32 @@ const Wall = ({
                     Rest API docs
                   </LogoJSON>
                 </Col>
-                <Col md={3}>
+                <Col md={4} className="mt-3">
                   <LogoGitHub
                     width={22}
                     href="https://github.com/impresso/impresso-datalab-notebooks"
                     title="Impresso Datalab Notebooks on GitHub"
                   >
                     Notebooks
+                  </LogoGitHub>
+                </Col>
+
+                <Col md={4} className="mt-3">
+                  <LogoReadTheDocs
+                    width={22}
+                    href="https://pypi.org/project/impresso-pipelines/"
+                    title="Impresso Pipelines"
+                  >
+                    Impresso Pipelines
+                  </LogoReadTheDocs>
+                </Col>
+                <Col md={4} className="mt-3">
+                  <LogoGitHub
+                    width={22}
+                    href="https://github.com/impresso/impresso-datalab-notebooks/wiki"
+                    title="Workshop Resourcess on GitHub"
+                  >
+                    Workshop Resources
                   </LogoGitHub>
                 </Col>
               </Row>

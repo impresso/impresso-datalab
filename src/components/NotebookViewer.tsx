@@ -62,7 +62,7 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
         <Col lg="7">
           <section className="d-flex  justify-content-between">
             <div>
-              By
+              By{" "}
               {notebook.authors.map((author) => (
                 <AuthorCard key={author.name} author={author} />
               ))}
@@ -107,20 +107,11 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
           <section className="small mt-2">
             Last update: <b>{accessDateTime.toFormat("yyyy LLL dd")}</b>
           </section>
-          <Alert className="my-2 p-3">
+          <Alert className="my-2 p-2">
             <div className="me-2">
               <b>Note:</b> This is a static preview of the Jupyter notebook.
             </div>
           </Alert>
-        </Col>
-        <Col lg="5" className="ps-4">
-          <a target="_blank" href={issueUrl}>
-            Report an issue
-          </a>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col lg="7">
           {cells
             .filter((cell) => {
               if (cell.cellType === "code" && !cell.content.length) {
@@ -146,12 +137,6 @@ const NotebookViewer: React.FC<NotebookViewerProps> = ({
             ))}
         </Col>
         <Col lg="5" className="ps-4">
-          {excerpt.length > 0 && (
-            <>
-              <h4>Abstract</h4>
-              <MarkdownSnipped className="m-0 small" value={excerpt} />
-            </>
-          )}
           {Array.isArray(notebook.seealso) ? (
             <>
               <h4>See also</h4>
