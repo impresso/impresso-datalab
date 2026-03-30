@@ -1,21 +1,42 @@
 ---
-githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/solrnormalization_pipeline_demo.ipynb
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/ldatopics_pipeline_demo.ipynb
 authors:
   - impresso-team
-title: Solr Normalization with impresso-pipelines Package
-sha: 83cbd052a50495e51e410bef888d344e34fbff3e
-date: 2025-07-08T16:44:17Z
+title: LDA Topics with impresso-pipelines Package
+sha: b4f92d6637ffcb77c5451cd15de37433bff562f0
+date: 2025-09-05T14:55:47Z
 links:
   - href: https://pypi.org/project/impresso-pipelines/
     label: impresso-pipelines
-  - href: https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/solrnormalization
-    label: solrnormalization
-  - href: https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/langident
-    label: "`LangIdentPipeline`"
+  - href: https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/ldatopics
+    label: ldatopics
+  - href: https://dl.acm.org/doi/10.1145/2133806.2133826
+    label: Probabilistic Topic Models (David Blei, 2012)
+  - href: https://tedunderwood.com/2012/04/07/topic-modeling-made-just-simple-enough/
+    label: Topic Modeling Made Just Simple Enough (Ted Underwood, 2012)
+  - href: https://programminghistorian.org/en/lessons/topic-modeling-and-mallet
+    label: Getting Started with Topic Modeling and MALLET (Programming Historian,
+      2012)
+  - href: https://www.uni.lu/c2dh-en/articles/nibbling-at-text-identifying-discourses-on-europe-in-a-large-collection-of-historical-newspapers-using-topic-modelling/
+    label: Nibbling at Text
   - href: https://github.com/impresso/impresso-pipelines/tree/main
     label: Impresso Pipelines package
-  - href: https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/solrnormalization
-    label: original repository
+  - href: https://spacy.io/usage
+    label: spaCy documentation
+  - href: https://mimno.github.io/Mallet/topics
+    label: MALLET documentation
+  - href: https://huggingface.co/impresso-project
+    label: Hugging Face model repository
+  - href: https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/langident_pipeline_demo.ipynb
+    label: |-
+      langident
+      pipeline demo notebook
+  - href: https://huggingface.co/impresso-project/mallet-topic-inferencer/tree/main/models/tm
+    label: Impresso Hugging Face
+  - href: https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/langident_pipeline_demo.ipynb
+    label: demo notebook
+  - href: https://github.com/impresso/impresso-pipelines/tree/mallet_pipeline
+    label: Impresso Pipelines package
   - href: data:image/png;base64,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
     label: "![CreditLogo.png"
   - href: https://creativecommons.org/licenses/by/4.0/
@@ -28,90 +49,45 @@ links:
     label: CRSII5_213585
   - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
     label: GNU Affero General Public License
-googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/solrnormalization_pipeline_demo.ipynb
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/ldatopics_pipeline_demo.ipynb
 ---
 
 {/* cell:0 cell_type:markdown */}
 
-<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/solrnormalization_pipeline_demo.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/ldatopics_pipeline_demo.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
 
 {/* cell:1 cell_type:markdown */}
 ## What is this notebook about?
+This notebook introduces the topic modeling component of the [impresso-pipelines](https://pypi.org/project/impresso-pipelines/) Python package. The broader goal of the impresso pipelines is to make the internal data processing workflows of the impresso project reusable and accessible to others. It allows external users—such as researchers, developers, or digital humanities practitioners—to apply the same processing steps we used on our historical newspaper collections to their own text collections.
 
-This notebook introduces the SolrNormalization component of the
-[impresso-pipelines](https://pypi.org/project/impresso-pipelines/) Python package. The
-broader goal of the Impresso pipelines is to make the internal data processing workflows
-of the Impresso webapp transparent, reusable and accessible to others. It allows
-external users—such as researchers, developers, or digital humanities practitioners—to
-apply the same processing steps we used on our historical newspaper collections to their
-own text collections.
+The package is designed to minimize the coding effort required. By offering ready-to-use pipelines, users can adopt impresso approach to document processing with minimal configuration. This ensures consistency, comparability, and transparency in how topics are created from text document.
 
-By offering ready-to-use pipelines, users can adopt the Impresso approach to document
-processing with minimal configuration. This ensures consistency, comparability, and
-transparency in how our Solr-based Information Retrieval (IR) system splits texts into words
-(also known as "tokens" in the NLP community) and normalizes these words for the search index.
+In this notebook, we focus on the [ldatopics](https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/ldatopics) subpackage, which enables topic modeling using the Impresso MALLET inference pipeline. You will learn how to apply the LDA Topics pipeline to your text data, explore different usage options, and interpret the results.
 
-In this notebook, we focus on the
-[solrnormalization](https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/solrnormalization)
-subpackage, which offers Solr tokenization and normalization
-analyzers directly from Python. It supports automatic language detection and applies
-language-specific analyzers for all languages that the Impresso indexer treats in a
-language-dependent way.
 
 ## Why is this useful?
+- Automates the full Impresso workflow—language identification, lemmatization and topic inference—in a single call.  
+- Supports multiple languages (e.g., Luxembourgish, French, German) with the corresponding spaCy model.  
+- Leverages versioned, pre-trained MALLET models to guarantee reproducible and comparable results.  
+- Returns structured JSON (`uid`, `ts`, `lg`, `topic-count`, `topics`) ready for downstream analysis.  
+- Enables rapid thematic exploration of large text collections with minimal setup and configuration.  
 
-- European languages found in our Impresso collection are inflecting, meaning that the same word can appear in many
-  different forms (e.g., "introduce", "introduces", "introduced", "introducing").
-  Typical search engines reduce these forms to a base form (a process called stemming)
-  that allows users to find all forms of a word with a single search term.
-- Newspapers also use title casing and uppercasing, therefore search engines typically
-  convert all text to lowercase before indexing.
-- Stopwords (common words like "the", "and", "is") appear very frequently and are
-  typically not searched for. As they would also need a lot of storage (e.g. in English,
-  1/6th of all tokens is the word "the"), it is also resource-efficient to remove
-  them from the index.
-- Text collections—especially historical ones—often contain inconsistencies in spelling
-  and linguistic conventions across time periods and sources, the use of special
-  characters, diacritics, accessnts can vary over time. Ignoring diacritics and mapping
-  non-ASCII characters to their ASCII equivalents (a process called ASCII folding) helps
-  to ensure that searches are not affected by these variations.
-- This pipeline provides a standardized, language-aware tokenization and normalization
-  pipeline to simulate and understand the text transformations that happen when we index
-  our texts, or when a user formulates a query. In order to find hits with a
-  user-provided query, it is necessary to apply the exact same normalizations to the query as
-  to the texts.
-- Therefore, this pipeline helps to understand the text normalization process by
-  exposing the exact tokens produced after language-specific analyzers and stopword
-  lists have been applied.
+Without this pipeline, you would need to handle language detection, lemmatization, and topic modeling separately, configuring multiple libraries. This notebook shows how all of that is automated in a single step.
 
 ## How it works
+The pipeline assigns your text the most relevant topics in four internal processing steps:
 
-- **Init**: Load Lucene analyzers and stopword lists for all languages with
-  language-specific stopwords and normalization. Additionally, load a generic text
-  analzser for any other language.
-- **Language Detection**: Automatically detect the language of the input text unless manually specified.
-- **Analyze**: Apply language-specific tokenization, lowercasing, stopword removal,
-  ASCII folding, and stemming using Solr components.
-- **Output**: Return a list of normalized tokens along with the language information.
+Text → Language detection → Lemmatization → Topic inference → JSON output
 
-## Technical background
+- **Language identification**: Auto-detects the text language (e.g. `lg: 'fr'`, `lg: 'lb'`).  
+- **Lemmatization**: Loads the corresponding spaCy model to tokenize, part-of-speech tag and normalize words into lemmas.  
+- **Topic inference**: Feeds the lemmas of nouns and proper nouns into MALLET’s inference pipeline to compute the contribution of each topic.  
+- **JSON formatting**: Returns a JSON object with `uid`, `ts`, `lg`, `topic-count`, and a list of topics above `min_relevance`, each with an ID (`t`) and relevance (`relevance`).
 
-- **Solr Analyzers**: Java-based components that apply tokenization, lowercasing,
-  stopword removal, ASCII folding, and language-specific stemming in a configurable
-  sequence. Solr uses Java-based analyzers that originally come from the Apache Lucene project.
-- **CustomAnalyzer**: Lucene's builder interface allows fine-grained control over the
-  filter and tokenizer pipeline for each supported language. Our pipeline reflects the
-  impresso configuration exactly, including language-specific stopwords and stemming
-  rules.
-- **JPype Integration**: Bridges Python and Java, enabling direct access to Solr's
-  analysis pipeline from within Python code.
-- **Language Detection**: Optionally uses
-  [`LangIdentPipeline`](https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/langident)
-  to automatically select the language if not specified manually.
-- **Post-Processing**: Returns normalized tokens and the language; supports resource cleanup via context manager or destructor.
+These steps are executed internally by the pipeline, so you won’t see spaCy or MALLET explicitly imported in the code cells.
 
 
 {/* cell:2 cell_type:markdown */}
@@ -119,214 +95,274 @@ language-dependent way.
 
 In this notebook, you will:
 
-- Understand the functionality of the `solrnormalization` subpackage from the Impresso Pipelines package.
-- Learn how to normalize a raw text using language-specific Solr analyzers.
-- Explore different use cases, including **basic and advanced usage** of the SolrNormalization pipeline.
-- Recognize some limitations of the pipeline, such as support for **only selected languages** and the need for JVM integration.
+- Understand the `ldatopics_pipeline` function and its core steps.  
+- See how the pipeline auto-detects text language with Impresso’s **langident**.  
+- Inspect the tokenization and lemmatization performed by spaCy through the diagnostics option.
+- Perform topic inference with the Impresso MALLET models through the pipeline.
+- Customize your output IDs with the `doc_name` parameter.  
+- Interpret the JSON output (`uid`, `ts`, `lg`, `topic-count`, `topics`) to extract key themes.  
+<!-- - Explore advanced usage, including overriding defaults and tweaking the `min_p` threshold. -->
 
-By the end of this notebook, you will have a clear understanding of how Solr-style normalization is applied to text and how it can be used in practical scenarios.
-
+By the end of this notebook, you will know how to run the Impresso LDA pipeline on your own texts and interpret the output. For deeper analysis (e.g. labeling topics or evaluating coherence), further steps and tools may be needed.
 
 {/* cell:3 cell_type:markdown */}
 ## Useful resources
+If you’d like to go deeper into topic modeling and its application in historical text analysis, the following resources are recommended:
 
-- For technical details on this library, please refer to the repository of the [Impresso Pipelines package](https://github.com/impresso/impresso-pipelines/tree/main).
+[Probabilistic Topic Models (David Blei, 2012)](https://dl.acm.org/doi/10.1145/2133806.2133826): A clear conceptual introduction to Latent Dirichlet Allocation (LDA), its assumptions, and interpretive challenges.
+[Topic Modeling Made Just Simple Enough (Ted Underwood, 2012)](https://tedunderwood.com/2012/04/07/topic-modeling-made-just-simple-enough/): A humanities-oriented discussion of what topic models can and cannot reveal in historical sources.
+[Getting Started with Topic Modeling and MALLET (Programming Historian, 2012)](https://programminghistorian.org/en/lessons/topic-modeling-and-mallet): A step-by-step tutorial on installing and running MALLET from the command line—great for learning the mechanics of topic modeling outside of abstractions.
+[Nibbling at Text](https://www.uni.lu/c2dh-en/articles/nibbling-at-text-identifying-discourses-on-europe-in-a-large-collection-of-historical-newspapers-using-topic-modelling/): Identifying Discourses on Europe in Historical Newspapers Using Topic Modeling: A case study showing how topic modeling can uncover discourses in large-scale historical newspaper collections.
+
+Additional references:
+
+[Impresso Pipelines package](https://github.com/impresso/impresso-pipelines/tree/main)
+[spaCy documentation](https://spacy.io/usage)
+[MALLET documentation](https://mimno.github.io/Mallet/topics)
+[Hugging Face model repository](https://huggingface.co/impresso-project)
 
 
 {/* cell:4 cell_type:markdown */}
 ## Prerequisites
+First, start by installing `impresso-pipelines` package. Please note that if you are using Google Colab, you will need to restart the kernel after installing the package to apply changes. To do so, go to *Runtime* and select *Restart session*.
 
-First, start by installing the `impresso-pipelines` package. Please note that it might require you to restart the runtime to apply changes. To do so, on Google Colab, go to _Runtime_ and select _Restart session_.
 
 
 {/* cell:5 cell_type:code */}
 ```python
-%pip install --upgrade "impresso-pipelines[solrnormalization]"
+%pip install impresso_pipelines[ldatopics]
 ```
 
 {/* cell:6 cell_type:markdown */}
 ## Basic Usage
 
-Import the normalization pipeline from the package and create an instance of the
-`SolrNormalization` class. This class provides methods to normalize text in multiple languages using Solr
-analyzers.
+Start by importing the necessary module from `impresso-pipelines` package
 
 
 {/* cell:7 cell_type:code */}
 ```python
-from impresso_pipelines.solrnormalization import SolrNormalizationPipeline
+from impresso_pipelines.ldatopics import LDATopicsPipeline
 
-solrnormalization_pipeline = SolrNormalizationPipeline()
+pipeline = LDATopicsPipeline()
 ```
 
 {/* cell:8 cell_type:markdown */}
-Let's take a German example paragraph, which contains special characters and different
-punctuation marks.
+Once you initialize the pipeline, you can simply provide the text you'd like to assign topics to. Let's infer the topics of a historical French news article.
 
 
 {/* cell:9 cell_type:code */}
 ```python
-de_text = """
-In den frühen Morgenstunden verließ der Geschäftsführer der Münchner Rückversicherungsgesellschaft das Gebäude – ein Ereignis,
-das unter den Mitarbeitenden für großes Aufsehen sorgte. Außerdem wurde über „öffentliche“ Statements spekuliert, obwohl keine
-offiziellen Informationen verfügbar waren.
-"""
+text = """La vie dans un petit village est paisible et rythmée par les saisons.
+Chaque matin, les habitants se saluent en se croisant dans les rues étroites,
+et l’odeur du pain frais s’échappant de la boulangerie emplit l’air. Les enfants
+vont à l’école à pied, les commerçants ouvrent leurs boutiques, et les anciens
+s’assoient sur les bancs pour discuter de la pluie et du beau temps. Ici, tout
+le monde se connaît, et l’entraide fait partie du quotidien."""
 ```
 
-{/* cell:10 cell_type:code */}
+{/* cell:10 cell_type:markdown */}
+First time you use the pipeline it will download the necessary models for the specific language. Please be patient — subsequent runs will be much faster.
+
+{/* cell:11 cell_type:code */}
 ```python
-solrnormalization_pipeline(de_text)
+pipeline(text)
 ```
-
-{/* cell:11 cell_type:markdown */}
-**Interpretation of the result:**
-
-As can be seen, the returned result is a dictionary with two keys: `"language"` and `"tokens"`.
-
-- `language` indicates the language detected for the input text (in this case, `'de'` for German). If a language is manually specified, it will override the detection.
-
-- `tokens` is a list of normalized tokens extracted from the text using a Lucene analyzer. These tokens are lowercased, stripped of stopwords, and normalized to remove accents and standardize common linguistic variants.
-
-The output shows how long compound words (e.g., `Rückversicherungsgesellschaft`), special characters (e.g., `ü` in `früh`), and punctuation (e.g., quotes and dashes) are handled and broken down into analyzable components.
-
 
 {/* cell:12 cell_type:markdown */}
+If no language is explicitly specified, the LDA Topics pipeline uses the Impresso
+`langident` pipeline to automatically detect the language of the text. For more details
+on the `langident` pipeline, please refer to the [langident
+pipeline demo notebook](https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/langident_pipeline_demo.ipynb).
+
+After detecting the document’s language, the pipeline internally applies the corresponding spaCy model to tokenize, part-of-speech tag and lemmatize the text. For interpretability and efficiency reasons we only consider the nouns. The filtered lemmas are then fed into a MALLET inference component. You can find these pre-packaged models on [Impresso Hugging Face](https://huggingface.co/impresso-project/mallet-topic-inferencer/tree/main/models/tm).
+
+**Interpretation of the result:**
+
+1. **Language & metadata**  
+   - `language: 'fr'` tells you the pipeline detected French.  
+   - `ts` is the timestamp of the inference. This makes it easy to distinguish and locate the output you’re interested in when you execute the pipeline multiple times.
+   - `uid` is your Unique document ID:  
+     • If you don’t supply a name, the pipeline auto-assigns “doc1”, “doc2”, … based on how many docs you’ve processed so far.  
+     • You can override this by passing a custom `name` parameter when calling the pipeline - see the “Advanced Usage” section of this notebook for an example.
+
+2. **Total topics in the model**  
+   - `topic_count: 100` means the underlying French model contains 100 topics.
+
+3. **Which topics actually showed up**  
+   - Only topics ≥ `min_relevance` (2%) are reported. Here you see nine topics above that cutoff. Relevance (probability) values will never add up to 100% (1.0) because there are always some topics that were assigned but are very insignificant and that will never be shown.
+
+4. **Top topic = tm-fr-all-v2.0_tp04_fr (16%)**  
+   - This is the single strongest theme in your document.  
+   - A weight of 0.16 means 16 % of the inferred topic-mixture is assigned to topic 04.  
+   - To see what “topic 04” actually _is_, follow the `topic_model_description` link in the output and look up the keywords/label for `_tp04_fr`.
+
+5. **Runner-ups**  
+   - Topic 22 at 11.7 %  
+   - Topic 06 at 10 %  
+   - Topic 36 at 8.3 %  
+   - …down to the ninth topic at 2.3 %.
+
+Taken together, these nine topics explain the main themes of your French text. You can sum their probabilities (here about 56 %) to see how much of the document is “covered,” and inspect each topic’s description in the JSONL file to attach human-readable labels.
+
+{/* cell:13 cell_type:markdown */}
 ## Advanced Usage
 
 
-{/* cell:13 cell_type:markdown */}
-This pipeline currently supports two optional attributes when calling it, allowing limited control over its behavior while keeping usage simple and reproducible.
-
-- `lang`: expects a string language code (e.g., `'de'` or `'fr'`). If provided, the pipeline skips automatic language detection and directly applies the corresponding Lucene analyzer. This can improve performance slightly and is useful in controlled multilingual settings.
-
-- `diagnostics`: expects a Boolean value. If set to `True`, the pipeline will return additional information such as removed stopwords from the provided text.
-
-These attributes can be used individually, in combination with each other, or all at once, depending on the level of detail needed.
-
-
 {/* cell:14 cell_type:markdown */}
-**Example 1:** `lang`
+This pipeline offers several additional attributes that can be used when calling it to manipulate or gain a deeper understanding of the results and include the corresponding metadata from the processing pipeline for documentation. These attributes include:
+
+- `language`: Accepts language abbreviation strings such as "fr" (French), "de" (German) and "lb" (Luxembourgish). If provided, the pipeline assumes the specified language and skips the language detection step, directly using the corresponding spaCy and MALLET models. Currently supported languages are - French, German, Luxembourgish.
+
+- `doc_name`: A string identifier with no spaces (e.g., "my_document"). When you provide this, it replaces the autogenerated document ID. The internal counter only increments for calls where you don’t specify a name, so the next unnamed document will pick up from the following number.
+
+- `min_relevance`: Specify `min_relevance` as a floating-point number (for example, `0.05`). The minimum (and default) value is `0.02`; supplying any value below 0.02 will cause the pipeline to raise an error.
+
+- `diagnostics_lemmatization`: When set to `True`, returns the lemmatized tokens in the output JSON. By default this is `False`.
+
+- `diagnostics_topics`: When set to `True`, the pipeline will return the top 10 most significant words for each identified topic, making it easy to understand what each topic represents. By default this is `False`. For a deeper explanation, see the `topic_model_description` file included in the output.
 
 
-{/* cell:15 cell_type:code */}
+
+{/* cell:15 cell_type:markdown */}
+**Example 1**: `language`
+
+
+{/* cell:16 cell_type:code */}
 ```python
-solrnormalization_pipeline(de_text, lang="fr")
+# Using the same French text example as before
+pipeline(text, language="lb")
 ```
-
-{/* cell:16 cell_type:markdown */}
-If you specify `lang='fr'`, the pipeline will skip automatic language detection and apply the French analyzer directly—even if the input text is in another language.  
-This can be useful in controlled setups where you already know the correct language, or when comparing how the same text is normalized under different analyzers.
-
-In this example, we manually forced the pipeline to use the French analyzer on a German text. As a result, many German stopwords remain in the output, and language-specific filters (like German normalization or minimal stemming) are not applied.
-
 
 {/* cell:17 cell_type:markdown */}
-**Example 2**: `diagnostics`
+Even though the provided text is clearly in French, specifying the language as Luxembourgish, for example, forces the pipeline to use the corresponding spaCy and MALLET models for that language. If the selected language is unsupported, the pipeline will return an appropriate error message.
 
 
-{/* cell:18 cell_type:code */}
+{/* cell:18 cell_type:markdown */}
+**Example 2**: `doc_name`
+
+
+{/* cell:19 cell_type:code */}
 ```python
-solrnormalization_pipeline(de_text, diagnostics=True)
+# Using the same French text example as before
+pipeline(text, doc_name="my_document")
 ```
-
-{/* cell:19 cell_type:markdown */}
-If you set `diagnostics=True`, the pipeline will also return an additional field, `stopwords_detected` — a list of words from the original text that were identified as stopwords and consequently removed from the final tokenized output.
-
 
 {/* cell:20 cell_type:markdown */}
-**Example 3**: All at once
+As you can see, the `uid` is now "my_document" as specified, making it much easier to manage your outputs when you run the ldatopics pipeline multiple times or save them in an external file.
 
+{/* cell:21 cell_type:markdown */}
+**Example 3:** `min_relevance`
 
-{/* cell:21 cell_type:code */}
+{/* cell:22 cell_type:code */}
 ```python
-solrnormalization_pipeline(de_text, lang="de", diagnostics=True)
+pipeline(
+    text,
+    min_relevance=0.05
+)
 ```
-
-{/* cell:22 cell_type:markdown */}
-You can combine multiple options in a single call, like specifying the language and enabling diagnostics. The pipeline is flexible and allows using any combination of supported parameters.
-
 
 {/* cell:23 cell_type:markdown */}
-**Example 4**: Tokenization of common OCR errors (`^`, `_`, `-`)
+By changing the `min_relevance` threshold from 0.02 to 0.05, the pipeline filters out any topic whose assignment relevance (probability) falls below 5 %. As a result, only the most confidently detected topics (those at or above 0.05) are returned, so you see fewer—but stronger—topic assignments.
 
-
-{/* cell:24 cell_type:code */}
-```python
-altered_de_text = """
-
-In den frühen Morge^stunden verließ der Geschäftsführer der Münchner Rückversicherungsgesellschaft das Gebäude – ein Ereignis,
-das unter den Mitar_eitenden für großes Aufsehen sorgte. Außerdem wurde über „öffentliche“ Statements spekuliert, obwohl keine
-offiziellen Inform-tionen verfügbar waren.
-
-
-"""
-```
+{/* cell:24 cell_type:markdown */}
+**Example 4:** `diagnostics_lemmatization`
 
 {/* cell:25 cell_type:code */}
 ```python
-solrnormalization_pipeline(altered_de_text, diagnostics=True)
+pipeline(
+    text,
+    diagnostics_lemmatization=True
+)
 ```
 
 {/* cell:26 cell_type:markdown */}
-This example illustrates how common OCR-related artifacts such as `^`, `_`, and hyphens are handled during normalization and tokenization.
-These characters often appear in digitized historical documents due to misrecognition or formatting inconsistencies.
-
-As can be seen above, `^` and `-` force words to be split, resulting in two different tokenized words. `_` on the other hand is just treated as part of the word.
-
+Enabling `diagnostics_lemmatization` adds a list of the lemmatized tokens that the topic model actually sees. By examining those, you will instantly know which words are actually used to assign topics to your document.
 
 {/* cell:27 cell_type:markdown */}
-## Limitations of the Solr Normalization Pipeline
-
+**Example 5:** `diagnostics_topics`
 
 {/* cell:28 cell_type:code */}
 ```python
-unsupported_languages = """In the early hours of the morning, the CEO of the Munich reinsurance company left the building – an event
- that caused a great stir among the employees. Additionally, there was speculation about “public” statements, although no
- official information was available."""
+pipeline(
+    text,
+    diagnostics_topics=True
+)
 ```
 
-{/* cell:29 cell_type:code */}
-```python
-solrnormalization_pipeline(unsupported_languages)
-```
+{/* cell:29 cell_type:markdown */}
+When `diagnostics_topics` is enabled, the output includes each detected topic along with its top 10 most significant words, giving you a clear snapshot of what each topic represents.
 
 {/* cell:30 cell_type:markdown */}
-As shown, the Solr Normalization Pipeline currently supports only two languages: German (`'de'`) and French (`'fr'`). If the input text is in another language, such as English, and no `lang` argument is specified, the pipeline will attempt to detect the language automatically and raise an error if it's not supported.
+**Example 6**: All at once
 
-In this case, the detected language was `'en'`, which caused the pipeline to raise a `ValueError`. This behavior is intentional to ensure that unsupported languages are not processed with incorrect analyzers, which could lead to misleading results.
-
-
-{/* cell:31 cell_type:markdown */}
-## Conclusion
-
+{/* cell:31 cell_type:code */}
+```python
+# Using the same French text example as before
+pipeline(
+    text,
+    language="fr",
+    doc_name="my_document",
+    min_relevance=0.05,
+    diagnostics_lemmatization=True,
+    diagnostics_topics=True
+)
+```
 
 {/* cell:32 cell_type:markdown */}
-The `SolrNormalizationPipeline` provides a lightweight, end-to-end solution for applying Solr-style normalization to German and French texts. It delivers:
-
-- **Consistent Preprocessing**: Language-specific analyzers ensure uniform tokenization and normalization aligned with Solr standards.
-- **Easy Integration**: One-line setup and inference with minimal configuration.
-- **Optional Language Control**: Users can rely on built-in language detection or manually specify the language.
-- **Transparent Output**: Returns clean token lists that reveal exactly how input text is normalized.
-- **Future Extensibility**: Designed to be extended with more languages, diagnostics, and custom analyzer configurations.
-
-Whether you're preparing data for indexing, building reproducible NLP pipelines, or analyzing German and French corpora, this pipeline simplifies language-aware normalization—without requiring deep Lucene or Java expertise.
+You can use a mix of additional parameters, or all of them at once, to deeper control the output of your LDA Topics. In the example above, we set the language to French and name of the document to "my_document".
 
 
 {/* cell:33 cell_type:markdown */}
+## Limitations of the LDA Topics Pipeline
+
+
+{/* cell:34 cell_type:code */}
+```python
+short_de_text = "Alex geht ins Büro."
+```
+
+{/* cell:35 cell_type:code */}
+```python
+# Example 1: Very short text
+pipeline(short_de_text, diagnostics_lemmatization=True)
+```
+
+{/* cell:36 cell_type:markdown */}
+As shown, LDA Topics pipeline struggles with **short texts**, leading to very flat and probably unreliable distribution. Additionally, anything that is **not** **NOUN** or **PROPN** does not contribute to topic modeling due to lemmatization, making the short text even shorter. As a rule of thumb, results stabilize once the kept lemmas reach ~10–20 tokens.
+
+{/* cell:37 cell_type:markdown */}
+## Conclusion
+In this notebook, we’ve explored the LDA Topics Pipeline from the Impresso package, which transforms raw text into topic distributions using language detection, spaCy lemmatization, and MALLET inference. The pipeline:
+
+- **Automatically detects** text language via langident (or accepts a manual override)  
+- **Loads** the matching spaCy model to tokenize and lemmatize your text  
+- **Runs** MALLET’s inference pipeline with versioned, pre-trained topic models  
+- **Returns** a structured JSON (`uid`, `ts`, `language`, `topic_count`, `topics`) ready for analysis  
+- **Supports** custom document IDs (`doc_name`)
+- **Has** limitations with very short texts or little amount of nouns and pronouns
+<!-- and adjustable reporting thresholds (`min_p`)   -->
+
+The pipeline provides a reproducible, multi-lingual approach to topic modeling—ideal for thematic exploration of large text collections and cross-language comparisons.  
+
+
+{/* cell:38 cell_type:markdown */}
 ## Next steps
 
 
-{/* cell:34 cell_type:markdown */}
-To get a better understanding of how this pipeline works, please check out the [original repository](https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/solrnormalization).
+{/* cell:39 cell_type:markdown */}
+Since this subpackage relies on the Impresso langident subpackage, you might be interested in exploring the [demo notebook](https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/langident_pipeline_demo.ipynb) for langident.
+
+Additionally, you can find more technical details in the repository of the [Impresso Pipelines package](https://github.com/impresso/impresso-pipelines/tree/mallet_pipeline).
 
 
-{/* cell:35 cell_type:markdown */}
+{/* cell:40 cell_type:markdown */}
 ---
 ## Project and License info
 
 ### Notebook credits [![CreditLogo.png](data:image/png;base64,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)](https://credit.niso.org/)
 
-INSERT CREDITS HERE
+**Writing - Original draft:** Glebs Vinarskis. **Conceptualization:** Simon Clematide, Glebs Vinarskis. **Software:** Simon Clematide, Juri Opitz, Andrianos Michail. **Writing - Review & Editing:** Caio Mello. **Validation:** Estelle Bunout, Kirill Veprikov . **Datalab editorial board:** Caio Mello (Managing), Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Simon Clematide, Glebs Vinarskis. **Supervision:** Simon Clematide. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
+
 
 
 
@@ -349,9 +385,14 @@ This notebook is published under [CC BY 4.0 License](https://creativecommons.org
 
 All Impresso code is published open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
 
+
 ---
 
 <p align="center">
   <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
 </p>
+
+
+
+{/* cell:41 cell_type:markdown */}
 
