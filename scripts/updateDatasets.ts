@@ -77,7 +77,12 @@ async function fetchDatasets() {
     const datasets = await getResourceWithBearerToken<
       CorpusAccessCatalogueItem[]
     >(DATASETS_URL, GITHUB_TOKEN, logFilepath)
-    const mappedDatasets = datasets.map(CorpusAccessToDatasetMapper)
+    const mappedDatasets = datasets
+      .map(CorpusAccessToDatasetMapper)
+      .map((d) => {
+        const id = d.id + "-" + d.timePeriod
+        return { ...d, id }
+      })
     // write to src/content/datasets.json
     writeFileSync(
       datasetsFilepath,

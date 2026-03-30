@@ -1,6 +1,6 @@
 [
   {
-    "id": "INA-CFCE",
+    "id": "INA-CFCE-1996-1996",
     "associatedPartner": "INA",
     "mediaId": "CFCE",
     "mediaTitle": "C’est en France, c’est en Europe",
@@ -17,7 +17,7 @@
     "partnerBitmapIndex": 16
   },
   {
-    "id": "INA-RDN",
+    "id": "INA-RDN-1949-1950",
     "associatedPartner": "INA",
     "mediaId": "RDN",
     "mediaTitle": "La ronde des nations",
@@ -34,7 +34,7 @@
     "partnerBitmapIndex": 16
   },
   {
-    "id": "SNL-BLB",
+    "id": "SNL-BLB-1845-1847",
     "associatedPartner": "SNL",
     "mediaId": "BLB",
     "mediaTitle": "Bündner Landbote",
@@ -51,7 +51,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-BNN",
+    "id": "SNL-BNN-1885-1892",
     "associatedPartner": "SNL",
     "mediaId": "BNN",
     "mediaTitle": "Bündner Nachrichten",
@@ -68,7 +68,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-DFS",
+    "id": "SNL-DFS-1814-1849",
     "associatedPartner": "SNL",
     "mediaId": "DFS",
     "mediaTitle": "Wochenblatt für die vier löblichen Kantone Ury, Schwytz, Unterwalden und Zug",
@@ -85,7 +85,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-DVF",
+    "id": "SNL-DVF-1878-1885",
     "associatedPartner": "SNL",
     "mediaId": "DVF",
     "mediaTitle": "Der Volksfreund",
@@ -102,7 +102,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-EZR",
+    "id": "SNL-EZR-1806-1865",
     "associatedPartner": "SNL",
     "mediaId": "EZR",
     "mediaTitle": "Der Erzähler",
@@ -119,7 +119,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-HRV",
+    "id": "SNL-HRV-1799-1801",
     "associatedPartner": "SNL",
     "mediaId": "HRV",
     "mediaTitle": "Der helvetische Volksfreund",
@@ -136,7 +136,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-LAB",
+    "id": "SNL-LAB-1847-1860",
     "associatedPartner": "SNL",
     "mediaId": "LAB",
     "mediaTitle": "Der Liberale Alpenbote",
@@ -153,7 +153,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-MGS",
+    "id": "SNL-MGS-1841-1843",
     "associatedPartner": "SNL",
     "mediaId": "MGS",
     "mediaTitle": "Der Morgenstern",
@@ -170,7 +170,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-NTS",
+    "id": "SNL-NTS-1856-1874",
     "associatedPartner": "SNL",
     "mediaId": "NTS",
     "mediaTitle": "Neues Tagblatt aus der östlichen Schweiz",
@@ -187,7 +187,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-NZG",
+    "id": "SNL-NZG-1846-1891",
     "associatedPartner": "SNL",
     "mediaId": "NZG",
     "mediaTitle": "Neue Zuger Zeitung (II)",
@@ -204,7 +204,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-SGZ",
+    "id": "SNL-SGZ-1831-1881",
     "associatedPartner": "SNL",
     "mediaId": "SGZ",
     "mediaTitle": "St.Galler Zeitung",
@@ -221,7 +221,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-SRT",
+    "id": "SNL-SRT-1798-1798",
     "associatedPartner": "SNL",
     "mediaId": "SRT",
     "mediaTitle": "Schweizerische Tag-Blätter",
@@ -238,7 +238,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-WHD",
+    "id": "SNL-WHD-1835-1863",
     "associatedPartner": "SNL",
     "mediaId": "WHD",
     "mediaTitle": "Der Wahrheitsfreund",
@@ -255,7 +255,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "SNL-ZBT",
+    "id": "SNL-ZBT-1865-1868",
     "associatedPartner": "SNL",
     "mediaId": "ZBT",
     "mediaTitle": "Der Zugerbieter",
@@ -272,7 +272,7 @@
     "partnerBitmapIndex": 5
   },
   {
-    "id": "MVS-BDC",
+    "id": "MVS-BDC-1839-1839",
     "associatedPartner": "MVS",
     "mediaId": "BDC",
     "mediaTitle": "Bulletin des séances de la Constituante",
@@ -289,7 +289,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "MVS-CDV",
+    "id": "MVS-CDV-1843-1857",
     "associatedPartner": "MVS",
     "mediaId": "CDV",
     "mediaTitle": "Courrier du Valais",
@@ -306,7 +306,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "MVS-EDA",
+    "id": "MVS-EDA-1839-1844",
     "associatedPartner": "MVS",
     "mediaId": "EDA",
     "mediaTitle": "L’Écho des Alpes",
@@ -323,7 +323,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "MVS-JDV",
+    "id": "MVS-JDV-1848-1848",
     "associatedPartner": "MVS",
     "mediaId": "JDV",
     "mediaTitle": "Le Journal du Valais",
@@ -340,7 +340,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "MVS-LSR",
+    "id": "MVS-LSR-1846-1848",
     "associatedPartner": "MVS",
     "mediaId": "LSR",
     "mediaTitle": "L’Observateur",
@@ -357,7 +357,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "MVS-CON",
+    "id": "MVS-CON-1902-1903",
     "associatedPartner": "MVS",
     "mediaId": "CON",
     "mediaTitle": "La Contrée",
@@ -374,7 +374,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "MVS-GAV",
+    "id": "MVS-GAV-1855-1922",
     "associatedPartner": "MVS",
     "mediaId": "GAV",
     "mediaTitle": "Gazette du Valais / Nouvelle gazette du Valais",
@@ -391,7 +391,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "MVS-GAZ",
+    "id": "MVS-GAZ-1842-1847",
     "associatedPartner": "MVS",
     "mediaId": "GAZ",
     "mediaTitle": "Gazette du Simplon",
@@ -408,7 +408,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "MVS-SAX",
+    "id": "MVS-SAX-1882-1884",
     "associatedPartner": "MVS",
     "mediaId": "SAX",
     "mediaTitle": "Journal de Saxon",
@@ -425,7 +425,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "MVS-VDR",
+    "id": "MVS-VDR-1844-1844",
     "associatedPartner": "MVS",
     "mediaId": "VDR",
     "mediaTitle": "La Voix du Rhône",
@@ -442,7 +442,7 @@
     "partnerBitmapIndex": 30
   },
   {
-    "id": "BCUF-DLE",
+    "id": "BCUF-DLE-1909-1914",
     "associatedPartner": "BCUF",
     "mediaId": "DLE",
     "mediaTitle": "Der Landbote des freiburgischen Seebezirks",
@@ -459,7 +459,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-JDF",
+    "id": "BCUF-JDF-1830-1833",
     "associatedPartner": "BCUF",
     "mediaId": "JDF",
     "mediaTitle": "Journal du canton de Fribourg",
@@ -476,7 +476,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-LBP",
+    "id": "BCUF-LBP-1879-1888",
     "associatedPartner": "BCUF",
     "mediaId": "LBP",
     "mediaTitle": "Le Bien public",
@@ -493,7 +493,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-LCR",
+    "id": "BCUF-LCR-1854-1881",
     "associatedPartner": "BCUF",
     "mediaId": "LCR",
     "mediaTitle": "Le Chroniqueur",
@@ -510,7 +510,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-LCS",
+    "id": "BCUF-LCS-1829-1830",
     "associatedPartner": "BCUF",
     "mediaId": "LCS",
     "mediaTitle": "Le Courrier fribourgeois",
@@ -527,7 +527,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-LNF",
+    "id": "BCUF-LNF-1840-1855",
     "associatedPartner": "BCUF",
     "mediaId": "LNF",
     "mediaTitle": "Le Narrateur fribourgeois",
@@ -544,7 +544,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-LTF",
+    "id": "BCUF-LTF-1905-1905",
     "associatedPartner": "BCUF",
     "mediaId": "LTF",
     "mediaTitle": "La Tribune de Fribourg",
@@ -561,7 +561,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-LVE",
+    "id": "BCUF-LVE-1831-1833",
     "associatedPartner": "BCUF",
     "mediaId": "LVE",
     "mediaTitle": "Le Véridique",
@@ -578,7 +578,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-LCG",
+    "id": "BCUF-LCG-1848-1907",
     "associatedPartner": "BCUF",
     "mediaId": "LCG",
     "mediaTitle": "Le Confédéré de Fribourg",
@@ -595,7 +595,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-FZG",
+    "id": "BCUF-FZG-1864-2006",
     "associatedPartner": "BCUF",
     "mediaId": "FZG",
     "mediaTitle": "Freiburger Nachrichten",
@@ -612,7 +612,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "BCUF-LLE",
+    "id": "BCUF-LLE-1871-2018",
     "associatedPartner": "BCUF",
     "mediaId": "LLE",
     "mediaTitle": "La Liberté",
@@ -629,7 +629,7 @@
     "partnerBitmapIndex": 23
   },
   {
-    "id": "ArcInfo-EXP",
+    "id": "ArcInfo-EXP-1738-2018",
     "associatedPartner": "ArcInfo",
     "mediaId": "EXP",
     "mediaTitle": "L'Express",
@@ -646,7 +646,7 @@
     "partnerBitmapIndex": 39
   },
   {
-    "id": "ArcInfo-IMP",
+    "id": "ArcInfo-IMP-1881-2018",
     "associatedPartner": "ArcInfo",
     "mediaId": "IMP",
     "mediaTitle": "L'Impartial",
@@ -663,7 +663,7 @@
     "partnerBitmapIndex": 39
   },
   {
-    "id": "LCE-LCE",
+    "id": "LCE-LCE-1861-2018",
     "associatedPartner": "LCE",
     "mediaId": "LCE",
     "mediaTitle": "Confédéré",
@@ -680,7 +680,7 @@
     "partnerBitmapIndex": 28
   },
   {
-    "id": "LeTemps-JDG",
+    "id": "LeTemps-JDG-1826-1998",
     "associatedPartner": "LeTemps",
     "mediaId": "JDG",
     "mediaTitle": "Journal de Genève",
@@ -697,7 +697,7 @@
     "partnerBitmapIndex": 14
   },
   {
-    "id": "LeTemps-GDL",
+    "id": "LeTemps-GDL-1798-1991",
     "associatedPartner": "LeTemps",
     "mediaId": "GDL",
     "mediaTitle": "Gazette de Lausanne",
@@ -714,7 +714,7 @@
     "partnerBitmapIndex": 14
   },
   {
-    "id": "Migros-DTT",
+    "id": "Migros-DTT-1935-1978",
     "associatedPartner": "Migros",
     "mediaId": "DTT",
     "mediaTitle": "Die Tat",
@@ -731,7 +731,7 @@
     "partnerBitmapIndex": 24
   },
   {
-    "id": "Unia-FCT",
+    "id": "Unia-FCT-1955-1963",
     "associatedPartner": "Unia",
     "mediaId": "FCT",
     "mediaTitle": "La FCTA",
@@ -748,7 +748,7 @@
     "partnerBitmapIndex": 34
   },
   {
-    "id": "Unia-LLS",
+    "id": "Unia-LLS-1906-1998",
     "associatedPartner": "Unia",
     "mediaId": "LLS",
     "mediaTitle": "La lutte syndicale",
@@ -765,7 +765,7 @@
     "partnerBitmapIndex": 34
   },
   {
-    "id": "Unia-OIZ",
+    "id": "Unia-OIZ-1901-1992",
     "associatedPartner": "Unia",
     "mediaId": "OIZ",
     "mediaTitle": "Die Gewerkschaft",
@@ -782,7 +782,7 @@
     "partnerBitmapIndex": 34
   },
   {
-    "id": "Unia-SDT",
+    "id": "Unia-SDT-1909-2001",
     "associatedPartner": "Unia",
     "mediaId": "SDT",
     "mediaTitle": "Solidarité",
@@ -799,7 +799,7 @@
     "partnerBitmapIndex": 34
   },
   {
-    "id": "Unia-SMZ",
+    "id": "Unia-SMZ-1902-2004",
     "associatedPartner": "Unia",
     "mediaId": "SMZ",
     "mediaTitle": "SMUV-Zeitung",
@@ -816,7 +816,7 @@
     "partnerBitmapIndex": 34
   },
   {
-    "id": "Unia-VHT",
+    "id": "Unia-VHT-1904-2004",
     "associatedPartner": "Unia",
     "mediaId": "VHT",
     "mediaTitle": "VHTL-Zeitung",
@@ -833,7 +833,7 @@
     "partnerBitmapIndex": 34
   },
   {
-    "id": "BVCF-LSE",
+    "id": "BVCF-LSE-1890-1971",
     "associatedPartner": "BVCF",
     "mediaId": "LSE",
     "mediaTitle": "Le Peuple, La Sentinelle",
@@ -850,7 +850,7 @@
     "partnerBitmapIndex": 37
   },
   {
-    "id": "BVCF-LES",
+    "id": "BVCF-LES-1906-2018",
     "associatedPartner": "BVCF",
     "mediaId": "LES",
     "mediaTitle": "L'Essor",
@@ -867,7 +867,7 @@
     "partnerBitmapIndex": 37
   },
   {
-    "id": "BCUL-ACI",
+    "id": "BCUL-ACI-1832-1832",
     "associatedPartner": "BCUL",
     "mediaId": "ACI",
     "mediaTitle": "Almanach pour le commerce",
@@ -884,7 +884,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Castigat",
+    "id": "BCUL-Castigat-1879-1880",
     "associatedPartner": "BCUL",
     "mediaId": "Castigat",
     "mediaTitle": "Castigat ridendo mores",
@@ -901,7 +901,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-CL",
+    "id": "BCUL-CL-1882-1886",
     "associatedPartner": "BCUL",
     "mediaId": "CL",
     "mediaTitle": "Courrier du Léman",
@@ -918,7 +918,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Croquis",
+    "id": "BCUL-Croquis-1884-1887",
     "associatedPartner": "BCUL",
     "mediaId": "Croquis",
     "mediaTitle": "Croquis vaudois",
@@ -935,7 +935,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-FAM",
+    "id": "BCUL-FAM-1854-1854",
     "associatedPartner": "BCUL",
     "mediaId": "FAM",
     "mediaTitle": "Feuille d'avis de Morges 1",
@@ -952,7 +952,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-FAMDE",
+    "id": "BCUL-FAMDE-1859-1859",
     "associatedPartner": "BCUL",
     "mediaId": "FAMDE",
     "mediaTitle": "Feuille d'avis de Moudon",
@@ -969,7 +969,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-FAN",
+    "id": "BCUL-FAN-1849-1867",
     "associatedPartner": "BCUL",
     "mediaId": "FAN",
     "mediaTitle": "Feuille d'avis de Nyon",
@@ -986,7 +986,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-FAV1",
+    "id": "BCUL-FAV1-1784-1826",
     "associatedPartner": "BCUL",
     "mediaId": "FAV1",
     "mediaTitle": "Feuille d'avis de Vevey 1",
@@ -1003,7 +1003,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-GAVi",
+    "id": "BCUL-GAVi-1867-1868",
     "associatedPartner": "BCUL",
     "mediaId": "GAVi",
     "mediaTitle": "Gazette des Villages",
@@ -1020,7 +1020,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-AV",
+    "id": "BCUL-AV-1880-1886",
     "associatedPartner": "BCUL",
     "mediaId": "AV",
     "mediaTitle": "Indicateur de Lausanne",
@@ -1037,7 +1037,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-JY2",
+    "id": "BCUL-JY2-1842-1843",
     "associatedPartner": "BCUL",
     "mediaId": "JY2",
     "mediaTitle": "Journal d'Yverdon 2",
@@ -1054,7 +1054,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-JV",
+    "id": "BCUL-JV-1865-1882",
     "associatedPartner": "BCUL",
     "mediaId": "JV",
     "mediaTitle": "Journal de Vevey",
@@ -1071,7 +1071,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-JVE",
+    "id": "BCUL-JVE-1891-1894",
     "associatedPartner": "BCUL",
     "mediaId": "JVE",
     "mediaTitle": "Journal de Vevey et des étrangers",
@@ -1088,7 +1088,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-JH",
+    "id": "BCUL-JH-1738-1782",
     "associatedPartner": "BCUL",
     "mediaId": "JH",
     "mediaTitle": "Journal helvétique",
@@ -1105,7 +1105,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-NV",
+    "id": "BCUL-NV-1822-1823",
     "associatedPartner": "BCUL",
     "mediaId": "NV",
     "mediaTitle": "L'ami de la vérité: journal du Canton de Vaud",
@@ -1122,7 +1122,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-EM",
+    "id": "BCUL-EM-1883-1892",
     "associatedPartner": "BCUL",
     "mediaId": "EM",
     "mediaTitle": "L'Echo de Morges",
@@ -1139,7 +1139,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-esta",
+    "id": "BCUL-esta-1862-1895",
     "associatedPartner": "BCUL",
     "mediaId": "esta",
     "mediaTitle": "L'Estafette: Journal suisse",
@@ -1156,7 +1156,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-OBS",
+    "id": "BCUL-OBS-1865-1865",
     "associatedPartner": "BCUL",
     "mediaId": "OBS",
     "mediaTitle": "L'Observateur du Léman",
@@ -1173,7 +1173,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Bombe",
+    "id": "BCUL-Bombe-1889-1889",
     "associatedPartner": "BCUL",
     "mediaId": "Bombe",
     "mediaTitle": "La Bombe",
@@ -1190,7 +1190,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Cancoire",
+    "id": "BCUL-Cancoire-1898-1898",
     "associatedPartner": "BCUL",
     "mediaId": "Cancoire",
     "mediaTitle": "La Cancoire",
@@ -1207,7 +1207,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Fronde",
+    "id": "BCUL-Fronde-1872-1872",
     "associatedPartner": "BCUL",
     "mediaId": "Fronde",
     "mediaTitle": "La Fronde",
@@ -1224,7 +1224,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Griffe",
+    "id": "BCUL-Griffe-1864-1866",
     "associatedPartner": "BCUL",
     "mediaId": "Griffe",
     "mediaTitle": "La Griffe",
@@ -1241,7 +1241,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Guepe1851",
+    "id": "BCUL-Guepe1851-1851-1854",
     "associatedPartner": "BCUL",
     "mediaId": "Guepe1851",
     "mediaTitle": "La Guêpe [1]",
@@ -1258,7 +1258,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Guepe1887",
+    "id": "BCUL-Guepe1887-1887-1897",
     "associatedPartner": "BCUL",
     "mediaId": "Guepe1887",
     "mediaTitle": "La Guêpe [2]",
@@ -1275,7 +1275,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-RLA",
+    "id": "BCUL-RLA-1891-1898",
     "associatedPartner": "BCUL",
     "mediaId": "RLA",
     "mediaTitle": "La Revue agricole",
@@ -1292,7 +1292,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-PAT",
+    "id": "BCUL-PAT-1841-1844",
     "associatedPartner": "BCUL",
     "mediaId": "PAT",
     "mediaTitle": "La Veveysanne - La Patrie (La Patrie)",
@@ -1309,7 +1309,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-VVS",
+    "id": "BCUL-VVS-1840-1843",
     "associatedPartner": "BCUL",
     "mediaId": "VVS",
     "mediaTitle": "La Veveysanne - La Patrie (La Veveysanne)",
@@ -1326,7 +1326,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Charivari",
+    "id": "BCUL-Charivari-1839-1841",
     "associatedPartner": "BCUL",
     "mediaId": "Charivari",
     "mediaTitle": "Le Charivari [1]",
@@ -1343,7 +1343,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-CharivariCH",
+    "id": "BCUL-CharivariCH-1875-1877",
     "associatedPartner": "BCUL",
     "mediaId": "CharivariCH",
     "mediaTitle": "Le Charivari [2]",
@@ -1360,7 +1360,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Grelot",
+    "id": "BCUL-Grelot-1843-1846",
     "associatedPartner": "BCUL",
     "mediaId": "Grelot",
     "mediaTitle": "Le Grelot",
@@ -1377,7 +1377,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-MESSAGER",
+    "id": "BCUL-MESSAGER-1879-1881",
     "associatedPartner": "BCUL",
     "mediaId": "MESSAGER",
     "mediaTitle": "Le Messager",
@@ -1394,7 +1394,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-Moniteur",
+    "id": "BCUL-Moniteur-1879-1880",
     "associatedPartner": "BCUL",
     "mediaId": "Moniteur",
     "mediaTitle": "Le Moniteur",
@@ -1411,7 +1411,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-NV1",
+    "id": "BCUL-NV1-1824-1855",
     "associatedPartner": "BCUL",
     "mediaId": "NV1",
     "mediaTitle": "Le Nouvelliste vaudois",
@@ -1428,7 +1428,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-ouistiti",
+    "id": "BCUL-ouistiti-1882-1882",
     "associatedPartner": "BCUL",
     "mediaId": "ouistiti",
     "mediaTitle": "Le Ouistiti",
@@ -1445,7 +1445,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-PJ",
+    "id": "BCUL-PJ-1831-1832",
     "associatedPartner": "BCUL",
     "mediaId": "PJ",
     "mediaTitle": "Le Père Jérôme",
@@ -1462,7 +1462,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-PS",
+    "id": "BCUL-PS-1845-1846",
     "associatedPartner": "BCUL",
     "mediaId": "PS",
     "mediaTitle": "Le Peuple souverain",
@@ -1479,7 +1479,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-PDL",
+    "id": "BCUL-PDL-1841-1842",
     "associatedPartner": "BCUL",
     "mediaId": "PDL",
     "mediaTitle": "Le Phare du Léman",
@@ -1496,7 +1496,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-TouSuIl",
+    "id": "BCUL-TouSuIl-1866-1882",
     "associatedPartner": "BCUL",
     "mediaId": "TouSuIl",
     "mediaTitle": "Le Touriste / La Suisse Illustrée",
@@ -1513,7 +1513,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-VVS1",
+    "id": "BCUL-VVS1-1888-1889",
     "associatedPartner": "BCUL",
     "mediaId": "VVS1",
     "mediaTitle": "Le Veveysan 1",
@@ -1530,7 +1530,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-ME",
+    "id": "BCUL-ME-1732-1747",
     "associatedPartner": "BCUL",
     "mediaId": "ME",
     "mediaTitle": "Mercure suisse",
@@ -1547,7 +1547,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-MB",
+    "id": "BCUL-MB-1748-1800",
     "associatedPartner": "BCUL",
     "mediaId": "MB",
     "mediaTitle": "Messager boîteux",
@@ -1564,7 +1564,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-NS",
+    "id": "BCUL-NS-1748-1769",
     "associatedPartner": "BCUL",
     "mediaId": "NS",
     "mediaTitle": "Nouvelliste suisse",
@@ -1581,7 +1581,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "BCUL-NV2",
+    "id": "BCUL-NV2-1856-1891",
     "associatedPartner": "BCUL",
     "mediaId": "NV2",
     "mediaTitle": "Nouvelliste vaudois et journal national suisse",
@@ -1598,7 +1598,7 @@
     "partnerBitmapIndex": 22
   },
   {
-    "id": "SWISSINFO-SOC_CJ",
+    "id": "SWISSINFO-SOC_CJ-1940-1945",
     "associatedPartner": "SWISSINFO",
     "mediaId": "SOC_CJ",
     "mediaTitle": "Chronique du jour",
@@ -1615,7 +1615,7 @@
     "partnerBitmapIndex": 40
   },
   {
-    "id": "SWISSINFO-SOC_CP",
+    "id": "SWISSINFO-SOC_CP-1939-1945",
     "associatedPartner": "SWISSINFO",
     "mediaId": "SOC_CP",
     "mediaTitle": "Chroniques politiques",
@@ -1632,7 +1632,7 @@
     "partnerBitmapIndex": 40
   },
   {
-    "id": "SWISSINFO-SOC_SO",
+    "id": "SWISSINFO-SOC_SO-1940-1945",
     "associatedPartner": "SWISSINFO",
     "mediaId": "SOC_SO",
     "mediaTitle": "Swiss Observer",
@@ -1649,7 +1649,7 @@
     "partnerBitmapIndex": 40
   },
   {
-    "id": "SWISSINFO-SOC_TH",
+    "id": "SWISSINFO-SOC_TH-1941-1945",
     "associatedPartner": "SWISSINFO",
     "mediaId": "SOC_TH",
     "mediaTitle": "Today at Home and Abroad",
@@ -1666,7 +1666,7 @@
     "partnerBitmapIndex": 40
   },
   {
-    "id": "SWISSINFO-SOC_VS",
+    "id": "SWISSINFO-SOC_VS-1943-1944",
     "associatedPartner": "SWISSINFO",
     "mediaId": "SOC_VS",
     "mediaTitle": "Voix de la Suisse",
@@ -1683,7 +1683,7 @@
     "partnerBitmapIndex": 40
   },
   {
-    "id": "BL-AHEC",
+    "id": "BL-AHEC-1875-1880",
     "associatedPartner": "BL",
     "mediaId": "AHEC",
     "mediaTitle": "Alston Herald and East Cumberland Advertiser",
@@ -1700,7 +1700,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BGJO",
+    "id": "BL-BGJO-1904-1905",
     "associatedPartner": "BL",
     "mediaId": "BGJO",
     "mediaTitle": "Bargoed Journal",
@@ -1717,7 +1717,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BGJO",
+    "id": "BL-BGJO-1906-1912",
     "associatedPartner": "BL",
     "mediaId": "BGJO",
     "mediaTitle": "Bargoed Journal",
@@ -1734,7 +1734,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BFNP",
+    "id": "BL-BFNP-1858-1858",
     "associatedPartner": "BL",
     "mediaId": "BFNP",
     "mediaTitle": "Bell's Family Newspaper",
@@ -1751,7 +1751,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BELL",
+    "id": "BL-BELL-1855-1857",
     "associatedPartner": "BL",
     "mediaId": "BELL",
     "mediaTitle": "Bell's News",
@@ -1768,7 +1768,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BPDH",
+    "id": "BL-BPDH-1842-1842",
     "associatedPartner": "BL",
     "mediaId": "BPDH",
     "mediaTitle": "Bell's Penny Dispatch",
@@ -1785,7 +1785,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BPHF",
+    "id": "BL-BPHF-1831-1831",
     "associatedPartner": "BL",
     "mediaId": "BPHF",
     "mediaTitle": "Berthold's Political Handkerchief",
@@ -1802,7 +1802,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BWNW",
+    "id": "BL-BWNW-1885-1892",
     "associatedPartner": "BL",
     "mediaId": "BWNW",
     "mediaTitle": "Blandford Weekly News",
@@ -1819,7 +1819,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BQGA",
+    "id": "BL-BQGA-1877-1905",
     "associatedPartner": "BL",
     "mediaId": "BQGA",
     "mediaTitle": "Bridlington and Quay Gazette",
@@ -1836,7 +1836,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BQGA",
+    "id": "BL-BQGA-1906-1914",
     "associatedPartner": "BL",
     "mediaId": "BQGA",
     "mediaTitle": "Bridlington and Quay Gazette",
@@ -1853,7 +1853,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BBLT",
+    "id": "BL-BBLT-1865-1886",
     "associatedPartner": "BL",
     "mediaId": "BBLT",
     "mediaTitle": "Bridport, Beaminster, and Lyme Regis Telegram",
@@ -1870,7 +1870,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRIF",
+    "id": "BL-BRIF-1877-1882",
     "associatedPartner": "BL",
     "mediaId": "BRIF",
     "mediaTitle": "Brief",
@@ -1887,7 +1887,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRGA",
+    "id": "BL-BRGA-1879-1899",
     "associatedPartner": "BL",
     "mediaId": "BRGA",
     "mediaTitle": "Brighouse & Rastrick Gazette",
@@ -1904,7 +1904,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRAD",
+    "id": "BL-BRAD-1848-1856",
     "associatedPartner": "BL",
     "mediaId": "BRAD",
     "mediaTitle": "British Army Despatch",
@@ -1921,7 +1921,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRMW",
+    "id": "BL-BRMW-1806-1825",
     "associatedPartner": "BL",
     "mediaId": "BRMW",
     "mediaTitle": "British Mercury or Wednesday Evening Post",
@@ -1938,7 +1938,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRMG",
+    "id": "BL-BRMG-1862-1867",
     "associatedPartner": "BL",
     "mediaId": "BRMG",
     "mediaTitle": "British Miner and General Newsman",
@@ -1955,7 +1955,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CKTC",
+    "id": "BL-CKTC-1855-1856",
     "associatedPartner": "BL",
     "mediaId": "CKTC",
     "mediaTitle": "Charles Knight's Town & Country Newspaper",
@@ -1972,7 +1972,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CPAD",
+    "id": "BL-CPAD-1860-1866",
     "associatedPartner": "BL",
     "mediaId": "CPAD",
     "mediaTitle": "Chelsea & Pimlico Advertiser",
@@ -1989,7 +1989,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CHTI",
+    "id": "BL-CHTI-1863-1871",
     "associatedPartner": "BL",
     "mediaId": "CHTI",
     "mediaTitle": "Christian Times",
@@ -2006,7 +2006,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CLTP",
+    "id": "BL-CLTP-1848-1849",
     "associatedPartner": "BL",
     "mediaId": "CLTP",
     "mediaTitle": "City of London Trade Protection Circular",
@@ -2023,7 +2023,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CWPG",
+    "id": "BL-CWPG-1835-1836",
     "associatedPartner": "BL",
     "mediaId": "CWPG",
     "mediaTitle": "Cleave's Weekly Police Gazette",
@@ -2040,7 +2040,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CBEP",
+    "id": "BL-CBEP-1820-1820",
     "associatedPartner": "BL",
     "mediaId": "CBEP",
     "mediaTitle": "Cobbett's Evening Post",
@@ -2057,7 +2057,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CLNW",
+    "id": "BL-CLNW-1855-1855",
     "associatedPartner": "BL",
     "mediaId": "CLNW",
     "mediaTitle": "Colored News",
@@ -2074,7 +2074,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CMSN",
+    "id": "BL-CMSN-1824-1826",
     "associatedPartner": "BL",
     "mediaId": "CMSN",
     "mediaTitle": "Common Sense",
@@ -2091,7 +2091,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CHSO",
+    "id": "BL-CHSO-1864-1888",
     "associatedPartner": "BL",
     "mediaId": "CHSO",
     "mediaTitle": "Cradley Heath & Stourbridge Observer",
@@ -2108,7 +2108,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DPLT",
+    "id": "BL-DPLT-1836-1836",
     "associatedPartner": "BL",
     "mediaId": "DPLT",
     "mediaTitle": "Daily Politician",
@@ -2125,7 +2125,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DRHE",
+    "id": "BL-DRHE-1867-1880",
     "associatedPartner": "BL",
     "mediaId": "DRHE",
     "mediaTitle": "Darlington & Richmond Herald",
@@ -2142,7 +2142,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DHEX",
+    "id": "BL-DHEX-1873-1892",
     "associatedPartner": "BL",
     "mediaId": "DHEX",
     "mediaTitle": "Denton and Haughton Examiner",
@@ -2159,7 +2159,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DCWA",
+    "id": "BL-DCWA-1869-1895",
     "associatedPartner": "BL",
     "mediaId": "DCWA",
     "mediaTitle": "Dewsbury Chronicle and West Riding Advertiser",
@@ -2176,7 +2176,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DCEA",
+    "id": "BL-DCEA-1858-1886",
     "associatedPartner": "BL",
     "mediaId": "DCEA",
     "mediaTitle": "Dorset County Express and Agricultural Gazette",
@@ -2193,7 +2193,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DJWN",
+    "id": "BL-DJWN-1846-1851",
     "associatedPartner": "BL",
     "mediaId": "DJWN",
     "mediaTitle": "Douglas Jerrold's Weekly Newspaper",
@@ -2210,7 +2210,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DDIS",
+    "id": "BL-DDIS-1818-1818",
     "associatedPartner": "BL",
     "mediaId": "DDIS",
     "mediaTitle": "Duckett's Dispatch",
@@ -2227,7 +2227,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ELAD",
+    "id": "BL-ELAD-1862-1866",
     "associatedPartner": "BL",
     "mediaId": "ELAD",
     "mediaTitle": "East London Advertiser",
@@ -2244,7 +2244,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-EAWN",
+    "id": "BL-EAWN-1875-1876",
     "associatedPartner": "BL",
     "mediaId": "EAWN",
     "mediaTitle": "East Wind",
@@ -2261,7 +2261,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-FFPR",
+    "id": "BL-FFPR-1868-1869",
     "associatedPartner": "BL",
     "mediaId": "FFPR",
     "mediaTitle": "Finsbury Free Press",
@@ -2278,7 +2278,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-FBFC",
+    "id": "BL-FBFC-1823-1829",
     "associatedPartner": "BL",
     "mediaId": "FBFC",
     "mediaTitle": "Fleming's British Farmers' Chronicle",
@@ -2295,7 +2295,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-FWEX",
+    "id": "BL-FWEX-1823-1826",
     "associatedPartner": "BL",
     "mediaId": "FWEX",
     "mediaTitle": "Fleming's Weekly Express",
@@ -2312,7 +2312,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-FONU",
+    "id": "BL-FONU-1849-1849",
     "associatedPartner": "BL",
     "mediaId": "FONU",
     "mediaTitle": "Fonetic Nuz",
@@ -2329,7 +2329,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-FMNW",
+    "id": "BL-FMNW-1859-1859",
     "associatedPartner": "BL",
     "mediaId": "FMNW",
     "mediaTitle": "Francis's Metropolitan News",
@@ -2346,7 +2346,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-GLCO",
+    "id": "BL-GLCO-1802-1866",
     "associatedPartner": "BL",
     "mediaId": "GLCO",
     "mediaTitle": "Glasgow Courier",
@@ -2363,7 +2363,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-GLSE",
+    "id": "BL-GLSE-1821-1823",
     "associatedPartner": "BL",
     "mediaId": "GLSE",
     "mediaTitle": "Glasgow Sentinel",
@@ -2380,7 +2380,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-GOTM",
+    "id": "BL-GOTM-1852-1852",
     "associatedPartner": "BL",
     "mediaId": "GOTM",
     "mediaTitle": "Golden Times",
@@ -2397,7 +2397,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HLCM",
+    "id": "BL-HLCM-1892-1905",
     "associatedPartner": "BL",
     "mediaId": "HLCM",
     "mediaTitle": "Halifax Comet",
@@ -2414,7 +2414,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HAGZ",
+    "id": "BL-HAGZ-1901-1905",
     "associatedPartner": "BL",
     "mediaId": "HAGZ",
     "mediaTitle": "Haslingden Gazette",
@@ -2431,7 +2431,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HAGZ",
+    "id": "BL-HAGZ-1906-1926",
     "associatedPartner": "BL",
     "mediaId": "HAGZ",
     "mediaTitle": "Haslingden Gazette",
@@ -2448,7 +2448,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HTWD",
+    "id": "BL-HTWD-1836-1836",
     "associatedPartner": "BL",
     "mediaId": "HTWD",
     "mediaTitle": "Hetherington's Twopenny Dispatch",
@@ -2465,7 +2465,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HLLN",
+    "id": "BL-HLLN-1827-1828",
     "associatedPartner": "BL",
     "mediaId": "HLLN",
     "mediaTitle": "High Life in London",
@@ -2482,7 +2482,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HWCH",
+    "id": "BL-HWCH-1837-1855",
     "associatedPartner": "BL",
     "mediaId": "HWCH",
     "mediaTitle": "Holt's Weekly Chronicle",
@@ -2499,7 +2499,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HOUR",
+    "id": "BL-HOUR-1873-1876",
     "associatedPartner": "BL",
     "mediaId": "HOUR",
     "mediaTitle": "Hour",
@@ -2516,7 +2516,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ICPG",
+    "id": "BL-ICPG-1853-1854",
     "associatedPartner": "BL",
     "mediaId": "ICPG",
     "mediaTitle": "Illustrated Crystal Palace Gazette",
@@ -2533,7 +2533,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ILOL",
+    "id": "BL-ILOL-1843-1843",
     "associatedPartner": "BL",
     "mediaId": "ILOL",
     "mediaTitle": "Illustrated London Life",
@@ -2550,7 +2550,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-IMNW",
+    "id": "BL-IMNW-1869-1871",
     "associatedPartner": "BL",
     "mediaId": "IMNW",
     "mediaTitle": "Illustrated Midland News",
@@ -2567,7 +2567,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ISNT",
+    "id": "BL-ISNT-1864-1869",
     "associatedPartner": "BL",
     "mediaId": "ISNT",
     "mediaTitle": "Illustrated Sporting News and Theatrical and Musical Review",
@@ -2584,7 +2584,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ILT53",
+    "id": "BL-ILT53-1853-1854",
     "associatedPartner": "BL",
     "mediaId": "ILT53",
     "mediaTitle": "Illustrated Times 1853",
@@ -2601,7 +2601,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ILWT",
+    "id": "BL-ILWT-1843-1843",
     "associatedPartner": "BL",
     "mediaId": "ILWT",
     "mediaTitle": "Illustrated Weekly Times",
@@ -2618,7 +2618,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-IREX",
+    "id": "BL-IREX-1882-1886",
     "associatedPartner": "BL",
     "mediaId": "IREX",
     "mediaTitle": "Irvine Express",
@@ -2635,7 +2635,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ISTM",
+    "id": "BL-ISTM-1857-1874",
     "associatedPartner": "BL",
     "mediaId": "ISTM",
     "mediaTitle": "Islington Times",
@@ -2652,7 +2652,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-JWRC",
+    "id": "BL-JWRC-1868-1871",
     "associatedPartner": "BL",
     "mediaId": "JWRC",
     "mediaTitle": "Jewish Record",
@@ -2669,7 +2669,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-JSMN",
+    "id": "BL-JSMN-1804-1829",
     "associatedPartner": "BL",
     "mediaId": "JSMN",
     "mediaTitle": "Johnson's Sunday Monitor",
@@ -2686,7 +2686,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-KEAD",
+    "id": "BL-KEAD-1869-1905",
     "associatedPartner": "BL",
     "mediaId": "KEAD",
     "mediaTitle": "Kenilworth Advertiser",
@@ -2703,7 +2703,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-KEAD",
+    "id": "BL-KEAD-1906-1923",
     "associatedPartner": "BL",
     "mediaId": "KEAD",
     "mediaTitle": "Kenilworth Advertiser",
@@ -2720,7 +2720,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LSCA",
+    "id": "BL-LSCA-1893-1905",
     "associatedPartner": "BL",
     "mediaId": "LSCA",
     "mediaTitle": "Lancaster Standard and County Advertiser",
@@ -2737,7 +2737,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LSCA",
+    "id": "BL-LSCA-1906-1909",
     "associatedPartner": "BL",
     "mediaId": "LSCA",
     "mediaTitle": "Lancaster Standard and County Advertiser",
@@ -2754,7 +2754,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LSIR",
+    "id": "BL-LSIR-1754-1866",
     "associatedPartner": "BL",
     "mediaId": "LSIR",
     "mediaTitle": "Leeds Intelligencer",
@@ -2771,7 +2771,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LSGA",
+    "id": "BL-LSGA-1832-1856",
     "associatedPartner": "BL",
     "mediaId": "LSGA",
     "mediaTitle": "Liverpool Standard and General Commercial Advertiser",
@@ -2788,7 +2788,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LWC",
+    "id": "BL-LWC-1867-1903",
     "associatedPartner": "BL",
     "mediaId": "LWC",
     "mediaTitle": "Liverpool Weekly Courier",
@@ -2805,7 +2805,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LCPP",
+    "id": "BL-LCPP-1841-1847",
     "associatedPartner": "BL",
     "mediaId": "LCPP",
     "mediaTitle": "Lloyd's Companion to the Penny Sunday Times and Peoples' Police Gazette",
@@ -2822,7 +2822,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LPNGA",
+    "id": "BL-LPNGA-1861-1867",
     "associatedPartner": "BL",
     "mediaId": "LPNGA",
     "mediaTitle": "London & Provincial News and General Advertiser",
@@ -2839,7 +2839,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LHPN",
+    "id": "BL-LHPN-1861-1861",
     "associatedPartner": "BL",
     "mediaId": "LHPN",
     "mediaTitle": "London Halfpenny Newspaper",
@@ -2856,7 +2856,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LJGA",
+    "id": "BL-LJGA-1836-1837",
     "associatedPartner": "BL",
     "mediaId": "LJGA",
     "mediaTitle": "London Journal and General Advertiser for Town and Country",
@@ -2873,7 +2873,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LNLF",
+    "id": "BL-LNLF-1879-1879",
     "associatedPartner": "BL",
     "mediaId": "LNLF",
     "mediaTitle": "London Life",
@@ -2890,7 +2890,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LMNA",
+    "id": "BL-LMNA-1813-1823",
     "associatedPartner": "BL",
     "mediaId": "LMNA",
     "mediaTitle": "London Moderator and National Adviser",
@@ -2907,7 +2907,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LRNW",
+    "id": "BL-LRNW-1845-1845",
     "associatedPartner": "BL",
     "mediaId": "LRNW",
     "mediaTitle": "London Railway Newspaper",
@@ -2924,7 +2924,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-MEXA",
+    "id": "BL-MEXA-1846-1848",
     "associatedPartner": "BL",
     "mediaId": "MEXA",
     "mediaTitle": "Manchester Examiner",
@@ -2941,7 +2941,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-MRTT",
+    "id": "BL-MRTT-1801-1823",
     "associatedPartner": "BL",
     "mediaId": "MRTT",
     "mediaTitle": "Mirror of the Times",
@@ -2958,7 +2958,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-MRHD",
+    "id": "BL-MRHD-1801-1869",
     "associatedPartner": "BL",
     "mediaId": "MRHD",
     "mediaTitle": "Morning Herald",
@@ -2975,7 +2975,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NSCS",
+    "id": "BL-NSCS-1888-1892",
     "associatedPartner": "BL",
     "mediaId": "NSCS",
     "mediaTitle": "Nantwich, Sandbach & Crewe Star",
@@ -2992,7 +2992,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NTRG",
+    "id": "BL-NTRG-1810-1810",
     "associatedPartner": "BL",
     "mediaId": "NTRG",
     "mediaTitle": "National Register",
@@ -3009,7 +3009,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NCCO",
+    "id": "BL-NCCO-1890-1904",
     "associatedPartner": "BL",
     "mediaId": "NCCO",
     "mediaTitle": "Nelson Chronicle, Colne Observer and Clitheroe Division News",
@@ -3026,7 +3026,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NCGA",
+    "id": "BL-NCGA-1840-1846",
     "associatedPartner": "BL",
     "mediaId": "NCGA",
     "mediaTitle": "New Court Gazette",
@@ -3043,7 +3043,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NWTM",
+    "id": "BL-NWTM-1818-1905",
     "associatedPartner": "BL",
     "mediaId": "NWTM",
     "mediaTitle": "New Times",
@@ -3060,7 +3060,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NWTM",
+    "id": "BL-NWTM-1906-1930",
     "associatedPartner": "BL",
     "mediaId": "NWTM",
     "mediaTitle": "New Times",
@@ -3077,7 +3077,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NCEF",
+    "id": "BL-NCEF-1847-1847",
     "associatedPartner": "BL",
     "mediaId": "NCEF",
     "mediaTitle": "Nonconformist Elector",
@@ -3094,7 +3094,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NLRD",
+    "id": "BL-NLRD-1858-1869",
     "associatedPartner": "BL",
     "mediaId": "NLRD",
     "mediaTitle": "North London Record",
@@ -3111,7 +3111,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NWGZ",
+    "id": "BL-NWGZ-1860-1905",
     "associatedPartner": "BL",
     "mediaId": "NWGZ",
     "mediaTitle": "Northern Weekly Gazette",
@@ -3128,7 +3128,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NWGZ",
+    "id": "BL-NWGZ-1906-1932",
     "associatedPartner": "BL",
     "mediaId": "NWGZ",
     "mediaTitle": "Northern Weekly Gazette",
@@ -3145,7 +3145,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-OLEN",
+    "id": "BL-OLEN-1832-1842",
     "associatedPartner": "BL",
     "mediaId": "OLEN",
     "mediaTitle": "Old England",
@@ -3162,7 +3162,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-OKJL",
+    "id": "BL-OKJL-1860-1866",
     "associatedPartner": "BL",
     "mediaId": "OKJL",
     "mediaTitle": "Orr's Kentish Journal",
@@ -3179,7 +3179,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PSEV",
+    "id": "BL-PSEV-1873-1873",
     "associatedPartner": "BL",
     "mediaId": "PSEV",
     "mediaTitle": "Passing Events",
@@ -3196,7 +3196,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PNPC",
+    "id": "BL-PNPC-1855-1855",
     "associatedPartner": "BL",
     "mediaId": "PNPC",
     "mediaTitle": "Pen and Pencil",
@@ -3213,7 +3213,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PSHE",
+    "id": "BL-PSHE-1898-1905",
     "associatedPartner": "BL",
     "mediaId": "PSHE",
     "mediaTitle": "Penistone, Stocksbridge and Hoyland Express",
@@ -3230,7 +3230,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PSHE",
+    "id": "BL-PSHE-1906-1940",
     "associatedPartner": "BL",
     "mediaId": "PSHE",
     "mediaTitle": "Penistone, Stocksbridge and Hoyland Express",
@@ -3247,7 +3247,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PICT",
+    "id": "BL-PICT-1843-1848",
     "associatedPartner": "BL",
     "mediaId": "PICT",
     "mediaTitle": "Pictorial Times",
@@ -3264,7 +3264,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PITM",
+    "id": "BL-PITM-1855-1856",
     "associatedPartner": "BL",
     "mediaId": "PITM",
     "mediaTitle": "Picture Times",
@@ -3281,7 +3281,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PELL",
+    "id": "BL-PELL-1824-1827",
     "associatedPartner": "BL",
     "mediaId": "PELL",
     "mediaTitle": "Pierce Egan's Life in London, and Sporting Guide",
@@ -3298,7 +3298,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-POTG",
+    "id": "BL-POTG-1879-1886",
     "associatedPartner": "BL",
     "mediaId": "POTG",
     "mediaTitle": "Poole Telegram",
@@ -3315,7 +3315,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PRPL",
+    "id": "BL-PRPL-1842-1879",
     "associatedPartner": "BL",
     "mediaId": "PRPL",
     "mediaTitle": "Preston Pilot",
@@ -3332,7 +3332,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-RIOB",
+    "id": "BL-RIOB-1889-1905",
     "associatedPartner": "BL",
     "mediaId": "RIOB",
     "mediaTitle": "Ripon Observer",
@@ -3349,7 +3349,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-RIOB",
+    "id": "BL-RIOB-1906-1922",
     "associatedPartner": "BL",
     "mediaId": "RIOB",
     "mediaTitle": "Ripon Observer",
@@ -3366,7 +3366,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-RYRK",
+    "id": "BL-RYRK-1827-1827",
     "associatedPartner": "BL",
     "mediaId": "RYRK",
     "mediaTitle": "Royal York",
@@ -3383,7 +3383,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-RUEX",
+    "id": "BL-RUEX-1870-1905",
     "associatedPartner": "BL",
     "mediaId": "RUEX",
     "mediaTitle": "Runcorn Examiner",
@@ -3400,7 +3400,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-RUEX",
+    "id": "BL-RUEX-1906-1920",
     "associatedPartner": "BL",
     "mediaId": "RUEX",
     "mediaTitle": "Runcorn Examiner",
@@ -3417,7 +3417,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SWRJ",
+    "id": "BL-SWRJ-1859-1864",
     "associatedPartner": "BL",
     "mediaId": "SWRJ",
     "mediaTitle": "Sainsbury's Weekly Register and Advertising Journal",
@@ -3434,7 +3434,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SHPA",
+    "id": "BL-SHPA-1760-1793",
     "associatedPartner": "BL",
     "mediaId": "SHPA",
     "mediaTitle": "Sheffield Public Advertiser",
@@ -3451,7 +3451,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SLAD",
+    "id": "BL-SLAD-1863-1866",
     "associatedPartner": "BL",
     "mediaId": "SLAD",
     "mediaTitle": "South London Advertiser",
@@ -3468,7 +3468,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SLTL",
+    "id": "BL-SLTL-1856-1865",
     "associatedPartner": "BL",
     "mediaId": "SLTL",
     "mediaTitle": "South London Times and Lambeth Observer",
@@ -3485,7 +3485,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SWME",
+    "id": "BL-SWME-1879-1881",
     "associatedPartner": "BL",
     "mediaId": "SWME",
     "mediaTitle": "Southwark Mercury",
@@ -3502,7 +3502,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SPRT",
+    "id": "BL-SPRT-1880-1880",
     "associatedPartner": "BL",
     "mediaId": "SPRT",
     "mediaTitle": "Sport",
@@ -3519,7 +3519,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-STEX",
+    "id": "BL-STEX-1876-1876",
     "associatedPartner": "BL",
     "mediaId": "STEX",
     "mediaTitle": "Stalybridge Examiner",
@@ -3536,7 +3536,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SHSD",
+    "id": "BL-SHSD-1858-1905",
     "associatedPartner": "BL",
     "mediaId": "SHSD",
     "mediaTitle": "Stockton Herald, South Durham and Cleveland Advertiser",
@@ -3553,7 +3553,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SHSD",
+    "id": "BL-SHSD-1906-1918",
     "associatedPartner": "BL",
     "mediaId": "SHSD",
     "mediaTitle": "Stockton Herald, South Durham and Cleveland Advertiser",
@@ -3570,7 +3570,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-STUE",
+    "id": "BL-STUE-1879-1880",
     "associatedPartner": "BL",
     "mediaId": "STUE",
     "mediaTitle": "Stretford and Urmston Examiner",
@@ -3587,7 +3587,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SUGA",
+    "id": "BL-SUGA-1866-1867",
     "associatedPartner": "BL",
     "mediaId": "SUGA",
     "mediaTitle": "Sunday Gazette",
@@ -3604,7 +3604,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SUNW",
+    "id": "BL-SUNW-1823-1823",
     "associatedPartner": "BL",
     "mediaId": "SUNW",
     "mediaTitle": "Sunday News",
@@ -3621,7 +3621,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SMSD",
+    "id": "BL-SMSD-1835-1840",
     "associatedPartner": "BL",
     "mediaId": "SMSD",
     "mediaTitle": "Surrey & Middlesex Standard",
@@ -3638,7 +3638,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SHCA",
+    "id": "BL-SHCA-1826-1828",
     "associatedPartner": "BL",
     "mediaId": "SHCA",
     "mediaTitle": "Surrey Herald and County Advertiser",
@@ -3655,7 +3655,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SURY",
+    "id": "BL-SURY-1845-1847",
     "associatedPartner": "BL",
     "mediaId": "SURY",
     "mediaTitle": "Surrey Mercury",
@@ -3672,7 +3672,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SJWL",
+    "id": "BL-SJWL-1893-1902",
     "associatedPartner": "BL",
     "mediaId": "SJWL",
     "mediaTitle": "Swansea Journal and South Wales Liberal",
@@ -3689,7 +3689,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SGHL",
+    "id": "BL-SGHL-1847-1890",
     "associatedPartner": "BL",
     "mediaId": "SGHL",
     "mediaTitle": "Swansea and Glamorgan Herald",
@@ -3706,7 +3706,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TONI",
+    "id": "BL-TONI-1857-1864",
     "associatedPartner": "BL",
     "mediaId": "TONI",
     "mediaTitle": "Thacker's Overland News for India and the Colonies",
@@ -3723,7 +3723,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TALN",
+    "id": "BL-TALN-1825-1845",
     "associatedPartner": "BL",
     "mediaId": "TALN",
     "mediaTitle": "The Age (London)",
@@ -3740,7 +3740,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-AGE52",
+    "id": "BL-AGE52-1852-1853",
     "associatedPartner": "BL",
     "mediaId": "AGE52",
     "mediaTitle": "The Age 1852",
@@ -3757,7 +3757,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-AATA",
+    "id": "BL-AATA-1846-1846",
     "associatedPartner": "BL",
     "mediaId": "AATA",
     "mediaTitle": "The Agricultural Advertiser and Tenant-Farmers' Advocate",
@@ -3774,7 +3774,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ALBN",
+    "id": "BL-ALBN-1852-1853",
     "associatedPartner": "BL",
     "mediaId": "ALBN",
     "mediaTitle": "The Albion",
@@ -3791,7 +3791,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ALST",
+    "id": "BL-ALST-1830-1835",
     "associatedPartner": "BL",
     "mediaId": "ALST",
     "mediaTitle": "The Albion and the Star",
@@ -3808,7 +3808,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-AGMO",
+    "id": "BL-AGMO-1811-1825",
     "associatedPartner": "BL",
     "mediaId": "AGMO",
     "mediaTitle": "The Anti-Gallican Monitor",
@@ -3825,7 +3825,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ARGB",
+    "id": "BL-ARGB-1839-1843",
     "associatedPartner": "BL",
     "mediaId": "ARGB",
     "mediaTitle": "The Argus, or, Broad-sheet of the Empire",
@@ -3842,7 +3842,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ANWT",
+    "id": "BL-ANWT-1879-1891",
     "associatedPartner": "BL",
     "mediaId": "ANWT",
     "mediaTitle": "The Atherstone, Nuneaton, and Warwickshire Times",
@@ -3859,7 +3859,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-AUBO",
+    "id": "BL-AUBO-1821-1821",
     "associatedPartner": "BL",
     "mediaId": "AUBO",
     "mediaTitle": "The Aurora Borealis",
@@ -3876,7 +3876,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BLOT",
+    "id": "BL-BLOT-1831-1832",
     "associatedPartner": "BL",
     "mediaId": "BLOT",
     "mediaTitle": "The Ballot",
@@ -3893,7 +3893,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BHFA",
+    "id": "BL-BHFA-1862-1905",
     "associatedPartner": "BL",
     "mediaId": "BHFA",
     "mediaTitle": "The Barrow Herald and Furness Advertiser",
@@ -3910,7 +3910,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BHFA",
+    "id": "BL-BHFA-1906-1914",
     "associatedPartner": "BL",
     "mediaId": "BHFA",
     "mediaTitle": "The Barrow Herald and Furness Advertiser",
@@ -3927,7 +3927,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BCE1",
+    "id": "BL-BCE1-1821-1821",
     "associatedPartner": "BL",
     "mediaId": "BCE1",
     "mediaTitle": "The Beacon (Edinburgh)",
@@ -3944,7 +3944,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BCL2",
+    "id": "BL-BCL2-1822-1822",
     "associatedPartner": "BL",
     "mediaId": "BCL2",
     "mediaTitle": "The Beacon (London)",
@@ -3961,7 +3961,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BEHI",
+    "id": "BL-BEHI-1862-1876",
     "associatedPartner": "BL",
     "mediaId": "BEHI",
     "mediaTitle": "The Bee-Hive",
@@ -3978,7 +3978,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BKNW",
+    "id": "BL-BKNW-1878-1905",
     "associatedPartner": "BL",
     "mediaId": "BKNW",
     "mediaTitle": "The Birkenhead News",
@@ -3995,7 +3995,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BKNW",
+    "id": "BL-BKNW-1906-1920",
     "associatedPartner": "BL",
     "mediaId": "BKNW",
     "mediaTitle": "The Birkenhead News",
@@ -4012,7 +4012,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BLHD",
+    "id": "BL-BLHD-1874-1905",
     "associatedPartner": "BL",
     "mediaId": "BLHD",
     "mediaTitle": "The Blackpool Herald",
@@ -4029,7 +4029,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BLHD",
+    "id": "BL-BLHD-1906-1919",
     "associatedPartner": "BL",
     "mediaId": "BLHD",
     "mediaTitle": "The Blackpool Herald",
@@ -4046,7 +4046,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BWTE",
+    "id": "BL-BWTE-1874-1886",
     "associatedPartner": "BL",
     "mediaId": "BWTE",
     "mediaTitle": "The Blandford and Wimborne Telegram",
@@ -4063,7 +4063,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BGFP",
+    "id": "BL-BGFP-1855-1865",
     "associatedPartner": "BL",
     "mediaId": "BGFP",
     "mediaTitle": "The Borough of Greenwich Free Press",
@@ -4080,7 +4080,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRBN",
+    "id": "BL-BRBN-1848-1858",
     "associatedPartner": "BL",
     "mediaId": "BRBN",
     "mediaTitle": "The British Banner",
@@ -4097,7 +4097,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BREM",
+    "id": "BL-BREM-1837-1840",
     "associatedPartner": "BL",
     "mediaId": "BREM",
     "mediaTitle": "The British Emancipator",
@@ -4114,7 +4114,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BREN",
+    "id": "BL-BREN-1859-1864",
     "associatedPartner": "BL",
     "mediaId": "BREN",
     "mediaTitle": "The British Ensign",
@@ -4131,7 +4131,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRLB",
+    "id": "BL-BRLB-1833-1833",
     "associatedPartner": "BL",
     "mediaId": "BRLB",
     "mediaTitle": "The British Liberator",
@@ -4148,7 +4148,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRLU",
+    "id": "BL-BRLU-1818-1823",
     "associatedPartner": "BL",
     "mediaId": "BRLU",
     "mediaTitle": "The British Luminary",
@@ -4165,7 +4165,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRNP",
+    "id": "BL-BRNP-1803-1823",
     "associatedPartner": "BL",
     "mediaId": "BRNP",
     "mediaTitle": "The British Neptune",
@@ -4182,7 +4182,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRPR",
+    "id": "BL-BRPR-1823-1823",
     "associatedPartner": "BL",
     "mediaId": "BRPR",
     "mediaTitle": "The British Press",
@@ -4199,7 +4199,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRST",
+    "id": "BL-BRST-1857-1866",
     "associatedPartner": "BL",
     "mediaId": "BRST",
     "mediaTitle": "The British Standard",
@@ -4216,7 +4216,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRSS",
+    "id": "BL-BRSS-1842-1843",
     "associatedPartner": "BL",
     "mediaId": "BRSS",
     "mediaTitle": "The British Statesman",
@@ -4233,7 +4233,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-BRTB",
+    "id": "BL-BRTB-1821-1821",
     "associatedPartner": "BL",
     "mediaId": "BRTB",
     "mediaTitle": "The Brunswick, or, True Blue",
@@ -4250,7 +4250,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CCEX",
+    "id": "BL-CCEX-1874-1877",
     "associatedPartner": "BL",
     "mediaId": "CCEX",
     "mediaTitle": "The Cannock Chase Examiner",
@@ -4267,7 +4267,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CSTT",
+    "id": "BL-CSTT-1846-1846",
     "associatedPartner": "BL",
     "mediaId": "CSTT",
     "mediaTitle": "The Censor or Satirical Times",
@@ -4284,7 +4284,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CGGA",
+    "id": "BL-CGGA-1867-1894",
     "associatedPartner": "BL",
     "mediaId": "CGGA",
     "mediaTitle": "The Central Glamorgan Gazette",
@@ -4301,7 +4301,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CHPL",
+    "id": "BL-CHPL-1813-1822",
     "associatedPartner": "BL",
     "mediaId": "CHPL",
     "mediaTitle": "The Champion (London)",
@@ -4318,7 +4318,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CICN",
+    "id": "BL-CICN-1840-1845",
     "associatedPartner": "BL",
     "mediaId": "CICN",
     "mediaTitle": "The City Chronicle",
@@ -4335,7 +4335,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CLDF",
+    "id": "BL-CLDF-1862-1865",
     "associatedPartner": "BL",
     "mediaId": "CLDF",
     "mediaTitle": "The Clerkenwell Dial and Finsbury Advertiser",
@@ -4352,7 +4352,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CCWA",
+    "id": "BL-CCWA-1824-1825",
     "associatedPartner": "BL",
     "mediaId": "CCWA",
     "mediaTitle": "The Colonist and Commercial Weekly Advertiser",
@@ -4369,7 +4369,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CMCH",
+    "id": "BL-CMCH-1804-1823",
     "associatedPartner": "BL",
     "mediaId": "CMCH",
     "mediaTitle": "The Commercial Chronicle",
@@ -4386,7 +4386,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CNSN",
+    "id": "BL-CNSN-1818-1832",
     "associatedPartner": "BL",
     "mediaId": "CNSN",
     "mediaTitle": "The Constitution",
@@ -4403,7 +4403,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CSMP",
+    "id": "BL-CSMP-1865-1876",
     "associatedPartner": "BL",
     "mediaId": "CSMP",
     "mediaTitle": "The Cosmopolitan",
@@ -4420,7 +4420,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CFTM",
+    "id": "BL-CFTM-1885-1905",
     "associatedPartner": "BL",
     "mediaId": "CFTM",
     "mediaTitle": "The Cotton Factory Times",
@@ -4437,7 +4437,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CFTM",
+    "id": "BL-CFTM-1906-1920",
     "associatedPartner": "BL",
     "mediaId": "CFTM",
     "mediaTitle": "The Cotton Factory Times",
@@ -4454,7 +4454,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-COUR",
+    "id": "BL-COUR-1869-1880",
     "associatedPartner": "BL",
     "mediaId": "COUR",
     "mediaTitle": "The Courier",
@@ -4471,7 +4471,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CGFG",
+    "id": "BL-CGFG-1838-1841",
     "associatedPartner": "BL",
     "mediaId": "CGFG",
     "mediaTitle": "The Court Gazette and Fashionable Guide",
@@ -4488,7 +4488,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CCGZ",
+    "id": "BL-CCGZ-1838-1840",
     "associatedPartner": "BL",
     "mediaId": "CCGZ",
     "mediaTitle": "The Crim. Con. Gazette",
@@ -4505,7 +4505,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-CRWN",
+    "id": "BL-CRWN-1838-1839",
     "associatedPartner": "BL",
     "mediaId": "CRWN",
     "mediaTitle": "The Crown",
@@ -4522,7 +4522,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DDEN",
+    "id": "BL-DDEN-1859-1860",
     "associatedPartner": "BL",
     "mediaId": "DDEN",
     "mediaTitle": "The Daily Director and Entr'acte",
@@ -4539,7 +4539,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TDAY",
+    "id": "BL-TDAY-1809-1816",
     "associatedPartner": "BL",
     "mediaId": "TDAY",
     "mediaTitle": "The Day",
@@ -4556,7 +4556,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TDIA",
+    "id": "BL-TDIA-1860-1864",
     "associatedPartner": "BL",
     "mediaId": "TDIA",
     "mediaTitle": "The Dial",
@@ -4573,7 +4573,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DSNR",
+    "id": "BL-DSNR-1812-1812",
     "associatedPartner": "BL",
     "mediaId": "DSNR",
     "mediaTitle": "The Dissenter",
@@ -4590,7 +4590,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ERTG",
+    "id": "BL-ERTG-1895-1903",
     "associatedPartner": "BL",
     "mediaId": "ERTG",
     "mediaTitle": "The East Riding Telegraph",
@@ -4607,7 +4607,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-EAST",
+    "id": "BL-EAST-1853-1853",
     "associatedPartner": "BL",
     "mediaId": "EAST",
     "mediaTitle": "The Eastern Star",
@@ -4624,7 +4624,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ECLA",
+    "id": "BL-ECLA-1848-1849",
     "associatedPartner": "BL",
     "mediaId": "ECLA",
     "mediaTitle": "The Emigrant and the Colonial Advocate",
@@ -4641,7 +4641,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ECWP",
+    "id": "BL-ECWP-1801-1843",
     "associatedPartner": "BL",
     "mediaId": "ECWP",
     "mediaTitle": "The English Chronicle and Whitehall Evening Post",
@@ -4658,7 +4658,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ENGL",
+    "id": "BL-ENGL-1803-1834",
     "associatedPartner": "BL",
     "mediaId": "ENGL",
     "mediaTitle": "The Englishman",
@@ -4675,7 +4675,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-EVST",
+    "id": "BL-EVST-1842-1843",
     "associatedPartner": "BL",
     "mediaId": "EVST",
     "mediaTitle": "The Evening Star",
@@ -4692,7 +4692,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-EVTL",
+    "id": "BL-EVTL-1852-1852",
     "associatedPartner": "BL",
     "mediaId": "EVTL",
     "mediaTitle": "The Evening Times (London)",
@@ -4709,7 +4709,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-EVT25",
+    "id": "BL-EVT25-1825-1826",
     "associatedPartner": "BL",
     "mediaId": "EVT25",
     "mediaTitle": "The Evening Times 1825",
@@ -4726,7 +4726,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-EXPR",
+    "id": "BL-EXPR-1869-1869",
     "associatedPartner": "BL",
     "mediaId": "EXPR",
     "mediaTitle": "The Express",
@@ -4743,7 +4743,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-FODE",
+    "id": "BL-FODE-1873-1877",
     "associatedPartner": "BL",
     "mediaId": "FODE",
     "mediaTitle": "The Forest of Dean Examiner",
@@ -4760,7 +4760,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-GEVP",
+    "id": "BL-GEVP-1801-1822",
     "associatedPartner": "BL",
     "mediaId": "GEVP",
     "mediaTitle": "The General Evening Post",
@@ -4777,7 +4777,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-GLCH",
+    "id": "BL-GLCH-1844-1857",
     "associatedPartner": "BL",
     "mediaId": "GLCH",
     "mediaTitle": "The Glasgow Chronicle",
@@ -4794,7 +4794,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HMSA",
+    "id": "BL-HMSA-1861-1866",
     "associatedPartner": "BL",
     "mediaId": "HMSA",
     "mediaTitle": "The Hammersmith Advertiser",
@@ -4811,7 +4811,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HBOV",
+    "id": "BL-HBOV-1853-1854",
     "associatedPartner": "BL",
     "mediaId": "HBOV",
     "mediaTitle": "The Hebrew Observer",
@@ -4828,7 +4828,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-HOWL",
+    "id": "BL-HOWL-1882-1890",
     "associatedPartner": "BL",
     "mediaId": "HOWL",
     "mediaTitle": "The Herald of Wales",
@@ -4845,7 +4845,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ILNP",
+    "id": "BL-ILNP-1871-1871",
     "associatedPartner": "BL",
     "mediaId": "ILNP",
     "mediaTitle": "The Illustrated Newspaper",
@@ -4862,7 +4862,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-IWGZ",
+    "id": "BL-IWGZ-1808-1825",
     "associatedPartner": "BL",
     "mediaId": "IWGZ",
     "mediaTitle": "The Imperial Weekly Gazette",
@@ -4879,7 +4879,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ISWA",
+    "id": "BL-ISWA-1809-1815",
     "associatedPartner": "BL",
     "mediaId": "ISWA",
     "mediaTitle": "The Instructor and Select Weekly Advertiser",
@@ -4896,7 +4896,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-KTGA",
+    "id": "BL-KTGA-1860-1863",
     "associatedPartner": "BL",
     "mediaId": "KTGA",
     "mediaTitle": "The Kingsland Times and General Advertiser",
@@ -4913,7 +4913,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LNPT",
+    "id": "BL-LNPT-1847-1863",
     "associatedPartner": "BL",
     "mediaId": "LNPT",
     "mediaTitle": "The Lady's Newspaper and Pictorial Times",
@@ -4930,7 +4930,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LOPA",
+    "id": "BL-LOPA-1866-1872",
     "associatedPartner": "BL",
     "mediaId": "LOPA",
     "mediaTitle": "The Lady's Own Paper",
@@ -4947,7 +4947,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LHTC",
+    "id": "BL-LHTC-1831-1832",
     "associatedPartner": "BL",
     "mediaId": "LHTC",
     "mediaTitle": "The Lancaster Herald and Town and County Advertiser",
@@ -4964,7 +4964,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LTIM",
+    "id": "BL-LTIM-1867-1867",
     "associatedPartner": "BL",
     "mediaId": "LTIM",
     "mediaTitle": "The Little Times",
@@ -4981,7 +4981,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LIAL",
+    "id": "BL-LIAL-1827-1882",
     "associatedPartner": "BL",
     "mediaId": "LIAL",
     "mediaTitle": "The Liverpool Albion",
@@ -4998,7 +4998,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LIVC",
+    "id": "BL-LIVC-1767-1767",
     "associatedPartner": "BL",
     "mediaId": "LIVC",
     "mediaTitle": "The Liverpool Chronicle",
@@ -5015,7 +5015,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LITG",
+    "id": "BL-LITG-1836-1838",
     "associatedPartner": "BL",
     "mediaId": "LITG",
     "mediaTitle": "The Liverpool Telegraph",
@@ -5032,7 +5032,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LCHH",
+    "id": "BL-LCHH-1867-1870",
     "associatedPartner": "BL",
     "mediaId": "LCHH",
     "mediaTitle": "The London & China Herald",
@@ -5049,7 +5049,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LNCH",
+    "id": "BL-LNCH-1800-1822",
     "associatedPartner": "BL",
     "mediaId": "LNCH",
     "mediaTitle": "The London Chronicle",
@@ -5066,7 +5066,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LCCR",
+    "id": "BL-LCCR-1853-1854",
     "associatedPartner": "BL",
     "mediaId": "LCCR",
     "mediaTitle": "The London Chronicle and Country Record",
@@ -5083,7 +5083,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LDGS",
+    "id": "BL-LDGS-1859-1860",
     "associatedPartner": "BL",
     "mediaId": "LDGS",
     "mediaTitle": "The London Daily Guide and Stranger's Companion",
@@ -5100,7 +5100,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LEVP",
+    "id": "BL-LEVP-1805-1806",
     "associatedPartner": "BL",
     "mediaId": "LEVP",
     "mediaTitle": "The London Evening Post",
@@ -5117,7 +5117,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LFPR",
+    "id": "BL-LFPR-1827-1827",
     "associatedPartner": "BL",
     "mediaId": "LFPR",
     "mediaTitle": "The London Free Press",
@@ -5134,7 +5134,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LIWL",
+    "id": "BL-LIWL-1874-1874",
     "associatedPartner": "BL",
     "mediaId": "LIWL",
     "mediaTitle": "The London Illustrated Weekly",
@@ -5151,7 +5151,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LJPN",
+    "id": "BL-LJPN-1845-1846",
     "associatedPartner": "BL",
     "mediaId": "LJPN",
     "mediaTitle": "The London Journal and Pioneer Newspaper",
@@ -5168,7 +5168,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LNM1",
+    "id": "BL-LNM1-1826-1828",
     "associatedPartner": "BL",
     "mediaId": "LNM1",
     "mediaTitle": "The London Mercury",
@@ -5185,7 +5185,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LNM2",
+    "id": "BL-LNM2-1836-1837",
     "associatedPartner": "BL",
     "mediaId": "LNM2",
     "mediaTitle": "The London Mercury 1836",
@@ -5202,7 +5202,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LNM3",
+    "id": "BL-LNM3-1847-1848",
     "associatedPartner": "BL",
     "mediaId": "LNM3",
     "mediaTitle": "The London Mercury 1847",
@@ -5219,7 +5219,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LONM",
+    "id": "BL-LONM-1871-1876",
     "associatedPartner": "BL",
     "mediaId": "LONM",
     "mediaTitle": "The London Mirror",
@@ -5236,7 +5236,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LNPC",
+    "id": "BL-LNPC-1859-1865",
     "associatedPartner": "BL",
     "mediaId": "LNPC",
     "mediaTitle": "The London News Letter and Price Current",
@@ -5253,7 +5253,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LPNL",
+    "id": "BL-LPNL-1801-1836",
     "associatedPartner": "BL",
     "mediaId": "LPNL",
     "mediaTitle": "The London Packet and New Lloyd's Evening Post",
@@ -5270,7 +5270,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LOPH",
+    "id": "BL-LOPH-1841-1843",
     "associatedPartner": "BL",
     "mediaId": "LOPH",
     "mediaTitle": "The London Phalanx",
@@ -5287,7 +5287,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LSCT",
+    "id": "BL-LSCT-1867-1871",
     "associatedPartner": "BL",
     "mediaId": "LSCT",
     "mediaTitle": "The London Scotsman",
@@ -5304,7 +5304,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LTLG",
+    "id": "BL-LTLG-1824-1825",
     "associatedPartner": "BL",
     "mediaId": "LTLG",
     "mediaTitle": "The London Telegraph",
@@ -5321,7 +5321,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LWI",
+    "id": "BL-LWI-1855-1857",
     "associatedPartner": "BL",
     "mediaId": "LWI",
     "mediaTitle": "The London Weekly Investigator",
@@ -5338,7 +5338,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LLAD",
+    "id": "BL-LLAD-1847-1847",
     "associatedPartner": "BL",
     "mediaId": "LLAD",
     "mediaTitle": "The London and Liverpool Advertiser",
@@ -5355,7 +5355,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-LSCR",
+    "id": "BL-LSCR-1875-1875",
     "associatedPartner": "BL",
     "mediaId": "LSCR",
     "mediaTitle": "The London and Scottish Review",
@@ -5372,7 +5372,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-MATN",
+    "id": "BL-MATN-1869-1870",
     "associatedPartner": "BL",
     "mediaId": "MATN",
     "mediaTitle": "The Man about Town",
@@ -5389,7 +5389,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-MTPN",
+    "id": "BL-MTPN-1856-1857",
     "associatedPartner": "BL",
     "mediaId": "MTPN",
     "mediaTitle": "The Metropolitan",
@@ -5406,7 +5406,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-MEWT",
+    "id": "BL-MEWT-1874-1878",
     "associatedPartner": "BL",
     "mediaId": "MEWT",
     "mediaTitle": "The Midland Examiner and Wolverhampton Times",
@@ -5423,7 +5423,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-MNTM",
+    "id": "BL-MNTM-1842-1849",
     "associatedPartner": "BL",
     "mediaId": "MNTM",
     "mediaTitle": "The Monthly Times",
@@ -5440,7 +5440,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-MOGA",
+    "id": "BL-MOGA-1837-1837",
     "associatedPartner": "BL",
     "mediaId": "MOGA",
     "mediaTitle": "The Morning Gazette",
@@ -5457,7 +5457,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-MOMA",
+    "id": "BL-MOMA-1864-1866",
     "associatedPartner": "BL",
     "mediaId": "MOMA",
     "mediaTitle": "The Morning Mail",
@@ -5474,7 +5474,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NATN",
+    "id": "BL-NATN-1824-1824",
     "associatedPartner": "BL",
     "mediaId": "NATN",
     "mediaTitle": "The Nation",
@@ -5491,7 +5491,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NTNL",
+    "id": "BL-NTNL-1835-1835",
     "associatedPartner": "BL",
     "mediaId": "NTNL",
     "mediaTitle": "The National",
@@ -5508,7 +5508,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NTPR",
+    "id": "BL-NTPR-1847-1847",
     "associatedPartner": "BL",
     "mediaId": "NTPR",
     "mediaTitle": "The National Protector",
@@ -5525,7 +5525,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NTSD",
+    "id": "BL-NTSD-1858-1860",
     "associatedPartner": "BL",
     "mediaId": "NTSD",
     "mediaTitle": "The National Standard",
@@ -5542,7 +5542,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NGLB",
+    "id": "BL-NGLB-1823-1823",
     "associatedPartner": "BL",
     "mediaId": "NGLB",
     "mediaTitle": "The New Globe",
@@ -5559,7 +5559,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NWTS",
+    "id": "BL-NWTS-1836-1836",
     "associatedPartner": "BL",
     "mediaId": "NWTS",
     "mediaTitle": "The New Weekly True Sun",
@@ -5576,7 +5576,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TNEW",
+    "id": "BL-TNEW-1805-1839",
     "associatedPartner": "BL",
     "mediaId": "TNEW",
     "mediaTitle": "The News",
@@ -5593,7 +5593,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NCRF",
+    "id": "BL-NCRF-1890-1898",
     "associatedPartner": "BL",
     "mediaId": "NCRF",
     "mediaTitle": "The North Cumberland Reformer",
@@ -5610,7 +5610,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NLON",
+    "id": "BL-NLON-1869-1875",
     "associatedPartner": "BL",
     "mediaId": "NLON",
     "mediaTitle": "The North Londoner",
@@ -5627,7 +5627,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NWLT",
+    "id": "BL-NWLT-1861-1866",
     "associatedPartner": "BL",
     "mediaId": "NWLT",
     "mediaTitle": "The North-West London Times",
@@ -5644,7 +5644,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NDTM",
+    "id": "BL-NDTM-1853-1861",
     "associatedPartner": "BL",
     "mediaId": "NDTM",
     "mediaTitle": "The Northern Daily Times",
@@ -5661,7 +5661,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NOGU",
+    "id": "BL-NOGU-1891-1902",
     "associatedPartner": "BL",
     "mediaId": "NOGU",
     "mediaTitle": "The Northern Guardian",
@@ -5678,7 +5678,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-NUNT",
+    "id": "BL-NUNT-1875-1875",
     "associatedPartner": "BL",
     "mediaId": "NUNT",
     "mediaTitle": "The Nuneaton Times",
@@ -5695,7 +5695,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-OBTM",
+    "id": "BL-OBTM-1821-1822",
     "associatedPartner": "BL",
     "mediaId": "OBTM",
     "mediaTitle": "The Observer of the Times",
@@ -5712,7 +5712,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-ORDA",
+    "id": "BL-ORDA-1801-1809",
     "associatedPartner": "BL",
     "mediaId": "ORDA",
     "mediaTitle": "The Oracle and the Daily Advertiser",
@@ -5729,7 +5729,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PADV",
+    "id": "BL-PADV-1861-1866",
     "associatedPartner": "BL",
     "mediaId": "PADV",
     "mediaTitle": "The Paddington Advertiser",
@@ -5746,7 +5746,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PLDM",
+    "id": "BL-PLDM-1825-1829",
     "associatedPartner": "BL",
     "mediaId": "PLDM",
     "mediaTitle": "The Palladium",
@@ -5763,7 +5763,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PATR",
+    "id": "BL-PATR-1832-1866",
     "associatedPartner": "BL",
     "mediaId": "PATR",
     "mediaTitle": "The Patriot",
@@ -5780,7 +5780,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PHCW",
+    "id": "BL-PHCW-1834-1834",
     "associatedPartner": "BL",
     "mediaId": "PHCW",
     "mediaTitle": "The People's Hue and Cry or Weekly Police Register",
@@ -5797,7 +5797,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PPLP",
+    "id": "BL-PPLP-1852-1858",
     "associatedPartner": "BL",
     "mediaId": "PPLP",
     "mediaTitle": "The People's Paper",
@@ -5814,7 +5814,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PLTO",
+    "id": "BL-PLTO-1808-1815",
     "associatedPartner": "BL",
     "mediaId": "PLTO",
     "mediaTitle": "The Pilot",
@@ -5831,7 +5831,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PWRM",
+    "id": "BL-PWRM-1851-1851",
     "associatedPartner": "BL",
     "mediaId": "PWRM",
     "mediaTitle": "The Pioneer and Weekly Record of Movements",
@@ -5848,7 +5848,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PLNT",
+    "id": "BL-PLNT-1837-1844",
     "associatedPartner": "BL",
     "mediaId": "PLNT",
     "mediaTitle": "The Planet",
@@ -5865,7 +5865,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-POLL",
+    "id": "BL-POLL-1831-1831",
     "associatedPartner": "BL",
     "mediaId": "POLL",
     "mediaTitle": "The Political Letter",
@@ -5882,7 +5882,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PLOB",
+    "id": "BL-PLOB-1819-1819",
     "associatedPartner": "BL",
     "mediaId": "PLOB",
     "mediaTitle": "The Political Observer",
@@ -5899,7 +5899,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PDHD",
+    "id": "BL-PDHD-1878-1894",
     "associatedPartner": "BL",
     "mediaId": "PDHD",
     "mediaTitle": "The Pontypridd District Herald",
@@ -5916,7 +5916,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PORC",
+    "id": "BL-PORC-1800-1801",
     "associatedPartner": "BL",
     "mediaId": "PORC",
     "mediaTitle": "The Porcupine",
@@ -5933,7 +5933,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-POEX",
+    "id": "BL-POEX-1871-1881",
     "associatedPartner": "BL",
     "mediaId": "POEX",
     "mediaTitle": "The Potteries Examiner",
@@ -5950,7 +5950,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TPRS",
+    "id": "BL-TPRS-1859-1866",
     "associatedPartner": "BL",
     "mediaId": "TPRS",
     "mediaTitle": "The Press",
@@ -5967,7 +5967,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-PUCA",
+    "id": "BL-PUCA-1811-1816",
     "associatedPartner": "BL",
     "mediaId": "PUCA",
     "mediaTitle": "The Public Cause",
@@ -5984,7 +5984,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-RADL",
+    "id": "BL-RADL-1831-1836",
     "associatedPartner": "BL",
     "mediaId": "RADL",
     "mediaTitle": "The Radical",
@@ -6001,7 +6001,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-RBLD",
+    "id": "BL-RBLD-1844-1846",
     "associatedPartner": "BL",
     "mediaId": "RBLD",
     "mediaTitle": "The Railway Bell and London Advertiser",
@@ -6018,7 +6018,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-REFM",
+    "id": "BL-REFM-1831-1831",
     "associatedPartner": "BL",
     "mediaId": "REFM",
     "mediaTitle": "The Reformer",
@@ -6035,7 +6035,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-REPR",
+    "id": "BL-REPR-1822-1826",
     "associatedPartner": "BL",
     "mediaId": "REPR",
     "mediaTitle": "The Representative",
@@ -6052,7 +6052,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SJCH",
+    "id": "BL-SJCH-1801-1866",
     "associatedPartner": "BL",
     "mediaId": "SJCH",
     "mediaTitle": "The Saint James's Chronicle",
@@ -6069,7 +6069,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SATR",
+    "id": "BL-SATR-1831-1849",
     "associatedPartner": "BL",
     "mediaId": "SATR",
     "mediaTitle": "The Satirist; or, the Censor of the Times",
@@ -6086,7 +6086,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SHRE",
+    "id": "BL-SHRE-1874-1877",
     "associatedPartner": "BL",
     "mediaId": "SHRE",
     "mediaTitle": "The Shropshire Examiner",
@@ -6103,7 +6103,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SGCV",
+    "id": "BL-SGCV-1896-1905",
     "associatedPartner": "BL",
     "mediaId": "SGCV",
     "mediaTitle": "The Slaithwaite Guardian and Colne Valley News",
@@ -6120,7 +6120,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SGCV",
+    "id": "BL-SGCV-1906-1906",
     "associatedPartner": "BL",
     "mediaId": "SGCV",
     "mediaTitle": "The Slaithwaite Guardian and Colne Valley News",
@@ -6137,7 +6137,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SSEX",
+    "id": "BL-SSEX-1874-1874",
     "associatedPartner": "BL",
     "mediaId": "SSEX",
     "mediaTitle": "The South Staffordshire Examiner",
@@ -6154,7 +6154,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SHEP",
+    "id": "BL-SHEP-1879-1905",
     "associatedPartner": "BL",
     "mediaId": "SHEP",
     "mediaTitle": "The St. Helens Examiner, and Prescot Weekly News",
@@ -6171,7 +6171,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SHEP",
+    "id": "BL-SHEP-1906-1920",
     "associatedPartner": "BL",
     "mediaId": "SHEP",
     "mediaTitle": "The St. Helens Examiner, and Prescot Weekly News",
@@ -6188,7 +6188,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SOFR",
+    "id": "BL-SOFR-1848-1851",
     "associatedPartner": "BL",
     "mediaId": "SOFR",
     "mediaTitle": "The Standard of Freedom",
@@ -6205,7 +6205,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SESD",
+    "id": "BL-SESD-1878-1879",
     "associatedPartner": "BL",
     "mediaId": "SESD",
     "mediaTitle": "The Stockton Examiner and South Durham and North Yorkshire Herald",
@@ -6222,7 +6222,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SCPR",
+    "id": "BL-SCPR-1871-1874",
     "associatedPartner": "BL",
     "mediaId": "SCPR",
     "mediaTitle": "The Sun & Central Press",
@@ -6239,7 +6239,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SEGL",
+    "id": "BL-SEGL-1836-1837",
     "associatedPartner": "BL",
     "mediaId": "SEGL",
     "mediaTitle": "The Sunday Evening Globe",
@@ -6256,7 +6256,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SMHE",
+    "id": "BL-SMHE-1824-1824",
     "associatedPartner": "BL",
     "mediaId": "SMHE",
     "mediaTitle": "The Sunday Morning Herald",
@@ -6273,7 +6273,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-SSCH",
+    "id": "BL-SSCH-1823-1823",
     "associatedPartner": "BL",
     "mediaId": "SSCH",
     "mediaTitle": "The Sussex & Surrey Chronicle",
@@ -6290,7 +6290,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TMEW",
+    "id": "BL-TMEW-1873-1876",
     "associatedPartner": "BL",
     "mediaId": "TMEW",
     "mediaTitle": "The Tamworth Miners' Examiner and Working Men's Journal",
@@ -6307,7 +6307,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TIGA",
+    "id": "BL-TIGA-1872-1875",
     "associatedPartner": "BL",
     "mediaId": "TIGA",
     "mediaTitle": "The Tichborne Gazette",
@@ -6324,7 +6324,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TNAJ",
+    "id": "BL-TNAJ-1872-1872",
     "associatedPartner": "BL",
     "mediaId": "TNAJ",
     "mediaTitle": "The Tichborne News and Anti-Oppression Journal",
@@ -6341,7 +6341,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-THML",
+    "id": "BL-THML-1857-1858",
     "associatedPartner": "BL",
     "mediaId": "THML",
     "mediaTitle": "The Tower Hamlets Mail",
@@ -6358,7 +6358,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TFPR",
+    "id": "BL-TFPR-1825-1831",
     "associatedPartner": "BL",
     "mediaId": "TFPR",
     "mediaTitle": "The Trades' Free Press",
@@ -6375,7 +6375,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TRBT",
+    "id": "BL-TRBT-1801-1804",
     "associatedPartner": "BL",
     "mediaId": "TRBT",
     "mediaTitle": "The True Briton",
@@ -6392,7 +6392,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TRSN",
+    "id": "BL-TRSN-1832-1837",
     "associatedPartner": "BL",
     "mediaId": "TRSN",
     "mediaTitle": "The True Sun",
@@ -6409,7 +6409,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TUNI",
+    "id": "BL-TUNI-1857-1862",
     "associatedPartner": "BL",
     "mediaId": "TUNI",
     "mediaTitle": "The Union",
@@ -6426,7 +6426,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-UNIV",
+    "id": "BL-UNIV-1846-1848",
     "associatedPartner": "BL",
     "mediaId": "UNIV",
     "mediaTitle": "The Universe",
@@ -6443,7 +6443,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-VERL",
+    "id": "BL-VERL-1828-1828",
     "associatedPartner": "BL",
     "mediaId": "VERL",
     "mediaTitle": "The Verulam",
@@ -6460,7 +6460,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-VIND",
+    "id": "BL-VIND-1859-1859",
     "associatedPartner": "BL",
     "mediaId": "VIND",
     "mediaTitle": "The Vindicator",
@@ -6477,7 +6477,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WAEX",
+    "id": "BL-WAEX-1869-1905",
     "associatedPartner": "BL",
     "mediaId": "WAEX",
     "mediaTitle": "The Warrington Examiner",
@@ -6494,7 +6494,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WAEX",
+    "id": "BL-WAEX-1906-1909",
     "associatedPartner": "BL",
     "mediaId": "WAEX",
     "mediaTitle": "The Warrington Examiner",
@@ -6511,7 +6511,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WAHD",
+    "id": "BL-WAHD-1884-1899",
     "associatedPartner": "BL",
     "mediaId": "WAHD",
     "mediaTitle": "The Warwickshire Herald",
@@ -6528,7 +6528,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WTCH",
+    "id": "BL-WTCH-1827-1828",
     "associatedPartner": "BL",
     "mediaId": "WTCH",
     "mediaTitle": "The Watchman",
@@ -6545,7 +6545,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKNW",
+    "id": "BL-WKNW-1872-1879",
     "associatedPartner": "BL",
     "mediaId": "WKNW",
     "mediaTitle": "The Week's News",
@@ -6562,7 +6562,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKAD",
+    "id": "BL-WKAD-1865-1866",
     "associatedPartner": "BL",
     "mediaId": "WKAD",
     "mediaTitle": "The Weekly Advertiser",
@@ -6579,7 +6579,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKCH",
+    "id": "BL-WKCH-1836-1867",
     "associatedPartner": "BL",
     "mediaId": "WKCH",
     "mediaTitle": "The Weekly Chronicle",
@@ -6596,7 +6596,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKEC",
+    "id": "BL-WKEC-1873-1874",
     "associatedPartner": "BL",
     "mediaId": "WKEC",
     "mediaTitle": "The Weekly Echo",
@@ -6613,7 +6613,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKGB",
+    "id": "BL-WKGB-1824-1825",
     "associatedPartner": "BL",
     "mediaId": "WKGB",
     "mediaTitle": "The Weekly Globe",
@@ -6630,7 +6630,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKIN",
+    "id": "BL-WKIN-1875-1876",
     "associatedPartner": "BL",
     "mediaId": "WKIN",
     "mediaTitle": "The Weekly Independent",
@@ -6647,7 +6647,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKIT",
+    "id": "BL-WKIT-1818-1818",
     "associatedPartner": "BL",
     "mediaId": "WKIT",
     "mediaTitle": "The Weekly Intelligence",
@@ -6664,7 +6664,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKJL",
+    "id": "BL-WKJL-1901-1905",
     "associatedPartner": "BL",
     "mediaId": "WKJL",
     "mediaTitle": "The Weekly Journal",
@@ -6681,7 +6681,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKJL",
+    "id": "BL-WKJL-1906-1909",
     "associatedPartner": "BL",
     "mediaId": "WKJL",
     "mediaTitle": "The Weekly Journal",
@@ -6698,7 +6698,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKML",
+    "id": "BL-WKML-1858-1860",
     "associatedPartner": "BL",
     "mediaId": "WKML",
     "mediaTitle": "The Weekly Mail",
@@ -6715,7 +6715,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKRV",
+    "id": "BL-WKRV-1862-1881",
     "associatedPartner": "BL",
     "mediaId": "WKRV",
     "mediaTitle": "The Weekly Review",
@@ -6732,7 +6732,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WSBN",
+    "id": "BL-WSBN-1857-1857",
     "associatedPartner": "BL",
     "mediaId": "WSBN",
     "mediaTitle": "The Weekly Star and Bell's News",
@@ -6749,7 +6749,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WGMC",
+    "id": "BL-WGMC-1869-1880",
     "associatedPartner": "BL",
     "mediaId": "WGMC",
     "mediaTitle": "The Wellington Gazette and Military Chronicle",
@@ -6766,7 +6766,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WENW",
+    "id": "BL-WENW-1859-1860",
     "associatedPartner": "BL",
     "mediaId": "WENW",
     "mediaTitle": "The West End News",
@@ -6783,7 +6783,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WLTM",
+    "id": "BL-WLTM-1860-1867",
     "associatedPartner": "BL",
     "mediaId": "WLTM",
     "mediaTitle": "The West London Times",
@@ -6800,7 +6800,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WMTM",
+    "id": "BL-WMTM-1863-1866",
     "associatedPartner": "BL",
     "mediaId": "WMTM",
     "mediaTitle": "The Westminster Times",
@@ -6817,7 +6817,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WMTG",
+    "id": "BL-WMTG-1860-1901",
     "associatedPartner": "BL",
     "mediaId": "WMTG",
     "mediaTitle": "The Weymouth Telegram",
@@ -6834,7 +6834,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WRLD",
+    "id": "BL-WRLD-1859-1859",
     "associatedPartner": "BL",
     "mediaId": "WRLD",
     "mediaTitle": "The World",
@@ -6851,7 +6851,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WFSC",
+    "id": "BL-WFSC-1818-1818",
     "associatedPartner": "BL",
     "mediaId": "WFSC",
     "mediaTitle": "The World and Fashionable Sunday Chronicle",
@@ -6868,7 +6868,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TCDN",
+    "id": "BL-TCDN-1873-1873",
     "associatedPartner": "BL",
     "mediaId": "TCDN",
     "mediaTitle": "Town & Country Daily Newspaper",
@@ -6885,7 +6885,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TTLK",
+    "id": "BL-TTLK-1858-1859",
     "associatedPartner": "BL",
     "mediaId": "TTLK",
     "mediaTitle": "Town Talk",
@@ -6902,7 +6902,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TTK22",
+    "id": "BL-TTK22-1822-1822",
     "associatedPartner": "BL",
     "mediaId": "TTK22",
     "mediaTitle": "Town Talk 1822",
@@ -6919,7 +6919,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TCAA",
+    "id": "BL-TCAA-1834-1836",
     "associatedPartner": "BL",
     "mediaId": "TCAA",
     "mediaTitle": "Town and Country Advertiser",
@@ -6936,7 +6936,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-TPRD",
+    "id": "BL-TPRD-1849-1850",
     "associatedPartner": "BL",
     "mediaId": "TPRD",
     "mediaTitle": "Trade Protection Record",
@@ -6953,7 +6953,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKTN",
+    "id": "BL-WKTN-1826-1832",
     "associatedPartner": "BL",
     "mediaId": "WKTN",
     "mediaTitle": "Weekly Times",
@@ -6970,7 +6970,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WKTS",
+    "id": "BL-WKTS-1833-1843",
     "associatedPartner": "BL",
     "mediaId": "WKTS",
     "mediaTitle": "Weekly True Sun",
@@ -6987,7 +6987,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WLSA",
+    "id": "BL-WLSA-1870-1872",
     "associatedPartner": "BL",
     "mediaId": "WLSA",
     "mediaTitle": "West Londoner and Select Advertiser for the Borough of Marylebone",
@@ -7004,7 +7004,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WJBS",
+    "id": "BL-WJBS-1805-1810",
     "associatedPartner": "BL",
     "mediaId": "WJBS",
     "mediaTitle": "Westminster Journal and Old British Spy",
@@ -7021,7 +7021,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WHEP",
+    "id": "BL-WHEP-1801-1801",
     "associatedPartner": "BL",
     "mediaId": "WHEP",
     "mediaTitle": "Whitehall Evening Post",
@@ -7038,7 +7038,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WDEX",
+    "id": "BL-WDEX-1876-1905",
     "associatedPartner": "BL",
     "mediaId": "WDEX",
     "mediaTitle": "Widnes Examiner",
@@ -7055,7 +7055,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WDEX",
+    "id": "BL-WDEX-1906-1920",
     "associatedPartner": "BL",
     "mediaId": "WDEX",
     "mediaTitle": "Widnes Examiner",
@@ -7072,7 +7072,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-WBGZ",
+    "id": "BL-WBGZ-1819-1823",
     "associatedPartner": "BL",
     "mediaId": "WBGZ",
     "mediaTitle": "Wooler's British Gazette",
@@ -7089,7 +7089,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-YOHP",
+    "id": "BL-YOHP-1879-1881",
     "associatedPartner": "BL",
     "mediaId": "YOHP",
     "mediaTitle": "York House Papers",
@@ -7106,7 +7106,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BL-DCWR",
+    "id": "BL-DCWR-1869-1895",
     "associatedPartner": "BL",
     "mediaId": "DCWR",
     "mediaTitle": "Dewsbury Chronicle and West Riding Advertiser",
@@ -7123,7 +7123,7 @@
     "partnerBitmapIndex": 10
   },
   {
-    "id": "BNF-excelsior",
+    "id": "BNF-excelsior-1910-1920",
     "associatedPartner": "BNF",
     "mediaId": "excelsior",
     "mediaTitle": "Excelsior",
@@ -7140,7 +7140,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-lafronde",
+    "id": "BNF-lafronde-1897-1929",
     "associatedPartner": "BNF",
     "mediaId": "lafronde",
     "mediaTitle": "La Fronde",
@@ -7157,7 +7157,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-marieclaire",
+    "id": "BNF-marieclaire-1937-1944",
     "associatedPartner": "BNF",
     "mediaId": "marieclaire",
     "mediaTitle": "Marie-Claire",
@@ -7174,7 +7174,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-oeuvre",
+    "id": "BNF-oeuvre-1915-1944",
     "associatedPartner": "BNF",
     "mediaId": "oeuvre",
     "mediaTitle": "Oeuvre",
@@ -7191,7 +7191,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-jdpl",
+    "id": "BNF-jdpl-1814-1944",
     "associatedPartner": "BNF",
     "mediaId": "jdpl",
     "mediaTitle": "Journal des débats politiques et littéraires",
@@ -7208,7 +7208,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-legaulois",
+    "id": "BNF-legaulois-1868-1929",
     "associatedPartner": "BNF",
     "mediaId": "legaulois",
     "mediaTitle": "Le Gaulois",
@@ -7225,7 +7225,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-lematin",
+    "id": "BNF-lematin-1884-1942",
     "associatedPartner": "BNF",
     "mediaId": "lematin",
     "mediaTitle": "Le Matin",
@@ -7242,7 +7242,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-lepji",
+    "id": "BNF-lepji-1884-1920",
     "associatedPartner": "BNF",
     "mediaId": "lepji",
     "mediaTitle": "Le Petit Journal Illustré - Suppléement du dimanche",
@@ -7259,7 +7259,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-lepetitparisien",
+    "id": "BNF-lepetitparisien-1876-1944",
     "associatedPartner": "BNF",
     "mediaId": "lepetitparisien",
     "mediaTitle": "Le Petit Parisien",
@@ -7276,7 +7276,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-oecaen",
+    "id": "BNF-oecaen-1912-1942",
     "associatedPartner": "BNF",
     "mediaId": "oecaen",
     "mediaTitle": "Ouest-Eclair Caen",
@@ -7293,7 +7293,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNF-oerennes",
+    "id": "BNF-oerennes-1899-1942",
     "associatedPartner": "BNF",
     "mediaId": "oerennes",
     "mediaTitle": "Ouest-Eclair Rennes",
@@ -7310,7 +7310,7 @@
     "partnerBitmapIndex": 7
   },
   {
-    "id": "BNL-actionfem",
+    "id": "BNL-actionfem-1927-1940",
     "associatedPartner": "BNL",
     "mediaId": "actionfem",
     "mediaTitle": "Action féminine (L')",
@@ -7327,7 +7327,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-armeteufel",
+    "id": "BNL-armeteufel-1903-1929",
     "associatedPartner": "BNL",
     "mediaId": "armeteufel",
     "mediaTitle": "Arme Teufel (Der)",
@@ -7344,7 +7344,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-avenirgdl",
+    "id": "BNL-avenirgdl-1868-1871",
     "associatedPartner": "BNL",
     "mediaId": "avenirgdl",
     "mediaTitle": "Avenir (L')",
@@ -7361,7 +7361,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-buergerbeamten",
+    "id": "BNL-buergerbeamten-1898-1916",
     "associatedPartner": "BNL",
     "mediaId": "buergerbeamten",
     "mediaTitle": "Bürger- und Beamten-Zeitung",
@@ -7378,7 +7378,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-courriergdl",
+    "id": "BNL-courriergdl-1844-1868",
     "associatedPartner": "BNL",
     "mediaId": "courriergdl",
     "mediaTitle": "Courrier du Grand-Duché de Luxembourg",
@@ -7395,7 +7395,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-deletz1893",
+    "id": "BNL-deletz1893-1893-1909",
     "associatedPartner": "BNL",
     "mediaId": "deletz1893",
     "mediaTitle": "Letzeburger (De)",
@@ -7412,7 +7412,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-demitock",
+    "id": "BNL-demitock-1937-1940",
     "associatedPartner": "BNL",
     "mediaId": "demitock",
     "mediaTitle": "Mitock e Wocheblad fir Jux an Zodi (De)",
@@ -7429,7 +7429,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-diekwochen",
+    "id": "BNL-diekwochen-1841-1848",
     "associatedPartner": "BNL",
     "mediaId": "diekwochen",
     "mediaTitle": "Diekircher Wochenblatt",
@@ -7446,7 +7446,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-dunioun",
+    "id": "BNL-dunioun-1944-1948",
     "associatedPartner": "BNL",
     "mediaId": "dunioun",
     "mediaTitle": "Unio'n (D')",
@@ -7463,7 +7463,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-gazgrdlux",
+    "id": "BNL-gazgrdlux-1878-1878",
     "associatedPartner": "BNL",
     "mediaId": "gazgrdlux",
     "mediaTitle": "Gazette du Grand-Duché de Luxembourg",
@@ -7480,7 +7480,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-indeplux",
+    "id": "BNL-indeplux-1871-1881",
     "associatedPartner": "BNL",
     "mediaId": "indeplux",
     "mediaTitle": "Indépendance luxembourgeoise (L')",
@@ -7497,7 +7497,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-indeplux",
+    "id": "BNL-indeplux-1882-1934",
     "associatedPartner": "BNL",
     "mediaId": "indeplux",
     "mediaTitle": "Indépendance luxembourgeoise (L')",
@@ -7514,7 +7514,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-kommmit",
+    "id": "BNL-kommmit-1884-1881",
     "associatedPartner": "BNL",
     "mediaId": "kommmit",
     "mediaTitle": "Komm mit mir!",
@@ -7531,7 +7531,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-kommmit",
+    "id": "BNL-kommmit-1882-1884",
     "associatedPartner": "BNL",
     "mediaId": "kommmit",
     "mediaTitle": "Komm mit mir!",
@@ -7548,7 +7548,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-landwortbild",
+    "id": "BNL-landwortbild-1895-1895",
     "associatedPartner": "BNL",
     "mediaId": "landwortbild",
     "mediaTitle": "Luxemburger Land in Wort und Bild",
@@ -7565,7 +7565,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-lunion",
+    "id": "BNL-lunion-1860-1871",
     "associatedPartner": "BNL",
     "mediaId": "lunion",
     "mediaTitle": "L'Union",
@@ -7582,7 +7582,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-luxembourg1935",
+    "id": "BNL-luxembourg1935-1935-1940",
     "associatedPartner": "BNL",
     "mediaId": "luxembourg1935",
     "mediaTitle": "Luxembourg (Le) : Journal du matin",
@@ -7599,7 +7599,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-luxland",
+    "id": "BNL-luxland-1954-2022",
     "associatedPartner": "BNL",
     "mediaId": "luxland",
     "mediaTitle": "Lëtzebuerger Land (d')",
@@ -7616,7 +7616,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-luxwort",
+    "id": "BNL-luxwort-1848-1881",
     "associatedPartner": "BNL",
     "mediaId": "luxwort",
     "mediaTitle": "Luxemburger Wort",
@@ -7633,7 +7633,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-luxwort",
+    "id": "BNL-luxwort-1882-1950",
     "associatedPartner": "BNL",
     "mediaId": "luxwort",
     "mediaTitle": "Luxemburger Wort",
@@ -7650,7 +7650,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-luxzeit1844",
+    "id": "BNL-luxzeit1844-1844-1845",
     "associatedPartner": "BNL",
     "mediaId": "luxzeit1844",
     "mediaTitle": "Luxemburger Zeitung",
@@ -7667,7 +7667,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-luxzeit1858",
+    "id": "BNL-luxzeit1858-1858-1859",
     "associatedPartner": "BNL",
     "mediaId": "luxzeit1858",
     "mediaTitle": "Luxemburger Zeitung - Journal de Luxembourg",
@@ -7684,7 +7684,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-obermosel",
+    "id": "BNL-obermosel-1881-1881",
     "associatedPartner": "BNL",
     "mediaId": "obermosel",
     "mediaTitle": "Obermosel-Zeitung",
@@ -7701,7 +7701,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-obermosel",
+    "id": "BNL-obermosel-1882-1948",
     "associatedPartner": "BNL",
     "mediaId": "obermosel",
     "mediaTitle": "Obermosel-Zeitung",
@@ -7718,7 +7718,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-onsjongen",
+    "id": "BNL-onsjongen-1944-1951",
     "associatedPartner": "BNL",
     "mediaId": "onsjongen",
     "mediaTitle": "Ons Jongen",
@@ -7735,7 +7735,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-schmiede",
+    "id": "BNL-schmiede-1916-1919",
     "associatedPartner": "BNL",
     "mediaId": "schmiede",
     "mediaTitle": "Schmiede",
@@ -7752,7 +7752,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-tageblatt",
+    "id": "BNL-tageblatt-1913-1950",
     "associatedPartner": "BNL",
     "mediaId": "tageblatt",
     "mediaTitle": "Escher Tageblatt",
@@ -7769,7 +7769,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-volkfreu1869",
+    "id": "BNL-volkfreu1869-1869-1876",
     "associatedPartner": "BNL",
     "mediaId": "volkfreu1869",
     "mediaTitle": "Luxemburger Volks-Freund",
@@ -7786,7 +7786,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-waechtersauer",
+    "id": "BNL-waechtersauer-1849-1869",
     "associatedPartner": "BNL",
     "mediaId": "waechtersauer",
     "mediaTitle": "Der Wächter an der Sauer",
@@ -7803,7 +7803,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-waeschfra",
+    "id": "BNL-waeschfra-1868-1881",
     "associatedPartner": "BNL",
     "mediaId": "waeschfra",
     "mediaTitle": "D'Wäschfra",
@@ -7820,7 +7820,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "BNL-waeschfra",
+    "id": "BNL-waeschfra-1882-1884",
     "associatedPartner": "BNL",
     "mediaId": "waeschfra",
     "mediaTitle": "D'Wäschfra",
@@ -7837,7 +7837,7 @@
     "partnerBitmapIndex": 6
   },
   {
-    "id": "NZZ-NZZ",
+    "id": "NZZ-NZZ-1780-1950",
     "associatedPartner": "NZZ",
     "mediaId": "NZZ",
     "mediaTitle": "Neue Zürcher Zeitung",
@@ -7854,7 +7854,7 @@
     "partnerBitmapIndex": 15
   },
   {
-    "id": "SWA-arbeitgeber",
+    "id": "SWA-arbeitgeber-1907-2010",
     "associatedPartner": "SWA",
     "mediaId": "arbeitgeber",
     "mediaTitle": "Schweizer Arbeitgeber",
@@ -7871,7 +7871,7 @@
     "partnerBitmapIndex": 35
   },
   {
-    "id": "SWA-handelsztg",
+    "id": "SWA-handelsztg-1861-1894",
     "associatedPartner": "SWA",
     "mediaId": "handelsztg",
     "mediaTitle": "Schweizerische Handels-Zeitung",
@@ -7888,7 +7888,7 @@
     "partnerBitmapIndex": 35
   },
   {
-    "id": "FedGaz-FedGazDe",
+    "id": "FedGaz-FedGazDe-1849-1999",
     "associatedPartner": "FedGaz",
     "mediaId": "FedGazDe",
     "mediaTitle": "Bundesblatt",
@@ -7905,7 +7905,7 @@
     "partnerBitmapIndex": 42
   },
   {
-    "id": "FedGaz-FedGazFr",
+    "id": "FedGaz-FedGazFr-1849-1999",
     "associatedPartner": "FedGaz",
     "mediaId": "FedGazFr",
     "mediaTitle": "Feuille Fédérale",
