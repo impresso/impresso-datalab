@@ -11,9 +11,6 @@ import {
   Plans,
 } from "../constants"
 
-const GitHubToken: string = process.env.GITHUB_TOKEN || ""
-console.log("[config.ts] - GitHub Token:", GitHubToken.length ? "YES" : "NO")
-
 const datasets = defineCollection({
   loader: file("src/content/datasets.json"),
   schema: z.object({

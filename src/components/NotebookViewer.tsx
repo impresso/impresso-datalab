@@ -17,35 +17,14 @@ export interface NotebookViewerProps {
   raw?: string
 }
 
-const getGithubIssuesUrl = (
-  githubUrl: string,
-): { url: string; account: string; repository: string } => {
-  const repoPattern = /github\.com\/([^/]+)\/([^/]+)/
-  const match = repoPattern.exec(githubUrl)
-  if (match) {
-    const account = match[1]
-    const repository = match[2]
-    const url = `https://github.com/${account}/${repository}/issues`
-    return { url, account, repository }
-  }
-  return { url: "", account: "", repository: "" }
-}
-
 const NotebookViewer: React.FC<NotebookViewerProps> = ({
   notebook,
   raw = "",
 }) => {
-  // split the raw parameter
-  // according to {/* cell:7 cell_type:markdown */}
   const cells: CellInfo[] = splitTextWithCellInfo(raw)
   const accessTime = notebook.date ?? new Date()
   const accessDateTime = DateTime.fromJSDate(accessTime)
-  const excerpt = notebook.excerpt ?? ""
-
   const headings = cells.filter((cell) => cell.hl)
-  // Example usage:
-  const githubUrl = notebook.githubUrl ?? ""
-  const { url: issueUrl } = getGithubIssuesUrl(githubUrl)
 
   const toc: TOCEntry[] = headings.map((heading) => ({
     id: heading.hId ?? "n-a",

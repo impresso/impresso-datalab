@@ -12,7 +12,7 @@
     "createfontscss": "node ./createfontscss.js",
     "storybook": "npm run createfontscss && storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "updatenotebooks": "node ./updatenotebooks.js",
+    "updatenotebooks": "tsx ./scripts/updateNotebooks.ts",
     "build-search": "pagefind --site dist",
     "cp-search-dev": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist/pagefind')) { fs.cpSync('./dist/pagefind', './public/pagefind', { recursive: true }); }\"",
     "test": "vitest run",
@@ -21,7 +21,7 @@
     "prepare": "husky",
     "update-data-release-cards": "tsx ./scripts/updateDataReleaseCards.ts",
     "update-datasets": "tsx ./scripts/updateDatasets.ts",
-    "update-notebooks": "node ./updatenotebooks.js"
+    "update-notebooks": "tsx ./scripts/updateNotebooks.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.2",

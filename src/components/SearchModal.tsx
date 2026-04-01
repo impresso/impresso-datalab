@@ -1,13 +1,5 @@
-import React, { useState, useEffect, useRef, useMemo } from "react"
-import {
-  Container,
-  Row,
-  Col,
-  Pagination,
-  Spinner,
-  ListGroup,
-  Badge,
-} from "react-bootstrap"
+import React, { useState, useEffect, useRef } from "react"
+import { Container, Row, Col, Spinner, ListGroup, Badge } from "react-bootstrap"
 import Page from "./Page"
 import SearchPagination from "./SearchPagination"
 import SearchSummary from "./SearchSummary"
