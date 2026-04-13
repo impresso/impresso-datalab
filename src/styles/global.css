@@ -708,6 +708,9 @@ hr {
 
   transform: rotate3d(0, 0, 1, 0);
 }
+.dropdown .CustomToggle.dropdown-toggle::after {
+  display: none;
+}
 .dropdown.show .CustomToggle > svg {
   transform: rotate3d(0, 0, 1, 180deg);
 }

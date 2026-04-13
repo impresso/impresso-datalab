@@ -1,4 +1,4 @@
-import { Container, Nav, Navbar } from "react-bootstrap"
+import { Container, Dropdown, Nav, Navbar } from "react-bootstrap"
 import LogoImpressoDataLab from "./logos/LogoImpressoDatalab"
 import UserArea from "./UserArea"
 import Link from "./Link"
@@ -6,6 +6,30 @@ import "./Header.css"
 import { useLayoutEffect, useRef } from "react"
 import { useBrowserStore } from "../store"
 import { FlashOff, FlashSolid } from "iconoir-react"
+import DropdownCustomToggle from "./DropdownCustomToggle"
+
+const GuidelineLinks: ({
+  url: string
+  label: string
+} | null)[] = [
+  {
+    url: "https://github.com/impresso/impresso-datalab-notebooks/blob/main/documentation/editorial-pipeline-overview.md",
+    label: "Overview",
+  },
+  null,
+  {
+    url: "https://github.com/impresso/impresso-datalab-notebooks/blob/main/documentation/authors-guidelines.md",
+    label: "For authors",
+  },
+  {
+    url: "https://github.com/impresso/impresso-datalab-notebooks/blob/main/documentation/editors-guidelines.md",
+    label: "For editors",
+  },
+  {
+    url: "https://github.com/impresso/impresso-datalab-notebooks/blob/main/documentation/reviewers-guidelines.md",
+    label: "For reviewers",
+  },
+]
 
 const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null)
@@ -40,13 +64,36 @@ const Header: React.FC = () => {
             </Nav.Item>
             <Nav.Item>
               <Link to="/search" className="nav-link ">
-                Search notebooks
+                Search
               </Link>
             </Nav.Item>
             <Nav.Item>
               <Link to="/about" className="nav-link ">
                 about
               </Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Dropdown align={"start"}>
+                <Dropdown.Toggle as={DropdownCustomToggle} className="p-2">
+                  Guidelines
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {GuidelineLinks.map((link) =>
+                    link === null ? (
+                      <Dropdown.Divider key="divider" />
+                    ) : (
+                      <Dropdown.Item
+                        key={link.url}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.label}
+                      </Dropdown.Item>
+                    ),
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
             </Nav.Item>
             <Nav.Item>
               <Link to="/plans" className="nav-link ">

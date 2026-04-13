@@ -2,8 +2,7 @@ import { Button, Dropdown } from "react-bootstrap"
 import { useBrowserStore, usePersistentStore } from "../store"
 import UserCard from "./UserCard"
 import { userService } from "../services"
-import { forwardRef, useEffect } from "react"
-import { PageDown } from "iconoir-react"
+import { useEffect } from "react"
 import {
   BrowserViewChangePassword,
   BrowserViewChangePlanRequest,
@@ -13,28 +12,7 @@ import {
   BrowserViewTermsOfUse,
 } from "../constants"
 
-const CustomToggle = forwardRef(
-  (
-    props: {
-      children?: React.ReactNode
-      onClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {}
-    },
-    ref: React.Ref<HTMLAnchorElement>,
-  ) => (
-    <a
-      href=""
-      className="CustomToggle text-decoration-none d-flex align-items-center"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault()
-        props.onClick(e)
-      }}
-    >
-      {props.children}
-      <PageDown className="ms-2" />
-    </a>
-  ),
-)
+import DropdownCustomToggle from "./DropdownCustomToggle"
 
 const UserArea = () => {
   const [setUser, logout] = usePersistentStore((state) => [
@@ -86,7 +64,7 @@ const UserArea = () => {
       {user !== null ? (
         <>
           <Dropdown align={"start"}>
-            <Dropdown.Toggle as={CustomToggle}>
+            <Dropdown.Toggle as={DropdownCustomToggle}>
               <UserCard user={user} userPlan={userPlan} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
