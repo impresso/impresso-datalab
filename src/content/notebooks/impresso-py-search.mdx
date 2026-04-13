@@ -5,8 +5,8 @@ authors:
   - impresso-team
 seealso:
   - impresso-py-collections
-sha: 927749caceb9bda05d3ded77d7bcf4078cdf4bcb
-date: 2025-09-10T10:37:12Z
+sha: fb6ff6a3d3f3fbeaaaee870c37520bc389d1c93e
+date: 2026-04-10T14:45:11Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/starter/search_ImpressoAPI.ipynb
 links:
   - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
@@ -82,7 +82,7 @@ Using this Python library, you can, for example, search for contents based on th
 In this notebook, you will learn how to:
 
 - Navigate the Impresso corpus via API
-- Use the diffent search functionalities available on the Impresso Python library.
+- Use the different search functionalities available on the Impresso Python library.
 - Write complex queries (including AND and OR queries)
 
 It is divided into three parts:
@@ -99,7 +99,15 @@ Run the following cell to install the `impresso` python library. You may need to
 
 {/* cell:5 cell_type:code */}
 ```python
-%pip install -q impresso
+from packaging.version import Version
+
+MIN_VERSION = "0.9.15"
+try:
+    from impresso import version
+    assert Version(version) >= Version(MIN_VERSION)
+    print(f"✔ impresso {version} is installed and up to date.")
+except (ImportError, AssertionError):
+    %pip install --upgrade --force-reinstall impresso
 ```
 
 {/* cell:6 cell_type:markdown */}
@@ -491,7 +499,7 @@ client.search.facet("language", term="titanic")
 ```
 
 {/* cell:77 cell_type:markdown */}
-Find locations occuring in content items mentioning the keyword 'titanic'.
+Find locations occurring in content items mentioning the keyword 'titanic'.
 
 {/* cell:78 cell_type:code */}
 ```python

@@ -3,8 +3,8 @@ title: Exploring Entity Co-occurrence Networks
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 authors:
   - impresso-team
-sha: 84cb15d4b5b16b5a418b60f53bf56ea9a6885ed6
-date: 2025-09-29T14:39:36Z
+sha: fb6ff6a3d3f3fbeaaaee870c37520bc389d1c93e
+date: 2026-04-10T14:45:11Z
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb
 links:
@@ -124,34 +124,47 @@ Install dependencies:
 
 {/* cell:7 cell_type:code */}
 ```python
-%pip install -q impresso ipysigma networkx tqdm
+%pip install -q ipysigma networkx tqdm
 ```
 
-{/* cell:8 cell_type:markdown */}
+{/* cell:8 cell_type:code */}
+```python
+from packaging.version import Version
+
+MIN_VERSION = "0.9.15"
+try:
+    from impresso import version
+    assert Version(version) >= Version(MIN_VERSION)
+    print(f"✔ impresso {version} is installed and up to date.")
+except (ImportError, AssertionError):
+    %pip install --upgrade --force-reinstall impresso
+```
+
+{/* cell:9 cell_type:markdown */}
 Connect to Impresso: 
 
 The following command will prompt you to enter your Impresso token if it has not been authenticated recently (it expires after 8 hours).
 
 To get access to an Impresso API token, go to [Impresso Datalab](https://impresso-project.ch/datalab/) and select *Get API Token* on the menu.
 
-{/* cell:9 cell_type:code */}
+{/* cell:10 cell_type:code */}
 ```python
 from impresso import connect, OR, AND
 
 client = connect()
 ```
 
-{/* cell:10 cell_type:markdown */}
+{/* cell:11 cell_type:markdown */}
 # Part 1. Prepare your data
 
-{/* cell:11 cell_type:markdown */}
+{/* cell:12 cell_type:markdown */}
 ## Get entities and their co-occurrences
 
 First, we retrieve the top 100 most frequently mentioned person entities in all articles that talk about the [Prague Spring](https://en.wikipedia.org/wiki/Prague_Spring) using search facets method from the Impresso Python library. 
 
 > **Facets** are properties of the data. In Impresso, some facets you can use to filter articles are 'language', 'newspaper', 'date of publication', etc. By using search facets method, you can filter by, for example, 'persons' as shown in the example below.
 
-{/* cell:12 cell_type:code */}
+{/* cell:13 cell_type:code */}
 ```python
 query = OR("Prague Spring", "Prager Frühling", "Printemps de Prague")
 
@@ -164,7 +177,7 @@ persons = client.search.facet(
 persons
 ```
 
-{/* cell:13 cell_type:markdown */}
+{/* cell:14 cell_type:markdown */}
 The result is a list of the 100 most frequently mentioned person entities, where each entry includes:
 
 * a unique identifier (value),
@@ -173,7 +186,7 @@ The result is a list of the 100 most frequently mentioned person entities, where
 
 > These 100 entries are the most frequent out of a total of 2,355 persons mentioned in all matched content items.
 
-{/* cell:14 cell_type:markdown */}
+{/* cell:15 cell_type:markdown */}
 Next, we generate all unique pairs of entities with a mention count higher than `n`. This will filter out pairs of entities that are mentioned just a few times. 
 
 > For now, we are just combining all the entities in pairs. The documents in which they occur will be found later.
@@ -182,7 +195,7 @@ First, entities that meet the mention threshold are selected, and then all possi
 
 The `n` value can be adjusted so that we don't get too many entity combinations. A sweet spot is just under 500 combinations. Keeping the number of combinations under 500 is typically recommended to avoid API throttling.
 
-{/* cell:15 cell_type:code */}
+{/* cell:16 cell_type:code */}
 ```python
 import itertools
 
@@ -210,7 +223,7 @@ if len(person_ids_combinations) > 500:
 
 ```
 
-{/* cell:16 cell_type:markdown */}
+{/* cell:17 cell_type:markdown */}
 
 ## Find articles where the entity pairs occur
 
@@ -218,7 +231,7 @@ We also retrieve the dates and the number of articles where person entity pairs 
 
 This piece of code gets a facet for every combination of named entities. It is a single call per combination so it may take a while for a large number of combinations.
 
-{/* cell:17 cell_type:code */}
+{/* cell:18 cell_type:code */}
 ```python
 from impresso.util.error import ImpressoError
 from time import sleep
@@ -261,7 +274,7 @@ for idx, combo in tqdm(enumerate(person_ids_combinations), total=len(person_ids_
     connections.append((combo, items))
 ```
 
-{/* cell:18 cell_type:markdown */}
+{/* cell:19 cell_type:markdown */}
 We put all in a dataframe. Each row represents a co-occurrence event between two named persons in the Impresso dataset, for a specific date.
 
 The dataframe includes:
@@ -271,7 +284,7 @@ The dataframe includes:
 * **count:** the number of articles on that date mentioning both entities;
 * **url:** a direct link to the matching articles in the Impresso web app. 
 
-{/* cell:19 cell_type:code */}
+{/* cell:20 cell_type:code */}
 ```python
 import pandas as pd
 
@@ -284,10 +297,10 @@ connections_df = pd.DataFrame(connections_denormalised, columns=('node_a', 'node
 connections_df
 ```
 
-{/* cell:20 cell_type:markdown */}
+{/* cell:21 cell_type:markdown */}
 We then save the connections into a CSV file that can be visualised independently in **Part 2**. Here you will be prompted to provide a name for the file.
 
-{/* cell:21 cell_type:code */}
+{/* cell:22 cell_type:code */}
 ```python
 from tempfile import gettempdir
 
@@ -299,17 +312,20 @@ connections_df.to_csv(connections_csv_filepath)
 print(f"File saved in {connections_csv_filepath}")
 
 # download your csv file (if using Google Colab)
-from google.colab import files
-files.download(connections_csv_filepath)
+try:
+    from google.colab import files
+    files.download(connections_csv_filepath)
+except ImportError:
+    print("Google Colab not detected. Please download the file manually from the path above.")
 ```
 
-{/* cell:22 cell_type:markdown */}
+{/* cell:23 cell_type:markdown */}
 ## Part 2: Visualise your data 
 
-{/* cell:23 cell_type:markdown */}
+{/* cell:24 cell_type:markdown */}
 Import the CSV file you created in **Part 1**:
 
-{/* cell:24 cell_type:code */}
+{/* cell:25 cell_type:code */}
 ```python
 import pandas as pd
 
@@ -317,12 +333,12 @@ connections_df = pd.read_csv(connections_csv_filepath)
 connections_df
 ```
 
-{/* cell:25 cell_type:markdown */}
+{/* cell:26 cell_type:markdown */}
 Now, we group results by frequency of pairs to create connections (edges), and count the number of connections. We also preserve the URL. 
 
 > The URL does not contain DateRange information, that's why they can be grouped here as they just refer to the search terms and the pair of persons occuring in documents.
 
-{/* cell:26 cell_type:code */}
+{/* cell:27 cell_type:code */}
 ```python
 grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
     .agg({'timestamp': lambda x: ', '.join(list(x)), 'count': 'sum', 'url': lambda x: list(set(x))[0]}) \
@@ -330,12 +346,12 @@ grouped_connections_df = connections_df.groupby(['node_a', 'node_b']) \
 grouped_connections_df
 ```
 
-{/* cell:27 cell_type:markdown */}
+{/* cell:28 cell_type:markdown */}
 In the cell below, we use the [NetworkX](https://networkx.org) python library, designed for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks. 
 
 Here, we start creating our network by defining the 'source' and 'target', as well as the edges attributes. 
 
-{/* cell:28 cell_type:code */}
+{/* cell:29 cell_type:code */}
 ```python
 import networkx as nx
 
@@ -354,11 +370,11 @@ for i in sorted(G.nodes()):
 G.nodes
 ```
 
-{/* cell:29 cell_type:markdown */}
+{/* cell:30 cell_type:markdown */}
 To ensure reprocibility, save the file so that it can be downloaded and used elsewhere.
 > The file format GEFX is compatible with other network analysis tools like Gephi.
 
-{/* cell:30 cell_type:code */}
+{/* cell:31 cell_type:code */}
 ```python
 from tempfile import gettempdir
 
@@ -372,16 +388,20 @@ nx.write_gexf(G, gefx_filepath)
 print(f"File saved in {gefx_filepath}")
 
 # Download file (if using Google Colab) 
-files.download(gefx_filepath)
+try:
+    from google.colab import files
+    files.download(gefx_filepath)
+except ImportError:
+    print("Google Colab not detected. Please download the file manually from the path above.")
 ```
 
-{/* cell:31 cell_type:markdown */}
+{/* cell:32 cell_type:markdown */}
 If running in Colab, activate custom widgets to allow `ipysigma` to render the graph by running the cell below. 
 
 Ipysigma allows you to produce an interactive graph, as well as manipulate the graph's settings. 
 
 
-{/* cell:32 cell_type:code */}
+{/* cell:33 cell_type:code */}
 ```python
 try:
     from google.colab import output
@@ -390,12 +410,12 @@ except:
     pass
 ```
 
-{/* cell:33 cell_type:markdown */}
+{/* cell:34 cell_type:markdown */}
 Run the cell below to render the graph. 
 
 The output will prompt you to choose from a dropdown list 'what should represent the size of the nodes', i.e. which centrality measure should determine the size of the nodes in your graph. Select it before you continue. These measures help reveal the structural importance of each node within the network.
 
-{/* cell:34 cell_type:code */}
+{/* cell:35 cell_type:code */}
 ```python
 import ipywidgets
 
@@ -414,12 +434,12 @@ ipywidgets.Box(
 
 ```
 
-{/* cell:35 cell_type:markdown */}
+{/* cell:36 cell_type:markdown */}
 The next cell reads the node size method chosen above and plots the visualisation. 
 >If you want to change the centrality measure above, re-run the next cell to update the visualisation.
 
 
-{/* cell:36 cell_type:code */}
+{/* cell:37 cell_type:code */}
 ```python
 import networkx as nx
 from ipysigma import Sigma
@@ -449,10 +469,10 @@ print("See the following link for more information about centrality measures: ht
 Sigma(g, node_size=node_size, edge_size='count', clickable_edges=True, )
 ```
 
-{/* cell:37 cell_type:markdown */}
+{/* cell:38 cell_type:markdown */}
 The graph display allows you to download the visualisation in **png**, **svg**, **gexf**, and **json**. 
 
-{/* cell:38 cell_type:markdown */}
+{/* cell:39 cell_type:markdown */}
 # Limitations
 
 Producing network graphs can be a good strategy to explore mentions to people in your collections. However, it's important to be mindful of some limitations before interpreting your results.
@@ -467,7 +487,7 @@ It is also possible that some entities that do exist in the content items do not
 
 
 
-{/* cell:39 cell_type:markdown */}
+{/* cell:40 cell_type:markdown */}
 ## Conclusion
 
 This notebook provided you with a comprehensive pipeline to create network graphs using the Impresso corpus. 
@@ -488,7 +508,7 @@ That's it for now! Next, you can explore the [Visualising Place Entities on Maps
 
 [Historical Network Research Community](https://historicalnetworkresearch.org/): A hub for scholars working at the intersection of history and network analysis. Offers conference proceedings, reading lists, and tutorials.
 
-{/* cell:40 cell_type:markdown */}
+{/* cell:41 cell_type:markdown */}
 ---
 ## Project and License info
 
