@@ -4,10 +4,6 @@ import CodeSnippet from "./CodeSnippet"
 import { useEffect } from "react"
 import GettingStarted from "./GettingStarted"
 import type { Series } from "../types"
-import LogoReadTheDocs from "./logos/LogoReadTheDocs"
-import LogoHuggingFace from "./logos/LogoHuggingFace"
-import LogoJSON from "./logos/LogoJSON"
-import LogoGitHub from "./logos/LogoGitHub"
 
 const CodeSample = `# Install the Impresso library
 %pip install impresso
@@ -85,85 +81,59 @@ const Wall = ({
 
           <Col md={7} lg={7} xxl={6}>
             <div className="shadow-sm p-3 border-radius-sm mb-4 container-fluid">
-              <h3>Docs & Resources</h3>
+              <h3>Overview & Resources</h3>
+              <p className="mb-3">
+                The Impresso Datalab provides programmatic access to historical
+                newspaper data, models, and annotation services. It complements
+                the Impresso web app and enables custom analyses via Python and
+                APIs.
+              </p>
               <Row>
-                <Col md={4} className="mt-3">
-                  <LogoReadTheDocs
-                    width={22}
-                    href="https://impresso.readthedocs.io/en/latest/"
-                    title="Impresso Python library (Read the Docs)"
-                  >
-                    Python library
-                  </LogoReadTheDocs>
+                <Col md={6} className="mt-2">
+                  <h4 className="h6 mb-1">Getting started</h4>
+                  <p className="mb-0">
+                    Use the Python API to explore and access Impresso data
+                    programmatically.{" "}
+                    <a href="https://impresso.readthedocs.io/en/latest/">
+                      Python API
+                    </a>
+                    {" · "}
+                    <a href="/notebooks">Notebooks</a>
+                  </p>
                 </Col>
-                <Col md={4} className="mt-3">
-                  <LogoHuggingFace
-                    width={22}
-                    href="https://huggingface.co/impresso-project/"
-                    title="Impresso models on Hugging Face"
-                  >
-                    Hugging Face
-                  </LogoHuggingFace>
+                <Col md={6} className="mt-2">
+                  <h4 className="h6 mb-1">Example notebooks</h4>
+                  <p className="mb-0">
+                    Explore workflows used in classes and workshops.{" "}
+                    <a href="/notebooks">Notebook collection</a>
+                    {" · "}
+                    <a href="https://github.com/impresso/impresso-datalab-notebooks/wiki">
+                      Workshop resources
+                    </a>
+                  </p>
                 </Col>
-                <Col md={4} className="mt-3">
-                  <LogoJSON
-                    width={22}
-                    href="/public-api/v1/docs"
-                    title="Impresso Rest API documentation"
-                  >
-                    Rest API docs
-                  </LogoJSON>
+                <Col md={6} className="mt-3">
+                  <h4 className="h6 mb-1">REST API</h4>
+                  <p className="mb-0">
+                    Use the REST API for direct, low-level access and
+                    integration. <a href="/public-api/v1/docs">REST API docs</a>
+                  </p>
                 </Col>
-                <Col md={4} className="mt-3">
-                  <LogoGitHub
-                    width={22}
-                    href="https://github.com/impresso/impresso-datalab-notebooks"
-                    title="Impresso Datalab Notebooks on GitHub"
-                  >
-                    Notebooks
-                  </LogoGitHub>
-                </Col>
-
-                <Col md={4} className="mt-3">
-                  <LogoReadTheDocs
-                    width={22}
-                    href="https://pypi.org/project/impresso-pipelines/"
-                    title="Impresso Pipelines"
-                  >
-                    Impresso Pipelines
-                  </LogoReadTheDocs>
-                </Col>
-                <Col md={4} className="mt-3">
-                  <LogoGitHub
-                    width={22}
-                    href="https://github.com/impresso/impresso-datalab-notebooks/wiki"
-                    title="Workshop Resourcess on GitHub"
-                  >
-                    Workshop Resources
-                  </LogoGitHub>
+                <Col md={6} className="mt-3">
+                  <h4 className="h6 mb-1">Working with your own data</h4>
+                  <p className="mb-0">
+                    Use Pipelines and Models to process and enrich external
+                    documents.{" "}
+                    <a href="https://pypi.org/project/impresso-pipelines/">
+                      Pipelines
+                    </a>
+                    {" · "}
+                    <a href="https://huggingface.co/impresso-project/">
+                      Models
+                    </a>
+                  </p>
                 </Col>
               </Row>
-            </div>
-            <div className="m-3">
-              The{" "}
-              <a
-                href="https://impresso-project.ch"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Impresso project
-              </a>{" "}
-              strives to create meaningful links across historical media
-              collections. The new <i>Impresso Datalab</i> complements the Web
-              App and offers a platform for programmatic data access and
-              annotation services.
-              <p>
-                It provides access to our data and models via API and a
-                dedicated Python library via Jupyter notebooks. All this with
-                the goal to enable custom analyses of the Impresso corpus and
-                the semantic indexation of external document collections with
-                the help of models created by the project.
-              </p>
             </div>
           </Col>
         </Row>

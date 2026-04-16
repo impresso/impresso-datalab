@@ -16,7 +16,6 @@ import AssociatedPartner, {
   type AssociatedPartnerProps,
 } from "./AssociatedPartner"
 import Link from "./Link"
-import { GithubCircle } from "iconoir-react"
 
 const Footer: React.FC<{
   associatedPartners: AssociatedPartnerProps[]
@@ -36,7 +35,7 @@ const Footer: React.FC<{
             <h3 className="mt-2">Contact us</h3>
           </Col>
           <Col>
-            <h3 className="mt-2">Quick links & Documentation</h3>
+            <h3 className="mt-2">Resources overview</h3>
           </Col>
         </Row>
         <Row>
@@ -79,53 +78,51 @@ const Footer: React.FC<{
             </ul>
           </Col>
           <Col md="6" lg="3" xxl="3">
-            <p>
-              Visit the{" "}
-              <a href="https://impresso-project.ch">Impresso project website</a>{" "}
-              to learn more about our work.
-              <br />
-              Find all Impresso models on{" "}
-              <a
-                href="https://huggingface.co/impresso-project/"
-                style={{
-                  whiteSpace: "nowrap",
-                }}
-              >
-                🤗 Hugging Face
-              </a>{" "}
-              and explore our source code on{" "}
-              <a
-                href="https://github.com/impresso"
-                style={{
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <GithubCircle width={16} />
-                &nbsp;GitHub
-              </a>
-              .
-            </p>
+            <h4 className="h6 mt-2">Documentation</h4>
+            <ul className="list-unstyled">
+              <li>
+                <a href="https://impresso.readthedocs.io/en/latest/">
+                  Python API
+                </a>
+              </li>
+              <li>
+                <a href="/public-api/v1/docs">REST API</a>
+              </li>
+              <li>
+                <Link to="/notebooks" underline>
+                  Notebooks
+                </Link>
+              </li>
+            </ul>
           </Col>
           <Col md="6" lg="3" xxl="3">
-            <p>
-              Check out our{" "}
-              <a href="/public-api/v1/docs">Rest API documentation</a> or the
-              documentation of our{" "}
-              <a href="https://pypi.org/project/impresso">
-                Impresso Python Library
-              </a>{" "}
-              to interact with the Impresso API in Python notebooks or scripts.
-            </p>
+            <h4 className="h6 mt-2">Data processing</h4>
+            <ul className="list-unstyled">
+              <li>
+                <a href="https://pypi.org/project/impresso-pipelines/">
+                  Pipelines
+                </a>
+              </li>
+              <li>
+                <a href="https://huggingface.co/impresso-project/">Models</a>
+              </li>
+              <li>
+                <a href="https://github.com/impresso">GitHub organization</a>
+              </li>
+            </ul>
           </Col>
           <Col md="6" lg="3" xxl="3">
-            <p>
-              Our{" "}
-              <Link to="/notebooks" underline>
-                Notebooks
-              </Link>{" "}
-              are a great way to get started with the data. They are interactive
-              and can be run in the cloud.
-            </p>
+            <h4 className="h6 mt-2">Project and workshops</h4>
+            <ul className="list-unstyled">
+              <li>
+                <a href="https://impresso-project.ch">Impresso project website</a>
+              </li>
+              <li>
+                <a href="https://github.com/impresso/impresso-datalab-notebooks/wiki">
+                  Workshop resources
+                </a>
+              </li>
+            </ul>
           </Col>
         </Row>
         <Row className="border-top border-dark py-3">
