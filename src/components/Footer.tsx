@@ -35,36 +35,6 @@ const Footer: React.FC<{
   return (
     <footer className="footer mt-5 mx-lg-5 mx-md-2">
       <Container fluid="xxl">
-        <Row>
-          <Col md="6" lg="3" xxl="3">
-            <p>
-              Visit the{" "}
-              <a href="https://impresso-project.ch">Impresso project website</a>{" "}
-              to learn more about our work.
-              <br />
-              Find all Impresso models on{" "}
-              <a
-                href="https://huggingface.co/impresso-project/"
-                style={{
-                  whiteSpace: "nowrap",
-                }}
-              >
-                🤗 Hugging Face
-              </a>{" "}
-              and explore our source code on{" "}
-              <a
-                href="https://github.com/impresso"
-                style={{
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <GithubCircle width={16} />
-                &nbsp;GitHub
-              </a>
-              .
-            </p>
-          </Col>
-        </Row>
         <Row className="border-top border-dark py-3">
           <Col>
             <h3 className="mt-2">Partners</h3>
