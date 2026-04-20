@@ -77,13 +77,13 @@ These ToU apply to all Users irrespective of their status, and to all Data irres
 A User may register an Impresso User Account to access more Data and Services. This account is assigned individually and requires an email address and password for authentication.
 
 To open an Impresso Account, a User must complete the online registration form by providing his/her first and last name(s), email address, academic affiliation if any, and a brief description of the intended research. Once the registration has been validated by the Impresso Project and/or the Cultural Heritage Institution and the User has accepted the ToU, a confirmation email will be sent inviting the User to activate his/her interface or API account.
-Once the account has been activated, the User will be able to log into the GUI and/or request a time-limited API token.
+Once the account has been activated, the User will be able to log into the GUI and/or request a time-limited API key.
 
 The opening of an account by a User is free of charge. The User undertakes to provide accurate, complete and up-to-date personal information. It is strictly forbidden to create an account using a false identity, a pseudonym or in a fraudulent manner.
 
 In the event that the User uses his/her account, login details or the Data and content accessible on the interface or via the API in violation of these ToU, he/she may be held liable under civil and/or criminal law.
 
-The User's passwords and API tokens are personal and the User must not disclose them to any third party.
+The User's passwords and API keys are personal and the User must not disclose them to any third party.
 
 ### 6. MEDIA ARCHIVE COPYRIGHTS DOMAINS
 

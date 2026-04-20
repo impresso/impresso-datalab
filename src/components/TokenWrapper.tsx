@@ -95,7 +95,7 @@ const TokenWrapper: React.FC<{
   return (
     <Container>
       <h1>
-        Your API token{" "}
+        Your API key{" "}
         <span className="text-muted">{apiTokenStatusTranslationKey}</span>
       </h1>
 
@@ -155,7 +155,7 @@ const TokenWrapper: React.FC<{
       )}
       {showLoginForm && (
         <section className="my-4 d-flex flex-column justify-content-center">
-          <h2 className="mx-auto ">Please log in to get your API Token</h2>
+          <h2 className="mx-auto ">Please log in to get your API key</h2>
           <button
             type="submit"
             className="btn btn-secondary mx-auto d-flex justify-content-center px-5"
