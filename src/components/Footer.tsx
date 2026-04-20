@@ -30,54 +30,8 @@ const Footer: React.FC<{
 
   return (
     <footer className="footer mt-5 mx-lg-5 mx-md-2">
-      <Container fluid>
-        <Row className="border-top border-dark py-3">
-          <Col md="6" lg="3" xxl="3">
-            <h3 className="mt-2">Contact us</h3>
-          </Col>
-          <Col>
-            <h3 className="mt-2">Quick links & Documentation</h3>
-          </Col>
-        </Row>
+      <Container fluid="xxl">
         <Row>
-          <Col md="6" lg="3" xxl="3">
-            <ul className="list-unstyled">
-              <li>info @ impresso-project [dot] ch</li>
-              <li>
-                project website:{" "}
-                <a href="/" target="_blank">
-                  impresso-project.ch
-                </a>
-              </li>
-              <li className="mt-2">
-                GitHub:{" "}
-                <a href="https://github.com/impresso" target="_blank">
-                  @impresso
-                </a>
-              </li>
-              <li>
-                Mastodon:{" "}
-                <a href="https://fedihum.org/@impresso" target="_blank">
-                  @impresso
-                </a>
-              </li>
-              <li>
-                Bluesky:{" "}
-                <a
-                  href="https://bsky.app/profile/impresso.bsky.social"
-                  target="_blank"
-                >
-                  impresso.bsky.social
-                </a>
-              </li>
-              <li>
-                Discord:{" "}
-                <a href="https://discord.gg/tYvuD8Nfur" target="_blank">
-                  Impresso
-                </a>
-              </li>
-            </ul>
-          </Col>
           <Col md="6" lg="3" xxl="3">
             <p>
               Visit the{" "}
@@ -203,6 +157,46 @@ const Footer: React.FC<{
         </Row>
         <Row className="mb-5 py-4 border-top border-dark">
           <Col md={6} lg={4}>
+            <h4>Contact</h4>
+            <ul className="list-unstyled">
+              <li>info @ impresso-project [dot] ch</li>
+              <li>
+                project website:{" "}
+                <a href="/" target="_blank">
+                  impresso-project.ch
+                </a>
+              </li>
+              <li className="mt-2">
+                GitHub:{" "}
+                <a href="https://github.com/impresso" target="_blank">
+                  @impresso
+                </a>
+              </li>
+              <li>
+                Mastodon:{" "}
+                <a href="https://fedihum.org/@impresso" target="_blank">
+                  @impresso
+                </a>
+              </li>
+              <li>
+                Bluesky:{" "}
+                <a
+                  href="https://bsky.app/profile/impresso.bsky.social"
+                  target="_blank"
+                >
+                  impresso.bsky.social
+                </a>
+              </li>
+              <li>
+                Discord:{" "}
+                <a href="https://discord.gg/tYvuD8Nfur" target="_blank">
+                  Impresso
+                </a>
+              </li>
+            </ul>
+          </Col>
+          <Col md={6} lg={4}>
+            <h4>Technical Information</h4>
             <GitInfo
               version={import.meta.env.PUBLIC_VERSION}
               gitBranch={import.meta.env.PUBLIC_GIT_BRANCH}
@@ -223,21 +217,7 @@ const Footer: React.FC<{
               </p>
             </GitInfo>
           </Col>
-          <Col md={6} lg={4}>
-            <ul className="list-unstyled">
-              <li>
-                <h4>Contact</h4>
-              </li>
-              <li>
-                <a
-                  href="mailto:info@impresso-project.ch"
-                  className="text-decoration-none"
-                >
-                  info@impresso-project.ch
-                </a>
-              </li>
-            </ul>
-          </Col>
+
           <Col md={6} lg={4}>
             <ul className="list-unstyled">
               <li>
