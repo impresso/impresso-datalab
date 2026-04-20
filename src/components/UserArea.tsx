@@ -1,4 +1,4 @@
-import { Button, Dropdown } from "react-bootstrap"
+import { Dropdown } from "react-bootstrap"
 import { useBrowserStore, usePersistentStore } from "../store"
 import UserCard from "./UserCard"
 import { userService } from "../services"

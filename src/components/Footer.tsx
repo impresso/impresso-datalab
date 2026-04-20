@@ -16,7 +16,6 @@ import AssociatedPartner, {
   type AssociatedPartnerProps,
 } from "./AssociatedPartner"
 import Link from "./Link"
-import { GithubCircle } from "iconoir-react"
 import LogoGitHub from "./logos/LogoGitHub"
 import LogoJSON from "./logos/LogoJSON"
 import LogoHuggingFace from "./logos/LogoHuggingFace"
