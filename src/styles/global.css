@@ -536,6 +536,9 @@ hr {
   .modal-xxl {
     --bs-modal-width: 800px;
   }
+  .container-xxl {
+    max-width: 800px;
+  }
 }
 @media (min-width: 1024px) {
   .modal {
@@ -550,10 +553,16 @@ hr {
   .modal-xxl {
     --bs-modal-width: 1000px !important;
   }
+  .container-xxl {
+    max-width: 1000px;
+  }
 }
 @media (min-width: 1024px) and (max-width: 1600px) {
   .modal-xxl {
     --bs-modal-width: calc(100% - 50px) !important;
+  }
+  .container-xxl {
+    max-width: calc(100% - 50px);
   }
   .modal-xxl .container {
     max-width: 100%;
@@ -567,6 +576,9 @@ hr {
 @media (min-width: 1600px) {
   .modal-xxl {
     --bs-modal-width: 1550px !important;
+  }
+  .container-xxl {
+    max-width: 1550px;
   }
   .modal-xxl .container {
     max-width: 100%;

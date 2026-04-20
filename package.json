@@ -48,7 +48,7 @@
     "@uiw/react-codemirror": "^4.23.1",
     "astro": "^5.18.0",
     "axios": "^1.7.7",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^5.3.8",
     "boring-avatars": "^1.11.2",
     "github-slugger": "^2.0.0",
     "iconoir-react": "^7.9.0",
