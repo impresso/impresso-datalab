@@ -12,6 +12,7 @@ export interface CodeSnippetProps {
   value?: string
   readonly?: boolean
   basicSetup?: any
+  className?: string
 }
 
 const myTheme = createTheme({
@@ -54,6 +55,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
     tabSize: 2,
     foldGutter: false,
   },
+  className = "",
 }) => {
   const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
   const codeMirrorRef = useRef<ReactCodeMirrorRef>(null)
@@ -90,7 +92,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
   }, [isCopied])
 
   return (
-    <div className="CodeSnippet">
+    <div className={`CodeSnippet ${className}`}>
       <ReactCodeMirror
         ref={codeMirrorRef}
         value={value}
