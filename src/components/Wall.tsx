@@ -164,8 +164,8 @@ const Wall = ({
                 basicSetup={{ lineNumbers: false }}
               />
               <p className="very-small text-muted px-2 pt-2">
-                The notebook will prompt you to paste your API key. Then you're
-                ready to explore results!
+                The notebook will prompt you to paste your API token. Then
+                you're ready to explore results!
               </p>
               <CodeSnippet
                 value={CodeResultSample}

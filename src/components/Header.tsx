@@ -64,7 +64,7 @@ const Header: React.FC = () => {
             </Nav.Item>
             <Nav.Item>
               <Link to="/token" className="nav-link ">
-                get API key
+                get API token
               </Link>
             </Nav.Item>
 

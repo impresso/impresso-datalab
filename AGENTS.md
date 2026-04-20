@@ -19,7 +19,7 @@ This project is a fully TypeScript website built with:
 - Vue (for interactive islands that includes code from the impresso-ui-components javascript library)
 
 It connects to a FeathersJS API backend via websockets to authenticate the user or to get current feathersjs token from the local storage.
-Note that the feathersJS token is not the same as the API key, but it is used to get it from the API backend.
+Note that the feathersJS token is not the same as the API token, but it is used to get it from the API backend.
 
 ## Coding Guidelines
 

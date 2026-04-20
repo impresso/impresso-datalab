@@ -30,7 +30,7 @@ Leveraging an unprecedented corpus of newspaper and radio archives, **Impresso â
 
 The project develops natural language processing techniques to enrich media archives with semantic annotations and to advance digital history research and methods. Impresso designs, implements and provides access to a Graphical User Interface and an Application Programming Interface for exploring, visualising and comparing large historical print and audio collections.
 
-Impresso is funded by the Swiss National Science Foundation under grant No. CRSII5\_213585 and by the Luxembourg National Research Fund under grant No. 17498891.
+Impresso is funded by the Swiss National Science Foundation under grant No. CRSII5_213585 and by the Luxembourg National Research Fund under grant No. 17498891.
 
 ### 3. DATA ACCESSIBLE VIA THE IMPRESSO INTERFACE AND API.
 
@@ -49,7 +49,7 @@ Impresso receives Media Archive collections from partner cultural heritage insti
   - Audio records of the program;
   - Transcripts, i.e. the output of Automatic Speech Recognition (ASR).
 
-Moreover, we define a *Content Item* as the smallest text unit of editorial content in a newspaper or radio collection, i.e. an article in the case of newspapers, or a radio show or episode in the case of radio programs.
+Moreover, we define a _Content Item_ as the smallest text unit of editorial content in a newspaper or radio collection, i.e. an article in the case of newspapers, or a radio show or episode in the case of radio programs.
 
 **3.2 Metadata.**
 
@@ -63,7 +63,8 @@ It is specified that Media Archives, Metadata and Semantic Enrichments are subje
 
 ### 4. ACCESS TO DATA AND POSSIBLE ACTIONS THROUGH THE INTERFACE AND THE API
 
-There are two types of Actions possible on the Data through the Interface and API:     
+There are two types of Actions possible on the Data through the Interface and API:
+
 - **Explore**: This includes searching, browsing, exploring, visualising, and comparing Media Archives, Metadata, and Semantic Enrichments.
 - **Get**: This allows for the export of certain Media Archives, Metadata, and Semantic Enrichments.
 
@@ -95,7 +96,7 @@ Access to Media Archive within the Protected Domain may be conditioned according
 
 ### 7. PERMITTED USE OF THE DATA
 
-**7.1 Media Archives** 
+**7.1 Media Archives**
 
 Media Archives accessible via the Impresso Interface and API can be used under the following conditions:
 
@@ -106,10 +107,8 @@ Media Archives accessible via the Impresso Interface and API can be used under t
 Within the Impresso Interface and API, Protected Domain Media Archives are labelled as "Protected - \[Permitted Use]" where \[Permitted Use] corresponds to "Research Use", "Educational Use", "Personal Use", or a combination thereof.
 
 - **Research Use** includes the following permissions:
-
-	- Users are permitted to use Media Archives for academic research activities, as long as they do not fall within the unauthorised uses listed in Section 8. Users have the right to save or print digital documents.
-	
-	- Users may cite digital documents in scientific publications and other dissemination activities (e.g. scientific presentations, blogs or websites, social media).
+  - Users are permitted to use Media Archives for academic research activities, as long as they do not fall within the unauthorised uses listed in Section 8. Users have the right to save or print digital documents.
+  - Users may cite digital documents in scientific publications and other dissemination activities (e.g. scientific presentations, blogs or websites, social media).
 
 - **Educational Use** includes the same permission of Research use, with the addition that Media Archives may be used for educational purposes.
 
@@ -123,11 +122,11 @@ The Media Archive Copyright Domain and permitted use of Media Archive are indica
 
 **The User** **must take appropriate safeguards to prevent use, access to, or disclosure of the Media Archives other than permitted by these Terms of Use.**
 
-**7.2 Metadata**. 
+**7.2 Metadata**.
 
 Unless otherwise specified, Metadata is licensed under a [CC0-1.0](https://creativecommons.org/publicdomain/zero/1.0/) licence and can be used without restriction.
 
-**7.3 Semantic Enrichments.** 
+**7.3 Semantic Enrichments.**
 
 Unless otherwise specified, all Semantic Enrichments are available under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) licence.
 
@@ -137,7 +136,7 @@ For all Data and usages, Users shall respect the best academic and scientific ci
 
 The Impresso Services **are designed to facilitate research and are not intended for mass downloading** of Public or Protected Data. The Impresso Project receives Media Archives from partners who must be consulted directly for certain uses of the data. Users are prohibited from the following actions:
 
-- Mass-downloading any Data, including from the Public Domain. For data dumps, please contact us or visit the project resource web page.    
+- Mass-downloading any Data, including from the Public Domain. For data dumps, please contact us or visit the project resource web page.
 - Training or continue training foundational (language) models using Protected Domain Media Archives. If you have this requirement, please contact us or the partner institutions.
 - Redistributing Media Archives;
 - Using Media Archives for commercial purposes;

@@ -11,7 +11,7 @@ const GettingStarted = ({ className = "" }) => {
             to="/token"
             className="btn btn-primary-outline bg-primary btn-lg pe-4"
           >
-            Get your API key
+            Get your API token
           </Link>
         </li>
       </ol>
