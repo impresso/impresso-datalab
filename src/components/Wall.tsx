@@ -13,7 +13,6 @@ const CodeSample = `# Install the Impresso library
 %pip install impresso
 
 from impresso import connect
-
 client = connect()`
 
 const CodeResultSample = `# Search the corpus
@@ -160,12 +159,18 @@ const Wall = ({
               <p className="very-small text-muted px-2">
                 Copy the code below into a Jupyter notebook
               </p>
-              <CodeSnippet value={CodeSample} />
+              <CodeSnippet
+                value={CodeSample}
+                basicSetup={{ lineNumbers: false }}
+              />
               <p className="very-small text-muted px-2 pt-2">
                 The notebook will prompt you to paste your API key. Then you're
                 ready to explore results!
               </p>
-              <CodeSnippet value={CodeResultSample} className="mb-3" />
+              <CodeSnippet
+                value={CodeResultSample}
+                basicSetup={{ lineNumbers: false }}
+              />
             </SeriesCard>
             {seriesInLeadingColumn.map((series) => (
               <SeriesCard className="mb-3" key={series.id} series={series} />

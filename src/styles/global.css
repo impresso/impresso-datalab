@@ -438,7 +438,7 @@ hr {
 /* codemirror theme refinement */
 .cm-editor {
   box-shadow: var(--shadow-lg);
-  border-radius: var(--impresso-border-radius-xs);
+  border-radius: var(--impresso-border-radius-md);
 }
 
 .cm-gutters {

@@ -53,7 +53,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
   basicSetup = {
     lineNumbers: false,
     tabSize: 2,
-    foldGutter: false,
+    foldGutter: true,
   },
   className = "",
 }) => {

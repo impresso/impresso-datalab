@@ -46,6 +46,7 @@ export interface Series {
     | undefined
   category?: string[]
   position?: string
+  ordering?: number
   notebooks: Notebook[]
   tasks?: Task[]
   dataProviders?: DataProvider[]

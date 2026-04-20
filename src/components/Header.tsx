@@ -73,11 +73,13 @@ const Header: React.FC = () => {
                 <Dropdown.Toggle as={DropdownCustomToggle} className="p-2">
                   Jupyter Notebooks
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item>
-                    <Link to="/search" className="nav-link ">
-                      browse notebooks
-                    </Link>
+                <Dropdown.Menu className="text-white">
+                  <Dropdown.Item
+                    to="/search"
+                    as={Link}
+                    className="color-inherit"
+                  >
+                    browse notebooks
                   </Dropdown.Item>
                   <Dropdown.Divider />
                   {GuidelineLinks.map((link) =>
