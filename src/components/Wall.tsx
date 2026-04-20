@@ -14,8 +14,9 @@ const CodeSample = `# Install the Impresso library
 
 from impresso import connect
 
-client = connect()
+client = connect()`
 
+const CodeResultSample = `# Search the corpus
 results = client.search.find("moon landing")
 results`
 
@@ -71,9 +72,9 @@ const Wall = ({
 
   return (
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
-      <Container fluid>
+      <Container fluid="xxl">
         <Row className="d-flex align-items-end mb-5">
-          <Col md={5} lg={5} xxl={4}>
+          <Col md={5} lg={5} xxl={5}>
             <h1 className="display-3 mb-4" style={{ width: "85%" }}>
               Boost your <br />
               Media Monitoring
@@ -84,47 +85,22 @@ const Wall = ({
           </Col>
 
           <Col md={7} lg={7} xxl={6}>
-            <div className="shadow-sm p-3 border-radius-sm mb-4 container-fluid">
-              <h3>Docs & Resources</h3>
+            <div className="m-3">
+              <h3>Overview & Resources</h3>
+              <b>Impresso Datalab</b> complements the Impresso Web App and
+              enables data access, custom analyses and annotation services via
+              Python and APIs.
               <Row>
-                <Col md={4} className="mt-3">
+                <Col md={6} xl={4} className="mt-3">
                   <LogoReadTheDocs
                     width={22}
                     href="https://impresso.readthedocs.io/en/latest/"
                     title="Impresso Python library (Read the Docs)"
                   >
-                    Python library
+                    Impresso Python library
                   </LogoReadTheDocs>
                 </Col>
-                <Col md={4} className="mt-3">
-                  <LogoHuggingFace
-                    width={22}
-                    href="https://huggingface.co/impresso-project/"
-                    title="Impresso models on Hugging Face"
-                  >
-                    Hugging Face
-                  </LogoHuggingFace>
-                </Col>
-                <Col md={4} className="mt-3">
-                  <LogoJSON
-                    width={22}
-                    href="/public-api/v1/docs"
-                    title="Impresso Rest API documentation"
-                  >
-                    Rest API docs
-                  </LogoJSON>
-                </Col>
-                <Col md={4} className="mt-3">
-                  <LogoGitHub
-                    width={22}
-                    href="https://github.com/impresso/impresso-datalab-notebooks"
-                    title="Impresso Datalab Notebooks on GitHub"
-                  >
-                    Notebooks
-                  </LogoGitHub>
-                </Col>
-
-                <Col md={4} className="mt-3">
+                <Col md={6} xl={4} className="mt-3">
                   <LogoReadTheDocs
                     width={22}
                     href="https://pypi.org/project/impresso-pipelines/"
@@ -133,37 +109,34 @@ const Wall = ({
                     Impresso Pipelines
                   </LogoReadTheDocs>
                 </Col>
-                <Col md={4} className="mt-3">
+                <Col md={6} xl={4} className="mt-3">
+                  <LogoHuggingFace
+                    width={22}
+                    href="https://huggingface.co/impresso-project/"
+                    title="Impresso models on Hugging Face"
+                  >
+                    Impresso Models
+                  </LogoHuggingFace>
+                </Col>
+                <Col md={6} xl={4} className="mt-3">
+                  <LogoJSON
+                    width={22}
+                    href="/public-api/v1/docs"
+                    title="Impresso Rest API documentation"
+                  >
+                    Rest API docs
+                  </LogoJSON>
+                </Col>
+                <Col md={6} xl={4} className="mt-3">
                   <LogoGitHub
                     width={22}
                     href="https://github.com/impresso/impresso-datalab-notebooks/wiki"
-                    title="Workshop Resourcess on GitHub"
+                    title="Workshop Resources on GitHub"
                   >
                     Workshop Resources
                   </LogoGitHub>
                 </Col>
               </Row>
-            </div>
-            <div className="m-3">
-              The{" "}
-              <a
-                href="https://impresso-project.ch"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Impresso project
-              </a>{" "}
-              strives to create meaningful links across historical media
-              collections. The new <i>Impresso Datalab</i> complements the Web
-              App and offers a platform for programmatic data access and
-              annotation services.
-              <p>
-                It provides access to our data and models via API and a
-                dedicated Python library via Jupyter notebooks. All this with
-                the goal to enable custom analyses of the Impresso corpus and
-                the semantic indexation of external document collections with
-                the help of models created by the project.
-              </p>
             </div>
           </Col>
         </Row>
@@ -185,9 +158,14 @@ const Wall = ({
             <SeriesCard className="mb-3" series={enterImpressoPy}>
               <GettingStarted />
               <p className="very-small text-muted px-2">
-                Copy the code below in a blank jupyter notebook to get started
+                Copy the code below into a Jupyter notebook
               </p>
               <CodeSnippet value={CodeSample} />
+              <p className="very-small text-muted px-2 pt-2">
+                The notebook will prompt you to paste your API key. Then you're
+                ready to explore results!
+              </p>
+              <CodeSnippet value={CodeResultSample} className="mb-3" />
             </SeriesCard>
             {seriesInLeadingColumn.map((series) => (
               <SeriesCard className="mb-3" key={series.id} series={series} />
@@ -202,7 +180,7 @@ const Wall = ({
             <SeriesCard className="mb-3" series={enterImpressoModels}>
               {showImpressoModelsCodeSample ? (
                 <p className="very-small text-muted px-2">
-                  Copy the code below in a blank jupyter notebook to get started
+                  Copy the code below into a Jupyter notebook
                 </p>
               ) : null}
               {showImpressoModelsCodeSample ? (

@@ -216,7 +216,7 @@ const series = defineCollection({
     excerpt: z.string(),
     category: z.array(z.enum(SeriesCategories as any)).optional(),
     position: z.string(z.enum(SeriesPositions as any)).optional(),
-    notebooks: z.array(reference("notebooks")),
+    notebooks: z.array(reference("notebooks")).optional().default([]),
     tasks: z.array(reference("tasks")).optional(),
     dataProviders: z.array(reference("dataProviders")).optional(),
   }),

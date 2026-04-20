@@ -29,7 +29,7 @@ const SeriesCard: React.FC<SeriesCardProps> = ({
   const hasCover = series.cover?.url
   return (
     <div className={`SeriesCard d-flex flex-column ${className}`}>
-      <section className="p-3">
+      <section className="pt-3 px-3">
         <h2>{series.title}</h2>
         <h3>{series.excerpt}</h3>
         {series.body ? <MarkdownSnippet value={series.body} /> : null}

@@ -60,7 +60,7 @@ const UserArea = () => {
   }, [token, wsStatus])
 
   return (
-    <div className="UserArea me-3 d-flex">
+    <div className="UserArea d-flex">
       {user !== null ? (
         <>
           <Dropdown align={"start"}>
@@ -101,22 +101,33 @@ const UserArea = () => {
           </Dropdown>
         </>
       ) : (
-        <>
-          <Button
-            size="sm"
-            variant="transparent"
-            onClick={() => setView(BrowserViewLogin)}
-          >
-            Log in
-          </Button>
-          <Button
-            size="sm"
-            variant="transparent"
-            onClick={() => setView(BrowserViewRegister)}
-          >
-            Register
-          </Button>
-        </>
+        <ul className="navbar-nav">
+          <li className="navbar-item">
+            <a
+              className="text-decoration-none text-reset nav-link  "
+              href=""
+              onClick={(e) => {
+                setView(BrowserViewLogin)
+                e.preventDefault()
+              }}
+            >
+              <span className="small-caps">Log in</span>
+            </a>
+          </li>
+          <li className="navbar-text mx-1">|</li>
+          <li className="navbar-item">
+            <a
+              className="text-decoration-none text-reset nav-link  "
+              href=""
+              onClick={(e) => {
+                setView(BrowserViewRegister)
+                e.preventDefault()
+              }}
+            >
+              <span className="small-caps">Register</span>
+            </a>
+          </li>
+        </ul>
       )}
     </div>
   )
