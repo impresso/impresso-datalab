@@ -17,6 +17,10 @@ import AssociatedPartner, {
 } from "./AssociatedPartner"
 import Link from "./Link"
 import { GithubCircle } from "iconoir-react"
+import LogoGitHub from "./logos/LogoGitHub"
+import LogoJSON from "./logos/LogoJSON"
+import LogoHuggingFace from "./logos/LogoHuggingFace"
+import LogoReadTheDocs from "./logos/LogoReadTheDocs"
 
 const Footer: React.FC<{
   associatedPartners: AssociatedPartnerProps[]
@@ -58,27 +62,6 @@ const Footer: React.FC<{
                 &nbsp;GitHub
               </a>
               .
-            </p>
-          </Col>
-          <Col md="6" lg="3" xxl="3">
-            <p>
-              Check out our{" "}
-              <a href="/public-api/v1/docs">Rest API documentation</a> or the
-              documentation of our{" "}
-              <a href="https://pypi.org/project/impresso">
-                Impresso Python Library
-              </a>{" "}
-              to interact with the Impresso API in Python notebooks or scripts.
-            </p>
-          </Col>
-          <Col md="6" lg="3" xxl="3">
-            <p>
-              Our{" "}
-              <Link to="/notebooks" underline>
-                Notebooks
-              </Link>{" "}
-              are a great way to get started with the data. They are interactive
-              and can be run in the cloud.
             </p>
           </Col>
         </Row>
@@ -193,6 +176,15 @@ const Footer: React.FC<{
                   Impresso
                 </a>
               </li>
+              <li>
+                HuggingFace:{" "}
+                <a
+                  href="https://huggingface.co/impresso-project/"
+                  target="_blank"
+                >
+                  Impresso-project
+                </a>
+              </li>
             </ul>
           </Col>
           <Col md={6} lg={4}>
@@ -219,36 +211,88 @@ const Footer: React.FC<{
           </Col>
 
           <Col md={6} lg={4}>
-            <ul className="list-unstyled">
-              <li>
-                <h4>Links</h4>
-              </li>
-              <li>
-                <Link underline to="/about">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link underline to="/notebooks">
-                  Browse notebooks
-                </Link>
-              </li>
-              <li>
-                <Link underline to="/plans">
-                  Plans
-                </Link>
-              </li>
-              <li>
-                <Link underline to="/corpus-overview">
-                  Corpus Overview
-                </Link>
-              </li>
-              <li>
-                <Link underline to="/terms-of-use">
-                  Terms of Use
-                </Link>
-              </li>
-            </ul>
+            <h4>Links</h4>
+            <Row>
+              <Col md={6}>
+                <ul className="list-unstyled">
+                  <li>
+                    <Link underline to="/about">
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link underline to="/notebooks">
+                      Jupyter Notebooks
+                    </Link>
+                  </li>
+                  <li></li>
+                  <li>
+                    <Link underline to="/plans">
+                      Plans
+                    </Link>
+                  </li>
+                  <li>
+                    <Link underline to="/corpus-overview">
+                      Corpus Overview
+                    </Link>
+                  </li>
+                  <li>
+                    <Link underline to="/terms-of-use">
+                      Terms of Use
+                    </Link>
+                  </li>
+                </ul>
+              </Col>
+              <Col md={6}>
+                <ul className="list-unstyled">
+                  <li>
+                    <LogoReadTheDocs
+                      width={22}
+                      href="https://impresso.readthedocs.io/en/latest/"
+                      title="Impresso Python library (Read the Docs)"
+                    >
+                      Impresso Python library
+                    </LogoReadTheDocs>
+                  </li>
+                  <li>
+                    <LogoReadTheDocs
+                      width={22}
+                      href="https://pypi.org/project/impresso-pipelines/"
+                      title="Impresso Pipelines"
+                    >
+                      Impresso Pipelines
+                    </LogoReadTheDocs>
+                  </li>
+                  <li>
+                    <LogoHuggingFace
+                      width={22}
+                      href="https://huggingface.co/impresso-project/"
+                      title="Impresso models on Hugging Face"
+                    >
+                      Impresso Models
+                    </LogoHuggingFace>
+                  </li>
+                  <li>
+                    <LogoJSON
+                      width={22}
+                      href="/public-api/v1/docs"
+                      title="Impresso Rest API documentation"
+                    >
+                      Rest API docs
+                    </LogoJSON>
+                  </li>
+                  <li>
+                    <LogoGitHub
+                      width={22}
+                      href="https://github.com/impresso/impresso-datalab-notebooks/wiki"
+                      title="Workshop Resources on GitHub"
+                    >
+                      Workshop Resources
+                    </LogoGitHub>
+                  </li>
+                </ul>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>

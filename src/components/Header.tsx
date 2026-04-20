@@ -67,18 +67,19 @@ const Header: React.FC = () => {
                 get API key
               </Link>
             </Nav.Item>
-            <Nav.Item>
-              <Link to="/search" className="nav-link ">
-                browse notebooks
-              </Link>
-            </Nav.Item>
 
             <Nav.Item>
               <Dropdown align={"start"}>
                 <Dropdown.Toggle as={DropdownCustomToggle} className="p-2">
-                  Contribute
+                  Jupyter Notebooks
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
+                  <Dropdown.Item>
+                    <Link to="/search" className="nav-link ">
+                      browse notebooks
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Divider />
                   {GuidelineLinks.map((link) =>
                     link === null ? (
                       <Dropdown.Divider key="divider" />
