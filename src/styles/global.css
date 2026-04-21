@@ -677,6 +677,9 @@ hr {
 .rounded-md {
   border-radius: 10px;
 }
+.rounded-lg {
+  border-radius: var(--impresso-border-radius-lg);
+}
 /* Shadows */
 .shadow-xs {
   box-shadow: var(--shadow-xs);
@@ -689,6 +692,9 @@ hr {
 }
 .shadow-lg {
   box-shadow: var(--shadow-lg);
+}
+.shadow-lg-light {
+  box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, 0.05);
 }
 .shadow-xl {
   box-shadow: var(--shadow-lg);

@@ -1,21 +1,17 @@
+import { Key } from "iconoir-react"
 import Link from "./Link"
 
 const GettingStarted = ({ className = "" }) => {
   return (
-    <div>
-      <ol
-        className={`GettingStarted ${className} my-3 d-flex flex-wrap gap-2 align-items-center`}
-      >
-        <li>
-          <Link
-            to="/token"
-            className="btn btn-primary-outline bg-primary btn-lg pe-4"
-          >
-            Get your API token
-          </Link>
-        </li>
-      </ol>
-    </div>
+    <Link
+      to="/token"
+      className={`btn btn-secondary bg-dark rounded-md btn-lg mx-auto px-5 ${className}`}
+    >
+      <span className="text-paper">
+        <Key /> <span className="ms-2" />
+        Get your API token
+      </span>
+    </Link>
   )
 }
 

@@ -8,6 +8,8 @@ import LogoReadTheDocs from "./logos/LogoReadTheDocs"
 import LogoHuggingFace from "./logos/LogoHuggingFace"
 import LogoJSON from "./logos/LogoJSON"
 import LogoGitHub from "./logos/LogoGitHub"
+import "./Wall.css"
+import MarkdownSnippet from "./MarkdownSnippet"
 
 const CodeSample = `# Install the Impresso library
 %pip install impresso
@@ -79,99 +81,111 @@ const Wall = ({
               Media Monitoring
             </h1>
             <h2 className="m-0 p-0">
-              Programmatic access to Impresso's Corpus, Data and Models
+              Programmatic access to Impresso's Search, Data and Models
             </h2>
           </Col>
 
           <Col md={7} lg={7} xxl={6}>
             <div className="m-3">
-              <h3>Overview & Resources</h3>
-              <b>Impresso Datalab</b> complements the Impresso Web App and
-              enables data access, custom analyses and annotation services via
-              Python and APIs.
-              <Row>
-                <Col md={6} xl={4} className="mt-3">
-                  <LogoReadTheDocs
-                    width={22}
-                    href="https://impresso.readthedocs.io/en/latest/"
-                    title="Impresso Python library (Read the Docs)"
-                  >
-                    Impresso Python library
-                  </LogoReadTheDocs>
-                </Col>
-                <Col md={6} xl={4} className="mt-3">
-                  <LogoReadTheDocs
-                    width={22}
-                    href="https://pypi.org/project/impresso-pipelines/"
-                    title="Impresso Pipelines"
-                  >
-                    Impresso Pipelines
-                  </LogoReadTheDocs>
-                </Col>
-                <Col md={6} xl={4} className="mt-3">
-                  <LogoHuggingFace
-                    width={22}
-                    href="https://huggingface.co/impresso-project/"
-                    title="Impresso models on Hugging Face"
-                  >
-                    Impresso Models
-                  </LogoHuggingFace>
-                </Col>
-                <Col md={6} xl={4} className="mt-3">
-                  <LogoJSON
-                    width={22}
-                    href="/public-api/v1/docs"
-                    title="Impresso Rest API documentation"
-                  >
-                    Rest API docs
-                  </LogoJSON>
-                </Col>
-                <Col md={6} xl={4} className="mt-3">
-                  <LogoGitHub
-                    width={22}
-                    href="https://github.com/impresso/impresso-datalab-notebooks/wiki"
-                    title="Workshop Resources on GitHub"
-                  >
-                    Workshop Resources
-                  </LogoGitHub>
-                </Col>
-              </Row>
+              <p className="fs-4">
+                Impresso Datalab complements the Impresso Web App and enables
+                data access, custom analyses and annotation services via Python
+                and APIs.
+              </p>
             </div>
           </Col>
         </Row>
-        <Row className="my-3  align-items-bottom d-none">
-          <Col className="  d-flex justify-content-center align-items-end ">
-            <h3 className=" p-3 w-100">Tutorials</h3>
+
+        <Row className="align-items-start">
+          <Col md={12}>
+            <h2 className="fs-4 font-weight-medium mb-0">
+              {enterImpressoPy.title}
+            </h2>
           </Col>
-          <Col className="  d-flex justify-content-center align-items-end ">
-            <h3 className=" p-3 w-100">Work with your data!</h3>
+          <Col md={6}>
+            <section className="my-3">
+              <h3 className="fs-6 font-weight-bold ">
+                1. {enterImpressoPy.excerpt}
+              </h3>
+              <div>
+                <p className="small text-muted px-2">
+                  Copy the code below into a Jupyter notebook
+                </p>
+                <CodeSnippet
+                  value={CodeSample}
+                  basicSetup={{ lineNumbers: false }}
+                />
+                <p className="small text-muted px-2 my-2">
+                  Once run, the notebook{" "}
+                  <b>will prompt you to paste your API token</b>.
+                </p>
+                <div className="d-flex justify-content-center">
+                  <GettingStarted className="my-3" />
+                </div>
+                <CodeSnippet
+                  className="my-2"
+                  value={CodeResultSample}
+                  basicSetup={{ lineNumbers: false }}
+                />
+                <p className="small text-muted m-0 pt-2">
+                  Then you're ready to <b>explore results!</b>
+                </p>
+              </div>
+            </section>
           </Col>
-          <Col className=" d-flex  justify-content-center align-items-end ">
-            <h3 className=" p-3 w-100">
-              Notebooks you didn't think you needed
-            </h3>
+          <Col md={4}>
+            <section className="py-3">
+              <h3 className="fs-6 font-weight-bold ">
+                2. Try out our example notebooks
+              </h3>
+              <p className="small text-muted px-2">
+                Explore selected workflows, including more advanced analyses,
+                visualizations, and aggregations. <br />
+                See below.
+              </p>
+            </section>
+
+            <section className="py-3">
+              <h3 className="fs-6 font-weight-bold ">
+                3. Work with your own data
+              </h3>
+              <p className="small text-muted px-2">
+                Use pipelines and models to process and enrich external
+                documents. Check our{" "}
+                <a
+                  href="https://huggingface.co/spaces/impresso-project/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Hugging Face spaces
+                </a>{" "}
+                for ready-to-use pipelines and models
+              </p>
+            </section>
+            <section className="py-3">
+              <h3 className="fs-6 font-weight-bold ">
+                4. Get full control with the REST API
+              </h3>
+              <p className="small text-muted px-2">
+                The Impresso Python library is built on top of our Json REST
+                API, which you can also use for direct, low-level access and
+                integration.
+                <br />
+                <a
+                  href="/public-api/v1/docs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Check out the API documentation
+                </a>
+                .
+              </p>
+            </section>
           </Col>
         </Row>
+
         <Row className="my-3  align-items-bottom">
           <Col md={6} xl={4} className="order-md-1 order-xl-1">
-            <SeriesCard className="mb-3" series={enterImpressoPy}>
-              <GettingStarted />
-              <p className="very-small text-muted px-2">
-                Copy the code below into a Jupyter notebook
-              </p>
-              <CodeSnippet
-                value={CodeSample}
-                basicSetup={{ lineNumbers: false }}
-              />
-              <p className="very-small text-muted px-2 pt-2">
-                The notebook will prompt you to paste your API token. Then
-                you're ready to explore results!
-              </p>
-              <CodeSnippet
-                value={CodeResultSample}
-                basicSetup={{ lineNumbers: false }}
-              />
-            </SeriesCard>
             {seriesInLeadingColumn.map((series) => (
               <SeriesCard className="mb-3" key={series.id} series={series} />
             ))}
