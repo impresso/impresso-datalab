@@ -67,8 +67,8 @@ const Header: React.FC = () => {
               </Link>
             </Nav.Item>
             <Nav.Item>
-              <Link to="/token" className="nav-link ">
-                get API token
+              <Link to="/plans" className="nav-link ">
+                Plans
               </Link>
             </Nav.Item>
 
@@ -184,10 +184,11 @@ const Header: React.FC = () => {
               </span>
             )}
             <Nav.Item>
-              <Link to="/plans" className="nav-link ">
-                Plans
+              <Link to="/token" className="nav-link ">
+                get API token
               </Link>
             </Nav.Item>
+
             <UserArea />
           </Nav>
         </Container>
