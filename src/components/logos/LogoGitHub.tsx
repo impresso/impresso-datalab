@@ -1,19 +1,13 @@
-export type LogoGitHubProps = {
-  color?: string
-  width?: number
-  className?: string
-  href?: string
-  title?: string
-  children?: React.ReactNode
-}
+import type { LogoProps } from "../../types"
 
-const LogoGitHub: React.FC<LogoGitHubProps> = ({
+const LogoGitHub: React.FC<LogoProps> = ({
   color = "var(--impresso-color-black)",
   width = 160,
   className = "",
   href = "https://github.com/impresso",
   title = "GitHub",
   children,
+  linkClassName = "",
 }) => {
   const ratio = 98 / 96
   const height = width / ratio
@@ -22,7 +16,7 @@ const LogoGitHub: React.FC<LogoGitHubProps> = ({
     <div className={`LogoGitHub SVG ${className}`}>
       <a
         href={href}
-        className="d-flex gap-1 align-items-center"
+        className={`d-flex gap-1 align-items-center ${linkClassName}`}
         target="_blank"
         rel="noopener noreferrer"
         title={title}

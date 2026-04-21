@@ -7,6 +7,10 @@ import { useLayoutEffect, useRef } from "react"
 import { useBrowserStore } from "../store"
 import { FlashOff, FlashSolid } from "iconoir-react"
 import DropdownCustomToggle from "./DropdownCustomToggle"
+import LogoReadTheDocs from "./logos/LogoReadTheDocs"
+import LogoHuggingFace from "./logos/LogoHuggingFace"
+import LogoJSON from "./logos/LogoJSON"
+import LogoGitHub from "./logos/LogoGitHub"
 
 const GuidelineLinks: ({
   url: string
@@ -96,6 +100,61 @@ const Header: React.FC = () => {
                       </Dropdown.Item>
                     ),
                   )}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav.Item>
+            <Nav.Item>
+              <Dropdown align={"start"}>
+                <Dropdown.Toggle as={DropdownCustomToggle} className="p-2">
+                  Documentation
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="text-white">
+                  <LogoReadTheDocs
+                    linkClassName="dropdown-item"
+                    color="var(--impresso-color-paper)"
+                    width={22}
+                    href="https://impresso.readthedocs.io/en/latest/"
+                    title="Impresso Python library (Read the Docs)"
+                  >
+                    Impresso Python library
+                  </LogoReadTheDocs>
+                  <LogoReadTheDocs
+                    linkClassName="dropdown-item"
+                    color="var(--impresso-color-paper)"
+                    width={22}
+                    href="https://pypi.org/project/impresso-pipelines/"
+                    title="Impresso Pipelines"
+                  >
+                    Impresso Pipelines
+                  </LogoReadTheDocs>
+                  <Dropdown.Divider />
+                  <LogoJSON
+                    linkClassName="dropdown-item"
+                    width={22}
+                    href="/public-api/v1/docs"
+                    title="Impresso Rest API documentation"
+                  >
+                    Rest API docs
+                  </LogoJSON>
+                  <Dropdown.Divider />
+                  <LogoHuggingFace
+                    linkClassName="dropdown-item"
+                    width={22}
+                    href="https://huggingface.co/impresso-project/"
+                    title="Impresso models on Hugging Face"
+                  >
+                    Impresso Models
+                  </LogoHuggingFace>
+                  <Dropdown.Divider />
+                  <LogoGitHub
+                    linkClassName="dropdown-item"
+                    color="var(--impresso-color-paper)"
+                    width={22}
+                    href="https://github.com/impresso/impresso-datalab-notebooks/wiki"
+                    title="Workshop Resources on GitHub"
+                  >
+                    Workshop Resources
+                  </LogoGitHub>
                 </Dropdown.Menu>
               </Dropdown>
             </Nav.Item>
