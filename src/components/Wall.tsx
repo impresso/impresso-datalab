@@ -4,12 +4,7 @@ import CodeSnippet from "./CodeSnippet"
 import { useEffect } from "react"
 import GettingStarted from "./GettingStarted"
 import type { Series } from "../types"
-import LogoReadTheDocs from "./logos/LogoReadTheDocs"
-import LogoHuggingFace from "./logos/LogoHuggingFace"
-import LogoJSON from "./logos/LogoJSON"
-import LogoGitHub from "./logos/LogoGitHub"
 import "./Wall.css"
-import MarkdownSnippet from "./MarkdownSnippet"
 
 const CodeSample = `# Install the Impresso library
 %pip install impresso
@@ -102,14 +97,17 @@ const Wall = ({
               {enterImpressoPy.title}
             </h2>
           </Col>
-          <Col md={6}>
+          <Col md={7} xl={6} xxl={5}>
             <section className="my-3">
               <h3 className="fs-6 font-weight-bold ">
                 1. {enterImpressoPy.excerpt}
               </h3>
               <div>
+                <div className="d-flex justify-content-center">
+                  <GettingStarted className="my-3" />
+                </div>
                 <p className="small text-muted px-2">
-                  Copy the code below into a Jupyter notebook
+                  Copy the code below into a Jupyter notebook 👇
                 </p>
                 <CodeSnippet
                   value={CodeSample}
@@ -117,11 +115,9 @@ const Wall = ({
                 />
                 <p className="small text-muted px-2 my-2">
                   Once run, the notebook{" "}
-                  <b>will prompt you to paste your API token</b>.
+                  <b>will prompt you to paste your API token ⎘</b>.
                 </p>
-                <div className="d-flex justify-content-center">
-                  <GettingStarted className="my-3" />
-                </div>
+
                 <CodeSnippet
                   className="my-2"
                   value={CodeResultSample}
@@ -133,8 +129,8 @@ const Wall = ({
               </div>
             </section>
           </Col>
-          <Col md={4}>
-            <section className="py-3">
+          <Col md={5} xl={5} xxl={4}>
+            <section className="p-3">
               <h3 className="fs-6 font-weight-bold ">
                 2. Try out our example notebooks
               </h3>
@@ -145,7 +141,7 @@ const Wall = ({
               </p>
             </section>
 
-            <section className="py-3">
+            <section className="p-3">
               <h3 className="fs-6 font-weight-bold ">
                 3. Work with your own data
               </h3>
@@ -162,7 +158,7 @@ const Wall = ({
                 for ready-to-use pipelines and models
               </p>
             </section>
-            <section className="py-3">
+            <section className="p-3">
               <h3 className="fs-6 font-weight-bold ">
                 4. Get full control with the REST API
               </h3>
@@ -185,17 +181,17 @@ const Wall = ({
         </Row>
 
         <Row className="my-3  align-items-bottom">
-          <Col md={6} xl={4} className="order-md-1 order-xl-1">
+          <Col xl={6} xxl={4} className="order-md-1 order-xl-1">
             {seriesInLeadingColumn.map((series) => (
               <SeriesCard className="mb-3" key={series.id} series={series} />
             ))}
           </Col>
-          <Col md={6} xl={4} className="order-md-3 order-xl-2">
+          <Col xl={6} xxl={4} className="order-md-3 order-xl-2">
             {seriesInCentralColumn.map((series) => (
               <SeriesCard className="mb-4" key={series.id} series={series} />
             ))}
           </Col>
-          <Col md={6} xl={4} className="order-md-2  order-xl-3">
+          <Col xl={6} xxl={4} className="order-md-2  order-xl-3">
             <SeriesCard className="mb-3" series={enterImpressoModels}>
               {showImpressoModelsCodeSample ? (
                 <p className="very-small text-muted px-2">
