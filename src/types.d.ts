@@ -1,5 +1,16 @@
 import type { Features, PlanIcons } from "./constants"
 
+export interface LogoProps {
+  color?: string
+  width?: number
+  className?: string
+  href?: string
+  title?: string
+  children?: React.ReactNode
+  linkClassName?: string
+  ariaLabel?: string
+}
+
 export type Group = {
   name: string
   id: number
@@ -46,6 +57,7 @@ export interface Series {
     | undefined
   category?: string[]
   position?: string
+  ordering?: number
   notebooks: Notebook[]
   tasks?: Task[]
   dataProviders?: DataProvider[]

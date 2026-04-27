@@ -76,7 +76,7 @@ export const GenericFeatureLabels: Record<string, string> = {
   [GenericFeatureCreateStoreExportCollections]:
     "Create, store and export personal collections.",
   [GenericFeatureGenerateApiKeys]:
-    "Generate API keys to access parts of our corpus via the Impresso Datalab.",
+    "Generate API tokens to access parts of our corpus via the Impresso Datalab.",
 }
 export const DataFeatureMetadata = "metadata"
 export const DataFeatureMetadataPublicDomain = "metadata-public-domain"

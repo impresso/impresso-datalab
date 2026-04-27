@@ -1,0 +1,22 @@
+---
+title: Dive into the Impresso data with Python
+excerpt: "Try out simple notebooks to get you up to speed "
+position: leading-column
+ordering: 1
+notebooks:
+  - impresso-py-connect
+  - impresso-py-search
+---
+
+In this series of notebooks, you'll learn how to run common search queries and explore results using [Pandas DataFrames](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html).
+
+```python
+from impresso import OR
+
+# Search for articles containing "moon" in English, French, or German
+result = client.search.find(term=OR("moon", "lune", "Mond"))
+
+# Get the results as a DataFrame and show the first few rows
+results_as_df = result.df
+results_as_df.head()
+```

@@ -8,6 +8,10 @@
   padding-top: 1rem;
   padding-left: 0.5rem;
   padding-right: 20px;
+  background-color: var(--impresso-color-deep-black);
+}
+.CodeSnippet.with-light-custom-theme .cm-editor {
+  background-color: #fff9f2;
   /* box-shadow: none; */
 }
 
@@ -17,6 +21,9 @@
   top: 5px;
   background: transparent;
   border: 0 none;
+  color: var(--impresso-color-yellow);
+}
+.CodeSnippet.with-light-custom-theme button.copy-code {
   color: var(--impresso-color-black-rgba-50);
 }
 

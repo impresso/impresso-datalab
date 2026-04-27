@@ -1,14 +1,6 @@
-export type LogoReadTheDocsProps = {
-  color?: string
-  width?: number
-  className?: string
-  href?: string
-  ariaLabel?: string
-  title?: string
-  children?: React.ReactNode
-}
+import type { LogoProps } from "../../types"
 
-const LogoReadTheDocs: React.FC<LogoReadTheDocsProps> = ({
+const LogoReadTheDocs: React.FC<LogoProps> = ({
   color = "var(--impresso-color-black)",
   width = 20,
   className = "",
@@ -16,6 +8,7 @@ const LogoReadTheDocs: React.FC<LogoReadTheDocsProps> = ({
   ariaLabel = "Read the Docs",
   title = "Read the Docs",
   children,
+  linkClassName = "",
 }) => {
   const height = +width
   return (
@@ -26,7 +19,7 @@ const LogoReadTheDocs: React.FC<LogoReadTheDocsProps> = ({
         rel="noopener noreferrer"
         aria-label={ariaLabel}
         title={title}
-        className="d-flex gap-1 align-items-center"
+        className={`d-flex gap-1 align-items-center ${linkClassName}`}
       >
         <svg
           height={height}

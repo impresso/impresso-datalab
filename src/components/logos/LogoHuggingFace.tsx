@@ -1,20 +1,13 @@
-export type LogoHuggingFaceProps = {
-  width?: number
-  className?: string
-  href?: string
-  ariaLabel?: string
-  title?: string
+import type { LogoProps } from "../../types"
 
-  children?: React.ReactNode
-}
-
-const LogoHuggingFace: React.FC<LogoHuggingFaceProps> = ({
+const LogoHuggingFace: React.FC<LogoProps> = ({
   width = 25,
   className = "",
   href = "https://huggingface.co/",
   ariaLabel = "Hugging Face",
   title = "Hugging Face",
   children,
+  linkClassName = "",
 }) => {
   const height = +width
   return (
@@ -25,7 +18,7 @@ const LogoHuggingFace: React.FC<LogoHuggingFaceProps> = ({
         rel="noopener noreferrer"
         aria-label={ariaLabel}
         title={title}
-        className="d-flex gap-1 align-items-center"
+        className={`d-flex gap-1 align-items-center ${linkClassName}`}
       >
         <svg
           height={height}
