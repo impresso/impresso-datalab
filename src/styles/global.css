@@ -6,6 +6,7 @@
   --impresso-color-yellow: #ffeb78;
   --impresso-color-black-rgb: 52, 58, 64;
   --impresso-color-black: rgb(var(--impresso-color-black-rgb));
+  --impresso-color-deep-black: #212529;
   --impresso-color-white: #ffffff;
   --impresso-color-black-rgb: 52, 58, 64;
   --impresso-color-black-alpha-20: rgba(52, 58, 64, 0.2);
@@ -438,7 +439,7 @@ hr {
 /* codemirror theme refinement */
 .cm-editor {
   box-shadow: var(--shadow-lg);
-  border-radius: var(--impresso-border-radius-xs);
+  border-radius: var(--impresso-border-radius-md);
 }
 
 .cm-gutters {
@@ -536,6 +537,9 @@ hr {
   .modal-xxl {
     --bs-modal-width: 800px;
   }
+  .container-xxl {
+    max-width: 800px;
+  }
 }
 @media (min-width: 1024px) {
   .modal {
@@ -550,10 +554,16 @@ hr {
   .modal-xxl {
     --bs-modal-width: 1000px !important;
   }
+  .container-xxl {
+    max-width: 1000px;
+  }
 }
 @media (min-width: 1024px) and (max-width: 1600px) {
   .modal-xxl {
     --bs-modal-width: calc(100% - 50px) !important;
+  }
+  .container-xxl {
+    max-width: calc(100% - 50px);
   }
   .modal-xxl .container {
     max-width: 100%;
@@ -567,6 +577,9 @@ hr {
 @media (min-width: 1600px) {
   .modal-xxl {
     --bs-modal-width: 1550px !important;
+  }
+  .container-xxl {
+    max-width: 1550px;
   }
   .modal-xxl .container {
     max-width: 100%;
@@ -665,6 +678,9 @@ hr {
 .rounded-md {
   border-radius: 10px;
 }
+.rounded-lg {
+  border-radius: var(--impresso-border-radius-lg);
+}
 /* Shadows */
 .shadow-xs {
   box-shadow: var(--shadow-xs);
@@ -678,9 +694,46 @@ hr {
 .shadow-lg {
   box-shadow: var(--shadow-lg);
 }
+.shadow-lg-light {
+  box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, 0.05);
+}
 .shadow-xl {
   box-shadow: var(--shadow-lg);
 }
+
+@media (min-width: 768px) {
+  .border-md-start {
+    border-left: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+  .border-md-top {
+    border-top: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .border-lg-start {
+    border-left: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+  .border-lg-top {
+    border-top: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .border-xl-start {
+    border-left: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+  .border-xl-top {
+    border-top: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+}
+
 /* Dropdown menu*/
 .dropdown-menu {
   --bs-dropdown-bg: var(--impresso-color-black);

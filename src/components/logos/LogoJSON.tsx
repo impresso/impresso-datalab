@@ -1,19 +1,13 @@
-export type LogoJSONProps = {
-  width?: number
-  className?: string
-  href?: string
-  ariaLabel?: string
-  title?: string
-  children?: React.ReactNode
-}
+import type { LogoProps } from "../../types"
 
-const LogoJSON: React.FC<LogoJSONProps> = ({
+const LogoJSON: React.FC<LogoProps> = ({
   width = 20,
   className = "",
   href = "https://readthedocs.org/",
   ariaLabel = "Read the Docs",
   title = "Read the Docs",
   children,
+  linkClassName = "",
 }) => {
   const height = +width
   return (
@@ -24,7 +18,7 @@ const LogoJSON: React.FC<LogoJSONProps> = ({
         rel="noopener noreferrer"
         aria-label={ariaLabel}
         title={title}
-        className="d-flex gap-1 align-items-center"
+        className={`d-flex gap-1 align-items-center ${linkClassName}`}
       >
         <svg width={width} height={height} viewBox="0 0 160 160">
           <defs>

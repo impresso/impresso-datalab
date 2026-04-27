@@ -4,18 +4,14 @@ import CodeSnippet from "./CodeSnippet"
 import { useEffect } from "react"
 import GettingStarted from "./GettingStarted"
 import type { Series } from "../types"
-import LogoReadTheDocs from "./logos/LogoReadTheDocs"
-import LogoHuggingFace from "./logos/LogoHuggingFace"
-import LogoJSON from "./logos/LogoJSON"
-import LogoGitHub from "./logos/LogoGitHub"
 
 const CodeSample = `# Install the Impresso library
 %pip install impresso
 
 from impresso import connect
+client = connect()`
 
-client = connect()
-
+const CodeResultSample = `# Search the corpus
 results = client.search.find("moon landing")
 results`
 
@@ -71,138 +67,144 @@ const Wall = ({
 
   return (
     <div className="Wall mx-lg-5 mx-md-2" style={{ marginTop: 100 }}>
-      <Container fluid>
-        <Row className="d-flex align-items-end mb-5">
-          <Col md={5} lg={5} xxl={4}>
-            <h1 className="display-3 mb-4" style={{ width: "85%" }}>
+      <Container fluid="xxl">
+        <Row className="d-flex align-items-center mb-5">
+          <Col md={5} lg={5} xxl={5}>
+            <h1
+              className="display-3 mb-4 mx-3 mx-md-0"
+              style={{ width: "85%" }}
+            >
               Boost your <br />
               Media Monitoring
             </h1>
-            <h2 className="m-0 p-0">
-              Programmatic access to Impresso's Corpus, Data and Models
-            </h2>
           </Col>
 
           <Col md={7} lg={7} xxl={6}>
-            <div className="shadow-sm p-3 border-radius-sm mb-4 container-fluid">
-              <h3>Docs & Resources</h3>
-              <Row>
-                <Col md={4} className="mt-3">
-                  <LogoReadTheDocs
-                    width={22}
-                    href="https://impresso.readthedocs.io/en/latest/"
-                    title="Impresso Python library (Read the Docs)"
-                  >
-                    Python library
-                  </LogoReadTheDocs>
-                </Col>
-                <Col md={4} className="mt-3">
-                  <LogoHuggingFace
-                    width={22}
-                    href="https://huggingface.co/impresso-project/"
-                    title="Impresso models on Hugging Face"
-                  >
-                    Hugging Face
-                  </LogoHuggingFace>
-                </Col>
-                <Col md={4} className="mt-3">
-                  <LogoJSON
-                    width={22}
-                    href="/public-api/v1/docs"
-                    title="Impresso Rest API documentation"
-                  >
-                    Rest API docs
-                  </LogoJSON>
-                </Col>
-                <Col md={4} className="mt-3">
-                  <LogoGitHub
-                    width={22}
-                    href="https://github.com/impresso/impresso-datalab-notebooks"
-                    title="Impresso Datalab Notebooks on GitHub"
-                  >
-                    Notebooks
-                  </LogoGitHub>
-                </Col>
-
-                <Col md={4} className="mt-3">
-                  <LogoReadTheDocs
-                    width={22}
-                    href="https://pypi.org/project/impresso-pipelines/"
-                    title="Impresso Pipelines"
-                  >
-                    Impresso Pipelines
-                  </LogoReadTheDocs>
-                </Col>
-                <Col md={4} className="mt-3">
-                  <LogoGitHub
-                    width={22}
-                    href="https://github.com/impresso/impresso-datalab-notebooks/wiki"
-                    title="Workshop Resourcess on GitHub"
-                  >
-                    Workshop Resources
-                  </LogoGitHub>
-                </Col>
-              </Row>
-            </div>
             <div className="m-3">
-              The{" "}
-              <a
-                href="https://impresso-project.ch"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Impresso project
-              </a>{" "}
-              strives to create meaningful links across historical media
-              collections. The new <i>Impresso Datalab</i> complements the Web
-              App and offers a platform for programmatic data access and
-              annotation services.
-              <p>
-                It provides access to our data and models via API and a
-                dedicated Python library via Jupyter notebooks. All this with
-                the goal to enable custom analyses of the Impresso corpus and
-                the semantic indexation of external document collections with
-                the help of models created by the project.
+              <h2 className="m-0 p-0">
+                Programmatic access to Impresso's Search, Data and Models
+              </h2>
+              <p className="fs-4 mt-3">
+                Impresso Datalab complements the Impresso Web App and enables
+                data access, custom analyses and annotation services via Python
+                and APIs.
               </p>
             </div>
           </Col>
         </Row>
-        <Row className="my-3  align-items-bottom d-none">
-          <Col className="  d-flex justify-content-center align-items-end ">
-            <h3 className=" p-3 w-100">Tutorials</h3>
+
+        <Row className="align-items-start">
+          <Col md={12}>
+            <h2 className="fs-4 font-weight-medium mb-0 mx-3 mx-md-0">
+              {enterImpressoPy.title}
+            </h2>
           </Col>
-          <Col className="  d-flex justify-content-center align-items-end ">
-            <h3 className=" p-3 w-100">Work with your data!</h3>
+          <Col md={7} xl={5} xxl={5}>
+            <section className="my-3 mx-3 mx-md-0">
+              <h3 className="fs-6 font-weight-bold ">
+                1. {enterImpressoPy.excerpt}
+              </h3>
+              <div>
+                <p className="small text-muted px-2">
+                  Copy the code below into a Jupyter notebook 👇
+                </p>
+                <CodeSnippet
+                  value={CodeSample}
+                  basicSetup={{ lineNumbers: false }}
+                />
+                <p className="small text-muted px-2 my-2">
+                  Once run, the notebook{" "}
+                  <b>will prompt you to paste your API token ⎘</b>.
+                </p>
+
+                <CodeSnippet
+                  className="my-2"
+                  value={CodeResultSample}
+                  basicSetup={{ lineNumbers: false }}
+                />
+                <p className="small text-muted m-0 pt-2">
+                  Then you're ready to <b>explore results!</b>
+                </p>
+                <div className="d-flex justify-content-center">
+                  <GettingStarted className="my-3" />
+                </div>
+              </div>
+            </section>
           </Col>
-          <Col className=" d-flex  justify-content-center align-items-end ">
-            <h3 className=" p-3 w-100">
-              Notebooks you didn't think you needed
-            </h3>
+          <Col md={5} xl={7} xxl={7}>
+            <Row>
+              <Col md={12} xl={6}>
+                <section className="p-3">
+                  <h3 className="fs-6 font-weight-bold ">
+                    2. Try out our example notebooks
+                  </h3>
+                  <p className="small text-muted px-2">
+                    Explore selected workflows, including more advanced
+                    analyses, visualizations, and aggregations. <br />
+                    See below.
+                  </p>
+                </section>
+              </Col>
+              <Col md={12} xl={6}>
+                <section className="p-3 border-xl-start">
+                  <h3 className="fs-6 font-weight-bold ">
+                    3. Work with your own data
+                  </h3>
+                  <p className="small text-muted px-2">
+                    Use pipelines and models to process and enrich external
+                    documents. Check our{" "}
+                    <a
+                      href="https://huggingface.co/spaces/impresso-project/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Hugging Face spaces
+                    </a>{" "}
+                    for ready-to-use pipelines and models
+                  </p>
+                </section>
+              </Col>
+              <Col md={12} xl={12}>
+                <section className=" border-xl-top p-3">
+                  <h3 className="fs-6 font-weight-bold ">
+                    4. Get full control with the REST API
+                  </h3>
+                  <p className="small text-muted px-2">
+                    The Impresso Python library is built on top of our Json REST
+                    API, which you can also use for direct, low-level access and
+                    integration.
+                    <br />
+                    <a
+                      href="/public-api/v1/docs"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Check out the API documentation
+                    </a>
+                    .
+                  </p>
+                </section>
+              </Col>
+            </Row>
           </Col>
         </Row>
+
         <Row className="my-3  align-items-bottom">
-          <Col md={6} xl={4} className="order-md-1 order-xl-1">
-            <SeriesCard className="mb-3" series={enterImpressoPy}>
-              <GettingStarted />
-              <p className="very-small text-muted px-2">
-                Copy the code below in a blank jupyter notebook to get started
-              </p>
-              <CodeSnippet value={CodeSample} />
-            </SeriesCard>
+          <Col xl={6} xxl={4} className="order-md-1 order-xl-1">
             {seriesInLeadingColumn.map((series) => (
               <SeriesCard className="mb-3" key={series.id} series={series} />
             ))}
           </Col>
-          <Col md={6} xl={4} className="order-md-3 order-xl-2">
+          <Col xl={6} xxl={4} className="order-md-3 order-xl-2">
             {seriesInCentralColumn.map((series) => (
               <SeriesCard className="mb-4" key={series.id} series={series} />
             ))}
           </Col>
-          <Col md={6} xl={4} className="order-md-2  order-xl-3">
+          <Col xl={6} xxl={4} className="order-md-2  order-xl-3">
             <SeriesCard className="mb-3" series={enterImpressoModels}>
               {showImpressoModelsCodeSample ? (
                 <p className="very-small text-muted px-2">
-                  Copy the code below in a blank jupyter notebook to get started
+                  Copy the code below into a Jupyter notebook
                 </p>
               ) : null}
               {showImpressoModelsCodeSample ? (

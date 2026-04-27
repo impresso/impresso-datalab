@@ -27,7 +27,7 @@ for(const seriesEntry of series){
   seriesDataIndex[seriesEntry.id]['body'] = seriesEntry.body
 }
 
-const seriesValues:Series[] = Object.values(seriesDataIndex) 
+const seriesValues: Series[] = (Object.values(seriesDataIndex) as Series[]).sort((a, b) => (a.ordering ?? 0) - (b.ordering ?? 0))
 
 const associatedPartners = await getCollection('associatedPartners')
 const associatedPartnersData = associatedPartners.map((entry) => {

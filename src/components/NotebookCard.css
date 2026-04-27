@@ -6,7 +6,7 @@
 }
 
 .SeriesCard a {
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .NotebookCard h3 {

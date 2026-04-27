@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/datalab/*"
+  to = "/:splat"
+  status = 200
