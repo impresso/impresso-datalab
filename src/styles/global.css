@@ -6,6 +6,7 @@
   --impresso-color-yellow: #ffeb78;
   --impresso-color-black-rgb: 52, 58, 64;
   --impresso-color-black: rgb(var(--impresso-color-black-rgb));
+  --impresso-color-deep-black: #212529;
   --impresso-color-white: #ffffff;
   --impresso-color-black-rgb: 52, 58, 64;
   --impresso-color-black-alpha-20: rgba(52, 58, 64, 0.2);
@@ -699,6 +700,40 @@ hr {
 .shadow-xl {
   box-shadow: var(--shadow-lg);
 }
+
+@media (min-width: 768px) {
+  .border-md-start {
+    border-left: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+  .border-md-top {
+    border-top: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .border-lg-start {
+    border-left: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+  .border-lg-top {
+    border-top: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .border-xl-start {
+    border-left: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+  .border-xl-top {
+    border-top: var(--bs-border-width) var(--bs-border-style)
+      var(--bs-border-color) !important;
+  }
+}
+
 /* Dropdown menu*/
 .dropdown-menu {
   --bs-dropdown-bg: var(--impresso-color-black);

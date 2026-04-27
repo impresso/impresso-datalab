@@ -5,7 +5,7 @@ import { python } from "@codemirror/lang-python"
 import { Copy, CheckCircle } from "iconoir-react"
 import { createTheme } from "@uiw/codemirror-themes"
 import { tags as t } from "@lezer/highlight"
-
+import { dracula } from "@uiw/codemirror-theme-dracula"
 import "./CodeSnippet.css"
 
 export interface CodeSnippetProps {
@@ -13,9 +13,10 @@ export interface CodeSnippetProps {
   readonly?: boolean
   basicSetup?: any
   className?: string
+  theme?: "impressoLightTheme" | "dracula"
 }
 
-const myTheme = createTheme({
+const impressoLightTheme = createTheme({
   theme: "light",
   settings: {
     background: "#fff9f250",
@@ -47,6 +48,10 @@ const myTheme = createTheme({
   ],
 })
 
+const AvailableThemes = {
+  impressoLightTheme,
+  dracula,
+}
 const CodeSnippet: React.FC<CodeSnippetProps> = ({
   value = "",
   readonly = false,
@@ -56,11 +61,12 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
     foldGutter: true,
   },
   className = "",
+  theme = "dracula",
 }) => {
   const timerRef = useRef<ReturnType<typeof setTimeout>>(null)
   const codeMirrorRef = useRef<ReactCodeMirrorRef>(null)
   const [isCopied, setIsCopied] = useState(false)
-
+  const currentTheme = AvailableThemes[theme] || dracula
   const handleCopy = () => {
     if (codeMirrorRef.current) {
       setIsCopied(true)
@@ -97,7 +103,7 @@ const CodeSnippet: React.FC<CodeSnippetProps> = ({
         ref={codeMirrorRef}
         value={value}
         // theme={duotoneDark}
-        theme={myTheme}
+        theme={currentTheme}
         readOnly={readonly}
         basicSetup={basicSetup}
         extensions={[python(), EditorView.lineWrapping]}
