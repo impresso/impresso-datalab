@@ -1,0 +1,23 @@
+---
+title: Embeddings
+summary: Embeddings are vector representations of text that capture semantic meaning, enabling similarity search, clustering, and other downstream analysis on historical documents.
+notebooks:
+  - explore-introduction-to-embeddings
+  - explore-multimodal-embeddings
+---
+
+## Impresso Python library
+
+### Impresso Py tool:
+
+[resources.tools.ToolsResource](https://impresso.readthedocs.io/en/latest/resources/#impresso.resources.tools.ToolsResource)
+
+```python
+# Embed text
+embedding = tools.embed_text("military conflict", target="text")
+results = search.find(embedding=embedding) # Search in Impresso using embeded text
+
+#Embed image
+embedding = tools.embed_image("path/to/image.jpg", target="image")
+similar_images = images.find(embedding=embedding) # Search in Impresso using embeded image 
+```

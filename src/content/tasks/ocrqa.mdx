@@ -1,0 +1,34 @@
+---
+title: Optical Character Recognition Quality Assessment
+summary: Optical Character Recognition Quality Assessment (OCRQA) evaluates the accuracy of OCR outputs, which is essential for ensuring the reliability of digitized historical texts for research and analysis.
+notebooks:
+  - ocrqa_pipeline_demo
+---
+
+## Models
+
+  -  [Lightweight OCR quality assessor](https://huggingface.co/impresso-project/ocr-quality-assessor-unigram-light)
+  -  [OCR Quality Assessment using Unigram Language Data](https://huggingface.co/impresso-project/OCR-quality-assessment-unigram)
+
+## Impresso Pipelines library 
+
+### Impresso pipelines:
+
+[impresso_pipelines.ocrqa](https://pypi.org/project/impresso_pipelines/)
+
+```python
+pip install impresso_pipelines[ocrqa]
+
+from impresso_pipelines.ocrqa import OCRQAPipeline
+
+# Initialize pipeline (downloads model on first use)
+ocrqa_pipeline = OCRQAPipeline()
+
+# Classify a single text
+text = "Ein kleiner Hund wqeg Max lebte in einem ruhigen Dorf."
+result = ocrqa_pipeline(text)
+result
+```
+## HuggingFace spaces
+
+HF Space to test the OCRQA model from the Impresso project: [OCRQA demo](https://huggingface.co/spaces/impresso-project/ocrqa-demo)

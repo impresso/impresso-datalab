@@ -1,0 +1,30 @@
+---
+title: Solr normalisation
+summary: Solr normalisation refers to the process of standardizing text values for indexing and search in Solr, improving retrieval quality and consistency across historical metadata fields.
+notebooks:
+  - solrnormalization-pipeline
+---
+
+## Impresso Pipelines library 
+
+### Impresso pipelines:
+
+[impresso_pipelines.solrnormalization](https://pypi.org/project/impresso_pipelines/)
+
+```python
+%pip install "impresso-pipelines[solrnormalization]"
+
+from impresso_pipelines.solrnormalization import SolrNormalizationPipeline
+
+# Initialize pipeline (downloads model on first use)
+solrnormalization_pipeline = SolrNormalizationPipeline()
+
+# Classify a single text
+text = """
+In den frühen Morgenstunden verließ der Geschäftsführer der Münchner Rückversicherungsgesellschaft das Gebäude – ein Ereignis,
+das unter den Mitarbeitenden für großes Aufsehen sorgte. Außerdem wurde über „öffentliche“ Statements spekuliert, obwohl keine
+offiziellen Informationen verfügbar waren.
+"""
+result = solrnormalization_pipeline(text)
+result
+```
