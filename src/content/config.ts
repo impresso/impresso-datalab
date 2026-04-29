@@ -207,7 +207,7 @@ export const huggingfaceSpaces = defineCollection({
     lastModified: z.date(),
     cardData: z.object({
       title: z.string(),
-      description: z.string(),
+      short_description: z.string(),
       emoji: z.string(),
       colorFrom: z.string(),
       colorTo: z.string(),

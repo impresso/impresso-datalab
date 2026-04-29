@@ -43,7 +43,7 @@ interface HfSpaceDetail {
   lastModified?: string
   cardData?: {
     title?: string
-    description?: string
+    short_description?: string
     emoji?: string
     colorFrom?: string
     colorTo?: string
@@ -67,7 +67,7 @@ interface HfSpaceEntry {
   lastModified?: string
   cardData?: {
     title: string
-    description: string
+    short_description: string
     emoji: string
     colorFrom: string
     colorTo: string
@@ -114,7 +114,7 @@ function mapDetailToEntry(detail: HfSpaceDetail): HfSpaceEntry {
       detail.lastModified ?? detail.createdAt ?? new Date().toISOString(),
     cardData: {
       title: detail.cardData?.title ?? detail.id.split("/")[1] ?? detail.id,
-      description: detail.cardData?.description ?? "",
+      short_description: detail.cardData?.short_description ?? "",
       emoji: detail.cardData?.emoji ?? "",
       colorFrom: detail.cardData?.colorFrom ?? "",
       colorTo: detail.cardData?.colorTo ?? "",

@@ -6,6 +6,7 @@ import type { Task, TOCEntry } from "../types"
 import "./TaskModal.css"
 import NotebookCard from "./NotebookCard"
 import Citation from "./Citation"
+import HuggingfaceSpaceCard from "./HuggingfaceSpaceCard"
 
 interface TaskModalProps {
   task: Task
@@ -57,6 +58,21 @@ const TaskModal: React.FC<TaskModalProps> = ({
               <div className="markdown-content">
                 <MarkdownSnippet value={content} />
               </div>
+              <h2 className="mt-4" id="hugginface-spaces">
+                Hugging Face Spaces
+              </h2>
+              {task.huggingfaceSpaces && task.huggingfaceSpaces.length > 0 ? (
+                <ul className="list-unstyled">
+                  {task.huggingfaceSpaces.map((space) => (
+                    <li key={space.id} className="mt-2">
+                      <HuggingfaceSpaceCard huggingfaceSpace={space} />
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-muted">No Hugging Face spaces available.</p>
+              )}
+
               <h2 className="mt-4" id="notebooks">
                 Notebooks
               </h2>
@@ -96,7 +112,13 @@ const TaskModal: React.FC<TaskModalProps> = ({
             <TableOfContents
               footerClass="pb-4"
               entries={toc.concat([
+                {
+                  level: 2,
+                  title: "Hugging Face Spaces",
+                  id: "hugginface-spaces",
+                },
                 { level: 2, title: "Notebooks", id: "notebooks" },
+
                 { level: 2, title: "Publications", id: "publications" },
               ])}
             />

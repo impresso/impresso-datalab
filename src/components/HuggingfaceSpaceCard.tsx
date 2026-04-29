@@ -1,7 +1,9 @@
 import "./HuggingfaceSpaceCard.css"
+import type { HuggingfaceSpace } from "../types"
+import TimeAgo from "./TimeAgo"
 
 interface HuggingfaceSpaceCardProps {
-  url: string
+  huggingfaceSpace: HuggingfaceSpace
   className?: string
 }
 
@@ -34,30 +36,86 @@ function deriveSpaceTitle(url: string): string {
   }
 }
 
+function buildSpaceUrl(huggingfaceSpace: HuggingfaceSpace): string {
+  const { host, id, subdomain } = huggingfaceSpace
+
+  if (subdomain) {
+    return `https://${subdomain}.hf.space`
+  }
+
+  const normalizedHost = host.startsWith("http") ? host : `https://${host}`
+  return `${normalizedHost.replace(/\/+$/, "")}/spaces/${id}`
+}
+
 const HuggingfaceSpaceCard: React.FC<HuggingfaceSpaceCardProps> = ({
-  url,
+  huggingfaceSpace,
   className = "",
 }) => {
-  const title = deriveSpaceTitle(url)
+  const url = buildSpaceUrl(huggingfaceSpace)
+  const colorFrom = huggingfaceSpace.cardData.colorFrom || "#ffffff"
+  const colorTo = huggingfaceSpace.cardData.colorTo || "#f4f4f4"
+  const title =
+    huggingfaceSpace.cardData.title ||
+    deriveSpaceTitle(url) ||
+    deriveSpaceTitle(huggingfaceSpace.id)
 
   return (
-    <article className={`HuggingfaceSpaceCard shadow-sm ${className}`}>
+    <div className={`HuggingfaceSpaceCard shadow-sm py-2 px-3 ${className}`}>
+      <div
+        className="HuggingfaceSpaceCard__background"
+        style={{
+          backgroundImage: `linear-gradient(30deg, ${colorFrom}, ${colorTo})`,
+          opacity: 0.32,
+        }}
+      />
       <div className="HuggingfaceSpaceCard__content">
         <a
-          className="HuggingfaceSpaceCard__badge"
+          className="m-0 "
           href={url}
           target="_blank"
           rel="noopener noreferrer"
         >
           <img src={SPACES_SHIELD_URL} alt="Hugging Face Spaces" />
         </a>
-        <h3 className="HuggingfaceSpaceCard__title">
-          <a href={url} target="_blank" rel="noopener noreferrer">
+        <span
+          className="HuggingfaceSpaceCard__sdk badge border text-muted small mx-2 py-0 px-2"
+          style={{
+            lineHeight: "18px",
+          }}
+        >
+          License: {huggingfaceSpace.cardData.license || "Unknown License"}
+        </span>
+        <h3 className="HuggingfaceSpaceCard__title font-size-inherit m-0">
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="small text-decoration-underline"
+          >
+            <span className="HuggingfaceSpaceCard__emoji small me-1">
+              {huggingfaceSpace.cardData.emoji}
+            </span>
             {title}
           </a>
         </h3>
+        {huggingfaceSpace.cardData.short_description && (
+          <p className="HuggingfaceSpaceCard__description mt-1 mb-0 small">
+            {huggingfaceSpace.cardData.short_description}
+          </p>
+        )}
       </div>
-    </article>
+      <div className="very-small border-top pt-1 mt-1 d-flex justify-content-between">
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className=" text-decoration-none"
+        >
+          {huggingfaceSpace.author}
+        </a>
+        <TimeAgo value={huggingfaceSpace.lastModified} />
+      </div>
+    </div>
   )
 }
 

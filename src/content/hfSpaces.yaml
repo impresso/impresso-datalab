@@ -1,9 +1,25 @@
+- id: impresso-project/ocrqa-demo
+  author: impresso-project
+  lastModified: 2025-12-09T13:03:53.000Z
+  cardData:
+    title: OCR Quality Assessment Demo
+    short_description: Measure the OCR output quality using word recognition ratios
+    emoji: 🔍
+    colorFrom: gray
+    colorTo: indigo
+    sdk: docker
+    app_file: ""
+    pinned: false
+    license: ""
+  host: https://impresso-project-ocrqa-demo.hf.space
+  models: ""
+  subdomain: impresso-project-ocrqa-demo
 - id: impresso-project/multilingual-news-agency-recognition
   author: impresso-project
   lastModified: 2025-02-07T12:34:54.000Z
   cardData:
     title: Multilingual News Agency Recognition
-    description: ""
+    short_description: Multilingual News Agency Detection in Historical Data
     emoji: 📰
     colorFrom: blue
     colorTo: gray
@@ -19,7 +35,7 @@
   lastModified: 2026-02-05T10:18:34.000Z
   cardData:
     title: Multilingual Entity Linking
-    description: ""
+    short_description: Multilingual Entity Linking for Historical Data
     emoji: 🔗🔗
     colorFrom: red
     colorTo: yellow
@@ -35,7 +51,7 @@
   lastModified: 2026-02-05T14:19:57.000Z
   cardData:
     title: Multilingual Named Entity Recognition
-    description: ""
+    short_description: Multilingual Named Entity Recognition in Historical Data
     emoji: 👻
     colorFrom: indigo
     colorTo: yellow
@@ -51,7 +67,7 @@
   lastModified: 2025-12-02T07:38:26.000Z
   cardData:
     title: Solr Normalization Demo
-    description: ""
+    short_description: Understand the normalization of texts during indexing
     emoji: 🧹
     colorFrom: blue
     colorTo: indigo
@@ -62,28 +78,12 @@
   host: https://impresso-project-solr-normalization-demo.hf.space
   models: ""
   subdomain: impresso-project-solr-normalization-demo
-- id: impresso-project/ocrqa-demo
-  author: impresso-project
-  lastModified: 2025-12-09T13:03:53.000Z
-  cardData:
-    title: OCR Quality Assessment Demo
-    description: ""
-    emoji: 🔍
-    colorFrom: gray
-    colorTo: indigo
-    sdk: docker
-    app_file: ""
-    pinned: false
-    license: ""
-  host: https://impresso-project-ocrqa-demo.hf.space
-  models: ""
-  subdomain: impresso-project-ocrqa-demo
 - id: impresso-project/adclassifier-demo
   author: impresso-project
   lastModified: 2025-11-20T15:55:30.000Z
   cardData:
     title: Adclassifier Demo
-    description: ""
+    short_description: ""
     emoji: 🌖
     colorFrom: yellow
     colorTo: yellow
@@ -99,7 +99,7 @@
   lastModified: 2026-01-30T15:04:43.000Z
   cardData:
     title: Floret Word Embedding Search
-    description: ""
+    short_description: ""
     emoji: 🌿
     colorFrom: green
     colorTo: yellow
@@ -115,7 +115,7 @@
   lastModified: 2026-04-16T14:49:04.000Z
   cardData:
     title: Ocrqa Exploration
-    description: ""
+    short_description: OCR Quality Exploration on Impresso Corpus
     emoji: 🌖
     colorFrom: red
     colorTo: green
@@ -131,7 +131,7 @@
   lastModified: 2026-04-02T11:35:53.000Z
   cardData:
     title: Ad Classification Exploration
-    description: ""
+    short_description: Explore yearly ad and non-ad distributions in Impresso
     emoji: 📰
     colorFrom: yellow
     colorTo: blue
