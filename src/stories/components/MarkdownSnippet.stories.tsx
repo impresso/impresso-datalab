@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-// import { fn } from "@storybook/test"
+import type { Meta, StoryObj } from "@storybook/react-vite"
+
 import MarkdownSnippet from "../../components/MarkdownSnippet"
 import type { MarkdownSnippetProps } from "../../components/MarkdownSnippet"
 

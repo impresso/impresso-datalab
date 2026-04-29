@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-// import { fn } from "@storybook/test"
+import type { Meta, StoryObj } from "@storybook/react-vite"
+
 import CodeSnippet from "../../components/CodeSnippet"
 import type { CodeSnippetProps } from "../../components/CodeSnippet"
 

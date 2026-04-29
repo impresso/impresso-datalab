@@ -1,0 +1,17 @@
+.HuggingfaceSpaceCard {
+  position: relative;
+  border-radius: var(--impresso-border-radius-sm);
+  background-color: var(--impresso-color-paper);
+  overflow: hidden;
+}
+
+.HuggingfaceSpaceCard__background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.HuggingfaceSpaceCard__content {
+  position: relative;
+  z-index: 1;
+}

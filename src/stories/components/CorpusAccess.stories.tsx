@@ -1,8 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react-vite"
 import CorpusAccess, {
   type CorpusAccessProps,
 } from "../../components/CorpusAccess"
-// import { fn } from "@storybook/test"
 
 const meta: Meta<typeof CorpusAccess> = {
   component: CorpusAccess,

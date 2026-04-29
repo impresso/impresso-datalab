@@ -11,6 +11,7 @@ import LogoReadTheDocs from "./logos/LogoReadTheDocs"
 import LogoHuggingFace from "./logos/LogoHuggingFace"
 import LogoJSON from "./logos/LogoJSON"
 import LogoGitHub from "./logos/LogoGitHub"
+import type { Task } from "../types"
 
 const GuidelineLinks: ({
   url: string
@@ -35,7 +36,7 @@ const GuidelineLinks: ({
   },
 ]
 
-const Header: React.FC = () => {
+const Header: React.FC<{ tasks: Task[] }> = ({ tasks = [] }) => {
   const headerRef = useRef<HTMLElement>(null)
   const wsStatus = useBrowserStore((state) => state.wsStatus)
 
@@ -100,6 +101,26 @@ const Header: React.FC = () => {
                       </Dropdown.Item>
                     ),
                   )}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav.Item>
+
+            <Nav.Item>
+              <Dropdown align={"start"}>
+                <Dropdown.Toggle as={DropdownCustomToggle} className="p-2">
+                  Tasks
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="text-white">
+                  {tasks.map((task) => (
+                    <Dropdown.Item
+                      key={task.id}
+                      to={task.href}
+                      as={Link}
+                      className="color-inherit w-100"
+                    >
+                      {task.title}
+                    </Dropdown.Item>
+                  ))}
                 </Dropdown.Menu>
               </Dropdown>
             </Nav.Item>

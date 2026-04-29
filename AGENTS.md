@@ -37,6 +37,8 @@ When adding new AstroJS Content Collection, please follow these guidelines:
 - store contents inside /src/content folder and zod definition inside /src/content/config.ts file
 - use md files for markdown content
 
+For AstroJS content in the `task` collection, when drafting a new entry the agent should create an `.mdx` file that only includes the `title` and `summary` fields in the frontmatter, and leave all other fields and body content empty.
+
 We also use AstroJS content pages to serve markdown files through JSON APIs. When adding a new content collection served through JSON endpoints, follow these steps:
 
 For operational updates of existing JSON content collections, use `npm run update-data-release-cards` and `npm run update-datasets` (implemented in `scripts/updateDataReleaseCards.ts` and `scripts/updateDatasets.ts`). These scripts rely on `GITHUB_TOKEN`, `DATA_RELEASE_CARD_URLS`, and `DATASETS_URL`, and write updated files under `src/content/`.

@@ -5,11 +5,11 @@ import Wall from '../components/Wall';
 import Footer from '../components/Footer';
 // import Background from '../components/Background';
 import { getCollection, getEntry } from 'astro:content';
-import { getRecursivelyEntryData } from '../logic'
+import { getRecursivelyEntryData, getEntryHref } from '../logic'
 import ReactModals from './Modals';
 import VueModals from './Modals.vue'
 import { SeriesPositionLeadingColumn, SeriesPositionCentralColumn, SeriesPositionTrailingColumn } from '../constants';
-import type { Series } from '../types';
+import type { Series, Task } from '../types';
 
 
 const authors = await getCollection('authors')
@@ -40,8 +40,18 @@ const associatedPartnersData = associatedPartners.map((entry) => {
 
 const termsOfuseContent = await getEntry("pagesContents", "terms-of-use");
 
+
+const tasks = await getCollection('tasks')
+const tasksData = tasks.map((entry) => {
+  return {
+    id: entry.id,
+    ...entry.data,
+    href: getEntryHref(entry)
+  } as Task
+})
+
 ---
-<Header client:only="react" />
+<Header client:only="react" tasks={tasksData}/>
 <Wall 
   client:only="react" 
   enterImpressoPy={seriesDataIndex['enter-impresso']}

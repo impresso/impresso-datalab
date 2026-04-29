@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-// import { fn } from "@storybook/test"
+import type { Meta, StoryObj } from "@storybook/react-vite"
+
 import ChangePlanRequestForm from "../../components/ChangePlanRequestForm"
 import { AvailablePlans } from "../../constants"
 

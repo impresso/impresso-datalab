@@ -39,18 +39,6 @@ publications:
     }
 ---
 
-## Core concept
-
-Named Entity Recognition (NER) is a subtask of information extraction that seeks to
-locate and classify named entities mentioned in unstructured text into predefined categories
-such as person names, organizations, locations.
-
-In the context of historical documents, NER can be particularly challenging
-due to the presence of OCR errors and historical language variations.
-
-The Impresso project has developed models and tools to address these challenges and improve
-NER performance on historical texts.
-
 ## Models
 
 the Impresso project has developed specialized models designed for high-performance extraction from digitized archives. The flagship model is a Stacked BERT-based token classification for named entity recognition, [ner-stacked-bert-multilingual-v1.1.0](https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-v1.1.0) and with support for multilingual historical texts.
@@ -74,3 +62,9 @@ result.df  # View entities as DataFrame
 ## HuggingFace spaces
 
 HF Space to test the NER model from the Impresso project: [Multilingual Named Entity Recognition](https://huggingface.co/spaces/impresso-project/multilingual-named-entity-recognition)
+
+<div>
+  <a href="https://huggingface.co/impresso-project/nel-mgenre-multilingual">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-orange" />
+  </a>
+</div>

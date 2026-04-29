@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-// import { fn } from "@storybook/test"
+import type { Meta, StoryObj } from "@storybook/react-vite"
+
 import PlansModal from "../../components/PlansModal"
 import type { PlansModalProps } from "../../components/PlansModal"
 

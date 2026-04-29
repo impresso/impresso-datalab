@@ -5,16 +5,19 @@ const config: StorybookConfig = {
   addons: [
     // "@storybook/addon-onboarding",
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
+    "@storybook/addon-docs",
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {
-      builder: {
-      },
+      builder: {},
     },
   },
   staticDirs: ["../public"],
+  viteFinal: async (config) => {
+    config.resolve = config.resolve ?? {}
+    config.resolve.dedupe = ["react", "react-dom"]
+    return config
+  },
 }
 export default config

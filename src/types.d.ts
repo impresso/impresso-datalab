@@ -250,6 +250,26 @@ export type DataProvider = {
   Reference?: string
 }
 
+export type HuggingfaceSpace = {
+  id: string
+  author: string
+  lastModified: Date
+  cardData: {
+    title: string
+    short_description: string
+    emoji: string
+    colorFrom: string
+    colorTo: string
+    sdk: string
+    app_file: string
+    pinned: boolean
+    license: string
+  }
+  host: string
+  models?: string
+  subdomain?: string
+}
+
 export type Task = {
   id: string
   draft?: boolean
@@ -260,6 +280,7 @@ export type Task = {
   license?: string
   publications: string[]
   notebooks?: Notebook[]
+  huggingfaceSpaces?: HuggingfaceSpace[]
 }
 
 export type TOCEntry = {
