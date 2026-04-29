@@ -1,0 +1,29 @@
+.HuggingfaceModelCard {
+  border-radius: var(--impresso-border-radius-sm);
+  background-color: var(--impresso-color-paper);
+  overflow: hidden;
+}
+
+.HuggingfaceModelCard__content {
+  padding: 0.85rem 1rem;
+}
+
+.HuggingfaceModelCard__badge {
+  display: inline-flex;
+  margin-bottom: 0.5rem;
+}
+
+.HuggingfaceModelCard__title {
+  margin: 0;
+  font-size: var(--fs18px);
+  line-height: 1.25;
+}
+
+.HuggingfaceModelCard__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.HuggingfaceModelCard__title a:hover {
+  text-decoration: underline;
+}
