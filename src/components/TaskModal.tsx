@@ -73,27 +73,31 @@ const TaskModal: React.FC<TaskModalProps> = ({
               ) : (
                 <p className="text-muted">No notebooks available.</p>
               )}
+              <h2 className="mt-4" id="publications">
+                Publications
+              </h2>
+              {task.publications && task.publications.length > 0 ? (
+                <ul className="list-unstyled">
+                  {task.publications.map((pub: any, index: number) => (
+                    <li key={index} className="mb-3">
+                      <Citation bibtex={pub} format="html" showCopyButton />
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-muted">
+                  No publications yet, but stay tuned!
+                </p>
+              )}
             </div>
           </Col>
 
           <Col lg="5">
-            <h4>Publications</h4>
-            {task.publications && task.publications.length > 0 ? (
-              <ul className="list-unstyled">
-                {task.publications.map((pub: any, index: number) => (
-                  <li key={index} className="mb-3">
-                    <Citation bibtex={pub} format="html" showCopyButton />
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-muted">No publications available.</p>
-            )}
-
             <TableOfContents
               footerClass="pb-4"
               entries={toc.concat([
                 { level: 2, title: "Notebooks", id: "notebooks" },
+                { level: 2, title: "Publications", id: "publications" },
               ])}
             />
           </Col>
