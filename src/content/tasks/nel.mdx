@@ -3,12 +3,13 @@ title: Named Entity Linking
 summary: Named Entity Linking (NEL) matches entity mentions in text to canonical knowledge base entries, enabling more precise entity disambiguation and linking in historical corpora.
 notebooks:
   - ne-processing-with-impresso-hf
+huggingfaceSpaces:
+  - impresso-project/multilingual-entity-linking
 ---
 
 ## Models
 
-  -  [NEL mGENRE Multilingual](https://huggingface.co/impresso-project/nel-mgenre-multilingual)
-
+- [NEL mGENRE Multilingual](https://huggingface.co/impresso-project/nel-mgenre-multilingual)
 
 ## Impresso Python library
 
@@ -18,10 +19,7 @@ notebooks:
 
 ```python
 text = "[START] Jean-Baptiste Nicolas Robert Schuman [END] (29 June 1886 – 4 September 1963) was a Luxembourg-born French statesman."
-# Link named entities to wikidata 
+# Link named entities to wikidata
 result = impresso.tools.nel(text=text)
 result.df  # View entities as DataFrame
 ```
-## HuggingFace spaces
-
-HF Space to test the NEL model from the Impresso project: [Multilingual Named Entity Linking](https://huggingface.co/spaces/impresso-project/multilingual-entity-linking)

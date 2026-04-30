@@ -1,13 +1,15 @@
 ---
 title: Advertisement classification
 summary: Advertisement classification is the task of identifying and categorizing advertisements within historical newspapers, which helps researchers analyze marketing trends and media formats over time.
+huggingfaceSpaces:
+  - impresso-project/adclassifier-demo
 ---
 
 ## Models
 
-  -  [Impresso Advertisement Classification XLIM-R-based](https://huggingface.co/impresso-project/impresso-ad-classification-xlm-one-class)
+- [Impresso Advertisement Classification XLIM-R-based](https://huggingface.co/impresso-project/impresso-ad-classification-xlm-one-class)
 
-## Impresso Pipelines library 
+## Impresso Pipelines library
 
 ### Impresso pipelines:
 
@@ -25,8 +27,3 @@ pipeline = AdClassifierPipeline()
 result = pipeline("À vendre: Belle villa 5 pièces, CHF 850'000. Tél. 021 123 45 67")
 print(result['type'])  # 'ad' or 'non-ad'from impresso_pipelines.ldatopics import LDATopicsPipeline
 ```
-
-## HuggingFace spaces
-
-HF Space to test the Advertisement classification model from the Impresso project: [Ad classifier demo](https://huggingface.co/spaces/impresso-project/adclassifier-demo)
-

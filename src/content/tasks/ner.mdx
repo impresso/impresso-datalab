@@ -3,6 +3,8 @@ title: Named Entity Recognition (NER)
 notebooks:
   - ne-processing-with-impresso-hf
   - ne-processing-with-impresso-api
+huggingfaceSpaces:
+  - impresso-project/multilingual-named-entity-recognition
 publications:
   - |
     @inproceedings{boros_alleviating_2020,
@@ -58,10 +60,6 @@ text = "Jean-Baptiste Nicolas Robert Schuman (29 June 1886 – 4 September 1963)
 result = impresso.tools.ner(text)
 result.df  # View entities as DataFrame
 ```
-
-## HuggingFace spaces
-
-HF Space to test the NER model from the Impresso project: [Multilingual Named Entity Recognition](https://huggingface.co/spaces/impresso-project/multilingual-named-entity-recognition)
 
 <div>
   <a href="https://huggingface.co/impresso-project/nel-mgenre-multilingual">

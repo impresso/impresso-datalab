@@ -5,6 +5,7 @@ import TimeAgo from "./TimeAgo"
 interface HuggingfaceSpaceCardProps {
   huggingfaceSpace: HuggingfaceSpace
   className?: string
+  showShield?: boolean
 }
 
 const SPACES_SHIELD_URL =
@@ -50,6 +51,7 @@ function buildSpaceUrl(huggingfaceSpace: HuggingfaceSpace): string {
 const HuggingfaceSpaceCard: React.FC<HuggingfaceSpaceCardProps> = ({
   huggingfaceSpace,
   className = "",
+  showShield = false,
 }) => {
   const url = buildSpaceUrl(huggingfaceSpace)
   const colorFrom = huggingfaceSpace.cardData.colorFrom || "#ffffff"
@@ -65,27 +67,50 @@ const HuggingfaceSpaceCard: React.FC<HuggingfaceSpaceCardProps> = ({
         className="HuggingfaceSpaceCard__background"
         style={{
           backgroundImage: `linear-gradient(30deg, ${colorFrom}, ${colorTo})`,
-          opacity: 0.32,
+          opacity: 0.22,
         }}
       />
       <div className="HuggingfaceSpaceCard__content">
-        <a
-          className="m-0 "
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={SPACES_SHIELD_URL} alt="Hugging Face Spaces" />
-        </a>
+        {showShield ? (
+          <a
+            className="m-0 "
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={SPACES_SHIELD_URL} alt="Hugging Face Spaces" />
+          </a>
+        ) : (
+          <a
+            className="HuggingfaceSpaceCard__sdk badge border text-muted small py-0 px-2 text-decoration-none d-inline-flex align-items-center"
+            style={{
+              lineHeight: "18px",
+            }}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="font-weight-normal ">Hugging Face </div>
+            <div className="border-start ms-1 ps-1 font-weight-medium ">
+              Spaces
+            </div>
+          </a>
+        )}
         <span
-          className="HuggingfaceSpaceCard__sdk badge border text-muted small mx-2 py-0 px-2"
+          className="HuggingfaceSpaceCard__sdk badge border text-muted small mx-2 py-0 px-2 text-decoration-none d-inline-flex align-items-center"
           style={{
             lineHeight: "18px",
           }}
         >
-          License: {huggingfaceSpace.cardData.license || "Unknown License"}
+          <div className="font-weight-normal ">License</div>
+          <div className="border-start ms-1 ps-1 font-weight-medium ">
+            {huggingfaceSpace.cardData.license || "Unknown License"}
+          </div>
         </span>
-        <h3 className="HuggingfaceSpaceCard__title font-size-inherit m-0">
+        <h3
+          className="HuggingfaceSpaceCard__title font-size-inherit  pt-1 mt-2"
+          style={{ borderTop: "1px solid rgba(0,0,0,0.05)" }}
+        >
           <a
             href={url}
             target="_blank"
@@ -104,7 +129,10 @@ const HuggingfaceSpaceCard: React.FC<HuggingfaceSpaceCardProps> = ({
           </p>
         )}
       </div>
-      <div className="very-small border-top pt-1 mt-1 d-flex justify-content-between">
+      <div
+        className="very-small pt-1 mt-1 d-flex justify-content-between"
+        style={{ borderTop: "1px solid rgba(0,0,0,0.05)" }}
+      >
         <a
           href={url}
           target="_blank"
