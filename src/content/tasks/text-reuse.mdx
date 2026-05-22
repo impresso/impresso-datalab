@@ -1,0 +1,42 @@
+---
+title: Text reuse
+summary: Text reuse detection is the task of identifying instances of text that have been reused across different documents, which can be particularly useful for historical research to track the dissemination of ideas and information.
+notebooks:
+  - impresso-py-connect
+publications:
+  - |
+    @article{during2023impresso,
+    author    = {Düring, Marten and Romanello, Matteo and Ehrmann, Maud and Beelen, Kaspar and Guido, Daniele and Deseure, Brecht and Bunout, Estelle and Keck, Jana and Apostolopoulos, Petros},
+    title     = {impresso Text Reuse at Scale. An interface for the exploration of text reuse data in semantically enriched historical newspapers},
+    journal   = {Frontiers in Big Data},
+    volume    = {6},
+    year      = {2023},
+    doi       = {10.3389/fdata.2023.1249469},
+     url       = {https://doi.org/10.3389/fdata.2023.1249469}
+    }
+  - |
+    @misc{Romanello2018,
+    type = {Blogpost},
+    title = {Text re-use detection in a nutshell},
+    url = {https://impresso-project.ch/news/2018/06/12/tradingzone-tr.html},
+    abstract = {Trading zone part 3: Text Re-use Detection. This blog post is the last part of Stepping in the NLP / History trading zone: a series of posts.},
+    language = {en},
+    urldate = {2019-01-09},
+    journal = {impresso},
+    author = {Romanello, Matteo},
+    month = jun,
+    year = {2018},
+    file = {Snapshot:/Users/caio.mello/Zotero/storage/UQ4HJMVT/tradingzone-tr.html:text/html},
+    }
+---
+
+## Impresso Python library
+
+### Impresso Py tool:
+
+[resources.text_reuse](https://impresso.readthedocs.io/en/latest/resources/#text-reuse) 
+
+```python
+# Find clusters related to 'titanic' in Swiss newspapers:
+results = textReuseClusters.find(term='titanic', country='CH')
+results.df  # View clusters as DataFrame 

@@ -1,0 +1,58 @@
+---
+title: Topic modelling
+summary: Topic modelling is the process of discovering the abstract themes present in a collection of documents, helping researchers identify and summarize large corpora of historical texts.
+notebooks:
+  - ldatopics-pipeline
+publications:
+  - |
+    @misc{TopicModelingHistorical2018,
+        type = {Blogpost},
+        title = {About {Topic} {Modeling} on historical newspapers ...},
+        url = {https://impresso-project.ch/news/2018/09/07/tradingzone-tm.html},
+        abstract = {Trading zone part 4: Topic modeling. This blog post is the last part of Stepping in the NLP / History trading zone: a series of posts.},
+        language = {en},
+        urldate = {2019-09-17},
+        journal = {impresso},
+        month = sep,
+        year = {2018},
+        file = {Snapshot:/Users/caio.mello/Zotero/storage/35FCH6T5/tradingzone-tm.html:text/html},
+    }
+huggingfaceSpaces:
+  - impresso-project/topics-exploration
+---
+
+## Models
+
+[Mallet topic inferencer](https://huggingface.co/impresso-project/mallet-topic-inferencer)
+
+## Impresso Pipelines library
+
+### Impresso pipelines:
+
+[impresso_pipelines.ldatopics](https://pypi.org/project/impresso-pipelines/)
+
+```python
+pip install impresso-pipelines
+
+from impresso_pipelines.ldatopics import LDATopicsPipeline
+
+# Initialize the pipeline
+ldatopics_pipeline = LDATopicsPipeline()
+
+de_text = """Vieles Seltsame geschieht auf Erden :
+Nichts Seltsameres sieht der Mond
+Als das Glück, das im Knopfloch wohnt.
+Zaubrisch faßt es den ernsten Mann.
+Ohne nach Weib u. Kind zu fragen
+Reitet er aus, nach dem Glück zu jagen,
+Nur nacb ihm war stets sein Vegehr.
+Aber neben ihm reitet der Dämon her
+Des Ehrgeizes mit finsterer Tücke,
+Und so jagt er zuletzt auf die Brücke,
+Die über dem Abgrund, d:m nächtlich schwarzen
+Jählings abbricht."""
+
+# Get Impresso topics
+result = ldatopics_pipeline(de_text)
+print(result)
+```

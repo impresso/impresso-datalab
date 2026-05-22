@@ -1,0 +1,28 @@
+---
+title: Language Identification
+summary: Language identification (langident) is the task of automatically determining the language of a text, which is crucial for processing multilingual historical datasets.
+notebooks:
+  - langident_pipeline_demo
+---
+
+## Models
+
+- [Multilingual language identification model](https://huggingface.co/impresso-project/language-identifier)
+
+### Impresso pipelines:
+
+[impresso_pipelines.langident](https://pypi.org/project/impresso_pipelines/)
+
+```python
+%pip install -q "impresso_pipelines[langident]"
+
+from impresso_pipelines.langident import LangIdentPipeline
+
+# Initialize pipeline (downloads model on first use)
+lang_pipeline = LangIdentPipeline()
+
+# Classify a single text
+text = "Ein kleiner Hund wqeg Max lebte in einem ruhigen Dorf."
+result = lang_pipeline(text)
+result
+```

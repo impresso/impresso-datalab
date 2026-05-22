@@ -2,6 +2,20 @@ import { getEntry } from "astro:content"
 import type { TOCEntry } from "./types"
 
 /**
+ * Returns the href for an entry, which is used by <Link> to navigate to the correct page. If the entry has a collection and an id, it returns the href in the format "collection/id". If it only has an id, it returns the id as the href. If neither is present, it returns an empty string.
+ * @param entry
+ * @returns
+ */
+export function getEntryHref(entry: any): string {
+  if (entry.collection && entry.id) {
+    return `${entry.collection}/${entry.id}`
+  } else if (entry.id) {
+    return `${entry.id}`
+  }
+  return ""
+}
+
+/**
  * The href should be used by <Link> as the component prefixed the base path
  * @param entry
  * @returns
@@ -9,13 +23,7 @@ import type { TOCEntry } from "./types"
 export async function getRecursivelyEntryData(entry: any) {
   const result: any = {
     id: entry.id,
-  }
-
-  if (entry.collection && entry.id) {
-    result.collection = entry.collection
-    result.href = `${entry.collection}/${entry.id}`
-  } else if (entry.id) {
-    result.href = `${entry.id}`
+    href: getEntryHref(entry),
   }
 
   for (const k of Object.keys(entry.data)) {

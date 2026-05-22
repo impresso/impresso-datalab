@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react"
+import type { Meta, StoryObj } from "@storybook/react-vite"
 import Citation from "../../components/Citation"
 import { type CitationProps } from "../../components/Citation"
 

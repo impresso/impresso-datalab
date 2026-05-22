@@ -94,6 +94,7 @@ const notebooks = defineCollection({
   schema: z.object({
     title: z.string().optional(),
     draft: z.boolean().optional(),
+    searchable: z.boolean().optional().default(true),
     url: z.string().url().optional(),
     langModel: z.string().optional(),
     githubUrl: z.string().url().optional(),
@@ -165,20 +166,6 @@ const associatedPartners = defineCollection({
   }),
 })
 
-const tasks = defineCollection({
-  loader: glob({ pattern: "*.mdx", base: "./src/content/tasks" }),
-  schema: z.object({
-    title: z.string(),
-    draft: z.boolean().optional(),
-    summary: z.string().optional(),
-    tags: z.array(z.string()).optional(),
-    license: z.string().optional(),
-    date: z.date().optional(),
-    publications: z.array(z.string()).optional(),
-    notebooks: z.array(reference("notebooks")).optional(),
-  }),
-})
-
 const pagesContents = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/pagesContents" }),
   schema: z.object({
@@ -209,6 +196,48 @@ const dataProviders = defineCollection({
   }),
 })
 
+/**
+ * A subset of the Huggingface REST api response for Spaces.
+ *
+ **/
+export const huggingfaceSpaces = defineCollection({
+  loader: file("./src/content/hfSpaces.yaml"),
+  schema: z.object({
+    id: z.string(),
+    author: z.string(),
+    lastModified: z.date(),
+    cardData: z.object({
+      title: z.string(),
+      short_description: z.string(),
+      emoji: z.string(),
+      colorFrom: z.string(),
+      colorTo: z.string(),
+      sdk: z.string(),
+      app_file: z.string(),
+      pinned: z.boolean(),
+      license: z.string(),
+    }),
+    host: z.string().url(),
+    models: z.string().optional(),
+    subdomain: z.string().optional().default(""),
+  }),
+})
+
+const tasks = defineCollection({
+  loader: glob({ pattern: "*.mdx", base: "./src/content/tasks" }),
+  schema: z.object({
+    title: z.string(),
+    draft: z.boolean().optional(),
+    summary: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    license: z.string().optional(),
+    date: z.date().optional(),
+    publications: z.array(z.string()).optional(),
+    notebooks: z.array(reference("notebooks")).optional(),
+    huggingfaceSpaces: z.array(reference("huggingfaceSpaces")).optional(),
+  }),
+})
+
 const series = defineCollection({
   loader: glob({ pattern: "*.mdx", base: "./src/content/series" }),
   schema: z.object({
@@ -236,4 +265,5 @@ export const collections = {
   dataReleaseCards,
   dataProviders,
   tasks,
+  huggingfaceSpaces,
 }
