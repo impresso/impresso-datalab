@@ -3,8 +3,8 @@ githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/work
 authors:
   - impresso-team
 title: Exploring Image and Text-to-Image Embeddings
-sha: db79dd53048e288e42055b1c0dd06ca4d330b0db
-date: 2025-12-17T11:58:56Z
+sha: 2cd98869f03e845143d1ad4db3f9e2e4357804ef
+date: 2026-05-19T22:11:26Z
 links:
   - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
     label: report a problem
@@ -137,7 +137,7 @@ results
 
 {/* cell:12 cell_type:code */}
 ```python
-results.df[['contentItemUid', 'imageTypes.visualContentType']].index
+results.df[['issueId', 'imageTypes.visualContentType']]
 ```
 
 {/* cell:13 cell_type:code */}
@@ -145,11 +145,11 @@ results.df[['contentItemUid', 'imageTypes.visualContentType']].index
 import numpy as np
 import pandas as pd
 
-# Print the URLs for the first 5 images 
+# Print the URLs for the first 5 images
 for uid, r in results.df.head(5).iterrows():
   print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
-  if str(r.contentItemUid)!='nan':
-    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+  if pd.notna(r.contentItemId):
+    print(f"       {r.contentItemId} - link to corresponding CI {img_webapp_url(r.contentItemId)}")
 ```
 
 {/* cell:14 cell_type:markdown */}
@@ -159,7 +159,7 @@ We can try to filter by image type, such as `Object`, `Non-Figurative Visual Con
 
 {/* cell:15 cell_type:code */}
 ```python
-# Filter results based on the image content type "Object"
+# Filter results based on the image content type "Object"
 object_results = impresso_session.images.find(
   content_type="Object",
   embedding=kw_embedding,
@@ -170,8 +170,8 @@ object_results = impresso_session.images.find(
 print(f"Results for images of type Object")
 for uid, r in object_results.df.head(5).iterrows():
   print(f"Result {uid} - link to image CI {img_webapp_url(uid, issue_mode=False)}")
-  if str(r.contentItemUid)!='nan':
-    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+  if pd.notna(r.contentItemId):
+    print(f"       {r.contentItemId} - link to corresponding CI {img_webapp_url(r.contentItemId)}")
 ```
 
 {/* cell:16 cell_type:markdown */}
@@ -179,19 +179,34 @@ for uid, r in object_results.df.head(5).iterrows():
 
 {/* cell:17 cell_type:code */}
 ```python
-# Filter results based on the image content type "Non-Figurative Visual Content" OR "Ornament or Illustrated Title"
-non_fig_results = impresso_session.images.find(
-  content_type=OR("Non-Figurative Visual Content", "Ornament or Illustrated Title"),
+# Filter results based on the image content type "Non-Figurative Visual Content" OR "Ornament or Illustrated Title"
+non_fig_results_1 = impresso_session.images.find(
+  content_type="Non-Figurative Visual Content",
   embedding=kw_embedding,
   limit=5
 )
 
+non_fig_results_2 = impresso_session.images.find(
+  content_type="Ornament or Illustrated Title",
+  embedding=kw_embedding,
+  limit=5
+)
+
+# Combine results from both searches
+combined_df = pd.concat([non_fig_results_1.df, non_fig_results_2.df])
+
+# Drop the 'pageNumbers' column as it contains unhashable list objects, causing the TypeError
+if 'pageNumbers' in combined_df.columns:
+    combined_df = combined_df.drop(columns=['pageNumbers'])
+
+non_fig_results_df = combined_df.drop_duplicates().head(5)
+
 # Print the URLs for the first 5 images
-print(f"Results for images of type Non-Figurative Visual Content")
-for uid, r in non_fig_results.df.head(5).iterrows():
+print(f"Results for images of type Non-Figurative Visual Content or Ornament or Illustrated Title")
+for uid, r in non_fig_results_df.iterrows():
   print(f"Result {uid} - link to image CI {img_webapp_url(uid, issue_mode=False)}")
-  if str(r.contentItemUid)!='nan':
-    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+  if pd.notna(r.contentItemId):
+    print(f"       {r.contentItemId} - link to corresponding CI {img_webapp_url(r.contentItemId)}")
 ```
 
 {/* cell:18 cell_type:markdown */}
@@ -219,8 +234,8 @@ pgm_results = impresso_session.images.find(
 
 for uid, r in pgm_results.df.head(5).iterrows():
   print(f"Result {uid} - link to image CI {img_webapp_url(uid, issue_mode=False)} - type {r['imageTypes.visualContentType']}")
-  if str(r.contentItemUid)!='nan':
-    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+  if pd.notna(r.contentItemId):
+    print(f"       {r.contentItemId} - link to corresponding CI {img_webapp_url(r.contentItemId)}")
 ```
 
 {/* cell:21 cell_type:markdown */}
@@ -246,8 +261,8 @@ pgm_fr_results = impresso_session.images.find(
 
 for uid, r in pgm_fr_results.df.head(5).iterrows():
   print(f"Result {uid} - link to image CI {img_webapp_url(uid, issue_mode=False)} - type {r['imageTypes.visualContentType']}")
-  if str(r.contentItemUid)!='nan':
-    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+  if str(r.contentItemId)!='nan':
+    print(f"       {r.contentItemId} - link to corresponding CI {img_webapp_url(r.contentItemId)}")
 ```
 
 {/* cell:23 cell_type:markdown */}
@@ -273,8 +288,8 @@ radio_fr_results = impresso_session.images.find(
 for uid, r in radio_fr_results.df.head(5).iterrows():
 
   print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
-  if 'contentItemUid' in r and str(r.contentItemUid)!='nan':
-    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+  if 'issueId' in r and str(r.contentItemId)!='nan':
+    print(f"       {r.contentItemId} - link to corresponding CI {img_webapp_url(r.contentItemId)}")
 ```
 
 {/* cell:25 cell_type:markdown */}
@@ -298,8 +313,8 @@ radio_en_results = impresso_session.images.find(
 for uid, r in radio_en_results.df.head(5).iterrows():
 
   print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
-  if 'contentItemUid' in r and str(r.contentItemUid)!='nan':
-    print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+  if 'issueId' in r and str(r.contentItemId)!='nan':
+    print(f"       {r.contentItemId} - link to corresponding CI {img_webapp_url(r.contentItemId)}")
 ```
 
 {/* cell:27 cell_type:markdown */}
@@ -333,8 +348,8 @@ dino_results = impresso_session.images.find(
 for uid, r in dino_results.df.head(6).iterrows():
   if uid != example_image_id:
     print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
-    if 'contentItemUid' in r and str(r.contentItemUid)!='nan':
-      print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+    if 'contentItemId' in r and str(r.contentItemId)!='nan':
+      print(f"       {r.contentItemId} - link to corresponding CI {img_webapp_url(r.contentItemId)}")
 ```
 
 {/* cell:31 cell_type:markdown */}
@@ -358,8 +373,8 @@ filter_results = impresso_session.images.find(
 for uid, r in filter_results.df.head(6).iterrows():
   if uid != example_image_id:
     print(f"Result {uid} - link to image CI {r.previewUrl} - type {r['imageTypes.visualContentType']}")
-    if 'contentItemUid' in r and str(r.contentItemUid)!='nan':
-      print(f"       {r.contentItemUid} - link to corresponding CI {img_webapp_url(r.contentItemUid)}")
+    if 'contentItemId' in r and str(r.contentItemId)!='nan':
+      print(f"       {r.contentItemId} - link to corresponding CI {img_webapp_url(r.contentItemId)}")
 ```
 
 {/* cell:34 cell_type:markdown */}
