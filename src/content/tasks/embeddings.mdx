@@ -4,6 +4,8 @@ summary: Embeddings are vector representations of text that capture semantic mea
 notebooks:
   - explore-introduction-to-embeddings
   - explore-multimodal-embeddings
+huggingfaceSpaces:
+  - impresso-project/floret-word-search-demo
 ---
 
 ## Impresso Python library
@@ -19,5 +21,5 @@ results = search.find(embedding=embedding) # Search in Impresso using embeded te
 
 #Embed image
 embedding = tools.embed_image("path/to/image.jpg", target="image")
-similar_images = images.find(embedding=embedding) # Search in Impresso using embeded image 
+similar_images = images.find(embedding=embedding) # Search in Impresso using embeded image
 ```

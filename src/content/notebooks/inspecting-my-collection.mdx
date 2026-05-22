@@ -1,0 +1,743 @@
+---
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/inspecting_my_collection.ipynb
+title: Inspecting my collection with data visualisation tools
+sha: b9087146ed22911e8051c23f1acd79dd28f3066c
+date: 2026-02-17T12:43:59Z
+authors:
+  - impresso-team
+links:
+  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
+    label: report a problem
+  - href: https://web.archive.org/web/20241110022144/https://stephencredmond.medium.com/a-review-of-how-charts-lie-by-alberto-cairo-2763286237a6
+    label: How Charts Lie
+  - href: https://plotly.com/python/getting-started/
+    label: Getting started with Plotly in Python
+  - href: https://ranke2.uni.lu/u/exploring-historical-newspapers/
+    label: "From the shelf to the web: exploring historical newspapers in the
+      digital age"
+  - href: https://plotly.com/python/
+    label: Plotly
+  - href: https://plotly.com/python/histograms/#:~:text=More%20generally%2C%20in%20Plotly%20a,as%20well%20as%20linear%20axes.
+    label: Histograms
+  - href: data:image/png;base64,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1wehkPDeQ1zxHZdx62RTjkg4yKRJk6RHjx7SsGFD+fTTT9075EuWLJHFixfLoYce6hSEZcHTTz/tXsxC2SiPoq9YscLtX3/99dK9e3e59tprpVOnTjJs2DCnaK+//rors/POO6ce7c6QV155Rbp161Ya4OaSSy5xBLRgwQIZNGiQnJnyy3D3hTD69evnyKtv377SpEkTF7GHMancfffdMnLkSGnWrJk79NRTT61nedx7772uvU033dRF3ho1apRst912cuedd8qGG24ol156qat7wQUXyDnnnCOPP/64TJ06Vc466yw5//zz5cgjj5RrrrnG9Q0hgMM999zjcInbRv/+/XXItk0YArEIgseYca2CXDonCVWHwqAAKNqJJ57olH2rrbZyl/HHH3+U8ePHO1IYOnSojB49Wu5IzYXyp556qqDcv/zyi1P4fffdVw477DDny4Ag9C7M3R0LZM899xSUdNy4cU459XsCAaGY7777rvTu3dsRhJ6DgC677DJ58cUXU0972spbb70l5513njv90UcfyXPPPScffPCBa5fxQUqDvXdGKINlRL0ttthC8G1ceeWV8tJLL7k2sHJ84X+WXOAA4e2zzz7yySefCORFO/vvv798/PHHbu5fffVV7Db8Pmw/WQjEIgggqS4+h+Dl6dKli6BIfJ555hmn5Cg3su2225a+yt2hQwd55JFH3PqfshAK0rhxY2c5oDhHHHGEu+v37NlT6tWrJ6effrpT/IULF7plA34HlgS77LKLe3Wc+vg9kHbt2rm7s/9Id9asWe445IDgK9loo43cPpYOondnlinLli1zx/QPZViqQA7IaaedJgMGDHAOUi0TZ9uyZUtHDpTt2LGjw2X27NlxqlqZhCMQmyCqI04o7htvvCE4DQ844AD34SnB22+/LTvttJO7M+u4ea88Srjzcn733XeX7777TsaOHetM8L322kseS/3Mnackt912m7z66quOTPx2MPORqPYx66MEqwTrQwVS8oWf2/qE4+9Tzm8bf0wmQttIRdrIpD8rW5gIRGtNAcyHoJvcUTHhcc6xvuYpweabbx45en6MgqmNuY7CUef55593d1Yi+7JmHzJkiPND7L333m7Jgc8Cq+GFF15wVkZk44ETu+66q8ydO1c+//xzdwYHKo9HEcjnww8/lBYtWrjlBw5WLecKrC3DMoSlEoKP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
+    label: Screenshot 2025-06-19 at 16.47.20.png
+  - href: https://web.archive.org/web/20250327234513/https://www.tableau.com/blog/examining-data-viz-rules-dont-use-red-green-together
+    label: colour blindness
+  - href: https://impresso-project.ch/datalab/notebooks/impresso-py-maps/
+    label: Visualising Place Entities on Maps
+  - href: data:image/png;base64,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
+    label: "![CreditLogo.png"
+  - href: https://creativecommons.org/licenses/by/4.0/
+    label: CC BY 4.0 License
+  - href: https://impresso-project.ch
+    label: Impresso - Media Monitoring of the Past
+  - href: http://p3.snf.ch/project-173719
+    label: CRSII5_173719
+  - href: https://data.snf.ch/grants/grant/213585
+    label: CRSII5_213585
+  - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
+    label: GNU Affero General Public License
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/inspecting_my_collection.ipynb
+---
+
+{/* cell:0 cell_type:markdown */}
+
+<a
+  target="_blank"
+  href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/inspecting_my_collection.ipynb"
+>
+  <img
+    src="https://colab.research.google.com/assets/colab-badge.svg"
+    alt="Open In Colab"
+  />
+</a>
+
+If something doesn't work, you can [report a problem](https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md).
+
+{/* cell:1 cell_type:markdown */}
+
+## What is this notebook about?
+
+This notebook provides you with basic tools for a data-driven inspection of your collection using data visualisation tools. By plotting several charts, it should facilitate the identification of the nature of the content you have stored in your collection, helping with analysing your corpus or even planning ammendments to the content you collected. Moreover, this notebook aims at fostering data/source criticism by raising awareness on the origing of Impresso metadata and quality of digitised materials.
+
+## Why is this useful?
+
+These visualisations can be useful for revealing trends or aspects of your collection that you did not realise before or for presenting your collection to different audiences.
+
+## What will you learn?
+
+In this notebook, you will learn how to:
+
+- Load and manage dataframes using Pandas library;
+- Create visualisations using Python libraries such as Plotly;
+- Critically interpret the data you have saved in your collection.
+
+## Recommended resources
+
+- [How Charts Lie](https://web.archive.org/web/20241110022144/https://stephencredmond.medium.com/a-review-of-how-charts-lie-by-alberto-cairo-2763286237a6) by Alberto Cairo (2019) provides a comprehensive introduction to critical data visualisation;
+- [Getting started with Plotly in Python](https://plotly.com/python/getting-started/) is a tutorial for those unfamiliar with the library.
+- [From the shelf to the web: exploring historical newspapers in the digital age](https://ranke2.uni.lu/u/exploring-historical-newspapers/) deals with how digitised newspapers that are available online change the way historians use newspapers as historical sources, and ask new skills for applying source criticism.
+
+> Quick tip: Code in Jupyter notebooks must be run in sequence. If something does not work, double-check if you forgot to run a previous cell.
+
+{/* cell:2 cell_type:markdown */}
+
+# Introduction: Loading the data
+
+{/* cell:3 cell_type:markdown */}
+
+> If you work with **Google Colab**, there are two ways to upload your csv file with the following codes:
+>
+> ```
+> from google.colab import files
+> ```
+>
+> If your csv file is stored on your computer:
+>
+> ```
+> uploaded = files.upload()
+> ```
+>
+> If your csv file is stored online:
+>
+> ```
+> url = "https://example.com/mydata.csv"
+> ```
+
+{/* cell:4 cell_type:markdown */}
+We use the function 'read' in Pandas to load the csv as a dataframe
+
+{/* cell:5 cell_type:code */}
+
+```python
+# Import .csv file retrieved from Web App and load the file as Pandas dataframe
+import pandas as pd
+
+dataframe = pd.read_csv('file.csv', delimiter=',', on_bad_lines='skip')
+```
+
+{/* cell:6 cell_type:markdown */}
+Now, you can inspect your Pandas dataframe. By running `dataframe.info()`
+
+{/* cell:7 cell_type:code */}
+
+```python
+# This shows how many columns you have, how many entries,the name of the columns and the type of values you have in each column.
+dataframe.info()
+```
+
+{/* cell:8 cell_type:markdown */}
+You can also preview the first rows of your dataframe by running `dataframe.head()`
+
+{/* cell:9 cell_type:code */}
+
+```python
+# Try here
+```
+
+{/* cell:10 cell_type:markdown */}
+
+# Part 1: Creating my first chart (step-by-step)
+
+{/* cell:11 cell_type:markdown */}
+To create charts, we are going to use a library called [Plotly](https://plotly.com/python/). Let's import it first.
+
+{/* cell:12 cell_type:code */}
+
+```python
+import plotly.express as px
+from plotly.colors import sequential, qualitative
+```
+
+{/* cell:13 cell_type:markdown */}
+You can now start exploring our collection by ploting charts.
+
+Below, we demonstrate how to plot a bar chart showing how many articles you have in your collection by newspaper. Let's do it step-by-step:
+
+1. First, you need to count how many articles you have by newspaper. We do this by counting how many times each newspaper ID occurs in column 'mediaCode' of dataframe
+
+{/* cell:14 cell_type:code */}
+
+```python
+# Count values in column 'newspaper' of dataframe
+newspaper_counts = dataframe['mediaUid'].value_counts().reset_index()
+```
+
+{/* cell:15 cell_type:code */}
+
+```python
+# Visualise your counts
+newspaper_counts
+```
+
+{/* cell:16 cell_type:markdown */} 2. Using Plotly, you can now plot a bar chart with results stored in `newspapers_counts`. We determine axis x as corresponding to column 'mediaCode' and axis y as corresponding to column 'count'.
+
+{/* cell:17 cell_type:code */}
+
+```python
+# Plot bar chart using Plotly for dataframe 'newspaper_counts'
+fig = px.bar(newspaper_counts, x='mediaUid', y='count', title='Count of Articles by Newspaper')
+
+# Define colour as gray scale
+fig.update_traces(marker_color='teal')
+
+# Show figure
+fig.show()
+```
+
+{/* cell:18 cell_type:markdown */}
+You can also plot a pie chart with the exact same values.
+
+{/* cell:19 cell_type:code */}
+
+```python
+# Pie charts will have 'names' and 'values' instead of axis x and y
+fig = px.pie(newspaper_counts, names='mediaUid', values='count', title='Count of Articles by Newspaper', color_discrete_sequence=sequential.Teal)
+
+# Layout options to improve readability: include text inside chart. Also include %
+fig.update_traces(textposition='inside', textinfo='percent+label')
+
+# Show figure
+fig.show()
+```
+
+{/* cell:20 cell_type:markdown */}
+**Question:** which chart do you think is more useful or more efficient in communicating the data? What are the pros and cons of each of them?
+
+{/* cell:21 cell_type:markdown */}
+
+# Part 2: Combining newspaper and content provider
+
+{/* cell:22 cell_type:markdown */}
+We can plot a treemap to visualise the number of articles by newspaper along with their content provider
+
+{/* cell:23 cell_type:code */}
+
+```python
+# Count values based on columns 'providerCode' and 'mediaUid'
+np_provider_counts = dataframe[['providerCode', 'mediaUid']].value_counts().reset_index()
+```
+
+{/* cell:24 cell_type:code */}
+
+```python
+# Take a look at the dataframe with your counts.
+np_provider_counts
+```
+
+{/* cell:25 cell_type:markdown */}
+
+> It is worth noticing that the dataframe looks different. You have now counted values based on two columns, rather than a single column.
+
+{/* cell:26 cell_type:code */}
+
+```python
+# Plot a treemap
+fig = px.treemap(np_provider_counts, path=[px.Constant("all"),'providerCode', 'mediaUid'], values='count',
+                 color='count', color_continuous_scale=px.colors.sequential.Teal,
+                 title='Count of articles by Newspaper and their Content Providers')
+fig.show()
+```
+
+{/* cell:27 cell_type:markdown */}
+
+# Part 3: Temporal distribution of articles
+
+{/* cell:28 cell_type:markdown */}
+See temporal distribution of articles for a given newspaper using a histogram. In the example below, we look at values for the newspaper Gazette de Lausanne (GDL).
+
+> Bar charts are used to represent categorical data. [Histograms](https://plotly.com/python/histograms/#:~:text=More%20generally%2C%20in%20Plotly%20a,as%20well%20as%20linear%20axes.), in contrast, represent continuous data such as ages, daily temperatures, etc. For dates, histograms can be particularly useful for time-series analysis, to help identify trends over long periods. **Be aware that Gazette de Lausanne will only show up in the chart below if you have a content item by them in your collection.**
+
+{/* cell:29 cell_type:code */}
+
+```python
+# Create a dataframe with values for Gazette de Lausanne (GDL)
+df_GDL = dataframe[dataframe['mediaUid'] == 'GDL'].copy()
+
+# Define histogram axis
+fig = px.histogram(df_GDL, x='publicationDate', title=f'Distribution of Articles over time for Gazette de Lausanne')
+
+# Data is aggragated in bins based on month (size in millisecond)
+fig.update_traces(xbins=dict(size=30*24*60*60*1000))  # 1 month in ms | To aggregate by day, use 1 day = 24*60*60*1000
+
+# Define colour
+fig.update_traces(marker_color='Teal')
+
+# Show figure
+fig.show()
+```
+
+{/* cell:30 cell_type:markdown */}
+You can also generate a list of histograms, one for each newspaper in your collection by writing a `for loop`.
+
+{/* cell:31 cell_type:code */}
+
+```python
+# Get the earliest and latest dates in dataset
+earliest_date = dataframe['publicationDate'].min()
+latest_date = dataframe['publicationDate'].max()
+
+# Get unique list of newspapers
+newspapers = dataframe['mediaUid'].unique()
+
+# Create separate histograms for each newspaper using a 'for loop'
+for newspaper in newspapers:
+    df_newspaper = dataframe[dataframe['mediaUid'] == newspaper].copy()
+    fig = px.histogram(df_newspaper, x='publicationDate', title=f'Distribution of Articles over Time for {newspaper}')
+
+    # Data is aggragated in bins based on month (size in millisecond)
+    fig.update_traces(xbins=dict(size=30*24*60*60*1000))  # 1 month in ms
+
+    # Always set start of x-axis based on the ealiest date in dataset and end based on the latest.
+    fig.update_layout(
+        xaxis_range=[earliest_date, latest_date],
+    # Always set minimun value of y-axis 0 and max value as 60 (customise as necessary)
+        yaxis_range=[0, 60]
+    )
+
+    # Define colour
+    fig.update_traces(marker_color='Teal')
+
+    # Show figure
+    fig.show()
+```
+
+{/* cell:32 cell_type:markdown */}
+To facilitate comparison, you can display the histograms in dashboard format.
+
+{/* cell:33 cell_type:code */}
+
+```python
+# Import IPython display and plotly.graph_objects modules to create a dashboard
+from IPython.display import display, HTML
+import plotly.graph_objects as go
+```
+
+{/* cell:34 cell_type:code */}
+
+```python
+# plot histograms in dashboard side-by-side showing number of articles overtime by newspaper
+
+dashboard_html = """
+<html>
+<head>
+    <style>
+        .container {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center; /* Center the items in the container */
+        }}
+        .chart-item {{
+            width: 45%; /* Adjust as needed to have two columns with gap */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            padding: 10px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }}
+         .chart-item:hover {{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }}
+        h2 {{
+            text-align: center;
+            width: 100%; /* Make sure title takes full width */
+        }}
+    </style>
+</head>
+<body>
+    <h2>Data Overview Dashboard</h2>
+    <div class="container">
+        {newspaper_histograms}
+    </div>
+</body>
+</html>
+"""
+
+# Re-generate plots and capture their HTML output
+# Histograms for each newspaper
+newspaper_histograms_html = ""
+newspapers = dataframe['mediaUid'].unique()
+min_date = dataframe['publicationDate'].min()
+max_date = dataframe['publicationDate'].max()
+
+for newspaper in newspapers:
+    newspaper_df = dataframe[dataframe['mediaUid'] == newspaper]
+    fig = px.histogram(newspaper_df, x='publicationDate',
+                       labels={'x':'Date', 'y':'Number of Articles'},
+                       title=f'Count of content items over time for {newspaper}',
+                       range_x=[min_date, max_date])
+    fig.update_traces(xbins=dict(size=30*24*60*60*1000))  # 1 month in ms
+    fig.update_traces(marker_color='Teal')
+    fig.update_layout(yaxis_range=[0, 60])
+    newspaper_histograms_html += f'<div class="chart-item">{fig.to_html(full_html=False, include_plotlyjs="cdn")}</div>'
+    # Always set start of x-axis based on the ealiest date in dataset and end based on the latest.
+
+
+# Populate the dashboard HTML template
+full_dashboard_html = dashboard_html.format(
+    newspaper_histograms=newspaper_histograms_html,
+)
+
+# Display the dashboard
+display(HTML(full_dashboard_html))
+```
+
+{/* cell:35 cell_type:markdown */}
+To visualise the temporal distribution of articles for the whole collection, you can plot a histogram as follows
+
+> Tip: by clicking on the name of the newspapers in the right-hand side column, you can select specific newspapers you want to visualise
+
+{/* cell:36 cell_type:code */}
+
+```python
+# Plot chart to see distribution of articles over time
+
+earliest_latest_dated_per_np = dataframe.groupby('mediaUid').agg({'publicationDate': ['min', 'max']})
+earliest_latest_dated_per_np.columns = ['earliest_date', 'latest_date']
+
+# varying the nbins value provides more or less precision
+nbins_value = 366
+
+# stacked histogram
+fig = px.histogram(dataframe, x="publicationDate", color='mediaUid', title=f'Distribution of Articles over Time', nbins=nbins_value)
+fig.show()
+```
+
+{/* cell:37 cell_type:markdown */}
+
+# Part 4: Visualising metadata
+
+{/* cell:38 cell_type:markdown */}
+In Part 4 of this notebook, you will plot several charts based on your collection's available metadata such as countries where articles were published, languages, articles sizes and newspaper page in which the article occurs.
+
+At the end of this session, you will be able to load your charts into a dashboard.
+
+{/* cell:39 cell_type:code */}
+
+```python
+# count values on column 'countryCode' and plot a treemap
+
+country_counts = dataframe['countryCode'].value_counts().reset_index()
+country_counts.columns = ['countryCode', 'count']
+
+fig = px.treemap(country_counts, path=['countryCode'], values='count',
+                 color='count', color_continuous_scale='Teal',
+                 title='Distribution of Countries')
+fig.show()
+```
+
+{/* cell:40 cell_type:code */}
+
+```python
+# count values on column 'providerCode' and plot a treemap
+
+content_provider_counts = dataframe['providerCode'].value_counts().reset_index()
+content_provider_counts.columns = ['providerCode', 'count']
+
+fig = px.treemap(content_provider_counts, path=['providerCode'], values='count',
+                 color='count', color_continuous_scale='Teal',
+                 title='Distribution of Content Providers')
+fig.show()
+```
+
+{/* cell:41 cell_type:code */}
+
+```python
+# count values on column 'languageCode' and plot a treemap
+
+language_counts = dataframe['languageCode'].value_counts().reset_index()
+language_counts.columns = ['languageCode', 'count']
+
+fig = px.treemap(language_counts, path=['languageCode'], values='count',
+                 color='count', color_continuous_scale='Teal',
+                 title='Distribution of Languages')
+fig.show()
+```
+
+{/* cell:42 cell_type:code */}
+
+```python
+# count values in column 'type' and plot pie chart showing distribution
+
+type_counts = dataframe['type'].value_counts().reset_index()
+type_counts.columns = ['type', 'count']
+
+fig = px.pie(type_counts, values='count', names='type',
+             color_discrete_sequence=px.colors.sequential.Teal,
+             title='Distribution of Article Types')
+fig.show()
+```
+
+{/* cell:43 cell_type:markdown */}
+
+> **Note**: If you are running this notebook with the default dataset, this plot will only show a single category "article", and is therefore not very informative. However, it could become more meaningful when used with another dataset.
+
+{/* cell:44 cell_type:code */}
+
+```python
+# plot chart showing distribution of values in column 'transcriptLength' and add mark on the average and mean
+
+fig = px.histogram(dataframe, x='transcriptLength', title='Distribution of Article Sizes', color_discrete_sequence=['Teal'])
+fig.add_vline(x=dataframe['transcriptLength'].mean(), line_dash="dash", line_color="red", annotation_text=f"Mean: {dataframe['transcriptLength'].mean():.2f}", annotation_position="top right")
+fig.add_vline(x=dataframe['transcriptLength'].median(), line_dash="dash", line_color="black", annotation_text=f"Median: {dataframe['transcriptLength'].median():.2f}", annotation_position="top left")
+
+fig.show()
+```
+
+{/* cell:45 cell_type:code */}
+
+```python
+# Violin plots showing distribution of transcript length per media code
+
+import plotly.graph_objects as go
+
+fig = go.Figure()
+
+for title in dataframe['mediaUid'].unique():
+    fig.add_trace(go.Violin(x=dataframe['mediaUid'][dataframe['mediaUid'] == title],
+                            y=dataframe['transcriptLength'][dataframe['mediaUid'] == title],
+                            name=title,
+                            box_visible=True,
+                            meanline_visible=True))
+
+fig.update_layout(title_text="Distribution of Article Sizes per Title")
+fig.show()
+```
+
+{/* cell:46 cell_type:code */}
+
+```python
+# Violin plots showing distribution of article page per media code
+
+fig = go.Figure()
+
+# Remove brackets from 'pageNumbers' column and convert to integer
+dataframe["pageNumbers"] = (
+    dataframe["pageNumbers"]
+    .astype(str)
+    .str.replace(r"[\[\]]", "", regex=True)
+    .str.split(",", n=1)
+    .str[0]
+    .replace("nan", pd.NA)
+    .astype("Int64")
+)
+
+sorted_page_num = dataframe.sort_values(by='pageNumbers').dropna(subset=['pageNumbers'])
+
+for title in sorted_page_num['mediaUid'].unique():
+    fig.add_trace(go.Violin(x=sorted_page_num['mediaUid'][sorted_page_num['mediaUid'] == title],
+                            y=sorted_page_num['pageNumbers'][sorted_page_num['mediaUid'] == title],
+                            name=title,
+                            box_visible=True,
+                            meanline_visible=True))
+
+# Change the yaxis range value to have different views of your distribution
+
+fig.update_layout(title_text="Distribution of Article Pages per Title", yaxis_range=[-5,25], height=800)
+fig.update_yaxes(dtick=1)
+fig.show()
+```
+
+{/* cell:47 cell_type:code */}
+
+```python
+# plot chart with count of values in column 'isOnFrontPage'
+
+# count values in column 'is_on_front_page' and plot a bar chart
+is_on_front_page_counts = dataframe['isOnFrontPage'].value_counts().reset_index()
+is_on_front_page_counts.columns = ['isOnFrontPage', 'count']
+
+fig = px.bar(is_on_front_page_counts, x='isOnFrontPage', y='count',
+             labels={'isOnFrontPage':'On Front Page', 'count':'Number of Articles'},
+             title='Count of Articles on Front Page', color_discrete_sequence=['Teal'])
+
+fig.show()
+```
+
+{/* cell:48 cell_type:markdown */}
+
+## Visualise your charts in a dashboard
+
+Try visualising in full-screen by clicking on the arrow in the output cell (see figure):
+
+![Screenshot 2025-06-19 at 16.47.20.png](data:image/png;base64,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1wehkPDeQ1zxHZdx62RTjkg4yKRJk6RHjx7SsGFD+fTTT9075EuWLJHFixfLoYce6hSEZcHTTz/tXsxC2SiPoq9YscLtX3/99dK9e3e59tprpVOnTjJs2DCnaK+//rors/POO6ce7c6QV155Rbp161Ya4OaSSy5xBLRgwQIZNGiQnJnyy3D3hTD69evnyKtv377SpEkTF7GHMancfffdMnLkSGnWrJk79NRTT61nedx7772uvU033dRF3ho1apRst912cuedd8qGG24ol156qat7wQUXyDnnnCOPP/64TJ06Vc466yw5//zz5cgjj5RrrrnG9Q0hgMM999zjcInbRv/+/XXItk0YArEIgseYca2CXDonCVWHwqAAKNqJJ57olH2rrbZyl/HHH3+U8ePHO1IYOnSojB49Wu5IzYXyp556qqDcv/zyi1P4fffdVw477DDny4Ag9C7M3R0LZM899xSUdNy4cU459XsCAaGY7777rvTu3dsRhJ6DgC677DJ58cUXU0972spbb70l5513njv90UcfyXPPPScffPCBa5fxQUqDvXdGKINlRL0ttthC8G1ceeWV8tJLL7k2sHJ84X+WXOAA4e2zzz7yySefCORFO/vvv798/PHHbu5fffVV7Db8Pmw/WQjEIgggqS4+h+Dl6dKli6BIfJ555hmn5Cg3su2225a+yt2hQwd55JFH3PqfshAK0rhxY2c5oDhHHHGEu+v37NlT6tWrJ6effrpT/IULF7plA34HlgS77LKLe3Wc+vg9kHbt2rm7s/9Id9asWe445IDgK9loo43cPpYOondnlinLli1zx/QPZViqQA7IaaedJgMGDHAOUi0TZ9uyZUtHDpTt2LGjw2X27NlxqlqZhCMQmyCqI04o7htvvCE4DQ844AD34SnB22+/LTvttJO7M+u4ea88Srjzcn733XeX7777TsaOHetM8L322kseS/3Mnackt912m7z66quOTPx2MPORqPYx66MEqwTrQwVS8oWf2/qE4+9Tzm8bf0wmQttIRdrIpD8rW5gIRGtNAcyHoJvcUTHhcc6xvuYpweabbx45en6MgqmNuY7CUef55593d1Yi+7JmHzJkiPND7L333m7Jgc8Cq+GFF15wVkZk44ETu+66q8ydO1c+//xzdwYHKo9HEcjnww8/lBYtWrjlBw5WLecKrC3DMoSlEoKP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)
+
+{/* cell:49 cell_type:code */}
+
+```python
+# @title This cell will create a dash board and plot several charts about your collection
+# create a dashboard showing all the charts
+
+import pandas as pd
+from IPython.display import display, HTML
+import plotly.graph_objects as go
+
+# Combine all figures into a single dashboard layout
+dashboard_html = """
+<html>
+<head>
+    <style>
+        .container {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center; /* Center the items in the container */
+        }}
+        .chart-item {{
+            width: 45%; /* Adjust as needed */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            padding: 10px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }}
+         .chart-item:hover {{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }}
+        h2 {{
+            text-align: center;
+            width: 100%; /* Make sure title takes full width */
+        }}
+    </style>
+</head>
+<body>
+    <h2>Data Overview Dashboard</h2>
+    <div class="container">
+        <div class="chart-item">{bar_chart}</div>
+        <div class="chart-item">{country_treemap}</div>
+        <div class="chart-item">{content_provider_treemap}</div>
+        <div class="chart-item">{language_treemap}</div>
+        <div class="chart-item">{type_pie_chart}</div>
+        <div class="chart-item">{size_histogram}</div>
+        <div class="chart-item">{pages_histogram}</div>
+        <div class="chart-item">{front_page_bar_chart}</div>
+    </div>
+</body>
+</html>
+"""
+
+# Re-generate plots and capture their HTML output
+# Bar chart of newspaper counts
+newspaper_counts = dataframe['mediaUid'].value_counts().reset_index()
+newspaper_counts.columns = ['mediaUid', 'Count'] # Rename for clarity in plot
+fig_newspaper_bar = px.bar(newspaper_counts, x='mediaUid', y='Count',
+             labels={'mediaUid':'Newspaper', 'Count':'Number of Articles'},
+             title='Count of content items by newspaper title')
+fig_newspaper_bar.update_traces(marker_color='Teal')
+bar_chart_html = fig_newspaper_bar.to_html(full_html=False, include_plotlyjs='cdn')
+
+
+# Treemap for countries
+country_counts = dataframe['countryCode'].value_counts().reset_index()
+country_counts.columns = ['countryCode', 'count']
+fig_country_treemap = px.treemap(country_counts, path=['countryCode'], values='count',
+                 title='Distribution of Countries', color='count', color_continuous_scale='Teal')
+country_treemap_html = fig_country_treemap.to_html(full_html=False, include_plotlyjs='cdn')
+
+# Treemap for content providers
+content_provider_counts = dataframe['providerCode'].value_counts().reset_index()
+content_provider_counts.columns = ['providerCode', 'count']
+fig_content_provider_treemap = px.treemap(content_provider_counts, path=['providerCode'], values='count',
+                 title='Distribution of Content Providers', color='count', color_continuous_scale='Teal')
+content_provider_treemap_html = fig_content_provider_treemap.to_html(full_html=False, include_plotlyjs='cdn')
+
+# Treemap for languages
+language_counts = dataframe['languageCode'].value_counts().reset_index()
+language_counts.columns = ['languageCode', 'count']
+fig_language_treemap = px.treemap(language_counts, path=['languageCode'], values='count',
+                 title='Distribution of Languages', color='count', color_continuous_scale='Teal')
+language_treemap_html = fig_language_treemap.to_html(full_html=False, include_plotlyjs='cdn')
+
+# Pie chart for article types
+type_counts = dataframe['type'].value_counts().reset_index()
+type_counts.columns = ['type', 'count']
+fig_type_pie = px.pie(type_counts, values='count', names='type',
+             title='Distribution of Article Types', color_discrete_sequence=px.colors.sequential.Teal)
+type_pie_chart_html = fig_type_pie.to_html(full_html=False, include_plotlyjs='cdn')
+
+# Histogram for article sizes
+fig_size_hist = px.histogram(dataframe, x='transcriptLength', title='Distribution of Article Sizes', color_discrete_sequence=['Teal'])
+fig_size_hist.add_vline(x=dataframe['transcriptLength'].mean(), line_dash="dash", line_color="red", annotation_text=f"Mean: {dataframe['transcriptLength'].mean():.2f}", annotation_position="top right")
+fig_size_hist.add_vline(x=dataframe['transcriptLength'].median(), line_dash="dash", line_color="black", annotation_text=f"Median: {dataframe['transcriptLength'].median():.2f}", annotation_position="top left")
+size_histogram_html = fig_size_hist.to_html(full_html=False, include_plotlyjs='cdn')
+
+# Histogram for article pages
+dataframe['pageNumbers'] = pd.to_numeric(dataframe['pageNumbers'], errors='coerce')
+fig_pages_hist = px.histogram(dataframe.dropna(subset=['pageNumbers']), x='pageNumbers', title='Distribution of Article Pages', color_discrete_sequence=['Teal'])
+fig_pages_hist.add_vline(x=dataframe['pageNumbers'].mean(), line_dash="dash", line_color="red", annotation_text=f"Mean: {dataframe['pageNumbers'].mean():.2f}", annotation_position="top right")
+fig_pages_hist.add_vline(x=dataframe['pageNumbers'].median(), line_dash="dash", line_color="black", annotation_text=f"Median: {dataframe['pageNumbers'].median():.2f}", annotation_position="top left")
+pages_histogram_html = fig_pages_hist.to_html(full_html=False, include_plotlyjs='cdn')
+
+
+# Bar chart for front page status
+is_on_front_page_counts = dataframe['isOnFrontPage'].value_counts().reset_index()
+is_on_front_page_counts.columns = ['isOnFrontPage', 'count']
+fig_front_page_bar = px.bar(is_on_front_page_counts, x='isOnFrontPage', y='count',
+             labels={'isOnFrontPage':'On Front Page', 'count':'Number of Articles'},
+             title='Count of Articles on Front Page', color_discrete_sequence=['Teal'])
+front_page_bar_chart_html = fig_front_page_bar.to_html(full_html=False, include_plotlyjs='cdn')
+
+
+# Populate the dashboard HTML template
+full_dashboard_html = dashboard_html.format(
+    bar_chart=bar_chart_html,
+    country_treemap=country_treemap_html,
+    content_provider_treemap=content_provider_treemap_html,
+    language_treemap=language_treemap_html,
+    type_pie_chart=type_pie_chart_html,
+    size_histogram=size_histogram_html,
+    pages_histogram=pages_histogram_html,
+    front_page_bar_chart=front_page_bar_chart_html)
+
+# Display the dashboard
+display(HTML(full_dashboard_html))
+```
+
+{/* cell:50 cell_type:markdown */}
+
+# Conclusion
+
+Be mindful of people with [colour blindness](https://web.archive.org/web/20250327234513/https://www.tableau.com/blog/examining-data-viz-rules-dont-use-red-green-together) when choosing the colours of your visuals. The internet is full of tools to generate accessible palettes, which you can consult before deciding on the best colours for your visuals.
+
+## Next Steps
+
+That's it for now! Next, you can explore:
+
+- The [Visualising Place Entities on Maps](https://impresso-project.ch/datalab/notebooks/impresso-py-maps/) notebook introduces you to how to create maps based on locations mentioned in newspaper's articles.
+
+## {/* cell:51 cell_type:markdown */}
+
+## Project and License info
+
+### Notebook credits [![CreditLogo.png](data:image/png;base64,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)](https://credit.niso.org/)
+
+**Writing - Original draft:** Caio Mello, Pauline Conti, Martin Grandjean. **Conceptualization:** Martin Grandjean, Caio Mello, Pauline Conti. **Software:** Roman Kalyakin. **Writing - Review & Editing**: Cao Vy. **Validation:** Kirill Veprikov. **Datalab editorial board:** Caio Mello (Managing), Emanuela Boros, Estelle Bunout, Cao Vy, Pauline Conti, Marten Düring, Martin Grandjean, Juri Opitz. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Caio Mello, Pauline Conti. **Supervision:** Martin Grandjean. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
+
+<a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+  <img
+    src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"
+    width="100"
+    alt="Open In Colab"
+  />
+</a>
+
+This notebook is published under [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/)
+
+For feedback on this notebook, please send an email to info@impresso-project.ch
+
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an interdisciplinary research project that aims to develop and consolidate tools for processing and exploring large collections of media archives across modalities, time, languages and national borders. The first project (2017-2021) was funded by the Swiss National Science Foundation under grant No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027) by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585) and the Luxembourg National Research Fund under grant No. 17498891.
+
+### License
+
+All Impresso code is published open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
+
+---
+
+<p align="center">
+  <img
+    src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true"
+    width="350"
+    alt="Impresso Project Logo"
+  />
+</p>

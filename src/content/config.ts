@@ -94,6 +94,7 @@ const notebooks = defineCollection({
   schema: z.object({
     title: z.string().optional(),
     draft: z.boolean().optional(),
+    searchable: z.boolean().optional().default(true),
     url: z.string().url().optional(),
     langModel: z.string().optional(),
     githubUrl: z.string().url().optional(),

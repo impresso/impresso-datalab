@@ -4,29 +4,29 @@ summary: News agency recognition refers to the process of identifying and extrac
 notebooks:
   - newsagencies-pipeline
 publications:
-    - |
-       
-        @mastersthesis{Marxen2023a,
-        address = {Lausanne},
-        title = {Where {Did} the {News} {Come} {From}? {Detection} of {News} {Agency} {Releases} in {Historical} {Newspapers}},
-        shorttitle = {Where {Did} the {News} {Come} {From}?},
-        url = {https://infoscience.epfl.ch/record/305129},
-        abstract = {Since their beginnings in the 1830s and 1840s, news agencies have played an important role in the national and international news market, aiming to deliver news as fast and as reliable as possible. While we know that newspapers have been using agency content for a long time to produce their stories, the amount to which the agencies shape our news often remains unclear. Although researchers have already addressed this question, recently by using computational methods to assess the influence of news agencies at present, large-scale studies on the role of news agencies in the past continue to be rare. This thesis aims to bridge this gap by detecting news agencies in a large corpus of Swiss and Luxembourgish newspaper articles (the impresso corpus) for the years 1840-2000 using deep learning methods. For this, we first build and annotate a multilingual dataset with news agency mentions, which we then use to train and evaluate several BERT-based agency detection and classification models. Based on these experiments, we choose two models (for French and German) for the inference on the impresso corpus. Results show that ca. 10\% of the articles explicitly reference news agencies, with the greatest share of agency content after 1940, although systematic citation of agencies already started slowly in the 1910s. Differences in the usage of agency content across time, countries and languages as well as between newspapers reveal a complex network of news flows, whose exploration provides many opportunities for future work},
-        school = {École Polytechnique Fédérale de Lausanne},
-        author = {Marxen, Lea},
-        month = aug,
-        year = {2023},
-        keywords = {Natural Language Processing, Machine Learning, Digital Humanities, Historical Documents, Information Extraction, Media History, impresso2, mySNF - n/a},
-        }
-       
+  - |
+
+    @mastersthesis{Marxen2023a,
+    address = {Lausanne},
+    title = {Where {Did} the {News} {Come} {From}? {Detection} of {News} {Agency} {Releases} in {Historical} {Newspapers}},
+    shorttitle = {Where {Did} the {News} {Come} {From}?},
+    url = {https://infoscience.epfl.ch/record/305129},
+    abstract = {Since their beginnings in the 1830s and 1840s, news agencies have played an important role in the national and international news market, aiming to deliver news as fast and as reliable as possible. While we know that newspapers have been using agency content for a long time to produce their stories, the amount to which the agencies shape our news often remains unclear. Although researchers have already addressed this question, recently by using computational methods to assess the influence of news agencies at present, large-scale studies on the role of news agencies in the past continue to be rare. This thesis aims to bridge this gap by detecting news agencies in a large corpus of Swiss and Luxembourgish newspaper articles (the impresso corpus) for the years 1840-2000 using deep learning methods. For this, we first build and annotate a multilingual dataset with news agency mentions, which we then use to train and evaluate several BERT-based agency detection and classification models. Based on these experiments, we choose two models (for French and German) for the inference on the impresso corpus. Results show that ca. 10\% of the articles explicitly reference news agencies, with the greatest share of agency content after 1940, although systematic citation of agencies already started slowly in the 1910s. Differences in the usage of agency content across time, countries and languages as well as between newspapers reveal a complex network of news flows, whose exploration provides many opportunities for future work},
+    school = {École Polytechnique Fédérale de Lausanne},
+    author = {Marxen, Lea},
+    month = aug,
+    year = {2023},
+    keywords = {Natural Language Processing, Machine Learning, Digital Humanities, Historical Documents, Information Extraction, Media History, impresso2, mySNF - n/a},
+    }
 ---
 
 ## Models
 
-  -  [NER News Agency BERT German](https://huggingface.co/impresso-project/ner-newsagency-bert-de)
-  -  [NER News Agency BERT French](https://huggingface.co/impresso-project/ner-newsagency-bert-fr)
+[NER News Agency BERT German](https://huggingface.co/impresso-project/ner-newsagency-bert-de)
 
-## Impresso Pipelines library 
+[NER News Agency BERT French](https://huggingface.co/impresso-project/ner-newsagency-bert-fr)
+
+## Impresso Pipelines library
 
 ### Impresso pipelines:
 
@@ -44,5 +44,5 @@ de_text = "Wie das Wolffs Telegraphisches Bureau (Wolff) gestern in einer abendl
 
 # Extract entities
 result = pipeline(de_text)
-print(result)  
+print(result)
 ```

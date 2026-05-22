@@ -16,6 +16,11 @@ const UrlWithCustomCSSClass: {
     badge: "Py → Docs",
   },
   {
+    url: "https://pypi.org/project/",
+    className: "LinkAsCard",
+    badge: "Pypi.org → Docs",
+  },
+  {
     url: "https://huggingface.co/spaces/impresso-project/",
     className: "LinkAsCard",
     badge: "HF → spaces",

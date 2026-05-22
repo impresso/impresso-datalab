@@ -1,8 +1,9 @@
 ---
 title: Named Entity Recognition (NER)
+summary: Named Entity Recognition (NER) is the task of identifying and classifying named entities in text, such as people, locations, and organizations, which is essential for structuring information in historical corpora.
 notebooks:
   - ne-processing-with-impresso-hf
-  - ne-processing-with-impresso-api
+  # - ne-processing-with-impresso-api
 huggingfaceSpaces:
   - impresso-project/multilingual-named-entity-recognition
 publications:
@@ -43,10 +44,9 @@ publications:
 
 ## Models
 
-the Impresso project has developed specialized models designed for high-performance extraction from digitized archives. The flagship model is a Stacked BERT-based token classification for named entity recognition, [ner-stacked-bert-multilingual-v1.1.0](https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-v1.1.0) and with support for multilingual historical texts.
-This approach allows for robust token classification across **French**, **German**, and **English**, ensuring that both coarse-grained categories (like locations) and fine-grained entities (like specific titles) are captured accurately despite the "noise" of historical datasets.
+[NER Stacked BERT Multilingual](https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-v1.1.0)
 
-There is a light version of the model,[Bert Multilingual light](https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-light), but it requires the input already tokenised.
+[NER Stacked BERT Multilingual Light](https://huggingface.co/impresso-project/ner-stacked-bert-multilingual-light)
 
 ## Impresso Python library
 
@@ -60,9 +60,3 @@ text = "Jean-Baptiste Nicolas Robert Schuman (29 June 1886 – 4 September 1963)
 result = impresso.tools.ner(text)
 result.df  # View entities as DataFrame
 ```
-
-<div>
-  <a href="https://huggingface.co/impresso-project/nel-mgenre-multilingual">
-    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-orange" />
-  </a>
-</div>

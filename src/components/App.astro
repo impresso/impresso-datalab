@@ -48,7 +48,7 @@ const tasksData = tasks.map((entry) => {
     ...entry.data,
     href: getEntryHref(entry)
   } as Task
-})
+}).sort((a, b) => a.id.localeCompare(b.id))
 
 ---
 <Header client:only="react" tasks={tasksData}/>

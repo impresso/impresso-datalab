@@ -22,7 +22,7 @@ const dataProviderProps: DataProvider = await getRecursivelyEntryData(dataProvid
 
 // generate table of contents from the content body, if not already generated
 const toc: TOCEntry[] = getTableOfContents(dataProvider.body || "")
-console.log('dataProviderProps', toc)
+
 ---
 
 <Layout title={dataProviderProps.title}>
