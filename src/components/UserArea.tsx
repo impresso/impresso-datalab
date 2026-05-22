@@ -82,7 +82,7 @@ const UserArea = () => {
               <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
               {/* add separator */}
               <Dropdown.Divider />
-
+              <Dropdown.Item href="/datalab/plans">Plans</Dropdown.Item>
               <Dropdown.Item href="/datalab/corpus-overview">
                 Corpus Overview
               </Dropdown.Item>

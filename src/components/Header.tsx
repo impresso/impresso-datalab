@@ -67,11 +67,6 @@ const Header: React.FC<{ tasks: Task[] }> = ({ tasks = [] }) => {
                 about
               </Link>
             </Nav.Item>
-            <Nav.Item>
-              <Link to="/plans" className="nav-link ">
-                Plans
-              </Link>
-            </Nav.Item>
 
             <Nav.Item>
               <Dropdown align={"start"}>
