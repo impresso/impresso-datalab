@@ -52,9 +52,9 @@ const SearchQuerySnippet = ({ sq, debug = false }: SearchQuerySnippetProps) => {
   }
   const value = `from impresso import connect
 
-impresso = connect()
+client = connect()
 
-results = impresso.search.find(\n  ${generateKwargs(filters).join(",\n  ")}\n)  
+results = client.search.find(\n  ${generateKwargs(filters).join(",\n  ")}\n)  
 `
 
   return (

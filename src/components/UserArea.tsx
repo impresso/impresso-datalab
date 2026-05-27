@@ -1,9 +1,8 @@
-import { Button, Dropdown } from "react-bootstrap"
+import { Dropdown } from "react-bootstrap"
 import { useBrowserStore, usePersistentStore } from "../store"
 import UserCard from "./UserCard"
 import { userService } from "../services"
-import { forwardRef, useEffect } from "react"
-import { PageDown } from "iconoir-react"
+import { useEffect } from "react"
 import {
   BrowserViewChangePassword,
   BrowserViewChangePlanRequest,
@@ -13,28 +12,7 @@ import {
   BrowserViewTermsOfUse,
 } from "../constants"
 
-const CustomToggle = forwardRef(
-  (
-    props: {
-      children?: React.ReactNode
-      onClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {}
-    },
-    ref: React.Ref<HTMLAnchorElement>,
-  ) => (
-    <a
-      href=""
-      className="CustomToggle text-decoration-none d-flex align-items-center"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault()
-        props.onClick(e)
-      }}
-    >
-      {props.children}
-      <PageDown className="ms-2" />
-    </a>
-  ),
-)
+import DropdownCustomToggle from "./DropdownCustomToggle"
 
 const UserArea = () => {
   const [setUser, logout] = usePersistentStore((state) => [
@@ -82,11 +60,11 @@ const UserArea = () => {
   }, [token, wsStatus])
 
   return (
-    <div className="UserArea me-3 d-flex">
+    <div className="UserArea d-flex">
       {user !== null ? (
         <>
           <Dropdown align={"start"}>
-            <Dropdown.Toggle as={CustomToggle}>
+            <Dropdown.Toggle as={DropdownCustomToggle}>
               <UserCard user={user} userPlan={userPlan} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -104,7 +82,7 @@ const UserArea = () => {
               <Dropdown.Item onClick={logout}>Log out</Dropdown.Item>
               {/* add separator */}
               <Dropdown.Divider />
-
+              <Dropdown.Item href="/datalab/plans">Plans</Dropdown.Item>
               <Dropdown.Item href="/datalab/corpus-overview">
                 Corpus Overview
               </Dropdown.Item>
@@ -123,22 +101,33 @@ const UserArea = () => {
           </Dropdown>
         </>
       ) : (
-        <>
-          <Button
-            size="sm"
-            variant="transparent"
-            onClick={() => setView(BrowserViewLogin)}
-          >
-            Log in
-          </Button>
-          <Button
-            size="sm"
-            variant="transparent"
-            onClick={() => setView(BrowserViewRegister)}
-          >
-            Register
-          </Button>
-        </>
+        <ul className="navbar-nav">
+          <li className="navbar-item">
+            <a
+              className="text-decoration-none text-reset nav-link  "
+              href=""
+              onClick={(e) => {
+                setView(BrowserViewLogin)
+                e.preventDefault()
+              }}
+            >
+              <span className="small-caps">Log in</span>
+            </a>
+          </li>
+          <li className="navbar-text mx-1">|</li>
+          <li className="navbar-item">
+            <a
+              className="text-decoration-none text-reset nav-link  "
+              href=""
+              onClick={(e) => {
+                setView(BrowserViewRegister)
+                e.preventDefault()
+              }}
+            >
+              <span className="small-caps">Register</span>
+            </a>
+          </li>
+        </ul>
       )}
     </div>
   )

@@ -11,8 +11,8 @@ tags:
 binderUrl: https://mybinder.org/v2/gh/binder-examples/r/master?urlpath=rstudio
 authors:
   - impresso-team
-date: 2025-09-10T10:37:12Z
-sha: 927749caceb9bda05d3ded77d7bcf4078cdf4bcb
+date: 2026-04-10T14:45:11Z
+sha: fb6ff6a3d3f3fbeaaaee870c37520bc389d1c93e
 langModel: En
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/starter/basics_ImpressoAPI.ipynb
 links:
@@ -109,7 +109,15 @@ Run the following cell to install the `impresso` python library. You may need to
 
 {/* cell:4 cell_type:code */}
 ```python
-%pip install -q impresso
+from packaging.version import Version
+
+MIN_VERSION = "0.9.15"
+try:
+    from impresso import version
+    assert Version(version) >= Version(MIN_VERSION)
+    print(f"✔ impresso {version} is installed and up to date.")
+except (ImportError, AssertionError):
+    %pip install --upgrade --force-reinstall impresso
 ```
 
 {/* cell:5 cell_type:markdown */}
@@ -342,7 +350,7 @@ else:
     first_collection_items = client.search.find(collection_id=first_collection_id)
     print(
         "Got first %i items in the collection. The first item is: %s" % \
-        (first_collection_items.size, first_collection_items.df["title"].iloc[0])
+        (first_collection_items.size, first_collection_items.df["text.title"].iloc[0] if first_collection_items.size > 0 else "No items in collection")
     )
 
 ```
@@ -361,9 +369,10 @@ print("Added article to collection")
 {/* cell:31 cell_type:code */}
 ```python
  # Then remove the first article from the collection
-first_article_id = first_collection_items.df.index[0]
-client.collections.remove_items(first_collection_id, [first_article_id])
-print("Removed article %s from collection" % first_article_id)
+if first_collection_items.size > 0:
+  first_article_id = first_collection_items.df.index[0]
+  client.collections.remove_items(first_collection_id, [first_article_id])
+  print("Removed article %s from collection" % first_article_id)
 ```
 
 {/* cell:32 cell_type:markdown */}

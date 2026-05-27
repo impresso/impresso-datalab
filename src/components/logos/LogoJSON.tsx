@@ -1,19 +1,13 @@
-export type LogoJSONProps = {
-  width?: number
-  className?: string
-  href?: string
-  ariaLabel?: string
-  title?: string
-  children?: React.ReactNode
-}
+import type { LogoProps } from "../../types"
 
-const LogoJSON: React.FC<LogoJSONProps> = ({
+const LogoJSON: React.FC<LogoProps> = ({
   width = 20,
   className = "",
   href = "https://readthedocs.org/",
   ariaLabel = "Read the Docs",
   title = "Read the Docs",
   children,
+  linkClassName = "",
 }) => {
   const height = +width
   return (
@@ -24,13 +18,13 @@ const LogoJSON: React.FC<LogoJSONProps> = ({
         rel="noopener noreferrer"
         aria-label={ariaLabel}
         title={title}
-        className="d-flex gap-1 align-items-center"
+        className={`d-flex gap-1 align-items-center ${linkClassName}`}
       >
         <svg width={width} height={height} viewBox="0 0 160 160">
           <defs>
             <linearGradient id="linearGradient8385">
               <stop offset="0" />
-              <stop stop-color="#fff" offset="1" />
+              <stop stopColor="#fff" offset="1" />
             </linearGradient>
             <linearGradient
               id="linearGradient3002"
@@ -53,7 +47,7 @@ const LogoJSON: React.FC<LogoJSONProps> = ({
               xlinkHref="#linearGradient8385"
             />
           </defs>
-          <g fill-rule="evenodd">
+          <g fillRule="evenodd">
             <path
               d="m79.865 119.1c35.398 48.255 70.04-13.469 69.989-50.587-0.0602-43.886-44.541-68.414-70.018-68.414-40.892 0-79.836 33.796-79.836 80.036 0 51.396 44.64 79.865 79.836 79.865-7.9645-1.1468-34.506-6.834-34.863-67.967-0.23987-41.347 13.488-57.866 34.805-50.599 0.47743 0.17707 23.514 9.2645 23.514 38.951 0 29.56-23.427 38.715-23.427 38.715z"
               color="#000000"

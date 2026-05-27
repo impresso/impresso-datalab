@@ -1,0 +1,32 @@
+---
+// PagefindIndexer.astro
+interface Props {
+  title: string;
+  content: string;
+  contentCollection: string;
+  series?: Series[];
+  tags?: string[];
+}
+import { marked } from "marked"
+import type { Series } from "../types";
+const renderer = new marked.Renderer()
+
+const { title, content, contentCollection, series, tags = [] } = Astro.props; 
+const renderedContent = marked(content, { renderer });
+---
+
+<div data-pagefind-body style="display: none;" aria-hidden="true">
+  <h1>{title}</h1>
+  <div set:html={renderedContent}/>
+  <div data-pagefind-filter="contentCollection">{contentCollection}</div>
+  {tags.length > 0 && (
+    <ul>
+      {tags.map(tag => <li data-pagefind-filter="tag">{tag}</li>)}
+    </ul>
+  )}
+  {series && series.length > 0 && (
+    <ul>
+      {series.map(s => <li data-pagefind-filter="series">{s.title}</li>)}
+    </ul>
+  )}
+</div>

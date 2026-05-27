@@ -1,0 +1,322 @@
+---
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/explore_introduction-to-embeddings.ipynb
+authors:
+  - impresso-team
+title: Introduction to Impresso's embedding essentials
+sha: fb0968917f1e776a178e73eeec23125df778cdd0
+date: 2025-12-17T11:55:12Z
+links:
+  - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
+    label: report a problem
+  - href: https://impresso.github.io/impresso-py/
+    label: Impresso Python Library
+  - href: https://ipyleaflet.readthedocs.io/en/latest/index.html
+    label: Impresso Huggind Face
+  - href: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/explore_multimodal-embeddings.ipynb
+    label: explore_multimodal-embeddings
+  - href: data:image/png;base64,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
+    label: "![CreditLogo.png"
+  - href: https://creativecommons.org/licenses/by/4.0/
+    label: CC BY 4.0 License
+  - href: https://impresso-project.ch
+    label: Impresso - Media Monitoring of the Past
+  - href: http://p3.snf.ch/project-173719
+    label: CRSII5_173719
+  - href: https://data.snf.ch/grants/grant/213585
+    label: CRSII5_213585
+  - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
+    label: GNU Affero General Public License
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/explore_introduction-to-embeddings.ipynb
+---
+
+{/* cell:0 cell_type:markdown */}
+
+<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/explore_introduction-to-embeddings.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+If something doesn't work, you can [report a problem](https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md).
+
+## What is this notebook about?
+
+This notebook is designed as a **practical introduction to the Impresso embedding ecosystem**. 
+
+The **first section** introduces the idea of text embeddings and demonstrates how textual content can be transformed into vector representations. This serves as a conceptual foundation for the rest of the material.
+
+The **second section** guides users through two fundamental questions: how embeddings can be inspected to better understand their structure, and how similarity functions work in practice. These two exercises help make the abstract notion of vectors tangible, before moving toward more advanced retrieval workflows.
+
+The **third section** focuses on Impresso’s embedding search capabilities. It explains how to perform text retrieval across multiple languages, how to limit searches by language, and how images can also be retrieved via their own embeddings. Users are then shown how to access both text and image embeddings directly from the Impresso platform, as well as how to retrieve the associated media objects. 
+
+## What you will learn?
+
+ - Embed texts and images;
+ - Retrieve embeddings directly from the Impresso database;
+ - Search related texts and images within Impresso.
+
+## Useful resources
+
+- [Impresso Python Library](https://impresso.github.io/impresso-py/)
+- [Impresso Huggind Face](https://ipyleaflet.readthedocs.io/en/latest/index.html)
+
+
+{/* cell:1 cell_type:markdown */}
+## Prerequisites
+
+Run the following cells to install the required package and to connect to Imrpesso API:
+
+> If you are working with Google Colab, you may need to restart the kernel. Go to *Runtime* and select *Restart session*. 
+
+{/* cell:2 cell_type:code */}
+```python
+# Impresso Python package with embeddings search feature
+
+!pip install impresso
+```
+
+{/* cell:3 cell_type:code */}
+```python
+# Connecting to Impresso API
+
+from impresso import connect, OR, AND, DateRange
+impresso_session = connect('https://dev.impresso-project.ch/public-api/v1')
+```
+
+{/* cell:4 cell_type:markdown */}
+## 1. Embedding a text
+
+Embedding a text means using a **neural network** to turn it into a **high-dimensional vector** that allows efficient comparison across languages and beyond surface wording. Let's start by generating such an embedding right away!
+
+{/* cell:5 cell_type:code */}
+```python
+embedding = impresso_session.tools.embed_text(text="Schumann the politician", target="text")
+embedding
+```
+
+{/* cell:6 cell_type:markdown */}
+### Does it look like a vector?
+
+Having inspected the generated embedding, one might wonder what these weird characters and numbers mean: ```gte-768:9wisvV3v1D0Pb1M7CWzzPEv727stV8u9ttGePBKJNTsd...```
+
+The reason for why this embedding does not look like a vector of numbers is rather simple: **It's encoded in a data-efficient format**.
+Let's introduce two helper functions to be able to map back-and-forth between vectors and data-friendly encodings.
+
+{/* cell:7 cell_type:code */}
+```python
+# Convert our embedding string to a vector with 768 dimensions:
+
+import base64
+import struct
+
+def string2vector(embedding_string):
+    # convert base64 string to a float array
+    _, arr = embedding_string.split(':')
+    arr = base64.b64decode(arr)
+    embedding_vector = [struct.unpack('f', arr[i:i+4])[0] for i in range(0, len(arr), 4)]
+    return embedding_vector
+
+def vector2string(vec, prefix="gte-768"):
+    # pack floats into bytes
+    arr = b''.join(struct.pack('f', x) for x in vec)
+    # encode bytes to base64 string
+    encoded = base64.b64encode(arr).decode('utf-8')
+    # return in same format as original ("prefix:encoded_string")
+    return f"{prefix}:{encoded}"
+
+string2vector(embedding)[:5]
+```
+
+{/* cell:8 cell_type:code */}
+```python
+# Boolean expression to verify conversion correctness:
+
+embedding == vector2string(string2vector(embedding))
+```
+
+{/* cell:9 cell_type:markdown */}
+### What is Similarity Function?
+
+To understand **why embeddings are powerful for comparing and searching texts**, we’ll define a simple similarity function and use it to compare three examples.
+
+{/* cell:10 cell_type:code */}
+```python
+def vector_similarity(vector1, vector2):
+    return sum([x*y for x, y in zip(vector1, vector2)])
+
+text1 = "Schumann the politician"
+text2 = "Schumann der politiker"
+text3 = "Schumann the composer"
+
+# text1 vs text2
+s1 = vector_similarity(string2vector(impresso_session.tools.embed_text(text=text1, target="text")),
+                       string2vector(impresso_session.tools.embed_text(text=text2, target="text")))
+# text1 vs text3
+s2 = vector_similarity(string2vector(impresso_session.tools.embed_text(text=text1, target="text")),
+                       string2vector(impresso_session.tools.embed_text(text=text3, target="text")))
+
+s1, s2
+```
+
+{/* cell:11 cell_type:markdown */}
+> Notice that, even though the first two texts are written in the same language and share more tokens, they are less similar in the semantic vector space than a text in another language that expresses the same idea. In other words, **embeddings capture meaning rather than simple word overlap**.
+This type of **similarity function** is precisely what Impresso uses internally when performing embedding-based text search. In the next part of the notebook, we will build on this insight and experiment with embedding-based retrieval.
+
+{/* cell:12 cell_type:markdown */}
+## 2. Impresso's embedding search
+
+{/* cell:13 cell_type:markdown */}
+The idea of search in a nutshell: First, we embed our text, and then the similarity magic finds us the most similar documents in a dataset. Thanks to embeddings, **search can be performed across languages and through all documents in Impresso!**
+
+{/* cell:14 cell_type:markdown */}
+### Text Retrieval Across Languages 🇫🇷🇩🇪🇬🇧🇱🇺
+
+Remember our text embeddings are cross-lingual: this means we can search across languages!
+You can embed any text that you like.
+So feel **free to overwrite the string in the `text` variable**.
+
+{/* cell:15 cell_type:code */}
+```python
+text = "Schumann the politician"
+embedding = impresso_session.tools.embed_text(text=text, target="text")
+impresso_session.search.find(
+  embedding=embedding,
+  limit=5
+)
+```
+
+{/* cell:16 cell_type:markdown */}
+### Setting Language Restrictions 🇫🇷
+
+Yes, our embeddings can retrieve all kinds of data across languages!
+But this is not always what we want.
+Sometimes, we want to **find texts only from a target language of our choice**.
+Here's how that can be done in Impresso: Set `country` to either `FR` `DE` `EN` or `LB` (Luxembourgish):
+
+{/* cell:17 cell_type:code */}
+```python
+impresso_session.search.find(
+  country='FR',
+  embedding=embedding,
+  limit=5
+)
+```
+
+{/* cell:18 cell_type:markdown */}
+### Image retrieval with embeddings
+
+Suppose we have an image or a piece of text and we want to find out whether there are any images within Impresso that are similar to it. In that case, we can rely on the **Impresso image search to identify and retrieve visually or semantically related images**.
+
+{/* cell:19 cell_type:markdown */}
+#### Use-case A: We want to find similar images to our text
+
+This is also called a "multi-modal" search, since input and retrieved data are from two different modalities (image, text).
+Hence, we set the `target="multimodal"`:
+
+{/* cell:20 cell_type:code */}
+```python
+impresso_session.images.find(
+  embedding=impresso_session.tools.embed_text(text="Berlin", target="multimodal"),
+  limit=3
+)
+```
+
+{/* cell:21 cell_type:markdown */}
+#### Use-case B: We want to know similar images to our embedded image
+
+{/* cell:22 cell_type:code */}
+```python
+impresso_session.images.find(
+  embedding=impresso_session.tools.embed_image(image="https://impresso-project.ch/assets/images/posts/rep-thomas.png", target="image"),
+  limit=3
+)
+```
+
+{/* cell:23 cell_type:markdown */}
+> For more information on multimodal search and retrieval with Impresso, see the [explore_multimodal-embeddings](https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/workshop_resources/ws4-embeddings/explore_multimodal-embeddings.ipynb) notebook!
+
+{/* cell:24 cell_type:markdown */}
+## Retrieve texts and images embeddings from Impresso
+
+
+{/* cell:25 cell_type:markdown */}
+### Retrieve embeddings from a text
+
+Say we found a matching article in Impresso, but **how would we get its embedding**?
+Here's a one-liner to make that work.
+
+{/* cell:26 cell_type:code */}
+```python
+article_id = "oeuvre-1938-02-25-a-i0003"
+original_embedding = impresso_session.content_items.get_embeddings(article_id)[0]
+original_embedding
+```
+
+{/* cell:27 cell_type:markdown */}
+### Retrieve embeddings from an image
+
+We can also **get embeddings for any images in Impresso**.
+Be ready! They also come in the quirky encoded format.
+
+{/* cell:28 cell_type:code */}
+```python
+image_id = "luxwort-1930-09-26-a-i0036"
+embeddings = impresso_session.images.get_embeddings(image_id)
+embeddings[0]
+```
+
+{/* cell:29 cell_type:markdown */}
+### Retrieve an image from embeddings
+
+Tired of looking at encodings and vectors?
+Let's learn **how we can directly retrieve the image that's represented by the embedding**!
+
+{/* cell:30 cell_type:code */}
+```python
+image_id = "luxwort-1930-09-26-a-i0036"
+image = impresso_session.images.get(image_id, include_embeddings=True)
+image
+```
+
+{/* cell:31 cell_type:markdown */}
+## Conclusion
+
+In this notebook, we explored **how Impresso’s embedding ecosystem transforms text and images into meaningful vector representations**, enabling:
+
+- cross-lingual retrieval
+- similarity search
+- multimodal linking
+
+By experimenting with simple similarity functions and the Impresso API, you have seen how embeddings reveal latent relationships beyond surface wording. These techniques provide a foundation for more advanced workflows, such as **document clustering, cross-media analysis, and building richer historical research pipelines**.
+
+{/* cell:32 cell_type:markdown */}
+---
+## Project and License info
+
+### Notebook credits [![CreditLogo.png](data:image/png;base64,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)](https://credit.niso.org/)
+
+**Writing - Original draft:**  Roman Kalyakin. **Conceptualization:** Marten Düring. **Software:** Roman Kalyakin. **Writing - Review & Editing**: Juri Opitz, Cao Vy. **Validation:** Martin Grandjean. **Datalab editorial board:** Caio Mello (Managing), Cao Vy, Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Roman Kalyakin. **Supervision:** Marten Düring. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
+
+
+<a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+  <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"  width="100" alt="Open In Colab"/>
+</a> 
+
+This notebook is published under [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/)
+
+For feedback on this notebook, please send an email to info@impresso-project.ch
+
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an interdisciplinary research project that aims to develop and consolidate tools for processing and exploring large collections of media archives across modalities, time, languages and national borders. The first project (2017-2021) was funded by the Swiss National Science Foundation under grant No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027) by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585) and the Luxembourg National Research Fund under grant No. 17498891.
+
+
+
+### License
+
+All Impresso code is published open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
+
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>
+

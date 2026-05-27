@@ -1,5 +1,16 @@
 import type { Features, PlanIcons } from "./constants"
 
+export interface LogoProps {
+  color?: string
+  width?: number
+  className?: string
+  href?: string
+  title?: string
+  children?: React.ReactNode
+  linkClassName?: string
+  ariaLabel?: string
+}
+
 export type Group = {
   name: string
   id: number
@@ -32,6 +43,8 @@ export type Notebook = {
 }
 
 export interface Series {
+  id: string
+  href: string
   title: string
   excerpt: string
   body?: string
@@ -44,7 +57,10 @@ export interface Series {
     | undefined
   category?: string[]
   position?: string
+  ordering?: number
   notebooks: Notebook[]
+  tasks?: Task[]
+  dataProviders?: DataProvider[]
 }
 
 export type User = {
@@ -91,6 +107,7 @@ export type CellInfo = {
   //  headingLevel
   hl?: number
   h: string
+  hId?: string
 }
 
 export type UserChangePlanRequest = {
@@ -217,4 +234,57 @@ export type DataReleaseCard = {
       enrichmentStats?: any
     }
   }
+}
+
+export type DataProvider = {
+  id: string
+  title: string
+  acronym: string
+  type: string
+  provider: string
+  links?: {
+    label: string
+    url: string
+    access?: "public" | "developer" | "searchable"
+  }[]
+  Reference?: string
+}
+
+export type HuggingfaceSpace = {
+  id: string
+  author: string
+  lastModified: Date
+  cardData: {
+    title: string
+    short_description: string
+    emoji: string
+    colorFrom: string
+    colorTo: string
+    sdk: string
+    app_file: string
+    pinned: boolean
+    license: string
+  }
+  host: string
+  models?: string
+  subdomain?: string
+}
+
+export type Task = {
+  id: string
+  draft?: boolean
+  href: string
+  title: string
+  summary?: string
+  tags?: string[]
+  license?: string
+  publications: string[]
+  notebooks?: Notebook[]
+  huggingfaceSpaces?: HuggingfaceSpace[]
+}
+
+export type TOCEntry = {
+  id: string
+  title: string
+  level: number
 }

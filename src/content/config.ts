@@ -6,70 +6,13 @@ import {
   SeriesCategories,
   SeriesPositions,
   PlanIcons,
-  PlanGuest,
-  PlanResearcher,
-  PlanImpressoUser,
-  PlanNone,
-  PlanEducational,
   NotebookLevels,
   NotebookLevelBeginner,
   Plans,
 } from "../constants"
-import { toCamelCase } from "../logic"
-import { getResourceWithBearerToken } from "./utils"
-import type {
-  CorpusAccessCatalogueItem,
-  DataReleaseCard,
-  SpecialMembershipAccessItem,
-} from "../types"
-
-const CorpusAccessUserPlansToPlan: Record<string, string> = {
-  "Guest User Plan": PlanGuest,
-  "Basic User Plan": PlanImpressoUser,
-  "Student User Plan": PlanEducational,
-  "Academic User Plan": PlanResearcher,
-  "Not Possible": PlanNone,
-}
-
-const GitHubToken: string = process.env.GITHUB_TOKEN || ""
-console.log("[config.ts] - GitHub Token:", GitHubToken.length ? "YES" : "NO")
-
-const CorpusAccessToDatasetMapper = (dataset: CorpusAccessCatalogueItem) => {
-  return {
-    id: [dataset.data_partner_institution, dataset.media_alias].join("-"),
-    associatedPartner: dataset.data_partner_institution,
-    mediaId: dataset.media_alias,
-    mediaTitle: dataset.media_title,
-    timePeriod: dataset.time_period,
-    startYear: parseInt(dataset.time_period.split("-").shift() as string, 10),
-    endYear: parseInt(dataset.time_period.split("-").pop() as string, 10),
-    media: dataset.source_type, // e.g. Newspaper
-    medium: dataset.source_medium, // eg Print
-    copyright: dataset.copyright_or_copyright_status,
-    permittedUse: dataset.permitted_use,
-    minimumUserPlanRequiredToExploreInWebapp:
-      CorpusAccessUserPlansToPlan[
-        dataset.minimum_user_plan_required_to_explore_in_the_webapp
-      ],
-    minimumUserPlanRequiredToExportTranscripts:
-      CorpusAccessUserPlansToPlan[
-        dataset.minimum_user_plan_required_to_export_transcripts
-      ],
-    minimumUserPlanRequiredToExportIllustration:
-      CorpusAccessUserPlansToPlan[
-        dataset.minimum_user_plan_required_to_export_illustration
-      ],
-    partnerBitmapIndex: dataset.partner_bitmap_index,
-  }
-}
 
 const datasets = defineCollection({
-  loader: (): Promise<SpecialMembershipAccessItem[]> =>
-    getResourceWithBearerToken<CorpusAccessCatalogueItem[]>(
-      process.env.DATASETS_URL || "",
-      GitHubToken,
-      "datasets.log.json",
-    ).then((data) => data.map(CorpusAccessToDatasetMapper)),
+  loader: file("src/content/datasets.json"),
   schema: z.object({
     id: z.string(),
     associatedPartner: z.string(),
@@ -90,30 +33,7 @@ const datasets = defineCollection({
 })
 
 const dataReleaseCards = defineCollection({
-  loader: (): Promise<DataReleaseCard[]> =>
-    Promise.all(
-      (process.env.DATA_RELEASE_CARD_URLS || "").split(",").map(async (url) => {
-        // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
-        const id = url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2")
-        const logFile = `dataReleaseCard-${id.split("/").join("-").replace(".json", "")}.log.json`
-        return getResourceWithBearerToken<DataReleaseCard>(
-          url,
-          GitHubToken,
-          logFile,
-        ).then((data) => {
-          const transformedResponse = toCamelCase({
-            // id is the last part of the url, e.g. data-release-2025-05/corpus_release_card.json
-            ...data,
-            id: url.replace(/^.*\/([^\/]+)\/([^\/]+)$/, "$1/$2"),
-          })
-          if (transformedResponse.impressoCorpusOverview?.mediaStats) {
-            transformedResponse.impressoCorpusOverview.npsStats =
-              transformedResponse.impressoCorpusOverview.mediaStats
-          }
-          return transformedResponse
-        })
-      }),
-    ),
+  loader: glob({ pattern: "*.json", base: "./src/content/dataReleaseCards" }),
   schema: z.object({
     id: z.string(),
     releaseName: z.string(),
@@ -174,6 +94,7 @@ const notebooks = defineCollection({
   schema: z.object({
     title: z.string().optional(),
     draft: z.boolean().optional(),
+    searchable: z.boolean().optional().default(true),
     url: z.string().url().optional(),
     langModel: z.string().optional(),
     githubUrl: z.string().url().optional(),
@@ -245,6 +166,78 @@ const associatedPartners = defineCollection({
   }),
 })
 
+const pagesContents = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/pagesContents" }),
+  schema: z.object({
+    title: z.string(),
+    modalTitle: z.string().optional(),
+    excerpt: z.string().optional(),
+  }),
+})
+
+const dataProviders = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/dataProviders" }),
+  schema: z.object({
+    title: z.string(),
+    acronym: z.string(),
+    type: z.string(),
+    provider: z.string(),
+    links: z
+      .array(
+        z.object({
+          label: z.string(),
+          url: z.string().url(),
+          access: z.string().optional(),
+          description: z.string().optional(),
+        }),
+      )
+      .optional(),
+    Reference: z.string().optional(),
+  }),
+})
+
+/**
+ * A subset of the Huggingface REST api response for Spaces.
+ *
+ **/
+export const huggingfaceSpaces = defineCollection({
+  loader: file("./src/content/hfSpaces.yaml"),
+  schema: z.object({
+    id: z.string(),
+    author: z.string(),
+    lastModified: z.date(),
+    cardData: z.object({
+      title: z.string(),
+      short_description: z.string(),
+      emoji: z.string(),
+      colorFrom: z.string(),
+      colorTo: z.string(),
+      sdk: z.string(),
+      app_file: z.string(),
+      pinned: z.boolean(),
+      license: z.string(),
+    }),
+    host: z.string().url(),
+    models: z.string().optional(),
+    subdomain: z.string().optional().default(""),
+  }),
+})
+
+const tasks = defineCollection({
+  loader: glob({ pattern: "*.mdx", base: "./src/content/tasks" }),
+  schema: z.object({
+    title: z.string(),
+    draft: z.boolean().optional(),
+    summary: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    license: z.string().optional(),
+    date: z.date().optional(),
+    publications: z.array(z.string()).optional(),
+    notebooks: z.array(reference("notebooks")).optional(),
+    huggingfaceSpaces: z.array(reference("huggingfaceSpaces")).optional(),
+  }),
+})
+
 const series = defineCollection({
   loader: glob({ pattern: "*.mdx", base: "./src/content/series" }),
   schema: z.object({
@@ -252,16 +245,10 @@ const series = defineCollection({
     excerpt: z.string(),
     category: z.array(z.enum(SeriesCategories as any)).optional(),
     position: z.string(z.enum(SeriesPositions as any)).optional(),
-    notebooks: z.array(reference("notebooks")),
-  }),
-})
-
-const pagesContents = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./src/content/pagesContents" }),
-  schema: z.object({
-    title: z.string(),
-    modalTitle: z.string().optional(),
-    excerpt: z.string().optional(),
+    ordering: z.number().min(0).optional().default(0),
+    notebooks: z.array(reference("notebooks")).optional().default([]),
+    tasks: z.array(reference("tasks")).optional(),
+    dataProviders: z.array(reference("dataProviders")).optional(),
   }),
 })
 
@@ -276,4 +263,7 @@ export const collections = {
   pagesContents,
   datasets,
   dataReleaseCards,
+  dataProviders,
+  tasks,
+  huggingfaceSpaces,
 }

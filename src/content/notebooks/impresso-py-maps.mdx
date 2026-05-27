@@ -3,8 +3,8 @@ title: Visualising Place Entities on Maps
 githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 authors:
   - impresso-team
-sha: 84cb15d4b5b16b5a418b60f53bf56ea9a6885ed6
-date: 2025-09-29T14:39:36Z
+sha: fb6ff6a3d3f3fbeaaaee870c37520bc389d1c93e
+date: 2026-04-10T14:45:11Z
 googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/explore-vis/place-entities_map.ipynb
 links:
   - href: https://github.com/impresso/impresso-datalab-notebooks/blob/main/reporting-problems.md
@@ -100,10 +100,23 @@ Run the following cell to install the required packages:
 
 {/* cell:4 cell_type:code */}
 ```python
-%pip install -q impresso ipyleaflet
+%pip install -q ipyleaflet
 ```
 
-{/* cell:5 cell_type:markdown */}
+{/* cell:5 cell_type:code */}
+```python
+from packaging.version import Version
+
+MIN_VERSION = "0.9.15"
+try:
+    from impresso import version
+    assert Version(version) >= Version(MIN_VERSION)
+    print(f"✔ impresso {version} is installed and up to date.")
+except (ImportError, AssertionError):
+    %pip install --upgrade --force-reinstall impresso
+```
+
+{/* cell:6 cell_type:markdown */}
 ## Initialising an Impresso Client
 
 By running the following cell, you create an instance of the Impresso client and authenticate it with the Impresso API.
@@ -114,17 +127,17 @@ The following command will prompt you to enter your Impresso token if it has not
 
 To get access to an Impresso API token, go to [Impresso Datalab](https://impresso-project.ch/datalab/) and select *Get API Token* on the menu.
 
-{/* cell:6 cell_type:code */}
+{/* cell:7 cell_type:code */}
 ```python
 from impresso import connect, OR, DateRange
 
 client = connect()
 ```
 
-{/* cell:7 cell_type:markdown */}
+{/* cell:8 cell_type:markdown */}
 # Part 1. Data preparation
 
-{/* cell:8 cell_type:markdown */}
+{/* cell:9 cell_type:markdown */}
 ## Search and retrieve place entities
 
 Let's begin by searching for the top 100 place entities (or locations) mentioned in content items that talk about nuclear power plants in the first three decades following the second world war. 
@@ -133,7 +146,7 @@ Let's begin by searching for the top 100 place entities (or locations) mentioned
 
 Search will be conducted using French, English and German keywords. Results are sorted by frequency of location mentions (in descending order `-count`).
 
-{/* cell:9 cell_type:code */}
+{/* cell:10 cell_type:code */}
 ```python
 locations = client.search.facet(
     "location",
@@ -147,12 +160,12 @@ locations = client.search.facet(
 locations
 ```
 
-{/* cell:10 cell_type:markdown */}
+{/* cell:11 cell_type:markdown */}
 Now, you can get entities' metadata, including Wikidata details. 
 
 > Impresso links place entities to [Wikidata](https://www.wikidata.org/wiki/Wikidata:Introduction). Therefore, after a place entity has been recognised by the models, it is linked to a unique identifier (or Wikidata ID). For Switzerland, for example, the identifier is 'Q22036'. This helps, for instance, disambiguate entities. If an article mentions Washington, Wikidata will have a different ID for the US former president George Washington, the US capital city Washington D.C., and the US state Washington. 
 
-{/* cell:11 cell_type:code */}
+{/* cell:12 cell_type:code */}
 ```python
 # Store place entities in a list
 entities_ids = locations.df.index.tolist()
@@ -162,12 +175,12 @@ entities = client.entities.find(entity_id=OR(*entities_ids), resolve=True, limit
 entities
 ```
 
-{/* cell:12 cell_type:markdown */}
+{/* cell:13 cell_type:markdown */}
 In order to plot a map, you need the geographic coordinates of each location. However, not all locations have this information. 
 
 You will then filter out entities that have no coordinates. 
 
-{/* cell:13 cell_type:code */}
+{/* cell:14 cell_type:code */}
 ```python
 import pandas as pd
 # disable "copy-on-write" warning
@@ -181,7 +194,7 @@ selected_columns = entities_with_coordinates[['label', 'wikidataId', 'totalMenti
 selected_columns
 ```
 
-{/* cell:14 cell_type:code */}
+{/* cell:15 cell_type:code */}
 ```python
 # You can check what the removed entities are by running this code (if result is empty, all entities have coordinates)
 
@@ -189,10 +202,10 @@ entities_without_coordinates = df[df['wikidataDetails.coordinates.latitude'].isn
 entities_without_coordinates[['label', 'wikidataId', 'wikidataDetails.coordinates.latitude', 'wikidataDetails.coordinates.longitude', 'wikidataDetails.descriptions.fr']]
 ```
 
-{/* cell:15 cell_type:markdown */}
+{/* cell:16 cell_type:markdown */}
 In the last column of the output for 'selected_columns', you see a description (in French) of every Wikidata ID. You can find the ones that are countries by checking whether the word 'pays' appears in column 'wikidataDetails.descriptions.fr'. If true, then we add a country tag to the new column 'is_country'.
 
-{/* cell:16 cell_type:code */}
+{/* cell:17 cell_type:code */}
 ```python
 
 # Check for the presence of the word 'pays' and assign TRUE or FALSE to new column 'is_country'
@@ -203,10 +216,10 @@ selected_columns_countries = entities_with_coordinates[['label', 'wikidataId', '
 selected_columns_countries 
 ```
 
-{/* cell:17 cell_type:markdown */}
+{/* cell:18 cell_type:markdown */}
 Now, you count how many times each place entity occurs in our dataframe and add this value to a new column named 'mentions_count'.
 
-{/* cell:18 cell_type:code */}
+{/* cell:19 cell_type:code */}
 ```python
 entities_with_coordinates['mentions_count'] = entities_with_coordinates.index.map(locations.df['count'])
 
@@ -214,18 +227,18 @@ entities_with_coordinates['mentions_count'] = entities_with_coordinates.index.ma
 entities_with_coordinates[['label', 'wikidataId', 'wikidataDetails.descriptions.fr', 'mentions_count']].sort_values(by='mentions_count', ascending=False).head()
 ```
 
-{/* cell:19 cell_type:markdown */}
+{/* cell:20 cell_type:markdown */}
 # Part 2. Plot entities on the map
 
-{/* cell:20 cell_type:markdown */}
+{/* cell:21 cell_type:markdown */}
 ## Utility methods
 
 Below are some functions used to calculate extra details needed to plot data on a map. 
 
-{/* cell:21 cell_type:markdown */}
+{/* cell:22 cell_type:markdown */}
 This first one finds geo bounds of a group of items. This translates geo coordinates into positions on the map. 
 
-{/* cell:22 cell_type:code */}
+{/* cell:23 cell_type:code */}
 ```python
 def find_bounds(coordinates):
   """
@@ -256,10 +269,10 @@ def find_bounds(coordinates):
 
 ```
 
-{/* cell:23 cell_type:markdown */}
+{/* cell:24 cell_type:markdown */}
 This second function creates HTML code used for rendering the hover pop-up. This way, you can create an interactive map using `ipyleaflet` package.
 
-{/* cell:24 cell_type:code */}
+{/* cell:25 cell_type:code */}
 ```python
 from ipywidgets import HTML
 from ipyleaflet import Popup
@@ -285,14 +298,14 @@ def build_hover_popup(title: str, subtitle: str, mentions: int) -> Popup:
   return popup
 ```
 
-{/* cell:25 cell_type:markdown */}
+{/* cell:26 cell_type:markdown */}
 ## Plot map with adaptive pins
 
 Display entities on a map with pin size based on the number of mentions (more mentions = bigger pin). The pins are colored based on the type of the entity: country (red) or location (black). Location can be either a city, state, region, commune, etc.
 
 > Be mindful of people with [colour blindness](https://web.archive.org/web/20250327234513/https://www.tableau.com/blog/examining-data-viz-rules-dont-use-red-green-together) when choosing the colours of your visuals. Here, we opted for red and black due to the high contrast. The internet is full of tools to generate accessible palettes, which you can consult before deciding on the best colours. 
 
-{/* cell:26 cell_type:code */}
+{/* cell:27 cell_type:code */}
 ```python
 from ipyleaflet import Map, Marker, AwesomeIcon, CircleMarker
 
@@ -351,12 +364,12 @@ for m in markers:
 display(map)
 ```
 
-{/* cell:27 cell_type:markdown */}
+{/* cell:28 cell_type:markdown */}
 ## Try a heatmap
 
 This is just an alternative visualisation. It displays entities on a map with a heatmap overlay. The colour intensity is higher where the entities are more concentrated and more frequently mentioned. This map style is, however, considerably less accessible. It's worth considering which map meets best your needs and the needs of your audiences.
 
-{/* cell:28 cell_type:code */}
+{/* cell:29 cell_type:code */}
 ```python
 from ipyleaflet import Map, Heatmap
 
@@ -380,7 +393,7 @@ map.add(heatmap)
 map
 ```
 
-{/* cell:29 cell_type:markdown */}
+{/* cell:30 cell_type:markdown */}
 ## Conclusion
 
 This notebook provided you with a step-by-step guide to retrieve place entities from Impresso corpus and visualise them on a map. 
@@ -391,7 +404,7 @@ It is important to have in mind that only places that have been tagged as entity
 
 That's it for now! Next, you can explore the [Exploring Entity Co-occurrence Networks](https://github.com/impresso/impresso-datalab-notebooks/blob/main/explore-vis/entity_network.ipynb) notebook, which demonstrates how to create network graphs to represent persons that are mentioned in the Impresso corpus.
 
-{/* cell:30 cell_type:markdown */}
+{/* cell:31 cell_type:markdown */}
 ---
 ## Project and License info
 
@@ -425,5 +438,5 @@ All Impresso code is published open source under the [GNU Affero General Public 
 </p>
 
 
-{/* cell:31 cell_type:markdown */}
+{/* cell:32 cell_type:markdown */}
 

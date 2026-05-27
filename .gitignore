@@ -39,3 +39,6 @@ impresso-datalab.code-workspace
 
 logs/*
 !logs/.gitkeep
+
+# pagefind for DEV
+public/pagefind/*

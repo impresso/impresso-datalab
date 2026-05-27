@@ -11,7 +11,7 @@ export const extractMdFromIpynbCells = (
   // kernelspec: kernelspec,
   // cells: cell[],
   kernelspec = {},
-  cells = []
+  cells = [],
 ) => {
   const language = kernelspec.language ?? "python"
   const content = cells
@@ -27,6 +27,7 @@ export const extractMdFromIpynbCells = (
         const transformedSource = source
           .replace(regex, "\n")
           .replace(/<\/br\s*>/gi, "\n")
+          .replace(/<!--[\s\S]*?-->/g, "") // remove html comments
         return `{/* cell:${i} cell_type:${cell.cell_type} */}\n${transformedSource}\n`
       }
       return `{/* cell:${i} cell_type:${cell.cell_type} */}\n\`\`\`${language}\n${source}\n\`\`\`\n`

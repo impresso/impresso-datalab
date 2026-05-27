@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-// import { fn } from "@storybook/test"
+import type { Meta, StoryObj } from "@storybook/react-vite"
+
 import ConfirmRegistrationModal from "../../components/ConfirmRegistrationModal"
 import { useBrowserStore } from "../../store"
 import { useEffect } from "react"

@@ -1,6 +1,7 @@
 ---
 
 import { ClientRouter } from "astro:transitions";
+import App from "../components/App.astro";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/fonts.css";
@@ -36,6 +37,7 @@ const favicon = import.meta.env.PUBLIC_IMPRESSO_DATALAB_BASE + "/favicon.svg";
 		<ClientRouter />
 	</head>
 	<body>
+			<App transition:persist/>
 			<slot />
 	</body>
 </html>

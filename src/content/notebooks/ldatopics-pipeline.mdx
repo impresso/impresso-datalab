@@ -1,0 +1,398 @@
+---
+githubUrl: https://github.com/impresso/impresso-datalab-notebooks/blob/main/annotate/ldatopics_pipeline_demo.ipynb
+authors:
+  - impresso-team
+title: LDA Topics with impresso-pipelines Package
+sha: b4f92d6637ffcb77c5451cd15de37433bff562f0
+date: 2025-09-05T14:55:47Z
+links:
+  - href: https://pypi.org/project/impresso-pipelines/
+    label: impresso-pipelines
+  - href: https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/ldatopics
+    label: ldatopics
+  - href: https://dl.acm.org/doi/10.1145/2133806.2133826
+    label: Probabilistic Topic Models (David Blei, 2012)
+  - href: https://tedunderwood.com/2012/04/07/topic-modeling-made-just-simple-enough/
+    label: Topic Modeling Made Just Simple Enough (Ted Underwood, 2012)
+  - href: https://programminghistorian.org/en/lessons/topic-modeling-and-mallet
+    label: Getting Started with Topic Modeling and MALLET (Programming Historian,
+      2012)
+  - href: https://www.uni.lu/c2dh-en/articles/nibbling-at-text-identifying-discourses-on-europe-in-a-large-collection-of-historical-newspapers-using-topic-modelling/
+    label: Nibbling at Text
+  - href: https://github.com/impresso/impresso-pipelines/tree/main
+    label: Impresso Pipelines package
+  - href: https://spacy.io/usage
+    label: spaCy documentation
+  - href: https://mimno.github.io/Mallet/topics
+    label: MALLET documentation
+  - href: https://huggingface.co/impresso-project
+    label: Hugging Face model repository
+  - href: https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/langident_pipeline_demo.ipynb
+    label: |-
+      langident
+      pipeline demo notebook
+  - href: https://huggingface.co/impresso-project/mallet-topic-inferencer/tree/main/models/tm
+    label: Impresso Hugging Face
+  - href: https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/langident_pipeline_demo.ipynb
+    label: demo notebook
+  - href: https://github.com/impresso/impresso-pipelines/tree/mallet_pipeline
+    label: Impresso Pipelines package
+  - href: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAARCAYAAAGnXcxvAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhGVYSWZNTQAqAAAACAAFARIAAwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSASgAAwAAAAEAAgAAh2kABAAAAAEAAABaAAAAAAAAAJYAAAABAAAAlgAAAAEAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEQAAAACvX75vAAAACXBIWXMAABcSAAAXEgFnn9JSAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgoZXuEHAAAD/UlEQVQ4ES1UW2hcVRRd+9w7907mkUfTmEczkzRpraH1gUWaZBKJ0BY/FKsSwS9BClbxv1V/RlAC/vghghShBVuVRo2GQv1Qa0xSalAi2sxMJNF2Yt7oJDOZmZs795zjvtMe5s7A2Xevvddaew/A51asz00CAun2Xp2bmNbpfb3aDyDFF/4vzR0eilBeHqc/AB15423/Ztii/NpzNNs5VB/c2M55pVn/VQTa+/4yy54t7JIDo/4otGQMIrMaTccSF1Oxfobhs9B8TN9CRKcfOa7nYJTE7vomJHZgn+yHB1lD89xJZXkNxN1RR3MFSe4zHU+Mp2N9Sz4EXcGw8XB87eWoVudz0iuR1DWwREW7SghDmD0rN8l8MLZ808vmHzW/GkH4l99C0aEEcqNfWw3Dp1C4MYM7l20tfDgGrH6s2D7kv59AeKAPheuTKCTPAU4FxFREpiPxmi3VBw50hTMC0FpxnhcSptWZnSZ+KSkISZWJJ15Q0EmtdZdB9Ilh1b1+YOGayzU0P8BiPKEdx63AMkBSmVpQuVEbof8s48We2y2jlIn1b6qGYNT7/QfbbD0GtfozVzrAqQsIdw+iGGyxhRUQe6k2ZLeOXUXo9NPY+9kXCAwPou2naRQX16XIr3wjdknr1pG3sPrsUzD21MOsjaI8egGluQzEQ+1Ca/m4sDXR6tl30Hb1W0ABW+PXfEGgHRdwpSISk35PORUyI2p+xiTrAVBzEDANYKkIq6UGOlgfrLL7Jz6g87Li0zUZmB1EJQwRKJJ4qSfbetlXnNqzUxyyXtFCbPiVBInxC0snjZ7s1CXCqPQVJ0aozuGf+xMnlNQjURJHLYYrKYmy3yhHQ1ygRhhwtEYResqDOHckOznt5zPw3a9UbPBUrcBYcdeFrLOLVBcKUZG1KTHBxrBPEnqjAIraYEmVIpRtpxKmnIPdgHii5/bUjyIV7z/boPVYPkiOXFuGml8MW48dIXGwHervAsyDcYhYE+TaDPNrhOhuE2a8OaS62+BsO049ieupjsHTlGrvK4uoFaykJ9D0+ZeAlNj6+FPI67PYc+k9qJ0deP/mUJvoxZ2hATSdvwir+T6sP3MG4lCnNssV8jRWqqNbFcjnabAVzFjOZlmWErTrIti1H7WD/dh4/yNeJLZ2hxXie40se8M390QiXs8360Dvbtlw9cKyhUgDrOd57rYKkL8uAGELen4TxtAhqMwKELHuJvNuKEFuA5nWNvSZquKZ+MBwHdGVnOcqTpREFIDkhVBczn/YKVj8v1B0QbwB7L2LXc+KGgF2FSfuz059V7X/nn060znwJAN8WEeii31Cmfeu4oPwCfCQ1JBRpVfQas5D4NXDSxOTHK2Oz/88172PBBmtMAAAAABJRU5ErkJggg==
+    label: "![CreditLogo.png"
+  - href: https://creativecommons.org/licenses/by/4.0/
+    label: CC BY 4.0 License
+  - href: https://impresso-project.ch
+    label: Impresso - Media Monitoring of the Past
+  - href: http://p3.snf.ch/project-173719
+    label: CRSII5_173719
+  - href: https://data.snf.ch/grants/grant/213585
+    label: CRSII5_213585
+  - href: https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE
+    label: GNU Affero General Public License
+googleColabUrl: https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/ldatopics_pipeline_demo.ipynb
+---
+
+{/* cell:0 cell_type:markdown */}
+
+<a target="_blank" href="https://colab.research.google.com/github/impresso/impresso-datalab-notebooks/blob/main/annotate/ldatopics_pipeline_demo.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+
+{/* cell:1 cell_type:markdown */}
+## What is this notebook about?
+This notebook introduces the topic modeling component of the [impresso-pipelines](https://pypi.org/project/impresso-pipelines/) Python package. The broader goal of the impresso pipelines is to make the internal data processing workflows of the impresso project reusable and accessible to others. It allows external users—such as researchers, developers, or digital humanities practitioners—to apply the same processing steps we used on our historical newspaper collections to their own text collections.
+
+The package is designed to minimize the coding effort required. By offering ready-to-use pipelines, users can adopt impresso approach to document processing with minimal configuration. This ensures consistency, comparability, and transparency in how topics are created from text document.
+
+In this notebook, we focus on the [ldatopics](https://github.com/impresso/impresso-pipelines/tree/main/impresso_pipelines/ldatopics) subpackage, which enables topic modeling using the Impresso MALLET inference pipeline. You will learn how to apply the LDA Topics pipeline to your text data, explore different usage options, and interpret the results.
+
+
+## Why is this useful?
+- Automates the full Impresso workflow—language identification, lemmatization and topic inference—in a single call.  
+- Supports multiple languages (e.g., Luxembourgish, French, German) with the corresponding spaCy model.  
+- Leverages versioned, pre-trained MALLET models to guarantee reproducible and comparable results.  
+- Returns structured JSON (`uid`, `ts`, `lg`, `topic-count`, `topics`) ready for downstream analysis.  
+- Enables rapid thematic exploration of large text collections with minimal setup and configuration.  
+
+Without this pipeline, you would need to handle language detection, lemmatization, and topic modeling separately, configuring multiple libraries. This notebook shows how all of that is automated in a single step.
+
+## How it works
+The pipeline assigns your text the most relevant topics in four internal processing steps:
+
+Text → Language detection → Lemmatization → Topic inference → JSON output
+
+- **Language identification**: Auto-detects the text language (e.g. `lg: 'fr'`, `lg: 'lb'`).  
+- **Lemmatization**: Loads the corresponding spaCy model to tokenize, part-of-speech tag and normalize words into lemmas.  
+- **Topic inference**: Feeds the lemmas of nouns and proper nouns into MALLET’s inference pipeline to compute the contribution of each topic.  
+- **JSON formatting**: Returns a JSON object with `uid`, `ts`, `lg`, `topic-count`, and a list of topics above `min_relevance`, each with an ID (`t`) and relevance (`relevance`).
+
+These steps are executed internally by the pipeline, so you won’t see spaCy or MALLET explicitly imported in the code cells.
+
+
+{/* cell:2 cell_type:markdown */}
+## What will you learn?
+
+In this notebook, you will:
+
+- Understand the `ldatopics_pipeline` function and its core steps.  
+- See how the pipeline auto-detects text language with Impresso’s **langident**.  
+- Inspect the tokenization and lemmatization performed by spaCy through the diagnostics option.
+- Perform topic inference with the Impresso MALLET models through the pipeline.
+- Customize your output IDs with the `doc_name` parameter.  
+- Interpret the JSON output (`uid`, `ts`, `lg`, `topic-count`, `topics`) to extract key themes.  
+
+
+By the end of this notebook, you will know how to run the Impresso LDA pipeline on your own texts and interpret the output. For deeper analysis (e.g. labeling topics or evaluating coherence), further steps and tools may be needed.
+
+{/* cell:3 cell_type:markdown */}
+## Useful resources
+If you’d like to go deeper into topic modeling and its application in historical text analysis, the following resources are recommended:
+
+[Probabilistic Topic Models (David Blei, 2012)](https://dl.acm.org/doi/10.1145/2133806.2133826): A clear conceptual introduction to Latent Dirichlet Allocation (LDA), its assumptions, and interpretive challenges.
+[Topic Modeling Made Just Simple Enough (Ted Underwood, 2012)](https://tedunderwood.com/2012/04/07/topic-modeling-made-just-simple-enough/): A humanities-oriented discussion of what topic models can and cannot reveal in historical sources.
+[Getting Started with Topic Modeling and MALLET (Programming Historian, 2012)](https://programminghistorian.org/en/lessons/topic-modeling-and-mallet): A step-by-step tutorial on installing and running MALLET from the command line—great for learning the mechanics of topic modeling outside of abstractions.
+[Nibbling at Text](https://www.uni.lu/c2dh-en/articles/nibbling-at-text-identifying-discourses-on-europe-in-a-large-collection-of-historical-newspapers-using-topic-modelling/): Identifying Discourses on Europe in Historical Newspapers Using Topic Modeling: A case study showing how topic modeling can uncover discourses in large-scale historical newspaper collections.
+
+Additional references:
+
+[Impresso Pipelines package](https://github.com/impresso/impresso-pipelines/tree/main)
+[spaCy documentation](https://spacy.io/usage)
+[MALLET documentation](https://mimno.github.io/Mallet/topics)
+[Hugging Face model repository](https://huggingface.co/impresso-project)
+
+
+{/* cell:4 cell_type:markdown */}
+## Prerequisites
+First, start by installing `impresso-pipelines` package. Please note that if you are using Google Colab, you will need to restart the kernel after installing the package to apply changes. To do so, go to *Runtime* and select *Restart session*.
+
+
+
+{/* cell:5 cell_type:code */}
+```python
+%pip install impresso_pipelines[ldatopics]
+```
+
+{/* cell:6 cell_type:markdown */}
+## Basic Usage
+
+Start by importing the necessary module from `impresso-pipelines` package
+
+
+{/* cell:7 cell_type:code */}
+```python
+from impresso_pipelines.ldatopics import LDATopicsPipeline
+
+pipeline = LDATopicsPipeline()
+```
+
+{/* cell:8 cell_type:markdown */}
+Once you initialize the pipeline, you can simply provide the text you'd like to assign topics to. Let's infer the topics of a historical French news article.
+
+
+{/* cell:9 cell_type:code */}
+```python
+text = """La vie dans un petit village est paisible et rythmée par les saisons.
+Chaque matin, les habitants se saluent en se croisant dans les rues étroites,
+et l’odeur du pain frais s’échappant de la boulangerie emplit l’air. Les enfants
+vont à l’école à pied, les commerçants ouvrent leurs boutiques, et les anciens
+s’assoient sur les bancs pour discuter de la pluie et du beau temps. Ici, tout
+le monde se connaît, et l’entraide fait partie du quotidien."""
+```
+
+{/* cell:10 cell_type:markdown */}
+First time you use the pipeline it will download the necessary models for the specific language. Please be patient — subsequent runs will be much faster.
+
+{/* cell:11 cell_type:code */}
+```python
+pipeline(text)
+```
+
+{/* cell:12 cell_type:markdown */}
+If no language is explicitly specified, the LDA Topics pipeline uses the Impresso
+`langident` pipeline to automatically detect the language of the text. For more details
+on the `langident` pipeline, please refer to the [langident
+pipeline demo notebook](https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/langident_pipeline_demo.ipynb).
+
+After detecting the document’s language, the pipeline internally applies the corresponding spaCy model to tokenize, part-of-speech tag and lemmatize the text. For interpretability and efficiency reasons we only consider the nouns. The filtered lemmas are then fed into a MALLET inference component. You can find these pre-packaged models on [Impresso Hugging Face](https://huggingface.co/impresso-project/mallet-topic-inferencer/tree/main/models/tm).
+
+**Interpretation of the result:**
+
+1. **Language & metadata**  
+   - `language: 'fr'` tells you the pipeline detected French.  
+   - `ts` is the timestamp of the inference. This makes it easy to distinguish and locate the output you’re interested in when you execute the pipeline multiple times.
+   - `uid` is your Unique document ID:  
+     • If you don’t supply a name, the pipeline auto-assigns “doc1”, “doc2”, … based on how many docs you’ve processed so far.  
+     • You can override this by passing a custom `name` parameter when calling the pipeline - see the “Advanced Usage” section of this notebook for an example.
+
+2. **Total topics in the model**  
+   - `topic_count: 100` means the underlying French model contains 100 topics.
+
+3. **Which topics actually showed up**  
+   - Only topics ≥ `min_relevance` (2%) are reported. Here you see nine topics above that cutoff. Relevance (probability) values will never add up to 100% (1.0) because there are always some topics that were assigned but are very insignificant and that will never be shown.
+
+4. **Top topic = tm-fr-all-v2.0_tp04_fr (16%)**  
+   - This is the single strongest theme in your document.  
+   - A weight of 0.16 means 16 % of the inferred topic-mixture is assigned to topic 04.  
+   - To see what “topic 04” actually _is_, follow the `topic_model_description` link in the output and look up the keywords/label for `_tp04_fr`.
+
+5. **Runner-ups**  
+   - Topic 22 at 11.7 %  
+   - Topic 06 at 10 %  
+   - Topic 36 at 8.3 %  
+   - …down to the ninth topic at 2.3 %.
+
+Taken together, these nine topics explain the main themes of your French text. You can sum their probabilities (here about 56 %) to see how much of the document is “covered,” and inspect each topic’s description in the JSONL file to attach human-readable labels.
+
+{/* cell:13 cell_type:markdown */}
+## Advanced Usage
+
+
+{/* cell:14 cell_type:markdown */}
+This pipeline offers several additional attributes that can be used when calling it to manipulate or gain a deeper understanding of the results and include the corresponding metadata from the processing pipeline for documentation. These attributes include:
+
+- `language`: Accepts language abbreviation strings such as "fr" (French), "de" (German) and "lb" (Luxembourgish). If provided, the pipeline assumes the specified language and skips the language detection step, directly using the corresponding spaCy and MALLET models. Currently supported languages are - French, German, Luxembourgish.
+
+- `doc_name`: A string identifier with no spaces (e.g., "my_document"). When you provide this, it replaces the autogenerated document ID. The internal counter only increments for calls where you don’t specify a name, so the next unnamed document will pick up from the following number.
+
+- `min_relevance`: Specify `min_relevance` as a floating-point number (for example, `0.05`). The minimum (and default) value is `0.02`; supplying any value below 0.02 will cause the pipeline to raise an error.
+
+- `diagnostics_lemmatization`: When set to `True`, returns the lemmatized tokens in the output JSON. By default this is `False`.
+
+- `diagnostics_topics`: When set to `True`, the pipeline will return the top 10 most significant words for each identified topic, making it easy to understand what each topic represents. By default this is `False`. For a deeper explanation, see the `topic_model_description` file included in the output.
+
+
+
+{/* cell:15 cell_type:markdown */}
+**Example 1**: `language`
+
+
+{/* cell:16 cell_type:code */}
+```python
+# Using the same French text example as before
+pipeline(text, language="lb")
+```
+
+{/* cell:17 cell_type:markdown */}
+Even though the provided text is clearly in French, specifying the language as Luxembourgish, for example, forces the pipeline to use the corresponding spaCy and MALLET models for that language. If the selected language is unsupported, the pipeline will return an appropriate error message.
+
+
+{/* cell:18 cell_type:markdown */}
+**Example 2**: `doc_name`
+
+
+{/* cell:19 cell_type:code */}
+```python
+# Using the same French text example as before
+pipeline(text, doc_name="my_document")
+```
+
+{/* cell:20 cell_type:markdown */}
+As you can see, the `uid` is now "my_document" as specified, making it much easier to manage your outputs when you run the ldatopics pipeline multiple times or save them in an external file.
+
+{/* cell:21 cell_type:markdown */}
+**Example 3:** `min_relevance`
+
+{/* cell:22 cell_type:code */}
+```python
+pipeline(
+    text,
+    min_relevance=0.05
+)
+```
+
+{/* cell:23 cell_type:markdown */}
+By changing the `min_relevance` threshold from 0.02 to 0.05, the pipeline filters out any topic whose assignment relevance (probability) falls below 5 %. As a result, only the most confidently detected topics (those at or above 0.05) are returned, so you see fewer—but stronger—topic assignments.
+
+{/* cell:24 cell_type:markdown */}
+**Example 4:** `diagnostics_lemmatization`
+
+{/* cell:25 cell_type:code */}
+```python
+pipeline(
+    text,
+    diagnostics_lemmatization=True
+)
+```
+
+{/* cell:26 cell_type:markdown */}
+Enabling `diagnostics_lemmatization` adds a list of the lemmatized tokens that the topic model actually sees. By examining those, you will instantly know which words are actually used to assign topics to your document.
+
+{/* cell:27 cell_type:markdown */}
+**Example 5:** `diagnostics_topics`
+
+{/* cell:28 cell_type:code */}
+```python
+pipeline(
+    text,
+    diagnostics_topics=True
+)
+```
+
+{/* cell:29 cell_type:markdown */}
+When `diagnostics_topics` is enabled, the output includes each detected topic along with its top 10 most significant words, giving you a clear snapshot of what each topic represents.
+
+{/* cell:30 cell_type:markdown */}
+**Example 6**: All at once
+
+{/* cell:31 cell_type:code */}
+```python
+# Using the same French text example as before
+pipeline(
+    text,
+    language="fr",
+    doc_name="my_document",
+    min_relevance=0.05,
+    diagnostics_lemmatization=True,
+    diagnostics_topics=True
+)
+```
+
+{/* cell:32 cell_type:markdown */}
+You can use a mix of additional parameters, or all of them at once, to deeper control the output of your LDA Topics. In the example above, we set the language to French and name of the document to "my_document".
+
+
+{/* cell:33 cell_type:markdown */}
+## Limitations of the LDA Topics Pipeline
+
+
+{/* cell:34 cell_type:code */}
+```python
+short_de_text = "Alex geht ins Büro."
+```
+
+{/* cell:35 cell_type:code */}
+```python
+# Example 1: Very short text
+pipeline(short_de_text, diagnostics_lemmatization=True)
+```
+
+{/* cell:36 cell_type:markdown */}
+As shown, LDA Topics pipeline struggles with **short texts**, leading to very flat and probably unreliable distribution. Additionally, anything that is **not** **NOUN** or **PROPN** does not contribute to topic modeling due to lemmatization, making the short text even shorter. As a rule of thumb, results stabilize once the kept lemmas reach ~10–20 tokens.
+
+{/* cell:37 cell_type:markdown */}
+## Conclusion
+In this notebook, we’ve explored the LDA Topics Pipeline from the Impresso package, which transforms raw text into topic distributions using language detection, spaCy lemmatization, and MALLET inference. The pipeline:
+
+- **Automatically detects** text language via langident (or accepts a manual override)  
+- **Loads** the matching spaCy model to tokenize and lemmatize your text  
+- **Runs** MALLET’s inference pipeline with versioned, pre-trained topic models  
+- **Returns** a structured JSON (`uid`, `ts`, `language`, `topic_count`, `topics`) ready for analysis  
+- **Supports** custom document IDs (`doc_name`)
+- **Has** limitations with very short texts or little amount of nouns and pronouns
+
+
+The pipeline provides a reproducible, multi-lingual approach to topic modeling—ideal for thematic exploration of large text collections and cross-language comparisons.  
+
+
+{/* cell:38 cell_type:markdown */}
+## Next steps
+
+
+{/* cell:39 cell_type:markdown */}
+Since this subpackage relies on the Impresso langident subpackage, you might be interested in exploring the [demo notebook](https://github.com/impresso/impresso-datalab-notebooks/tree/main/annotate/langident_pipeline_demo.ipynb) for langident.
+
+Additionally, you can find more technical details in the repository of the [Impresso Pipelines package](https://github.com/impresso/impresso-pipelines/tree/mallet_pipeline).
+
+
+{/* cell:40 cell_type:markdown */}
+---
+## Project and License info
+
+### Notebook credits [![CreditLogo.png](data:image/png;base64,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)](https://credit.niso.org/)
+
+**Writing - Original draft:** Glebs Vinarskis. **Conceptualization:** Simon Clematide, Glebs Vinarskis. **Software:** Simon Clematide, Juri Opitz, Andrianos Michail. **Writing - Review & Editing:** Caio Mello. **Validation:** Estelle Bunout, Kirill Veprikov . **Datalab editorial board:** Caio Mello (Managing), Pauline Conti, Emanuela Boros, Marten Düring, Juri Opitz, Martin Grandjean, Estelle Bunout. **Data curation & Formal analysis:** Maud Ehrmann, Emanuela Boros, Pauline Conti, Simon Clematide, Juri Opitz, Andrianos Michail. **Methodology:** Simon Clematide, Glebs Vinarskis. **Supervision:** Simon Clematide. **Funding aquisition:** Maud Ehrmann, Simon Clematide, Marten Düring, Raphaëlle Ruppen Coutaz.
+
+
+
+
+This notebook is published under [CC BY 4.0 License](https://creativecommons.org/licenses/by/4.0/)
+
+<a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+  <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png"  width="100" alt="Open In Colab"/>
+</a>
+
+
+
+
+### Impresso project
+
+[Impresso - Media Monitoring of the Past](https://impresso-project.ch) is an interdisciplinary research project that aims to develop and consolidate tools for processing and exploring large collections of media archives across modalities, time, languages and national borders. The first project (2017-2021) was funded by the Swiss National Science Foundation under grant No. [CRSII5_173719](http://p3.snf.ch/project-173719) and the second project (2023-2027) by the SNSF under grant No. [CRSII5_213585](https://data.snf.ch/grants/grant/213585) and the Luxembourg National Research Fund under grant No. 17498891.
+
+
+
+### License
+
+All Impresso code is published open source under the [GNU Affero General Public License](https://github.com/impresso/impresso-pyindexation/blob/master/LICENSE) v3 or later.
+
+
+---
+
+<p align="center">
+  <img src="https://github.com/impresso/impresso.github.io/blob/master/assets/images/3x1--Yellow-Impresso-Black-on-White--transparent.png?raw=true" width="350" alt="Impresso Project Logo"/>
+</p>
+
+
+
+{/* cell:41 cell_type:markdown */}
+

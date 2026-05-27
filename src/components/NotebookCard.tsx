@@ -18,13 +18,16 @@ const NotebookCard: React.FC<{
   const accessDateTime = DateTime.fromJSDate(accessTime)
   console.debug(
     "[NotebookCard] - accessDateTime:",
-    accessDateTime,
-    "- title:",
+    accessDateTime.toISO(),
+    "\n - title:",
     notebook?.title,
-    "notebook.langModel",
+    "\n - langModel:",
     notebook.langModel,
-    notebook
   )
+
+  const method: string = notebook.levels.method
+  const coding: string = notebook.levels.coding
+
   return (
     <div className={`NotebookCard shadow-sm ${className}`}>
       <div className="px-3 py-2 d-flex align-items-center">
@@ -34,9 +37,11 @@ const NotebookCard: React.FC<{
             name={notebook.id}
             variant="marble"
             square={false}
-            colors={NotebookLevelColors[notebook.levels.method].concat(
-              NotebookLevelColors[notebook.levels.coding]
-            )}
+            colors={
+              NotebookLevelColors[method]?.concat(
+                NotebookLevelColors[coding],
+              ) ?? []
+            }
           />
         </div>
         <div className="mx-3">
@@ -52,7 +57,7 @@ const NotebookCard: React.FC<{
           </a>
           <Link to={notebook.href}>
             <h3
-              className="mx-0 my-2"
+              className="m-0 py-1"
               dangerouslySetInnerHTML={{
                 __html: marked.parseInline(notebook?.title ?? "", {}),
               }}

@@ -1,13 +1,29 @@
 import { getEntry } from "astro:content"
+import type { TOCEntry } from "./types"
 
-export async function getRecursivelyEntryData(entry: any) {
-  const result: any = {}
-
+/**
+ * Returns the href for an entry, which is used by <Link> to navigate to the correct page. If the entry has a collection and an id, it returns the href in the format "collection/id". If it only has an id, it returns the id as the href. If neither is present, it returns an empty string.
+ * @param entry
+ * @returns
+ */
+export function getEntryHref(entry: any): string {
   if (entry.collection && entry.id) {
-    result.collection = entry.collection
-    result.href = `${entry.collection}/${entry.id}`
+    return `${entry.collection}/${entry.id}`
   } else if (entry.id) {
-    result.href = `${entry.id}`
+    return `${entry.id}`
+  }
+  return ""
+}
+
+/**
+ * The href should be used by <Link> as the component prefixed the base path
+ * @param entry
+ * @returns
+ */
+export async function getRecursivelyEntryData(entry: any) {
+  const result: any = {
+    id: entry.id,
+    href: getEntryHref(entry),
   }
 
   for (const k of Object.keys(entry.data)) {
@@ -61,7 +77,7 @@ export function toCamelCase(obj: any): any {
       if (Array.isArray(obj[key])) {
         // Handle arrays by mapping each element
         result[camelKey] = obj[key].map((item: any) =>
-          typeof item === "object" && item !== null ? toCamelCase(item) : item
+          typeof item === "object" && item !== null ? toCamelCase(item) : item,
         )
       } else {
         // Handle nested objects
@@ -74,4 +90,33 @@ export function toCamelCase(obj: any): any {
   })
 
   return result
+}
+
+/**
+ * Extracts table of contents entries from markdown text by parsing heading levels
+ * @param markdown The markdown string to parse
+ * @returns An array of TOC entries containing heading titles and their nesting levels (2-6)
+ */
+export function getTableOfContents(markdown: string): TOCEntry[] {
+  const lines = markdown.split("\n")
+  const toc: TOCEntry[] = []
+
+  lines.forEach((line) => {
+    // Matches 2 to 6 hashes followed by a space
+    const match = line.match(/^(#{2,6})\s+(.+)$/)
+
+    if (match) {
+      toc.push({
+        id: match[2]
+          .trim()
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-"),
+        level: match[1].length,
+        title: match[2].trim(),
+      })
+    }
+  })
+
+  return toc
 }

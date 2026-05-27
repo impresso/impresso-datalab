@@ -28,23 +28,27 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Nodejs
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
       - name: Install dependencies
         run: npm install --legacy-peer-deps
       - name: Update Notebooks
-        run: node updatenotebooks.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
+        run: npm run update-notebooks
       - name: commit and push
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "Update notebooks"
   docker:
     needs: updateNotebooks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: get env variables for GIT related info
         run: |
           echo "PUBLIC_GIT_COMMIT_SHA=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
@@ -55,12 +59,12 @@ jobs:
           echo "PUBLIC_GIT_REMOTE=$(git config --get remote.origin.url)" >> $GITHUB_ENV
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           push: true
           tags: impresso/impresso-datalab:latest
@@ -75,6 +79,5 @@ jobs:
             PUBLIC_IMPRESSO_DATALAB_BASE=${{ secrets.PUBLIC_IMPRESSO_DATALAB_BASE }}
             PUBLIC_IMPRESSO_API_PATH=/public-api/v1
             PUBLIC_IMPRESSO_WS_API_PATH=/api/socket.io
-            GITHUB_TOKEN=${{ secrets.PAT_GITHUB_TOKEN }}
             DATASETS_URL=${{ vars.DATASETS_URL }}
             DATA_RELEASE_CARD_URLS=${{ vars.DATA_RELEASE_CARD_URLS }}

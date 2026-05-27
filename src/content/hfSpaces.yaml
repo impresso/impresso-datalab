@@ -1,0 +1,176 @@
+- id: impresso-project/multilingual-news-agency-recognition
+  author: impresso-project
+  lastModified: 2025-02-07T12:34:54.000Z
+  cardData:
+    title: Multilingual News Agency Recognition
+    short_description: Multilingual News Agency Detection in Historical Data
+    emoji: 📰
+    colorFrom: blue
+    colorTo: gray
+    sdk: gradio
+    app_file: app.py
+    pinned: false
+    license: agpl-3.0
+  host: https://impresso-project-multilingual-news-agency-recognition.hf.space
+  models: impresso-project/ner-newsagency-bert-multilingual
+  subdomain: impresso-project-multilingual-news-agency-recognition
+- id: impresso-project/multilingual-entity-linking
+  author: impresso-project
+  lastModified: 2026-02-05T10:18:34.000Z
+  cardData:
+    title: Multilingual Entity Linking
+    short_description: Multilingual Entity Linking for Historical Data
+    emoji: 🔗🔗
+    colorFrom: red
+    colorTo: yellow
+    sdk: gradio
+    app_file: app.py
+    pinned: false
+    license: gpl-3.0
+  host: https://impresso-project-multilingual-entity-linking.hf.space
+  models: impresso-project/nel-mgenre-multilingual
+  subdomain: impresso-project-multilingual-entity-linking
+- id: impresso-project/multilingual-named-entity-recognition
+  author: impresso-project
+  lastModified: 2026-02-05T14:19:57.000Z
+  cardData:
+    title: Multilingual Named Entity Recognition
+    short_description: Multilingual Named Entity Recognition in Historical Data
+    emoji: 👻
+    colorFrom: indigo
+    colorTo: yellow
+    sdk: gradio
+    app_file: app.py
+    pinned: false
+    license: gpl-3.0
+  host: https://impresso-project-multilingual-named-entity-recognition.hf.space
+  models: impresso-project/ner-stacked-bert-multilingual-v1.1.0
+  subdomain: impresso-project-multilingual-named-entity-recognition
+- id: impresso-project/solr-normalization-demo
+  author: impresso-project
+  lastModified: 2025-12-02T07:38:26.000Z
+  cardData:
+    title: Solr Normalization Demo
+    short_description: Understand the normalization of texts during indexing
+    emoji: 🧹
+    colorFrom: blue
+    colorTo: indigo
+    sdk: docker
+    app_file: ""
+    pinned: false
+    license: ""
+  host: https://impresso-project-solr-normalization-demo.hf.space
+  models: ""
+  subdomain: impresso-project-solr-normalization-demo
+- id: impresso-project/ocrqa-demo
+  author: impresso-project
+  lastModified: 2025-12-09T13:03:53.000Z
+  cardData:
+    title: OCR Quality Assessment Demo
+    short_description: Measure the OCR output quality using word recognition ratios
+    emoji: 🔍
+    colorFrom: gray
+    colorTo: indigo
+    sdk: docker
+    app_file: ""
+    pinned: false
+    license: ""
+  host: https://impresso-project-ocrqa-demo.hf.space
+  models: ""
+  subdomain: impresso-project-ocrqa-demo
+- id: impresso-project/adclassifier-demo
+  author: impresso-project
+  lastModified: 2025-11-20T15:55:30.000Z
+  cardData:
+    title: Adclassifier Demo
+    short_description: ""
+    emoji: 🌖
+    colorFrom: yellow
+    colorTo: yellow
+    sdk: docker
+    app_file: ""
+    pinned: false
+    license: ""
+  host: https://impresso-project-adclassifier-demo.hf.space
+  models: ""
+  subdomain: impresso-project-adclassifier-demo
+- id: impresso-project/floret-word-search-demo
+  author: impresso-project
+  lastModified: 2026-01-30T15:04:43.000Z
+  cardData:
+    title: Floret Word Embedding Search
+    short_description: ""
+    emoji: 🌿
+    colorFrom: green
+    colorTo: yellow
+    sdk: docker
+    app_file: app.py
+    pinned: false
+    license: mit
+  host: https://impresso-project-floret-word-search-demo.hf.space
+  models: impresso-project/floret-word-search-models
+  subdomain: impresso-project-floret-word-search-demo
+- id: impresso-project/ocrqa-exploration
+  author: impresso-project
+  lastModified: 2026-04-16T14:49:04.000Z
+  cardData:
+    title: Ocrqa Exploration
+    short_description: OCR Quality Exploration on Impresso Corpus
+    emoji: 🌖
+    colorFrom: red
+    colorTo: green
+    sdk: gradio
+    app_file: app.py
+    pinned: false
+    license: cc-by-sa-4.0
+  host: https://impresso-project-ocrqa-exploration.hf.space
+  models: ""
+  subdomain: impresso-project-ocrqa-exploration
+- id: impresso-project/ad-classification-exploration
+  author: impresso-project
+  lastModified: 2026-04-02T11:35:53.000Z
+  cardData:
+    title: Ad Classification Exploration
+    short_description: Explore yearly ad and non-ad distributions in Impresso
+    emoji: 📰
+    colorFrom: yellow
+    colorTo: blue
+    sdk: gradio
+    app_file: app.py
+    pinned: false
+    license: cc-by-sa-4.0
+  host: https://impresso-project-ad-classification-exploration.hf.space
+  models: ""
+  subdomain: impresso-project-ad-classification-exploration
+- id: impresso-project/topics-exploration
+  author: impresso-project
+  lastModified: 2026-05-10T20:28:29.000Z
+  cardData:
+    title: Impresso Topic Explorer
+    short_description: Topic model aggregate exploration for the Impresso corpus
+    emoji: ""
+    colorFrom: blue
+    colorTo: gray
+    sdk: gradio
+    app_file: app.py
+    pinned: false
+    license: cc-by-sa-4.0
+  host: https://impresso-project-topics-exploration.hf.space
+  models: ""
+  subdomain: impresso-project-topics-exploration
+- id: impresso-project/topics-exploration-v2
+  author: impresso-project
+  lastModified: 2026-05-13T22:45:48.000Z
+  cardData:
+    title: Impresso Topic Explorer
+    short_description: Topic model aggregate exploration for the Impresso corpus
+    emoji: ""
+    colorFrom: blue
+    colorTo: gray
+    sdk: gradio
+    app_file: app.py
+    pinned: false
+    license: cc-by-sa-4.0
+  host: https://impresso-project-topics-exploration-v2.hf.space
+  models: ""
+  subdomain: impresso-project-topics-exploration-v2

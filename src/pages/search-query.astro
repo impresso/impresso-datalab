@@ -1,6 +1,5 @@
 ---
 import { AstroSeo } from '@astrolib/seo';
-import App from '../components/App.astro';
 import SearchQuerySnippetModal from '../components/SearchQuerySnippetModal';
 import Layout from '../layouts/Layout.astro';
 import { CanonicalUrl } from '../constants';
@@ -19,6 +18,5 @@ const description = 'Explore and work programmatically with the Impresso Corpus,
 	description={description}
 	canonical={CanonicalUrl}
 />
-	<App transition:persist/>
 	<SearchQuerySnippetModal client:only="react"/>
 </Layout>

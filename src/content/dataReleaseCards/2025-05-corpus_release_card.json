@@ -1,0 +1,531 @@
+{
+  "releaseName": "polar night",
+  "releaseVersion": "2025-05",
+  "impressoCorpusOverview": {
+    "mediaStats": {
+      "titles": 134,
+      "issues": 780186,
+      "pages": 7483588,
+      "contentItems": 52358158,
+      "images": 4002089,
+      "tokens": 15652402700
+    },
+    "npsStats": {
+      "titles": 134,
+      "issues": 780186,
+      "pages": 7483588,
+      "contentItems": 52358158,
+      "images": 4002089,
+      "tokens": 15652402700
+    }
+  },
+  "impressoEnrichments": {
+    "lingproc": {
+      "models": [
+        {
+          "taskName": "linguistic processing",
+          "modelId": "spacy_v3.6.0-multilingual",
+          "githubLink": "https://github.com/impresso/impresso-linguistic-processing/releases/tag/v2024.11.27"
+        }
+      ]
+    },
+    "langident": {
+      "models": [
+        {
+          "taskName": "language identification",
+          "modelId": "langident_v1.4.4",
+          "githubLink": "https://github.com/impresso/impresso-language-identification/releases/tag/v1.4.4"
+        }
+      ],
+      "enrichmentStats": {
+        "mediaStats": {
+          "images": 4078196,
+          "langFd": {
+            "fr": 45436094,
+            "none": 4078196,
+            "de": 8842551,
+            "it": 55602,
+            "en": 98970,
+            "lb": 98235,
+            "pl": 524,
+            "sw": 219,
+            "es": 4181,
+            "et": 89,
+            "fi": 74,
+            "no": 37,
+            "nl": 417,
+            "pt": 2526,
+            "ro": 80,
+            "ca": 108,
+            "sq": 442,
+            "sv": 77,
+            "la": 10,
+            "hu": 637,
+            "tl": 78,
+            "da": 24,
+            "tr": 150,
+            "cy": 4,
+            "sl": 8,
+            "lt": 7,
+            "ja": 5,
+            "el": 14,
+            "br": 211,
+            "cs": 6,
+            "hr": 8
+          }
+        }
+      }
+    },
+    "textreuse": {
+      "models": [
+        {
+          "taskName": "text-reuse detection",
+          "modelId": "textreuse_passim-spark-scala_v0.2.0",
+          "githubLink": "https://github.com/dasmiq/passim/tree/v1.0.0"
+        }
+      ],
+      "enrichmentStats": {
+        "mediaStats": {
+          "textReuseClusters": 21645846,
+          "textReusePassages": 22960176
+        }
+      }
+    },
+    "entities": {
+      "models": [
+        {
+          "taskName": "named entity recognition (ner)",
+          "modelId": "entities-bert-historic-multilingual_fil-pers-loc_v4-0-4",
+          "huggingfaceLink": "https://huggingface.co/impresso-project/ner-stacked-bert-multilingual"
+        },
+        {
+          "taskName": "named entity linking (nel)",
+          "modelId": "nel_mgenre-multilingual_v1.0.0",
+          "huggingfaceLink": "https://huggingface.co/impresso-project/nel-mgenre-multilingual"
+        }
+      ],
+      "enrichmentStats": {
+        "mediaStats": {
+          "neEntities": 12440375,
+          "neMentions": 428138680
+        }
+      }
+    },
+    "newsagencies": {
+      "models": [
+        {
+          "taskName": "news agency recognition (nar)",
+          "modelId": "ner-newsagency_bert-base-historic-multilingual-v1.0.0",
+          "huggingfaceLink": "https://huggingface.co/impresso-project/nel-mgenre-multilingual"
+        }
+      ],
+      "enrichmentStats": {
+        "mediaStats": {
+          "neEntities": 29245,
+          "neMentions": 8399254
+        }
+      }
+    },
+    "topics": {
+      "models": [
+        {
+          "taskName": "topic modelling multilingual (tm-multi)",
+          "modelId": "tm-mallet_infer_seed42_v2.0.1-multilingual",
+          "huggingfaceLink": "https://huggingface.co/impresso-project/mallet-topic-inferencer"
+        }
+      ],
+      "enrichmentStats": {
+        "mediaStats": {
+          "topics": 16746650,
+          "topicsFd": {
+            "tmFrAllV2.0Tp07Fr": 345717,
+            "tmFrAllV2.0Tp22Fr": 1058080,
+            "tmFrAllV2.0Tp27Fr": 401524,
+            "tmFrAllV2.0Tp34Fr": 663660,
+            "tmFrAllV2.0Tp49Fr": 667908,
+            "tmFrAllV2.0Tp82Fr": 782895,
+            "tmFrAllV2.0Tp84Fr": 309527,
+            "tmFrAllV2.0Tp40Fr": 730927,
+            "tmFrAllV2.0Tp52Fr": 4437143,
+            "tmFrAllV2.0Tp20Fr": 638134,
+            "tmFrAllV2.0Tp36Fr": 2908815,
+            "tmFrAllV2.0Tp83Fr": 428271,
+            "tmFrAllV2.0Tp58Fr": 8487317,
+            "tmFrAllV2.0Tp99Fr": 546914,
+            "tmFrAllV2.0Tp14Fr": 357309,
+            "tmFrAllV2.0Tp61Fr": 428545,
+            "tmFrAllV2.0Tp68Fr": 532083,
+            "tmFrAllV2.0Tp79Fr": 607426,
+            "tmFrAllV2.0Tp81Fr": 688385,
+            "tmFrAllV2.0Tp47Fr": 554651,
+            "tmFrAllV2.0Tp90Fr": 660630,
+            "tmFrAllV2.0Tp01Fr": 362924,
+            "tmFrAllV2.0Tp17Fr": 518865,
+            "tmFrAllV2.0Tp97Fr": 1053713,
+            "tmFrAllV2.0Tp09Fr": 655874,
+            "tmFrAllV2.0Tp87Fr": 1757494,
+            "tmFrAllV2.0Tp89Fr": 417371,
+            "tmFrAllV2.0Tp26Fr": 453803,
+            "tmFrAllV2.0Tp43Fr": 688653,
+            "tmFrAllV2.0Tp02Fr": 708214,
+            "tmFrAllV2.0Tp93Fr": 530407,
+            "tmFrAllV2.0Tp80Fr": 469638,
+            "tmFrAllV2.0Tp42Fr": 649839,
+            "tmFrAllV2.0Tp04Fr": 995273,
+            "tmFrAllV2.0Tp91Fr": 587795,
+            "tmFrAllV2.0Tp74Fr": 609073,
+            "tmFrAllV2.0Tp13Fr": 629323,
+            "tmFrAllV2.0Tp94Fr": 324050,
+            "tmFrAllV2.0Tp31Fr": 426977,
+            "tmFrAllV2.0Tp78Fr": 526684,
+            "tmFrAllV2.0Tp46Fr": 455938,
+            "tmFrAllV2.0Tp56Fr": 316727,
+            "tmFrAllV2.0Tp23Fr": 697390,
+            "tmFrAllV2.0Tp38Fr": 186374,
+            "tmFrAllV2.0Tp45Fr": 600692,
+            "tmFrAllV2.0Tp59Fr": 521828,
+            "tmFrAllV2.0Tp67Fr": 353148,
+            "tmFrAllV2.0Tp69Fr": 555274,
+            "tmFrAllV2.0Tp51Fr": 609014,
+            "tmFrAllV2.0Tp57Fr": 385154,
+            "tmFrAllV2.0Tp11Fr": 545294,
+            "tmFrAllV2.0Tp28Fr": 458425,
+            "tmFrAllV2.0Tp86Fr": 125329,
+            "tmFrAllV2.0Tp96Fr": 468611,
+            "tmFrAllV2.0Tp00Fr": 1683700,
+            "tmFrAllV2.0Tp64Fr": 987686,
+            "tmFrAllV2.0Tp85Fr": 941943,
+            "tmFrAllV2.0Tp30Fr": 397932,
+            "tmFrAllV2.0Tp48Fr": 416896,
+            "tmFrAllV2.0Tp06Fr": 916224,
+            "tmFrAllV2.0Tp12Fr": 661303,
+            "tmFrAllV2.0Tp66Fr": 396192,
+            "tmFrAllV2.0Tp95Fr": 469241,
+            "tmFrAllV2.0Tp88Fr": 530869,
+            "tmFrAllV2.0Tp25Fr": 2260562,
+            "tmFrAllV2.0Tp33Fr": 813115,
+            "tmFrAllV2.0Tp75Fr": 1381374,
+            "tmFrAllV2.0Tp16Fr": 570700,
+            "tmFrAllV2.0Tp24Fr": 512546,
+            "tmFrAllV2.0Tp54Fr": 633258,
+            "tmFrAllV2.0Tp10Fr": 689559,
+            "tmFrAllV2.0Tp18Fr": 2108861,
+            "tmFrAllV2.0Tp63Fr": 314605,
+            "tmFrAllV2.0Tp41Fr": 287154,
+            "tmFrAllV2.0Tp60Fr": 522927,
+            "tmFrAllV2.0Tp08Fr": 451113,
+            "tmFrAllV2.0Tp70Fr": 591555,
+            "tmFrAllV2.0Tp55Fr": 1267800,
+            "tmFrAllV2.0Tp39Fr": 432374,
+            "tmFrAllV2.0Tp35Fr": 525407,
+            "tmFrAllV2.0Tp53Fr": 347191,
+            "tmFrAllV2.0Tp72Fr": 244826,
+            "tmFrAllV2.0Tp77Fr": 547433,
+            "tmFrAllV2.0Tp44Fr": 1178085,
+            "tmFrAllV2.0Tp15Fr": 663381,
+            "tmFrAllV2.0Tp62Fr": 418104,
+            "tmFrAllV2.0Tp92Fr": 268901,
+            "tmFrAllV2.0Tp29Fr": 428103,
+            "tmFrAllV2.0Tp73Fr": 493683,
+            "tmFrAllV2.0Tp19Fr": 739913,
+            "tmFrAllV2.0Tp21Fr": 430774,
+            "tmFrAllV2.0Tp76Fr": 301198,
+            "tmFrAllV2.0Tp37Fr": 1617576,
+            "tmFrAllV2.0Tp05Fr": 560294,
+            "tmFrAllV2.0Tp65Fr": 689096,
+            "tmFrAllV2.0Tp32Fr": 499406,
+            "tmFrAllV2.0Tp03Fr": 423935,
+            "tmDeAllV2.0Tp03De": 180548,
+            "tmDeAllV2.0Tp12De": 236554,
+            "tmDeAllV2.0Tp54De": 182640,
+            "tmDeAllV2.0Tp68De": 227982,
+            "tmDeAllV2.0Tp78De": 155714,
+            "tmDeAllV2.0Tp23De": 210750,
+            "tmDeAllV2.0Tp89De": 190404,
+            "tmDeAllV2.0Tp24De": 742510,
+            "tmDeAllV2.0Tp47De": 227005,
+            "tmDeAllV2.0Tp83De": 280190,
+            "tmDeAllV2.0Tp53De": 193149,
+            "tmDeAllV2.0Tp22De": 418589,
+            "tmDeAllV2.0Tp61De": 195002,
+            "tmDeAllV2.0Tp82De": 153600,
+            "tmDeAllV2.0Tp87De": 343064,
+            "tmDeAllV2.0Tp13De": 168108,
+            "tmDeAllV2.0Tp44De": 124124,
+            "tmDeAllV2.0Tp99De": 150772,
+            "tmDeAllV2.0Tp07De": 177370,
+            "tmDeAllV2.0Tp43De": 184704,
+            "tmDeAllV2.0Tp14De": 180505,
+            "tmDeAllV2.0Tp81De": 201926,
+            "tmDeAllV2.0Tp63De": 171060,
+            "tmDeAllV2.0Tp95De": 167753,
+            "tmDeAllV2.0Tp85De": 204503,
+            "tmDeAllV2.0Tp33De": 147062,
+            "tmDeAllV2.0Tp79De": 1048292,
+            "tmDeAllV2.0Tp18De": 193214,
+            "tmDeAllV2.0Tp58De": 187771,
+            "tmDeAllV2.0Tp08De": 156614,
+            "tmDeAllV2.0Tp65De": 176427,
+            "tmDeAllV2.0Tp40De": 123015,
+            "tmDeAllV2.0Tp56De": 139338,
+            "tmDeAllV2.0Tp90De": 173515,
+            "tmDeAllV2.0Tp30De": 262853,
+            "tmDeAllV2.0Tp06De": 114705,
+            "tmDeAllV2.0Tp31De": 191486,
+            "tmDeAllV2.0Tp75De": 178913,
+            "tmDeAllV2.0Tp76De": 204723,
+            "tmDeAllV2.0Tp35De": 209105,
+            "tmDeAllV2.0Tp37De": 171081,
+            "tmDeAllV2.0Tp71De": 212830,
+            "tmDeAllV2.0Tp80De": 173689,
+            "tmDeAllV2.0Tp01De": 172329,
+            "tmDeAllV2.0Tp94De": 103738,
+            "tmDeAllV2.0Tp26De": 200557,
+            "tmDeAllV2.0Tp41De": 137155,
+            "tmDeAllV2.0Tp46De": 195533,
+            "tmDeAllV2.0Tp50De": 132789,
+            "tmDeAllV2.0Tp97De": 228471,
+            "tmDeAllV2.0Tp11De": 242121,
+            "tmDeAllV2.0Tp57De": 168365,
+            "tmDeAllV2.0Tp64De": 177673,
+            "tmDeAllV2.0Tp96De": 298690,
+            "tmDeAllV2.0Tp74De": 110512,
+            "tmDeAllV2.0Tp51De": 186605,
+            "tmDeAllV2.0Tp34De": 114145,
+            "tmDeAllV2.0Tp39De": 190368,
+            "tmDeAllV2.0Tp38De": 138805,
+            "tmDeAllV2.0Tp70De": 143306,
+            "tmDeAllV2.0Tp28De": 172297,
+            "tmDeAllV2.0Tp25De": 208529,
+            "tmDeAllV2.0Tp88De": 214485,
+            "tmDeAllV2.0Tp48De": 240175,
+            "tmDeAllV2.0Tp55De": 206794,
+            "tmDeAllV2.0Tp04De": 134253,
+            "tmDeAllV2.0Tp92De": 169856,
+            "tmDeAllV2.0Tp15De": 139104,
+            "tmDeAllV2.0Tp98De": 109730,
+            "tmDeAllV2.0Tp52De": 210441,
+            "tmDeAllV2.0Tp86De": 171652,
+            "tmDeAllV2.0Tp66De": 132017,
+            "tmDeAllV2.0Tp91De": 178391,
+            "tmDeAllV2.0Tp19De": 260508,
+            "tmDeAllV2.0Tp69De": 143575,
+            "tmDeAllV2.0Tp02De": 140334,
+            "tmDeAllV2.0Tp59De": 209808,
+            "tmDeAllV2.0Tp93De": 157027,
+            "tmDeAllV2.0Tp49De": 132536,
+            "tmDeAllV2.0Tp72De": 136404,
+            "tmDeAllV2.0Tp42De": 133131,
+            "tmDeAllV2.0Tp73De": 85796,
+            "tmDeAllV2.0Tp29De": 170245,
+            "tmDeAllV2.0Tp05De": 142217,
+            "tmDeAllV2.0Tp10De": 175806,
+            "tmDeAllV2.0Tp62De": 86418,
+            "tmDeAllV2.0Tp16De": 113742,
+            "tmDeAllV2.0Tp17De": 109111,
+            "tmDeAllV2.0Tp60De": 248562,
+            "tmDeAllV2.0Tp27De": 226348,
+            "tmDeAllV2.0Tp21De": 165253,
+            "tmDeAllV2.0Tp00De": 81396,
+            "tmDeAllV2.0Tp09De": 69060,
+            "tmDeAllV2.0Tp36De": 110151,
+            "tmDeAllV2.0Tp84De": 114890,
+            "tmDeAllV2.0Tp77De": 158817,
+            "tmDeAllV2.0Tp20De": 282946,
+            "tmDeAllV2.0Tp32De": 141406,
+            "tmDeAllV2.0Tp45De": 66843,
+            "tmDeAllV2.0Tp67De": 94956,
+            "tmFrAllV2.0Tp71Fr": 208966,
+            "tmFrAllV2.0Tp98Fr": 431783,
+            "tmFrAllV2.0Tp50Fr": 521970,
+            "noTopic": 202,
+            "tmLbAllV2.1Tp86Lb": 2113,
+            "tmLbAllV2.1Tp29Lb": 4406,
+            "tmLbAllV2.1Tp12Lb": 3541,
+            "tmLbAllV2.1Tp21Lb": 2327,
+            "tmLbAllV2.1Tp27Lb": 2491,
+            "tmLbAllV2.1Tp95Lb": 2182,
+            "tmLbAllV2.1Tp11Lb": 3166,
+            "tmLbAllV2.1Tp13Lb": 4095,
+            "tmLbAllV2.1Tp36Lb": 31323,
+            "tmLbAllV2.1Tp45Lb": 1695,
+            "tmLbAllV2.1Tp53Lb": 1354,
+            "tmLbAllV2.1Tp30Lb": 1033,
+            "tmLbAllV2.1Tp90Lb": 1714,
+            "tmLbAllV2.1Tp96Lb": 3883,
+            "tmLbAllV2.1Tp32Lb": 527,
+            "tmLbAllV2.1Tp38Lb": 3489,
+            "tmLbAllV2.1Tp00Lb": 633,
+            "tmLbAllV2.1Tp64Lb": 3092,
+            "tmLbAllV2.1Tp48Lb": 4082,
+            "tmLbAllV2.1Tp80Lb": 28110,
+            "tmLbAllV2.1Tp09Lb": 1908,
+            "tmLbAllV2.1Tp17Lb": 2071,
+            "tmLbAllV2.1Tp65Lb": 1975,
+            "tmLbAllV2.1Tp69Lb": 814,
+            "tmLbAllV2.1Tp76Lb": 1269,
+            "tmLbAllV2.1Tp56Lb": 1128,
+            "tmLbAllV2.1Tp92Lb": 1374,
+            "tmLbAllV2.1Tp94Lb": 2023,
+            "tmLbAllV2.1Tp68Lb": 2647,
+            "tmLbAllV2.1Tp84Lb": 632,
+            "tmLbAllV2.1Tp98Lb": 1882,
+            "tmLbAllV2.1Tp18Lb": 822,
+            "tmLbAllV2.1Tp35Lb": 1893,
+            "tmLbAllV2.1Tp31Lb": 1727,
+            "tmLbAllV2.1Tp85Lb": 1089,
+            "tmLbAllV2.1Tp66Lb": 824,
+            "tmLbAllV2.1Tp74Lb": 1812,
+            "tmLbAllV2.1Tp25Lb": 928,
+            "tmLbAllV2.1Tp15Lb": 1069,
+            "tmLbAllV2.1Tp82Lb": 853,
+            "tmLbAllV2.1Tp78Lb": 19668,
+            "tmLbAllV2.1Tp50Lb": 1025,
+            "tmLbAllV2.1Tp61Lb": 1699,
+            "tmLbAllV2.1Tp71Lb": 4621,
+            "tmLbAllV2.1Tp40Lb": 996,
+            "tmLbAllV2.1Tp63Lb": 786,
+            "tmLbAllV2.1Tp19Lb": 2243,
+            "tmLbAllV2.1Tp49Lb": 1060,
+            "tmLbAllV2.1Tp34Lb": 4477,
+            "tmLbAllV2.1Tp70Lb": 878,
+            "tmLbAllV2.1Tp41Lb": 1112,
+            "tmLbAllV2.1Tp39Lb": 1338,
+            "tmLbAllV2.1Tp93Lb": 2963,
+            "tmLbAllV2.1Tp26Lb": 1268,
+            "tmLbAllV2.1Tp23Lb": 2850,
+            "tmLbAllV2.1Tp87Lb": 1822,
+            "tmLbAllV2.1Tp43Lb": 1070,
+            "tmLbAllV2.1Tp20Lb": 7022,
+            "tmLbAllV2.1Tp07Lb": 1229,
+            "tmLbAllV2.1Tp08Lb": 2190,
+            "tmLbAllV2.1Tp57Lb": 1651,
+            "tmLbAllV2.1Tp59Lb": 733,
+            "tmLbAllV2.1Tp16Lb": 10639,
+            "tmLbAllV2.1Tp02Lb": 1731,
+            "tmLbAllV2.1Tp44Lb": 1819,
+            "tmLbAllV2.1Tp51Lb": 608,
+            "tmLbAllV2.1Tp60Lb": 780,
+            "tmLbAllV2.1Tp04Lb": 862,
+            "tmLbAllV2.1Tp83Lb": 1049,
+            "tmLbAllV2.1Tp97Lb": 3799,
+            "tmLbAllV2.1Tp24Lb": 1696,
+            "tmLbAllV2.1Tp42Lb": 1746,
+            "tmLbAllV2.1Tp47Lb": 591,
+            "tmLbAllV2.1Tp58Lb": 10372,
+            "tmLbAllV2.1Tp77Lb": 1283,
+            "tmLbAllV2.1Tp52Lb": 1630,
+            "tmLbAllV2.1Tp54Lb": 2031,
+            "tmLbAllV2.1Tp46Lb": 1793,
+            "tmLbAllV2.1Tp10Lb": 1043,
+            "tmLbAllV2.1Tp33Lb": 1876,
+            "tmLbAllV2.1Tp79Lb": 2707,
+            "tmLbAllV2.1Tp03Lb": 1402,
+            "tmLbAllV2.1Tp72Lb": 1598,
+            "tmLbAllV2.1Tp14Lb": 2411,
+            "tmLbAllV2.1Tp67Lb": 990,
+            "tmLbAllV2.1Tp88Lb": 1681,
+            "tmLbAllV2.1Tp01Lb": 4822,
+            "tmLbAllV2.1Tp06Lb": 2921,
+            "tmLbAllV2.1Tp91Lb": 626,
+            "tmLbAllV2.1Tp37Lb": 1207,
+            "tmLbAllV2.1Tp55Lb": 5590,
+            "tmLbAllV2.1Tp73Lb": 5439,
+            "tmLbAllV2.1Tp05Lb": 1488,
+            "tmLbAllV2.1Tp28Lb": 2447,
+            "tmLbAllV2.1Tp81Lb": 2069,
+            "tmLbAllV2.1Tp62Lb": 2282,
+            "tmLbAllV2.1Tp75Lb": 2496,
+            "tmLbAllV2.1Tp22Lb": 1573,
+            "tmLbAllV2.1Tp99Lb": 1278,
+            "tmLbAllV2.1Tp89Lb": 2853
+          }
+        }
+      }
+    },
+    "ocrqa": {
+      "models": [
+        {
+          "taskName": "OCR quality assessment",
+          "modelId": "ocrqa-ocrqa-wp_v1.0.6",
+          "huggingfaceLink": "https://huggingface.co/impresso-project/OCR-quality-assessment-unigram, https://huggingface.co/impresso-project/ocr-quality-assessor-unigram-light "
+        }
+      ]
+    },
+    "embImages": {
+      "models": [
+        {
+          "taskName": "image embeddings (DINOv2)",
+          "modelId": "emb-images_dinov2_v0.0.1",
+          "huggingfaceLink": "https://huggingface.co/facebook/dinov2-large"
+        },
+        {
+          "taskName": "image embeddings (OpenCLIP)",
+          "modelId": "emb-images_openclip_v0.0.1",
+          "huggingfaceLink": "https://huggingface.co/laion/CLIP-ViT-L-14-DataComp.XL-s13B-b90K"
+        }
+      ],
+      "enrichmentStats": {
+        "mediaStats": {
+          "images": 4002089
+        }
+      }
+    },
+    "embDocs": {
+      "models": [
+        {
+          "taskName": "document embeddings",
+          "modelId": "emb-docs_gte-multilingual_v1.0.0",
+          "huggingfaceLink": "https://huggingface.co/Alibaba-NLP/gte-multilingual-base"
+        }
+      ]
+    }
+  },
+  "impressoProcessings": {
+    "canonical": {
+      "canonical": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-preparation/canonical_v4-5-0.json"
+    },
+    "rebuilt": {
+      "rebuilt": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-preparation/rebuilt_v1-1-1.json"
+    },
+    "passim": {
+      "rebuiltForPassim": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-preparation/passim_v3-0-0.json"
+    },
+    "lingproc": {
+      "linguisticProcessing": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/lingproc/lingproc-pos-spacy_v3.6.0-multilingual_v1-0-3/lingproc_v0-0-1.json"
+    },
+    "langident": {
+      "languageIdentification": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/langident/langident_v1-4-4/langident_v0-0-1.json"
+    },
+    "textreuse": {
+      "textReuseDetection": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/textreuse/textreuse_v1-0-0/textreuse_v0-1-1.json"
+    },
+    "entities": {
+      "namedEntityRecognition(ner)": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/entities/entities-bert-historic-multilingual_fil-pers-loc_v4-0-4/entities_v1-0-0.json"
+    },
+    "embDocs": {
+      "documentEmbeddings": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/embeddings/docs/doc-embeddings_v1-1-0/emb-docs_v1-0-0.json"
+    },
+    "embWords": {},
+    "newsagencies": {
+      "newsAgencyRecognition(nar)": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/newsagencies/newsagencies-bert-base-historic-multilingual_v1-0-0/newsagencies_v0-1-0.json"
+    },
+    "embImages": {
+      "imageEmbeddings(dinov2)": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/embeddings/images/embeddings_openclip_v1-0-0/emb-images_v0-0-2.json",
+      "imageEmbeddings(openclip)": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/embeddings/images/embeddings_openclip_v1-0-0/emb-images_v0-0-2.json"
+    },
+    "topics": {
+      "topicModellingMultilingual(tmMulti)": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/topics/topics-tm-mallet_infer_seed42_v2.0.1-multilingual_v2-0-1/topics_v0-0-1.json"
+    },
+    "ocrqa": {
+      "ocrQualityAssessment": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-processing/ocrqa/ocrqa-ocrqa-wp_v1.0.6_v1-0-0/ocrqa_v0-0-1.json"
+    },
+    "mysqlIngestion": {
+      "mysqlIngestion": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-ingestion/mysql-ingestion_v26-0-0.json"
+    },
+    "solrTextIngestion": {
+      "solrTextIngestion": "https://github.com/impresso/impresso-data-release/blob/master/data-release-2025-05/data-processing-versioning/data-ingestion/solr-text-ingestion_v1-0-0.json"
+    }
+  },
+  "id": "data-release-2025-05/corpus_release_card.json"
+}

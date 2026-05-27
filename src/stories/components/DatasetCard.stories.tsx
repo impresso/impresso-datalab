@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react"
-// import { fn } from "@storybook/test"
+import type { Meta, StoryObj } from "@storybook/react-vite"
+
 import type { DatasetCardProps } from "../../components/DatasetCard"
 import DatasetCard from "../../components/DatasetCard"
 import type { Dataset } from "../../types"
